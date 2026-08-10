@@ -418,20 +418,38 @@
 
         /* MOBILE */
 
-        @media (max-width: 900px) {
+        @media (max-width: 700px) {
 
             .nav-links {
                 display: none;
             }
 
-            .hero-container {
-                grid-template-columns: 1fr;
-            }
+           .hero-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+    gap: 40px;
+    align-items: center;
+}
+            .hero-card {
+    width: 100%;
+    max-width: 100%;
+}
 
             .hero h1 {
                 font-size: 38px;
             }
+.hero-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
 
+    width: 100%;
+    max-width: 100%;
+}
             .quick-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
