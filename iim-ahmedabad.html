@@ -13,42 +13,19 @@
 content="IIM Ahmedabad MBA admission information including eligibility, CAT, fees, cutoff, placements and courses.">
 
 <style>
-    .sidebar button {
 
-    display: block;
-
-    width: 100%;
-
-    background: none;
-
-    border: none;
-
-    border-bottom: 1px solid #f1f5f9;
-
-    padding: 10px 0;
-
-    text-align: left;
-
-    color: #2563eb;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-}
-
-.sidebar button:hover {
-
-    color: #1d4ed8;
-
-}
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -63,20 +40,31 @@ a {
     color: inherit;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header {
-    background: white;
+    background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar {
     max-width: 1200px;
     margin: auto;
+
     padding: 16px 24px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    gap: 25px;
 }
 
 .logo {
@@ -91,24 +79,35 @@ header {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
 .nav-links a {
     font-size: 14px;
     font-weight: 600;
+    color: #374151;
 }
 
 .nav-links a:hover {
     color: #2563eb;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
-    background: linear-gradient(135deg, #172554, #1d4ed8);
+    background: linear-gradient(
+        135deg,
+        #172554,
+        #1d4ed8
+    );
+
     color: white;
-    padding: 60px 24px;
+
+    padding: 55px 24px;
 }
 
 .hero-container {
@@ -118,149 +117,283 @@ header {
 
 .hero h1 {
     font-size: 44px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .hero .location {
     color: #dbeafe;
     margin-bottom: 18px;
+    font-size: 16px;
 }
 
 .hero p {
     max-width: 800px;
     color: #dbeafe;
+    font-size: 16px;
 }
 
-/* CONTENT */
+
+/* =========================
+   MAIN CONTAINER
+========================= */
 
 .container {
     max-width: 1200px;
     margin: auto;
-    padding: 45px 24px;
+
+    padding: 40px 24px 70px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 25px;
-}
 
-.card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 22px;
-}
-
-.card h2 {
-    font-size: 25px;
-    margin-bottom: 15px;
-}
-
-.card h3 {
-    margin-top: 20px;
-    margin-bottom: 8px;
-}
-
-.card p {
-    color: #475569;
-    margin-bottom: 12px;
-}
-
-/* INFO */
+/* =========================
+   QUICK INFORMATION
+========================= */
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
     gap: 15px;
-    margin-bottom: 25px;
+
+    margin-bottom: 30px;
 }
 
 .info-box {
-    background: white;
+    background: #ffffff;
+
     border: 1px solid #e5e7eb;
+
     border-radius: 10px;
+
     padding: 18px;
 }
 
 .info-box small {
     display: block;
+
     color: #64748b;
+
     margin-bottom: 5px;
+
+    font-size: 13px;
 }
 
-/* TABLE */
+.info-box strong {
+    font-size: 15px;
+}
+
+
+/* =========================
+   MAIN CONTENT + SIDEBAR
+========================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        280px;
+
+    gap: 30px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   CONTENT CARDS
+========================= */
+
+.card {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 28px;
+
+    margin-bottom: 22px;
+
+    scroll-margin-top: 100px;
+}
+
+.card h2 {
+    font-size: 25px;
+
+    margin-bottom: 15px;
+
+    color: #172033;
+}
+
+.card h3 {
+    font-size: 17px;
+
+    margin-top: 20px;
+
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #475569;
+
+    margin-bottom: 12px;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
 
 table {
     width: 100%;
+
     border-collapse: collapse;
+
     margin-top: 15px;
 }
 
 th,
 td {
     border: 1px solid #e5e7eb;
+
     padding: 12px;
+
     text-align: left;
+
+    font-size: 14px;
 }
 
 th {
     background: #eff6ff;
+
+    font-weight: 700;
 }
 
-/* SIDEBAR */
+
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar {
-    background: white;
+    background: #ffffff;
+
     border: 1px solid #e5e7eb;
+
     border-radius: 12px;
+
     padding: 22px;
+
     height: fit-content;
+
+    position: sticky;
+
+    top: 90px;
+
+    align-self: start;
 }
 
 .sidebar h3 {
-    margin-bottom: 12px;
+    margin: 0 0 15px 0;
+
+    font-size: 18px;
+
+    color: #172033;
 }
 
 .sidebar a {
     display: block;
-    padding: 9px 0;
+
+    width: 100%;
+
+    padding: 10px 0;
+
+    border-bottom:
+        1px solid #f1f5f9;
+
     color: #2563eb;
-    border-bottom: 1px solid #f1f5f9;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
 }
 
-/* BUTTON */
+.sidebar a:last-child {
+    border-bottom: none;
+}
+
+.sidebar a:hover {
+    color: #1d4ed8;
+
+    padding-left: 5px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
 
 .button {
     display: inline-block;
-    margin-top: 15px;
+
+    margin-top: 5px;
+
     background: #2563eb;
+
     color: white;
+
     padding: 12px 20px;
+
     border-radius: 7px;
+
     font-weight: 700;
+
+    font-size: 14px;
 }
 
-/* FOOTER */
+.button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     background: #0f172a;
+
     color: white;
+
     padding: 40px 24px;
 }
 
 .footer-container {
     max-width: 1200px;
+
     margin: auto;
+}
+
+.footer-container h3 {
+    margin-bottom: 8px;
 }
 
 footer p {
     color: #94a3b8;
+
     font-size: 13px;
 }
 
-/* MOBILE */
+
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 900px) {
 
@@ -272,19 +405,40 @@ footer p {
         grid-template-columns: 1fr;
     }
 
-    .info-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .sidebar {
+        position: static;
+
+        width: 100%;
+
+        order: -1;
+
+        margin-bottom: 20px;
     }
+
+    .info-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
 }
 
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
+
+    .hero {
+        padding: 40px 18px;
+    }
 
     .hero h1 {
         font-size: 32px;
     }
 
     .container {
-        padding: 30px 18px;
+        padding: 30px 18px 50px;
     }
 
     .info-grid {
@@ -295,9 +449,32 @@ footer p {
         padding: 20px;
     }
 
+    .card h2 {
+        font-size: 22px;
+    }
+
     table {
         font-size: 13px;
     }
+
+    th,
+    td {
+        padding: 9px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE TABLE SCROLL
+========================= */
+
+@media (max-width: 600px) {
+
+    .card {
+        overflow-x: auto;
+    }
+
 }
 
 </style>
@@ -308,27 +485,43 @@ footer p {
 <body>
 
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
 <nav class="navbar">
 
 <a href="index.html" class="logo">
-MBA<span>Portal</span>
+    MBA<span>Portal</span>
 </a>
 
 <div class="nav-links">
 
-<a href="index.html">Home</a>
+<a href="index.html">
+    Home
+</a>
 
-<a href="colleges.html">MBA Colleges</a>
+<a href="colleges.html">
+    MBA Colleges
+</a>
 
-<a href="#">Entrance Exams</a>
+<a href="#">
+    Entrance Exams
+</a>
 
-<a href="#">Admissions</a>
+<a href="#">
+    Admissions
+</a>
 
-<a href="#">Cutoffs</a>
+<a href="#">
+    Cutoffs
+</a>
 
-<a href="#">Placements</a>
+<a href="#">
+    Placements
+</a>
 
 </div>
 
@@ -337,114 +530,173 @@ MBA<span>Portal</span>
 </header>
 
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
 <div class="hero-container">
 
-<h1>IIM Ahmedabad</h1>
+<h1>
+    IIM Ahmedabad
+</h1>
 
 <div class="location">
-Ahmedabad, Gujarat
+    Ahmedabad, Gujarat
 </div>
 
 <p>
-Explore IIM Ahmedabad MBA information including
-admission process, CAT, eligibility, fees, cutoff,
-courses and placements.
+    Explore IIM Ahmedabad MBA information including
+    admission process, CAT, eligibility, fees, cutoff,
+    courses and placements.
 </p>
 
 </div>
 
 </section>
 
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="container">
 
 
+<!-- QUICK INFORMATION -->
+
 <div class="info-grid">
 
 <div class="info-box">
-<small>Programme</small>
-<strong>MBA / PGP</strong>
+
+<small>
+    Programme
+</small>
+
+<strong>
+    MBA / PGP
+</strong>
+
 </div>
+
 
 <div class="info-box">
-<small>Entrance Exam</small>
-<strong>CAT</strong>
+
+<small>
+    Entrance Exam
+</small>
+
+<strong>
+    CAT
+</strong>
+
 </div>
+
 
 <div class="info-box">
-<small>Institute Type</small>
-<strong>Public</strong>
+
+<small>
+    Institute Type
+</small>
+
+<strong>
+    Public
+</strong>
+
 </div>
+
 
 <div class="info-box">
-<small>Location</small>
-<strong>Ahmedabad</strong>
-</div>
+
+<small>
+    Location
+</small>
+
+<strong>
+    Ahmedabad
+</strong>
 
 </div>
 
+</div>
+
+
+<!-- =========================
+     CONTENT + SIDEBAR
+========================= -->
 
 <div class="grid">
 
 
+<!-- =========================
+     LEFT CONTENT
+========================= -->
+
 <div>
 
 
+<!-- OVERVIEW -->
+
 <section id="overview" class="card">
 
-<h2>About IIM Ahmedabad</h2>
+<h2>
+    About IIM Ahmedabad
+</h2>
 
 <p>
-Indian Institute of Management Ahmedabad is one of
-India's leading management institutes. The institute
-offers postgraduate and other management programmes.
+    Indian Institute of Management Ahmedabad is one of
+    India's leading management institutes. The institute
+    offers postgraduate and other management programmes.
 </p>
 
 <p>
-The flagship two-year management programme is commonly
-known as the MBA/PGP.
+    The flagship two-year management programme is commonly
+    known as the MBA/PGP.
 </p>
 
 </section>
 
+
+<!-- ADMISSION -->
 
 <section id="admission" class="card">
 
-<h2>IIM Ahmedabad MBA Admission</h2>
+<h2>
+    IIM Ahmedabad MBA Admission
+</h2>
 
 <p>
-Admission to the flagship MBA/PGP programme involves
-the Common Admission Test (CAT) and the institute's
-selection process.
+    Admission to the flagship MBA/PGP programme involves
+    the Common Admission Test (CAT) and the institute's
+    selection process.
 </p>
 
 <table>
 
 <tr>
-<th>Admission Component</th>
-<th>Details</th>
+    <th>Admission Component</th>
+    <th>Details</th>
 </tr>
 
 <tr>
-<td>Entrance Exam</td>
-<td>CAT</td>
+    <td>Entrance Exam</td>
+    <td>CAT</td>
 </tr>
 
 <tr>
-<td>Programme</td>
-<td>MBA / PGP</td>
+    <td>Programme</td>
+    <td>MBA / PGP</td>
 </tr>
 
 <tr>
-<td>Duration</td>
-<td>2 Years</td>
+    <td>Duration</td>
+    <td>2 Years</td>
 </tr>
 
 <tr>
-<td>Mode</td>
-<td>Full Time</td>
+    <td>Mode</td>
+    <td>Full Time</td>
 </tr>
 
 </table>
@@ -452,72 +704,84 @@ selection process.
 </section>
 
 
-<section id="Eligibility" class="card">
+<!-- ELIGIBILITY -->
 
-<h2>Eligibility</h2>
+<section id="eligibility" class="card">
+
+<h2>
+    Eligibility
+</h2>
 
 <p>
-Candidates must meet the academic and other eligibility
-requirements specified by IIM Ahmedabad for the relevant
-admission cycle.
+    Candidates must meet the academic and other eligibility
+    requirements specified by IIM Ahmedabad for the relevant
+    admission cycle.
 </p>
 
 <p>
-Applicants should always check the latest official
-admission policy before applying.
+    Applicants should always check the latest official
+    admission policy before applying.
 </p>
 
 </section>
 
+
+<!-- CUTOFF -->
 
 <section id="cutoff" class="card">
 
-<h2>CAT Cutoff</h2>
+<h2>
+    CAT Cutoff
+</h2>
 
 <p>
-CAT performance is an important component of the IIM
-Ahmedabad admission process. The qualifying requirements
-and actual competitive percentile for admission are not
-necessarily the same.
+    CAT performance is an important component of the IIM
+    Ahmedabad admission process. The qualifying requirements
+    and actual competitive percentile for admission are not
+    necessarily the same.
 </p>
 
 <p>
-Verified year-wise cutoff information will be added after
-checking the official admission documents.
+    Verified year-wise cutoff information will be added after
+    checking the official admission documents.
 </p>
 
 </section>
 
 
+<!-- FEES -->
+
 <section id="fees" class="card">
 
-<h2>MBA Fees</h2>
+<h2>
+    MBA Fees
+</h2>
 
 <p>
-The applicable programme fee and other charges can change
-between admission cycles.
+    The applicable programme fee and other charges can change
+    between admission cycles.
 </p>
 
 <table>
 
 <tr>
-<th>Fee Component</th>
-<th>Status</th>
+    <th>Fee Component</th>
+    <th>Status</th>
 </tr>
 
 <tr>
-<td>Programme Fee</td>
-<td>To be verified</td>
+    <td>Programme Fee</td>
+    <td>To be verified</td>
 </tr>
 
 <tr>
-<td>Other Charges</td>
-<td>To be verified</td>
+    <td>Other Charges</td>
+    <td>To be verified</td>
 </tr>
 
 <tr>
-<td>Total Cost</td>
-<td>To be verified</td>
+    <td>Total Cost</td>
+    <td>To be verified</td>
 </tr>
 
 </table>
@@ -525,116 +789,131 @@ between admission cycles.
 </section>
 
 
-<section id="Placements"class="card">
+<!-- PLACEMENTS -->
 
-<h2>Placements</h2>
+<section id="placements" class="card">
+
+<h2>
+    Placements
+</h2>
 
 <p>
-Placement information including average compensation,
-median compensation, highest offers, recruiters and
-sector trends will be added using verified placement
-reports.
+    Placement information including average compensation,
+    median compensation, highest offers, recruiters and
+    sector trends will be added using verified placement
+    reports.
 </p>
 
 </section>
 
 
-<section id='Rankings" class="card">
+<!-- RANKINGS -->
 
-<h2>Rankings</h2>
+<section id="rankings" class="card">
+
+<h2>
+    Rankings
+</h2>
 
 <p>
-Ranking information will be added after verification
-from the respective ranking agencies and official
-sources.
+    Ranking information will be added after verification
+    from the respective ranking agencies and official
+    sources.
 </p>
 
 </section>
 
 
-<section id="faq"class="card">
+<!-- FAQ -->
 
-<h2>Frequently Asked Questions</h2>
+<section id="faq" class="card">
 
-<h3>Which entrance exam is required?</h3>
+<h2>
+    Frequently Asked Questions
+</h2>
+
+<h3>
+    Which entrance exam is required?
+</h3>
 
 <p>
-CAT is used for admission to the flagship MBA/PGP
-programme, subject to the applicable admission policy.
+    CAT is used for admission to the flagship MBA/PGP
+    programme, subject to the applicable admission policy.
 </p>
 
-<h3>Where is IIM Ahmedabad located?</h3>
+
+<h3>
+    Where is IIM Ahmedabad located?
+</h3>
 
 <p>
-IIM Ahmedabad is located in Ahmedabad, Gujarat.
+    IIM Ahmedabad is located in Ahmedabad, Gujarat.
 </p>
 
-<h3>What is the duration of the MBA programme?</h3>
+
+<h3>
+    What is the duration of the MBA programme?
+</h3>
 
 <p>
-The flagship MBA/PGP programme is a two-year full-time
-programme.
+    The flagship MBA/PGP programme is a two-year full-time
+    programme.
 </p>
 
 </section>
 
+
+<!-- CTA -->
 
 <a href="colleges.html" class="button">
-Explore More MBA Colleges
+    Explore More MBA Colleges
 </a>
 
 
 </div>
 
 
+<!-- =========================
+     SIDEBAR
+========================= -->
+
 <aside class="sidebar">
 
-    <h3>IIM Ahmedabad</h3>
+<h3>
+    IIM Ahmedabad
+</h3>
 
-    <button onclick="scrollToSection('overview')">
-        Overview
-    </button>
+<a href="#overview">
+    Overview
+</a>
 
-    <button onclick="scrollToSection('admission')">
-        Admission
-    </button>
+<a href="#admission">
+    Admission
+</a>
 
-    <button onclick="scrollToSection('eligibility')">
-        Eligibility
-    </button>
+<a href="#eligibility">
+    Eligibility
+</a>
 
-    <button onclick="scrollToSection('cutoff')">
-        CAT Cutoff
-    </button>
+<a href="#cutoff">
+    CAT Cutoff
+</a>
 
-    <button onclick="scrollToSection('fees')">
-        Fees
-    </button>
+<a href="#fees">
+    Fees
+</a>
 
-    <button onclick="scrollToSection('placements')">
-        Placements
-    </button>
+<a href="#placements">
+    Placements
+</a>
 
-    <button onclick="scrollToSection('rankings')">
-        Rankings
-    </button>
+<a href="#rankings">
+    Rankings
+</a>
 
-    <button onclick="scrollToSection('faq')">
-        FAQs
-    </button>
-
-</aside>
-    <a href="#placements">
-        Placements
-    </a>
-
-    <a href="#rankings">
-        Rankings
-    </a>
-
-    <a href="#faq">
-        FAQs
-    </a>
+<a href="#faq">
+    FAQs
+</a>
 
 </aside>
 
@@ -644,15 +923,21 @@ Explore More MBA Colleges
 </main>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
 <div class="footer-container">
 
-<h3>MBA Portal</h3>
+<h3>
+    MBA Portal
+</h3>
 
 <p>
-MBA admissions, colleges, entrance exams,
-fees, cutoffs and placements.
+    MBA admissions, colleges, entrance exams,
+    fees, cutoffs and placements.
 </p>
 
 </div>
@@ -661,46 +946,5 @@ fees, cutoffs and placements.
 
 
 </body>
-    <script>
-
-function scrollToSection(section) {
-
-    const headings = document.querySelectorAll("h2");
-
-    let target = null;
-
-    headings.forEach(function(heading) {
-
-        const text = heading.innerText.toLowerCase();
-
-        if (
-            (section === "overview" && text.includes("about iim")) ||
-            (section === "admission" && text.includes("admission")) ||
-            (section === "eligibility" && text.includes("eligibility")) ||
-            (section === "cutoff" && text.includes("cutoff")) ||
-            (section === "fees" && text.includes("fees")) ||
-            (section === "placements" && text.includes("placements")) ||
-            (section === "rankings" && text.includes("rankings")) ||
-            (section === "faq" && text.includes("frequently asked"))
-        ) {
-
-            target = heading;
-
-        }
-
-    });
-
-    if (target) {
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
-
-}
-
-</script>
 
 </html>
