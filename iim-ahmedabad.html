@@ -1,46 +1,605 @@
-<!-- IIM AHMEDABAD -->
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="college-card"
-     data-location="Ahmedabad"
-     data-exam="CAT"
-     data-program="MBA">
+<head>
 
-    <div class="college-header">
+<meta charset="UTF-8">
 
-        <h3>IIM Ahmedabad</h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <div class="location">
-            Ahmedabad, Gujarat
-        </div>
+<title>IIM Ahmedabad MBA | Admission, Fees, Cutoff & Placements</title>
 
-    </div>
+<meta name="description"
+content="IIM Ahmedabad MBA admission information including eligibility, CAT, fees, cutoff, placements and courses.">
 
-    <div class="college-body">
+<style>
 
-        <div class="info-row">
-            <span>Programme</span>
-            <span>MBA</span>
-        </div>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        <div class="info-row">
-            <span>Entrance</span>
-            <span>CAT</span>
-        </div>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f9fc;
+    color: #172033;
+    line-height: 1.6;
+}
 
-        <div class="info-row">
-            <span>Type</span>
-            <span>Public</span>
-        </div>
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-        <div class="info-row">
-            <span>Fees</span>
-            <span>View Details</span>
-        </div>
+/* HEADER */
 
-        <a href="iim-ahmedabad.html" class="college-button">
-            View College
-        </a>
+header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
 
-    </div>
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #172554;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* HERO */
+
+.hero {
+    background: linear-gradient(135deg, #172554, #1d4ed8);
+    color: white;
+    padding: 60px 24px;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.hero h1 {
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+.hero .location {
+    color: #dbeafe;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    max-width: 800px;
+    color: #dbeafe;
+}
+
+/* CONTENT */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 24px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 22px;
+}
+
+.card h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #475569;
+    margin-bottom: 12px;
+}
+
+/* INFO */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.info-box {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.info-box small {
+    display: block;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th,
+td {
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #eff6ff;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px;
+    height: fit-content;
+}
+
+.sidebar h3 {
+    margin-bottom: 12px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 9px 0;
+    color: #2563eb;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* BUTTON */
+
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-weight: 700;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0f172a;
+    color: white;
+    padding: 40px 24px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+footer p {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .container {
+        padding: 30px 18px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<nav class="navbar">
+
+<a href="index.html" class="logo">
+MBA<span>Portal</span>
+</a>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+
+<a href="colleges.html">MBA Colleges</a>
+
+<a href="#">Entrance Exams</a>
+
+<a href="#">Admissions</a>
+
+<a href="#">Cutoffs</a>
+
+<a href="#">Placements</a>
 
 </div>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-container">
+
+<h1>IIM Ahmedabad</h1>
+
+<div class="location">
+Ahmedabad, Gujarat
+</div>
+
+<p>
+Explore IIM Ahmedabad MBA information including
+admission process, CAT, eligibility, fees, cutoff,
+courses and placements.
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<div class="info-grid">
+
+<div class="info-box">
+<small>Programme</small>
+<strong>MBA / PGP</strong>
+</div>
+
+<div class="info-box">
+<small>Entrance Exam</small>
+<strong>CAT</strong>
+</div>
+
+<div class="info-box">
+<small>Institute Type</small>
+<strong>Public</strong>
+</div>
+
+<div class="info-box">
+<small>Location</small>
+<strong>Ahmedabad</strong>
+</div>
+
+</div>
+
+
+<div class="grid">
+
+
+<div>
+
+
+<section class="card">
+
+<h2>About IIM Ahmedabad</h2>
+
+<p>
+Indian Institute of Management Ahmedabad is one of
+India's leading management institutes. The institute
+offers postgraduate and other management programmes.
+</p>
+
+<p>
+The flagship two-year management programme is commonly
+known as the MBA/PGP.
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>IIM Ahmedabad MBA Admission</h2>
+
+<p>
+Admission to the flagship MBA/PGP programme involves
+the Common Admission Test (CAT) and the institute's
+selection process.
+</p>
+
+<table>
+
+<tr>
+<th>Admission Component</th>
+<th>Details</th>
+</tr>
+
+<tr>
+<td>Entrance Exam</td>
+<td>CAT</td>
+</tr>
+
+<tr>
+<td>Programme</td>
+<td>MBA / PGP</td>
+</tr>
+
+<tr>
+<td>Duration</td>
+<td>2 Years</td>
+</tr>
+
+<tr>
+<td>Mode</td>
+<td>Full Time</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section class="card">
+
+<h2>Eligibility</h2>
+
+<p>
+Candidates must meet the academic and other eligibility
+requirements specified by IIM Ahmedabad for the relevant
+admission cycle.
+</p>
+
+<p>
+Applicants should always check the latest official
+admission policy before applying.
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>CAT Cutoff</h2>
+
+<p>
+CAT performance is an important component of the IIM
+Ahmedabad admission process. The qualifying requirements
+and actual competitive percentile for admission are not
+necessarily the same.
+</p>
+
+<p>
+Verified year-wise cutoff information will be added after
+checking the official admission documents.
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>MBA Fees</h2>
+
+<p>
+The applicable programme fee and other charges can change
+between admission cycles.
+</p>
+
+<table>
+
+<tr>
+<th>Fee Component</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Programme Fee</td>
+<td>To be verified</td>
+</tr>
+
+<tr>
+<td>Other Charges</td>
+<td>To be verified</td>
+</tr>
+
+<tr>
+<td>Total Cost</td>
+<td>To be verified</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section class="card">
+
+<h2>Placements</h2>
+
+<p>
+Placement information including average compensation,
+median compensation, highest offers, recruiters and
+sector trends will be added using verified placement
+reports.
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>Rankings</h2>
+
+<p>
+Ranking information will be added after verification
+from the respective ranking agencies and official
+sources.
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Which entrance exam is required?</h3>
+
+<p>
+CAT is used for admission to the flagship MBA/PGP
+programme, subject to the applicable admission policy.
+</p>
+
+<h3>Where is IIM Ahmedabad located?</h3>
+
+<p>
+IIM Ahmedabad is located in Ahmedabad, Gujarat.
+</p>
+
+<h3>What is the duration of the MBA programme?</h3>
+
+<p>
+The flagship MBA/PGP programme is a two-year full-time
+programme.
+</p>
+
+</section>
+
+
+<a href="colleges.html" class="button">
+Explore More MBA Colleges
+</a>
+
+
+</div>
+
+
+<aside class="sidebar">
+
+<h3>IIM Ahmedabad</h3>
+
+<a href="#">Overview</a>
+
+<a href="#">Courses</a>
+
+<a href="#">Admission</a>
+
+<a href="#">CAT Cutoff</a>
+
+<a href="#">Fees</a>
+
+<a href="#">Placements</a>
+
+<a href="#">Rankings</a>
+
+<a href="#">FAQs</a>
+
+</aside>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div class="footer-container">
+
+<h3>MBA Portal</h3>
+
+<p>
+MBA admissions, colleges, entrance exams,
+fees, cutoffs and placements.
+</p>
+
+</div>
+
+</footer>
+
+
+</body>
+
+</html>
