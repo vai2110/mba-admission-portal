@@ -1,1 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>MBA Admission Portal | Colleges, Exams, Cutoffs & Placements</title>
+
+    <meta name="description"
+          content="Explore MBA colleges, entrance exams, admission dates, fees, cutoffs, placements and counselling information in India.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #172033;
+            background: #f7f9fc;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #172554;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-button {
+            background: #2563eb;
+            color: white !important;
+            padding: 9px 16px;
+            border-radius: 7px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #172554 0%, #1d4ed8 100%);
+            color: white;
+            padding: 75px 24px 85px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.12;
+            margin-bottom: 22px;
+            max-width: 700px;
+        }
+
+        .hero h1 span {
+            color: #bfdbfe;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #dbeafe;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background: #ffffff;
+            color: #1d4ed8;
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .secondary-btn {
+            border: 1px solid rgba(255,255,255,0.6);
+            color: white;
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 28px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-card h3 {
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 7px;
+            border-radius: 9px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            background: #2563eb;
+            border: none;
+            color: white;
+            padding: 0 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* QUICK LINKS */
+
+        .quick-section {
+            max-width: 1200px;
+            margin: -35px auto 0;
+            padding: 0 24px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .quick-grid {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(15,23,42,0.10);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            overflow: hidden;
+        }
+
+        .quick-card {
+            padding: 24px;
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .quick-card:last-child {
+            border-right: none;
+        }
+
+        .quick-card .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .quick-card h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .quick-card p {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* MAIN CONTENT */
+
+        .section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 24px 20px;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .section-header h2 {
+            font-size: 30px;
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: #6b7280;
+            max-width: 700px;
+        }
+
+        /* CATEGORY CARDS */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            transition: 0.2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+        }
+
+        .category-card h3 {
+            margin-bottom: 8px;
+            font-size: 19px;
+        }
+
+        .category-card p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        .category-card a {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* COLLEGE SECTION */
+
+        .college-section {
+            background: #ffffff;
+            margin-top: 55px;
+            padding-bottom: 70px;
+        }
+
+        .college-grid {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .college-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .college-top {
+            background: #eff6ff;
+            padding: 22px;
+        }
+
+        .college-top h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .college-top p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .college-info {
+            padding: 20px;
+        }
+
+        .college-info div {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+
+        .college-info div:last-child {
+            border-bottom: none;
+        }
+
+        .college-info span:last-child {
+            font-weight: 700;
+        }
+
+        /* CTA */
+
+        .cta {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 24px;
+        }
+
+        .cta-box {
+            background: #172554;
+            color: white;
+            border-radius: 16px;
+            padding: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .cta-box h2 {
+            font-size: 29px;
+            margin-bottom: 8px;
+        }
+
+        .cta-box p {
+            color: #cbd5e1;
+        }
+
+        .cta-button {
+            background: white;
+            color: #1d4ed8;
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 45px 24px 25px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        footer p,
+        footer a {
+            color: #94a3b8;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-card:nth-child(2) {
+                border-right: none;
+            }
+
+            .quick-card:nth-child(-n+2) {
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .category-grid,
+            .college-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 14px 18px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero {
+                padding: 55px 18px 70px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .quick-section {
+                padding: 0 18px;
+            }
+
+            .quick-grid,
+            .category-grid,
+            .college-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-card {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .section {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .cta {
+                padding: 0 18px;
+            }
+
+            .cta-box {
+                padding: 30px 25px;
+                display: block;
+            }
+
+            .cta-button {
+                display: inline-block;
+                margin-top: 20px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                MBA<span>Portal</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#">MBA Colleges</a>
+                <a href="#">Entrance Exams</a>
+                <a href="#">Admissions</a>
+                <a href="#">Cutoffs</a>
+                <a href="#">Placements</a>
+                <a href="#" class="nav-button">Compare Colleges</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-container">
+
+            <div>
+
+                <h1>
+                    Make the right
+                    <span>MBA decision.</span>
+                </h1>
+
+                <p>
+                    Compare MBA colleges, entrance exams, admission dates,
+                    fees, cutoffs, placements and more — all in one place.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#" class="primary-btn">Explore MBA Colleges</a>
+                    <a href="#" class="secondary-btn">Explore MBA Exams</a>
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <h3>What are you looking for?</h3>
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        placeholder="Search MBA college, exam or course..."
+                    >
+
+                    <button>Search</button>
+
+                </div>
+
+                <p style="margin-top:15px;font-size:13px;color:#dbeafe;">
+                    Try: IIM Ahmedabad, CAT 2026, MBA colleges in Delhi,
+                    MBA fees, MBA cutoff
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK ACCESS -->
+
+    <section class="quick-section">
+
+        <div class="quick-grid">
+
+            <a href="#" class="quick-card">
+                <div class="icon">🎓</div>
+                <h3>MBA Colleges</h3>
+                <p>Explore colleges, courses, fees and rankings.</p>
+            </a>
+
+            <a href="#" class="quick-card">
+                <div class="icon">📝</div>
+                <h3>Entrance Exams</h3>
+                <p>CAT, XAT, CMAT, MAT, SNAP and more.</p>
+            </a>
+
+            <a href="#" class="quick-card">
+                <div class="icon">📅</div>
+                <h3>Admission 2026</h3>
+                <p>Dates, applications, eligibility and process.</p>
+            </a>
+
+            <a href="#" class="quick-card">
+                <div class="icon">📊</div>
+                <h3>Cutoffs & Placements</h3>
+                <p>Compare expected cutoffs and placement data.</p>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MBA DISCOVERY -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>Explore MBA by what you need</h2>
+
+            <p>
+                Find the information that matters before applying to an
+                MBA programme.
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <div class="category-card">
+
+                <h3>Top MBA Colleges</h3>
+
+                <p>
+                    Explore IIMs, IITs, private B-schools and universities
+                    across India.
+                </p>
+
+                <a href="#">Explore Colleges →</a>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <h3>MBA Entrance Exams</h3>
+
+                <p>
+                    Get exam dates, registration details, eligibility,
+                    syllabus and preparation information.
+                </p>
+
+                <a href="#">Explore Exams →</a>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <h3>MBA Admissions</h3>
+
+                <p>
+                    Track application dates, admission processes and
+                    selection criteria.
+                </p>
+
+                <a href="#">View Admissions →</a>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <h3>MBA Fees</h3>
+
+                <p>
+                    Compare tuition fees, hostel fees and total programme
+                    costs.
+                </p>
+
+                <a href="#">Compare Fees →</a>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <h3>MBA Cutoffs</h3>
+
+                <p>
+                    Understand CAT, XAT, CMAT and other entrance exam
+                    cutoff trends.
+                </p>
+
+                <a href="#">Check Cutoffs →</a>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <h3>MBA Placements</h3>
+
+                <p>
+                    Compare average packages, highest packages and
+                    placement statistics.
+                </p>
+
+                <a href="#">Explore Placements →</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURED COLLEGES -->
+
+    <section class="college-section">
+
+        <div class="section">
+
+            <div class="section-header">
+
+                <h2>Popular MBA Colleges</h2>
+
+                <p>
+                    Start exploring some of India's most searched
+                    management institutes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="college-grid">
+
+
+            <div class="college-card">
+
+                <div class="college-top">
+
+                    <h3>IIM Ahmedabad</h3>
+
+                    <p>Ahmedabad, Gujarat</p>
+
+                </div>
+
+                <div class="college-info">
+
+                    <div>
+                        <span>Programme</span>
+                        <span>MBA / PGP</span>
+                    </div>
+
+                    <div>
+                        <span>Entrance</span>
+                        <span>CAT</span>
+                    </div>
+
+                    <div>
+                        <span>Fees</span>
+                        <span>View Details</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="college-card">
+
+                <div class="college-top">
+
+                    <h3>IIM Bangalore</h3>
+
+                    <p>Bangalore, Karnataka</p>
+
+                </div>
+
+                <div class="college-info">
+
+                    <div>
+                        <span>Programme</span>
+                        <span>MBA / PGP</span>
+                    </div>
+
+                    <div>
+                        <span>Entrance</span>
+                        <span>CAT</span>
+                    </div>
+
+                    <div>
+                        <span>Fees</span>
+                        <span>View Details</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="college-card">
+
+                <div class="college-top">
+
+                    <h3>IIM Calcutta</h3>
+
+                    <p>Kolkata, West Bengal</p>
+
+                </div>
+
+                <div class="college-info">
+
+                    <div>
+                        <span>Programme</span>
+                        <span>MBA</span>
+                    </div>
+
+                    <div>
+                        <span>Entrance</span>
+                        <span>CAT</span>
+                    </div>
+
+                    <div>
+                        <span>Fees</span>
+                        <span>View Details</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="college-card">
+
+                <div class="college-top">
+
+                    <h3>XLRI Jamshedpur</h3>
+
+                    <p>Jamshedpur, Jharkhand</p>
+
+                </div>
+
+                <div class="college-info">
+
+                    <div>
+                        <span>Programme</span>
+                        <span>PGDM</span>
+                    </div>
+
+                    <div>
+                        <span>Entrance</span>
+                        <span>XAT</span>
+                    </div>
+
+                    <div>
+                        <span>Fees</span>
+                        <span>View Details</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="college-card">
+
+                <div class="college-top">
+
+                    <h3>FMS Delhi</h3>
+
+                    <p>Delhi</p>
+
+                </div>
+
+                <div class="college-info">
+
+                    <div>
+                        <span>Programme</span>
+                        <span>MBA</span>
+                    </div>
+
+                    <div>
+                        <span>Entrance</span>
+                        <span>CAT</span>
+                    </div>
+
+                    <div>
+                        <span>Fees</span>
+                        <span>View Details</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="college-card">
+
+                <div class="college-top">
+
+                    <h3>SPJIMR Mumbai</h3>
+
+                    <p>Mumbai, Maharashtra</p>
+
+                </div>
+
+                <div class="college-info">
+
+                    <div>
+                        <span>Programme</span>
+                        <span>PGDM</span>
+                    </div>
+
+                    <div>
+                        <span>Entrance</span>
+                        <span>CAT / GMAT</span>
+                    </div>
+
+                    <div>
+                        <span>Fees</span>
+                        <span>View Details</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div class="cta-box">
+
+            <div>
+
+                <h2>Confused about which MBA college to choose?</h2>
+
+                <p>
+                    Compare colleges based on fees, cutoffs, placements,
+                    location and entrance exams.
+                </p>
+
+            </div>
+
+            <a href="#" class="cta-button">
+                Compare Colleges
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>MBA Portal</h3>
+
+                <p>
+                    A student-focused platform for MBA admissions,
+                    colleges, entrance exams, fees, cutoffs and placements.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>MBA Colleges</h3>
+
+                <a href="#">IIMs</a>
+                <a href="#">IIT MBA</a>
+                <a href="#">Top Private Colleges</a>
+                <a href="#">College Rankings</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>MBA Exams</h3>
+
+                <a href="#">CAT</a>
+                <a href="#">XAT</a>
+                <a href="#">CMAT</a>
+                <a href="#">MAT</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Admissions</h3>
+
+                <a href="#">Admission Dates</a>
+                <a href="#">Eligibility</a>
+                <a href="#">Fees</a>
+                <a href="#">Cutoffs</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 MBA Portal. All rights reserved.
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
