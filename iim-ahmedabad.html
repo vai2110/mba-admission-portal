@@ -13,6 +13,37 @@
 content="IIM Ahmedabad MBA admission information including eligibility, CAT, fees, cutoff, placements and courses.">
 
 <style>
+    .sidebar button {
+
+    display: block;
+
+    width: 100%;
+
+    background: none;
+
+    border: none;
+
+    border-bottom: 1px solid #f1f5f9;
+
+    padding: 10px 0;
+
+    text-align: left;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+.sidebar button:hover {
+
+    color: #1d4ed8;
+
+}
 
 * {
     margin: 0;
@@ -560,26 +591,39 @@ Explore More MBA Colleges
 
     <h3>IIM Ahmedabad</h3>
 
-    <a href="#overview">
+    <button onclick="scrollToSection('overview')">
         Overview
-    </a>
+    </button>
 
-    <a href="#admission">
-        Courses & Admission
-    </a>
+    <button onclick="scrollToSection('admission')">
+        Admission
+    </button>
 
-    <a href="#eligibility">
+    <button onclick="scrollToSection('eligibility')">
         Eligibility
-    </a>
+    </button>
 
-    <a href="#cutoff">
+    <button onclick="scrollToSection('cutoff')">
         CAT Cutoff
-    </a>
+    </button>
 
-    <a href="#fees">
+    <button onclick="scrollToSection('fees')">
         Fees
-    </a>
+    </button>
 
+    <button onclick="scrollToSection('placements')">
+        Placements
+    </button>
+
+    <button onclick="scrollToSection('rankings')">
+        Rankings
+    </button>
+
+    <button onclick="scrollToSection('faq')">
+        FAQs
+    </button>
+
+</aside>
     <a href="#placements">
         Placements
     </a>
@@ -617,5 +661,46 @@ fees, cutoffs and placements.
 
 
 </body>
+    <script>
+
+function scrollToSection(section) {
+
+    const headings = document.querySelectorAll("h2");
+
+    let target = null;
+
+    headings.forEach(function(heading) {
+
+        const text = heading.innerText.toLowerCase();
+
+        if (
+            (section === "overview" && text.includes("about iim")) ||
+            (section === "admission" && text.includes("admission")) ||
+            (section === "eligibility" && text.includes("eligibility")) ||
+            (section === "cutoff" && text.includes("cutoff")) ||
+            (section === "fees" && text.includes("fees")) ||
+            (section === "placements" && text.includes("placements")) ||
+            (section === "rankings" && text.includes("rankings")) ||
+            (section === "faq" && text.includes("frequently asked"))
+        ) {
+
+            target = heading;
+
+        }
+
+    });
+
+    if (target) {
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+}
+
+</script>
 
 </html>
