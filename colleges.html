@@ -1,1 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>MBA Colleges in India | Fees, Exams, Cutoffs & Placements</title>
+
+    <meta name="description"
+          content="Explore MBA colleges in India. Compare MBA and PGDM colleges by entrance exam, fees, location and placement information.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #172554;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .active {
+            color: #2563eb !important;
+        }
+
+        .nav-button {
+            background: #2563eb;
+            color: white !important;
+            padding: 9px 16px;
+            border-radius: 7px;
+        }
+
+        /* PAGE HERO */
+
+        .page-hero {
+            background: linear-gradient(135deg, #172554, #1d4ed8);
+            color: white;
+            padding: 55px 24px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .page-hero p {
+            color: #dbeafe;
+            max-width: 750px;
+            font-size: 17px;
+        }
+
+        /* SEARCH */
+
+        .search-section {
+            max-width: 1200px;
+            margin: -25px auto 0;
+            padding: 0 24px;
+            position: relative;
+        }
+
+        .search-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(15,23,42,0.10);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            padding: 13px 15px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #2563eb;
+        }
+
+        .search-box button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            padding: 0 24px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* FILTERS */
+
+        .filter-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px 24px 10px;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 7px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        /* COLLEGES */
+
+        .college-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 24px 70px;
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-top h2 {
+            font-size: 26px;
+        }
+
+        #collegeCount {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .college-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .college-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .college-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(15,23,42,0.09);
+        }
+
+        .college-header {
+            background: #eff6ff;
+            padding: 22px;
+        }
+
+        .college-header h3 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .location {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .college-body {
+            padding: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+
+        .info-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .info-row span:last-child {
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .college-button {
+            display: block;
+            margin-top: 16px;
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 11px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .college-button:hover {
+            background: #1d4ed8;
+        }
+
+        .no-results {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 45px 24px 25px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        footer p,
+        footer a {
+            color: #94a3b8;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .college-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 14px 18px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .page-hero {
+                padding: 45px 18px;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .search-section {
+                padding: 0 18px;
+            }
+
+            .search-box {
+                display: block;
+            }
+
+            .search-box button {
+                width: 100%;
+                padding: 12px;
+                margin-top: 8px;
+            }
+
+            .filter-section,
+            .college-section {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .college-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            MBA<span>Portal</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="colleges.html" class="active">
+                MBA Colleges
+            </a>
+
+            <a href="#">
+                Entrance Exams
+            </a>
+
+            <a href="#">
+                Admissions
+            </a>
+
+            <a href="#">
+                Cutoffs
+            </a>
+
+            <a href="#">
+                Placements
+            </a>
+
+            <a href="#" class="nav-button">
+                Compare Colleges
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="page-hero">
+
+    <div class="hero-container">
+
+        <h1>Explore MBA Colleges in India</h1>
+
+        <p>
+            Discover MBA and PGDM colleges, entrance exams, fees,
+            admission information and placement details to make
+            a better MBA decision.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section class="search-section">
+
+    <div class="search-card">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by college name or location..."
+                onkeyup="filterColleges()"
+            >
+
+            <button onclick="filterColleges()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FILTERS -->
+
+<section class="filter-section">
+
+    <div class="filters">
+
+        <select id="locationFilter" onchange="filterColleges()">
+
+            <option value="">All Locations</option>
+
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Jamshedpur">Jamshedpur</option>
+
+        </select>
+
+
+        <select id="examFilter" onchange="filterColleges()">
+
+            <option value="">All Entrance Exams</option>
+
+            <option value="CAT">CAT</option>
+            <option value="XAT">XAT</option>
+            <option value="GMAT">GMAT</option>
+
+        </select>
+
+
+        <select id="programFilter" onchange="filterColleges()">
+
+            <option value="">All Programmes</option>
+
+            <option value="MBA">MBA</option>
+            <option value="PGDM">PGDM</option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+<!-- COLLEGES -->
+
+<section class="college-section">
+
+    <div class="section-top">
+
+        <h2>Popular MBA Colleges</h2>
+
+        <span id="collegeCount">
+            9 colleges
+        </span>
+
+    </div>
+
+
+    <div class="college-grid" id="collegeGrid">
+
+
+        <!-- IIM AHMEDABAD -->
+
+        <div class="college-card"
+             data-location="Ahmedabad"
+             data-exam="CAT"
+             data-program="MBA">
+
+            <div class="college-header">
+
+                <h3>IIM Ahmedabad</h3>
+
+                <div class="location">
+                    Ahmedabad, Gujarat
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>MBA</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Public</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- IIM BANGALORE -->
+
+        <div class="college-card"
+             data-location="Bangalore"
+             data-exam="CAT"
+             data-program="MBA">
+
+            <div class="college-header">
+
+                <h3>IIM Bangalore</h3>
+
+                <div class="location">
+                    Bangalore, Karnataka
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>MBA</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Public</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- IIM CALCUTTA -->
+
+        <div class="college-card"
+             data-location="Kolkata"
+             data-exam="CAT"
+             data-program="MBA">
+
+            <div class="college-header">
+
+                <h3>IIM Calcutta</h3>
+
+                <div class="location">
+                    Kolkata, West Bengal
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>MBA</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Public</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- XLRI -->
+
+        <div class="college-card"
+             data-location="Jamshedpur"
+             data-exam="XAT"
+             data-program="PGDM">
+
+            <div class="college-header">
+
+                <h3>XLRI Jamshedpur</h3>
+
+                <div class="location">
+                    Jamshedpur, Jharkhand
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>PGDM</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>XAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Private</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- FMS -->
+
+        <div class="college-card"
+             data-location="Delhi"
+             data-exam="CAT"
+             data-program="MBA">
+
+            <div class="college-header">
+
+                <h3>FMS Delhi</h3>
+
+                <div class="location">
+                    Delhi
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>MBA</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Public</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SPJIMR -->
+
+        <div class="college-card"
+             data-location="Mumbai"
+             data-exam="CAT"
+             data-program="PGDM">
+
+            <div class="college-header">
+
+                <h3>SPJIMR Mumbai</h3>
+
+                <div class="location">
+                    Mumbai, Maharashtra
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>PGDM</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Private</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- IIM KOZHIKODE -->
+
+        <div class="college-card"
+             data-location="Kozhikode"
+             data-exam="CAT"
+             data-program="MBA">
+
+            <div class="college-header">
+
+                <h3>IIM Kozhikode</h3>
+
+                <div class="location">
+                    Kozhikode, Kerala
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>MBA</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Public</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- IIM LUCKNOW -->
+
+        <div class="college-card"
+             data-location="Lucknow"
+             data-exam="CAT"
+             data-program="MBA">
+
+            <div class="college-header">
+
+                <h3>IIM Lucknow</h3>
+
+                <div class="location">
+                    Lucknow, Uttar Pradesh
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>MBA</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Public</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MDI -->
+
+        <div class="college-card"
+             data-location="Gurgaon"
+             data-exam="CAT"
+             data-program="PGDM">
+
+            <div class="college-header">
+
+                <h3>MDI Gurgaon</h3>
+
+                <div class="location">
+                    Gurgaon, Haryana
+                </div>
+
+            </div>
+
+            <div class="college-body">
+
+                <div class="info-row">
+                    <span>Programme</span>
+                    <span>PGDM</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Entrance</span>
+                    <span>CAT</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <span>Private</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Fees</span>
+                    <span>View Details</span>
+                </div>
+
+                <a href="#" class="college-button">
+                    View College
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="no-results" id="noResults">
+
+        <h3>No colleges found</h3>
+
+        <p>
+            Try changing your search or filters.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div>
+
+            <h3>MBA Portal</h3>
+
+            <p>
+                A student-focused platform for MBA admissions,
+                colleges, entrance exams, fees, cutoffs and placements.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>MBA Colleges</h3>
+
+            <a href="colleges.html">MBA Colleges</a>
+            <a href="#">IIMs</a>
+            <a href="#">Top Private Colleges</a>
+            <a href="#">College Rankings</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Entrance Exams</h3>
+
+            <a href="#">CAT</a>
+            <a href="#">XAT</a>
+            <a href="#">CMAT</a>
+            <a href="#">MAT</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Admissions</h3>
+
+            <a href="#">Admission Dates</a>
+            <a href="#">Eligibility</a>
+            <a href="#">Fees</a>
+            <a href="#">Cutoffs</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 MBA Portal. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<!-- SEARCH AND FILTER FUNCTION -->
+
+<script>
+
+function filterColleges() {
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const location =
+        document.getElementById("locationFilter")
+        .value;
+
+    const exam =
+        document.getElementById("examFilter")
+        .value;
+
+    const program =
+        document.getElementById("programFilter")
+        .value;
+
+    const cards =
+        document.querySelectorAll(".college-card");
+
+    let visibleCount = 0;
+
+    cards.forEach(function(card) {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        const cardLocation =
+            card.getAttribute("data-location");
+
+        const cardExam =
+            card.getAttribute("data-exam");
+
+        const cardProgram =
+            card.getAttribute("data-program");
+
+        const matchesSearch =
+            text.includes(search);
+
+        const matchesLocation =
+            location === "" ||
+            cardLocation === location;
+
+        const matchesExam =
+            exam === "" ||
+            cardExam === exam;
+
+        const matchesProgram =
+            program === "" ||
+            cardProgram === program;
+
+        if (
+            matchesSearch &&
+            matchesLocation &&
+            matchesExam &&
+            matchesProgram
+        ) {
+
+            card.style.display = "block";
+            visibleCount++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    document.getElementById("collegeCount").innerText =
+        visibleCount + " colleges";
+
+
+    if (visibleCount === 0) {
+
+        document.getElementById("noResults").style.display =
+            "block";
+
+    } else {
+
+        document.getElementById("noResults").style.display =
+            "none";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
