@@ -486,37 +486,57 @@
 
     <div class="filters">
 
-        <select id="locationFilter" onchange="filterColleges()">
+        <select id="stateFilter" onchange="filterColleges()">
 
-            <option value="">All Locations</option>
-
-            <option value="Delhi">Delhi</option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Bangalore">Bangalore</option>
-            <option value="Ahmedabad">Ahmedabad</option>
-            <option value="Kolkata">Kolkata</option>
-            <option value="Jamshedpur">Jamshedpur</option>
+            <option value="">
+                All States
+            </option>
 
         </select>
 
 
-        <select id="examFilter" onchange="filterColleges()">
+        <select id="rankFilter" onchange="filterColleges()">
 
-            <option value="">All Entrance Exams</option>
+            <option value="">
+                All NIRF Ranks
+            </option>
 
-            <option value="CAT">CAT</option>
-            <option value="XAT">XAT</option>
-            <option value="GMAT">GMAT</option>
+            <option value="1-10">
+                Top 10
+            </option>
+
+            <option value="11-25">
+                Rank 11–25
+            </option>
+
+            <option value="26-50">
+                Rank 26–50
+            </option>
+
+            <option value="51-100">
+                Rank 51–100
+            </option>
 
         </select>
 
 
-        <select id="programFilter" onchange="filterColleges()">
+        <select id="sortFilter" onchange="filterColleges()">
 
-            <option value="">All Programmes</option>
+            <option value="rank-asc">
+                NIRF Rank: Low to High
+            </option>
 
-            <option value="MBA">MBA</option>
-            <option value="PGDM">PGDM</option>
+            <option value="rank-desc">
+                NIRF Rank: High to Low
+            </option>
+
+            <option value="name-asc">
+                College Name: A–Z
+            </option>
+
+            <option value="name-desc">
+                College Name: Z–A
+            </option>
 
         </select>
 
@@ -542,408 +562,8 @@
 
     <div class="college-grid" id="collegeGrid">
 
-
-        <!-- IIM AHMEDABAD -->
-
-        <div class="college-card"
-             data-location="Ahmedabad"
-             data-exam="CAT"
-             data-program="MBA">
-
-            <div class="college-header">
-
-                <h3>IIM Ahmedabad</h3>
-
-                <div class="location">
-                    Ahmedabad, Gujarat
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>MBA</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Public</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="iim-ahmedabad.html" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- IIM BANGALORE -->
-
-        <div class="college-card"
-             data-location="Bangalore"
-             data-exam="CAT"
-             data-program="MBA">
-
-            <div class="college-header">
-
-                <h3>IIM Bangalore</h3>
-
-                <div class="location">
-                    Bangalore, Karnataka
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>MBA</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Public</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- IIM CALCUTTA -->
-
-        <div class="college-card"
-             data-location="Kolkata"
-             data-exam="CAT"
-             data-program="MBA">
-
-            <div class="college-header">
-
-                <h3>IIM Calcutta</h3>
-
-                <div class="location">
-                    Kolkata, West Bengal
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>MBA</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Public</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- XLRI -->
-
-        <div class="college-card"
-             data-location="Jamshedpur"
-             data-exam="XAT"
-             data-program="PGDM">
-
-            <div class="college-header">
-
-                <h3>XLRI Jamshedpur</h3>
-
-                <div class="location">
-                    Jamshedpur, Jharkhand
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>PGDM</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>XAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Private</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- FMS -->
-
-        <div class="college-card"
-             data-location="Delhi"
-             data-exam="CAT"
-             data-program="MBA">
-
-            <div class="college-header">
-
-                <h3>FMS Delhi</h3>
-
-                <div class="location">
-                    Delhi
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>MBA</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Public</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- SPJIMR -->
-
-        <div class="college-card"
-             data-location="Mumbai"
-             data-exam="CAT"
-             data-program="PGDM">
-
-            <div class="college-header">
-
-                <h3>SPJIMR Mumbai</h3>
-
-                <div class="location">
-                    Mumbai, Maharashtra
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>PGDM</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Private</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- IIM KOZHIKODE -->
-
-        <div class="college-card"
-             data-location="Kozhikode"
-             data-exam="CAT"
-             data-program="MBA">
-
-            <div class="college-header">
-
-                <h3>IIM Kozhikode</h3>
-
-                <div class="location">
-                    Kozhikode, Kerala
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>MBA</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Public</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- IIM LUCKNOW -->
-
-        <div class="college-card"
-             data-location="Lucknow"
-             data-exam="CAT"
-             data-program="MBA">
-
-            <div class="college-header">
-
-                <h3>IIM Lucknow</h3>
-
-                <div class="location">
-                    Lucknow, Uttar Pradesh
-                </div>
-
-            </div>
-
-            <div class="college-body">
-
-                <div class="info-row">
-                    <span>Programme</span>
-                    <span>MBA</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Entrance</span>
-                    <span>CAT</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Type</span>
-                    <span>Public</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Fees</span>
-                    <span>View Details</span>
-                </div>
-
-                <a href="#" class="college-button">
-                    View College
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- MDI -->
-
-        <div class="college-card"
-             data-location="Gurgaon"
-             data-exam="CAT"
-             data-program="PGDM">
-
-            <div class="college-header">
-
-                <h3>MDI Gurgaon</h3>
-
-                <div class="location">
-                    Gurgaon, Haryana
-                </div>
-
-            </div>
-
+    </div>
+      
             <div class="college-body">
 
                 <div class="info-row">
@@ -1059,93 +679,669 @@
 
 <script>
 
-function filterColleges() {
+let colleges = [];
 
-    const search =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase();
 
-    const location =
-        document.getElementById("locationFilter")
-        .value;
+/* =========================
+   LOAD COLLEGE DATABASE
+========================= */
 
-    const exam =
-        document.getElementById("examFilter")
-        .value;
+fetch("colleges.csv")
 
-    const program =
-        document.getElementById("programFilter")
-        .value;
+.then(response => {
 
-    const cards =
-        document.querySelectorAll(".college-card");
+    if (!response.ok) {
 
-    let visibleCount = 0;
+        throw new Error(
+            "Could not load colleges.csv"
+        );
 
-    cards.forEach(function(card) {
+    }
 
-        const text =
-            card.innerText.toLowerCase();
+    return response.text();
 
-        const cardLocation =
-            card.getAttribute("data-location");
+})
 
-        const cardExam =
-            card.getAttribute("data-exam");
+.then(csvText => {
 
-        const cardProgram =
-            card.getAttribute("data-program");
+    colleges = parseCSV(csvText);
 
-        const matchesSearch =
-            text.includes(search);
+    populateStates();
 
-        const matchesLocation =
-            location === "" ||
-            cardLocation === location;
+    filterColleges();
 
-        const matchesExam =
-            exam === "" ||
-            cardExam === exam;
+})
 
-        const matchesProgram =
-            program === "" ||
-            cardProgram === program;
+.catch(error => {
 
-        if (
-            matchesSearch &&
-            matchesLocation &&
-            matchesExam &&
-            matchesProgram
-        ) {
+    console.error(error);
 
-            card.style.display = "block";
-            visibleCount++;
+    document.getElementById(
+        "collegeCount"
+    ).innerText = "Database unavailable";
 
-        } else {
+});
 
-            card.style.display = "none";
+
+/* =========================
+   CSV PARSER
+========================= */
+
+function parseCSV(text) {
+
+    const lines =
+        text.trim().split(/\r?\n/);
+
+    if (lines.length < 2) {
+
+        return [];
+
+    }
+
+    const headers =
+        parseCSVLine(lines[0]);
+
+    return lines
+        .slice(1)
+        .map(line => {
+
+            const values =
+                parseCSVLine(line);
+
+            const row = {};
+
+            headers.forEach(
+                (header, index) => {
+
+                    row[header.trim()] =
+                        (
+                            values[index] || ""
+                        ).trim();
+
+                }
+            );
+
+            return row;
+
+        })
+        .filter(row =>
+            row["college_name"]
+        );
+
+}
+
+
+/* =========================
+   CSV LINE PARSER
+========================= */
+
+function parseCSVLine(line) {
+
+    const result = [];
+
+    let current = "";
+
+    let insideQuotes = false;
+
+
+    for (
+        let i = 0;
+        i < line.length;
+        i++
+    ) {
+
+        const char = line[i];
+
+
+        if (char === '"') {
+
+            if (
+                insideQuotes &&
+                line[i + 1] === '"'
+            ) {
+
+                current += '"';
+
+                i++;
+
+            } else {
+
+                insideQuotes =
+                    !insideQuotes;
+
+            }
 
         }
 
-    });
+
+        else if (
+            char === "," &&
+            !insideQuotes
+        ) {
+
+            result.push(current);
+
+            current = "";
+
+        }
 
 
-    document.getElementById("collegeCount").innerText =
-        visibleCount + " colleges";
+        else {
 
+            current += char;
 
-    if (visibleCount === 0) {
-
-        document.getElementById("noResults").style.display =
-            "block";
-
-    } else {
-
-        document.getElementById("noResults").style.display =
-            "none";
+        }
 
     }
+
+
+    result.push(current);
+
+    return result;
+
+}
+
+
+/* =========================
+   POPULATE STATES
+========================= */
+
+function populateStates() {
+
+    const stateFilter =
+        document.getElementById(
+            "stateFilter"
+        );
+
+
+    const states = [
+        ...new Set(
+
+            colleges
+                .map(college =>
+                    college["state"]
+                )
+                .filter(Boolean)
+
+        )
+    ].sort();
+
+
+    states.forEach(state => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value = state;
+
+        option.textContent = state;
+
+        stateFilter.appendChild(
+            option
+        );
+
+    });
+
+}
+
+
+/* =========================
+   FILTER COLLEGES
+========================= */
+
+function filterColleges() {
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const state =
+        document.getElementById(
+            "stateFilter"
+        ).value;
+
+
+    const rankRange =
+        document.getElementById(
+            "rankFilter"
+        ).value;
+
+
+    const sort =
+        document.getElementById(
+            "sortFilter"
+        ).value;
+
+
+    let filtered =
+        colleges.filter(college => {
+
+            const name =
+                (
+                    college["college_name"] || ""
+                ).toLowerCase();
+
+
+            const city =
+                (
+                    college["city"] || ""
+                ).toLowerCase();
+
+
+            const collegeState =
+                (
+                    college["state"] || ""
+                );
+
+
+            const matchesSearch =
+                !search ||
+                name.includes(search) ||
+                city.includes(search) ||
+                collegeState
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const matchesState =
+                !state ||
+                collegeState === state;
+
+
+            const rank =
+                parseInt(
+                    college[
+                        "nirf_management_rank_2025"
+                    ]
+                );
+
+
+            let matchesRank = true;
+
+
+            if (
+                rankRange &&
+                !isNaN(rank)
+            ) {
+
+                if (
+                    rankRange === "1-10"
+                ) {
+
+                    matchesRank =
+                        rank >= 1 &&
+                        rank <= 10;
+
+                }
+
+
+                else if (
+                    rankRange === "11-25"
+                ) {
+
+                    matchesRank =
+                        rank >= 11 &&
+                        rank <= 25;
+
+                }
+
+
+                else if (
+                    rankRange === "26-50"
+                ) {
+
+                    matchesRank =
+                        rank >= 26 &&
+                        rank <= 50;
+
+                }
+
+
+                else if (
+                    rankRange === "51-100"
+                ) {
+
+                    matchesRank =
+                        rank >= 51 &&
+                        rank <= 100;
+
+                }
+
+            }
+
+
+            return (
+                matchesSearch &&
+                matchesState &&
+                matchesRank
+            );
+
+        });
+
+
+    /* =========================
+       SORT
+    ========================= */
+
+    filtered.sort(
+        (a, b) => {
+
+            const rankA =
+                parseInt(
+                    a[
+                        "nirf_management_rank_2025"
+                    ]
+                ) || 9999;
+
+
+            const rankB =
+                parseInt(
+                    b[
+                        "nirf_management_rank_2025"
+                    ]
+                ) || 9999;
+
+
+            if (
+                sort === "rank-asc"
+            ) {
+
+                return rankA - rankB;
+
+            }
+
+
+            if (
+                sort === "rank-desc"
+            ) {
+
+                return rankB - rankA;
+
+            }
+
+
+            if (
+                sort === "name-asc"
+            ) {
+
+                return (
+                    a["college_name"] || ""
+                )
+                .localeCompare(
+                    b["college_name"] || ""
+                );
+
+            }
+
+
+            if (
+                sort === "name-desc"
+            ) {
+
+                return (
+                    b["college_name"] || ""
+                )
+                .localeCompare(
+                    a["college_name"] || ""
+                );
+
+            }
+
+
+            return 0;
+
+        }
+    );
+
+
+    renderColleges(filtered);
+
+}
+
+
+/* =========================
+   RENDER COLLEGES
+========================= */
+
+function renderColleges(list) {
+
+    const grid =
+        document.getElementById(
+            "collegeGrid"
+        );
+
+
+    const noResults =
+        document.getElementById(
+            "noResults"
+        );
+
+
+    const count =
+        document.getElementById(
+            "collegeCount"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    count.innerText =
+        list.length +
+        (
+            list.length === 1
+                ? " college"
+                : " colleges"
+        );
+
+
+    if (
+        list.length === 0
+    ) {
+
+        noResults.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    noResults.style.display =
+        "none";
+
+
+    list.forEach(college => {
+
+        const name =
+            college["college_name"] || "";
+
+
+        const city =
+            college["city"] || "";
+
+
+        const state =
+            college["state"] || "";
+
+
+        const rank =
+            college[
+                "nirf_management_rank_2025"
+            ] || "—";
+
+
+        const slug =
+            college[
+                "profile_slug"
+            ] || "";
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "college-card";
+
+
+        card.innerHTML = `
+
+            <div class="college-header">
+
+                <h3>
+                    ${escapeHTML(name)}
+                </h3>
+
+                <div class="location">
+                    📍
+                    ${escapeHTML(city)},
+                    ${escapeHTML(state)}
+                </div>
+
+            </div>
+
+
+            <div class="college-body">
+
+                <div class="info-row">
+
+                    <span>
+                        NIRF Management Rank
+                    </span>
+
+                    <span>
+                        #${escapeHTML(rank)}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Category
+                    </span>
+
+                    <span>
+                        Management
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <span>
+                        ${escapeHTML(city)}
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="#"
+                    class="college-button"
+                    onclick="
+                        openCollege(
+                            event,
+                            '${escapeHTML(slug)}'
+                        )
+                    "
+                >
+                    View College
+                </a>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   COLLEGE PROFILE LINK
+========================= */
+
+function openCollege(
+    event,
+    slug
+) {
+
+    event.preventDefault();
+
+
+    /*
+       We will connect this to the
+       reusable college profile system
+       after the database is enriched.
+    */
+
+
+    if (!slug) {
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "college.html?college=" +
+        encodeURIComponent(slug);
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
