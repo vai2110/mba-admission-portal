@@ -7,14 +7,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MBA College | Admissions, Fees, Cutoff & Placements</title>
+<title>MBA College Profile</title>
 
 <meta
 name="description"
-content="Explore MBA college information including rankings, location, programmes, admissions, fees, cutoffs and placements."
+content="MBA college admission, CAT cutoff, fees, placements, eligibility and official information."
 >
 
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
@@ -22,20 +26,15 @@ content="Explore MBA college information including rankings, location, programme
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f8fc;
-    color: #102a43;
+    background: #f5f7fb;
+    color: #14213d;
     line-height: 1.6;
 }
 
 a {
     text-decoration: none;
-    color: inherit;
 }
 
 
@@ -53,9 +52,8 @@ header {
 
 .navbar {
     max-width: 1200px;
-    min-height: 70px;
-
     margin: auto;
+    min-height: 68px;
     padding: 0 20px;
 
     display: flex;
@@ -64,7 +62,7 @@ header {
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 800;
     color: #172554;
 }
@@ -76,8 +74,11 @@ header {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 20px;
+}
 
+.nav-links a {
+    color: #334155;
     font-size: 14px;
     font-weight: 600;
 }
@@ -89,9 +90,8 @@ header {
 .nav-button {
     background: #2563eb;
     color: #ffffff !important;
-
-    padding: 10px 17px;
-    border-radius: 8px;
+    padding: 9px 15px;
+    border-radius: 7px;
 }
 
 
@@ -99,17 +99,16 @@ header {
    HERO
 ========================= */
 
-.college-hero {
+.hero {
     background:
         linear-gradient(
             135deg,
-            #172b68,
-            #2458d8
+            #172554,
+            #2563eb
         );
 
-    color: #ffffff;
-
-    padding: 50px 20px 70px;
+    color: white;
+    padding: 48px 20px 70px;
 }
 
 .hero-inner {
@@ -118,29 +117,24 @@ header {
 }
 
 .breadcrumb {
-    font-size: 14px;
     color: #dbeafe;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
 
+.hero h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.location {
+    color: #dbeafe;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 
-.college-hero h1 {
-    font-size: 42px;
-    line-height: 1.2;
-
-    max-width: 850px;
-
-    margin-bottom: 14px;
-}
-
-.hero-location {
-    font-size: 17px;
-    color: #e5efff;
-
-    margin-bottom: 22px;
-}
-
-.rank-badge {
+.rank {
     display: inline-block;
 
     background: rgba(
@@ -154,11 +148,10 @@ header {
         255,
         255,
         255,
-        0.25
+        0.3
     );
 
     padding: 8px 13px;
-
     border-radius: 7px;
 
     font-size: 13px;
@@ -170,95 +163,78 @@ header {
    QUICK FACTS
 ========================= */
 
-.quick-wrapper {
+.quick {
     max-width: 1080px;
-
     margin: -35px auto 30px;
-
     padding: 0 20px;
-
     position: relative;
 }
 
-.quick-facts {
-    background: #ffffff;
+.quick-grid {
+    background: white;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
     box-shadow:
-        0 10px 30px rgba(
-            15,
-            45,
-            80,
-            0.12
-        );
+        0 10px 30px
+        rgba(15, 23, 42, 0.12);
 
     display: grid;
-
     grid-template-columns:
         repeat(4, 1fr);
 
     overflow: hidden;
 }
 
-.fact {
-    padding: 20px;
-
+.quick-item {
+    padding: 19px;
     text-align: center;
 
     border-right: 1px solid #e5e7eb;
 }
 
-.fact:last-child {
+.quick-item:last-child {
     border-right: none;
 }
 
-.fact strong {
+.quick-item strong {
     display: block;
-
-    color: #173f82;
-
+    color: #1d4ed8;
     font-size: 18px;
-
-    margin-bottom: 4px;
 }
 
-.fact span {
-    font-size: 13px;
-
+.quick-item span {
     color: #64748b;
+    font-size: 12px;
 }
 
 
 /* =========================
-   MAIN LAYOUT
+   PAGE
 ========================= */
 
 .container {
     max-width: 1200px;
-
     margin: auto;
-
-    padding: 10px 20px 60px;
+    padding: 0 20px 60px;
 }
 
 .layout {
     display: grid;
-
     grid-template-columns:
         minmax(0, 1fr)
-        270px;
+        250px;
 
-    gap: 25px;
+    gap: 24px;
 }
 
 
 /* =========================
-   CONTENT SECTIONS
+   SECTION
 ========================= */
 
 .section {
-    background: #ffffff;
+    background: white;
 
     border: 1px solid #e1e7ef;
 
@@ -266,50 +242,33 @@ header {
 
     padding: 28px;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .section h2 {
-    font-size: 26px;
-
     color: #102a43;
-
+    font-size: 25px;
     margin-bottom: 15px;
 }
 
 .section h3 {
-    color: #173f82;
-
-    font-size: 19px;
-
+    color: #1e40af;
+    font-size: 18px;
     margin: 22px 0 9px;
 }
 
 .section p {
-    color: #334e68;
-
-    margin-bottom: 13px;
-}
-
-.section ul,
-.section ol {
-    padding-left: 22px;
-
-    color: #334e68;
-}
-
-.section li {
-    margin-bottom: 8px;
+    color: #475569;
+    margin-bottom: 12px;
 }
 
 
 /* =========================
-   OVERVIEW CARD
+   INFO GRID
 ========================= */
 
-.overview-grid {
+.info-grid {
     display: grid;
-
     grid-template-columns:
         repeat(2, 1fr);
 
@@ -318,30 +277,74 @@ header {
     margin-top: 20px;
 }
 
-.overview-item {
+.info-box {
     background: #f8fbff;
 
-    border: 1px solid #e1eaf5;
+    border: 1px solid #dbe7f5;
 
     border-radius: 9px;
 
     padding: 15px;
 }
 
-.overview-item strong {
+.info-box strong {
     display: block;
 
-    color: #173f82;
+    color: #1e40af;
 
     font-size: 13px;
 
     margin-bottom: 4px;
 }
 
-.overview-item span {
-    color: #334e68;
+.info-box span {
+    color: #334155;
 
     font-size: 14px;
+}
+
+
+/* =========================
+   HIGHLIGHTS
+========================= */
+
+.highlight-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.highlight {
+    padding: 20px;
+
+    background: #f8fbff;
+
+    border: 1px solid #dbe7f5;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.highlight strong {
+    display: block;
+
+    color: #1d4ed8;
+
+    font-size: 22px;
+
+    margin-bottom: 5px;
+}
+
+.highlight span {
+    color: #64748b;
+
+    font-size: 13px;
 }
 
 
@@ -359,13 +362,11 @@ table {
     border-collapse: collapse;
 
     margin-top: 15px;
-
-    min-width: 500px;
 }
 
 th,
 td {
-    border: 1px solid #d9e2ec;
+    border: 1px solid #dbe2ea;
 
     padding: 12px;
 
@@ -376,10 +377,14 @@ th {
     background: #eef5ff;
 
     color: #173f82;
+
+    font-size: 14px;
 }
 
 td {
-    color: #334e68;
+    color: #475569;
+
+    font-size: 14px;
 }
 
 
@@ -388,19 +393,80 @@ td {
 ========================= */
 
 .notice {
-    background: #eef5ff;
+    background: #eff6ff;
 
     border-left: 4px solid #2563eb;
 
-    padding: 17px;
+    padding: 16px;
 
     border-radius: 7px;
 
-    margin: 18px 0;
+    margin-top: 18px;
 }
 
 .notice strong {
+    display: block;
+
     color: #173f82;
+
+    margin-bottom: 4px;
+}
+
+.notice p {
+    margin: 0;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+.primary {
+    background: #2563eb;
+
+    color: white;
+
+    padding: 11px 16px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.primary:hover {
+    background: #1d4ed8;
+}
+
+.secondary {
+    background: white;
+
+    color: #2563eb;
+
+    border: 1px solid #2563eb;
+
+    padding: 10px 16px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.secondary:hover {
+    background: #eff6ff;
 }
 
 
@@ -410,18 +476,16 @@ td {
 
 .sidebar {
     position: sticky;
-
-    top: 90px;
-
+    top: 88px;
     align-self: start;
 }
 
 .sidebar-card {
-    background: #ffffff;
+    background: white;
 
     border: 1px solid #e1e7ef;
 
-    border-radius: 14px;
+    border-radius: 12px;
 
     overflow: hidden;
 }
@@ -431,7 +495,7 @@ td {
 
     color: #173f82;
 
-    padding: 16px 19px;
+    padding: 15px;
 
     font-weight: 700;
 }
@@ -439,17 +503,17 @@ td {
 .sidebar a {
     display: block;
 
-    padding: 11px 19px;
+    padding: 11px 15px;
 
-    border-bottom: 1px solid #edf0f4;
-
-    color: #315b91;
+    color: #475569;
 
     font-size: 14px;
+
+    border-bottom: 1px solid #edf0f4;
 }
 
 .sidebar a:hover {
-    background: #f5f9ff;
+    background: #f8fbff;
 
     color: #2563eb;
 }
@@ -460,13 +524,9 @@ td {
 ========================= */
 
 .loading {
-    max-width: 850px;
-
-    margin: 70px auto;
-
     text-align: center;
 
-    padding: 40px;
+    padding: 70px 20px;
 
     color: #64748b;
 }
@@ -476,22 +536,18 @@ td {
    ERROR
 ========================= */
 
-.error-box {
-    max-width: 850px;
-
-    margin: 70px auto;
-
+.error {
     background: #fff7ed;
 
     border: 1px solid #fed7aa;
 
-    border-radius: 12px;
+    color: #9a3412;
 
-    padding: 30px;
+    padding: 25px;
+
+    border-radius: 10px;
 
     text-align: center;
-
-    color: #9a3412;
 }
 
 
@@ -502,26 +558,25 @@ td {
 footer {
     background: #102a43;
 
-    color: #ffffff;
+    color: white;
 
-    padding: 35px 20px;
+    padding: 30px 20px;
 }
 
 .footer-inner {
     max-width: 1200px;
-
     margin: auto;
 }
 
 .footer-inner p {
     color: #cbd5e1;
 
-    font-size: 14px;
+    font-size: 13px;
 }
 
 
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
 @media (max-width: 900px) {
@@ -534,13 +589,17 @@ footer {
         position: static;
     }
 
-    .quick-facts {
+    .quick-grid {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-    .fact:nth-child(2) {
+    .quick-item:nth-child(2) {
         border-right: none;
+    }
+
+    .highlight-grid {
+        grid-template-columns: 1fr;
     }
 
 }
@@ -549,46 +608,34 @@ footer {
 
     .navbar {
         flex-direction: column;
-
-        gap: 15px;
-
-        padding: 15px;
+        padding: 14px;
+        gap: 12px;
     }
 
     .nav-links {
         flex-wrap: wrap;
-
         justify-content: center;
-
-        gap: 12px;
+        gap: 10px;
     }
 
-    .college-hero {
-        padding: 40px 15px 65px;
+    .hero h1 {
+        font-size: 31px;
     }
 
-    .college-hero h1 {
-        font-size: 32px;
+    .hero {
+        padding: 38px 15px 65px;
     }
 
-    .hero-location {
-        font-size: 15px;
-    }
-
-    .quick-wrapper {
+    .quick {
         padding: 0 15px;
     }
 
-    .quick-facts {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .overview-grid {
+    .info-grid {
         grid-template-columns: 1fr;
     }
 
     .section {
-        padding: 22px;
+        padding: 21px;
     }
 
 }
@@ -601,9 +648,7 @@ footer {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -644,7 +689,7 @@ Placements
 </a>
 
 <a
-href="index.html"
+href="colleges.html"
 class="nav-button"
 >
 Compare Colleges
@@ -657,43 +702,36 @@ Compare Colleges
 </header>
 
 
-<!-- =========================
-     COLLEGE HERO
-========================= -->
+<!-- HERO -->
 
-<section
-class="college-hero"
->
+<section class="hero">
 
 <div class="hero-inner">
 
 <div class="breadcrumb">
-
 Home › MBA Colleges ›
-<span id="breadcrumbCollege">
+<span id="breadcrumb">
 College
 </span>
-
 </div>
 
 
 <h1 id="collegeName">
-Loading college...
+Loading...
 </h1>
 
 
 <div
-id="collegeLocation"
-class="hero-location"
+id="location"
+class="location"
 >
 </div>
 
 
 <div
-id="rankBadge"
-class="rank-badge"
+id="rank"
+class="rank"
 >
-Loading ranking...
 </div>
 
 </div>
@@ -701,68 +739,60 @@ Loading ranking...
 </section>
 
 
-<!-- =========================
-     QUICK FACTS
-========================= -->
+<!-- QUICK FACTS -->
 
-<div class="quick-wrapper">
+<div class="quick">
 
-<div class="quick-facts">
+<div class="quick-grid">
 
 
-<div class="fact">
+<div class="quick-item">
 
-<strong
-id="quickRank"
->
+<strong id="quickRank">
 —
 </strong>
 
 <span>
-NIRF Management Rank
+NIRF 2025 Rank
 </span>
 
 </div>
 
 
-<div class="fact">
+<div class="quick-item">
 
-<strong
-id="quickCity"
->
-—
+<strong id="quickProgramme">
+MBA
 </strong>
 
 <span>
-City
+Programme
 </span>
 
 </div>
 
 
-<div class="fact">
-
-<strong
-id="quickState"
->
-—
-</strong>
-
-<span>
-State
-</span>
-
-</div>
-
-
-<div class="fact">
+<div class="quick-item">
 
 <strong>
-MBA / PGDM
+CAT
 </strong>
 
 <span>
-Programme Category
+Entrance Exam
+</span>
+
+</div>
+
+
+<div class="quick-item">
+
+<strong>
+2026–28
+</strong>
+
+<span>
+Admission Batch
 </span>
 
 </div>
@@ -773,33 +803,29 @@ Programme Category
 </div>
 
 
-<!-- =========================
-     MAIN CONTENT
-========================= -->
+<!-- MAIN -->
 
 <div class="container">
 
 <div
-id="pageLoading"
+id="loading"
 class="loading"
 >
-Loading college information...
+Loading college profile...
 </div>
 
 
 <div
-id="collegeContent"
+id="content"
 class="layout"
 style="display:none;"
 >
 
 
-<!-- =========================
-     MAIN COLUMN
-========================= -->
-
 <main>
 
+
+<!-- OVERVIEW -->
 
 <section
 class="section"
@@ -807,7 +833,7 @@ id="overview"
 >
 
 <h2>
-College Overview
+IIM Ahmedabad MBA Overview
 </h2>
 
 
@@ -815,13 +841,13 @@ College Overview
 </p>
 
 
-<div class="overview-grid">
+<div class="info-grid">
 
 
-<div class="overview-item">
+<div class="info-box">
 
 <strong>
-College Name
+Institute
 </strong>
 
 <span id="overviewName">
@@ -831,7 +857,7 @@ College Name
 </div>
 
 
-<div class="overview-item">
+<div class="info-box">
 
 <strong>
 Location
@@ -844,27 +870,27 @@ Location
 </div>
 
 
-<div class="overview-item">
+<div class="info-box">
 
 <strong>
-NIRF Management Rank 2025
+Programme
 </strong>
 
-<span id="overviewRank">
+<span id="overviewProgramme">
 —
 </span>
 
 </div>
 
 
-<div class="overview-item">
+<div class="info-box">
 
 <strong>
-Category
+Programme Type
 </strong>
 
-<span id="overviewCategory">
-Management
+<span>
+Two-year full-time residential MBA
 </span>
 
 </div>
@@ -872,46 +898,34 @@ Management
 
 </div>
 
-</section>
 
+<div class="buttons">
 
-<section
-class="section"
-id="programs"
+<a
+href="https://www.iima.ac.in/"
+target="_blank"
+rel="noopener noreferrer"
+class="primary"
 >
+Official Website ↗
+</a>
 
-<h2>
-MBA & Management Programmes
-</h2>
-
-
-<p>
-
-Programme-level information will be added after
-verification from the respective institute's official
-website.
-
-</p>
-
-
-<div class="notice">
-
-<strong>
-Database expansion planned
-</strong>
-
-<p>
-
-Fees, specialisations, programme duration and
-programme-specific eligibility will be populated
-using official institute sources.
-
-</p>
+<a
+id="admissionLink1"
+href="#"
+target="_blank"
+rel="noopener noreferrer"
+class="secondary"
+>
+Official Admission Page ↗
+</a>
 
 </div>
 
 </section>
 
+
+<!-- ADMISSION -->
 
 <section
 class="section"
@@ -919,49 +933,74 @@ id="admission"
 >
 
 <h2>
-Admission Process
+MBA Admission 2026–28
 </h2>
 
 
-<p>
+<div class="info-grid">
 
-The admission process varies by institution and
-programme.
 
+<div class="info-box">
+
+<strong>
+Entrance Exam
+</strong>
+
+<span id="entrance">
+CAT 2025
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>
+Admission Batch
+</strong>
+
+<span id="batch">
+2026–28
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>
+Selection Stage 1
+</strong>
+
+<span>
+Shortlisting
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>
+Selection Stage 2
+</strong>
+
+<span>
+AWT + Personal Interview
+</span>
+
+</div>
+
+
+</div>
+
+
+<h3>
+Eligibility
+</h3>
+
+<p id="eligibility">
 </p>
-
-
-<ol>
-
-<li>
-Check the institute's official eligibility criteria.
-</li>
-
-<li>
-Check the accepted entrance examination.
-</li>
-
-<li>
-Complete the institute application.
-</li>
-
-<li>
-Appear for the applicable entrance examination.
-</li>
-
-<li>
-Meet the institute's shortlist criteria.
-</li>
-
-<li>
-Participate in further selection stages where applicable.
-</li>
-
-<li>
-Complete admission formalities after selection.
-</li>
-
-</ol>
 
 
 <div class="notice">
@@ -971,9 +1010,158 @@ Important
 </strong>
 
 <p>
+Meeting the minimum eligibility or CAT screening
+cutoff does not guarantee an interview call or admission.
+</p>
 
-The exact admission process for this college will
-be added after official-source verification.
+</div>
+
+</section>
+
+
+<!-- SELECTION -->
+
+<section
+class="section"
+id="selection"
+>
+
+<h2>
+IIM Ahmedabad Selection Process
+</h2>
+
+
+<div class="highlight-grid">
+
+
+<div class="highlight">
+
+<strong>
+01
+</strong>
+
+<span>
+CAT 2025
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+02
+</strong>
+
+<span>
+Shortlisting
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+03
+</strong>
+
+<span>
+AWT + PI
+</span>
+
+</div>
+
+
+</div>
+
+
+<h3>
+How selection works
+</h3>
+
+
+<p>
+
+For the 2026–28 PGP, IIMA describes the admission
+process as a two-step process. Candidates with a valid
+CAT 2025 score who meet the applicable criteria are
+considered for shortlisting to the Analytical Writing
+Test and Personal Interview. Final selection considers
+the candidate's performance and other applicable
+selection attributes specified by IIMA.
+
+</p>
+
+</section>
+
+
+<!-- CAT CUTOFF -->
+
+<section
+class="section"
+id="cutoff"
+>
+
+<h2>
+CAT 2025 Minimum Screening Cutoff
+</h2>
+
+
+<p>
+
+These are IIMA's published minimum screening
+percentiles for the 2026–28 PGP. They are
+<strong>not the same as the percentile normally
+needed to secure admission.</strong>
+
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Category
+</th>
+
+<th>
+Overall
+</th>
+
+<th>
+Sectional
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="cutoffTable">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="notice">
+
+<strong>
+Read this carefully
+</strong>
+
+<p>
+
+IIMA states that candidates must meet the applicable
+minimum cutoffs and have a positive raw score in all
+CAT sections to be considered for subsequent stages.
 
 </p>
 
@@ -981,6 +1169,8 @@ be added after official-source verification.
 
 </section>
 
+
+<!-- FEES -->
 
 <section
 class="section"
@@ -992,75 +1182,46 @@ MBA Fees
 </h2>
 
 
-<div class="table-wrapper">
-
-<table>
-
-<tr>
-
-<th>
-Fee Component
-</th>
-
-<th>
-Amount
-</th>
-
-</tr>
+<div class="highlight-grid">
 
 
-<tr>
+<div class="highlight">
 
-<td>
-MBA / PGDM Tuition Fee
-</td>
+<strong>
+₹27.50 L
+</strong>
 
-<td>
-To be verified
-</td>
+<span>
+Published programme fee
+</span>
 
-</tr>
-
-
-<tr>
-
-<td>
-Hostel Fee
-</td>
-
-<td>
-To be verified
-</td>
-
-</tr>
+</div>
 
 
-<tr>
+<div class="highlight">
 
-<td>
-Other Charges
-</td>
+<strong>
+2025–27
+</strong>
 
-<td>
-To be verified
-</td>
+<span>
+Fee batch
+</span>
 
-</tr>
+</div>
 
 
-<tr>
+<div class="highlight">
 
-<td>
-Total Programme Fee
-</td>
+<strong>
+2026–28
+</strong>
 
-<td>
-To be verified
-</td>
+<span>
+Future fee to be announced
+</span>
 
-</tr>
-
-</table>
+</div>
 
 </div>
 
@@ -1068,13 +1229,15 @@ To be verified
 <div class="notice">
 
 <strong>
-No estimated fees
+Fee disclaimer
 </strong>
 
 <p>
 
-We will publish fees only after verification
-from official institute documents.
+The ₹27.50 lakh figure is associated with the
+2025–27 batch. It should not be presented as the
+confirmed fee for the 2026–28 batch until IIMA
+officially publishes it.
 
 </p>
 
@@ -1083,100 +1246,7 @@ from official institute documents.
 </section>
 
 
-<section
-class="section"
-id="cutoff"
->
-
-<h2>
-MBA Cutoff
-</h2>
-
-
-<div class="table-wrapper">
-
-<table>
-
-<tr>
-
-<th>
-Entrance Exam
-</th>
-
-<th>
-Cutoff
-</th>
-
-</tr>
-
-
-<tr>
-
-<td>
-CAT
-</td>
-
-<td>
-To be verified
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-XAT
-</td>
-
-<td>
-To be verified
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-CMAT
-</td>
-
-<td>
-To be verified
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Other Exams
-</td>
-
-<td>
-To be verified
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-
-<p>
-
-Cutoffs can vary by programme, category, admission
-year and selection stage. The database will distinguish
-official qualifying cutoffs from expected or
-competitive cutoffs.
-
-</p>
-
-</section>
-
+<!-- PLACEMENTS -->
 
 <section
 class="section"
@@ -1188,75 +1258,46 @@ MBA Placements
 </h2>
 
 
-<div class="table-wrapper">
-
-<table>
-
-<tr>
-
-<th>
-Placement Metric
-</th>
-
-<th>
-Value
-</th>
-
-</tr>
+<div class="highlight-grid">
 
 
-<tr>
+<div class="highlight">
 
-<td>
-Average Package
-</td>
+<strong id="meanSalary">
+₹35.50 LPA
+</strong>
 
-<td>
-To be verified
-</td>
+<span>
+Mean Salary — 2025
+</span>
 
-</tr>
-
-
-<tr>
-
-<td>
-Highest Package
-</td>
-
-<td>
-To be verified
-</td>
-
-</tr>
+</div>
 
 
-<tr>
+<div class="highlight">
 
-<td>
-Median Package
-</td>
+<strong id="medianSalary">
+₹34.59 LPA
+</strong>
 
-<td>
-To be verified
-</td>
+<span>
+Median Salary — 2025
+</span>
 
-</tr>
+</div>
 
 
-<tr>
+<div class="highlight">
 
-<td>
-Placement Rate
-</td>
+<strong>
+Audited
+</strong>
 
-<td>
-To be verified
-</td>
+<span>
+IPRS Placement Report
+</span>
 
-</tr>
-
-</table>
+</div>
 
 </div>
 
@@ -1264,66 +1305,40 @@ To be verified
 <div class="notice">
 
 <strong>
-Placement data policy
+Important placement note
 </strong>
 
 <p>
 
-Placement figures will be sourced from official
-placement reports wherever available.
+IIMA states that its reported placement figures are
+based on Maximum Earning Potential (MEP), not
+conventional Cost to Company (CTC). This distinction
+should be considered when comparing the figures with
+other B-schools.
 
 </p>
+
+</div>
+
+
+<div class="buttons">
+
+<a
+id="placementLink"
+href="#"
+target="_blank"
+rel="noopener noreferrer"
+class="secondary"
+>
+Official Placement Report ↗
+</a>
 
 </div>
 
 </section>
 
 
-<section
-class="section"
-id="eligibility"
->
-
-<h2>
-MBA Eligibility
-</h2>
-
-
-<p>
-
-Programme-specific eligibility will be populated
-after verification from the official institute
-admission notification.
-
-</p>
-
-
-<ul>
-
-<li>
-Academic qualification
-</li>
-
-<li>
-Minimum marks requirement
-</li>
-
-<li>
-Entrance examination requirement
-</li>
-
-<li>
-Final-year candidate eligibility
-</li>
-
-<li>
-Programme-specific requirements
-</li>
-
-</ul>
-
-</section>
-
+<!-- RANKING -->
 
 <section
 class="section"
@@ -1331,61 +1346,41 @@ id="ranking"
 >
 
 <h2>
-Rankings
+NIRF Ranking
 </h2>
 
 
-<div class="table-wrapper">
-
-<table>
-
-<tr>
-
-<th>
-Ranking Agency
-</th>
-
-<th>
-Category
-</th>
-
-<th>
-Rank
-</th>
-
-</tr>
+<div class="highlight-grid">
 
 
-<tr>
+<div class="highlight">
 
-<td>
-NIRF
-</td>
+<strong>
+#1
+</strong>
 
-<td>
-Management 2025
-</td>
-
-<td id="rankingValue">
-—
-</td>
-
-</tr>
-
-</table>
+<span>
+NIRF Management 2025
+</span>
 
 </div>
 
 
-<p>
+</div>
 
-Other rankings will be added separately only when
-the ranking source and category are clearly identified.
+
+<p style="margin-top:18px;">
+
+IIM Ahmedabad is ranked first in the Management
+category of NIRF 2025, according to IIMA's own
+published information.
 
 </p>
 
 </section>
 
+
+<!-- OFFICIAL LINKS -->
 
 <section
 class="section"
@@ -1393,37 +1388,55 @@ id="official"
 >
 
 <h2>
-Official Information
+Official Links
 </h2>
 
 
 <p>
 
-Always verify admission dates, fees, eligibility,
-cutoffs and programme details using the institute's
-latest official notification.
+Use the institute's official pages for the latest
+admission notifications, fees, application deadlines
+and placement reports.
 
 </p>
 
 
+<div class="buttons">
+
+
 <a
-href="https://www.nirfindia.org/"
+href="https://www.iima.ac.in/"
 target="_blank"
-rel="noopener"
-style="
-display:inline-block;
-background:#2563eb;
-color:#ffffff;
-padding:11px 18px;
-border-radius:8px;
-font-weight:700;
-margin-top:10px;
-"
+rel="noopener noreferrer"
+class="primary"
 >
-
-NIRF Official Website →
-
+IIMA Official Website ↗
 </a>
+
+
+<a
+id="admissionLink2"
+href="#"
+target="_blank"
+rel="noopener noreferrer"
+class="secondary"
+>
+MBA Admission ↗
+</a>
+
+
+<a
+id="placementLink2"
+href="#"
+target="_blank"
+rel="noopener noreferrer"
+class="secondary"
+>
+Placement Reports ↗
+</a>
+
+
+</div>
 
 </section>
 
@@ -1431,19 +1444,14 @@ NIRF Official Website →
 </main>
 
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
 <div class="sidebar-card">
 
-
 <div class="sidebar-title">
-
-College Information
-
+IIM Ahmedabad
 </div>
 
 
@@ -1452,13 +1460,18 @@ Overview
 </a>
 
 
-<a href="#programs">
-MBA Programmes
+<a href="#admission">
+Admission 2026–28
 </a>
 
 
-<a href="#admission">
-Admission
+<a href="#selection">
+Selection Process
+</a>
+
+
+<a href="#cutoff">
+CAT Cutoff
 </a>
 
 
@@ -1467,28 +1480,18 @@ Fees
 </a>
 
 
-<a href="#cutoff">
-Cutoff
-</a>
-
-
 <a href="#placements">
 Placements
 </a>
 
 
-<a href="#eligibility">
-Eligibility
-</a>
-
-
 <a href="#ranking">
-Rankings
+NIRF Ranking
 </a>
 
 
 <a href="#official">
-Official Information
+Official Links
 </a>
 
 
@@ -1502,28 +1505,21 @@ Official Information
 </div>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
 <div class="footer-inner">
 
 <p>
-
-<strong>MBAPortal</strong> —
-MBA colleges, entrance exams,
+<strong>MBA Portal</strong>
+— MBA colleges, entrance exams,
 admissions, cutoffs and placements.
-
 </p>
 
-
-<p style="margin-top:8px;">
-
-College information should always be verified
-against the latest official institute sources.
-
+<p style="margin-top:7px;">
+Always verify important admission information
+with the official institute website.
 </p>
 
 </div>
@@ -1531,30 +1527,24 @@ against the latest official institute sources.
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
-
-/* =========================
-   GET COLLEGE FROM URL
-========================= */
+/* =========================================
+   URL
+========================================= */
 
 const params =
     new URLSearchParams(
         window.location.search
     );
 
-
 const requestedCollege =
     params.get("college");
 
 
-/* =========================
-   BASIC ERROR CHECK
-========================= */
+/* =========================================
+   LOAD
+========================================= */
 
 if (!requestedCollege) {
 
@@ -1562,55 +1552,100 @@ if (!requestedCollege) {
         "No college was selected."
     );
 
+} else {
+
+    loadData();
+
 }
 
 
-/* =========================
-   LOAD DATABASE
-========================= */
+/* =========================================
+   LOAD CSV FILES
+========================================= */
 
-else {
+function loadData() {
 
-    fetch("./colleges.csv")
+    Promise.all([
 
-    .then(function(response) {
+        fetch("colleges.csv")
+            .then(function(response) {
 
-        if (!response.ok) {
+                if (!response.ok) {
 
-            throw new Error(
-                "Unable to load colleges.csv"
-            );
+                    throw new Error(
+                        "Could not load colleges.csv"
+                    );
 
-        }
+                }
 
-        return response.text();
+                return response.text();
 
-    })
+            }),
 
-    .then(function(csvText) {
+        fetch("college_details.csv")
+            .then(function(response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load college_details.csv"
+                    );
+
+                }
+
+                return response.text();
+
+            })
+
+    ])
+
+    .then(function(files) {
 
         const colleges =
-            parseCSV(csvText);
+            parseCSV(files[0]);
+
+        const details =
+            parseCSV(files[1]);
 
 
         const college =
-            findCollege(
-                colleges,
-                requestedCollege
+            colleges.find(
+                function(item) {
+
+                    return (
+                        item.profile_slug ===
+                        requestedCollege
+                    );
+
+                }
             );
 
 
         if (!college) {
 
             throw new Error(
-                "College not found in database."
+                "College not found in colleges.csv"
             );
 
         }
 
 
-        renderCollege(
-            college
+        const detail =
+            details.find(
+                function(item) {
+
+                    return (
+                        item.profile_slug ===
+                        requestedCollege
+                    );
+
+                }
+            );
+
+
+        render(
+            college,
+            detail
         );
 
     })
@@ -1628,22 +1663,303 @@ else {
 }
 
 
-/* =========================
-   FIND COLLEGE
-========================= */
+/* =========================================
+   RENDER
+========================================= */
 
-function findCollege(
-    colleges,
-    requestedSlug
+function render(
+    college,
+    detail
 ) {
 
-    return colleges.find(
-        function(college) {
+    const name =
+        college.college_name ||
+        "College";
 
-            return (
-                college[
-                    "profile_slug"
-                ] === requestedSlug
+
+    const city =
+        college.city ||
+        "";
+
+
+    const state =
+        college.state ||
+        "";
+
+
+    const rank =
+        college.nirf_management_rank_2025 ||
+        "—";
+
+
+    document.title =
+        name +
+        " | MBA Admissions, Fees & Cutoff";
+
+
+    setText(
+        "collegeName",
+        name
+    );
+
+
+    setText(
+        "breadcrumb",
+        name
+    );
+
+
+    setText(
+        "location",
+        "📍 " +
+        city +
+        ", " +
+        state
+    );
+
+
+    setText(
+        "rank",
+        "NIRF Management 2025: #" +
+        rank
+    );
+
+
+    setText(
+        "quickRank",
+        "#" + rank
+    );
+
+
+    setText(
+        "quickProgramme",
+        detail
+            ? detail.program_name
+            : "MBA"
+    );
+
+
+    setText(
+        "overviewName",
+        name
+    );
+
+
+    setText(
+        "overviewLocation",
+        city +
+        ", " +
+        state
+    );
+
+
+    setText(
+        "overviewProgramme",
+        detail
+            ? detail.program_name
+            : "MBA / PGDM"
+    );
+
+
+    setText(
+
+        "overviewText",
+
+        "The " +
+        name +
+        " offers its flagship management programme " +
+        (
+            detail
+                ? detail.program_name
+                : "MBA programme"
+        ) +
+        ". This page brings together admission, CAT cutoff, fee, placement and official-source information for students comparing MBA colleges."
+
+    );
+
+
+    if (!detail) {
+
+        showError(
+            "College details are not available in college_details.csv."
+        );
+
+        return;
+
+    }
+
+
+    setText(
+        "entrance",
+        detail.entrance_exam
+    );
+
+
+    setText(
+        "batch",
+        detail.admission_batch
+    );
+
+
+    setText(
+        "eligibility",
+        detail.eligibility
+    );
+
+
+    renderCutoffs(
+        detail
+    );
+
+
+    setHref(
+        "admissionLink1",
+        detail.official_admission_url
+    );
+
+
+    setHref(
+        "admissionLink2",
+        detail.official_admission_url
+    );
+
+
+    setHref(
+        "placementLink",
+        detail.official_placement_url
+    );
+
+
+    setHref(
+        "placementLink2",
+        detail.official_placement_url
+    );
+
+
+    setText(
+        "meanSalary",
+        detail.mean_salary
+    );
+
+
+    setText(
+        "medianSalary",
+        detail.median_salary
+    );
+
+
+    document.getElementById(
+        "loading"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "content"
+    ).style.display =
+        "grid";
+
+}
+
+
+/* =========================================
+   CUTOFF TABLE
+========================================= */
+
+function renderCutoffs(
+    detail
+) {
+
+    const table =
+        document.getElementById(
+            "cutoffTable"
+        );
+
+
+    const rows = [
+
+        [
+            "General / EWS",
+            detail.cat_general_overall,
+            detail.cat_general_sectional
+        ],
+
+        [
+            "NC-OBC",
+            detail.cat_nc_obc_overall,
+            detail.cat_nc_obc_sectional
+        ],
+
+        [
+            "SC",
+            detail.cat_sc_overall,
+            detail.cat_sc_sectional
+        ],
+
+        [
+            "ST",
+            detail.cat_st_overall,
+            detail.cat_st_sectional
+        ],
+
+        [
+            "PwD — General / EWS",
+            detail.cat_pwd_general_overall,
+            detail.cat_pwd_general_sectional
+        ],
+
+        [
+            "PwD — NC-OBC",
+            detail.cat_pwd_nc_obc_overall,
+            detail.cat_pwd_nc_obc_sectional
+        ],
+
+        [
+            "PwD — SC",
+            detail.cat_pwd_sc_overall,
+            detail.cat_pwd_sc_sectional
+        ],
+
+        [
+            "PwD — ST",
+            detail.cat_pwd_st_overall,
+            detail.cat_pwd_st_sectional
+        ]
+
+    ];
+
+
+    table.innerHTML = "";
+
+
+    rows.forEach(
+        function(row) {
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML = `
+
+                <td>
+                    ${escapeHTML(row[0])}
+                </td>
+
+                <td>
+                    ${escapeHTML(row[1] || "—")}
+                </td>
+
+                <td>
+                    ${escapeHTML(row[2] || "—")}
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                tr
             );
 
         }
@@ -1652,194 +1968,293 @@ function findCollege(
 }
 
 
-/* =========================
-   RENDER COLLEGE
-========================= */
+/* =========================================
+   HELPERS
+========================================= */
 
-function renderCollege(
-    college
+function setText(
+    id,
+    value
 ) {
 
-
-    const name =
-        college[
-            "college_name"
-        ] || "College";
-
-
-    const city =
-        college[
-            "city"
-        ] || "";
+    const element =
+        document.getElementById(
+            id
+        );
 
 
-    const state =
-        college[
-            "state"
-        ] || "";
+    if (element) {
 
+        element.textContent =
+            value || "—";
 
-    const rank =
-        college[
-            "nirf_management_rank_2025"
-        ] || "—";
-
-
-    const category =
-        college[
-            "category"
-        ] || "Management";
-
-
-    /* =========================
-       PAGE TITLE
-    ========================= */
-
-    document.title =
-        name +
-        " | MBA Admissions, Fees, Cutoff & Placements";
-
-
-    /* =========================
-       HERO
-    ========================= */
-
-    document.getElementById(
-        "collegeName"
-    ).textContent =
-        name;
-
-
-    document.getElementById(
-        "breadcrumbCollege"
-    ).textContent =
-        name;
-
-
-    document.getElementById(
-        "collegeLocation"
-    ).textContent =
-        "📍 " +
-        city +
-        ", " +
-        state;
-
-
-    document.getElementById(
-        "rankBadge"
-    ).textContent =
-        "NIRF Management 2025: #" +
-        rank;
-
-
-    /* =========================
-       QUICK FACTS
-    ========================= */
-
-    document.getElementById(
-        "quickRank"
-    ).textContent =
-        "#" + rank;
-
-
-    document.getElementById(
-        "quickCity"
-    ).textContent =
-        city;
-
-
-    document.getElementById(
-        "quickState"
-    ).textContent =
-        state;
-
-
-    /* =========================
-       OVERVIEW
-    ========================= */
-
-    document.getElementById(
-        "overviewText"
-    ).textContent =
-
-        name +
-        " is a management institution located in " +
-        city +
-        ", " +
-        state +
-        ". The institution is listed in the NIRF 2025 Management ranking database used by this portal.";
-
-
-    document.getElementById(
-        "overviewName"
-    ).textContent =
-        name;
-
-
-    document.getElementById(
-        "overviewLocation"
-    ).textContent =
-        city +
-        ", " +
-        state;
-
-
-    document.getElementById(
-        "overviewRank"
-    ).textContent =
-        "#" + rank;
-
-
-    document.getElementById(
-        "overviewCategory"
-    ).textContent =
-        category;
-
-
-    /* =========================
-       RANKING
-    ========================= */
-
-    document.getElementById(
-        "rankingValue"
-    ).textContent =
-        "#" + rank;
-
-
-    /* =========================
-       SHOW PAGE
-    ========================= */
-
-    document.getElementById(
-        "pageLoading"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "collegeContent"
-    ).style.display =
-        "grid";
+    }
 
 }
 
 
-/* =========================
-   SHOW ERROR
-========================= */
+function setHref(
+    id,
+    url
+) {
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if (
+        element &&
+        url
+    ) {
+
+        element.href =
+            url;
+
+    }
+
+}
+
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value || ""
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================
+   CSV PARSER
+========================================= */
+
+function parseCSV(
+    text
+) {
+
+    text =
+        text.replace(
+            /^\uFEFF/,
+            ""
+        );
+
+
+    const rows = [];
+
+    let row = [];
+
+    let value = "";
+
+    let quoted = false;
+
+
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
+
+        const char =
+            text[i];
+
+
+        if (
+            char === '"'
+        ) {
+
+            if (
+                quoted &&
+                text[i + 1] === '"'
+            ) {
+
+                value += '"';
+
+                i++;
+
+            } else {
+
+                quoted =
+                    !quoted;
+
+            }
+
+        }
+
+        else if (
+            char === "," &&
+            !quoted
+        ) {
+
+            row.push(
+                value
+            );
+
+            value = "";
+
+        }
+
+        else if (
+            (
+                char === "\n" ||
+                char === "\r"
+            ) &&
+            !quoted
+        ) {
+
+            if (
+                char === "\r" &&
+                text[i + 1] === "\n"
+            ) {
+
+                i++;
+
+            }
+
+
+            row.push(
+                value
+            );
+
+            value = "";
+
+
+            if (
+                row.some(
+                    function(cell) {
+                        return cell.trim() !== "";
+                    }
+                )
+            ) {
+
+                rows.push(
+                    row
+                );
+
+            }
+
+
+            row = [];
+
+        }
+
+        else {
+
+            value += char;
+
+        }
+
+    }
+
+
+    if (
+        value !== "" ||
+        row.length > 0
+    ) {
+
+        row.push(
+            value
+        );
+
+        rows.push(
+            row
+        );
+
+    }
+
+
+    if (
+        rows.length < 2
+    ) {
+
+        return [];
+
+    }
+
+
+    const headers =
+        rows[0].map(
+            function(header) {
+
+                return header.trim();
+
+            }
+        );
+
+
+    return rows
+        .slice(1)
+        .map(
+            function(values) {
+
+                const object = {};
+
+
+                headers.forEach(
+                    function(header, index) {
+
+                        object[header] =
+                            (
+                                values[index] ||
+                                ""
+                            ).trim();
+
+                    }
+                );
+
+
+                return object;
+
+            }
+        );
+
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
 
 function showError(
     message
 ) {
 
     document.getElementById(
-        "pageLoading"
+        "loading"
     ).innerHTML = `
 
-        <div class="error-box">
+        <div class="error">
 
             <h2>
-                College page could not be loaded
+                College profile could not be loaded
             </h2>
 
             <p style="margin-top:10px;">
@@ -1847,6 +2262,7 @@ function showError(
             </p>
 
             <p style="margin-top:15px;">
+
                 <a
                     href="colleges.html"
                     style="
@@ -1856,6 +2272,7 @@ function showError(
                 >
                     ← Back to MBA Colleges
                 </a>
+
             </p>
 
         </div>
@@ -1864,207 +2281,7 @@ function showError(
 
 }
 
-
-/* =========================
-   CSV PARSER
-========================= */
-
-function parseCSV(text) {
-
-    text =
-        text.replace(
-            /^\uFEFF/,
-            ""
-        );
-
-
-    const lines =
-        text
-        .trim()
-        .split(/\r?\n/);
-
-
-    if (
-        lines.length < 2
-    ) {
-
-        return [];
-
-    }
-
-
-    const headers =
-        parseCSVLine(
-            lines[0]
-        );
-
-
-    return lines
-
-        .slice(1)
-
-        .map(function(line) {
-
-            const values =
-                parseCSVLine(line);
-
-
-            const row = {};
-
-
-            headers.forEach(
-                function(
-                    header,
-                    index
-                ) {
-
-                    row[
-                        header.trim()
-                    ] =
-                        (
-                            values[index] ||
-                            ""
-                        ).trim();
-
-                }
-            );
-
-
-            return row;
-
-        })
-
-        .filter(function(row) {
-
-            return (
-                row["college_name"]
-            );
-
-        });
-
-}
-
-
-/* =========================
-   CSV LINE PARSER
-========================= */
-
-function parseCSVLine(line) {
-
-    const result = [];
-
-    let current = "";
-
-    let insideQuotes = false;
-
-
-    for (
-        let i = 0;
-        i < line.length;
-        i++
-    ) {
-
-        const char =
-            line[i];
-
-
-        if (
-            char === '"'
-        ) {
-
-            if (
-                insideQuotes &&
-                line[i + 1] === '"'
-            ) {
-
-                current += '"';
-
-                i++;
-
-            }
-
-            else {
-
-                insideQuotes =
-                    !insideQuotes;
-
-            }
-
-        }
-
-
-        else if (
-            char === "," &&
-            !insideQuotes
-        ) {
-
-            result.push(
-                current
-            );
-
-            current = "";
-
-        }
-
-
-        else {
-
-            current += char;
-
-        }
-
-    }
-
-
-    result.push(
-        current
-    );
-
-
-    return result;
-
-}
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(
-    value
-) {
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
 </script>
-
 
 </body>
 
