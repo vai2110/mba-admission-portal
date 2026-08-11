@@ -140,9 +140,9 @@ header {
 
     grid-template-columns:
         minmax(0, 1fr)
-        300px;
+        360px;
 
-    gap: 30px;
+    gap: 14px;
 
     align-items: center;
 }
@@ -242,6 +242,8 @@ header {
 .hero-image-wrap {
     width: 360px;
     height: 155px;
+
+    justify-self: start;
 
     position: relative;
 
@@ -974,26 +976,21 @@ footer {
 
 @media (max-width: 950px) {
 
-    .hero-container {
-        grid-template-columns: 1fr;
-    }
+   .hero-container {
+    width: min(1180px, calc(100% - 60px));
+    margin: 0 auto;
 
-    .hero-image-wrap {
-        width: 100%;
+    min-height: 165px;
 
-        max-width: 420px;
+    display: grid;
 
-        height: 190px;
-    }
+    grid-template-columns:
+        minmax(0, 1fr)
+        360px;
 
-    .page-layout {
-        grid-template-columns:
-            205px
-            minmax(0, 1fr);
-         360px;
-    gap: 22px;
-    }
+    gap: 14px;
 
+    align-items: center;
 }
 
 
