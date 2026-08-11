@@ -686,41 +686,55 @@ let colleges = [];
    LOAD COLLEGE DATABASE
 ========================= */
 
-fetch("colleges.csv")
+<script>
+let colleges = [];
 
-.then(response => {
+fetch("./colleges.csv")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(
+                "colleges.csv could not be loaded. Status: " +
+                response.status
+            );
+        }
 
-    if (!response.ok) {
+        return response.text();
+    })
+    .then(csvText => {
 
-        throw new Error(
-            "Could not load colleges.csv"
+        console.log("CSV loaded successfully");
+
+        colleges = parseCSV(csvText);
+
+        console.log(
+            "Number of colleges loaded:",
+            colleges.length
         );
 
-    }
+        if (colleges.length === 0) {
+            throw new Error(
+                "CSV loaded but no college records were found."
+            );
+        }
 
-    return response.text();
+        populateStates();
 
-})
+        filterColleges();
 
-.then(csvText => {
+    })
+    .catch(error => {
 
-    colleges = parseCSV(csvText);
+        console.error(
+            "College database error:",
+            error
+        );
 
-    populateStates();
+        document.getElementById(
+            "collegeCount"
+        ).innerText =
+            "Database loading error";
 
-    filterColleges();
-
-})
-
-.catch(error => {
-
-    console.error(error);
-
-    document.getElementById(
-        "collegeCount"
-    ).innerText = "Database unavailable";
-
-});
+    });
 
 
 /* =========================
