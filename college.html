@@ -629,21 +629,69 @@ td {
    SIDEBAR
 ========================= */
 
-.sidebar {
-    position: sticky;
-    top: 88px;
-    align-self: start;
+/* =========================
+   LEFT SIDEBAR + MAIN CONTENT
+========================= */
+
+.layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+
+    display: grid;
+
+    grid-template-columns: 250px minmax(0, 1fr);
+
+    gap: 24px;
+
+    align-items: start;
 }
 
+
+/* LEFT SIDEBAR */
+
+.sidebar {
+    grid-column: 1;
+    grid-row: 1;
+
+    position: sticky;
+
+    top: 88px;
+
+    align-self: start;
+
+    width: 250px;
+}
+
+
+/* MAIN CONTENT */
+
+.layout > main {
+    grid-column: 2;
+    grid-row: 1;
+
+    min-width: 0;
+}
+
+
+/* SIDEBAR CARD */
+
 .sidebar-card {
-    background: white;
+    background: #ffffff;
 
     border: 1px solid #e1e7ef;
 
     border-radius: 12px;
 
     overflow: hidden;
+
+    box-shadow:
+        0 4px 14px
+        rgba(15, 23, 42, 0.06);
 }
+
+
+/* SIDEBAR TITLE */
 
 .sidebar-title {
     background: #eef5ff;
@@ -652,25 +700,78 @@ td {
 
     padding: 15px;
 
-    font-weight: 700;
+    font-weight: 800;
+
+    font-size: 15px;
 }
+
+
+/* ONLY MAIN H2 LINKS */
 
 .sidebar a {
     display: block;
 
-    padding: 11px 15px;
+    padding: 12px 14px;
 
     color: #475569;
 
-    font-size: 14px;
+    font-size: 13px;
+
+    font-weight: 600;
 
     border-bottom: 1px solid #edf0f4;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
+
 
 .sidebar a:hover {
     background: #f8fbff;
 
     color: #2563eb;
+}
+
+
+/* ACTIVE LINK */
+
+.sidebar a.active {
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-left: 3px solid #2563eb;
+
+    padding-left: 11px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .sidebar {
+        grid-column: 1;
+        grid-row: 1;
+
+        position: static;
+
+        width: 100%;
+    }
+
+    .layout > main {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
 }
 
 
@@ -3067,100 +3168,68 @@ Placement Reports ↗
 
 <aside class="sidebar">
 
-<div class="sidebar-card">
+    <div class="sidebar-card">
 
-<div class="sidebar-title">
-IIM Ahmedabad MBA
-</div>
-
-
-<a href="#overview">
-Overview
-</a>
+        <div class="sidebar-title">
+            IIM Ahmedabad MBA
+        </div>
 
 
-<a
-    href="#admission"
-    class="group-link"
->
-    Admission 2026–28
-</a>
-
-<a
-    href="#eligibility"
-    class="sub-link"
->
-    Eligibility
-</a>
-
-<a
-    href="#selection"
-    class="sub-link"
->
-    Selection Process
-</a>
-
-<a
-    href="#cutoff"
-    class="sub-link"
->
-    CAT Cutoff
-</a>
-
-<a href="#fees">
-Fees
-</a>
+        <a href="#overview">
+            Overview
+        </a>
 
 
-<a href="#placements">
-Placements
-</a>
+        <a href="#admission">
+            Admission 2026–28
+        </a>
 
 
-<a href="#ranking">
-NIRF Ranking
-</a>
-<a href="#student-community">
-Student & Community Insights
-</a>
-<a href="#batch-profile">
-Batch Profile
-</a>
-
-<a href="#profile-fit">
-Who Should Apply?
-</a>
-
-<a href="#placement-landscape">
-Placement Landscape
-</a>
-
-<a href="#placement-comparison">
-Placement Comparison
-</a>
-
-<a href="#student-discussions">
-Student Discussions
-</a>
-
-<a href="#quora-perspectives">
-Quora & Alumni
-</a>
-
-<a href="#realistic-verdict">
-Realistic Verdict
-</a>
-
-<a href="#faq">
-FAQs
-</a>
-
-<a href="#official">
-Official Links
-</a>
+        <a href="#fees">
+            Fees
+        </a>
 
 
-</div>
+        <a href="#placements">
+            Placements
+        </a>
+
+
+        <a href="#ranking">
+            NIRF Ranking
+        </a>
+
+
+        <a href="#student-community">
+            Student & Community Insights
+        </a>
+
+
+        <a href="#batch-profile">
+            Batch Profile
+        </a>
+
+
+        <a href="#profile-fit">
+            Who Should Apply?
+        </a>
+
+
+        <a href="#realistic-verdict">
+            Realistic Verdict
+        </a>
+
+
+        <a href="#faq">
+            FAQs
+        </a>
+
+
+        <a href="#official">
+            Official Links
+        </a>
+
+    </div>
 
 </aside>
 
