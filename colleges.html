@@ -1610,82 +1610,78 @@ function renderColleges(list) {
                 "college-card";
 
 
-            card.innerHTML = `
+           card.innerHTML = `
 
-                <div class="rank-badge">
-                    NIRF 2025 Management: #${escapeHTML(rank)}
-                </div>
+    <div class="rank-badge">
+        NIRF 2025 Management: #${escapeHTML(rank)}
+    </div>
 
+    <div class="college-name">
+        ${escapeHTML(name)}
+    </div>
 
-                <div class="college-name">
-                    ${escapeHTML(name)}
-                </div>
+    <div class="location">
+        📍 ${escapeHTML(city)}, ${escapeHTML(state)}
+    </div>
 
+    <div class="card-info">
 
-                <div class="location">
-                    📍
-                    ${escapeHTML(city)},
-                    ${escapeHTML(state)}
-                </div>
+        <div class="info-row">
+            <span class="info-label">
+                Category
+            </span>
 
+            <span class="info-value">
+                ${escapeHTML(category)}
+            </span>
+        </div>
 
-                <div class="card-info">
+        <div class="info-row">
+            <span class="info-label">
+                Programme
+            </span>
 
-                    <div class="info-row">
+            <span class="info-value">
+                MBA / PGDM
+            </span>
+        </div>
 
-                        <span class="info-label">
-                            Category
-                        </span>
+        <div class="info-row">
+            <span class="info-label">
+                Ranking Source
+            </span>
 
-                        <span class="info-value">
-                            ${escapeHTML(category)}
-                        </span>
+            <span class="info-value">
+                NIRF 2025
+            </span>
+        </div>
 
-                    </div>
+    </div>
 
+    <span class="course-tag">
+        Management
+    </span>
 
-                    <div class="info-row">
+    <a
+        href="college.html?college=${encodeURIComponent(
+            college["profile_slug"]
+        )}"
+        style="
+            display:block;
+            margin-top:18px;
+            background:#2563eb;
+            color:white;
+            text-align:center;
+            padding:11px 14px;
+            border-radius:8px;
+            font-weight:700;
+            font-size:14px;
+        "
+    >
+        View College →
+    </a>
 
-                        <span class="info-label">
-                            Programme
-                        </span>
-
-                        <span class="info-value">
-                            MBA / PGDM
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-                            Ranking Source
-                        </span>
-
-                        <span class="info-value">
-                            NIRF 2025
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
-                <span class="course-tag">
-                    Management
-                </span>
-
-            `;
-
-
-            grid.appendChild(
-                card
-            );
-
-        }
-    );
+`;
 
 }
 
