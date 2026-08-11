@@ -490,6 +490,35 @@ header {
 .college-profile-button:hover {
     background: #1d4ed8;
 }
+   .official-website-button {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 9px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    text-align: center;
+
+    padding: 10px 14px;
+
+    border: 1px solid #2563eb;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: background 0.2s ease;
+}
+
+.official-website-button:hover {
+    background: #eef5ff;
+}
 
 
 /* =========================
@@ -1612,6 +1641,9 @@ function renderColleges(list) {
             const slug =
                 college["profile_slug"] ||
                 "";
+           const officialWebsite =
+                college["official_website"] ||
+               "";
 
 
             const card =
@@ -1743,7 +1775,20 @@ function renderColleges(list) {
                     View College →
 
                 </a>
-
+${
+    officialWebsite
+        ? `
+            <a
+                href="${escapeHTML(officialWebsite)}"
+                class="official-website-button"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Official Website ↗
+            </a>
+          `
+        : ""
+}
             `;
 
 
