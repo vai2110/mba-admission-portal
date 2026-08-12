@@ -619,7 +619,22 @@ tr:nth-child(even) td {
 /* =========================================================
    OTHER PROGRAMMES
 ========================================================= */
+/* =========================================================
+   IIM AHMEDABAD — OTHER PROGRAMMES GRID
+========================================================= */
 
+.iima-programme-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 18px;
+}
+
+.iima-programme-grid .programme-card {
+    min-width: 0;
+    height: 100%;
+}
 .programme-card {
     background: #ffffff;
 
@@ -712,9 +727,40 @@ tr:nth-child(even) td {
 }
 
 .programme-fit {
-    font-size: 12px !important;
+    background: #f7faff;
+    border: 1px solid #dbe7f5;
+    border-radius: 7px;
 
-    color: #475569 !important;
+    padding: 10px 11px;
+
+    margin-top: auto;
+    margin-bottom: 14px;
+
+    line-height: 1.45;
+}
+
+.fit-label {
+    display: block;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 4px;
+}
+
+.fit-text {
+    display: block;
+
+    color: #334155;
+
+    font-size: 11.5px;
+
+    font-weight: 600;
 }
 
 .programme-link {
@@ -1103,8 +1149,10 @@ footer {
 /* =========================================================
    RESPONSIVE — MOBILE
 ========================================================= */
-
 @media (max-width: 720px) {
+    .iima-programme-grid {
+    grid-template-columns: 1fr;
+}
 
     .navbar {
         width: min(
