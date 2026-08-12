@@ -1334,6 +1334,134 @@ footer {
     font-size: 11.5px;
     font-weight: 600;
 }
+    /* =========================================================
+   FINAL MOBILE HERO FIX
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .hero-container {
+        width: calc(100% - 24px);
+
+        display: grid;
+
+        /* IMPORTANT: mobile must use ONE column */
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        min-height: auto;
+    }
+
+    .hero-main {
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: flex-start;
+
+        gap: 14px;
+
+        width: 100%;
+    }
+
+    .hero-text {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .hero-logo-wrap {
+        width: 68px;
+        height: 68px;
+        min-width: 68px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+        line-height: 1.15;
+        margin-bottom: 6px;
+    }
+
+    .hero h2,
+    .hero-subtitle {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .hero-location {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .hero-image-wrap {
+        width: 100%;
+        height: 180px;
+
+        justify-self: stretch;
+
+        margin: 0;
+
+        border-radius: 9px;
+    }
+
+    .hero-campus-image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding: 20px 0 22px;
+    }
+
+    .hero-container {
+        width: calc(100% - 20px);
+
+        gap: 14px;
+    }
+
+    .hero-main {
+        flex-direction: row;
+
+        gap: 12px;
+    }
+
+    .hero-logo-wrap {
+        width: 64px;
+        height: 64px;
+        min-width: 64px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+        line-height: 1.15;
+    }
+
+    .hero h2,
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .hero-location {
+        font-size: 11px;
+    }
+
+    .hero-image-wrap {
+        width: 100%;
+        height: 170px;
+    }
+}
 </style>
 
 </head>
