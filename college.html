@@ -1135,115 +1135,316 @@ footer {
 
 @media (max-width: 950px) {
 
-   .hero-container {
-    width: min(1180px, calc(100% - 60px));
-    margin: 0 auto;
+    .hero-container {
+        width: calc(100% - 32px);
+    }
 
-    min-height: 165px;
+    .page-layout {
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: 16px;
+    }
 
-    display: grid;
+    .quick-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-    grid-template-columns:
-        minmax(0, 1fr)
-        360px;
-
-    gap: 14px;
-
-    align-items: center;
 }
 
 
 /* =========================================================
    RESPONSIVE — MOBILE
 ========================================================= */
+
 @media (max-width: 720px) {
-    .iima-programme-grid {
-    grid-template-columns: 1fr;
-}
+
+    /* ---------- NAVIGATION ---------- */
 
     .navbar {
-        width: min(
-            100% - 24px,
-            1240px
-        );
+        width: calc(100% - 24px);
+        min-height: 54px;
     }
 
     .nav-links {
         display: none;
     }
 
+    .logo {
+        font-size: 21px;
+    }
+
+
+    /* ---------- HERO ---------- */
+
     .hero {
-        padding: 25px 0;
+        padding: 22px 0 20px;
     }
 
     .hero-container {
-        width: min(
-            100% - 24px,
-            1240px
-        );
+        width: calc(100% - 24px);
+
+        display: grid;
+
+        /* KEY FIX */
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        min-height: auto;
     }
 
     .hero-main {
+        display: flex;
+
+        flex-direction: row;
+
         align-items: flex-start;
+
+        gap: 12px;
+
+        width: 100%;
     }
 
     .hero-logo-wrap {
-        width: 70px;
-        height: 70px;
-        min-width: 70px;
+        width: 62px;
+        height: 62px;
+
+        min-width: 62px;
+
+        padding: 6px;
+    }
+
+    .hero-text {
+        min-width: 0;
+        flex: 1;
     }
 
     .hero h1 {
-        font-size: 28px;
+        font-size: 25px;
+        line-height: 1.15;
+
+        margin-bottom: 6px;
     }
 
     .hero h2 {
-        font-size: 16px;
+        font-size: 13px;
+        line-height: 1.4;
+
+        margin-bottom: 7px;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .hero-location {
+        font-size: 11px;
+        line-height: 1.5;
+
+        word-break: normal;
+    }
+
+
+    /* ---------- CAMPUS IMAGE ---------- */
+
+    .hero-image-wrap {
+        width: 100%;
+
+        height: 175px;
+
+        justify-self: stretch;
+
+        margin: 0;
+
+        border-radius: 9px;
+    }
+
+    .hero-campus-image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    /* ---------- QUICK FACTS ---------- */
+
+    .page-container {
+        width: calc(100% - 20px);
     }
 
     .quick-facts {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+        padding:
+            12px 0 16px;
     }
 
-    .page-container {
-        width: min(
-            100% - 24px,
-            1240px
-        );
+    .quick-fact {
+        padding: 11px;
+
+        min-height: 62px;
     }
+
+    .quick-fact-label {
+        font-size: 9px;
+    }
+
+    .quick-fact-value {
+        font-size: 12px;
+    }
+
+
+    /* ---------- MAIN LAYOUT ---------- */
 
     .page-layout {
-        grid-template-columns: 1fr;
+        display: block;
 
-        gap: 14px;
+        padding-bottom: 30px;
     }
+
+
+    /* ---------- MOBILE SIDEBAR ---------- */
 
     .sidebar {
         position: static;
+
+        width: 100%;
+
+        margin-bottom: 14px;
     }
 
     .sidebar-card {
-        display: grid;
+        display: flex;
 
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        overflow-x: auto;
+
+        gap: 7px;
+
+        padding: 8px;
+
+        border-radius: 9px;
+
+        scrollbar-width: none;
+    }
+
+    .sidebar-card::-webkit-scrollbar {
+        display: none;
     }
 
     .sidebar-title {
-        grid-column:
-            1 / -1;
+        flex:
+            0 0 auto;
+
+        padding:
+            8px 11px;
+
+        border-radius: 999px;
+
+        font-size: 11px;
+
+        white-space: nowrap;
     }
 
-    .main-section {
-        padding: 21px 18px;
+    .sidebar a {
+        flex:
+            0 0 auto;
+
+        padding:
+            8px 11px;
+
+        border:
+            1px solid #dbe7f5;
+
+        border-radius: 999px;
+
+        background: #ffffff;
+
+        font-size: 11px;
+
+        line-height: 1.2;
+
+        white-space: nowrap;
     }
+
+    .sidebar a:last-child {
+        border-bottom:
+            1px solid #dbe7f5;
+    }
+
+    .sidebar a.active {
+        border-left: 1px solid #2563eb;
+
+        padding-left: 11px;
+
+        background: #eff6ff;
+    }
+
+
+    /* ---------- CONTENT ---------- */
+
+    .main-section {
+        padding:
+            19px 16px;
+
+        margin-bottom: 14px;
+
+        border-radius: 8px;
+    }
+
+    .main-section > h2 {
+        font-size: 20px;
+
+        line-height: 1.3;
+
+        margin-bottom: 14px;
+    }
+
+    .main-section h3 {
+        font-size: 16px;
+
+        margin-top: 20px;
+    }
+
+    .main-section p {
+        font-size: 13px;
+
+        line-height: 1.65;
+    }
+
+
+    /* ---------- GRIDS ---------- */
 
     .highlight-grid,
     .community-grid,
     .two-column,
-    .official-links {
+    .official-links,
+    .sentiment-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    /* ---------- PROGRAMME CARDS ---------- */
+
+    .iima-programme-grid {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .programme-card {
+        padding: 15px;
+    }
+
+
+    /* ---------- TABLES ---------- */
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
 }
@@ -1255,33 +1456,48 @@ footer {
 
 @media (max-width: 480px) {
 
+    .hero {
+        padding:
+            18px 0 18px;
+    }
+
+    .hero-container {
+        width: calc(100% - 20px);
+    }
+
     .hero-main {
-        flex-direction: column;
+        gap: 10px;
     }
 
     .hero-logo-wrap {
-        width: 68px;
-        height: 68px;
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
     }
 
     .hero h1 {
-        font-size: 25px;
+        font-size: 22px;
     }
 
-    .hero h2 {
-        font-size: 15px;
+    .hero-subtitle {
+        font-size: 12px;
+    }
+
+    .hero-location {
+        font-size: 10.5px;
     }
 
     .hero-image-wrap {
-        height: 170px;
+        height: 160px;
     }
 
     .quick-facts {
         grid-template-columns: 1fr;
     }
 
-    .sidebar-card {
-        display: block;
+    .main-section {
+        padding:
+            17px 14px;
     }
 
 }
