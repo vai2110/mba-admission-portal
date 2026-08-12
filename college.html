@@ -1727,17 +1727,38 @@ footer {
 
 .ranking-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 10px;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    column-gap: 10px;
+
+    row-gap: 16px;
+
     margin-top: 16px;
+}
+    .ranking-grid .ranking-card:nth-child(5) {
+    grid-column: 2;
 }
 
 .ranking-card {
     border: 1px solid #dbe7f5;
+
     border-radius: 8px;
+
     padding: 13px;
+
     background: #fbfdff;
+
     min-width: 0;
+
+    min-height: 118px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
 }
 
 .ranking-agency {
@@ -1803,9 +1824,22 @@ footer {
 
 @media (max-width: 950px) {
 
+   @media (max-width: 950px) {
+
     .ranking-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        column-gap: 10px;
+
+        row-gap: 12px;
     }
+
+    .ranking-grid .ranking-card:nth-child(5) {
+        grid-column: auto;
+    }
+
+}
 
 }
 
@@ -2366,17 +2400,17 @@ career outcomes and candidate fit.
             </div>
 
             <div class="ranking-year">
-                IIRF 2025
-            </div>
+    IIRF 2025
+</div>
 
-        </div>
 <a href="https://iirfranking.com/college/indian-institute-of-management-iim-ahmedabad/6086a1a68330720e9ef342fe"
    target="_blank"
    rel="noopener noreferrer"
    class="ranking-source">
     View Source ↗
 </a>
-   </div>
+
+</div>
         <div class="ranking-card">
 
             <div class="ranking-agency">
@@ -2392,12 +2426,8 @@ career outcomes and candidate fit.
             </div>
 
             <div class="ranking-year">
-                Business Today 2025
-            </div>
-
-        </div>
-
-    </div>
+    Business Today 2025
+</div>
 
 <a href="https://www.businesstoday.in/magazine/cover-story/story/bt-mdra-indias-best-b-schools-ranking-the-best-stay-the-course-503695-2025-11-25"
    target="_blank"
@@ -2405,7 +2435,8 @@ career outcomes and candidate fit.
    class="ranking-source">
     View Source ↗
 </a>
-       </div>
+
+</div>
     <div class="ranking-disclaimer">
 
         <strong>Note:</strong>
