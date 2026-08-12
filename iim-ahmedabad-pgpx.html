@@ -494,7 +494,210 @@ tr:nth-child(even) td {
     }
 
 }
+/* =========================================================
+   MOBILE OPTIMISATION — MBA FABM
+========================================================= */
 
+@media (max-width: 650px) {
+
+    /* HERO */
+
+    .hero {
+        padding: 24px 14px;
+    }
+
+    .hero-inner {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+        line-height: 1.15;
+        margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .hero-pill {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+
+    /* MAIN LAYOUT */
+
+    .content-layout {
+        display: block;
+        width: 100%;
+        padding: 0 10px;
+        margin-top: 12px;
+    }
+
+
+    /* MOBILE SIDEBAR */
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        gap: 7px;
+        padding: 7px;
+        margin-bottom: 14px;
+        scrollbar-width: none;
+    }
+
+    .sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sidebar-title {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .sidebar a {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border: 1px solid #dbe7f5;
+        border-radius: 999px;
+        background: #ffffff;
+        font-size: 10px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+
+    /* CONTENT SECTIONS */
+
+    .section {
+        width: 100%;
+        padding: 17px 15px;
+        margin-bottom: 13px;
+        border-radius: 8px;
+    }
+
+    .section h2 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .section h3 {
+        font-size: 16px;
+    }
+
+    .section p {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+
+    /* FACT BOXES */
+
+    .fact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .fact {
+        padding: 11px;
+    }
+
+    .fact-label {
+        font-size: 9px;
+    }
+
+    .fact-value {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+
+    /* CARDS */
+
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+
+    /* TABLES */
+
+    .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+
+    /* NOTICE BOXES */
+
+    .notice,
+    .warning {
+        padding: 12px 13px;
+        font-size: 12px;
+    }
+
+
+    /* FAQ */
+
+    .faq-question {
+        font-size: 13px;
+    }
+
+    .faq-answer {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+}
+
+
+/* VERY SMALL PHONES */
+
+@media (max-width: 420px) {
+
+    .hero {
+        padding: 21px 12px;
+    }
+
+    .hero h1 {
+        font-size: 23px;
+    }
+
+    .hero-subtitle {
+        font-size: 12px;
+    }
+
+    .fact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 16px 13px;
+    }
+
+}
 </style>
 </head>
 
