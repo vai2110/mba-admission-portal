@@ -1370,31 +1370,73 @@ function filterColleges() {
             function(college) {
 
                 const name =
-                    (
-                        college["college_name"] ||
-                        ""
-                    ).toLowerCase();
+    (
+        college["college_name"] || ""
+    ).toLowerCase();
+
+const city =
+    (
+        college["city"] || ""
+    ).toLowerCase();
+
+const state =
+    (
+        college["state"] || ""
+    ).toLowerCase();
+
+const slug =
+    (
+        college["profile_slug"] || ""
+    ).toLowerCase();
 
 
-                const city =
-                    (
-                        college["city"] ||
-                        ""
-                    ).toLowerCase();
+/* =========================
+   SEARCH TERMS
+========================= */
+
+let searchTerms = [];
+
+if (search) {
+
+    searchTerms.push(search);
+
+    if (
+        search === "iim ahmedabad" ||
+        search === "iima"
+    ) {
+        searchTerms.push(
+            "indian institute of management ahmedabad"
+        );
+    }
+
+}
 
 
-                const state =
-                    (
-                        college["state"] ||
-                        ""
-                    ).toLowerCase();
+const matchesSearch =
+    !search ||
+    searchTerms.some(
+        function(term) {
 
+            return (
+                name.includes(term) ||
+                city.includes(term) ||
+                state.includes(term) ||
+                slug.includes(term)
+            );
 
-                const matchesSearch =
-                    !search ||
-                    name.indexOf(search) !== -1 ||
-                    city.indexOf(search) !== -1 ||
-                    state.indexOf(search) !== -1;
+        }
+    );
+    !search ||
+    searchTerms.some(function(term) {
+
+        return (
+            name.indexOf(term) !== -1 ||
+            city.indexOf(term) !== -1 ||
+            state.indexOf(term) !== -1 ||
+            slug.indexOf(term) !== -1
+        );
+
+    });
 
 
                 const matchesState =
