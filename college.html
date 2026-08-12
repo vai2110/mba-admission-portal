@@ -615,17 +615,92 @@ tr:nth-child(even) td {
     margin: 17px 0;
 }
 
-.highlight {
-    background: #f8fbff;
+/* =========================================================
+   OTHER PROGRAMMES
+========================================================= */
+
+.programme-card {
+    background: #ffffff;
 
     border:
         1px solid #dbe7f5;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
-    padding: 15px;
+    padding: 18px;
 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.programme-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px
+        rgba(15,23,42,0.08);
+}
+
+.programme-card h3 {
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.programme-label {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+}
+
+.programme-duration {
+    color: #475569 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700;
+}
+
+.programme-fit {
+    font-size: 12px !important;
+
+    color: #475569 !important;
+}
+
+.programme-link {
+    display: inline-block;
+
+    margin-top: auto;
+    padding-top: 8px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.programme-link:hover {
+    color: #1d4ed8;
 }
 
 .highlight strong {
@@ -1791,17 +1866,163 @@ and FAQs.
     "
 >
     View Detailed MBA / PGP Guide →
-</a>
-
-</div>
-
+</p>
 
 </section>
 
 
+<!-- =====================================================
+     3. OTHER POPULAR PROGRAMMES
+===================================================== -->
+
+<section
+    id="other-programmes"
+    class="main-section"
+>
+
+<h2>
+    Other Popular Programmes at IIM Ahmedabad
+</h2>
+
+<p>
+    Beyond the flagship MBA / PGP, IIM Ahmedabad offers
+    specialised management programmes for candidates with
+    different academic interests, career stages and professional
+    goals.
+</p>
+
+
+<div class="highlight-grid">
+
+
+    <!-- MBA-FABM -->
+
+    <div class="programme-card">
+
+        <div class="programme-label">
+            SPECIALISED MBA
+        </div>
+
+        <h3>
+            MBA-FABM
+        </h3>
+
+        <p class="programme-duration">
+            2 Years · Full Time
+        </p>
+
+        <p>
+            A specialised management programme focused on
+            food, agriculture, agribusiness and allied sectors.
+        </p>
+
+        <p class="programme-fit">
+            <strong>
+                Best suited for:
+            </strong>
+
+            Candidates interested in food, agriculture,
+            agribusiness and rural-sector careers.
+        </p>
+
+        <a
+            href="#"
+            class="programme-link"
+        >
+            Explore MBA-FABM →
+        </a>
+
+    </div>
+
+
+    <!-- MBA-PGPX -->
+
+    <div class="programme-card">
+
+        <div class="programme-label">
+            1-YEAR MBA
+        </div>
+
+        <h3>
+            MBA-PGPX
+        </h3>
+
+        <p class="programme-duration">
+            1 Year · Full Time
+        </p>
+
+        <p>
+            A one-year MBA programme designed for experienced
+            professionals looking to accelerate their management
+            careers.
+        </p>
+
+        <p class="programme-fit">
+            <strong>
+                Best suited for:
+            </strong>
+
+            Working professionals seeking career progression,
+            transition or broader management responsibilities.
+        </p>
+
+        <a
+            href="#"
+            class="programme-link"
+        >
+            Explore MBA-PGPX →
+        </a>
+
+    </div>
+
+
+    <!-- BUSINESS ANALYTICS & AI -->
+
+    <div class="programme-card">
+
+        <div class="programme-label">
+            BLENDED MBA
+        </div>
+
+        <h3>
+            Business Analytics & AI
+        </h3>
+
+        <p class="programme-duration">
+            2 Years · Blended
+        </p>
+
+        <p>
+            A management programme combining business education
+            with analytics and artificial intelligence.
+        </p>
+
+        <p class="programme-fit">
+            <strong>
+                Best suited for:
+            </strong>
+
+            Professionals and entrepreneurs interested in
+            management, analytics and AI-led decision making.
+        </p>
+
+        <a
+            href="#"
+            class="programme-link"
+        >
+            Explore Business Analytics & AI →
+        </a>
+
+    </div>
+
+
+</div>
+
+</section>
+
 
 <!-- =====================================================
-     3. FEES & ROI
+     4. FEES & ROI
 ===================================================== -->
 
 <section
