@@ -1,2437 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MBA Colleges in India | Fees, Cutoffs, Admissions & Placements</title>
-
 <meta
-name="description"
-content="Explore MBA colleges in India by college name, state and NIRF Management ranking. Compare leading MBA and PGDM colleges."
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
-
+<title>
+IIM Ahmedabad MBA 2026–28: Admission, Fees, CAT Cutoff, Placements & Student Insights
+</title>
 <style>
 
-/* =========================
-   GLOBAL
-========================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f9fc;
-    color: #172033;
-    line-height: 1.6;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar {
-    max-width: 1200px;
-    margin: auto;
-    min-height: 70px;
-    padding: 0 24px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 800;
-    color: #172554;
-}
-
-.logo span {
-    color: #2563eb;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.nav-links a:hover {
-    color: #2563eb;
-}
-
-.nav-button {
-    background: #2563eb;
-    color: #ffffff !important;
-
-    padding: 10px 17px;
-    border-radius: 8px;
-}
-
-
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
-.page-hero {
-    background: linear-gradient(
-        135deg,
-        #172b68,
-        #2458d8
-    );
+.hero {
+    background:
+        linear-gradient(
+            110deg,
+            #172554 0%,
+            #1d4ed8 100%
+        );
 
     color: #ffffff;
 
-    padding: 50px 24px 70px;
+    padding: 30px 0;
 }
 
-.hero-inner {
-    max-width: 1200px;
-    margin: auto;
+.hero-container {
+    width: min(1240px, calc(100% - 40px));
+    margin: 0 auto;
+
+    min-height: 165px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 360px);
+
+    gap: 14px;
+
+    align-items: center;
 }
 
-.breadcrumb {
-    font-size: 14px;
-    color: #dbeafe;
-    margin-bottom: 16px;
+
+/* LEFT SIDE OF HERO */
+
+.hero-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    min-width: 0;
 }
 
-.page-hero h1 {
-    font-size: 44px;
-    line-height: 1.15;
-    margin-bottom: 16px;
+.hero-logo-wrap {
+    width: 82px;
+    height: 82px;
+
+    min-width: 82px;
+
+    background: #ffffff;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.18);
 }
 
-.page-hero h1 span {
-    color: #a9c8ff;
+.hero-logo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
 }
 
 .hero-text {
-    max-width: 780px;
+    min-width: 0;
+}
+
+.hero-kicker {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    color: #dbeafe;
+
+    margin-bottom: 4px;
+}
+
+.hero h1 {
+    font-size: 34px;
+
+    line-height: 1.18;
+
+    color: #ffffff;
+
+    margin: 0 0 5px;
+}
+
+.hero h2 {
     font-size: 17px;
-    color: #edf4ff;
-}
 
-
-/* =========================
-   SEARCH PANEL
-========================= */
-
-.search-wrapper {
-    max-width: 1080px;
-    margin: -38px auto 35px;
-    padding: 0 24px;
-    position: relative;
-}
-
-.search-panel {
-    background: #ffffff;
-
-    border-radius: 16px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 12px 35px rgba(
-            15,
-            45,
-            80,
-            0.14
-        );
-}
-
-.search-row {
-    display: flex;
-    gap: 12px;
-}
-
-.search-input {
-    flex: 1;
-
-    height: 52px;
-
-    border: 1px solid #cbd5e1;
-    border-radius: 9px;
-
-    padding: 0 17px;
-
-    font-size: 15px;
-
-    outline: none;
-}
-
-.search-input:focus {
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 3px rgba(
-            37,
-            99,
-            235,
-            0.10
-        );
-}
-
-.search-button {
-    height: 52px;
-
-    border: none;
-
-    background: #2563eb;
-
-    color: #ffffff;
-
-    padding: 0 25px;
-
-    border-radius: 9px;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.search-button:hover {
-    background: #1d4ed8;
-}
-
-
-/* =========================
-   FILTERS
-========================= */
-
-.filters {
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr
-        1fr
-        auto;
-
-    gap: 12px;
-
-    margin-top: 16px;
-}
-
-.filter-select {
-    width: 100%;
-
-    height: 46px;
-
-    border: 1px solid #cbd5e1;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    padding: 0 12px;
-
-    color: #243b53;
-
-    font-size: 14px;
-
-    cursor: pointer;
-}
-
-.filter-select:focus {
-    outline: none;
-
-    border-color: #2563eb;
-}
-
-.reset-button {
-    height: 46px;
-
-    padding: 0 18px;
-
-    border: 1px solid #cbd5e1;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #334e68;
-
-    font-size: 14px;
+    line-height: 1.4;
 
     font-weight: 600;
 
-    cursor: pointer;
+    color: #e0ecff;
+
+    margin: 0 0 8px;
 }
 
-.reset-button:hover {
-    background: #f1f5f9;
-}
-
-
-/* =========================
-   MAIN
-========================= */
-
-.container {
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 0 24px 60px;
-}
-
-.section-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 22px;
-}
-
-.section-header h2 {
-    font-size: 27px;
-
-    color: #102a43;
-}
-
-.college-count {
-    color: #64748b;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   COLLEGE GRID
-========================= */
-
-.college-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-
-/* =========================
-   COLLEGE CARD
-========================= */
-
-.college-card {
-    background: #ffffff;
-
-    border: 1px solid #e1e7ef;
-
-    border-radius: 14px;
-
-    padding: 22px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.college-card:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 28px rgba(
-            15,
-            45,
-            80,
-            0.10
-        );
-}
-
-.rank-badge {
-    display: inline-block;
-
-    background: #eef5ff;
-
-    color: #1955c9;
-
-    padding: 6px 10px;
-
-    border-radius: 6px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    margin-bottom: 15px;
-}
-
-.college-name {
-    font-size: 19px;
-
-    font-weight: 700;
-
-    line-height: 1.35;
-
-    color: #102a43;
-
-    margin-bottom: 9px;
-}
-
-.location {
-    color: #64748b;
-
-    font-size: 14px;
-
-    margin-bottom: 18px;
-}
-
-.card-info {
-    border-top: 1px solid #edf0f4;
-
-    padding-top: 12px;
-}
-
-.info-row {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    padding: 7px 0;
-
+.hero-location {
     font-size: 13px;
-}
 
-.info-label {
-    color: #64748b;
-}
-
-.info-value {
-    color: #243b53;
+    color: #dbeafe;
 
     font-weight: 600;
-
-    text-align: right;
-}
-
-.course-tag {
-    display: inline-block;
-
-    margin-top: 12px;
-
-    background: #f1f5f9;
-
-    color: #475569;
-
-    padding: 5px 9px;
-
-    border-radius: 5px;
-
-    font-size: 12px;
 }
 
 
-/* =========================
-   VIEW COLLEGE BUTTON
-========================= */
+/* CAMPUS IMAGE */
 
-.college-profile-button {
-    display: block;
-
+.hero-image-wrap {
     width: 100%;
+    max-width: 360px;
+    aspect-ratio: 360 / 155;
 
-    margin-top: 18px;
+    justify-self: start;
 
-    background: #2563eb;
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 9px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.20);
+}
+
+.hero-campus-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.hero-image-caption {
+    position: absolute;
+
+    left: 10px;
+    bottom: 8px;
 
     color: #ffffff;
 
-    text-align: center;
-
-    padding: 11px 14px;
-
-    border-radius: 8px;
-
-    font-size: 14px;
+    font-size: 10px;
 
     font-weight: 700;
 
-    transition: background 0.2s ease;
-}
-
-.college-profile-button:hover {
-    background: #1d4ed8;
-}
-   .official-website-button {
-    display: block;
-
-    width: 100%;
-
-    margin-top: 9px;
-
-    background: #ffffff;
-
-    color: #2563eb;
-
-    text-align: center;
-
-    padding: 10px 14px;
-
-    border: 1px solid #2563eb;
-
-    border-radius: 8px;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    transition: background 0.2s ease;
-}
-
-.official-website-button:hover {
-    background: #eef5ff;
+    text-shadow:
+        0 1px 4px
+        rgba(0,0,0,0.7);
 }
 
 
-/* =========================
-   NO RESULTS
-========================= */
+/* =========================================================
+   MOBILE BREAKPOINT
+========================================================= */
 
-.no-results {
-    display: none;
+@media (max-width: 768px) {
 
-    background: #ffffff;
-
-    border: 1px solid #e1e7ef;
-
-    border-radius: 14px;
-
-    padding: 55px 20px;
-
-    text-align: center;
-
-    color: #64748b;
-}
-
-.no-results h3 {
-    color: #102a43;
-
-    margin-bottom: 8px;
-}
-
-
-/* =========================
-   LOADING
-========================= */
-
-.loading {
-    grid-column: 1 / -1;
-
-    background: #ffffff;
-
-    border: 1px solid #e1e7ef;
-
-    border-radius: 14px;
-
-    padding: 50px 20px;
-
-    text-align: center;
-
-    color: #64748b;
-}
-
-
-/* =========================
-   ERROR
-========================= */
-
-.database-error {
-    grid-column: 1 / -1;
-
-    background: #fff7ed;
-
-    border: 1px solid #fed7aa;
-
-    border-radius: 14px;
-
-    padding: 30px;
-
-    text-align: center;
-
-    color: #9a3412;
-}
-
-.database-error strong {
-    display: block;
-
-    margin-bottom: 8px;
-
-    font-size: 18px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    background: #102a43;
-
-    color: #ffffff;
-
-    padding: 35px 24px;
-}
-
-.footer-inner {
-    max-width: 1200px;
-
-    margin: auto;
-}
-
-.footer-inner p {
-    color: #cbd5e1;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1000px) {
-
-    .college-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+    .hero-container {
+        grid-template-columns: 1fr;
+        min-height: 0;
     }
 
-}
-
-@media (max-width: 850px) {
-
-    .nav-links {
-        gap: 12px;
-
-        font-size: 13px;
-    }
-
-    .filters {
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-}
-
-@media (max-width: 650px) {
-
-    .navbar {
-        flex-direction: column;
-
-        gap: 15px;
-
-        padding: 15px;
-    }
-
-    .nav-links {
+    .hero-main {
         flex-wrap: wrap;
-
-        justify-content: center;
     }
-
-    .page-hero {
-        padding: 40px 18px 65px;
-    }
-
-    .page-hero h1 {
-        font-size: 34px;
-    }
-
-    .search-wrapper {
-        padding: 0 15px;
-    }
-
-    .search-row {
-        flex-direction: column;
-    }
-
-    .search-button {
-        width: 100%;
-    }
-
-    .filters {
-        grid-template-columns: 1fr;
-    }
-
-    .college-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-header {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 5px;
-    }
-
-}
-/* =========================================================
-   FINAL RESPONSIVE FIX
-   IIM AHMEDABAD COLLEGE PAGE
-   ========================================================= */
-
-@media (max-width: 720px) {
-
-    /* =========================================
-       GLOBAL MOBILE WIDTH CONTROL
-       ========================================= */
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-
-    /* =========================================
-       HERO CONTAINER
-       IMPORTANT: ONE COLUMN ON MOBILE
-       ========================================= */
-
-    .hero-container {
-        width: calc(100% - 24px);
-        max-width: 100%;
-
-        display: grid;
-
-        /* Remove desktop 360px image column */
-        grid-template-columns: 1fr;
-
-        gap: 16px;
-
-        min-height: auto;
-
-        align-items: start;
-    }
-
-
-    /* =========================================
-       HERO TEXT + LOGO
-       ========================================= */
-
-    .hero-main {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        display: flex;
-        flex-direction: row;
-
-        align-items: flex-start;
-
-        gap: 12px;
-    }
-
-
-    /* =========================================
-       LOGO
-       Automatically scales according to screen
-       ========================================= */
-
-    .hero-logo-wrap {
-        width: clamp(58px, 18vw, 72px);
-        height: clamp(58px, 18vw, 72px);
-
-        min-width: clamp(58px, 18vw, 72px);
-
-        flex-shrink: 0;
-
-        padding: 6px;
-
-        border-radius: 8px;
-    }
-
-    .hero-logo {
-        width: 100%;
-        height: 100%;
-
-        max-width: 100%;
-        max-height: 100%;
-
-        object-fit: contain;
-    }
-
-
-    /* =========================================
-       HERO TEXT
-       ========================================= */
-
-    .hero-text {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        flex: 1;
-    }
-
-    .hero h1 {
-        font-size: clamp(22px, 7vw, 28px);
-
-        line-height: 1.15;
-
-        margin: 0 0 7px;
-
-        overflow-wrap: break-word;
-    }
-
-    .hero h2 {
-        font-size: clamp(13px, 4vw, 16px);
-
-        line-height: 1.4;
-
-        margin-bottom: 7px;
-
-        overflow-wrap: break-word;
-    }
-
-    .hero-location {
-        font-size: clamp(11px, 3.2vw, 13px);
-
-        line-height: 1.45;
-
-        overflow-wrap: break-word;
-    }
-
-
-    /* =========================================
-       CAMPUS IMAGE
-       FULL WIDTH BELOW HERO TEXT
-       ========================================= */
 
     .hero-image-wrap {
-        width: 100%;
         max-width: 100%;
-        min-width: 0;
-
-        height: clamp(150px, 45vw, 210px);
-
-        margin: 0;
-
         justify-self: stretch;
-
-        position: relative;
-
-        overflow: hidden;
-
-        border-radius: 8px;
-    }
-
-    .hero-campus-image {
-        display: block;
-
-        width: 100%;
-        height: 100%;
-
-        max-width: 100%;
-
-        object-fit: cover;
-
-        object-position: center;
-    }
-
-
-    /* =========================================
-       PAGE CONTAINER
-       ========================================= */
-
-    .page-container {
-        width: calc(100% - 24px);
-        max-width: 100%;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-    /* =========================================
-       QUICK FACTS
-       ========================================= */
-
-    .quick-facts {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 8px;
-    }
-
-    .quick-fact {
-        min-width: 0;
-        max-width: 100%;
-
-        padding: 10px;
-    }
-
-    .quick-fact-label {
-        font-size: 9px;
-
-        line-height: 1.3;
-
-        overflow-wrap: break-word;
-    }
-
-    .quick-fact-value {
-        font-size: 11px;
-
-        line-height: 1.35;
-
-        overflow-wrap: break-word;
-    }
-
-
-    /* =========================================
-       MAIN PAGE LAYOUT
-       ========================================= */
-
-    .page-layout {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        grid-template-columns: 1fr;
-
-        gap: 14px;
-    }
-
-
-    /* =========================================
-       SIDEBAR
-       HORIZONTAL MOBILE NAVIGATION
-       ========================================= */
-
-    .sidebar {
-        width: 100%;
-        max-width: 100%;
-
-        position: static;
-
-        min-width: 0;
-    }
-
-    .sidebar-card {
-        width: 100%;
-        max-width: 100%;
-
-        display: flex;
-
-        flex-wrap: nowrap;
-
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        -webkit-overflow-scrolling: touch;
-
-        scrollbar-width: none;
-    }
-
-    .sidebar-card::-webkit-scrollbar {
-        display: none;
-    }
-
-    .sidebar-title {
-        flex: 0 0 auto;
-
-        white-space: nowrap;
-    }
-
-    .sidebar a {
-        flex: 0 0 auto;
-
-        white-space: nowrap;
-    }
-
-
-    /* =========================================
-       MAIN CONTENT
-       ========================================= */
-
-    .content {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .main-section {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        padding: 20px 16px;
-
-        overflow: hidden;
-    }
-
-
-    /* =========================================
-       TABLES
-       Don't squeeze tables.
-       Allow horizontal scrolling.
-       ========================================= */
-
-    .table-wrapper {
-        width: 100%;
-        max-width: 100%;
-
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        -webkit-overflow-scrolling: touch;
-
-        scrollbar-width: thin;
-    }
-
-    .table-wrapper table {
-        width: max-content;
-
-        min-width: 100%;
-
-        max-width: none;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-    .hero-container {
-        width: calc(100% - 20px);
-
-        gap: 13px;
-    }
-
-
-    /* Keep logo + text side by side */
-    .hero-main {
-        flex-direction: row;
-
-        align-items: flex-start;
-
-        gap: 10px;
-    }
-
-
-    .hero-logo-wrap {
-        width: 58px;
-        height: 58px;
-
-        min-width: 58px;
-
-        padding: 5px;
-    }
-
-
-    .hero h1 {
-        font-size: 22px;
-
-        line-height: 1.15;
-    }
-
-
-    .hero h2 {
-        font-size: 13px;
-
-        line-height: 1.4;
-    }
-
-
-    .hero-location {
-        font-size: 11px;
-    }
-
-
-    /* Campus image */
-    .hero-image-wrap {
-        width: 100%;
-        height: 165px;
-    }
-
-
-    /* One-column facts on very small phones */
-    .quick-facts {
-        grid-template-columns: 1fr;
-    }
-
-
-    .page-container {
-        width: calc(100% - 20px);
-    }
-
-
-    .main-section {
-        padding: 18px 14px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 360px) {
-
-    .hero-main {
-        gap: 8px;
-    }
-
-    .hero-logo-wrap {
-        width: 54px;
-        height: 54px;
-
-        min-width: 54px;
     }
 
     .hero h1 {
-        font-size: 20px;
+        font-size: 26px;
     }
 
     .hero h2 {
-        font-size: 12px;
-    }
-
-    .hero-image-wrap {
-        height: 150px;
-    }
-
-    .main-section {
-        padding-left: 12px;
-        padding-right: 12px;
+        font-size: 15px;
     }
 
 }
+
 </style>
-
 </head>
-
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header>
-
-<div class="navbar">
-
-<a
-href="index.html"
-class="logo"
->
-MBA<span>Portal</span>
-</a>
-
-
-<nav class="nav-links">
-
-<a href="index.html">
-Home
-</a>
-
-<a href="colleges.html">
-MBA Colleges
-</a>
-
-<a href="exams.html">
-Entrance Exams
-</a>
-
-<a href="index.html">
-Admissions
-</a>
-
-<a href="index.html">
-Cutoffs
-</a>
-
-<a href="index.html">
-Placements
-</a>
-
-<a
-href="index.html"
-class="nav-button"
->
-Compare Colleges
-</a>
-
-</nav>
-
-</div>
-
-</header>
-
-
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
-<section class="page-hero">
+<section class="hero">
 
-<div class="hero-inner">
+<div class="hero-container">
 
-<div class="breadcrumb">
-Home › MBA Colleges
-</div>
 
+    <div class="hero-main">
 
-<h1>
-Find the Right
-<span>MBA College</span>
-</h1>
 
+        <div class="hero-logo-wrap">
 
-<p class="hero-text">
-
-Explore MBA and PGDM colleges across India.
-Search by college name, city or state and
-filter colleges by NIRF Management ranking.
-
-</p>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     SEARCH + FILTERS
-========================= -->
-
-<div class="search-wrapper">
-
-<div class="search-panel">
-
-
-<div class="search-row">
-
-<input
-type="text"
-id="searchInput"
-class="search-input"
-placeholder="Search MBA college by name, city or state..."
-autocomplete="off"
->
-
-<button
-type="button"
-class="search-button"
-onclick="filterColleges()"
->
-Search
-</button>
-
-</div>
-
-
-<div class="filters">
-
-
-<select
-id="stateFilter"
-class="filter-select"
-onchange="filterColleges()"
->
-
-<option value="">
-All States
-</option>
-
-</select>
-
-
-<select
-id="rankFilter"
-class="filter-select"
-onchange="filterColleges()"
->
-
-<option value="">
-All NIRF Ranks
-</option>
-
-<option value="1-10">
-Top 10
-</option>
-
-<option value="11-25">
-Rank 11–25
-</option>
-
-<option value="26-50">
-Rank 26–50
-</option>
-
-<option value="51-100">
-Rank 51–100
-</option>
-
-</select>
-
-
-<select
-id="sortFilter"
-class="filter-select"
-onchange="filterColleges()"
->
-
-<option value="rank-asc">
-NIRF Rank: Low to High
-</option>
-
-<option value="rank-desc">
-NIRF Rank: High to Low
-</option>
-
-<option value="name-asc">
-College Name: A–Z
-</option>
-
-<option value="name-desc">
-College Name: Z–A
-</option>
-
-</select>
-
-
-<button
-type="button"
-class="reset-button"
-onclick="resetFilters()"
->
-Reset
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     COLLEGES
-========================= -->
-
-<main class="container">
-
-
-<div class="section-header">
-
-<h2>
-MBA Colleges in India
-</h2>
-
-
-<div
-id="collegeCount"
-class="college-count"
->
-Loading colleges...
-</div>
-
-</div>
-
-
-<div
-id="collegeGrid"
-class="college-grid"
->
-
-<div class="loading">
-Loading MBA colleges...
-</div>
-
-</div>
-
-
-<div
-id="noResults"
-class="no-results"
->
-
-<h3>
-No colleges found
-</h3>
-
-<p>
-Try changing your search or filters.
-</p>
-
-</div>
-
-
-</main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-<div class="footer-inner">
-
-<p>
-
-<strong>MBA Portal</strong> —
-MBA colleges, entrance exams,
-admissions, cutoffs and placements.
-
-</p>
-
-
-<p style="margin-top:8px;">
-
-Ranking information is based on the
-NIRF Management 2025 database.
-Always verify current admission information
-from official sources.
-
-</p>
-
-</div>
-
-</footer>
-
-
-<script>
-
-/* =====================================================
-   COLLEGE DATABASE
-===================================================== */
-
-let colleges = [];
-
-
-/* =====================================================
-   LOAD COLLEGES.CSV
-===================================================== */
-
-fetch("./colleges.csv")
-
-.then(function(response) {
-
-    if (!response.ok) {
-
-        throw new Error(
-            "Could not load colleges.csv"
-        );
-
-    }
-
-    return response.text();
-
-})
-
-.then(function(csvText) {
-
-    colleges = parseCSV(csvText);
-
-    console.log(
-        "Colleges loaded:",
-        colleges.length
-    );
-
-
-    if (colleges.length === 0) {
-
-        throw new Error(
-            "No college records found in colleges.csv"
-        );
-
-    }
-
-
-    populateStates();
-
-    filterColleges();
-
-})
-
-.catch(function(error) {
-
-    console.error(
-        "College database error:",
-        error
-    );
-
-
-    document.getElementById(
-        "collegeCount"
-    ).textContent =
-        "Database error";
-
-
-    document.getElementById(
-        "collegeGrid"
-    ).innerHTML = `
-
-        <div class="database-error">
-
-            <strong>
-                College database could not be loaded.
-            </strong>
-
-            Please make sure colleges.csv is
-            in the same folder as colleges.html.
+            <img
+                src="iima-logo.png"
+                alt="IIM Ahmedabad official logo"
+                class="hero-logo"
+            >
 
         </div>
 
-    `;
 
-});
+        <div class="hero-text">
 
+            <h1>
+                IIM Ahmedabad MBA 2026–28
+            </h1>
 
-/* =====================================================
-   CSV PARSER
-===================================================== */
+            <h2>
+                Admission, Fees, CAT Cutoff,
+                Placements & Student Insights
+            </h2>
 
-function parseCSV(text) {
+            <div class="hero-location">
+                Ahmedabad, Gujarat &nbsp; • &nbsp; MBA / PGP
+            </div>
 
-    text = text.replace(
-        /^\uFEFF/,
-        ""
-    );
+        </div>
 
+    </div>
 
-    const lines =
-        text
-        .trim()
-        .split(/\r?\n/);
 
+    <div class="hero-image-wrap">
 
-    if (lines.length < 2) {
-
-        return [];
-
-    }
-
-
-    const headers =
-        parseCSVLine(
-            lines[0]
-        );
-
-
-    const data = [];
-
-
-    for (
-        let i = 1;
-        i < lines.length;
-        i++
-    ) {
-
-        if (
-            !lines[i].trim()
-        ) {
-
-            continue;
-
-        }
-
-
-        const values =
-            parseCSVLine(
-                lines[i]
-            );
-
-
-        const row = {};
-
-
-        for (
-            let j = 0;
-            j < headers.length;
-            j++
-        ) {
-
-            row[
-                headers[j].trim()
-            ] =
-                (
-                    values[j] || ""
-                ).trim();
-
-        }
-
-
-        if (
-            row["college_name"]
-        ) {
-
-            data.push(row);
-
-        }
-
-    }
-
-
-    return data;
-
-}
-
-
-/* =====================================================
-   CSV LINE PARSER
-===================================================== */
-
-function parseCSVLine(line) {
-
-    const values = [];
-
-    let value = "";
-
-    let insideQuotes = false;
-
-
-    for (
-        let i = 0;
-        i < line.length;
-        i++
-    ) {
-
-        const character =
-            line[i];
-
-
-        if (
-            character === '"'
-        ) {
-
-            if (
-                insideQuotes &&
-                line[i + 1] === '"'
-            ) {
-
-                value += '"';
-
-                i++;
-
-            }
-
-            else {
-
-                insideQuotes =
-                    !insideQuotes;
-
-            }
-
-        }
-
-
-        else if (
-            character === "," &&
-            !insideQuotes
-        ) {
-
-            values.push(value);
-
-            value = "";
-
-        }
-
-
-        else {
-
-            value += character;
-
-        }
-
-    }
-
-
-    values.push(value);
-
-
-    return values;
-
-}
-
-
-/* =====================================================
-   STATE DROPDOWN
-===================================================== */
-
-function populateStates() {
-
-    const stateFilter =
-        document.getElementById(
-            "stateFilter"
-        );
-
-
-    const states = [];
-
-
-    colleges.forEach(
-        function(college) {
-
-            const state =
-                (
-                    college["state"] || ""
-                ).trim();
-
-
-            if (
-                state &&
-                states.indexOf(state) === -1
-            ) {
-
-                states.push(state);
-
-            }
-
-        }
-    );
-
-
-    states.sort(
-        function(a, b) {
-
-            return a.localeCompare(b);
-
-        }
-    );
-
-
-    states.forEach(
-        function(state) {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                state;
-
-
-            option.textContent =
-                state;
-
-
-            stateFilter.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   FILTER COLLEGES
-===================================================== */
-
-function filterColleges() {
-
-    const search =
-        document
-        .getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const selectedState =
-        document.getElementById(
-            "stateFilter"
-        ).value;
-
-
-    const selectedRank =
-        document.getElementById(
-            "rankFilter"
-        ).value;
-
-
-    const selectedSort =
-        document.getElementById(
-            "sortFilter"
-        ).value;
-
-
-    let filtered =
-        colleges.filter(
-            function(college) {
-
-                const name =
-    (
-        college["college_name"] || ""
-    ).toLowerCase();
-
-const city =
-    (
-        college["city"] || ""
-    ).toLowerCase();
-
-const state =
-    (
-        college["state"] || ""
-    ).toLowerCase();
-
-const slug =
-    (
-        college["profile_slug"] || ""
-    ).toLowerCase();
-
-
-/* =========================
-   SEARCH TERMS
-========================= */
-
-let searchTerms = [];
-
-if (search) {
-
-    searchTerms.push(search);
-
-    if (
-        search === "iim ahmedabad" ||
-        search === "iima"
-    ) {
-        searchTerms.push(
-            "indian institute of management ahmedabad"
-        );
-    }
-
-}
-
-
-const matchesSearch =
-    !search ||
-    searchTerms.some(
-        function(term) {
-
-            return (
-                name.includes(term) ||
-                city.includes(term) ||
-                state.includes(term) ||
-                slug.includes(term)
-            );
-
-        }
-    );
-    !search ||
-    searchTerms.some(function(term) {
-
-        return (
-            name.indexOf(term) !== -1 ||
-            city.indexOf(term) !== -1 ||
-            state.indexOf(term) !== -1 ||
-            slug.indexOf(term) !== -1
-        );
-
-    });
-
-
-                const matchesState =
-                    !selectedState ||
-                    college["state"] === selectedState;
-
-
-                const rank =
-                    parseInt(
-                        college[
-                            "nirf_management_rank_2025"
-                        ]
-                    );
-
-
-                let matchesRank = true;
-
-
-                if (
-                    selectedRank &&
-                    !isNaN(rank)
-                ) {
-
-                    if (
-                        selectedRank === "1-10"
-                    ) {
-
-                        matchesRank =
-                            rank >= 1 &&
-                            rank <= 10;
-
-                    }
-
-
-                    else if (
-                        selectedRank === "11-25"
-                    ) {
-
-                        matchesRank =
-                            rank >= 11 &&
-                            rank <= 25;
-
-                    }
-
-
-                    else if (
-                        selectedRank === "26-50"
-                    ) {
-
-                        matchesRank =
-                            rank >= 26 &&
-                            rank <= 50;
-
-                    }
-
-
-                    else if (
-                        selectedRank === "51-100"
-                    ) {
-
-                        matchesRank =
-                            rank >= 51 &&
-                            rank <= 100;
-
-                    }
-
-                }
-
-
-                return (
-                    matchesSearch &&
-                    matchesState &&
-                    matchesRank
-                );
-
-            }
-        );
-
-
-    /* =========================
-       SORT
-    ========================= */
-
-    filtered.sort(
-        function(a, b) {
-
-            const rankA =
-                parseInt(
-                    a[
-                        "nirf_management_rank_2025"
-                    ]
-                ) || 9999;
-
-
-            const rankB =
-                parseInt(
-                    b[
-                        "nirf_management_rank_2025"
-                    ]
-                ) || 9999;
-
-
-            if (
-                selectedSort === "rank-asc"
-            ) {
-
-                return rankA - rankB;
-
-            }
-
-
-            if (
-                selectedSort === "rank-desc"
-            ) {
-
-                return rankB - rankA;
-
-            }
-
-
-            if (
-                selectedSort === "name-asc"
-            ) {
-
-                return (
-                    a["college_name"] || ""
-                )
-                .localeCompare(
-                    b["college_name"] || ""
-                );
-
-            }
-
-
-            if (
-                selectedSort === "name-desc"
-            ) {
-
-                return (
-                    b["college_name"] || ""
-                )
-                .localeCompare(
-                    a["college_name"] || ""
-                );
-
-            }
-
-
-            return 0;
-
-        }
-    );
-
-
-    renderColleges(
-        filtered
-    );
-
-}
-
-
-/* =====================================================
-   RENDER COLLEGES
-===================================================== */
-
-function renderColleges(list) {
-
-    const grid =
-        document.getElementById(
-            "collegeGrid"
-        );
-
-
-    const noResults =
-        document.getElementById(
-            "noResults"
-        );
-
-
-    const count =
-        document.getElementById(
-            "collegeCount"
-        );
-
-
-    grid.innerHTML = "";
-
-
-    count.textContent =
-        list.length +
-        (
-            list.length === 1
-                ? " college"
-                : " colleges"
-        );
-
-
-    if (
-        list.length === 0
-    ) {
-
-        noResults.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    noResults.style.display =
-        "none";
-
-
-    list.forEach(
-        function(college) {
-
-            const name =
-                college["college_name"] ||
-                "College";
-
-
-            const city =
-                college["city"] ||
-                "";
-
-
-            const state =
-                college["state"] ||
-                "";
-
-
-            const rank =
-                college[
-                    "nirf_management_rank_2025"
-                ] ||
-                "—";
-
-
-            const category =
-                college["category"] ||
-                "Management";
-
-
-            const slug =
-                college["profile_slug"] ||
-                "";
-           const officialWebsite =
-                college["official_website"] ||
-               "";
-
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "college-card";
-
-
-            /* =========================
-               PROFILE LINK
-            ========================= */
-
-            let profileLink = "#";
-
-            const normalizedCollegeName =
-                name
-                    .trim()
-                    .toLowerCase()
-                    .replace(/\s+/g, " ");
-
-            /* Dedicated college pages */
-            const dedicatedPages = {
-                "iim bangalore":
-                    "./iim-bangalore.html",
-
-                "indian institute of management bangalore":
-                    "./iim-bangalore.html",
-
-                "indian-institute-of-management-bangalore":
-                    "./iim-bangalore.html"
-            };
-
-            if (
-                dedicatedPages[
-                    normalizedCollegeName
-                ]
-            ) {
-
-                profileLink =
-                    dedicatedPages[
-                        normalizedCollegeName
-                    ];
-
-            }
-
-            else {
-
-                const normalizedSlug =
-                    slug
-                        .trim()
-                        .toLowerCase()
-                        .replace(/\\s+/g, "-");
-
-                if (
-                    dedicatedPages[
-                        normalizedSlug
-                    ]
-                ) {
-
-                    profileLink =
-                        dedicatedPages[
-                            normalizedSlug
-                        ];
-
-                }
-
-                /* Existing default route for every other college */
-                else if (slug) {
-
-                    profileLink =
-                        "./college.html?college=" +
-                        encodeURIComponent(
-                            slug
-                        );
-
-                }
-
-            }
-
-
-            card.innerHTML = `
-
-                <div class="rank-badge">
-
-                    NIRF 2025 Management:
-                    #${escapeHTML(rank)}
-
-                </div>
-
-
-                <div class="college-name">
-
-                    ${escapeHTML(name)}
-
-                </div>
-
-
-                <div class="location">
-
-                    📍
-                    ${escapeHTML(city)},
-                    ${escapeHTML(state)}
-
-                </div>
-
-
-                <div class="card-info">
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-
-                            Category
-
-                        </span>
-
-
-                        <span class="info-value">
-
-                            ${escapeHTML(category)}
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-
-                            Programme
-
-                        </span>
-
-
-                        <span class="info-value">
-
-                            MBA / PGDM
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-
-                            Ranking Source
-
-                        </span>
-
-
-                        <span class="info-value">
-
-                            NIRF 2025
-
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
-                <span class="course-tag">
-
-                    Management
-
-                </span>
-
-
-                <a
-                    href="${profileLink}"
-                    class="college-profile-button"
-                >
-
-                    View College →
-
-                </a>
-${
-    officialWebsite
-        ? `
-            <a
-                href="${escapeHTML(officialWebsite)}"
-                class="official-website-button"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Official Website ↗
-            </a>
-          `
-        : ""
-}
-            `;
-
-
-            grid.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   RESET FILTERS
-===================================================== */
-
-function resetFilters() {
-
-    document.getElementById(
-        "searchInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "stateFilter"
-    ).value = "";
-
-
-    document.getElementById(
-        "rankFilter"
-    ).value = "";
-
-
-    document.getElementById(
-        "sortFilter"
-    ).value =
-        "rank-asc";
-
-
-    filterColleges();
-
-}
-
-
-/* =====================================================
-   ENTER KEY SEARCH
-===================================================== */
-
-document
-.getElementById(
-    "searchInput"
-)
-.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            filterColleges();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   SAFE HTML
-===================================================== */
-
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-</script>
-
+        <img
+            src="iima-campus.jpg"
+            alt="IIM Ahmedabad campus"
+            class="hero-campus-image"
+        >
+    </div>
+</div>
+</section>
 
 </body>
-
 </html>
