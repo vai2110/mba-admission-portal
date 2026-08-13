@@ -11,6 +11,196 @@
 
     <style>
         /* =====================================================
+   COLLEGE COMPARISON CTA
+===================================================== */
+
+.college-compare-cta {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin: 42px 0;
+
+    padding: 26px 30px;
+
+    background: #eef5ff;
+
+    border: 1px solid #cfe0f7;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+
+/* CONTENT */
+
+.college-compare-content {
+    min-width: 0;
+}
+
+.college-compare-label {
+    display: inline-block;
+
+    margin-bottom: 6px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    color: #2563eb;
+}
+
+.college-compare-content h2 {
+    margin: 0 0 6px;
+
+    font-size: 23px;
+
+    line-height: 1.3;
+
+    color: #102a43;
+
+    font-weight: 800;
+}
+
+.college-compare-content p {
+    margin: 0;
+
+    max-width: 680px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: #475569;
+}
+
+
+/* COMPARISON POINTS */
+
+.college-compare-points {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px 16px;
+
+    margin-top: 13px;
+}
+
+.college-compare-points span {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #173f82;
+}
+
+
+/* BUTTON */
+
+.college-compare-btn {
+    flex:
+        0 0 auto;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 155px;
+
+    padding: 11px 17px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.college-compare-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* TABLET */
+
+@media (max-width: 800px) {
+
+    .college-compare-cta {
+        padding: 23px;
+
+        gap: 20px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .college-compare-cta {
+        display: block;
+
+        margin: 30px 0;
+
+        padding: 21px 18px;
+
+        border-radius: 10px;
+    }
+
+    .college-compare-content h2 {
+        font-size: 20px;
+    }
+
+    .college-compare-content p {
+        font-size: 13px;
+    }
+
+    .college-compare-points {
+        gap: 7px 13px;
+
+        margin-top: 12px;
+    }
+
+    .college-compare-points span {
+        font-size: 10px;
+    }
+
+    .college-compare-btn {
+        width: 100%;
+
+        margin-top: 17px;
+    }
+
+}
+        
+        /* =====================================================
    POPULAR MBA COLLEGES
 ===================================================== */
 
@@ -1213,13 +1403,44 @@
 
             </div>
 
-            <a href="#" class="cta-button">
-                Compare Colleges
-            </a>
+           <section class="college-compare-cta">
+
+    <div class="college-compare-content">
+
+        <span class="college-compare-label">
+            MBA College Comparison
+        </span>
+
+        <h2>
+            Not sure which MBA college is right for you?
+        </h2>
+
+        <p>
+            Compare colleges based on fees, cutoffs, placements,
+            location and entrance exams before making your choice.
+        </p>
+
+        <div class="college-compare-points">
+
+            <span>✓ Fees</span>
+            <span>✓ Cutoffs</span>
+            <span>✓ Placements</span>
+            <span>✓ Location</span>
+            <span>✓ Entrance Exams</span>
 
         </div>
 
-    </section>
+    </div>
+
+
+    <a
+        href="#"
+        class="college-compare-btn"
+    >
+        Compare Colleges →
+    </a>
+
+</section>
 
 
     <!-- FOOTER -->
