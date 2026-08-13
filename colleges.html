@@ -1710,26 +1710,62 @@ function renderColleges(list) {
                     .toLowerCase()
                     .replace(/\s+/g, " ");
 
-            /* Dedicated page for IIM Bangalore */
+            /* Dedicated college pages */
+            const dedicatedPages = {
+                "iim bangalore":
+                    "./iim-bangalore.html",
+
+                "indian institute of management bangalore":
+                    "./iim-bangalore.html",
+
+                "indian-institute-of-management-bangalore":
+                    "./iim-bangalore.html"
+            };
+
             if (
-                normalizedCollegeName === "iim bangalore" ||
-                normalizedCollegeName ===
-                    "indian institute of management bangalore"
+                dedicatedPages[
+                    normalizedCollegeName
+                ]
             ) {
 
                 profileLink =
-                    "./iim-bangalore.html";
+                    dedicatedPages[
+                        normalizedCollegeName
+                    ];
 
             }
 
-            /* Existing default route for every other college */
-            else if (slug) {
+            else {
 
-                profileLink =
-                    "./college.html?college=" +
-                    encodeURIComponent(
-                        slug
-                    );
+                const normalizedSlug =
+                    slug
+                        .trim()
+                        .toLowerCase()
+                        .replace(/\\s+/g, "-");
+
+                if (
+                    dedicatedPages[
+                        normalizedSlug
+                    ]
+                ) {
+
+                    profileLink =
+                        dedicatedPages[
+                            normalizedSlug
+                        ];
+
+                }
+
+                /* Existing default route for every other college */
+                else if (slug) {
+
+                    profileLink =
+                        "./college.html?college=" +
+                        encodeURIComponent(
+                            slug
+                        );
+
+                }
 
             }
 
