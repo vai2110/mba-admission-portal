@@ -56,10 +56,10 @@ header {
 }
 
 .navbar {
-    width: min(1160px, calc(100% - 32px));
+    max-width: 1200px;
     margin: auto;
-    min-height: 64px;
-    padding: 0;
+    min-height: 70px;
+    padding: 0 24px;
 
     display: flex;
     align-items: center;
@@ -67,7 +67,7 @@ header {
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 800;
     color: #172554;
 }
@@ -81,7 +81,7 @@ header {
     align-items: center;
     gap: 22px;
 
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -93,8 +93,8 @@ header {
     background: #2563eb;
     color: #ffffff !important;
 
-    padding: 9px 14px;
-    border-radius: 6px;
+    padding: 10px 17px;
+    border-radius: 8px;
 }
 
 
@@ -111,24 +111,24 @@ header {
 
     color: #ffffff;
 
-    padding: 42px 0 48px;
+    padding: 50px 24px 70px;
 }
 
 .hero-inner {
-    width: min(1160px, calc(100% - 32px));
+    max-width: 1200px;
     margin: auto;
 }
 
 .breadcrumb {
-    font-size: 11px;
+    font-size: 14px;
     color: #dbeafe;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .page-hero h1 {
-    font-size: 36px;
+    font-size: 44px;
     line-height: 1.15;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .page-hero h1 span {
@@ -136,8 +136,8 @@ header {
 }
 
 .hero-text {
-    max-width: 700px;
-    font-size: 12px;
+    max-width: 780px;
+    font-size: 17px;
     color: #edf4ff;
 }
 
@@ -147,18 +147,18 @@ header {
 ========================= */
 
 .search-wrapper {
-    width: min(1100px, calc(100% - 32px));
-    margin: -24px auto 28px;
-    padding: 0;
+    max-width: 1080px;
+    margin: -38px auto 35px;
+    padding: 0 24px;
     position: relative;
 }
 
 .search-panel {
     background: #ffffff;
 
-    border-radius: 10px;
+    border-radius: 16px;
 
-    padding: 18px;
+    padding: 24px;
 
     box-shadow:
         0 12px 35px rgba(
@@ -177,14 +177,14 @@ header {
 .search-input {
     flex: 1;
 
-    height: 46px;
+    height: 52px;
 
     border: 1px solid #cbd5e1;
     border-radius: 9px;
 
     padding: 0 17px;
 
-    font-size: 13px;
+    font-size: 15px;
 
     outline: none;
 }
@@ -202,7 +202,7 @@ header {
 }
 
 .search-button {
-    height: 46px;
+    height: 52px;
 
     border: none;
 
@@ -210,11 +210,11 @@ header {
 
     color: #ffffff;
 
-    padding: 0 20px;
+    padding: 0 25px;
 
     border-radius: 9px;
 
-    font-size: 13px;
+    font-size: 15px;
 
     font-weight: 700;
 
@@ -259,7 +259,7 @@ header {
 
     color: #243b53;
 
-    font-size: 12px;
+    font-size: 14px;
 
     cursor: pointer;
 }
@@ -283,7 +283,7 @@ header {
 
     color: #334e68;
 
-    font-size: 12px;
+    font-size: 14px;
 
     font-weight: 600;
 
@@ -318,7 +318,7 @@ header {
 }
 
 .section-header h2 {
-    font-size: 24px;
+    font-size: 27px;
 
     color: #102a43;
 }
@@ -326,7 +326,7 @@ header {
 .college-count {
     color: #64748b;
 
-    font-size: 12px;
+    font-size: 14px;
 }
 
 
@@ -337,8 +337,10 @@ header {
 .college-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
 }
 
 
@@ -351,9 +353,9 @@ header {
 
     border: 1px solid #e1e7ef;
 
-    border-radius: 9px;
+    border-radius: 14px;
 
-    padding: 17px;
+    padding: 22px;
 
     transition:
         transform 0.2s ease,
@@ -391,7 +393,7 @@ header {
 }
 
 .college-name {
-    font-size: 16px;
+    font-size: 19px;
 
     font-weight: 700;
 
@@ -405,7 +407,7 @@ header {
 .location {
     color: #64748b;
 
-    font-size: 12px;
+    font-size: 14px;
 
     margin-bottom: 18px;
 }
@@ -478,7 +480,7 @@ header {
 
     border-radius: 8px;
 
-    font-size: 12px;
+    font-size: 14px;
 
     font-weight: 700;
 
@@ -507,7 +509,7 @@ header {
 
     border-radius: 8px;
 
-    font-size: 12px;
+    font-size: 14px;
 
     font-weight: 700;
 
@@ -617,7 +619,7 @@ footer {
 .footer-inner p {
     color: #cbd5e1;
 
-    font-size: 12px;
+    font-size: 14px;
 }
 
 
@@ -656,7 +658,7 @@ footer {
 
         gap: 15px;
 
-        padding: 12px;
+        padding: 15px;
     }
 
     .nav-links {
@@ -666,15 +668,15 @@ footer {
     }
 
     .page-hero {
-        padding: 34px 0 55px;
+        padding: 40px 18px 65px;
     }
 
     .page-hero h1 {
-        font-size: 28px;
+        font-size: 34px;
     }
 
     .search-wrapper {
-        padding: 0;
+        padding: 0 15px;
     }
 
     .search-row {
@@ -741,20 +743,20 @@ MBA Colleges
 Entrance Exams
 </a>
 
-<a href="index.html#admissions">
+<a href="index.html">
 Admissions
 </a>
 
-<a href="index.html#cutoffs">
+<a href="index.html">
 Cutoffs
 </a>
 
-<a href="index.html#placements">
+<a href="index.html">
 Placements
 </a>
 
 <a
-href="index.html#colleges"
+href="index.html"
 class="nav-button"
 >
 Compare Colleges
@@ -776,7 +778,7 @@ Compare Colleges
 <div class="hero-inner">
 
 <div class="breadcrumb">
-<a href="index.html">Home</a> › MBA Colleges
+Home › MBA Colleges
 </div>
 
 
@@ -1700,26 +1702,44 @@ function renderColleges(list) {
                PROFILE LINK
             ========================= */
 
-          let profileLink = "#";
+            /* =========================
+               PROFILE LINK
+            ========================= */
 
-if (slug) {
+            let profileLink = "#";
 
-    const collegeKey =
-        name.trim().toLowerCase();
+            const collegeKey =
+                name
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, " ");
 
-    if (collegeKey === "iim bangalore") {
+            /* =========================
+               DEDICATED COLLEGE PAGES
+            ========================= */
 
-        profileLink =
-            "iim-bangalore.html";
+            if (
+                collegeKey === "iim bangalore" ||
+                collegeKey.includes("indian institute of management bangalore")
+            ) {
 
-    } else {
+                profileLink = "./iim-bangalore.html";
 
-        profileLink =
-            "college.html?college=" +
-            encodeURIComponent(slug);
+            }
 
-    }
-}
+            /* =========================
+               DEFAULT COLLEGE PAGE
+            ========================= */
+
+            else if (slug) {
+
+                profileLink =
+                    "./college.html?college=" +
+                    encodeURIComponent(
+                        slug
+                    );
+
+            }
 
 
             card.innerHTML = `
