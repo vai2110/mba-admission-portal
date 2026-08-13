@@ -1702,35 +1702,27 @@ function renderColleges(list) {
                PROFILE LINK
             ========================= */
 
-            /* =========================
-               PROFILE LINK
-            ========================= */
-
             let profileLink = "#";
 
-            const collegeKey =
+            const normalizedCollegeName =
                 name
                     .trim()
                     .toLowerCase()
                     .replace(/\s+/g, " ");
 
-            /* =========================
-               DEDICATED COLLEGE PAGES
-            ========================= */
-
+            /* Dedicated page for IIM Bangalore */
             if (
-                collegeKey === "iim bangalore" ||
-                collegeKey.includes("indian institute of management bangalore")
+                normalizedCollegeName === "iim bangalore" ||
+                normalizedCollegeName ===
+                    "indian institute of management bangalore"
             ) {
 
-                profileLink = "./iim-bangalore.html";
+                profileLink =
+                    "./iim-bangalore.html";
 
             }
 
-            /* =========================
-               DEFAULT COLLEGE PAGE
-            ========================= */
-
+            /* Existing default route for every other college */
             else if (slug) {
 
                 profileLink =
