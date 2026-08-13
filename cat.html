@@ -11,11 +11,22 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .hero{background:linear-gradient(135deg,#172b68,#2458d8);color:#fff;padding:65px 20px 75px}.hero-inner{max-width:1200px;margin:auto}.breadcrumb{font-size:14px;margin-bottom:20px;color:#dce8ff}.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:50px;align-items:center}.hero h1{font-size:48px;line-height:1.15;margin-bottom:10px}.hero h1 span{color:#9fc4ff}.hero-subtitle{font-size:20px;font-weight:700;margin-bottom:16px}.hero-description{font-size:18px;max-width:720px;color:#edf4ff}.hero-card{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:28px;backdrop-filter:blur(10px)}.hero-card h2{font-size:23px;margin-bottom:20px}.hero-card p{margin-bottom:12px;color:#edf4ff}.register-btn{display:inline-block;background:#fff;color:#1955c9;font-weight:700;padding:13px 20px;border-radius:8px;margin-top:12px}.register-btn:hover{background:#eef4ff}
 .stats-wrapper{max-width:1100px;margin:-35px auto 35px;position:relative;padding:0 20px}.stats{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(15,45,80,.12);display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}.stat{padding:24px 20px;text-align:center;border-right:1px solid #e5e7eb}.stat:last-child{border-right:none}.stat strong{display:block;font-size:21px;color:#163e8f}.stat span{color:#64748b;font-size:14px}
 .container{max-width:1200px;margin:0 auto;padding:20px}
-    .content-layout{
+   .content-layout{
     display:grid;
     grid-template-columns:290px minmax(0,1fr);
     gap:28px;
     align-items:start;
+}
+
+.sidebar{
+    grid-column:1;
+    grid-row:1;
+}
+
+.main-content{
+    grid-column:2;
+    grid-row:1;
+    min-width:0;
 }
     .main-content{min-width:0}.section{background:#fff;border:1px solid #e1e7ef;border-radius:14px;padding:30px;margin-bottom:24px;scroll-margin-top:92px}
     .section h2{font-size:28px;margin-bottom:14px;color:#102a43}.section h3{font-size:20px;margin:25px 0 10px;color:#173f82}
@@ -24,9 +35,25 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
     .table-wrapper{overflow-x:auto;margin-top:18px}table{width:100%;border-collapse:collapse;min-width:550px}th{background:#eef5ff;color:#102a43;font-weight:700;text-align:left}th,td{border:1px solid #d9e2ec;padding:13px 14px}td{color:#334e68}
     .highlight{background:#eef5ff;border-left:4px solid #2563eb;padding:18px 20px;border-radius:8px;margin:20px 0}.highlight strong{color:#173f82}
 .college-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:18px}.college-card{border:1px solid #dce4ee;border-radius:10px;padding:18px;background:#fbfdff}.college-card strong{display:block;color:#173f82;margin-bottom:5px}.college-card span{color:#64748b;font-size:14px}.sidebar{position:sticky;top:92px}.sidebar-card{background:#fff;border:1px solid #e1e7ef;border-radius:14px;overflow:hidden}.sidebar-title{background:#eef5ff;padding:18px 20px;font-weight:700;font-size:18px}.sidebar a{display:block;padding:12px 20px;border-bottom:1px solid #edf0f4;color:#315b91;font-size:14px}.sidebar a:hover{background:#f5f9ff;color:#2563eb}.faq{border:1px solid #dce4ee;border-radius:10px;margin-bottom:12px;overflow:hidden}.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;background:#f8fbff}.faq p{padding:15px 18px;margin:0}footer{background:#102a43;color:#fff;margin-top:40px;padding:35px 20px}.footer-inner{max-width:1200px;margin:auto}.footer-inner p{color:#cbd5e1;font-size:14px}
-@media(max-width:900px){.nav-links{gap:12px;font-size:13px}.hero-grid{grid-template-columns:1fr}
-                        .hero-card{max-width:650px}.content-layout{grid-template-columns:1fr}
-                        .sidebar{position:static;order:-1}.stats{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){.nav-links{gap:12px;font-size:13px}
+                        .hero-grid{grid-template-columns:1fr}
+                        .hero-card{max-width:650px}
+                       .content-layout{
+    grid-template-columns:1fr;
+}
+
+.sidebar{
+    position:static;
+    grid-column:1;
+    grid-row:auto;
+    order:-1;
+}
+
+.main-content{
+    grid-column:1;
+    grid-row:auto;
+}
+                        .stats{grid-template-columns:repeat(2,1fr)}
                         .stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid #e5e7eb}}
     @media(max-width:650px){.navbar{min-height:auto;padding:15px;flex-direction:column;gap:15px}
                             .nav-links{flex-wrap:wrap;justify-content:center}
