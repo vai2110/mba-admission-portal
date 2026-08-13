@@ -5,18 +5,24 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>IIM Ahmedabad MBA | Admission, Fees, Cutoff & Placements</title>
+<title>IIM Ahmedabad MBA Admission 2026: Courses, Fees, Eligibility & Placements</title>
 
-<meta name="description"
-content="IIM Ahmedabad MBA admission information including eligibility, CAT, fees, cutoff, placements and courses.">
+<meta name="description" content="Explore IIM Ahmedabad MBA courses, fees, eligibility, admission process, CAT cutoff, placements and popular programmes including MBA-FABM, PGPX and Business Analytics & AI.">
 
 <style>
+    .main-section p strong {
+    color: #173f82;
+    font-weight: 700;
+}
 
-/* =========================
-   RESET
-========================= */
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -26,39 +32,51 @@ content="IIM Ahmedabad MBA admission information including eligibility, CAT, fee
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f7f9fc;
+    background: #f5f7fb;
     color: #172033;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
+}
+
+p {
+    margin-bottom: 14px;
+}
+
+ul {
+    padding-left: 21px;
+}
+
+li {
+    margin-bottom: 7px;
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* =========================================================
+   HEADER / NAVIGATION
+========================================================= */
 
 header {
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
-
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .navbar {
-    max-width: 1200px;
-    margin: auto;
+    width: min(1240px, calc(100% - 40px));
+    margin: 0 auto;
 
-    padding: 16px 24px;
+    min-height: 60px;
 
     display: flex;
     justify-content: space-between;
@@ -68,7 +86,7 @@ header {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 800;
     color: #172554;
 }
@@ -80,11 +98,11 @@ header {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 23px;
 }
 
 .nav-links a {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #374151;
 }
@@ -94,234 +112,330 @@ header {
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero {
-    background: linear-gradient(
-        135deg,
-        #172554,
-        #1d4ed8
-    );
+    background:
+        linear-gradient(
+            110deg,
+            #172554 0%,
+            #1d4ed8 100%
+        );
 
-    color: white;
+    color: #ffffff;
 
-    padding: 55px 24px;
+    padding: 30px 0;
 }
 
 .hero-container {
-    max-width: 1200px;
-    margin: auto;
-}
+    width: min(1240px, calc(100% - 40px));
+    margin: 0 auto;
 
-.hero h1 {
-    font-size: 44px;
-    margin-bottom: 8px;
-}
+    min-height: 165px;
 
-.hero .location {
-    color: #dbeafe;
-    margin-bottom: 18px;
-    font-size: 16px;
-}
-
-.hero p {
-    max-width: 800px;
-    color: #dbeafe;
-    font-size: 16px;
-}
-
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-
-    padding: 40px 24px 70px;
-}
-
-
-/* =========================
-   QUICK INFORMATION
-========================= */
-
-.info-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 15px;
-
-    margin-bottom: 30px;
-}
-
-.info-box {
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 10px;
-
-    padding: 18px;
-}
-
-.info-box small {
-    display: block;
-
-    color: #64748b;
-
-    margin-bottom: 5px;
-
-    font-size: 13px;
-}
-
-.info-box strong {
-    font-size: 15px;
-}
-
-
-/* =========================
-   MAIN CONTENT + SIDEBAR
-========================= */
-
-.grid {
     display: grid;
 
     grid-template-columns:
         minmax(0, 1fr)
-        280px;
+        360px;
 
-    gap: 30px;
+    gap: 14px;
 
-    align-items: start;
+    align-items: center;
 }
 
 
-/* =========================
-   CONTENT CARDS
-========================= */
+/* LEFT SIDE OF HERO */
 
-.card {
+.hero-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    min-width: 0;
+}
+
+.hero-logo-wrap {
+    width: 82px;
+    height: 82px;
+
+    min-width: 82px;
+
     background: #ffffff;
 
-    border: 1px solid #e5e7eb;
+    border-radius: 8px;
 
-    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    padding: 28px;
+    padding: 7px;
 
-    margin-bottom: 22px;
-
-    scroll-margin-top: 100px;
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.18);
 }
 
-.card h2 {
-    font-size: 25px;
-
-    margin-bottom: 15px;
-
-    color: #172033;
-}
-
-.card h3 {
-    font-size: 17px;
-
-    margin-top: 20px;
-
-    margin-bottom: 8px;
-}
-
-.card p {
-    color: #475569;
-
-    margin-bottom: 12px;
-
-    font-size: 15px;
-}
-
-
-/* =========================
-   TABLE
-========================= */
-
-table {
+.hero-logo {
     width: 100%;
+    height: 100%;
 
-    border-collapse: collapse;
+    object-fit: contain;
 
-    margin-top: 15px;
+    display: block;
 }
 
-th,
-td {
-    border: 1px solid #e5e7eb;
-
-    padding: 12px;
-
-    text-align: left;
-
-    font-size: 14px;
+.hero-text {
+    min-width: 0;
 }
 
-th {
-    background: #eff6ff;
+.hero-kicker {
+    font-size: 11px;
 
     font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    color: #dbeafe;
+
+    margin-bottom: 4px;
+}
+
+.hero h1 {
+    font-size: 34px;
+
+    line-height: 1.18;
+
+    color: #ffffff;
+
+    margin: 0 0 5px;
+}
+
+.hero h2 {
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+
+    color: #e0ecff;
+
+    margin: 0 0 8px;
+}
+
+.hero-location {
+    font-size: 13px;
+
+    color: #dbeafe;
+
+    font-weight: 600;
+}
+
+.official-website-link {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255,255,255,0.65);
+}
+
+.official-website-link:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+    text-decoration: none;
+}
+/* CAMPUS IMAGE */
+
+.hero-image-wrap {
+    width: 360px;
+    height: 155px;
+
+    justify-self: start;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 9px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.20);
+}
+
+.hero-campus-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.hero-image-caption {
+    position: absolute;
+
+    left: 10px;
+    bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 1px 4px
+        rgba(0,0,0,0.7);
 }
 
 
-/* =========================
-   SIDEBAR
-========================= */
+/* =========================================================
+   MASTER PAGE CONTAINER
+========================================================= */
 
-.sidebar {
+.page-container {
+    width: min(1240px, calc(100% - 40px));
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   QUICK FACTS
+========================================================= */
+
+.quick-facts {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    padding: 16px 0 22px;
+}
+
+.quick-fact {
     background: #ffffff;
 
-    border: 1px solid #e5e7eb;
+    border:
+        1px solid #dfe5ed;
 
-    border-radius: 12px;
+    border-radius: 7px;
 
-    padding: 22px;
+    padding: 13px 15px;
 
-    height: fit-content;
+    min-height: 66px;
+}
 
+.quick-fact-label {
+    display: block;
+
+    font-size: 10px;
+
+    color: #64748b;
+
+    margin-bottom: 4px;
+}
+
+.quick-fact-value {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #173f82;
+}
+
+
+/* =========================================================
+   MAIN PAGE LAYOUT
+========================================================= */
+
+.page-layout {
+    display: grid;
+
+    grid-template-columns:
+        225px
+        minmax(0, 1fr);
+
+    gap: 22px;
+
+    align-items: start;
+
+    padding-bottom: 55px;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.sidebar {
     position: sticky;
 
-    top: 90px;
+    top: 78px;
 
     align-self: start;
 }
 
-.sidebar h3 {
-    margin: 0 0 15px 0;
+.sidebar-card {
+    background: #ffffff;
 
-    font-size: 18px;
+    border:
+        1px solid #dfe5ed;
 
-    color: #172033;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px
+        rgba(15,23,42,0.04);
+}
+
+.sidebar-title {
+    background: #eef5ff;
+
+    color: #173f82;
+
+    padding: 14px 13px;
+
+    font-size: 13px;
+
+    font-weight: 800;
 }
 
 .sidebar a {
     display: block;
 
-    width: 100%;
-
-    padding: 10px 0;
+    padding:
+        11px 13px;
 
     border-bottom:
-        1px solid #f1f5f9;
+        1px solid #edf0f4;
 
-    color: #2563eb;
+    color: #475569;
 
-    font-size: 14px;
+    font-size: 12px;
 
     font-weight: 600;
 
-    transition: 0.2s;
+    line-height: 1.4;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
 }
 
 .sidebar a:last-child {
@@ -329,154 +443,1468 @@ th {
 }
 
 .sidebar a:hover {
-    color: #1d4ed8;
+    background: #f7faff;
 
-    padding-left: 5px;
+    color: #2563eb;
+}
+
+.sidebar a.active {
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-left:
+        3px solid #2563eb;
+
+    padding-left: 10px;
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
-.button {
-    display: inline-block;
+.content {
+    min-width: 0;
+}
 
-    margin-top: 5px;
 
-    background: #2563eb;
+/* =========================================================
+   MAJOR CONTENT SECTIONS
+========================================================= */
 
-    color: white;
+.main-section {
+    background: #ffffff;
 
-    padding: 12px 20px;
+    border:
+        1px solid #dfe5ed;
 
-    border-radius: 7px;
+    border-radius: 9px;
+
+    padding: 27px 28px;
+
+    margin-bottom: 20px;
+
+    scroll-margin-top: 82px;
+}
+
+.main-section > h2 {
+    color: #102a43;
+
+    font-size: 24px;
+
+    line-height: 1.3;
+
+    padding-bottom: 11px;
+
+    margin-bottom: 18px;
+
+    border-bottom:
+        1px solid #e5eaf0;
+}
+
+.main-section h3 {
+    color: #173f82;
+    font-size: 17px;
+    line-height: 1.4;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.main-section h3:first-of-type {
+    margin-top: 0;
+}
+
+.main-section p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #334155;
+    margin-bottom: 16px;
+    letter-spacing: 0.05px;
+}
+    .main-section > h2 + p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #334155;
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.notice {
+    background: #f7faff;
+    border-left: 3px solid #2563eb;
+    border-radius: 6px;
+    padding: 15px 17px;
+    margin: 18px 0;
+}
+
+.notice strong {
+    display: block;
+    color: #173f82;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.notice p {
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #475569;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    margin: 15px 0 19px;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+th {
+    background: #f1f5f9;
+
+    color: #173f82;
 
     font-weight: 700;
 
-    font-size: 14px;
+    text-align: left;
+
+    padding: 11px;
+
+    border:
+        1px solid #dce3eb;
 }
 
-.button:hover {
-    background: #1d4ed8;
+td {
+    padding: 11px;
+
+    border:
+        1px solid #dce3eb;
+
+    vertical-align: top;
+
+    color: #27364a;
+}
+
+tr:nth-child(even) td {
+    background: #fafcff;
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* =========================================================
+   HIGHLIGHTS
+========================================================= */
 
-footer {
-    background: #0f172a;
+.highlight-grid {
+    
+    display: grid;
 
-    color: white;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-    padding: 40px 24px;
+    gap: 12px;
+
+    margin: 17px 0;
 }
 
-.footer-container {
-    max-width: 1200px;
+/* =========================================================
+   OTHER PROGRAMMES
+========================================================= */
+/* =========================================================
+   IIM AHMEDABAD — OTHER PROGRAMMES GRID
+========================================================= */
 
-    margin: auto;
+.iima-programme-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 18px;
 }
 
-.footer-container h3 {
-    margin-bottom: 8px;
+.iima-programme-grid .programme-card {
+    min-width: 0;
+    height: 100%;
+}
+.programme-card {
+    background: #ffffff;
+
+    border:
+        1px solid #dbe7f5;
+
+    border-radius: 9px;
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
-footer p {
-    color: #94a3b8;
+.programme-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px
+        rgba(15,23,42,0.08);
+}
+
+/* =========================================================
+   OTHER PROGRAMMES — RESPONSIVE 3-COLUMN GRID
+========================================================= */
+
+.iima-programme-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.iima-programme-grid .programme-card {
+    min-width: 0;
+    height: 100%;
+}
+
+@media (max-width: 950px) {
+    .iima-programme-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .iima-programme-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.programme-card h3 {
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.programme-label {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+}
+
+.programme-duration {
+    color: #475569 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700;
+}
+
+.programme-fit {
+    background: #f7faff;
+    border: 1px solid #dbe7f5;
+    border-radius: 7px;
+
+    padding: 10px 11px;
+
+    margin-top: auto;
+    margin-bottom: 14px;
+
+    line-height: 1.45;
+}
+
+.fit-label {
+    display: block;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 4px;
+}
+
+.fit-text {
+    display: block;
+
+    color: #334155;
+
+    font-size: 11.5px;
+
+    font-weight: 600;
+}
+
+.programme-link {
+    display: inline-block;
+
+    margin-top: auto;
+    padding-top: 8px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.programme-link:hover {
+    color: #1d4ed8;
+}
+
+.highlight strong {
+    display: block;
+
+    color: #2563eb;
+
+    font-size: 20px;
+
+    line-height: 1.2;
+
+    margin-bottom: 4px;
+}
+
+.highlight span {
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   TWO COLUMN
+========================================================= */
+
+.two-column {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-top: 15px;
+}
+
+.pro-box,
+.warning-box {
+    padding: 17px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid #dfe5ed;
+}
+
+.pro-box {
+    background: #f4fcf6;
+
+    border-color: #ccebd5;
+}
+
+.warning-box {
+    background: #fff9f1;
+
+    border-color: #f4ddbb;
+}
+
+.pro-box h3,
+.warning-box h3 {
+    margin-top: 0;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   COMMUNITY
+========================================================= */
+
+.community-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-top: 15px;
+}
+
+.community-card {
+    background: #ffffff;
+
+    border:
+        1px solid #dfe5ed;
+
+    border-radius: 8px;
+
+    padding: 16px;
+}
+
+.community-card h3 {
+    margin-top: 8px;
+}
+
+.community-card p {
+    font-size: 13px;
+}
+
+.community-label {
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.reddit-label {
+    background: #fff1eb;
+
+    color: #c2410c;
+}
+
+.quora-label {
+    background: #fff1f2;
+
+    color: #be123c;
+}
+
+.source-link {
+    display: inline-block;
+
+    margin-top: 4px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SENTIMENT
+========================================================= */
+
+.sentiment-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+
+    margin-top: 15px;
+}
+
+.sentiment {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 7px;
+
+    padding: 11px 13px;
+
+    font-size: 12px;
+}
+
+.sentiment-positive {
+    color: #15803d;
+
+    font-weight: 800;
+}
+
+.sentiment-challenge {
+    color: #d97706;
+
+    font-weight: 800;
+}
+
+.sentiment-variable {
+    color: #7c3aed;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   VERDICT
+========================================================= */
+
+.verdict {
+    background:
+        linear-gradient(
+            135deg,
+            #f0f6ff,
+            #f8fbff
+        );
+
+    border:
+        1px solid #cfe0f8;
+
+    border-radius: 8px;
+
+    padding: 17px;
+
+    margin-top: 15px;
+}
+
+.verdict h3 {
+    margin-top: 15px;
+}
+
+.verdict h3:first-child {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-item {
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid #e5e7eb;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h3 {
+    margin: 0 0 6px;
+
+    font-size: 15px;
+
+    color: #173f82;
+}
+
+.faq-item p {
+    margin-bottom: 0;
 
     font-size: 13px;
 }
 
 
-/* =========================
-   TABLET
-========================= */
+/* =========================================================
+   SOURCE NOTE
+========================================================= */
 
-@media (max-width: 900px) {
+.source-note {
+    color: #64748b;
+
+    font-size: 11px;
+
+    margin-top: -5px;
+
+    margin-bottom: 14px;
+}
+
+
+/* =========================================================
+   OFFICIAL LINKS
+========================================================= */
+
+.official-links {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+.official-link {
+    display: block;
+
+    padding: 12px 14px;
+
+    background: #f8fbff;
+
+    border:
+        1px solid #dbe7f5;
+
+    border-radius: 7px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.official-link:hover {
+    background: #eff6ff;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #0f172a;
+
+    color: #ffffff;
+
+    padding: 35px 0;
+}
+
+.footer-container {
+    width: min(1240px, calc(100% - 40px));
+
+    margin: 0 auto;
+}
+
+.footer-container h3 {
+    font-size: 18px;
+
+    margin-bottom: 5px;
+}
+
+.footer-container p {
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .hero-container {
+        width: calc(100% - 32px);
+    }
+
+    .page-layout {
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .quick-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+
+    /* ---------- NAVIGATION ---------- */
+
+    .navbar {
+        width: calc(100% - 24px);
+        min-height: 54px;
+    }
 
     .nav-links {
         display: none;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
+    .logo {
+        font-size: 21px;
     }
+
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+        padding: 22px 0 20px;
+    }
+
+    .hero-container {
+        width: calc(100% - 24px);
+
+        display: grid;
+
+        /* KEY FIX */
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        min-height: auto;
+    }
+
+    .hero-main {
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+        width: 100%;
+    }
+
+    .hero-logo-wrap {
+        width: 62px;
+        height: 62px;
+
+        min-width: 62px;
+
+        padding: 6px;
+    }
+
+    .hero-text {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+        line-height: 1.15;
+
+        margin-bottom: 6px;
+    }
+
+    .hero h2 {
+        font-size: 13px;
+        line-height: 1.4;
+
+        margin-bottom: 7px;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .hero-location {
+        font-size: 11px;
+        line-height: 1.5;
+
+        word-break: normal;
+    }
+
+
+    /* ---------- CAMPUS IMAGE ---------- */
+
+    .hero-image-wrap {
+        width: 100%;
+
+        height: 175px;
+
+        justify-self: stretch;
+
+        margin: 0;
+
+        border-radius: 9px;
+    }
+
+    .hero-campus-image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    /* ---------- QUICK FACTS ---------- */
+
+    .page-container {
+        width: calc(100% - 20px);
+    }
+
+    .quick-facts {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+        padding:
+            12px 0 16px;
+    }
+
+    .quick-fact {
+        padding: 11px;
+
+        min-height: 62px;
+    }
+
+    .quick-fact-label {
+        font-size: 9px;
+    }
+
+    .quick-fact-value {
+        font-size: 12px;
+    }
+
+
+    /* ---------- MAIN LAYOUT ---------- */
+
+    .page-layout {
+        display: block;
+
+        padding-bottom: 30px;
+    }
+
+
+    /* ---------- MOBILE SIDEBAR ---------- */
 
     .sidebar {
         position: static;
 
         width: 100%;
 
-        order: -1;
-
-        margin-bottom: 20px;
+        margin-bottom: 14px;
     }
 
-    .info-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+    .sidebar-card {
+        display: flex;
+
+        overflow-x: auto;
+
+        gap: 7px;
+
+        padding: 8px;
+
+        border-radius: 9px;
+
+        scrollbar-width: none;
     }
 
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .hero {
-        padding: 40px 18px;
+    .sidebar-card::-webkit-scrollbar {
+        display: none;
     }
 
-    .hero h1 {
-        font-size: 32px;
+    .sidebar-title {
+        flex:
+            0 0 auto;
+
+        padding:
+            8px 11px;
+
+        border-radius: 999px;
+
+        font-size: 11px;
+
+        white-space: nowrap;
     }
 
-    .container {
-        padding: 30px 18px 50px;
+    .sidebar a {
+        flex:
+            0 0 auto;
+
+        padding:
+            8px 11px;
+
+        border:
+            1px solid #dbe7f5;
+
+        border-radius: 999px;
+
+        background: #ffffff;
+
+        font-size: 11px;
+
+        line-height: 1.2;
+
+        white-space: nowrap;
     }
 
-    .info-grid {
+    .sidebar a:last-child {
+        border-bottom:
+            1px solid #dbe7f5;
+    }
+
+    .sidebar a.active {
+        border-left: 1px solid #2563eb;
+
+        padding-left: 11px;
+
+        background: #eff6ff;
+    }
+
+
+    /* ---------- CONTENT ---------- */
+
+    .main-section {
+        padding:
+            19px 16px;
+
+        margin-bottom: 14px;
+
+        border-radius: 8px;
+    }
+
+    .main-section > h2 {
+        font-size: 20px;
+
+        line-height: 1.3;
+
+        margin-bottom: 14px;
+    }
+
+    .main-section h3 {
+        font-size: 16px;
+
+        margin-top: 20px;
+    }
+
+    .main-section p {
+        font-size: 13px;
+
+        line-height: 1.65;
+    }
+
+
+    /* ---------- GRIDS ---------- */
+
+    .highlight-grid,
+    .community-grid,
+    .two-column,
+    .official-links,
+    .sentiment-grid {
         grid-template-columns: 1fr;
     }
 
-    .card {
-        padding: 20px;
+
+    /* ---------- PROGRAMME CARDS ---------- */
+
+    .iima-programme-grid {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
     }
 
-    .card h2 {
+    .programme-card {
+        padding: 15px;
+    }
+
+
+    /* ---------- TABLES ---------- */
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding:
+            18px 0 18px;
+    }
+
+    .hero-container {
+        width: calc(100% - 20px);
+    }
+
+    .hero-main {
+        gap: 10px;
+    }
+
+    .hero-logo-wrap {
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+    }
+
+    .hero h1 {
         font-size: 22px;
     }
 
-    table {
+    .hero-subtitle {
+        font-size: 12px;
+    }
+
+    .hero-location {
+        font-size: 10.5px;
+    }
+
+    .hero-image-wrap {
+        height: 160px;
+    }
+
+    .quick-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .main-section {
+        padding:
+            17px 14px;
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    header,
+    .sidebar,
+    footer {
+        display: none;
+    }
+
+    .page-layout {
+        display: block;
+    }
+
+    .main-section {
+        border: none;
+        box-shadow: none;
+    }
+
+}
+.programme-fit {
+    background: #f7faff;
+    border: 1px solid #dbe7f5;
+    border-radius: 7px;
+    padding: 10px 11px;
+    margin-top: auto;
+    margin-bottom: 14px;
+    line-height: 1.45;
+}
+
+.fit-label {
+    display: block;
+    color: #2563eb;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.fit-text {
+    display: block;
+    color: #334155;
+    font-size: 11.5px;
+    font-weight: 600;
+}
+    /* =========================================================
+   FINAL MOBILE HERO FIX
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .hero-container {
+        width: calc(100% - 24px);
+
+        display: grid;
+
+        /* IMPORTANT: mobile must use ONE column */
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        min-height: auto;
+    }
+
+    .hero-main {
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: flex-start;
+
+        gap: 14px;
+
+        width: 100%;
+    }
+
+    .hero-text {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .hero-logo-wrap {
+        width: 68px;
+        height: 68px;
+        min-width: 68px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+        line-height: 1.15;
+        margin-bottom: 6px;
+    }
+
+    .hero h2,
+    .hero-subtitle {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .hero-location {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .hero-image-wrap {
+        width: 100%;
+        height: 180px;
+
+        justify-self: stretch;
+
+        margin: 0;
+
+        border-radius: 9px;
+    }
+
+    .hero-campus-image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding: 20px 0 22px;
+    }
+
+    .hero-container {
+        width: calc(100% - 20px);
+
+        gap: 14px;
+    }
+
+    .hero-main {
+        flex-direction: row;
+
+        gap: 12px;
+    }
+
+    .hero-logo-wrap {
+        width: 64px;
+        height: 64px;
+        min-width: 64px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+        line-height: 1.15;
+    }
+
+    .hero h2,
+    .hero-subtitle {
         font-size: 13px;
+        line-height: 1.4;
     }
 
-    th,
-    td {
-        padding: 9px;
+    .hero-location {
+        font-size: 11px;
+    }
+
+    .hero-image-wrap {
+        width: 100%;
+        height: 170px;
+    }
+}
+    /* =========================================================
+   IIM AHMEDABAD RANKINGS
+========================================================= */
+
+.ranking-section {
+    background: #ffffff;
+    border: 1px solid #dfe5ed;
+    border-radius: 9px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+}
+
+.ranking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #e5eaf0;
+}
+
+.ranking-header h2 {
+    color: #102a43;
+    font-size: 23px;
+    line-height: 1.3;
+    margin: 0 0 4px;
+}
+
+.ranking-header p {
+    color: #64748b;
+    font-size: 12px;
+    margin: 0;
+}
+
+.ranking-note {
+    flex: 0 0 auto;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 999px;
+    padding: 5px 9px;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* RANKING CARDS */
+
+.ranking-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    column-gap: 10px;
+
+    row-gap: 16px;
+
+    margin-top: 16px;
+}
+    .ranking-grid .ranking-card:nth-child(5) {
+    grid-column: 2;
+}
+
+.ranking-card {
+    border: 1px solid #dbe7f5;
+
+    border-radius: 8px;
+
+    padding: 13px;
+
+    background: #fbfdff;
+
+    min-width: 0;
+
+    min-height: 118px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.ranking-agency {
+    color: #627d98;
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.ranking-rank {
+    color: #155eef;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.ranking-title {
+    color: #173f82;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.ranking-year {
+    color: #64748b;
+    font-size: 9px;
+    margin-top: 4px;
+}
+
+.ranking-source {
+    display: inline-block;
+
+    margin-top: 7px;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+.ranking-source:hover {
+    text-decoration: underline;
+}
+/* DISCLAIMER */
+
+.ranking-disclaimer {
+    margin-top: 14px;
+    padding: 11px 13px;
+    background: #f7faff;
+    border-left: 3px solid #2563eb;
+    border-radius: 5px;
+    color: #475569;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* TABLET */
+
+@media (max-width: 950px) {
+
+   @media (max-width: 950px) {
+
+    .ranking-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        column-gap: 10px;
+
+        row-gap: 12px;
+    }
+
+    .ranking-grid .ranking-card:nth-child(5) {
+        grid-column: auto;
+    }
+
+}
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 720px) {
+
+    .ranking-section {
+        padding: 18px 15px;
+        margin-bottom: 14px;
+    }
+
+    .ranking-header {
+        display: block;
+    }
+
+    .ranking-header h2 {
+        font-size: 20px;
+    }
+
+    .ranking-header p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .ranking-note {
+        display: inline-block;
+        margin-top: 8px;
+    }
+
+    .ranking-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .ranking-card {
+        padding: 11px;
+    }
+
+    .ranking-rank {
+        font-size: 21px;
+    }
+
+    .ranking-title {
+        font-size: 10px;
+    }
+
+    .ranking-year {
+        font-size: 9px;
     }
 
 }
 
 
-/* =========================
-   MOBILE TABLE SCROLL
-========================= */
+/* VERY SMALL MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width: 420px) {
 
-    .card {
-        overflow-x: auto;
+    .ranking-grid {
+        grid-template-columns: 1fr;
     }
 
 }
-
 </style>
 
 </head>
@@ -485,42 +1913,43 @@ footer p {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <header>
 
 <nav class="navbar">
 
-<a href="index.html" class="logo">
-    MBA<span>Portal</span>
+<a
+    href="index.html"
+    class="logo"
+>
+MBA<span>Portal</span>
 </a>
 
 <div class="nav-links">
 
 <a href="index.html">
-    Home
+Home
 </a>
 
 <a href="colleges.html">
-    MBA Colleges
+MBA Colleges
+</a>
+
+<a href="exams.html">
+Entrance Exams
 </a>
 
 <a href="#">
-    Entrance Exams
+Admissions
 </a>
 
 <a href="#">
-    Admissions
-</a>
-
-<a href="#">
-    Cutoffs
-</a>
-
-<a href="#">
-    Placements
+Cutoffs
+<a href="#placements">
+    Placements & Career Outcomes
 </a>
 
 </div>
@@ -530,426 +1959,2574 @@ footer p {
 </header>
 
 
-<!-- =========================
+
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
 <div class="hero-container">
 
-<h1>
-    IIM Ahmedabad
-</h1>
 
-<div class="location">
+    <div class="hero-main">
+
+
+        <div class="hero-logo-wrap">
+
+            <img
+                src="iima-logo.png"
+                alt="IIM Ahmedabad official logo"
+                class="hero-logo"
+            >
+
+        </div>
+
+
+        <div class="hero-text">
+
+            <h1>
+                IIM Ahmedabad MBA 2026
+            </h1>
+<p class="hero-subtitle">
+    Courses, Fees, Eligibility, CAT Cutoff, Admission Process & Placements
+</p>
+
+            <div class="hero-location">
+
     Ahmedabad, Gujarat
-</div>
-
-<p>
-    Explore IIM Ahmedabad MBA information including
-    admission process, CAT, eligibility, fees, cutoff,
-    courses and placements.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="container">
-
-
-<!-- QUICK INFORMATION -->
-
-<div class="info-grid">
-
-<div class="info-box">
-
-<small>
-    Programme
-</small>
-
-<strong>
+    &nbsp; • &nbsp;
     MBA / PGP
-</strong>
+    &nbsp; • &nbsp;
+
+    <a
+        href="https://www.iima.ac.in/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="official-website-link"
+    >
+        Official Website ↗
+    </a>
 
 </div>
+        </div>
 
+    </div>
 
-<div class="info-box">
 
-<small>
-    Entrance Exam
-</small>
+    <div class="hero-image-wrap">
 
-<strong>
-    CAT
-</strong>
+        <img
+            src="iima-campus.jpg"
+            alt="IIM Ahmedabad campus"
+            class="hero-campus-image"
+        >
 
-</div>
-
-
-<div class="info-box">
-
-<small>
-    Institute Type
-</small>
-
-<strong>
-    Public
-</strong>
-
-</div>
-
-
-<div class="info-box">
-
-<small>
-    Location
-</small>
-
-<strong>
-    Ahmedabad
-</strong>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     CONTENT + SIDEBAR
-========================= -->
-
-<div class="grid">
-
-
-<!-- =========================
-     LEFT CONTENT
-========================= -->
-
-<div>
-
-
-<!-- OVERVIEW -->
-
-<section id="overview" class="card">
-
-<h2>
-    About IIM Ahmedabad
-</h2>
-
-<p>
-    Indian Institute of Management Ahmedabad is one of
-    India's leading management institutes. The institute
-    offers postgraduate and other management programmes.
-</p>
-
-<p>
-    The flagship two-year management programme is commonly
-    known as the MBA/PGP.
-</p>
-
-</section>
-
-
-<!-- ADMISSION -->
-
-<section id="admission" class="card">
-
-<h2>
-    IIM Ahmedabad MBA Admission
-</h2>
-
-<p>
-    Admission to the flagship MBA/PGP programme involves
-    the Common Admission Test (CAT) and the institute's
-    selection process.
-</p>
-
-<table>
-
-<tr>
-    <th>Admission Component</th>
-    <th>Details</th>
-</tr>
-
-<tr>
-    <td>Entrance Exam</td>
-    <td>CAT</td>
-</tr>
-
-<tr>
-    <td>Programme</td>
-    <td>MBA / PGP</td>
-</tr>
-
-<tr>
-    <td>Duration</td>
-    <td>2 Years</td>
-</tr>
-
-<tr>
-    <td>Mode</td>
-    <td>Full Time</td>
-</tr>
-
-</table>
-<a
-    href="iim-ahmedabad-mba.html"
-    class="button"
->
-    View MBA / PGP 2026–28 Admission Guide →
-</a>
-</section>
-
-
-<!-- ELIGIBILITY -->
-
-<section id="eligibility" class="card">
-
-<h2>
-    Eligibility
-</h2>
-
-<p>
-    Candidates must meet the academic and other eligibility
-    requirements specified by IIM Ahmedabad for the relevant
-    admission cycle.
-</p>
-
-<p>
-    Applicants should always check the latest official
-    admission policy before applying.
-</p>
-
-</section>
-
-
-<!-- CUTOFF -->
-
-<section id="cutoff" class="card">
-
-<h2>
-    CAT Cutoff
-</h2>
-
-<p>
-    CAT performance is an important component of the IIM
-    Ahmedabad admission process. The qualifying requirements
-    and actual competitive percentile for admission are not
-    necessarily the same.
-</p>
-
-<p>
-    Verified year-wise cutoff information will be added after
-    checking the official admission documents.
-</p>
-
-</section>
-
-
-<!-- FEES -->
-
-<section id="fees" class="card">
-
-<h2>
-    MBA Fees
-</h2>
-
-<p>
-    The applicable programme fee and other charges can change
-    between admission cycles.
-</p>
-
-<table>
-
-<tr>
-    <th>Fee Component</th>
-    <th>Status</th>
-</tr>
-
-<tr>
-    <td>Programme Fee</td>
-    <td>To be verified</td>
-</tr>
-
-<tr>
-    <td>Other Charges</td>
-    <td>To be verified</td>
-</tr>
-
-<tr>
-    <td>Total Cost</td>
-    <td>To be verified</td>
-</tr>
-
-</table>
-
-</section>
-
-
-<!-- PLACEMENTS -->
-
-<section id="placements" class="card">
-
-<h2>
-    Placements
-</h2>
-
-<p>
-    Placement information including average compensation,
-    median compensation, highest offers, recruiters and
-    sector trends will be added using verified placement
-    reports.
-</p>
-
-</section>
-
-
-<!-- RANKINGS -->
-
-<section id="rankings" class="card">
-
-<h2>
-    Rankings
-</h2>
-
-<p>
-    Ranking information will be added after verification
-    from the respective ranking agencies and official
-    sources.
-</p>
-
-</section>
-
-
-<!-- FAQ -->
-
-<section id="faq" class="card">
-
-<h2>
-    Frequently Asked Questions
-</h2>
-
-<h3>
-    Which entrance exam is required?
-</h3>
-
-<p>
-    CAT is used for admission to the flagship MBA/PGP
-    programme, subject to the applicable admission policy.
-</p>
-
-
-<h3>
-    Where is IIM Ahmedabad located?
-</h3>
-
-<p>
-    IIM Ahmedabad is located in Ahmedabad, Gujarat.
-</p>
-
-
-<h3>
-    What is the duration of the MBA programme?
-</h3>
-
-<p>
-    The flagship MBA/PGP programme is a two-year full-time
-    programme.
-</p>
-
-</section>
-
-
-<!-- CTA -->
-
-<a href="colleges.html" class="button">
-    Explore More MBA Colleges
-</a>
+    </div>
 
 
 </div>
 
+</section>
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+
+
+<!-- =====================================================
+     PAGE CONTAINER
+===================================================== -->
+
+<div class="page-container">
+
+
+<!-- =====================================================
+     QUICK FACTS
+===================================================== -->
+
+<div class="quick-facts">
+
+
+<div class="quick-fact">
+
+<span class="quick-fact-label">
+Programme
+</span>
+
+<span class="quick-fact-value">
+MBA / PGP
+</span>
+
+</div>
+
+
+<div class="quick-fact">
+
+<span class="quick-fact-label">
+Entrance Exam
+</span>
+
+<span class="quick-fact-value">
+CAT
+</span>
+
+</div>
+
+
+<div class="quick-fact">
+
+<span class="quick-fact-label">
+NIRF Management Rank 2025
+</span>
+
+<span class="quick-fact-value">
+#1
+</span>
+
+</div>
+
+
+<div class="quick-fact">
+
+<span class="quick-fact-label">
+Location
+</span>
+
+<span class="quick-fact-value">
+Ahmedabad, Gujarat
+</span>
+
+</div>
+</div>
+
+
+<!-- =====================================================
+     MAIN LAYOUT
+===================================================== -->
+
+<div class="page-layout">
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN LAYOUT
+===================================================== -->
+
+<div class="page-layout">
+
+
+<!-- =====================================================
+     LEFT SIDEBAR
+===================================================== -->
 
 <aside class="sidebar">
 
-<h3>
-    IIM Ahmedabad
-</h3>
+<div class="sidebar-card">
 
-<a href="#overview">
-    Overview
+
+<div class="sidebar-title">
+IIM Ahmedabad MBA
+</div>
+
+
+<a
+    href="#overview"
+    class="active"
+>
+College Overview
 </a>
+
 
 <a href="#admission">
-    Admission
-</a>
-<a href="iim-ahmedabad-mba.html">
-    MBA / PGP 2026–28
-</a>
-<a href="#eligibility">
-    Eligibility
+    MBA Admission 2026–28
 </a>
 
-<a href="#cutoff">
-    CAT Cutoff
+<a href="iim-ahmedabad-mba.html">
+    Detailed MBA / PGP Guide →
+</a>
+
+<a href="#other-programmes">
+    Other Popular Programmes
 </a>
 
 <a href="#fees">
-    Fees
+    Fees & ROI
 </a>
+
 
 <a href="#placements">
-    Placements
+Placements & Career Outcomes
 </a>
 
-<a href="#rankings">
-    Rankings
+
+<a href="#batch">
+Batch Profile & Student Life
 </a>
+
+
+<a href="#community">
+Student & Community Insights
+</a>
+
+
+<a href="#profile">
+Who Should Apply?
+</a>
+
 
 <a href="#faq">
-    FAQs
+FAQs
 </a>
+
+
+<a href="#references">
+References & Sources
+</a>
+
+
+</div>
 
 </aside>
 
 
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="content">
+
+
+
+<!-- =====================================================
+     1. COLLEGE OVERVIEW
+===================================================== -->
+
+<section
+    id="overview"
+    class="main-section"
+>
+
+<h2>
+College Overview
+</h2>
+
+
+<h3>
+About IIM Ahmedabad
+</h3>
+
+<p>
+
+The Indian Institute of Management Ahmedabad (IIMA) was
+established in 1961 and is one of India's leading management
+institutions. Its flagship two-year full-time Post Graduate
+Programme in Management (PGP) is the institute's principal
+MBA programme.
+
+</p>
+
+<p>
+
+The programme is residential and attracts students from
+different academic disciplines, including arts, commerce,
+science, engineering, technology and medicine. IIMA's PGP
+includes both fresh graduates and candidates with prior
+work experience.
+
+</p>
+
+
+<h3>
+NIRF Ranking
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>Ranking Agency</th>
+<th>Year</th>
+<th>Management Rank</th>
+</tr>
+
+<tr>
+<td>NIRF</td>
+<td>2025</td>
+<td><strong>#1</strong></td>
+</tr>
+
+</table>
+
 </div>
+
+
+<div class="notice">
+
+<strong>
+Why the ranking matters
+</strong>
+
+<p>
+
+IIM Ahmedabad retained the first position in the NIRF
+Management category in 2025. Ranking should nevertheless
+be considered alongside programme quality, placements,
+career outcomes and candidate fit.
+
+</p>
+
+</div>
+
+</section>
+
+<section id="rankings" class="ranking-section">
+
+    <div class="ranking-header">
+
+        <div>
+            <h2>IIM Ahmedabad Rankings in India</h2>
+
+            <p>
+                Latest rankings from prominent Indian management
+                and B-school ranking agencies.
+            </p>
+        </div>
+
+        <span class="ranking-note">
+            2025–26
+        </span>
+
+    </div>
+
+
+    <div class="ranking-grid">
+
+        <div class="ranking-card">
+
+            <div class="ranking-agency">
+                NIRF
+            </div>
+
+            <div class="ranking-rank">
+                #1
+            </div>
+
+            <div class="ranking-title">
+                Management
+            </div>
+
+            <div class="ranking-year">
+                NIRF 2025
+            </div>
+            <a href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="ranking-source">
+    View Source ↗
+</a>
+
+        </div>
+
+
+        <div class="ranking-card">
+
+            <div class="ranking-agency">
+                Outlook-ICARE
+            </div>
+
+            <div class="ranking-rank">
+                #1
+            </div>
+
+            <div class="ranking-title">
+                Public B-Schools
+            </div>
+
+            <div class="ranking-year">
+                Outlook-ICARE 2026
+           </div>
+
+<a href="https://www.outlookindia.com/education/top-public-b-schools-2"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="ranking-source">
+    View Source ↗
+</a>
+</div>
+        <div class="ranking-card">
+
+            <div class="ranking-agency">
+                India Today
+            </div>
+
+            <div class="ranking-rank">
+                #1
+            </div>
+
+            <div class="ranking-title">
+                Government B-Schools
+            </div>
+
+            <div class="ranking-year">
+                India Today 2025
+            </div>
+<a href="https://www.indiatoday.in/india-s-best-b-schools/2025-rankings"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="ranking-source">
+    View Source ↗
+</a>
+   </div>
+        <div class="ranking-card">
+
+            <div class="ranking-agency">
+                IIRF
+            </div>
+
+            <div class="ranking-rank">
+                #1
+            </div>
+
+            <div class="ranking-title">
+                Government B-Schools
+            </div>
+
+            <div class="ranking-year">
+    IIRF 2025
+</div>
+
+<a href="https://iirfranking.com/college/indian-institute-of-management-iim-ahmedabad/6086a1a68330720e9ef342fe"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="ranking-source">
+    View Source ↗
+</a>
+
+</div>
+        <div class="ranking-card">
+
+            <div class="ranking-agency">
+                Business Today–MDRA
+            </div>
+
+            <div class="ranking-rank">
+                #1
+            </div>
+
+            <div class="ranking-title">
+                B-Schools
+            </div>
+
+            <div class="ranking-year">
+    Business Today 2025
+</div>
+
+<a href="https://www.businesstoday.in/magazine/cover-story/story/bt-mdra-indias-best-b-schools-ranking-the-best-stay-the-course-503695-2025-11-25"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="ranking-source">
+    View Source ↗
+</a>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     2. ADMISSION
+===================================================== -->
+
+<section
+    id="admission"
+    class="main-section"
+>
+
+<h2>
+MBA Admission 2026–28
+</h2>
+
+
+<div class="notice">
+
+<strong>
+Admission Status: 2026–28 Batch
+</strong>
+
+<p>
+
+The IIM Ahmedabad PGP 2026–28 admission cycle through
+CAT 2025 has concluded and the 2026–28 batch has commenced.
+
+</p>
+
+</div>
+
+
+<h3>
+Eligibility
+</h3>
+
+<p>
+
+For the PGP 2026–28 batch, candidates must hold a bachelor's
+degree with at least 50% marks or equivalent CGPA. The
+minimum is relaxed to 45% for SC, ST and PwD candidates.
+
+</p>
+
+<p>
+
+Candidates in the final year of their bachelor's degree, or
+those who have completed degree requirements and are awaiting
+results, can apply subject to IIMA's prescribed conditions.
+
+</p>
+
+
+<h3>
+Entrance Exam
+</h3>
+
+<p>
+
+Domestic candidates for the 2026–28 PGP admission process
+applied through CAT 2025.
+
+</p>
+
+
+<h3>
+CAT 2025 Minimum Screening Cutoff
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+
+<th>Category</th>
+
+<th>Overall</th>
+
+<th>VARC</th>
+
+<th>DILR</th>
+
+<th>QA</th>
+
+</tr>
+
+
+<tr>
+
+<td>General / EWS</td>
+
+<td>95</td>
+
+<td>85</td>
+
+<td>85</td>
+
+<td>85</td>
+
+</tr>
+
+
+<tr>
+
+<td>NC-OBC</td>
+
+<td>90</td>
+
+<td>80</td>
+
+<td>80</td>
+
+<td>80</td>
+
+</tr>
+
+
+<tr>
+
+<td>SC</td>
+
+<td>85</td>
+
+<td>75</td>
+
+<td>75</td>
+
+<td>75</td>
+
+</tr>
+
+
+<tr>
+
+<td>ST</td>
+
+<td>75</td>
+
+<td>65</td>
+
+<td>65</td>
+
+<td>65</td>
+
+</tr>
+
+
+<tr>
+
+<td>PwD</td>
+
+<td>85</td>
+
+<td>75</td>
+
+<td>75</td>
+
+<td>75</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="notice">
+
+<strong>
+Important: cutoff does not guarantee a call
+</strong>
+
+<p>
+
+These are minimum screening thresholds. Meeting the
+published CAT threshold does not automatically guarantee
+an interview call because IIMA uses additional profile and
+application-rating components.
+
+</p>
+
+</div>
+
+
+<h3>
+Selection Process
+</h3>
+
+<p>
+
+IIMA's selection process includes shortlisting for the
+Analytical Writing Test and Personal Interview followed
+by final selection.
+
+</p>
+
+
+<table>
+
+<tr>
+<th>Final Selection Component</th>
+<th>Weight</th>
+</tr>
+
+<tr>
+<td>Personal Interview</td>
+<td><strong>50%</strong></td>
+</tr>
+
+<tr>
+<td>Analytical Writing Test</td>
+<td><strong>10%</strong></td>
+</tr>
+
+<tr>
+<td>CAT Score</td>
+<td><strong>25%</strong></td>
+</tr>
+
+<tr>
+<td>Application Rating</td>
+<td><strong>15%</strong></td>
+</tr>
+
+</table>
+
+
+<h3>
+Application Rating
+</h3>
+
+<p>
+
+The Application Rating incorporates components related to
+academic performance, work experience and diversity-related
+profile factors as specified by IIMA.
+
+</p>
+
+
+<h3>
+What Students Should Understand
+</h3>
+
+<p>
+
+A high CAT percentile is important, but the published
+selection methodology makes it clear that admission is
+not determined by CAT score alone. Academic history,
+application rating and interview performance matter.
+
+</p>
+
+
+<div class="notice">
+
+<strong>
+Want the complete MBA / PGP admission details?
+</strong>
+
+<p>
+Explore the detailed IIM Ahmedabad MBA / PGP 2026–28 guide
+covering eligibility, CAT 2025 cutoff, selection process,
+application rating, final selection, fees, admission timeline
+and FAQs.
+</p>
+
+<a
+    href="iim-ahmedabad-mba.html"
+    style="
+        display:inline-block;
+        margin-top:10px;
+        padding:10px 16px;
+        background:#2563eb;
+        color:#ffffff;
+        border-radius:6px;
+        font-size:12px;
+        font-weight:700;
+    "
+>
+    View Detailed MBA / PGP Guide →
+</a>
+
+</section>
+
+<!-- =====================================================
+     3. OTHER POPULAR PROGRAMMES
+===================================================== -->
+
+<section
+    id="other-programmes"
+    class="main-section"
+>
+
+    <h2>Other Popular Programmes at IIM Ahmedabad</h2>
+
+    <p>
+        Beyond the flagship MBA / PGP, IIM Ahmedabad offers
+        specialised programmes for different career stages,
+        academic interests and professional goals.
+    </p>
+
+    <div class="iima-programme-grid">
+
+        <!-- MBA-FABM -->
+        <div class="programme-card">
+
+            <span class="programme-label">
+                SPECIALISED MBA
+            </span>
+
+            <h3>MBA-FABM</h3>
+
+            <div class="programme-duration">
+                2 Years · Full Time
+            </div>
+
+            <p>
+                A specialised management programme focused on
+                food, agriculture, agribusiness and allied sectors.
+            </p>
+
+           <div class="programme-fit">
+    <span class="fit-label">WHO IS IT FOR?</span>
+    <span class="fit-text">
+        Students targeting food, agriculture & agribusiness careers.
+    </span>
+</div>
+
+            <a
+                class="programme-link"
+                href="iim-ahmedabad-mba-fabm.html"
+            >
+                Explore MBA-FABM →
+            </a>
+
+        </div>
+
+
+        <!-- MBA-PGPX -->
+        <div class="programme-card">
+
+            <span class="programme-label">
+                1-YEAR MBA
+            </span>
+
+            <h3>MBA-PGPX</h3>
+
+            <div class="programme-duration">
+                1 Year · Full Time
+            </div>
+
+            <p>
+                A one-year MBA programme designed for experienced
+                professionals seeking career progression,
+                transition or broader management responsibilities.
+            </p>
+
+           <div class="programme-fit">
+    <span class="fit-label">IDEAL FOR</span>
+    <span class="fit-text">
+        Experienced professionals seeking career growth or transition.
+    </span>
+</div>
+            <a
+                class="programme-link"
+                href="iim-ahmedabad-pgpx.html"
+            >
+                Explore MBA-PGPX →
+            </a>
+
+        </div>
+
+
+        <!-- BUSINESS ANALYTICS & AI -->
+        <div class="programme-card">
+
+            <span class="programme-label">
+                BLENDED MBA
+            </span>
+
+            <h3>Business Analytics &amp; AI</h3>
+
+            <div class="programme-duration">
+                2 Years · Blended
+            </div>
+
+            <p>
+                A management programme combining business
+                education with analytics and artificial
+                intelligence.
+            </p>
+
+           <div class="programme-fit">
+    <span class="fit-label">WHO IS IT FOR?</span>
+    <span class="fit-text">
+        Professionals combining management with analytics & AI.
+    </span>
+</div>
+
+            <a
+                class="programme-link"
+                href="iim-ahmedabad-business-analytics-ai.html"
+            >
+                Explore Business Analytics &amp; AI →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     4. FEES & ROI
+===================================================== -->
+
+<section
+    id="fees"
+    class="main-section"
+>
+
+<h2>
+Fees & ROI
+</h2>
+
+
+<h3>
+IIM Ahmedabad MBA Fees
+</h3>
+
+<p>
+
+The latest publicly published PGP programme fee available
+from IIMA is for the 2025–27 batch. IIMA's admission page
+states that fees for future batches will be announced later.
+
+</p>
+
+
+<div class="highlight-grid">
+
+
+<div class="highlight">
+
+<strong>
+₹27.50 Lakh
+</strong>
+
+<span>
+Latest published PGP programme fee
+(2025–27)
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+₹20.10 Lakh
+</strong>
+
+<span>
+Tuition fee included in
+2025–27 programme fee
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+2026–28
+</strong>
+
+<span>
+Official public fee figure
+not yet published on the admission page
+</span>
+
+</div>
+
+
+</div>
+
+
+<h3>
+Officially Published Fee Information
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+
+<th>
+Fee Component
+</th>
+
+<th>
+Amount / Status
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+PGP Programme Fee — 2025–27
+</td>
+
+<td>
+<strong>
+₹27,50,000
+</strong>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Tuition Fee Included
+</td>
+
+<td>
+<strong>
+₹20,10,000
+</strong>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+PGP 2026–28 Public Fee
+</td>
+
+<td>
+<strong>
+Not currently published on IIMA's public admission page
+</strong>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Personal Expenses
+</td>
+
+<td>
+Additional
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="notice">
+
+<strong>
+Important fee note
+</strong>
+
+<p>
+
+The ₹27.50 lakh figure should not be labelled as the
+confirmed 2026–28 fee. It is the latest programme fee
+publicly listed by IIMA for the 2025–27 batch.
+
+</p>
+
+</div>
+
+
+<h3>
+What Is Not Included?
+</h3>
+
+<ul>
+
+<li>
+Boarding-related personal expenses
+</li>
+
+<li>
+Laptop / personal computer
+</li>
+
+<li>
+Travel
+</li>
+
+<li>
+Clothes
+</li>
+
+<li>
+Stationery
+</li>
+
+<li>
+Laundry
+</li>
+
+</ul>
+
+
+<h3>
+ROI Perspective
+</h3>
+
+<p>
+
+For a realistic ROI assessment, students should compare
+programme cost with median compensation, career options,
+opportunity cost, financing cost and the type of role they
+want after the MBA.
+
+</p>
+
+
+<div class="highlight-grid">
+
+
+<div class="highlight">
+
+<strong>
+₹34.59 LPA
+</strong>
+
+<span>
+2025 audited median salary
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+₹35.50 LPA
+</strong>
+
+<span>
+2025 audited mean salary
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+Audited
+</strong>
+
+<span>
+IPRS placement reporting
+</span>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     4. PLACEMENTS
+===================================================== -->
+
+<section
+    id="placements"
+    class="main-section"
+>
+
+<h2>
+    
+Placements & Career Outcomes
+</h2>
+
+
+<h3>
+Placement Overview
+</h3>
+
+<p>
+
+IIM Ahmedabad's placement ecosystem covers consulting,
+finance, technology, analytics, consumer businesses,
+conglomerates, healthcare and other sectors.
+
+</p>
+
+
+<h3>
+Placement Landscape
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+
+<th>
+Career Area
+</th>
+
+<th>
+Representative Recruiting Areas
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+Management Consulting
+</td>
+
+<td>
+Strategy consulting and management consulting firms
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Banking & Financial Services
+</td>
+
+<td>
+Banking, investment-related and financial-services roles
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Technology & Analytics
+</td>
+
+<td>
+Technology, analytics and IT consulting roles
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Consumer & FMCG
+</td>
+
+<td>
+Consumer, FMCG and retail businesses
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Conglomerates
+</td>
+
+<td>
+Large diversified business groups
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Healthcare & Pharmaceuticals
+</td>
+
+<td>
+Pharmaceutical and healthcare businesses
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<h3>
+Latest Audited Placement Snapshot
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+
+<th>
+Metric
+</th>
+
+<th>
+Latest Verified Information
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+Placement cycle
+</td>
+
+<td>
+2025–26
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+2025 audited median salary
+</td>
+
+<td>
+<strong>
+₹34.59 LPA
+</strong>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+2025 audited mean salary
+</td>
+
+<td>
+<strong>
+₹35.50 LPA
+</strong>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Reporting
+</td>
+
+<td>
+Audited IPRS placement report
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<h3>
+Career Opportunities
+</h3>
+
+<p>
+
+The breadth of the recruiter ecosystem means that students
+can pursue consulting, finance, technology, analytics,
+consumer businesses, general management and other career
+paths.
+
+</p>
+
+
+<div class="notice">
+
+<strong>
+Placement reality
+</strong>
+
+<p>
+
+An IIMA degree does not guarantee a specific company,
+function or salary. Individual outcomes depend on the
+student's profile, skills, academic performance,
+internships, interview performance and recruiter
+requirements.
+
+</p>
+
+</div>
+<a
+    href="iim-ahmedabad-placements.html"
+    style="
+        display:inline-block;
+        margin-top:14px;
+        padding:11px 17px;
+        background:#2563eb;
+        color:#ffffff;
+        border-radius:6px;
+        font-size:12px;
+        font-weight:700;
+    "
+>
+    View Detailed Placement Report →
+</a>
+</section>
+
+
+
+<!-- =====================================================
+     5. BATCH PROFILE
+===================================================== -->
+
+<section
+    id="batch"
+    class="main-section"
+>
+
+<h2>
+Batch Profile & Student Life
+</h2>
+
+
+<h3>
+2026–28 PGP Batch Profile
+</h3>
+
+<div class="highlight-grid">
+
+
+<div class="highlight">
+
+<strong>
+414
+</strong>
+
+<span>
+PGP students
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+60.87%
+</strong>
+
+<span>
+Engineering background
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+39.13%
+</strong>
+
+<span>
+Non-engineering background
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+30.92%
+</strong>
+
+<span>
+Female students
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+24 Months
+</strong>
+
+<span>
+Average work experience
+</span>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>
+~77%
+</strong>
+
+<span>
+Students with prior work experience
+</span>
+
+</div>
+
+
+</div>
+
+
+<h3>
+What the Batch Profile Means
+</h3>
+
+<p>
+
+Engineering students form the majority of the latest PGP
+cohort, but non-engineers constitute a substantial part of
+the class.
+
+</p>
+
+<p>
+
+Work experience is common but not mandatory. Freshers are
+part of the programme, while candidates with previous
+professional experience form the larger share of the latest
+batch.
+
+</p>
+
+
+<h3>
+Student Life
+</h3>
+
+<p>
+
+IIMA's PGP is residential and academically rigorous. The
+programme involves classroom participation, peer learning,
+case-based learning and interaction with students from
+different academic and professional backgrounds.
+
+</p>
+
+
+<div class="notice">
+
+<strong>
+Student-life reality
+</strong>
+
+<p>
+
+The academic workload and competitive peer environment can
+make the programme demanding. Individual experiences vary
+and should not be treated as universal.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     6. STUDENT & COMMUNITY INSIGHTS
+===================================================== -->
+
+<section
+    id="community"
+    class="main-section"
+>
+
+<h2>
+Student & Community Insights
+</h2>
+
+
+<p>
+
+Official institute information explains the programme and
+selection process. Community discussions can provide
+additional context about questions students frequently ask.
+
+Community opinions are presented separately from official
+facts.
+
+</p>
+
+
+<h3>
+Reddit Discussions
+</h3>
+
+
+<div class="community-grid">
+
+
+<div class="community-card">
+
+<span class="community-label reddit-label">
+Reddit
+</span>
+
+<h3>
+Academic Workload
+</h3>
+
+<p>
+
+Students and aspirants frequently discuss the intensity of
+the first-year curriculum, academic competition and the
+challenge of managing multiple commitments.
+
+</p>
+
+<a
+    class="source-link"
+    href="https://www.reddit.com/r/CATpreparation/comments/1undxf8/what_is_curriculum_at_iim_ahmedabad_for_first/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+View discussion →
+</a>
+
+</div>
+
+
+<div class="community-card">
+
+<span class="community-label reddit-label">
+Reddit
+</span>
+
+<h3>
+Freshers & Work Experience
+</h3>
+
+<p>
+
+A recurring community question is whether candidates need
+work experience before attempting IIMA. The broader discussion
+suggests that work experience can strengthen a profile but is
+not an absolute prerequisite.
+
+</p>
+
+<a
+    class="source-link"
+    href="https://www.reddit.com/r/MBAIndia/comments/1ueh4p9/can_a_fresher_really_convert_iim_ahmedabad_call/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+View discussion →
+</a>
+
+</div>
+
+
+<div class="community-card">
+
+<span class="community-label reddit-label">
+Reddit
+</span>
+
+<h3>
+Academic Profile
+</h3>
+
+<p>
+
+A recurring concern among aspirants is whether a very high
+CAT percentile can compensate for weaker school or college
+academics.
+
+</p>
+
+<a
+    class="source-link"
+    href="https://www.reddit.com/r/CATPrep/comments/1u15lk7/can_i_get_into_iim_ahmedabad_with_this_profile/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+View discussion →
+</a>
+
+</div>
+
+
+<div class="community-card">
+
+<span class="community-label reddit-label">
+Reddit
+</span>
+
+<h3>
+Finance & Internship Opportunities
+</h3>
+
+<p>
+
+Finance-oriented aspirants frequently discuss internship,
+placement and finance-role opportunities at IIMA.
+
+</p>
+
+<a
+    class="source-link"
+    href="https://www.reddit.com/r/IIMAhmedabad/comments/1scyteo/advice_on_placementsinternships/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+View discussion →
+</a>
+
+</div>
+
+
+</div>
+
+
+<h3>
+Quora & Alumni Perspectives
+</h3>
+
+
+<div class="community-grid">
+
+
+<div class="community-card">
+
+<span class="community-label quora-label">
+Community Theme
+</span>
+
+<h3>
+Why Pursue an MBA?
+</h3>
+
+<p>
+
+A recurring discussion theme is whether the MBA should be
+pursued for a specific career objective rather than simply
+for brand value.
+
+</p>
+
+</div>
+
+
+<div class="community-card">
+
+<span class="community-label quora-label">
+Community Theme
+</span>
+
+<h3>
+Is IIMA Worth the Opportunity Cost?
+</h3>
+
+<p>
+
+A common question is whether the career opportunities and
+network justify the cost, time and academic intensity of
+the programme.
+
+</p>
+
+</div>
+
+
+<div class="community-card">
+
+<span class="community-label quora-label">
+Community Theme
+</span>
+
+<h3>
+Does Work Experience Matter?
+</h3>
+
+<p>
+
+Community discussions frequently compare the experiences
+of freshers and candidates who enter the MBA after working
+for a few years.
+
+</p>
+
+</div>
+
+
+<div class="community-card">
+
+<span class="community-label quora-label">
+Community Theme
+</span>
+
+<h3>
+What Is Student Life Like?
+</h3>
+
+<p>
+
+Discussions commonly focus on academic pressure, peer
+competition, clubs, internships, placements and balancing
+different commitments.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<h3>
+Community Sentiment
+</h3>
+
+
+<div class="sentiment-grid">
+
+
+<div class="sentiment">
+
+<span>
+Career Opportunities
+</span>
+
+<span class="sentiment-positive">
+Very Strong
+</span>
+
+</div>
+
+
+<div class="sentiment">
+
+<span>
+Peer Quality
+</span>
+
+<span class="sentiment-positive">
+Strong
+</span>
+
+</div>
+
+
+<div class="sentiment">
+
+<span>
+Academic Rigor
+</span>
+
+<span class="sentiment-challenge">
+Very High
+</span>
+
+</div>
+
+
+<div class="sentiment">
+
+<span>
+Competition
+</span>
+
+<span class="sentiment-challenge">
+Very High
+</span>
+
+</div>
+
+
+<div class="sentiment">
+
+<span>
+Work-Life Balance
+</span>
+
+<span class="sentiment-variable">
+Variable
+</span>
+
+</div>
+
+
+<div class="sentiment">
+
+<span>
+Brand / Alumni Value
+</span>
+
+<span class="sentiment-positive">
+Very Strong
+</span>
+
+</div>
+
+
+</div>
+
+
+<h3>
+Realistic Student Perspective
+</h3>
+
+
+<div class="verdict">
+
+<h3>
+What the official data indicates
+</h3>
+
+<p>
+
+IIMA has a highly selective admission process, a strong
+placement ecosystem and a diverse PGP cohort.
+
+</p>
+
+
+<h3>
+What community discussions add
+</h3>
+
+<p>
+
+Students and aspirants frequently discuss academic intensity,
+competition, profile quality, interview preparation and
+role-specific recruitment.
+
+</p>
+
+
+<h3>
+Our interpretation
+</h3>
+
+<p>
+
+IIMA is particularly suitable for candidates who want a
+highly competitive MBA environment and have a clear reason
+for pursuing management education.
+
+</p>
+
+<p>
+
+It may be less suitable for someone choosing the programme
+only for its brand without considering academic intensity,
+opportunity cost and career objectives.
+
+</p>
+
+</div>
+
+
+<div class="notice">
+
+<strong>
+Community disclaimer
+</strong>
+
+<p>
+
+Reddit, Quora and other community discussions represent
+individual experiences and opinions. They are not official
+IIMA information and should not be treated as statistically
+representative of the entire student body.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     7. WHO SHOULD APPLY
+===================================================== -->
+
+<section
+    id="profile"
+    class="main-section"
+>
+
+<h2>
+Who Should Apply?
+</h2>
+
+
+<div class="two-column">
+
+
+<div class="pro-box">
+
+<h3>
+Strong Fit
+</h3>
+
+<ul>
+
+<li>
+Strong academic record
+</li>
+
+<li>
+Excellent CAT preparation
+</li>
+
+<li>
+Clear career objective
+</li>
+
+<li>
+Good communication and interview ability
+</li>
+
+<li>
+Comfort with analytical and case-based learning
+</li>
+
+<li>
+Interest in consulting, finance, strategy, technology,
+product or general management
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="warning-box">
+
+<h3>
+Think Carefully If
+</h3>
+
+<ul>
+
+<li>
+You are applying only because of the brand
+</li>
+
+<li>
+You expect a relaxed academic environment
+</li>
+
+<li>
+You have no clear reason for pursuing an MBA
+</li>
+
+<li>
+The opportunity cost of leaving your current career is high
+</li>
+
+<li>
+A specialised qualification would better match your career
+goal
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+
+<h3>
+Freshers
+</h3>
+
+<p>
+
+Freshers can apply. IIMA's PGP includes both fresh graduates
+and candidates with prior work experience.
+
+</p>
+
+
+<h3>
+Engineers
+</h3>
+
+<p>
+
+Engineering candidates form the largest academic-background
+group in the latest PGP cohort, but engineering is not the
+only pathway into IIMA.
+
+</p>
+
+
+<h3>
+Non-Engineers
+</h3>
+
+<p>
+
+Non-engineering students form a substantial share of the
+latest batch, making IIMA relevant to candidates from
+commerce, arts, science and other academic backgrounds.
+
+</p>
+
+
+<h3>
+Our Assessment
+</h3>
+
+
+<div class="verdict">
+
+<p>
+
+<strong>
+Best suited for:
+</strong>
+
+Aspirants with strong academics, excellent CAT preparation,
+a credible career objective and the ability to perform well
+in interviews.
+
+</p>
+
+<p>
+
+<strong>
+Not necessarily ideal for:
+</strong>
+
+Candidates primarily motivated by brand value who have not
+considered the programme's academic intensity, opportunity
+cost or career objective.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     8. FAQs
+===================================================== -->
+
+<section
+    id="faq"
+    class="main-section"
+>
+
+<h2>
+Frequently Asked Questions
+</h2>
+
+
+<div class="faq-item">
+
+<h3>
+Is work experience mandatory for IIM Ahmedabad?
+</h3>
+
+<p>
+
+No. IIMA's PGP includes both fresh graduates and candidates
+with work experience.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+What was the CAT cutoff for IIM Ahmedabad MBA 2026–28?
+</h3>
+
+<p>
+
+For CAT 2025, the published minimum overall percentile for
+General/EWS candidates was 95, with sectional minimums of
+85 in VARC, DILR and QA. These are screening thresholds and
+do not guarantee an interview call.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Can a non-engineer get into IIM Ahmedabad?
+</h3>
+
+<p>
+
+Yes. Non-engineering candidates form a substantial part of
+the latest PGP cohort.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Can a fresher get into IIM Ahmedabad?
+</h3>
+
+<p>
+
+Yes. Fresh graduates are eligible and are represented in
+the PGP cohort.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Does IIMA consider Class 10 and Class 12 marks?
+</h3>
+
+<p>
+
+Yes. Academic performance forms part of the application
+rating and selection methodology.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Does CAT alone decide admission?
+</h3>
+
+<p>
+
+No. CAT is one component of the selection process. The final
+selection methodology also considers PI, AWT and Application
+Rating.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+What is the latest published IIMA MBA fee?
+</h3>
+
+<p>
+
+The latest publicly published PGP programme fee is ₹27.50
+lakh for the 2025–27 batch. A separate public fee figure
+for 2026–28 should not be assumed unless officially published
+by IIMA.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+What was the latest audited median salary?
+</h3>
+
+<p>
+
+The 2025 audited placement report lists a median salary of
+₹34.59 LPA.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Is IIM Ahmedabad good for consulting?
+</h3>
+
+<p>
+
+Consulting is a major career pathway within IIMA's placement
+ecosystem.
+
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Is IIM Ahmedabad academically difficult?
+</h3>
+
+<p>
+
+The programme is rigorous and community discussions frequently
+describe the academic environment as demanding. Individual
+experiences vary.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     9. REFERENCES
+===================================================== -->
+
+<section
+    id="references"
+    class="main-section"
+>
+
+<h2>
+References & Sources
+</h2>
+
+
+<p>
+
+The page prioritises official institute information for
+admission, selection, fees, rankings, batch profile and
+placement information. Community discussions are used only
+to provide additional student-oriented context.
+
+</p>
+
+
+<h3>
+Official Sources
+</h3>
+
+
+<div class="official-links">
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+IIM Ahmedabad — Official Website →
+</a>
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/academics/mba/admissions/indians"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+IIMA PGP Admission 2026–28 →
+</a>
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/announcementsadmission-status-pgp-2026-28-batch"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+PGP 2026–28 Admission Status →
+</a>
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/the-institute/rankings"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+IIMA Rankings →
+</a>
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/inmedia/458-highly-meritorious-students-join-iimas-63-rd-pgp-and-27-th-pgp-fabm-batches"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+PGP 2026–28 Batch Profile →
+</a>
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/inmediapgp-final-placements-2025-26"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+PGP Final Placements 2025–26 →
+</a>
+
+
+<a
+    class="official-link"
+    href="https://www.iima.ac.in/inmediaiprs-report-2025-iima-mba-pgp-reaffirms-continued-trust-recruiters-institutes-talent-pool"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+Audited Placement Report 2025 →
+</a>
+
+</div>
+<!-- =====================================================
+     10. OFFICIAL LINKS
+===================================================== -->
+
 
 </main>
 
+</div>
 
-<!-- =========================
+</div>
+
+
+
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
 <div class="footer-container">
 
 <h3>
-    MBA Portal
+MBA Portal
 </h3>
 
 <p>
-    MBA admissions, colleges, entrance exams,
-    fees, cutoffs and placements.
+
+MBA colleges, entrance exams, admissions, fees, cutoffs,
+placements and student-focused college information.
+
 </p>
 
 </div>
 
 </footer>
+
+
+
+<!-- =====================================================
+     SIDEBAR SCROLL SPY
+===================================================== -->
+
+<script>
+
+const sidebarLinks =
+    document.querySelectorAll(
+        ".sidebar a"
+    );
+
+const sections =
+    document.querySelectorAll(
+        ".main-section"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(
+                function(entry) {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        sidebarLinks.forEach(
+                            function(link) {
+
+                                link.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        const activeLink =
+                            document.querySelector(
+                                '.sidebar a[href="#' +
+                                entry.target.id +
+                                '"]'
+                            );
+
+
+                        if (activeLink) {
+
+                            activeLink.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            rootMargin:
+                "-15% 0px -70% 0px",
+
+            threshold: 0
+        }
+
+    );
+
+
+sections.forEach(
+    function(section) {
+
+        observer.observe(section);
+
+    }
+);
+
+</script>
 
 
 </body>
