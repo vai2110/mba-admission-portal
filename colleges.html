@@ -56,10 +56,10 @@ header {
 }
 
 .navbar {
-    max-width: 1200px;
+    width: min(1160px, calc(100% - 32px));
     margin: auto;
-    min-height: 70px;
-    padding: 0 24px;
+    min-height: 64px;
+    padding: 0;
 
     display: flex;
     align-items: center;
@@ -67,7 +67,7 @@ header {
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 800;
     color: #172554;
 }
@@ -81,7 +81,7 @@ header {
     align-items: center;
     gap: 22px;
 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -93,8 +93,8 @@ header {
     background: #2563eb;
     color: #ffffff !important;
 
-    padding: 10px 17px;
-    border-radius: 8px;
+    padding: 9px 14px;
+    border-radius: 6px;
 }
 
 
@@ -111,24 +111,24 @@ header {
 
     color: #ffffff;
 
-    padding: 50px 24px 70px;
+    padding: 42px 0 48px;
 }
 
 .hero-inner {
-    max-width: 1200px;
+    width: min(1160px, calc(100% - 32px));
     margin: auto;
 }
 
 .breadcrumb {
-    font-size: 14px;
+    font-size: 11px;
     color: #dbeafe;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .page-hero h1 {
-    font-size: 44px;
+    font-size: 36px;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .page-hero h1 span {
@@ -136,8 +136,8 @@ header {
 }
 
 .hero-text {
-    max-width: 780px;
-    font-size: 17px;
+    max-width: 700px;
+    font-size: 12px;
     color: #edf4ff;
 }
 
@@ -147,18 +147,18 @@ header {
 ========================= */
 
 .search-wrapper {
-    max-width: 1080px;
-    margin: -38px auto 35px;
-    padding: 0 24px;
+    width: min(1100px, calc(100% - 32px));
+    margin: -24px auto 28px;
+    padding: 0;
     position: relative;
 }
 
 .search-panel {
     background: #ffffff;
 
-    border-radius: 16px;
+    border-radius: 10px;
 
-    padding: 24px;
+    padding: 18px;
 
     box-shadow:
         0 12px 35px rgba(
@@ -177,14 +177,14 @@ header {
 .search-input {
     flex: 1;
 
-    height: 52px;
+    height: 46px;
 
     border: 1px solid #cbd5e1;
     border-radius: 9px;
 
     padding: 0 17px;
 
-    font-size: 15px;
+    font-size: 13px;
 
     outline: none;
 }
@@ -202,7 +202,7 @@ header {
 }
 
 .search-button {
-    height: 52px;
+    height: 46px;
 
     border: none;
 
@@ -210,11 +210,11 @@ header {
 
     color: #ffffff;
 
-    padding: 0 25px;
+    padding: 0 20px;
 
     border-radius: 9px;
 
-    font-size: 15px;
+    font-size: 13px;
 
     font-weight: 700;
 
@@ -259,7 +259,7 @@ header {
 
     color: #243b53;
 
-    font-size: 14px;
+    font-size: 12px;
 
     cursor: pointer;
 }
@@ -283,7 +283,7 @@ header {
 
     color: #334e68;
 
-    font-size: 14px;
+    font-size: 12px;
 
     font-weight: 600;
 
@@ -318,7 +318,7 @@ header {
 }
 
 .section-header h2 {
-    font-size: 27px;
+    font-size: 24px;
 
     color: #102a43;
 }
@@ -326,7 +326,7 @@ header {
 .college-count {
     color: #64748b;
 
-    font-size: 14px;
+    font-size: 12px;
 }
 
 
@@ -337,10 +337,8 @@ header {
 .college-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
 }
 
 
@@ -353,9 +351,9 @@ header {
 
     border: 1px solid #e1e7ef;
 
-    border-radius: 14px;
+    border-radius: 9px;
 
-    padding: 22px;
+    padding: 17px;
 
     transition:
         transform 0.2s ease,
@@ -393,7 +391,7 @@ header {
 }
 
 .college-name {
-    font-size: 19px;
+    font-size: 16px;
 
     font-weight: 700;
 
@@ -407,7 +405,7 @@ header {
 .location {
     color: #64748b;
 
-    font-size: 14px;
+    font-size: 12px;
 
     margin-bottom: 18px;
 }
@@ -480,7 +478,7 @@ header {
 
     border-radius: 8px;
 
-    font-size: 14px;
+    font-size: 12px;
 
     font-weight: 700;
 
@@ -509,7 +507,7 @@ header {
 
     border-radius: 8px;
 
-    font-size: 14px;
+    font-size: 12px;
 
     font-weight: 700;
 
@@ -619,7 +617,7 @@ footer {
 .footer-inner p {
     color: #cbd5e1;
 
-    font-size: 14px;
+    font-size: 12px;
 }
 
 
@@ -658,7 +656,7 @@ footer {
 
         gap: 15px;
 
-        padding: 15px;
+        padding: 12px;
     }
 
     .nav-links {
@@ -668,15 +666,15 @@ footer {
     }
 
     .page-hero {
-        padding: 40px 18px 65px;
+        padding: 34px 0 55px;
     }
 
     .page-hero h1 {
-        font-size: 34px;
+        font-size: 28px;
     }
 
     .search-wrapper {
-        padding: 0 15px;
+        padding: 0;
     }
 
     .search-row {
@@ -743,20 +741,20 @@ MBA Colleges
 Entrance Exams
 </a>
 
-<a href="index.html">
+<a href="index.html#admissions">
 Admissions
 </a>
 
-<a href="index.html">
+<a href="index.html#cutoffs">
 Cutoffs
 </a>
 
-<a href="index.html">
+<a href="index.html#placements">
 Placements
 </a>
 
 <a
-href="index.html"
+href="index.html#colleges"
 class="nav-button"
 >
 Compare Colleges
@@ -778,7 +776,7 @@ Compare Colleges
 <div class="hero-inner">
 
 <div class="breadcrumb">
-Home › MBA Colleges
+<a href="index.html">Home</a> › MBA Colleges
 </div>
 
 
