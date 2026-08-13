@@ -1700,18 +1700,26 @@ function renderColleges(list) {
                PROFILE LINK
             ========================= */
 
-            let profileLink = "#";
+          let profileLink = "#";
 
+if (slug) {
 
-            if (slug) {
+    const collegeKey =
+        name.trim().toLowerCase();
 
-                profileLink =
-                    "college.html?college=" +
-                    encodeURIComponent(
-                        slug
-                    );
+    if (collegeKey === "iim bangalore") {
 
-            }
+        profileLink =
+            "iim-bangalore.html";
+
+    } else {
+
+        profileLink =
+            "college.html?college=" +
+            encodeURIComponent(slug);
+
+    }
+}
 
 
             card.innerHTML = `
