@@ -14,114 +14,123 @@
    COLLEGE COMPARISON CTA
 ===================================================== */
 
-.college-compare-cta {
+/* =====================================================
+   MBA COLLEGE COMPARISON
+===================================================== */
+
+.college-comparison-box {
     width: 100%;
+    margin: 40px 0;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 30px;
 
-    margin: 42px 0;
+    padding: 28px 30px;
 
-    padding: 26px 30px;
+    background: #f4f8ff;
 
-    background: #eef5ff;
-
-    border: 1px solid #cfe0f7;
+    border: 1px solid #d6e3f5;
 
     border-radius: 12px;
-
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
 }
 
 
-/* CONTENT */
+/* LEFT CONTENT */
 
-.college-compare-content {
+.comparison-content {
+    flex: 1;
     min-width: 0;
 }
 
-.college-compare-label {
-    display: inline-block;
+.comparison-label {
+    display: block;
 
-    margin-bottom: 6px;
+    margin-bottom: 7px;
+
+    color: #2563eb;
 
     font-size: 10px;
 
     font-weight: 800;
 
-    text-transform: uppercase;
-
     letter-spacing: 0.5px;
 
-    color: #2563eb;
+    text-transform: uppercase;
 }
 
-.college-compare-content h2 {
-    margin: 0 0 6px;
+.comparison-content h2 {
+    margin: 0 0 7px;
+
+    color: #102a43;
 
     font-size: 23px;
 
     line-height: 1.3;
 
-    color: #102a43;
-
     font-weight: 800;
 }
 
-.college-compare-content p {
+.comparison-content p {
     margin: 0;
 
-    max-width: 680px;
+    max-width: 700px;
+
+    color: #475569;
 
     font-size: 13px;
 
     line-height: 1.6;
-
-    color: #475569;
 }
 
 
-/* COMPARISON POINTS */
+/* POINTS */
 
-.college-compare-points {
+.comparison-points {
     display: flex;
 
     flex-wrap: wrap;
 
-    gap: 8px 16px;
+    gap: 8px 18px;
 
-    margin-top: 13px;
+    margin-top: 14px;
 }
 
-.college-compare-points span {
+.comparison-points span {
+    color: #173f82;
+
     font-size: 11px;
 
     font-weight: 700;
+}
 
-    color: #173f82;
+.comparison-points span::before {
+    content: "✓ ";
+
+    color: #2563eb;
+
+    font-weight: 800;
 }
 
 
 /* BUTTON */
 
-.college-compare-btn {
-    flex:
-        0 0 auto;
+.comparison-action {
+    flex: 0 0 auto;
+}
 
+.comparison-button {
     display: inline-flex;
 
     align-items: center;
 
     justify-content: center;
 
-    min-width: 155px;
+    min-width: 165px;
 
-    padding: 11px 17px;
+    padding: 12px 18px;
 
     background: #2563eb;
 
@@ -135,17 +144,59 @@
 
     text-decoration: none;
 
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    white-space: nowrap;
 }
 
-.college-compare-btn:hover {
+.comparison-button:hover {
     background: #1d4ed8;
-
-    transform: translateY(-1px);
 }
 
+
+/* TABLET */
+
+@media (max-width: 800px) {
+
+    .college-comparison-box {
+        padding: 24px;
+        gap: 20px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .college-comparison-box {
+        display: block;
+
+        margin: 30px 0;
+
+        padding: 21px 18px;
+    }
+
+    .comparison-content h2 {
+        font-size: 20px;
+    }
+
+    .comparison-content p {
+        font-size: 13px;
+    }
+
+    .comparison-points {
+        gap: 8px 14px;
+    }
+
+    .comparison-action {
+        margin-top: 18px;
+    }
+
+    .comparison-button {
+        width: 100%;
+    }
+
+}
 
 /* TABLET */
 
@@ -1388,60 +1439,7 @@
 
     <!-- CTA -->
 
-    <section class="cta">
-
-        <div class="cta-box">
-
-            <div>
-
-                <h2>Confused about which MBA college to choose?</h2>
-
-                <p>
-                    Compare colleges based on fees, cutoffs, placements,
-                    location and entrance exams.
-                </p>
-
-            </div>
-
-           <section class="college-compare-cta">
-
-    <div class="college-compare-content">
-
-        <span class="college-compare-label">
-            MBA College Comparison
-        </span>
-
-        <h2>
-            Not sure which MBA college is right for you?
-        </h2>
-
-        <p>
-            Compare colleges based on fees, cutoffs, placements,
-            location and entrance exams before making your choice.
-        </p>
-
-        <div class="college-compare-points">
-
-            <span>✓ Fees</span>
-            <span>✓ Cutoffs</span>
-            <span>✓ Placements</span>
-            <span>✓ Location</span>
-            <span>✓ Entrance Exams</span>
-
-        </div>
-
-    </div>
-
-
-    <a
-        href="#"
-        class="college-compare-btn"
-    >
-        Compare Colleges →
-    </a>
-
-</section>
-
+  
 
     <!-- FOOTER -->
 
