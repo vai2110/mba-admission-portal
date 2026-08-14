@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes, shrink-to-fit=no, viewport-fit=cover" name="viewport"/>
+<head>
 
 <meta charset="UTF-8">
 
@@ -1825,8 +1825,6 @@ footer {
 
 @media (max-width: 950px) {
 
-   @media (max-width: 950px) {
-
     .ranking-grid {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
@@ -1839,8 +1837,6 @@ footer {
     .ranking-grid .ranking-card:nth-child(5) {
         grid-column: auto;
     }
-
-}
 
 }
 
@@ -1907,6 +1903,23 @@ footer {
 }
 </style>
 
+
+<style id="iima-architecture">
+.iima-back-link{max-width:1180px;margin:10px auto 0;padding:0 14px}
+.iima-back-link a{font-size:11px;font-weight:800;color:#2563eb;text-decoration:none}
+.programme-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.programme-nav-card{border:1px solid #dce4ef;border-radius:10px;padding:15px;background:#fff}
+.programme-nav-card h3{margin:0 0 6px;color:#173b63;font-size:14px}
+.programme-nav-card p{margin:0 0 10px;color:#526277;font-size:11px;line-height:1.55}
+.programme-nav-card .programme-meta{font-size:10px;color:#718096;margin-bottom:9px}
+.programme-nav-card a{font-size:11px;font-weight:800;color:#2563eb}
+.programme-context{padding:12px 14px;border-left:3px solid #2563eb;background:#f8fbff;border-radius:6px;font-size:11px;color:#526277;margin:12px 0}
+.related-programmes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.related-programme{border:1px solid #e2e8f0;border-radius:8px;padding:12px;background:#fff}
+.related-programme strong{display:block;color:#173b63;font-size:12px;margin-bottom:5px}
+.related-programme a{font-size:10.5px;font-weight:800}
+@media(max-width:700px){.programme-nav-grid,.related-programmes{grid-template-columns:1fr}}
+</style>
 </head>
 
 
@@ -1942,12 +1955,14 @@ MBA Colleges
 Entrance Exams
 </a>
 
-<a href="#">
+<a href="#admission">
 Admissions
 </a>
 
-<a href="#">
+<a href="#cutoffs">
 Cutoffs
+</a>
+
 <a href="#placements">
     Placements & Career Outcomes
 </a>
@@ -2096,16 +2111,6 @@ Ahmedabad, Gujarat
 
 </div>
 </div>
-
-
-<!-- =====================================================
-     MAIN LAYOUT
-===================================================== -->
-
-<div class="page-layout">
-
-</div>
-
 
 
 <!-- =====================================================
@@ -2497,7 +2502,7 @@ applied through CAT 2025.
 </p>
 
 
-<h3>
+<h3 id="cutoffs">
 CAT 2025 Minimum Screening Cutoff
 </h3>
 
@@ -2722,128 +2727,52 @@ and FAQs.
      3. OTHER POPULAR PROGRAMMES
 ===================================================== -->
 
-<section
-    id="other-programmes"
-    class="main-section"
->
+<section id="other-programmes" class="main-section">
+<h2>Popular Programmes at IIM Ahmedabad</h2>
+<p>Use the cards below to move from the college-level overview to the programme-specific guide. The main page continues to retain the broader IIM Ahmedabad information.</p>
 
-    <h2>Other Popular Programmes at IIM Ahmedabad</h2>
+<div class="programme-nav-grid">
 
-    <p>
-        Beyond the flagship MBA / PGP, IIM Ahmedabad offers
-        specialised programmes for different career stages,
-        academic interests and professional goals.
-    </p>
-
-    <div class="iima-programme-grid">
-
-        <!-- MBA-FABM -->
-        <div class="programme-card">
-
-            <span class="programme-label">
-                SPECIALISED MBA
-            </span>
-
-            <h3>MBA-FABM</h3>
-
-            <div class="programme-duration">
-                2 Years · Full Time
-            </div>
-
-            <p>
-                A specialised management programme focused on
-                food, agriculture, agribusiness and allied sectors.
-            </p>
-
-           <div class="programme-fit">
-    <span class="fit-label">WHO IS IT FOR?</span>
-    <span class="fit-text">
-        Students targeting food, agriculture & agribusiness careers.
-    </span>
+<div class="programme-nav-card">
+<span class="programme-meta">FLAGSHIP · 2 YEARS · FULL TIME</span>
+<h3>MBA / PGP</h3>
+<p>Detailed guide to CAT, eligibility, selection criteria, fees, admission process, batch profile and placements.</p>
+<a href="iim-ahmedabad-mba.html">View Detailed MBA / PGP Guide →</a>
 </div>
 
-            <a
-                class="programme-link"
-                href="iim-ahmedabad-mba-fabm.html"
-            >
-                Explore MBA-FABM →
-            </a>
-
-        </div>
-
-
-        <!-- MBA-PGPX -->
-        <div class="programme-card">
-
-            <span class="programme-label">
-                1-YEAR MBA
-            </span>
-
-            <h3>MBA-PGPX</h3>
-
-            <div class="programme-duration">
-                1 Year · Full Time
-            </div>
-
-            <p>
-                A one-year MBA programme designed for experienced
-                professionals seeking career progression,
-                transition or broader management responsibilities.
-            </p>
-
-           <div class="programme-fit">
-    <span class="fit-label">IDEAL FOR</span>
-    <span class="fit-text">
-        Experienced professionals seeking career growth or transition.
-    </span>
-</div>
-            <a
-                class="programme-link"
-                href="iim-ahmedabad-pgpx.html"
-            >
-                Explore MBA-PGPX →
-            </a>
-
-        </div>
-
-
-        <!-- BUSINESS ANALYTICS & AI -->
-        <div class="programme-card">
-
-            <span class="programme-label">
-                BLENDED MBA
-            </span>
-
-            <h3>Business Analytics &amp; AI</h3>
-
-            <div class="programme-duration">
-                2 Years · Blended
-            </div>
-
-            <p>
-                A management programme combining business
-                education with analytics and artificial
-                intelligence.
-            </p>
-
-           <div class="programme-fit">
-    <span class="fit-label">WHO IS IT FOR?</span>
-    <span class="fit-text">
-        Professionals combining management with analytics & AI.
-    </span>
+<div class="programme-nav-card">
+<span class="programme-meta">SPECIALISED MBA · 2 YEARS</span>
+<h3>MBA-FABM</h3>
+<p>Management programme focused on food, agriculture, agribusiness and allied sectors.</p>
+<a href="iim-ahmedabad-mba-fabm.html">View MBA-FABM Guide →</a>
 </div>
 
-            <a
-                class="programme-link"
-                href="iim-ahmedabad-business-analytics-ai.html"
-            >
-                Explore Business Analytics &amp; AI →
-            </a>
+<div class="programme-nav-card">
+<span class="programme-meta">1-YEAR MBA · FULL TIME</span>
+<h3>MBA-PGPX</h3>
+<p>One-year MBA for experienced professionals seeking career progression or transition.</p>
+<a href="iim-ahmedabad-pgpx.html">View MBA-PGPX Guide →</a>
+</div>
 
-        </div>
+<div class="programme-nav-card">
+<span class="programme-meta">BLENDED MBA · 2 YEARS</span>
+<h3>Business Analytics &amp; AI</h3>
+<p>Blended MBA combining analytics, AI and management for early-to-mid career professionals.</p>
+<a href="iim-ahmedabad-business-analytics-ai.html">View Business Analytics &amp; AI Guide →</a>
+</div>
 
-    </div>
+<div class="programme-nav-card">
+<span class="programme-meta">BLENDED PG PROGRAMME · 2 YEARS</span>
+<h3>BPGP</h3>
+<p>Blended postgraduate management programme designed for working professionals and entrepreneurs.</p>
+<a href="iim-ahmedabad-bpgp.html">View BPGP Guide →</a>
+</div>
 
+</div>
+
+<div class="programme-context">
+<strong>How to use this page:</strong> The main IIM Ahmedabad page answers “What does the institute offer?” Each programme page answers “What do I need to know before applying to this specific programme?”
+</div>
 </section>
 
 
