@@ -731,6 +731,45 @@ a {
   }
 
 }
+  /* =========================================
+   DESKTOP CONTENT VISIBILITY FIX
+   Do not affect mobile layout
+   ========================================= */
+
+@media (min-width: 801px) {
+
+  .mobile-onpage-nav {
+    display: none !important;
+  }
+
+  .page-layout {
+    display: grid !important;
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+    gap: 20px !important;
+    width: min(1180px, calc(100% - 28px)) !important;
+    margin: 18px auto 50px !important;
+  }
+
+  .page-layout main {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    visibility: visible !important;
+  }
+
+  .page-layout main .section-card {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .sidebar {
+    display: block !important;
+    position: sticky;
+    top: 12px;
+    align-self: start;
+  }
+
+}
 </style>
 </head>
 
