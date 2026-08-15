@@ -914,6 +914,283 @@ tr:nth-child(even) td {
     }
 
 }
+
+/* =========================================================
+   FINAL RESPONSIVE FIX — MOBILE "ON THIS PAGE"
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+}
+
+/* Hidden on desktop */
+.mobile-on-page {
+    display: none;
+}
+
+@media (max-width: 650px) {
+
+    /* Keep the page flush with the screen on mobile */
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Compact hero */
+    .hero {
+        padding: 22px 13px 18px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+        line-height: 1.16;
+        margin-bottom: 7px;
+    }
+
+    .hero-subtitle {
+        font-size: 12.5px;
+        line-height: 1.45;
+    }
+
+    .hero-meta {
+        gap: 6px;
+        margin-top: 11px;
+    }
+
+    .hero-pill {
+        font-size: 9px;
+        padding: 4px 8px;
+    }
+
+    /* -----------------------------------------
+       MOBILE ON THIS PAGE
+       ----------------------------------------- */
+
+    .mobile-on-page {
+        display: block;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        padding: 7px 8px;
+        background: #f4f7fb;
+    }
+
+    .mobile-on-page details {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #d9e2ec;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(15,23,42,.06);
+        overflow: hidden;
+    }
+
+    .mobile-on-page summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 40px;
+        padding: 9px 12px;
+        cursor: pointer;
+        list-style: none;
+        color: #173f82;
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+    .mobile-on-page summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-on-page summary::marker {
+        display: none;
+    }
+
+    .on-page-arrow {
+        color: #2563eb;
+        font-size: 13px;
+        transition: transform .2s ease;
+    }
+
+    .mobile-on-page details[open] .on-page-arrow {
+        transform: rotate(180deg);
+    }
+
+    .mobile-on-page-menu {
+        border-top: 1px solid #e5eaf0;
+        max-height: 58vh;
+        overflow-y: auto;
+    }
+
+    .mobile-on-page-menu a {
+        display: block;
+        padding: 10px 12px;
+        border-bottom: 1px solid #edf0f4;
+        background: #ffffff;
+        color: #475569;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 1.35;
+    }
+
+    .mobile-on-page-menu a:last-child {
+        border-bottom: 0;
+    }
+
+    .mobile-on-page-menu a:active {
+        background: #eff6ff;
+        color: #2563eb;
+    }
+
+    /* -----------------------------------------
+       MOBILE MAIN CONTENT
+       ----------------------------------------- */
+
+    .content-layout {
+        display: block;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content-layout main {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* IMPORTANT:
+       Do NOT show the desktop sidebar on mobile */
+    .sidebar {
+        display: none !important;
+    }
+
+    /* Full-width content cards */
+    .section {
+        width: 100%;
+        margin: 0 0 10px;
+        padding: 18px 14px;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+    }
+
+    .section h2 {
+        font-size: 20px;
+        line-height: 1.3;
+        margin-bottom: 13px;
+    }
+
+    .section h3 {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .section p {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    /* Two-column quick facts */
+    .fact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .fact {
+        min-width: 0;
+        padding: 11px;
+    }
+
+    .fact-label {
+        font-size: 9px;
+    }
+
+    .fact-value {
+        font-size: 11.5px;
+        line-height: 1.4;
+    }
+
+    /* Single-column content cards */
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .card p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    /* Horizontal scrolling tables */
+    .table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 620px;
+        font-size: 11px;
+    }
+
+    th,
+    td {
+        padding: 9px;
+    }
+
+    .notice,
+    .warning {
+        padding: 12px 13px;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .clean-list li {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .faq-question {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .faq-answer {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .footer {
+        width: 100%;
+        padding: 12px 13px 30px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero-subtitle {
+        font-size: 12px;
+    }
+
+    .fact-value {
+        font-size: 10.5px;
+    }
+
+    .section {
+        padding: 17px 13px;
+    }
+}
+
 </style>
 
 </head>
@@ -987,6 +1264,44 @@ tr:nth-child(even) td {
     </div>
 
 </section>
+
+
+
+<!-- =====================================================
+     MOBILE "ON THIS PAGE"
+     ===================================================== -->
+
+<div class="mobile-on-page">
+
+    <details>
+
+        <summary>
+            <span>On this page</span>
+            <span class="on-page-arrow">⌄</span>
+        </summary>
+
+        <nav class="mobile-on-page-menu">
+
+            <a href="#overview">Programme Overview</a>
+            <a href="#eligibility">Eligibility</a>
+            <a href="#admission">Admission Process</a>
+            <a href="#tests">CAT / GMAT / GRE / IAT</a>
+            <a href="#status">2026–28 Admission Status</a>
+            <a href="#fees">Fees</a>
+            <a href="#curriculum">Curriculum</a>
+            <a href="#learning">Learning Format</a>
+            <a href="#batch">Batch Profile</a>
+            <a href="#career">Career Scope</a>
+            <a href="#who">Who Should Apply?</a>
+            <a href="#think-twice">Who Should Think Twice?</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#official">Official Sources</a>
+
+        </nav>
+
+    </details>
+
+</div>
 
 
 <!-- =====================================================
@@ -2934,6 +3249,16 @@ tr:nth-child(even) td {
 
 </footer>
 
+
+
+<script>
+document.querySelectorAll('.mobile-on-page-menu a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        var details = document.querySelector('.mobile-on-page details');
+        if (details) details.removeAttribute('open');
+    });
+});
+</script>
 
 </body>
 </html>
