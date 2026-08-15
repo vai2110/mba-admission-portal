@@ -1901,6 +1901,401 @@ footer {
     }
 
 }
+    /* =========================================================
+   MASTER MOBILE ARCHITECTURE
+   Applies the same mobile structure across MBA Portal pages
+   ========================================================= */
+
+.mobile-on-page {
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE — MASTER LAYOUT
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+    /* -----------------------------------------
+       FULL-WIDTH MOBILE CANVAS
+       ----------------------------------------- */
+
+    .page-container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    /* -----------------------------------------
+       HERO
+       ----------------------------------------- */
+
+    .hero-container {
+        width: 100%;
+        max-width: none;
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    /*
+       Desktop campus image remains unchanged.
+       Mobile hero stays compact and consistent
+       with the dedicated programme-page design.
+    */
+
+    .hero-image-wrap {
+        display: none;
+    }
+
+
+    /* -----------------------------------------
+       QUICK FACTS
+       ----------------------------------------- */
+
+    .quick-facts {
+        width: 100%;
+        padding: 10px 10px 12px;
+        gap: 8px;
+    }
+
+    .quick-fact {
+        min-width: 0;
+    }
+
+
+    /* -----------------------------------------
+       ON THIS PAGE
+       ----------------------------------------- */
+
+    .mobile-on-page {
+        display: block;
+
+        position: sticky;
+
+        top: 54px;
+
+        z-index: 900;
+
+        width: 100%;
+
+        margin: 0;
+
+        padding:
+            7px 10px 8px;
+
+        background: #f5f7fb;
+    }
+
+
+    .mobile-on-page details {
+
+        width: 100%;
+
+        background: #ffffff;
+
+        border:
+            1px solid #dfe5ed;
+
+        border-radius: 8px;
+
+        box-shadow:
+            0 3px 10px
+            rgba(15,23,42,0.06);
+
+        overflow: hidden;
+    }
+
+
+    .mobile-on-page summary {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        min-height: 42px;
+
+        padding:
+            10px 13px;
+
+        cursor: pointer;
+
+        list-style: none;
+
+        color: #173f82;
+
+        font-size: 12px;
+
+        font-weight: 800;
+    }
+
+
+    .mobile-on-page summary::-webkit-details-marker {
+        display: none;
+    }
+
+
+    .mobile-on-page summary::marker {
+        display: none;
+    }
+
+
+    .on-page-arrow {
+
+        font-size: 14px;
+
+        line-height: 1;
+
+        color: #2563eb;
+
+        transition:
+            transform 0.2s ease;
+    }
+
+
+    .mobile-on-page
+    details[open]
+    .on-page-arrow {
+
+        transform:
+            rotate(180deg);
+    }
+
+
+    .mobile-on-page-menu {
+
+        border-top:
+            1px solid #e5eaf0;
+
+        max-height: 62vh;
+
+        overflow-y: auto;
+    }
+
+
+    .mobile-on-page-menu a {
+
+        display: block;
+
+        padding:
+            10px 13px;
+
+        border-bottom:
+            1px solid #edf0f4;
+
+        color: #475569;
+
+        font-size: 11px;
+
+        font-weight: 600;
+
+        line-height: 1.35;
+
+        background: #ffffff;
+    }
+
+
+    .mobile-on-page-menu a:last-child {
+        border-bottom: 0;
+    }
+
+
+    .mobile-on-page-menu a:active {
+
+        background: #eff6ff;
+
+        color: #2563eb;
+    }
+
+
+    /* -----------------------------------------
+       MAIN LAYOUT
+       ----------------------------------------- */
+
+    .page-layout {
+
+        display: block;
+
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding:
+            0 0 30px;
+    }
+
+
+    /* Desktop sidebar disappears completely
+       on mobile */
+
+    .sidebar {
+        display: none;
+    }
+
+
+    .content {
+
+        display: block;
+
+        width: 100%;
+
+        max-width: none;
+
+        min-width: 0;
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+
+    /* -----------------------------------------
+       FULL-WIDTH CONTENT SECTIONS
+       ----------------------------------------- */
+
+    .main-section,
+    .ranking-section {
+
+        width: 100%;
+
+        max-width: none;
+
+        margin:
+            0 0 10px;
+
+        border-radius: 0;
+
+        border-left: 0;
+
+        border-right: 0;
+
+        box-shadow: none;
+    }
+
+
+    .main-section {
+
+        padding:
+            19px 15px;
+    }
+
+
+    .ranking-section {
+
+        padding:
+            18px 15px;
+    }
+
+
+    /* -----------------------------------------
+       INTERNAL GRIDS
+       ----------------------------------------- */
+
+    .highlight-grid,
+    .community-grid,
+    .two-column,
+    .official-links,
+    .sentiment-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .iima-programme-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    /* -----------------------------------------
+       PROGRAMME CARDS
+       ----------------------------------------- */
+
+    .programme-card {
+
+        width: 100%;
+
+        padding: 15px;
+    }
+
+
+    /* -----------------------------------------
+       TABLES
+       ----------------------------------------- */
+
+    .table-wrapper {
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .hero-container {
+
+        width: 100%;
+
+        padding-left: 11px;
+
+        padding-right: 11px;
+    }
+
+
+    .hero {
+
+        padding:
+            18px 0 18px;
+    }
+
+
+    .quick-facts {
+
+        padding-left: 9px;
+
+        padding-right: 9px;
+    }
+
+
+    .mobile-on-page {
+
+        padding-left: 9px;
+
+        padding-right: 9px;
+    }
+
+
+    .main-section {
+
+        padding:
+            17px 13px;
+    }
+
+
+    .ranking-section {
+
+        padding:
+            17px 13px;
+    }
+
+}
 </style>
 
 
@@ -2044,7 +2439,68 @@ Cutoffs
 
 </section>
 
+<!-- =====================================================
+     MOBILE ON-THIS-PAGE NAVIGATION
+===================================================== -->
 
+<div class="mobile-on-page">
+
+    <details>
+
+        <summary>
+            <span>On this page</span>
+            <span class="on-page-arrow">⌄</span>
+        </summary>
+
+        <div class="mobile-on-page-menu">
+
+            <a href="#overview">College Overview</a>
+
+            <a href="#rankings">
+                IIM Ahmedabad Rankings
+            </a>
+
+            <a href="#admission">
+                MBA Admission 2026–28
+            </a>
+
+            <a href="#other-programmes">
+                Other Popular Programmes
+            </a>
+
+            <a href="#fees">
+                Fees & ROI
+            </a>
+
+            <a href="#placements">
+                Placements & Career Outcomes
+            </a>
+
+            <a href="#batch">
+                Batch Profile & Student Life
+            </a>
+
+            <a href="#community">
+                Student & Community Insights
+            </a>
+
+            <a href="#profile">
+                Who Should Apply?
+            </a>
+
+            <a href="#faq">
+                FAQs
+            </a>
+
+            <a href="#references">
+                References & Sources
+            </a>
+
+        </div>
+
+    </details>
+
+</div>
 
 <!-- =====================================================
      PAGE CONTAINER
@@ -4380,10 +4836,15 @@ placements and student-focused college information.
 
 <script>
 
+/* =====================================================
+   DESKTOP SIDEBAR SCROLL SPY
+===================================================== */
+
 const sidebarLinks =
     document.querySelectorAll(
         ".sidebar a"
     );
+
 
 const sections =
     document.querySelectorAll(
@@ -4451,6 +4912,48 @@ sections.forEach(
     function(section) {
 
         observer.observe(section);
+
+    }
+);
+
+
+/* =====================================================
+   MOBILE ON-THIS-PAGE NAVIGATION
+===================================================== */
+
+const mobilePageLinks =
+    document.querySelectorAll(
+        ".mobile-on-page-menu a"
+    );
+
+
+const mobilePageDetails =
+    document.querySelector(
+        ".mobile-on-page details"
+    );
+
+
+mobilePageLinks.forEach(
+    function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+                /*
+                   Close the dropdown immediately after
+                   the student selects a section.
+                */
+
+                if (mobilePageDetails) {
+
+                    mobilePageDetails
+                        .removeAttribute("open");
+
+                }
+
+            }
+        );
 
     }
 );
