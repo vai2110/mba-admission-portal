@@ -822,6 +822,32 @@ font-weight:800;
         box-sizing:border-box;
     }
 }
+   /* =========================================================
+   PROGRAMME COMPARISON TABLE — MOBILE
+   Keep the locked page architecture; scroll this component only.
+========================================================= */
+@media(max-width:720px){
+    .programme-fee-table{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+        overflow-y:hidden;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:thin;
+        display:block;
+    }
+
+    .programme-fee-table table{
+        width:max-content;
+        min-width:760px;
+        max-width:none;
+    }
+
+    .programme-fee-table th,
+    .programme-fee-table td{
+        white-space:normal;
+    }
+}
 
 </style></head><body data-verified="2026-08-19">
 <header><nav class="navbar"><a href="../index.html" class="logo">MBA<span>Portal</span></a><div class="nav-links"><a href="../index.html">Home</a><a href="../colleges.html">MBA Colleges</a><a href="#admission">Admissions</a><a href="#rankings">Rankings</a><a href="#placements">Placements & Career Outcomes</a></div></nav></header>
