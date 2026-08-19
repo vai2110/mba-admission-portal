@@ -1699,52 +1699,108 @@ function renderColleges(list) {
             /* =========================
                PROFILE LINK
             ========================= */
+
             let profileLink = "#";
 
-            /* =====================================================
-               DEPLOYED TIER-1 COLLEGE PAGES
-            ===================================================== */
-
+            /*
+               Dedicated college overview pages
+               Existing pages + newly created Top-10 pages.
+               All other colleges continue using the default
+               college.html?college= route.
+            */
             const dedicatedPages = {
-                "indian-institute-of-management-ahmedabad": "indian-institute-of-management-ahmedabad.html",
-                "indian-institute-of-management-bangalore": "indian-institute-of-management-bangalore.html",
-                "indian-institute-of-management-kozhikode": "indian-institute-of-management-kozhikode.html",
-                "indian-institute-of-technology-delhi": "indian-institute-of-technology-delhi.html",
-                "indian-institute-of-management-lucknow": "indian-institute-of-management-lucknow.html",
-                "indian-institute-of-management-mumbai": "indian-institute-of-management-mumbai.html",
-                "indian-institute-of-management-calcutta": "indian-institute-of-management-calcutta.html",
-                "indian-institute-of-management-indore": "indian-institute-of-management-indore.html",
-                "management-development-institute": "management-development-institute.html",
-                "xlri-xavier-school-of-management": "xlri-xavier-school-of-management.html",
-                "symbiosis-institute-of-business-management": "symbiosis-institute-of-business-management.html",
-                "indian-institute-of-technology-kharagpur": "indian-institute-of-technology-kharagpur.html",
-                "indian-institute-of-technology-madras": "indian-institute-of-technology-madras.html",
-                "indian-institute-of-technology-bombay": "indian-institute-of-technology-bombay.html",
-                "indian-institute-of-management-raipur": "indian-institute-of-management-raipur.html",
-                "indian-institute-of-management-tiruchirappalli": "indian-institute-of-management-tiruchirappalli.html",
-                "indian-institute-of-foreign-trade": "indian-institute-of-foreign-trade.html",
-                "indian-institute-of-management-ranchi": "indian-institute-of-management-ranchi.html",
-                "indian-institute-of-management-rohtak": "indian-institute-of-management-rohtak.html",
-                "s-p-jain-institute-of-management-and-research": "s-p-jain-institute-of-management-and-research.html",
-                "indian-institute-of-management-udaipur": "indian-institute-of-management-udaipur.html",
-                "indian-institute-of-technology-roorkee": "indian-institute-of-technology-roorkee.html",
-                "indian-institute-of-management-kashipur": "indian-institute-of-management-kashipur.html",
-                "svkm-s-narsee-monjee-institute-of-management-studies": "svkm-s-narsee-monjee-institute-of-management-studies.html",
-                "indian-institute-of-management": "indian-institute-of-management-nagpur.html"
+                "indian institute of management ahmedabad":
+                    "./iim-ahmedabad.html",
+
+                "iim ahmedabad":
+                    "./iim-ahmedabad.html",
+
+                "indian institute of management bangalore":
+                    "./iim-bangalore.html",
+
+                "iim bangalore":
+                    "./iim-bangalore.html",
+
+                "indian institute of management kozhikode":
+                    "./iim-kozhikode-mba-2026.html",
+
+                "iim kozhikode":
+                    "./iim-kozhikode-mba-2026.html",
+
+                "indian institute of technology delhi":
+                    "./iit-delhi-dms.html",
+
+                "iit delhi":
+                    "./iit-delhi-dms.html",
+
+                "indian institute of management lucknow":
+                    "./iim-lucknow.html",
+
+                "iim lucknow":
+                    "./iim-lucknow.html",
+
+                "indian institute of management mumbai":
+                    "./iim-mumbai.html",
+
+                "iim mumbai":
+                    "./iim-mumbai.html",
+
+                "indian institute of management calcutta":
+                    "./iim-calcutta.html",
+
+                "iim calcutta":
+                    "./iim-calcutta.html",
+
+                "indian institute of management indore":
+                    "./iim-indore.html",
+
+                "iim indore":
+                    "./iim-indore.html",
+
+                "management development institute":
+                    "./mdi-gurugram.html",
+
+                "mdi gurugram":
+                    "./mdi-gurugram.html",
+
+                "mdi gurgaon":
+                    "./mdi-gurugram.html",
+
+                "xlri - xavier school of management":
+                    "./xlri-jamshedpur.html",
+
+                "xlri – xavier school of management":
+                    "./xlri-jamshedpur.html",
+
+                "xlri jamshedpur":
+                    "./xlri-jamshedpur.html"
             };
 
-            if (dedicatedPages[slug]) {
-                profileLink = dedicatedPages[slug];
+            const normalizedCollegeName =
+                name
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, " ");
+
+            if (dedicatedPages[normalizedCollegeName]) {
+
+                profileLink =
+                    dedicatedPages[normalizedCollegeName];
+
             }
+
             else if (slug) {
+
                 profileLink =
                     "college.html?college=" +
                     encodeURIComponent(
                         slug
                     );
+
             }
 
-card.innerHTML = `
+
+            card.innerHTML = `
 
                 <div class="rank-badge">
 
