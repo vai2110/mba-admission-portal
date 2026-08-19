@@ -493,7 +493,6 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
     .ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:720px){
-    html{scroll-padding-top:118px}
     .programme-card-details{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
@@ -515,13 +514,12 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
     .hero-location{font-size:11px;line-height:1.5}
     .hero-image-wrap{display:none}
 
-    .page-container{width:100%;max-width:none;margin:0;padding:57px 0 0}
+    .page-container{width:100%;max-width:none;margin:0;padding:0}
     .quick-facts{width:100%;padding:10px 10px 12px;gap:8px}
     .quick-fact{padding:11px;min-height:62px}
     .quick-fact-label{font-size:9px}
     .quick-fact-value{font-size:12px}
 
-    /* MOBILE ON THIS PAGE — FIXED / ALWAYS VISIBLE */
     .mobile-on-page{
         display:none;
         width:auto;
@@ -562,26 +560,45 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
         box-shadow:0 8px 24px rgba(15,23,42,.18);
     }
     .mobile-on-page details{
-        width:100%;background:#fff;border:1px solid #dfe5ed;
-        border-radius:8px;box-shadow:0 3px 10px rgba(15,23,42,.06);
+        width:100%;
+        background:#fff;
+        border:1px solid #dfe5ed;
+        border-radius:8px;
+        box-shadow:0 3px 10px rgba(15,23,42,.06);
         overflow:hidden;
     }
     .mobile-on-page summary{
-        display:flex;align-items:center;justify-content:space-between;
-        min-height:42px;padding:10px 13px;cursor:pointer;
-        list-style:none;color:var(--blue);font-size:12px;font-weight:800;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        min-height:42px;
+        padding:10px 13px;
+        cursor:pointer;
+        list-style:none;
+        color:var(--blue);
+        font-size:12px;
+        font-weight:800;
     }
     .mobile-on-page summary::-webkit-details-marker{display:none}
     .on-page-arrow{font-size:14px;line-height:1;color:#2563eb}
-    .mobile-on-page-menu{border-top:1px solid #e5eaf0;max-height:62vh;overflow-y:auto}
+    .mobile-on-page-menu{
+        border-top:1px solid #e5eaf0;
+        max-height:62vh;
+        overflow-y:auto;
+    }
     .mobile-on-page-menu a{
-        display:block;padding:10px 13px;border-bottom:1px solid #edf0f4;
-        color:#475569;font-size:11px;font-weight:600;line-height:1.35;
+        display:block;
+        padding:10px 13px;
+        border-bottom:1px solid #edf0f4;
+        color:#475569;
+        font-size:11px;
+        font-weight:600;
+        line-height:1.35;
         background:#fff;
     }
     .mobile-on-page-menu a:last-child{border-bottom:0}
 
-    .page-layout{display:block;width:100%;max-width:none;margin:0;padding:0 0 30px}
+.page-layout{display:block;width:100%;max-width:none;margin:0;padding:0 0 30px}
     .sidebar{display:none}
     .content{display:block;width:100%;max-width:none;min-width:0;margin:0;padding:0}
 
@@ -680,134 +697,83 @@ font-size:11px;
 font-weight:800;
 }
 .placement-detail-link:hover{opacity:.9}
-</style>
-<!-- MOBILE WIDTH / HORIZONTAL OVERFLOW FIX — targeted only -->
-<style>
-@media (max-width: 720px) {
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  .page-container, .page-layout, .content,
-  .hero, .hero-container, .quick-facts,
-  .main-section, .ranking-section,
-  .student-decision, .reality-box, .voice-box {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-  img, svg, video, iframe {
-    max-width: 100%;
-  }
-  .programme-card-details {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .decision-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 480px) {
-  .programme-card-details, .decision-grid, .ranking-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-</head><body data-verified="2026-08-19">
+</style></head><body data-verified="2026-08-19">
 <header><nav class="navbar"><a href="../index.html" class="logo">MBA<span>Portal</span></a><div class="nav-links"><a href="../index.html">Home</a><a href="../colleges.html">MBA Colleges</a><a href="#admission">Admissions</a><a href="#rankings">Rankings</a><a href="#placements">Placements & Career Outcomes</a></div></nav></header>
 <section class="hero"><div class="hero-container"><div class="hero-main"><div class="hero-logo-wrap"><div class="logo-fallback">IIT<br>DELHI</div></div><div class="hero-text"><h1>IIT Delhi MBA 2026</h1><h2>Courses, Fees, Eligibility, Admission, Placements & Student Decision Guide</h2><div class="hero-location">New Delhi, Delhi • MBA • <a href="https://dms.iitd.ac.in/" target="_blank" class="official-website-link">Official Website ↗</a></div></div></div></div></section>
-<div class="mobile-on-page">
-   <details><summary><span>On this page</span><span class="on-page-arrow">⌄</span></summary>
-      <div class="mobile-on-page-menu"><a href="#overview">
-         College Overview</a><a href="#rankings">
-            NIRF Ranking</a><a href="#admission">
-               Admission 2026</a><a href="#programmes">
-                  Popular Programmes</a><a href="#fees">Fees & ROI</a>
-         <a href="#placements">Placements</a><a href="#batch">Batch & Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></details></div>
-
+<div class="mobile-on-page"><details><summary><span>On this page</span><span class="on-page-arrow">⌄</span></summary><div class="mobile-on-page-menu"><a href="#overview">College Overview</a><a href="#rankings">NIRF Ranking</a><a href="#admission">Admission 2026</a><a href="#programmes">Popular Programmes</a><a href="#fees">Fees & ROI</a><a href="#placements">Placements</a><a href="#batch">Batch & Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></details></div>
 <div class="page-container"><div class="quick-facts"><div class="quick-fact"><span class="quick-fact-label">NIRF Management 2025</span><span class="quick-fact-value">#4</span></div><div class="quick-fact"><span class="quick-fact-label">Flagship programme</span><span class="quick-fact-value">MBA</span></div><div class="quick-fact"><span class="quick-fact-label">Admission route</span><span class="quick-fact-value">CAT 2025</span></div><div class="quick-fact"><span class="quick-fact-label">Location</span><span class="quick-fact-value">New Delhi, Delhi</span></div></div>
 <div class="page-layout"><aside class="sidebar"><div class="sidebar-card"><div class="sidebar-title">IIT Delhi</div><a href="#overview" class="active">College Overview</a><a href="#rankings">NIRF Ranking</a><a href="#admission">Admission 2026</a><a href="#programmes">Popular Programmes</a><a href="#fees">Fees & ROI</a><a href="#placements">Placements</a><a href="#batch">Batch & Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></aside>
 <main class="content">
 
 <div class="student-decision">
 <h3>Student Decision Snapshot</h3>
-<p class="student-copy">DMS IIT Delhi is one of the strongest options in this group if your priority is a top public B-school brand with a relatively low published MBA tuition. The trade-off is that its placement scale and compensation are below the top IIMs, so the ₹12 lakh tuition is a major part of the value proposition.</p>
+<p class="student-copy">DMS IIT Delhi is a strong option if your priority is a top public B-school brand with relatively low MBA tuition. The trade-off is that its placement scale and compensation are below the top IIMs, so the ₹12 lakh tuition is a major part of the value proposition.</p>
 <div class="decision-grid">
-<div class="decision-tile"><small>Latest fee reference</small><strong>₹12L</strong><span>Use the official fee document linked below for the final payable amount.</span></div>
-<div class="decision-tile"><small>Admission benchmark</small><strong>CAT 2025</strong><span>Minimum/competitive reference; not a guaranteed call or convert.</span></div>
-<div class="decision-tile"><small>Placement reference</small><strong>₹22.52L</strong><span>Latest reported average/median or top-band figure, depending on what the institute publishes.</span></div>
+<div class="decision-tile"><small>Fee</small><strong>₹12L</strong><span>Check the fee schedule before making your admission budget.</span></div>
+<div class="decision-tile"><small>Admission benchmark</small><strong>CAT 2025</strong><span>Use this as an admission benchmark, not a guaranteed call or convert.</span></div>
+<div class="decision-tile"><small>Placement reference</small><strong>₹22.52L</strong><span>Compare this with the median salary and role-wise outcomes before deciding.</span></div>
 <div class="decision-tile"><small>Best reason to choose</small><strong>ROI-first</strong><span>Use programme fit and role outcomes—not rank alone.</span></div>
 </div>
 </div>
 <section id="overview" class="main-section"><h2>College Overview</h2><h3>About IIT Delhi</h3><p>DMS IIT Delhi places management education inside IIT Delhi's technology, engineering and innovation ecosystem. Its full-time MBA is particularly relevant where business decisions intersect with analytics, technology, operations and industrial systems.</p><h3>Why students shortlist it</h3><p>Strong fit for students who want a low-tuition top-ranked MBA with an IIT ecosystem and interests in analytics, consulting, operations, technology or general management.</p><div class="notice"><strong>Decision lens</strong><p>Use ranking as a starting point; make the final decision using programme fit, fees, career outcomes, admission probability and personal preference.</p></div></section>
 <section id="rankings" class="ranking-section"><div class="ranking-header"><div><h2>IIT Delhi Ranking</h2><p>India Rankings 2025: Management, Ministry of Education.</p></div><span class="ranking-note">NIRF 2025</span></div><div class="ranking-grid"><div class="ranking-card"><div class="ranking-agency">NIRF</div><div class="ranking-rank">#4</div><div class="ranking-title">Management</div><div class="ranking-year">2025</div><a class="ranking-source" href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html" target="_blank">View Source ↗</a></div></div></section>
 <section id="admission" class="main-section">
-<div class="reality-box"><strong>CAT cutoff: what the number really means</strong><p>DMS does not present a simple CAT percentile cutoff as the whole decision. For 2026–28, candidates qualifying through CAT 2025 were shortlisted for interview, and the institute published a separate shortlisting criterion. Treat the published eligibility/shortlisting rule as the official threshold, not as a guaranteed call score.</p></div>
-<h2>Admission 2026</h2><p>CAT 2025 + DMS shortlisting + PI. DMS IIT Delhi's 2026 admission page states that CAT 2025 applicants are shortlisted and invited for interview. It also states ₹12 lakh tuition for the entire full-time MBA for Indian citizens.</p><div class="table-wrapper"><table><tr><th>Item</th><th>Current information</th></tr><tr><td>Flagship</td><td>MBA</td></tr><tr><td>Entrance / route</td><td>CAT 2025 + DMS shortlisting + PI</td></tr><tr><td>Selection</td><td>Institute-specific shortlist and interview/selection process; use the latest official policy.</td></tr></table></div><div class="notice"><strong>Important</strong><p>Minimum qualifying thresholds are not the same as a realistic conversion score. Always use the latest official admission policy.</p></div></section>
-<section id="programmes" class="main-section"><div class="programme-fee-table"><table><tr><th>Programme</th><th>Latest fee reference</th><th>Duration</th><th>Admission route</th><th>Best suited for</th></tr><tr><td><strong>MBA</strong></td><td>₹12.00 lakh</td><td>2 years</td><td>CAT 2025</td><td>Broad MBA; technology/analytics/operations</td></tr><tr><td><strong>MBA (Telecom)</strong></td><td>₹12.00 lakh*</td><td>2 years</td><td>CAT 2025</td><td>Telecom, digital infrastructure, technology management</td></tr></table><p class="fee-source-note">*Where the latest official page exposes a fee for a different immediately preceding batch/year, it is explicitly marked as such rather than presented as the incoming-batch fee.</p></div><h2>Other Popular Programmes</h2><p>Each card answers what the programme is, what it costs, who it suits and how admission works.</p><div class="programme-nav-grid"><div class="programme-nav-card">
+<div class="reality-box"><strong>CAT cutoff: what the number really means</strong><p>DMS does not present a simple CAT percentile cutoff as the whole decision. For 2026–28, candidates qualifying through CAT 2025 were shortlisted for interview, and the institute published a separate shortlisting criterion. Treat this as the eligibility/shortlisting threshold, not as a guaranteed call score.</p></div>
+<h2>Admission 2026</h2><p>CAT 2025 + DMS shortlisting + PI. DMS IIT Delhi's 2026 admission page states that CAT 2025 applicants are shortlisted and invited for interview. It also states ₹12 lakh tuition for the entire full-time MBA for Indian citizens.</p><div class="table-wrapper"><table><tr><th>Item</th><th>Current information</th></tr><tr><td>Flagship</td><td>MBA</td></tr><tr><td>Entrance / route</td><td>CAT 2025 + DMS shortlisting + PI</td></tr><tr><td>Selection</td><td>Institute-specific shortlisting followed by the interview and selection process.</td></tr></table></div><div class="notice"><strong>Important</strong><p>A qualifying cutoff is only the first filter; your academic profile, CAT performance and interview performance also matter.</p></div></section>
+<section id="programmes" class="main-section"><div class="programme-fee-table"><table><tr><th>Programme</th><th>Fee</th><th>Duration</th><th>Admission route</th><th>Best suited for</th></tr><tr><td><strong>MBA</strong></td><td>₹12.00 lakh</td><td>2 years</td><td>CAT 2025</td><td>Broad MBA; technology/analytics/operations</td></tr><tr><td><strong>MBA (Telecom)</strong></td><td>₹12.00 lakh*</td><td>2 years</td><td>CAT 2025</td><td>Telecom, digital infrastructure, technology management</td></tr></table></div><h2>Other Popular Programmes</h2><p>Each card answers what the programme is, what it costs, who it suits and how admission works.</p><div class="programme-nav-grid"><div class="programme-nav-card">
 <span class="programme-meta">2 years · CAT</span><h3>MBA</h3><p>Full-time MBA covering core management disciplines with an IIT-linked technology and analytics environment.</p>
-<div class="programme-card-details"><div><strong>Fee</strong><span>₹12.00 lakh tuition (2025–26 official reference)</span></div><div><strong>Route</strong><span>CAT</span></div><div><strong>Best for</strong><span>Broad management</span></div></div>
+<div class="programme-card-details"><div><strong>Fee</strong><span>₹12.00 lakh tuition (2025–26 fee)</span></div><div><strong>Route</strong><span>CAT</span></div><div><strong>Best for</strong><span>Broad management</span></div></div>
 <div class="programme-fit"><strong>Who should apply?</strong><p>Full-time MBA covering core management disciplines with an IIT-linked technology and analytics environment.</p></div>
 <a href="#">Detailed programme guide →</a></div><div class="programme-nav-card">
 <span class="programme-meta">2 years · CAT</span><h3>MBA (Telecom)</h3><p>Specialised management route for candidates interested in telecom, digital infrastructure and technology businesses.</p>
-<div class="programme-card-details"><div><strong>Fee</strong><span>₹12.00 lakh tuition (2025–26 official reference)</span></div><div><strong>Route</strong><span>CAT</span></div><div><strong>Best for</strong><span>Technology + telecom</span></div></div>
+<div class="programme-card-details"><div><strong>Fee</strong><span>₹12.00 lakh tuition (2025–26 fee)</span></div><div><strong>Route</strong><span>CAT</span></div><div><strong>Best for</strong><span>Technology + telecom</span></div></div>
 <div class="programme-fit"><strong>Who should apply?</strong><p>Specialised management route for candidates interested in telecom, digital infrastructure and technology businesses.</p></div>
 <a href="#">Detailed programme guide →</a></div><div class="programme-nav-card">
-<span class="programme-meta">Varies · Work-ex based</span><h3>Executive options</h3><p>Executive-management options for professionals; use the current programme notification for eligibility and fee.</p>
-<div class="programme-card-details"><div><strong>Fee</strong><span>See latest official executive-programme fee notice</span></div><div><strong>Route</strong><span>Work-ex based</span></div><div><strong>Best for</strong><span>Working professionals</span></div></div>
-<div class="programme-fit"><strong>Who should apply?</strong><p>Executive-management options for professionals; use the current programme notification for eligibility and fee.</p></div>
+<span class="programme-meta">Varies · Work-ex based</span><h3>Executive options</h3><p>Executive-management options for professionals; check the programme's eligibility and fee before applying.</p>
+<div class="programme-card-details"><div><strong>Fee</strong><span>See the executive-programme fee schedule</span></div><div><strong>Route</strong><span>Work-ex based</span></div><div><strong>Best for</strong><span>Working professionals</span></div></div>
+<div class="programme-fit"><strong>Who should apply?</strong><p>Executive-management options for professionals; check the programme's eligibility and fee before applying.</p></div>
 <a href="#">Detailed programme guide →</a></div></div></section>
-<section id="fees" class="main-section"><div class="reality-box"><strong>What should you budget?</strong><p>₹12,00,000 tuition for the complete two-year full-time MBA, payable across four semesters. The 2025–27 published reference also listed ₹3,00,000 tuition, ₹22,400 other charges and ₹8,600 residence fee for the relevant fee period.</p></div><h2>Fees & ROI</h2><p>Official figures are shown where retrieved from current institute sources. Where a current official fee figure was not available, the page intentionally avoids inventing a number.</p><div class="table-wrapper"><table><tr><th>Programme / component</th><th>Amount</th><th>What it means</th></tr><tr><td><strong>MBA tuition</strong></td><td>₹12,00,000</td><td>Full-time MBA; payable in four semester instalments.</td></tr><tr><td><strong>2025–27 published reference</strong></td><td>₹3,00,000 tuition + ₹22,400 other charges + ₹8,600 residence fee</td><td>DMS published these amounts for the 2025–27 batch.</td></tr></table></div><div class="notice"><strong>ROI rule</strong><p>Compare total academic cost plus living/other expenses against median and mean placement outcomes. Do not use the highest package alone.</p></div></section>
-<section id="placements" class="main-section"><div class="reality-box"><strong>How should a student read these numbers?</strong><p>The latest publicly listed DMS placement-report page contains the 2023–25 report. Reported 2025 figures are around ₹22.52 lakh average, ₹22.50 lakh median and ₹43.5 lakh highest package, with about 98% placement. Use the official DMS report page as the source of record.</p></div><h2>Placements & Career Outcomes</h2><p>DMS IIT Delhi's 2026 admission page states that CAT 2025 applicants are shortlisted and invited for interview. It also states ₹12 lakh tuition for the entire full-time MBA for Indian citizens.</p><div class="highlight-grid"><div class="highlight"><strong>₹12L</strong><span>Full MBA tuition</span></div><div class="highlight"><strong>CAT</strong><span>Primary route</span></div><div class="highlight"><strong>IIT Delhi</strong><span>Technology ecosystem</span></div><div class="highlight"><strong>2 years</strong><span>Duration</span></div></div><a class="official-link" href="https://dms.iitd.ac.in/admission-mba/" target="_blank">DMS IIT Delhi Admission ↗</a><a class="placement-detail-link" href="../placements/iit-delhi-dms.html">View Detailed Placement →</a></section>
+<section id="fees" class="main-section"><div class="reality-box"><strong>What should you budget?</strong><p>₹12,00,000 tuition for the complete two-year full-time MBA, payable across four semesters. The 2025–27 fee also listed ₹3,00,000 tuition, ₹22,400 other charges and ₹8,600 residence fee for the relevant fee period.</p></div><h2>Fees & ROI</h2><p>Fees are shown with the applicable programme and batch information.</p><div class="table-wrapper"><table><tr><th>Programme / component</th><th>Amount</th><th>What it means</th></tr><tr><td><strong>MBA tuition</strong></td><td>₹12,00,000</td><td>Full-time MBA; payable in four semester instalments.</td></tr><tr><td><strong>2025–27 fee</strong></td><td>₹3,00,000 tuition + ₹22,400 other charges + ₹8,600 residence fee</td><td>DMS published these amounts for the 2025–27 batch.</td></tr></table></div><div class="notice"><strong>ROI rule</strong><p>Compare total academic cost plus living/other expenses against median and mean placement outcomes. Do not use the highest package alone.</p></div></section>
+<section id="placements" class="main-section"><div class="reality-box"><strong>How should a student read these numbers?</strong><p>The latest publicly listed DMS placement-report page contains the 2023–25 report. Reported 2025 figures are around ₹22.52 lakh average, ₹22.50 lakh median and ₹43.5 lakh highest package, with about 98% placement. Compare average salary, median salary and role mix when evaluating placements.</p></div><h2>Placements & Career Outcomes</h2><p>DMS IIT Delhi's 2026 admission page states that CAT 2025 applicants are shortlisted and invited for interview. It also states ₹12 lakh tuition for the entire full-time MBA for Indian citizens.</p><div class="highlight-grid"><div class="highlight"><strong>₹12L</strong><span>Full MBA tuition</span></div><div class="highlight"><strong>CAT</strong><span>Primary route</span></div><div class="highlight"><strong>IIT Delhi</strong><span>Technology ecosystem</span></div><div class="highlight"><strong>2 years</strong><span>Duration</span></div></div><a class="official-link" href="https://dms.iitd.ac.in/admission-mba/" target="_blank">DMS IIT Delhi Admission ↗</a><a class="placement-detail-link" href="../placements/iit-delhi-dms.html">View Detailed Placement →</a></section>
 <section id="batch" class="main-section"><h2>Batch Profile & Student Life</h2><p>Students should evaluate batch size, academic background, work-experience mix, campus environment and student-led activities using the latest annual and placement reports.</p><div class="two-column"><div class="pro-box"><h3>Evaluate these strengths</h3><ul><li>Peer-learning quality</li><li>Alumni and recruiter access</li><li>Campus and academic ecosystem</li></ul></div><div class="warning-box"><h3>Verify before deciding</h3><ul><li>Actual workload</li><li>Living and accommodation cost</li><li>Role distribution in placements</li></ul></div></div></section>
 <section id="profile" class="main-section"><div class="student-decision"><h3>Choose this college if...</h3><p class="student-copy">Best for candidates targeting consulting, IT/analytics, operations or general management who want the IIT ecosystem and want to keep tuition relatively low.</p><h3 style="margin-top:14px">Think twice if...</h3><p class="student-copy">Less compelling if your only objective is the highest possible MBA salary or a large IIM-style alumni ecosystem.</p></div><h2>Who Should Apply?</h2><div class="two-column"><div class="pro-box"><h3>Strong fit if</h3><ul><li>Strong fit for students who want a low-tuition top-ranked MBA with an IIT ecosystem and interests in analytics, consulting, operations, technology or general management.</li><li>You have a clear career reason for choosing the institute.</li><li>The programme structure matches your target role.</li></ul></div><div class="warning-box"><h3>Think twice if</h3><ul><li>You are choosing only because of the rank.</li><li>You are relying on the highest CTC for ROI.</li><li>The programme's specialisation does not match your goal.</li></ul></div></div></section>
-<div class="voice-box"><div class="voice-label">Student discussions — Reddit</div><p>A 2026 convert described DMS as a preferred choice and highlighted the relatively manageable culture and preparation environment; another current-student discussion covers academics, SIP, hostel and club expectations.</p><a href="https://www.reddit.com/r/CATpreparation/comments/1t916oc/joining_dms_iit_delhi_mba_2026_looking_for_insights_from_current_students_alumni/" target="_blank" rel="noopener">Read the discussion ↗</a><p style="font-size:9px;color:#6b7280;margin-top:10px">These are community discussions, not official institute claims. They are included to help students understand lived experience and questions that brochures may not answer.</p></div><section id="faq" class="main-section"><h2>Frequently Asked Questions</h2><p>These questions focus on the decisions students usually need to make before applying, shortlisting or accepting an offer.</p><div class="faq-intent"><div class="faq-item"><h3>What is the fee of DMS IIT Delhi MBA in 2026?</h3><p>The official DMS page lists ₹12 lakh tuition for the complete two-year full-time MBA for Indian citizens, payable in four semester instalments. The 2025–27 reference also shows ₹3 lakh tuition per year plus ₹22,400 other charges and ₹8,600 institute residence fee for the applicable batch. So the main attraction is the relatively low tuition, but students should still budget for living, mess and personal expenses.</p></div><div class="faq-item"><h3>What CAT percentile is required for DMS IIT Delhi MBA?</h3><p>DMS does not treat one CAT percentile as the entire admission decision. Candidates qualifying through CAT 2025 are shortlisted and then interviewed using the institute's published shortlisting criteria. A student should therefore distinguish the minimum eligibility/shortlisting rule from a 'safe percentile'; the latter is not officially guaranteed.</p></div><div class="faq-item"><h3>Is DMS IIT Delhi better than IIMs?</h3><p>It can be better for a student who values IIT Delhi's technology ecosystem and a much lower published tuition. It is not automatically better for someone prioritising the broader alumni network and placement scale of older IIMs. Compare the role mix, median/average salary, fees and your target function before deciding.</p></div><div class="faq-item"><h3>What is the average package at DMS IIT Delhi?</h3><p>Use the latest official DMS placement report rather than the highest package. The available 2023–25 report is the useful benchmark for the current page; the key student question is whether the role mix matches your target in consulting, analytics, IT, operations or general management.</p></div><div class="faq-item"><h3>Does DMS IIT Delhi have good ROI?</h3><p>On tuition alone, DMS has a strong ROI argument because ₹12 lakh covers the full two-year MBA tuition. ROI becomes less obvious if your target role is highly compensation-sensitive and you compare it with schools that have materially higher placement outcomes. Your decision should therefore use total cost, median salary and role quality together.</p></div><div class="faq-item"><h3>Is MBA Telecom at IIT Delhi worth choosing?</h3><p>It makes sense mainly for candidates interested in telecom, digital infrastructure and technology management. If your goal is a generic consulting or finance career, the flagship MBA is the more natural comparison. DMS lists MBA Telecom as a separate programme with the same ₹12 lakh tuition reference.</p></div><div class="faq-item"><h3>What kind of student should choose DMS IIT Delhi?</h3><p>Choose it if you want an IIT ecosystem, relatively low tuition and a technology/analytics/operations-friendly management environment. Think twice if your only goal is the strongest possible salary outcome or the largest traditional B-school alumni network.</p></div></div></section>
-<section id="references" class="main-section"><h2>References, Official Sources & Student Discussions</h2><p>Official institute and NIRF sources are prioritised for decision-critical information.</p><div class="official-links"><a class="official-link" href="https://dms.iitd.ac.in/" target="_blank">Official Website ↗</a><a class="official-link" href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html" target="_blank">NIRF Management 2025 ↗</a><a class="official-link" href="https://dms.iitd.ac.in/admission-mba/" target="_blank">DMS IIT Delhi Admission ↗</a></div></section>
+<div class="voice-box"><div class="voice-label">Student discussions — Reddit</div><p>A 2026 convert described DMS as a preferred choice and highlighted the relatively manageable culture and preparation environment; another current-student discussion covers academics, SIP, hostel and club expectations.</p><a href="https://www.reddit.com/r/CATpreparation/comments/1t916oc/joining_dms_iit_delhi_mba_2026_looking_for_insights_from_current_students_alumni/" target="_blank" rel="noopener">Read the discussion ↗</a><p style="font-size:9px;color:#6b7280;margin-top:10px"></p></div><section id="faq" class="main-section"><h2>Frequently Asked Questions</h2><p>These questions focus on the decisions students usually need to make before applying, shortlisting or accepting an offer.</p><div class="faq-intent"><div class="faq-item"><h3>What is the fee of DMS IIT Delhi MBA in 2026?</h3><p>The two-year full-time MBA tuition is ₹12 lakh for Indian citizens, payable in four semester instalments. The 2025–27 fee schedule also shows ₹3 lakh tuition per year plus ₹22,400 other charges and ₹8,600 institute residence fee for the applicable batch. So the main attraction is the relatively low tuition, but students should still budget for living, mess and personal expenses.</p></div><div class="faq-item"><h3>What CAT percentile is required for DMS IIT Delhi MBA?</h3><p>DMS does not treat one CAT percentile as the entire admission decision. Candidates qualifying through CAT 2025 are shortlisted and then interviewed using the institute's published shortlisting criteria. A student should therefore distinguish the minimum eligibility/shortlisting rule from a 'safe percentile'; the latter is not officially guaranteed.</p></div><div class="faq-item"><h3>Is DMS IIT Delhi better than IIMs?</h3><p>It can be better for a student who values IIT Delhi's technology ecosystem and a much lower published tuition. It is not automatically better for someone prioritising the broader alumni network and placement scale of older IIMs. Compare the role mix, median/average salary, fees and your target function before deciding.</p></div><div class="faq-item"><h3>What is the average package at DMS IIT Delhi?</h3><p>Compare average salary, median salary and role mix rather than focusing only on the highest package. The 2023–25 report provides a useful benchmark; the key student question is whether the role mix matches your target in consulting, analytics, IT, operations or general management.</p></div><div class="faq-item"><h3>Does DMS IIT Delhi have good ROI?</h3><p>On tuition alone, DMS has a strong ROI argument because ₹12 lakh covers the full two-year MBA tuition. ROI becomes less obvious if your target role is highly compensation-sensitive and you compare it with schools that have materially higher placement outcomes. Your decision should therefore use total cost, median salary and role quality together.</p></div><div class="faq-item"><h3>Is MBA Telecom at IIT Delhi worth choosing?</h3><p>It makes sense mainly for candidates interested in telecom, digital infrastructure and technology management. If your goal is a generic consulting or finance career, the flagship MBA is the more natural comparison. DMS lists MBA Telecom as a separate programme with the same ₹12 lakh tuition reference.</p></div><div class="faq-item"><h3>What kind of student should choose DMS IIT Delhi?</h3><p>Choose it if you want an IIT ecosystem, relatively low tuition and a technology/analytics/operations-friendly management environment. Think twice if your only goal is the strongest possible salary outcome or the largest traditional B-school alumni network.</p></div></div></section>
+<section id="references" class="main-section"><h2>References, Official Sources & Student Discussions</h2><p>See the linked institute and NIRF pages for admission, ranking and programme details.</p><div class="official-links"><a class="official-link" href="https://dms.iitd.ac.in/" target="_blank">Official Website ↗</a><a class="official-link" href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html" target="_blank">NIRF Management 2025 ↗</a><a class="official-link" href="https://dms.iitd.ac.in/admission-mba/" target="_blank">DMS IIT Delhi Admission ↗</a></div></section>
 </main></div></div>
 <script>
 (function(){
-    const onPage = document.querySelector('.mobile-on-page');
-    const trigger = document.querySelector('.student-decision');
-
+    const onPage=document.querySelector('.mobile-on-page');
+    const trigger=document.querySelector('.student-decision');
     if(!onPage || !trigger) return;
 
     function updateOnPage(){
-        const triggerTop = trigger.getBoundingClientRect().top;
-
-        // The floating navigation appears shortly before the
-        // Student Decision Snapshot reaches the top area.
-        const shouldFloat = triggerTop <= 170;
-
-        onPage.classList.toggle('is-floating', shouldFloat);
+        const triggerTop=trigger.getBoundingClientRect().top;
+        onPage.classList.toggle('is-floating', triggerTop <= 170);
     }
 
-    let ticking = false;
+    let ticking=false;
     function handleScroll(){
         if(!ticking){
             window.requestAnimationFrame(function(){
                 updateOnPage();
-                ticking = false;
+                ticking=false;
             });
-            ticking = true;
+            ticking=true;
         }
     }
 
-    window.addEventListener('scroll', handleScroll, {passive:true});
-    window.addEventListener('resize', updateOnPage);
+    window.addEventListener('scroll',handleScroll,{passive:true});
+    window.addEventListener('resize',updateOnPage);
     updateOnPage();
 })();
 </script>
-
-
 <script>
 (function(){
-    const nav = document.querySelector('.mobile-on-page');
+    const nav=document.querySelector('.mobile-on-page');
     if(!nav) return;
-
     nav.querySelectorAll('.mobile-on-page-menu a[href^="#"]').forEach(function(link){
-        link.addEventListener('click', function(){
-            const details = nav.querySelector('details');
+        link.addEventListener('click',function(){
+            const details=nav.querySelector('details');
             if(details) details.removeAttribute('open');
         });
     });
