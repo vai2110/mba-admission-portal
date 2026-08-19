@@ -735,6 +735,94 @@ font-size:11px;
 font-weight:800;
 }
 .placement-detail-link:hover{opacity:.9}
+
+/* =========================================================
+   MOBILE WIDTH SAFETY — COMPONENT LEVEL ONLY
+   Keeps the locked architecture intact.
+========================================================= */
+@media(max-width:720px){
+    .page-container,
+    .page-layout,
+    .content,
+    .main-section,
+    .ranking-section,
+    .quick-facts,
+    .hero-container,
+    .hero-main,
+    .hero-text{
+        box-sizing:border-box;
+        max-width:100%;
+    }
+
+    .main-section,
+    .ranking-section,
+    .student-decision,
+    .voice-box,
+    .reality-box,
+    .programme-card,
+    .programme-nav-card,
+    .quick-fact,
+    .ranking-card,
+    .decision-tile{
+        min-width:0;
+    }
+
+    .main-section p,
+    .main-section li,
+    .student-copy,
+    .programme-fit p,
+    .voice-box p,
+    .decision-tile span,
+    .faq-intent .faq-item p{
+        overflow-wrap:anywhere;
+        word-break:normal;
+    }
+
+    .table-wrapper{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+    }
+
+    .table-wrapper table{
+        max-width:none;
+    }
+
+    img,
+    video,
+    iframe{
+        max-width:100%;
+        height:auto;
+    }
+
+    .official-links a,
+    .voice-box a,
+    .placement-detail-link{
+        overflow-wrap:anywhere;
+    }
+}
+
+@media(max-width:480px){
+    .programme-card-details{
+        width:100%;
+        max-width:100%;
+        box-sizing:border-box;
+    }
+
+    .programme-card-details>div{
+        min-width:0;
+        overflow-wrap:anywhere;
+    }
+
+    .decision-grid,
+    .ranking-grid,
+    .quick-facts{
+        width:100%;
+        max-width:100%;
+        box-sizing:border-box;
+    }
+}
+
 </style></head><body data-verified="2026-08-19">
 <header><nav class="navbar"><a href="../index.html" class="logo">MBA<span>Portal</span></a><div class="nav-links"><a href="../index.html">Home</a><a href="../colleges.html">MBA Colleges</a><a href="#admission">Admissions</a><a href="#rankings">Rankings</a><a href="#placements">Placements & Career Outcomes</a></div></nav></header>
 <section class="hero"><div class="hero-container"><div class="hero-main"><div class="hero-logo-wrap"><div class="logo-fallback">IIT<br>DELHI</div></div><div class="hero-text"><h1>IIT Delhi MBA 2026</h1><h2>Courses, Fees, Eligibility, Admission, Placements & Student Decision Guide</h2><div class="hero-location">New Delhi, Delhi • MBA • <a href="https://dms.iitd.ac.in/" target="_blank" class="official-website-link">Official Website ↗</a></div></div></div></div></section>
