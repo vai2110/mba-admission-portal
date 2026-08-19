@@ -125,8 +125,6 @@ header{
 /* =========================================================
    MOBILE ON-PAGE NAV
 ========================================================= */
-.mobile-on-page{display:none}
-
 /* =========================================================
    MASTER PAGE CONTAINER
 ========================================================= */
@@ -493,7 +491,6 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
     .ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:720px){
-    html{scroll-padding-top:118px}
     .programme-card-details{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
@@ -515,39 +512,51 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
     .hero-location{font-size:11px;line-height:1.5}
     .hero-image-wrap{display:none}
 
-    .page-container{width:100%;max-width:none;margin:0;padding:57px 0 0}
+    .page-container{width:100%;max-width:none;margin:0;padding:0}
     .quick-facts{width:100%;padding:10px 10px 12px;gap:8px}
     .quick-fact{padding:11px;min-height:62px}
     .quick-fact-label{font-size:9px}
     .quick-fact-value{font-size:12px}
-
-    /* MOBILE ON THIS PAGE — FIXED / ALWAYS VISIBLE */
-    .mobile-on-page{
-        display:block;position:fixed;top:54px;left:0;right:0;
-        z-index:900;box-sizing:border-box;
-        width:100%;padding:7px 10px 8px;background:#f5f7fb;
-    }
-    .mobile-on-page details{
-        width:100%;background:#fff;border:1px solid #dfe5ed;
-        border-radius:8px;box-shadow:0 3px 10px rgba(15,23,42,.06);
+.mobile-on-page details{
+        width:100%;
+        background:#fff;
+        border:1px solid #dfe5ed;
+        border-radius:8px;
+        box-shadow:0 3px 10px rgba(15,23,42,.06);
         overflow:hidden;
     }
     .mobile-on-page summary{
-        display:flex;align-items:center;justify-content:space-between;
-        min-height:42px;padding:10px 13px;cursor:pointer;
-        list-style:none;color:var(--blue);font-size:12px;font-weight:800;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        min-height:42px;
+        padding:10px 13px;
+        cursor:pointer;
+        list-style:none;
+        color:var(--blue);
+        font-size:12px;
+        font-weight:800;
     }
     .mobile-on-page summary::-webkit-details-marker{display:none}
     .on-page-arrow{font-size:14px;line-height:1;color:#2563eb}
-    .mobile-on-page-menu{border-top:1px solid #e5eaf0;max-height:62vh;overflow-y:auto}
+    .mobile-on-page-menu{
+        border-top:1px solid #e5eaf0;
+        max-height:62vh;
+        overflow-y:auto;
+    }
     .mobile-on-page-menu a{
-        display:block;padding:10px 13px;border-bottom:1px solid #edf0f4;
-        color:#475569;font-size:11px;font-weight:600;line-height:1.35;
+        display:block;
+        padding:10px 13px;
+        border-bottom:1px solid #edf0f4;
+        color:#475569;
+        font-size:11px;
+        font-weight:600;
+        line-height:1.35;
         background:#fff;
     }
     .mobile-on-page-menu a:last-child{border-bottom:0}
 
-    .page-layout{display:block;width:100%;max-width:none;margin:0;padding:0 0 30px}
+.page-layout{display:block;width:100%;max-width:none;margin:0;padding:0 0 30px}
     .sidebar{display:none}
     .content{display:block;width:100%;max-width:none;min-width:0;margin:0;padding:0}
 
@@ -584,8 +593,7 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
     .hero h2{font-size:12px}
     .hero-location{font-size:10.5px}
     .quick-facts{grid-template-columns:1fr;padding-left:9px;padding-right:9px}
-    .mobile-on-page{padding-left:9px;padding-right:9px}
-    .main-section{padding:17px 13px}
+.main-section{padding:17px 13px}
     .ranking-section{padding:17px 13px}
     .ranking-grid{grid-template-columns:1fr}
 }
@@ -594,8 +602,8 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
    PRINT
 ========================================================= */
 @media print{
-    header,.sidebar,footer,.mobile-on-page{display:none}
-    .page-layout{display:block}
+    header,.sidebar,footer,
+.page-layout{display:block}
     .main-section{border:none;box-shadow:none}
 }
 
@@ -646,43 +654,152 @@ font-size:11px;
 font-weight:800;
 }
 .placement-detail-link:hover{opacity:.9}
-</style>
-<!-- MOBILE WIDTH / HORIZONTAL OVERFLOW FIX — targeted only -->
-<style>
-@media (max-width: 720px) {
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  .page-container, .page-layout, .content,
-  .hero, .hero-container, .quick-facts,
-  .main-section, .ranking-section,
-  .student-decision, .reality-box, .voice-box {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-  img, svg, video, iframe {
-    max-width: 100%;
-  }
-  .programme-card-details {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .decision-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+
+/* =========================================================
+   MOBILE ON-PAGE NAV — LOCKED ARCHITECTURE
+========================================================= */
+@media(max-width:720px){
+    .mobile-on-page{
+        display:none;
+        width:auto;
+        box-sizing:border-box;
+        padding:0;
+        background:transparent;
+    }
+    .mobile-on-page.is-floating{
+        display:block;
+        position:fixed;
+        top:72px;
+        right:12px;
+        left:auto;
+        width:auto;
+        max-width:150px;
+        z-index:900;
+        padding:0;
+        background:transparent;
+    }
+    .mobile-on-page.is-floating details{
+        width:100%;
+    }
+    .mobile-on-page.is-floating summary{
+        min-width:0;
+        padding:8px 10px;
+        border-radius:18px;
+        box-shadow:0 3px 12px rgba(15,23,42,.16);
+        font-size:10px;
+    }
+    .mobile-on-page.is-floating .mobile-on-page-menu{
+        position:absolute;
+        right:0;
+        top:40px;
+        width:190px;
+        max-height:58vh;
+        overflow-y:auto;
+        border-radius:10px;
+        box-shadow:0 8px 24px rgba(15,23,42,.18);
+    }
 }
-@media (max-width: 480px) {
-  .programme-card-details, .decision-grid, .ranking-grid {
-    grid-template-columns: 1fr;
-  }
+
+
+/* =========================================================
+   MOBILE WIDTH SAFETY — COMPONENT LEVEL ONLY
+   Keeps the locked architecture intact.
+========================================================= */
+@media(max-width:720px){
+    .page-container,
+    .page-layout,
+    .content,
+    .main-section,
+    .ranking-section,
+    .quick-facts,
+    .hero-container,
+    .hero-main,
+    .hero-text{
+        box-sizing:border-box;
+        max-width:100%;
+    }
+
+    .main-section,
+    .ranking-section,
+    .student-decision,
+    .voice-box,
+    .reality-box,
+    .programme-card,
+    .programme-nav-card,
+    .quick-fact,
+    .ranking-card,
+    .decision-tile{
+        min-width:0;
+    }
+
+    .main-section p,
+    .main-section li,
+    .student-copy,
+    .programme-fit p,
+    .voice-box p,
+    .decision-tile span,
+    .faq-intent .faq-item p{
+        overflow-wrap:anywhere;
+        word-break:normal;
+    }
+
+    .table-wrapper{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .table-wrapper table{
+        max-width:none;
+    }
+
+    img,
+    video,
+    iframe{
+        max-width:100%;
+        height:auto;
+    }
+
+    .official-links a,
+    .voice-box a,
+    .placement-detail-link{
+        overflow-wrap:anywhere;
+    }
 }
-</style>
-</head><body data-verified="2026-08-19">
+
+
+/* =========================================================
+   PROGRAMME COMPARISON TABLE — MOBILE
+   Keep the locked page architecture; scroll this component only.
+========================================================= */
+@media(max-width:720px){
+    .programme-fee-table{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+        overflow-y:hidden;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:thin;
+        display:block;
+    }
+
+    .programme-fee-table table{
+        width:max-content;
+        min-width:760px;
+        max-width:none;
+    }
+
+    .programme-fee-table th,
+    .programme-fee-table td{
+        white-space:normal;
+    }
+}
+
+</style></head><body data-verified="2026-08-19">
 <header><nav class="navbar"><a href="../index.html" class="logo">MBA<span>Portal</span></a><div class="nav-links"><a href="../index.html">Home</a><a href="../colleges.html">MBA Colleges</a><a href="#admission">Admissions</a><a href="#rankings">Rankings</a><a href="#placements">Placements & Career Outcomes</a></div></nav></header>
 <section class="hero"><div class="hero-container"><div class="hero-main"><div class="hero-logo-wrap"><div class="logo-fallback">IIM<br>LUCKNOW</div></div><div class="hero-text"><h1>IIM Lucknow MBA 2026</h1><h2>Courses, Fees, Eligibility, Admission, Placements & Student Decision Guide</h2><div class="hero-location">Lucknow, Uttar Pradesh • PGP / MBA • <a href="https://www.iiml.ac.in/" target="_blank" class="official-website-link">Official Website ↗</a></div></div></div></div></section>
+
 <div class="mobile-on-page"><details><summary><span>On this page</span><span class="on-page-arrow">⌄</span></summary><div class="mobile-on-page-menu"><a href="#overview">College Overview</a><a href="#rankings">NIRF Ranking</a><a href="#admission">Admission 2026</a><a href="#programmes">Popular Programmes</a><a href="#fees">Fees & ROI</a><a href="#placements">Placements</a><a href="#batch">Batch & Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></details></div>
 <div class="page-container"><div class="quick-facts"><div class="quick-fact"><span class="quick-fact-label">NIRF Management 2025</span><span class="quick-fact-value">#5</span></div><div class="quick-fact"><span class="quick-fact-label">Flagship programme</span><span class="quick-fact-value">PGP / MBA</span></div><div class="quick-fact"><span class="quick-fact-label">Admission route</span><span class="quick-fact-value">CAT</span></div><div class="quick-fact"><span class="quick-fact-label">Location</span><span class="quick-fact-value">Lucknow, Uttar Pradesh</span></div></div>
 <div class="page-layout"><aside class="sidebar"><div class="sidebar-card"><div class="sidebar-title">IIM Lucknow</div><a href="#overview" class="active">College Overview</a><a href="#rankings">NIRF Ranking</a><a href="#admission">Admission 2026</a><a href="#programmes">Popular Programmes</a><a href="#fees">Fees & ROI</a><a href="#placements">Placements</a><a href="#batch">Batch & Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></aside>
@@ -692,9 +809,9 @@ font-weight:800;
 <h3>Student Decision Snapshot</h3>
 <p class="student-copy">IIM Lucknow is the more conventional top-IIM choice here: broad general management, strong consulting/finance access and a large alumni base. The admission policy is profile-sensitive, so simply clearing CAT's minimum is not enough.</p>
 <div class="decision-grid">
-<div class="decision-tile"><small>Latest fee reference</small><strong>₹20.75L*</strong><span>Use the official fee document linked below for the final payable amount.</span></div>
-<div class="decision-tile"><small>Admission benchmark</small><strong>90 overall</strong><span>Minimum/competitive reference; not a guaranteed call or convert.</span></div>
-<div class="decision-tile"><small>Placement reference</small><strong>₹33.2L</strong><span>Latest reported average/median or top-band figure, depending on what the institute publishes.</span></div>
+<div class="decision-tile"><small>Fee</small><strong>₹20.75L*</strong><span>Check the fee schedule before making your admission budget.</span></div>
+<div class="decision-tile"><small>Admission benchmark</small><strong>90 overall</strong><span>Use this as an admission benchmark, not a guaranteed call or convert.</span></div>
+<div class="decision-tile"><small>Placement reference</small><strong>₹33.2L</strong><span>Compare this with the median salary and role-wise outcomes before deciding.</span></div>
 <div class="decision-tile"><small>Best reason to choose</small><strong>Top-5 ROI</strong><span>Use programme fit and role outcomes—not rank alone.</span></div>
 </div>
 </div>
@@ -702,18 +819,104 @@ font-weight:800;
 <section id="rankings" class="ranking-section"><div class="ranking-header"><div><h2>IIM Lucknow Ranking</h2><p>India Rankings 2025: Management, Ministry of Education.</p></div><span class="ranking-note">NIRF 2025</span></div><div class="ranking-grid"><div class="ranking-card"><div class="ranking-agency">NIRF</div><div class="ranking-rank">#5</div><div class="ranking-title">Management</div><div class="ranking-year">2025</div><a class="ranking-source" href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html" target="_blank">View Source ↗</a></div></div></section>
 <section id="admission" class="main-section">
 <div class="reality-box"><strong>CAT cutoff: minimum vs realistic</strong><p>For MBA 2026–28, the official minimum shortlist threshold for General candidates is 85 sectional in VARC/DILR/QA and 90 overall. The policy explicitly says actual cutoffs can be higher because shortlisting is composite and uses CAT, Class 12, graduation and other factors.</p></div>
-<h2>Admission 2026</h2><p>CAT 2025 + IIM Lucknow's programme-specific 2026–28 admission process. Use the current official admission policy for shortlist and final-selection details.</p><div class="table-wrapper"><table><tr><th>Item</th><th>Current information</th></tr><tr><td>Flagship</td><td>PGP / MBA</td></tr><tr><td>Entrance / route</td><td>CAT + IIM Lucknow selection process</td></tr><tr><td>Selection</td><td>Institute-specific shortlist and interview/selection process; use the latest official policy.</td></tr></table></div><div class="notice"><strong>Important</strong><p>Minimum qualifying thresholds are not the same as a realistic conversion score. Always use the latest official admission policy.</p></div></section>
-<section id="programmes" class="main-section"><div class="programme-fee-table"><table><tr><th>Programme</th><th>Latest fee reference</th><th>Duration</th><th>Admission route</th><th>Best suited for</th></tr><tr><td><strong>PGP / MBA</strong></td><td>Latest 2026–28 official fee document</td><td>2 years</td><td>CAT 2025</td><td>General management, consulting, finance</td></tr><tr><td><strong>PGP-ABM</strong></td><td>Latest 2026–28 official fee document</td><td>2 years</td><td>CAT 2025</td><td>Agribusiness, food, rural markets</td></tr><tr><td><strong>PGP-SM</strong></td><td>Latest 2026–28 official fee document</td><td>2 years</td><td>CAT 2025</td><td>Sustainability and responsible business</td></tr><tr><td><strong>IPMX</strong></td><td>₹26.00 lakh + ₹20,000 caution + ₹5,000 alumni*</td><td>1 year</td><td>GMAT / programme process</td><td>Experienced professionals</td></tr></table><p class="fee-source-note">*Where the latest official page exposes a fee for a different immediately preceding batch/year, it is explicitly marked as such rather than presented as the incoming-batch fee.</p></div><h2>Other Popular Programmes</h2><p>Each card answers what the programme is, what it costs, who it suits and how admission works.</p><div class="programme-nav-grid">P26–28 fee PDF published by IIM Lucknow; latest numeric fee not exposed in indexed page</span></div><div><strong>Route</strong><span>CAT</span></div><div><strong>Best for</strong><span>Sustainability</span></div></div>
+<h2>Admission 2026</h2><p>CAT 2025 + IIM Lucknow's programme-specific 2026–28 admission process. Review the admission criteria for shortlist and final selection.</p><div class="table-wrapper"><table><tr><th>Item</th><th>Current information</th></tr><tr><td>Flagship</td><td>PGP / MBA</td></tr><tr><td>Entrance / route</td><td>CAT + IIM Lucknow selection process</td></tr><tr><td>Selection</td><td>Institute-specific shortlisting followed by the interview and selection process.</td></tr></table></div><div class="notice"><strong>Important</strong><p>A qualifying cutoff is only the first filter; your academic profile, CAT performance and interview performance also matter.</p></div></section>
+<section id="programmes" class="main-section"><div class="programme-fee-table"><table><tr><th>Programme</th><th>Fee</th><th>Duration</th><th>Admission route</th><th>Best suited for</th></tr><tr><td><strong>PGP / MBA</strong></td><td>2026–28 fee</td><td>2 years</td><td>CAT 2025</td><td>General management, consulting, finance</td></tr><tr><td><strong>PGP-ABM</strong></td><td>2026–28 fee</td><td>2 years</td><td>CAT 2025</td><td>Agribusiness, food, rural markets</td></tr><tr><td><strong>PGP-SM</strong></td><td>2026–28 fee</td><td>2 years</td><td>CAT 2025</td><td>Sustainability and responsible business</td></tr><tr><td><strong>IPMX</strong></td><td>₹26.00 lakh + ₹20,000 caution + ₹5,000 alumni*</td><td>1 year</td><td>GMAT / programme process</td><td>Experienced professionals</td></tr></table></div><h2>Other Popular Programmes</h2><div class="programme-nav-grid">P26–28 fee PDF published by IIM Lucknow; latest numeric fee not exposed in indexed page</span></div><div><strong>Route</strong><span>CAT</span></div><div><strong>Best for</strong><span>Sustainability</span></div></div>
 <div class="programme-fit"><strong>Who should apply?</strong><p>Management pathway with a sustainability orientation.</p></div>
 <a href="#">Detailed programme guide →</a></div><div class="programme-nav-card">
 <span class="programme-meta">1 year · GMAT</span><h3>IPMX</h3><p>One-year residential management route for experienced professionals.</p>
 <div class="programme-card-details"><div><strong>Fee</strong><span>₹26.00 lakh + ₹20,000 caution + ₹5,000 alumni fee (2027–28 official)</span></div><div><strong>Route</strong><span>GMAT</span></div><div><strong>Best for</strong><span>Experienced professionals</span></div></div>
 <div class="programme-fit"><strong>Who should apply?</strong><p>One-year residential management route for experienced professionals.</p></div>
 <a href="#">Detailed programme guide →</a></div></div></section>
-<section id="fees" class="main-section"><div class="reality-box"><strong>What should you budget?</strong><p>₹20.75 lakh* — latest numeric official fee reference available for the immediately preceding PGP batch; IIM Lucknow has separately published a 2026–28 fee-structure document. Students should treat the 2026–28 document as the final payable figure before admission.</p></div><h2>Fees & ROI</h2><p>Official figures are shown where retrieved from current institute sources. Where a current official fee figure was not available, the page intentionally avoids inventing a number.</p><div class="table-wrapper"><table><tr><th>Programme / component</th><th>Amount</th><th>What it means</th></tr><tr><td><strong>PGP / MBA</strong></td><td>Current official fee notification</td><td>Use the latest institute notification rather than an older aggregator figure.</td></tr><tr><td><strong>PGP-ABM</strong></td><td>Programme-specific</td><td>Check the current official admissions/fee document.</td></tr><tr><td><strong>PGP-SM</strong></td><td>Programme-specific</td><td>Check the current official admissions/fee document.</td></tr></table></div><div class="notice"><strong>ROI rule</strong><p>Compare total academic cost plus living/other expenses against median and mean placement outcomes. Do not use the highest package alone.</p></div></section>
+<section id="fees" class="main-section"><div class="reality-box"><strong>What should you budget?</strong><p>₹20.75 lakh* — ₹20.75 lakh fee reference for the comparison. Budget using the 2026–28 programme fee.</p></div><h2>Fees & ROI</h2><p>Fees are shown with the applicable programme and batch information.</p><div class="table-wrapper"><table><tr><th>Programme / component</th><th>Amount</th><th>What it means</th></tr><tr><td><strong>PGP / MBA</strong></td><td>Fee schedule</td><td>Use the stated programme fee when planning your budget.</td></tr><tr><td><strong>PGP-ABM</strong></td><td>Programme-specific</td><td>Review the programme fee and admission details before applying.</td></tr><tr><td><strong>PGP-SM</strong></td><td>Programme-specific</td><td>Review the programme fee and admission details before applying.</td></tr></table></div><div class="notice"><strong>ROI rule</strong><p>Compare total academic cost plus living/other expenses against median and mean placement outcomes. Do not use the highest package alone.</p></div></section>
 <section id="placements" class="main-section"><div class="reality-box"><strong>How should a student read these numbers?</strong><p>IIM Lucknow's latest 2024–26 placement cycle reported 580+ offers, ₹33.2 lakh average salary, ₹32.9 lakh median, ₹1 crore highest domestic and ₹65 lakh highest international offer. The institute's official reports page now lists the 2024–26 final placement report.</p></div><h2>Placements & Career Outcomes</h2><p>IIM Lucknow's 2024–25 annual report states that the PGP and PGP-ABM final placement cycle secured 604 offers, with mean salary of ₹32.3 lakh and median salary of ₹31 lakh; highest domestic salary was ₹75 lakh and international salary ₹65 lakh.</p><div class="highlight-grid"><div class="highlight"><strong>₹32.3L</strong><span>Mean salary</span></div><div class="highlight"><strong>₹31L</strong><span>Median salary</span></div><div class="highlight"><strong>₹75L</strong><span>Highest domestic</span></div><div class="highlight"><strong>604</strong><span>Offers</span></div></div><a class="official-link" href="https://www.iiml.ac.in/placement-reports" target="_blank">IIM Lucknow Placement Reports ↗</a><a class="placement-detail-link" href="../placements/iim-lucknow.html">View Detailed Placement →</a></section>
 <section id="batch" class="main-section"><h2>Batch Profile & Student Life</h2><p>Students should evaluate batch size, academic background, work-experience mix, campus environment and student-led activities using the latest annual and placement reports.</p><div class="two-column"><div class="pro-box"><h3>Evaluate these strengths</h3><ul><li>Peer-learning quality</li><li>Alumni and recruiter access</li><li>Campus and academic ecosystem</li></ul></div><div class="warning-box"><h3>Verify before deciding</h3><ul><li>Actual workload</li><li>Living and accommodation cost</li><li>Role distribution in placements</li></ul></div></div></section>
 <section id="profile" class="main-section"><div class="student-decision"><h3>Choose this college if...</h3><p class="student-copy">Best for candidates targeting consulting, finance, general management, product and analytics who want a broad IIM career platform.</p><h3 style="margin-top:14px">Think twice if...</h3><p class="student-copy">Think carefully if you are choosing PGP-SM purely for the IIM brand; recent student discussion has raised questions about the specialised programme's placement outcomes.</p></div><h2>Who Should Apply?</h2><div class="two-column"><div class="pro-box"><h3>Strong fit if</h3><ul><li>Strong fit for candidates seeking a top-five NIRF management institute with broad career access and a mature alumni and recruiter network.</li><li>You have a clear career reason for choosing the institute.</li><li>The programme structure matches your target role.</li></ul></div><div class="warning-box"><h3>Think twice if</h3><ul><li>You are choosing only because of the rank.</li><li>You are relying on the highest CTC for ROI.</li><li>The programme's specialisation does not match your goal.</li></ul></div></div></section>
-<div class="voice-box"><div class="voice-label">Student discussions — Reddit</div><p>A recent IIM Lucknow batch AMA discusses SIP pressure and campus life. A separate current-student post on PGP-SM argues that aspirants should examine the programme-specific placement numbers rather than assume flagship-PGP outcomes apply to every programme.</p><a href="https://www.reddit.com/r/CATpreparation/comments/1q92oco/iim_lucknow_27_batch_ama/" target="_blank" rel="noopener">Read the discussion ↗</a><p>A 2026 PGP-SM student discussion specifically compares reported placement numbers with the student's own experience, making it useful as a cautionary secondary source—not as verified placement data.</p><a href="https://www.reddit.com/r/iim_CAT/comments/1v8oet7/misleading_incorrect_iim_lucknow_noida_campus/" target="_blank" rel="noopener">Read the discussion ↗</a><p style="font-size:9px;color:#6b7280;margin-top:10px">These are community discussions, not official institute claims. They are included to help students understand lived experience and questions that brochures may not answer.</p></div><section id="faq" class="main-section"><h2>Frequently Asked Questions</h2><p>These questions focus on the decisions students usually need to make before applying, shortlisting or accepting an offer.</p><div class="faq-intent"><div class="faq-item"><h3>What is the CAT cutoff for IIM Lucknow MBA 2026?</h3><p>For the 2026–28 PGP/MBA admission process, the official minimum for General candidates is 90 overall with 85 in each CAT section. This is only the minimum eligibility/shortlisting threshold. IIM Lucknow uses a composite process, so a 90 percentile should not be interpreted as a realistic call guarantee.</p></div><div class="faq-item"><h3>What is the fee of IIM Lucknow MBA 2026–28?</h3><p>IIM Lucknow has published a dedicated 2026–28 fee-structure document for PGP and PGP-ABM. The page should be treated as the current official source because fee components can change by batch. Students should compare the official total with the ₹33.2 lakh average and ₹32.9 lakh median placement outcomes from the latest cycle.</p></div><div class="faq-item"><h3>Is IIM Lucknow worth the fees?</h3><p>For students targeting consulting, finance, general management or analytics, IIM Lucknow can justify a high fee because of its recruiter base, alumni network and placement outcomes. The decision is weaker if your expected role does not benefit from the IIM network or if you are comparing it with a much lower-cost option with similar target roles.</p></div><div class="faq-item"><h3>IIM Lucknow vs IIM Indore: which is better?</h3><p>For a student choosing between the two, compare career goal first. IIM Lucknow has a particularly strong traditional consulting/finance/general-management positioning, while IIM Indore also offers a broad PGP with strong consulting outcomes. Your final decision should use programme fit, fee, location and the role distribution rather than NIRF rank alone.</p></div><div class="faq-item"><h3>What is the average package at IIM Lucknow?</h3><p>The latest 2024–26 placement cycle reported about ₹33.2 lakh average and ₹32.9 lakh median salary, with the highest domestic offer at ₹1 crore. Median is more useful than the highest package for estimating what a typical student may receive.</p></div><div class="faq-item"><h3>What is PGP-ABM at IIM Lucknow and who should choose it?</h3><p>PGP-ABM is the agribusiness management route. It is better suited to students interested in food, agriculture, rural markets, supply chains and related consulting/corporate roles. Do not choose it simply because it carries the IIM Lucknow name; compare the programme-specific curriculum and placements with the flagship PGP.</p></div><div class="faq-item"><h3>Should I choose IIM Lucknow PGP-SM?</h3><p>Choose PGP-SM if sustainability is a genuine career interest rather than simply an alternative route to an IIM tag. The programme has its own curriculum and placement context, so students should read programme-specific outcomes instead of assuming that flagship PGP salary figures automatically apply.</p></div></div></section>
-<section id="references" class="main-section"><h2>References, Official Sources & Student Discussions</h2><p>Official institute and NIRF sources are prioritised for decision-critical information.</p><div class="official-links"><a class="official-link" href="https://www.iiml.ac.in/" target="_blank">Official Website ↗</a><a class="official-link" href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html" target="_blank">NIRF Management 2025 ↗</a><a class="official-link" href="https://www.iiml.ac.in/placement-reports" target="_blank">IIM Lucknow Placement Reports ↗</a></div></section>
-</main></div></div></body></html>
+<div class="voice-box"><div class="voice-label">Student discussions — Reddit</div><p>A recent IIM Lucknow batch AMA discusses SIP pressure and campus life. A separate current-student post on PGP-SM argues that aspirants should examine the programme-specific placement numbers rather than assume flagship-PGP outcomes apply to every programme.</p><a href="https://www.reddit.com/r/CATpreparation/comments/1q92oco/iim_lucknow_27_batch_ama/" target="_blank" rel="noopener">Read the discussion ↗</a><p>A 2026 PGP-SM student discussion specifically compares reported placement numbers with the student's own experience, making it useful as a cautionary secondary source—not as verified placement data.</p><a href="https://www.reddit.com/r/iim_CAT/comments/1v8oet7/misleading_incorrect_iim_lucknow_noida_campus/" target="_blank" rel="noopener">Read the discussion ↗</a><p style="font-size:9px;color:#6b7280;margin-top:10px"></p></div><section id="faq" class="main-section"><h2>Frequently Asked Questions</h2><div class="faq-intent"><div class="faq-item"><h3>What is the CAT cutoff for IIM Lucknow MBA 2026?</h3><p>For the 2026–28 PGP/MBA admission process, the official minimum for General candidates is 90 overall with 85 in each CAT section. This is only the minimum eligibility/shortlisting threshold. IIM Lucknow uses a composite process, so a 90 percentile should not be interpreted as a realistic call guarantee.</p></div><div class="faq-item"><h3>What is the fee of IIM Lucknow MBA 2026–28?</h3><p>Students should compare the official total with the ₹33.2 lakh average and ₹32.9 lakh median placement outcomes from the latest cycle.</p></div><div class="faq-item"><h3>Is IIM Lucknow worth the fees?</h3><p>For students targeting consulting, finance, general management or analytics, IIM Lucknow can justify a high fee because of its recruiter base, alumni network and placement outcomes. The decision is weaker if your expected role does not benefit from the IIM network or if you are comparing it with a much lower-cost option with similar target roles.</p></div><div class="faq-item"><h3>IIM Lucknow vs IIM Indore: which is better?</h3><p>For a student choosing between the two, compare career goal first. IIM Lucknow has a particularly strong traditional consulting/finance/general-management positioning, while IIM Indore also offers a broad PGP with strong consulting outcomes. Your final decision should use programme fit, fee, location and the role distribution rather than NIRF rank alone.</p></div><div class="faq-item"><h3>What is the average package at IIM Lucknow?</h3><p>The latest 2024–26 placement cycle reported about ₹33.2 lakh average and ₹32.9 lakh median salary, with the highest domestic offer at ₹1 crore. Median is more useful than the highest package for estimating what a typical student may receive.</p></div><div class="faq-item"><h3>What is PGP-ABM at IIM Lucknow and who should choose it?</h3><p>PGP-ABM is the agribusiness management route. It is better suited to students interested in food, agriculture, rural markets, supply chains and related consulting/corporate roles. Do not choose it simply because it carries the IIM Lucknow name; compare the programme-specific curriculum and placements with the flagship PGP.</p></div><div class="faq-item"><h3>Should I choose IIM Lucknow PGP-SM?</h3><p>Choose PGP-SM if sustainability is a genuine career interest rather than simply an alternative route to an IIM tag. The programme has its own curriculum and placement context, so students should read programme-specific outcomes instead of assuming that flagship PGP salary figures automatically apply.</p></div></div></section>
+<section id="references" class="main-section"><h2>References, Official Sources & Student Discussions</h2><p>See the linked institute and NIRF pages for admission, ranking and programme details.</p><div class="official-links"><a class="official-link" href="https://www.iiml.ac.in/" target="_blank">Official Website ↗</a><a class="official-link" href="https://www.nirfindia.org/Rankings/2025/ManagementRanking.html" target="_blank">NIRF Management 2025 ↗</a><a class="official-link" href="https://www.iiml.ac.in/placement-reports" target="_blank">IIM Lucknow Placement Reports ↗</a></div></section>
+</main></div></div>
+<script>
+(function(){
+    const onPage=document.querySelector('.mobile-on-page');
+    const trigger=document.querySelector('.student-decision');
+    if(!onPage || !trigger) return;
+
+    function updateOnPage(){
+        const triggerTop=trigger.getBoundingClientRect().top;
+        onPage.classList.toggle('is-floating', triggerTop <= 170);
+    }
+
+    let ticking=false;
+    function handleScroll(){
+        if(!ticking){
+            window.requestAnimationFrame(function(){
+                updateOnPage();
+                ticking=false;
+            });
+            ticking=true;
+        }
+    }
+
+    window.addEventListener('scroll',handleScroll,{passive:true});
+    window.addEventListener('resize',updateOnPage);
+    updateOnPage();
+})();
+</script>
+<script>
+(function(){
+    const nav=document.querySelector('.mobile-on-page');
+    if(!nav) return;
+    nav.querySelectorAll('.mobile-on-page-menu a[href^="#"]').forEach(function(link){
+        link.addEventListener('click',function(){
+            const details=nav.querySelector('details');
+            if(details) details.removeAttribute('open');
+        });
+    });
+})();
+</script>
+
+
+<script>
+(function(){
+    const onPage = document.querySelector('.mobile-on-page');
+    const trigger = document.querySelector('.student-decision');
+
+    if(!onPage || !trigger) return;
+
+    function updateOnPage(){
+        const triggerTop = trigger.getBoundingClientRect().top;
+        const shouldFloat = triggerTop <= 170;
+        onPage.classList.toggle('is-floating', shouldFloat);
+    }
+
+    let ticking = false;
+    function handleScroll(){
+        if(!ticking){
+            window.requestAnimationFrame(function(){
+                updateOnPage();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll, {passive:true});
+    window.addEventListener('resize', updateOnPage);
+    updateOnPage();
+})();
+</script>
+
+<script>
+(function(){
+    const nav = document.querySelector('.mobile-on-page');
+    if(!nav) return;
+
+    nav.querySelectorAll('.mobile-on-page-menu a[href^="#"]').forEach(function(link){
+        link.addEventListener('click', function(){
+            const details = nav.querySelector('details');
+            if(details) details.removeAttribute('open');
+        });
+    });
+})();
+</script>
+
+</body></html>
