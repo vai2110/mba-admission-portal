@@ -618,6 +618,69 @@ button,input{font:inherit;}
     .hero h1{font-size:25px;}
     .quick-grid{grid-template-columns:1fr 1fr;}
 }
+
+.search-results{
+    margin-top:12px;
+    display:none;
+}
+.search-result-card{
+    background:#fff;
+    color:#172033;
+    border-radius:9px;
+    padding:15px;
+    box-shadow:0 8px 22px rgba(15,23,42,.14);
+    border:1px solid #e5e7eb;
+    text-align:left;
+}
+.search-result-card h4{
+    margin-bottom:2px;
+    font-size:15px;
+}
+.search-result-location{
+    color:#64748b;
+    font-size:10px;
+    margin-bottom:10px;
+}
+.search-result-meta{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-bottom:11px;
+}
+.search-result-meta div{
+    padding:7px;
+    background:#f8fafc;
+    border-radius:5px;
+    font-size:9px;
+}
+.search-result-meta strong{
+    display:block;
+    margin-top:2px;
+    color:#173f82;
+    font-size:10px;
+}
+.search-result-btn{
+    display:inline-block;
+    padding:8px 11px;
+    border-radius:6px;
+    background:#2563eb;
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+}
+.search-result-btn.disabled{
+    background:#94a3b8;
+    cursor:default;
+}
+.search-result-note{
+    margin-top:7px;
+    color:#64748b;
+    font-size:9px;
+}
+@media(max-width:600px){
+    .search-result-meta{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
 
@@ -662,6 +725,8 @@ button,input{font:inherit;}
             >
             <button type="button" onclick="searchContent()">Search</button>
         </div>
+
+        <div id="searchResults" class="search-results" aria-live="polite"></div>
 
     </div>
 </section>
@@ -731,7 +796,7 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>₹27.50 Lakh</strong>
                 </div>
-                <a href="college.html?college=indian-institute-of-management-ahmedabad" class="card-button">
+                <a href="iim-ahmedabad.html" class="card-button">
                     View College Details →
                 </a>
             </div>
@@ -765,7 +830,7 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="indian-institute-of-management-calcutta.html" class="card-button">View College Details →</a>
+                <a href="iim-calcutta.html" class="card-button">View College Details →</a>
             </div>
         </article>
 
@@ -781,7 +846,7 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="xlri-xavier-school-of-management.html" class="card-button">View College Details →</a>
+                <a href="xlri-jamshedpur.html" class="card-button">View College Details →</a>
             </div>
         </article>
 
@@ -1080,34 +1145,130 @@ button,input{font:inherit;}
 </footer>
 
 <script>
+const collegeDirectory = [
+    {
+        name:"IIM Ahmedabad",
+        aliases:["iim ahmedabad","indian institute of management ahmedabad"],
+        city:"Ahmedabad, Gujarat", programme:"MBA / PGP", entrance:"CAT", rank:"NIRF #1",
+        href:"iim-ahmedabad.html"
+    },
+    {
+        name:"IIM Bangalore",
+        aliases:["iim bangalore","indian institute of management bangalore","iimb"],
+        city:"Bengaluru, Karnataka", programme:"MBA / PGP", entrance:"CAT", rank:"NIRF #2",
+        href:"iim-bangalore.html"
+    },
+    {
+        name:"IIM Kozhikode",
+        aliases:["iim kozhikode","indian institute of management kozhikode","iimk"],
+        city:"Kozhikode, Kerala", programme:"MBA / PGP", entrance:"CAT", rank:"NIRF #3",
+        href:"",
+        note:"The dedicated IIM Kozhikode overview page has not been uploaded to GitHub yet."
+    },
+    {
+        name:"IIT Delhi DMS",
+        aliases:["iit delhi","iit delhi dms","department of management studies iit delhi","indian institute of technology delhi"],
+        city:"New Delhi, Delhi", programme:"MBA", entrance:"CAT", rank:"NIRF #4",
+        href:"iit-delhi-dms.html"
+    },
+    {
+        name:"IIM Lucknow",
+        aliases:["iim lucknow","indian institute of management lucknow","iiml"],
+        city:"Lucknow, Uttar Pradesh", programme:"PGP / MBA", entrance:"CAT", rank:"NIRF #5",
+        href:"iim-lucknow.html"
+    },
+    {
+        name:"IIM Mumbai",
+        aliases:["iim mumbai","indian institute of management mumbai","iimm"],
+        city:"Mumbai, Maharashtra", programme:"MBA", entrance:"CAT", rank:"NIRF #6",
+        href:"iim-mumbai.html"
+    },
+    {
+        name:"IIM Calcutta",
+        aliases:["iim calcutta","indian institute of management calcutta","iimc"],
+        city:"Kolkata, West Bengal", programme:"MBA", entrance:"CAT", rank:"NIRF #7",
+        href:"iim-calcutta.html"
+    },
+    {
+        name:"IIM Indore",
+        aliases:["iim indore","indian institute of management indore","iimi"],
+        city:"Indore, Madhya Pradesh", programme:"PGP / MBA", entrance:"CAT", rank:"NIRF #8",
+        href:"iim-indore.html"
+    },
+    {
+        name:"MDI Gurugram",
+        aliases:["mdi gurugram","mdi gurgaon","management development institute","mdi"],
+        city:"Gurugram, Haryana", programme:"PGDM", entrance:"CAT / GMAT", rank:"NIRF #9",
+        href:"mdi-gurugram.html"
+    },
+    {
+        name:"XLRI Jamshedpur",
+        aliases:["xlri","xlri jamshedpur","xlri xavier school of management"],
+        city:"Jamshedpur, Jharkhand", programme:"PGDM", entrance:"XAT", rank:"NIRF #10",
+        href:"xlri-jamshedpur.html"
+    }
+];
+
+function normalise(value){
+    return value.toLowerCase().trim().replace(/[^a-z0-9]+/g," ");
+}
+
 function searchContent(){
     const input = document.getElementById("collegeSearch");
-    const query = input.value.trim().toLowerCase();
+    const results = document.getElementById("searchResults");
+    const query = normalise(input.value);
 
     if(!query){
+        results.style.display="none";
+        results.innerHTML="";
         document.getElementById("colleges").scrollIntoView({behavior:"smooth"});
         return;
     }
 
-    const cards = document.querySelectorAll(".college-card, .exam-card");
-    let found = false;
-
-    cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-
-        if(text.includes(query)){
-            card.scrollIntoView({behavior:"smooth",block:"center"});
-            found = true;
-        }
+    const college = collegeDirectory.find(item => {
+        const names = [item.name].concat(item.aliases || []).map(normalise);
+        return names.some(name => name.includes(query) || query.includes(name));
     });
 
-    if(!found){
-        alert("No matching college or entrance exam found on this page yet.");
+    if(!college){
+        results.innerHTML = `
+            <div class="search-result-card">
+                <h4>No college found</h4>
+                <div class="search-result-location">
+                    Try IIM Ahmedabad, IIM Bangalore, IIM Mumbai, IIM Lucknow,
+                    IIM Calcutta, IIM Indore, MDI or XLRI.
+                </div>
+            </div>`;
+        results.style.display="block";
+        return;
     }
+
+    const button = college.href
+        ? `<a class="search-result-btn" href="${college.href}">View College Overview →</a>`
+        : `<span class="search-result-btn disabled">Overview Coming Soon</span>`;
+
+    const note = college.note
+        ? `<div class="search-result-note">${college.note}</div>`
+        : "";
+
+    results.innerHTML = `
+        <div class="search-result-card">
+            <h4>${college.name}</h4>
+            <div class="search-result-location">${college.city}</div>
+            <div class="search-result-meta">
+                <div>Programme<strong>${college.programme}</strong></div>
+                <div>Entrance<strong>${college.entrance}</strong></div>
+                <div>Ranking<strong>${college.rank}</strong></div>
+            </div>
+            ${button}
+            ${note}
+        </div>`;
+
+    results.style.display="block";
 }
 
 document.getElementById("collegeSearch").addEventListener("keydown", function(event){
-    if(event.key === "Enter"){
+    if(event.key==="Enter"){
         searchContent();
     }
 });
