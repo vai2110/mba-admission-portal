@@ -21,7 +21,15 @@ GENERIC_PATTERNS = [
     r"bright career", r"strong foundation", r"in today's competitive", r"in the ever[- ]changing",
     r"aspiring (?:students|candidates) can",
 ]
-PROMOTIONAL_PATTERNS = [r"best college", r"dream college", r"guarantee(?:d|s)?", r"assured placement", r"100% placement", r"unmatched", r"unparalleled", r"number one", r"no\.\s*1"]
+PROMOTIONAL_PATTERNS = [
+    r"best college", r"dream college", r"assured placement", r"100% placement",
+    r"unmatched", r"unparalleled", r"number one", r"no\.\s*1", r"guarantee(?:d|s)?"
+]
+NEGATED_PROMO_MARKERS = [
+    "does not guarantee", "do not guarantee", "doesn't guarantee", "don't guarantee",
+    "not guarantee", "not guaranteed", "cannot guarantee", "can't guarantee",
+    "does not by itself guarantee", "does not automatically guarantee",
+]
 IMPORTANT_TERMS = {
     "eligibility": ["eligibility", "eligible", "qualification"], "admission": ["admission", "application", "apply", "selection", "shortlist"],
     "fees": ["fee", "fees", "tuition", "programme fee"], "dates": ["date", "deadline", "last date", "schedule"],
@@ -41,6 +49,12 @@ def clean_text(soup):
 
 def sentences(text):
     return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if len(s.strip()) > 35]
+
+
+def is_negated_promo(text, match):
+    start = max(0, match.start() - 80)
+    context = text[start:match.start()].lower()
+    return any(marker in context for marker in NEGATED_PROMO_MARKERS)
 
 
 def audit(path):
@@ -63,9 +77,11 @@ def audit(path):
     promo_examples = []
     for pattern in PROMOTIONAL_PATTERNS:
         for m in re.finditer(pattern, text, flags=re.I):
+            if pattern == r"guarantee(?:d|s)?" and is_negated_promo(text, m):
+                continue
             promo_examples.append(text[max(0, m.start()-80):m.end()+120].strip())
     if promo_examples:
-        issues.append({"severity":"high","type":"misleading","text":f"Found {len(promo_examples)} promotional/absolute claim patterns.","location":"page text","examples":promo_examples[:6],"recommendation":"Use precise, sourced language. Avoid guarantees, superlatives and absolute claims."})
+        issues.append({"severity":"high","type":"misleading","text":f"Found {len(promo_examples)} promotional/absolute claim patterns.","location":"page text","examples":promo_examples[:6],"recommendation":"Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."})
         recommendations.append({"priority":"high","action":"remove_absolute_claims","count":len(promo_examples)})
 
     norm = [re.sub(r"[^a-z0-9 ]", "", s.lower()) for s in sents]
@@ -81,7 +97,7 @@ def audit(path):
     official_links = [u for u in external_links if any(x in urlparse(u).netloc.lower() for x in official_domains)]
     if number_sents:
         severity = "high" if not official_links else "medium"
-        issues.append({"severity":severity,"type":"fact_check","text":f"Found {len(number_sents)} sentences containing dates, figures, percentages or monetary values.","location":"factual claims","recommendation":"Manually verify every high-impact claim against the current authoritative source. The free audit does not determine whether the number is true."})
+        issues.append({"severity":severity,"type":"fact_check","text":f"Found {len(number_sents)} sentences containing dates, figures, percentages or monetary values.","location":"factual claims","recommendation":"Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."})
         recommendations.append({"priority":"high","action":"manual_verify_high_impact_facts","count":len(number_sents),"official_source_links":len(official_links)})
 
     missing = [section for section, terms in IMPORTANT_TERMS.items() if not any(t in lower for t in terms)]
@@ -89,7 +105,6 @@ def audit(path):
         issues.append({"severity":"medium","type":"student_intent","text":"Potentially missing student-decision topics: " + ", ".join(missing),"location":"page structure","recommendation":"Add only relevant sections and use verified information; do not add generic filler."})
         recommendations.append({"priority":"medium","action":"fill_student_intent_gaps","sections":missing})
 
-    # Count only content sections, not navigation/cards. A heading is thin only when its following block is genuinely short.
     thin = []
     content = soup.select(".main-section, main article, article")
     for section in content:
@@ -104,7 +119,6 @@ def audit(path):
         recommendations.append({"priority":"low","action":"merge_or_strengthen_thin_sections","count":len(thin)})
 
     word_count = len(text.split())
-    # Risk-weighted score. Missing topics and thin sections are opportunities, not proof of poor content.
     penalty = min(35, generic_count * 5) + min(25, len(promo_examples) * 8) + min(15, len(dupes) * 5) + min(12, len(missing) * 2) + min(8, len(thin) * 2)
     score = max(0, min(100, 100 - penalty)) if word_count else 0
 
