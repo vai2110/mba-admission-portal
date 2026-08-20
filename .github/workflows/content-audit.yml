@@ -82,12 +82,18 @@ jobs:
           soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
           html = str(soup)
           text = soup.get_text(' ', strip=True).lower()
+          hero = soup.select_one('.hero')
+          hero_text = hero.get_text(' ', strip=True).lower() if hero else ''
+          generated_ids = ['iim-indore-fee-status', 'iim-indore-programme-fee-note', 'iim-indore-placement-note', 'scholarships']
+          generated_in_hero = any(hero and hero.find(id=marker) for marker in generated_ids)
           checks = {
               'scholarship section': soup.find(id='scholarships') is not None,
               'official NBFA source': 'need-based-financial-assistance-nbfa' in html,
               'official PGP fee source': 'feestructure' in html,
               'official PGP-HRM fee source': 'pgp-hrm/fee-structure' in html,
               'no automatic high-paying role claim': 'automatically guarantees a high-paying role' not in text,
+              'no generated audit content in hero': not generated_in_hero,
+              'no notice block in hero': not (hero and hero.select('.notice')),
           }
           for label, ok in checks.items(): print(f'{label}: {"PASS" if ok else "FAIL"}')
           if not all(checks.values()): raise SystemExit('Approved IIM Indore verification failed; refusing to commit.')
