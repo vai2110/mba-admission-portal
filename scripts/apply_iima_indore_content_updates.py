@@ -53,9 +53,27 @@ def remove_marker(soup, marker):
         node.decompose()
 
 
+def in_hero(node):
+    if not node:
+        return False
+    hero_classes = {"hero", "hero-container", "hero-main", "hero-text"}
+    for parent in [node, *node.parents]:
+        classes = parent.get("class", []) if getattr(parent, "get", None) else []
+        if any(cls in hero_classes for cls in classes):
+            return True
+    return False
+
+
 def insert_after_real_section_heading(soup, terms, html, marker):
     """Insert only inside a .main-section; never after hero headings."""
-    remove_marker(soup, marker)
+    # If a previous version placed the generated block in the hero, remove it
+    # so it can be recreated in the correct section.
+    existing = soup.find(id=marker)
+    if existing and in_hero(existing):
+        existing.decompose()
+    elif existing:
+        return True
+
     for section in soup.find_all(["section", "div"], class_=lambda c: c and "main-section" in c):
         heading = section.find(["h2", "h3"], recursive=False)
         if heading and any(term in heading.get_text(" ", strip=True).lower() for term in terms):
@@ -65,25 +83,21 @@ def insert_after_real_section_heading(soup, terms, html, marker):
 
 
 def before_section(soup, terms, html, marker):
-    if soup.find(id=marker):
+    existing = soup.find(id=marker)
+    if existing and in_hero(existing):
+        existing.decompose()
+    elif existing:
         return
-    for section in soup.find_all(["section", "div"]):
+    for section in soup.find_all(["section", "div"], class_=lambda c: c and "main-section" in c):
         heading = section.find(["h2", "h3"], recursive=False)
         if heading and any(term in heading.get_text(" ", strip=True).lower() for term in terms):
             section.insert_before(BeautifulSoup(html, "html.parser"))
             return
 
 
-def assert_not_in_hero(soup, marker):
-    node = soup.find(id=marker)
-    if node and node.find_parent(class_=lambda c: c and any(x in c for x in ["hero", "hero-container", "hero-main", "hero-text"])):
-        raise SystemExit(f"Hero-content safety check failed for #{marker}; refusing to write the page.")
-
-
 def main():
     soup = BeautifulSoup(PATH.read_text(encoding="utf-8"), "html.parser")
 
-    # Remove obsolete/ambiguous legacy fee wording where it appears in the article.
     replace_text(soup, {
         "₹20.70 lakh course fee + ₹50,000 caution + mess*": "₹24.00 lakh course fee across 2026–27 and 2027–28 + listed deposits*",
         "₹20.70 lakh": "₹24.00 lakh (2026–28 course fee)",
@@ -93,8 +107,6 @@ def main():
         "automatically guarantees a high-paying role": "automatically leads to a high-paying role",
     })
 
-    # IMPORTANT: fee/programme notes are editorial content and must never be inserted
-    # into the hero. Reposition any notes left there by earlier workflow versions.
     if not insert_after_real_section_heading(soup, ["fees & roi", "fees and roi", "fees", "cost", "roi"], FEE_NOTE_HTML, "iim-indore-fee-status"):
         raise SystemExit("Could not find a real main-content Fees/Cost/ROI section; refusing to modify the page.")
 
@@ -102,10 +114,9 @@ def main():
         raise SystemExit("Could not find a real main-content Programmes/Courses section; refusing to modify the page.")
 
     before_section(soup, ["faq", "who should apply", "verdict", "student decision", "references", "official sources"], SCHOLARSHIP_HTML, "scholarships")
-    if not soup.find(id="scholarships"):
-        raise SystemExit("Scholarship section could not be placed; refusing to modify the page.")
+    if not soup.find(id="scholarships") or in_hero(soup.find(id="scholarships")):
+        raise SystemExit("Scholarship section could not be placed outside the hero; refusing to modify the page.")
 
-    # Keep placement interpretation with the placement section, not the hero.
     remove_marker(soup, "iim-indore-placement-note")
     placement_inserted = False
     for section in soup.find_all(["section", "div"], class_=lambda c: c and "main-section" in c):
@@ -117,9 +128,15 @@ def main():
     if not placement_inserted:
         raise SystemExit("Could not find the real placement section; refusing to place the placement note.")
 
-    # Hard safety checks: future content updates must not alter hero content.
     for marker in ["iim-indore-fee-status", "iim-indore-programme-fee-note", "iim-indore-placement-note", "scholarships"]:
-        assert_not_in_hero(soup, marker)
+        node = soup.find(id=marker)
+        if in_hero(node):
+            raise SystemExit(f"Hero-content safety check failed for #{marker}; refusing to write the page.")
+
+    # No audit-generated notice may exist in the hero.
+    hero = soup.select_one(".hero")
+    if hero and hero.select(".notice"):
+        raise SystemExit("Hero-content safety check failed: notice found inside hero; refusing to write the page.")
 
     PATH.write_text(str(soup), encoding="utf-8")
     print("Applied reviewed IIM Indore content updates with hero layout protection.")
