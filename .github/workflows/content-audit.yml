@@ -1,32 +1,39 @@
 name: Content Relevance Audit
 
 on:
+  push:
+    paths:
+      - '**.html'
   workflow_dispatch:
     inputs:
       target_page:
-        description: 'HTML filename to audit'
+        description: 'HTML filename to audit (leave blank for all HTML pages)'
         required: false
         type: string
-        default: 'iim-ahmedabad.html'
+        default: ''
       apply_changes:
-        description: 'Apply reviewed safe content improvements to the target page'
+        description: 'Apply safe automatic editorial improvements'
         required: true
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: write
 
 concurrency:
-  group: content-audit-manual
+  group: content-audit-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  audit:
+  audit-and-update:
+    # Ignore the workflow's own follow-up commit so automation cannot loop.
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -36,78 +43,85 @@ jobs:
       - name: Install dependencies
         run: pip install beautifulsoup4
 
-      - name: Run initial free editorial audit
+      - name: Determine pages to process
+        id: pages
         env:
           TARGET_PAGE: ${{ inputs.target_page }}
-        run: python scripts/free_content_auditor.py
+          EVENT_BEFORE: ${{ github.event.before }}
+          EVENT_AFTER: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -e
+          if [ -n "$TARGET_PAGE" ]; then
+            printf '%s\n' "$TARGET_PAGE" > changed-html.txt
+          elif [ "$EVENT_NAME" = "push" ] && [ -n "$EVENT_BEFORE" ] && [ "$EVENT_BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            git diff --name-only "$EVENT_BEFORE" "$EVENT_AFTER" -- '*.html' | grep -vE '^(index\.html|404\.html|content-audit\.html)$' > changed-html.txt || true
+          else
+            find . -type f -name '*.html' -not -path './.git/*' -not -name 'index.html' -not -name '404.html' -not -name 'content-audit.html' | sed 's#^./##' | sort > changed-html.txt
+          fi
+          echo "Pages selected:"
+          cat changed-html.txt || true
 
-      - name: Apply reviewed IIM Ahmedabad improvements
-        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-ahmedabad.html' }}
-        run: python scripts/apply_iima_content_updates.py
+      - name: Run automatic safe editorial fixer
+        if: ${{ hashFiles('changed-html.txt') != '' }}
+        env:
+          TARGET_PAGES: ${{ steps.pages.outputs.pages }}
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/auto_content_fixer.py
 
-      - name: Apply reviewed IIM Indore improvements
-        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-indore.html' }}
-        run: python scripts/apply_iima_indore_content_updates.py
-
-      - name: Re-run audit after approved changes
-        if: ${{ inputs.apply_changes == true }}
+      - name: Run content audit after automatic fixes
         env:
           TARGET_PAGE: ${{ inputs.target_page }}
-        run: python scripts/free_content_auditor.py
+        run: |
+          if [ -n "$TARGET_PAGE" ]; then
+            python scripts/free_content_auditor.py
+          elif [ -s changed-html.txt ]; then
+            export TARGET_PAGE="$(head -n 1 changed-html.txt)"
+            python scripts/free_content_auditor.py
+          else
+            echo 'No HTML pages changed; nothing to audit.'
+          fi
 
-      - name: Verify approved IIM Ahmedabad changes
-        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-ahmedabad.html' }}
+      - name: Verify hero protection
+        if: ${{ hashFiles('changed-html.txt') != '' }}
         run: |
           python - <<'PY'
           from pathlib import Path
           from bs4 import BeautifulSoup
-          path = Path('iim-ahmedabad.html')
-          soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
-          checks = {
-              'scholarship section': soup.find(id='scholarships') is not None,
-              'official IIMA admission source': 'https://www.iima.ac.in/academics/mba/admissions/indians' in str(soup),
-              'official scholarship rules source': 'Financial%20AssistanceScholarships.pdf' in str(soup),
-          }
-          for label, ok in checks.items(): print(f'{label}: {"PASS" if ok else "FAIL"}')
-          if not all(checks.values()): raise SystemExit('Approved IIMA verification failed; refusing to commit.')
+
+          excluded = {'index.html', '404.html', 'content-audit.html'}
+          pages = [p.strip() for p in Path('changed-html.txt').read_text().splitlines() if p.strip()]
+          for name in pages:
+              path = Path(name)
+              if path.name in excluded or not path.exists():
+                  continue
+              soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+              hero = soup.select_one('.hero')
+              if hero is not None:
+                  # Automatic content fixes must never introduce audit notices into the hero.
+                  if hero.select('.notice'):
+                      raise SystemExit(f'Hero protection failed: notice found in {name}')
+              print(f'Hero protection PASS: {name}')
           PY
 
-      - name: Verify approved IIM Indore changes
-        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-indore.html' }}
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          from bs4 import BeautifulSoup
-          path = Path('iim-indore.html')
-          soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
-          html = str(soup)
-          text = soup.get_text(' ', strip=True).lower()
-          hero = soup.select_one('.hero')
-          hero_text = hero.get_text(' ', strip=True).lower() if hero else ''
-          generated_ids = ['iim-indore-fee-status', 'iim-indore-programme-fee-note', 'iim-indore-placement-note', 'scholarships']
-          generated_in_hero = any(hero and hero.find(id=marker) for marker in generated_ids)
-          checks = {
-              'scholarship section': soup.find(id='scholarships') is not None,
-              'official NBFA source': 'need-based-financial-assistance-nbfa' in html,
-              'official PGP fee source': 'feestructure' in html,
-              'official PGP-HRM fee source': 'pgp-hrm/fee-structure' in html,
-              'no automatic high-paying role claim': 'automatically guarantees a high-paying role' not in text,
-              'no generated audit content in hero': not generated_in_hero,
-              'no notice block in hero': not (hero and hero.select('.notice')),
-          }
-          for label, ok in checks.items(): print(f'{label}: {"PASS" if ok else "FAIL"}')
-          if not all(checks.values()): raise SystemExit('Approved IIM Indore verification failed; refusing to commit.')
-          PY
-
-      - name: Commit audit report and approved HTML changes
-        if: ${{ inputs.apply_changes == true }}
+      - name: Commit automatic HTML improvements
         run: |
           git config user.name "MBA Portal Content Auditor"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content-audit-report.json '*.html'
+          git add '*.html'
           if git diff --cached --quiet; then
-            echo "No report or content changes required."
+            echo "No automatic HTML changes required."
           else
-            git commit -m "Audit and improve approved page content"
+            git commit -m "Auto-audit and improve updated college pages"
             git push
           fi
+
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-audit-results
+          path: |
+            content-audit-report.json
+            auto-fix-report.json
+          if-no-files-found: ignore
