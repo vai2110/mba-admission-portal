@@ -36,6 +36,17 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Verify OpenAI secret is available
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY is NOT available to this workflow job."
+            echo "Check that it is a Repository secret and that Actions are permitted to access repository secrets."
+            exit 1
+          fi
+          echo "OPENAI_API_KEY is available to the workflow (value not displayed)."
+
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
