@@ -1,169 +1,208 @@
 import json
-import os
 import re
+from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
-import requests
 from bs4 import BeautifulSoup
 
-OPENAI_API_URL = "https://api.openai.com/v1/responses"
-MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-luna")
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "content-audit-report.json"
 EXCLUDED = {"content-audit.html"}
 
-SYSTEM_PROMPT = r'''
-You are the senior editorial quality and fact-verification agent for an Indian MBA admissions website.
-Your objective is student usefulness and factual reliability, not word count or SEO padding.
+# Deliberately conservative: these patterns flag text for human/ChatGPT review; they do not assert that a claim is false.
+GENERIC_PATTERNS = [
+    r"one of the (best|leading|premier|top|most prestigious)",
+    r"world[- ]class",
+    r"state[- ]of[- ]the[- ]art",
+    r"rich academic environment",
+    r"holistic development",
+    r"excellent placement opportunities",
+    r"bright career",
+    r"dream career",
+    r"vibrant campus life",
+    r"nurtures (future|young)",
+    r"empowers students",
+    r"committed to excellence",
+    r"aims to provide",
+]
+PROMO_PATTERNS = [
+    r"#?1\s*(in|among|for)",
+    r"best[- ]in[- ]class",
+    r"unmatched",
+    r"guarantee[sd]?",
+    r"guaranteed",
+    r"assured placement",
+    r"no\.\s*1",
+    r"number one",
+    r"undisputed",
+]
+INTENT_TERMS = {
+    "eligibility": ["eligibility", "who can apply", "qualification"],
+    "admission": ["admission process", "selection process", "how to apply", "application"],
+    "fees": ["fees", "fee structure", "tuition"],
+    "cutoff": ["cutoff", "cut-off", "percentile"],
+    "placements": ["placement", "salary", "recruiter", "career outcomes"],
+    "scholarship": ["scholarship", "financial aid", "fee waiver"],
+    "programme_fit": ["who should apply", "who is this for", "programme fit", "student fit"],
+}
 
-NON-NEGOTIABLE RULES:
-1. Remove or rewrite generic AI-like filler, motivational fluff, obvious textbook definitions, repetition, and statements that could apply to almost any MBA college/exam.
-2. Make content specific to the page entity and the student's decision. Explain practical implications where evidence supports them.
-3. Never invent or estimate facts. Never fabricate fees, dates, cutoffs, rankings, placement figures, recruiters, selection weights, eligibility rules, scholarship amounts, programme names, facilities, accreditation, faculty claims, or admission routes.
-4. Every exact/high-impact factual claim must be supported by reliable evidence. Prefer the official institution, exam authority, government/regulator, counselling authority, or official placement/scholarship document. Use reputable secondary sources only when primary evidence is unavailable, and mark the limitation.
-5. If a claim cannot be verified, do not polish it into certainty. Flag it as unverified and either remove it or rewrite it cautiously without introducing a new factual claim.
-6. Distinguish admission-cycle facts from historical/trend information. Never present an old cutoff, fee, date, or placement number as current.
-7. Do not make causal claims such as 'best for', 'guarantees', 'assures', or 'leads to' unless the evidence directly supports them.
-8. Preserve existing HTML structure, CSS, navigation, internal links, IDs, tables and accessibility. Content improvements should not redesign the page.
-9. Do not keyword-stuff. Write naturally for an Indian MBA aspirant.
-10. Prioritise high-value sections: eligibility, application route, selection process, fees, important dates, accepted exams, cutoff interpretation, placements, scholarships, programme fit, and decision guidance.
-11. Do not add a generic conclusion just to increase length.
-12. Before changing a factual statement, actively verify it using web search and the supplied linked sources. Search official domains first when the entity is identifiable.
 
-OUTPUT ONLY valid JSON matching the requested keys. Do not wrap JSON in markdown fences.
-'''
-
-
-def extract_urls(html):
+def clean_soup(html):
     soup = BeautifulSoup(html, "html.parser")
-    urls = []
+    for tag in soup(["script", "style", "noscript", "svg"]):
+        tag.decompose()
+    return soup
+
+
+def normalize(text):
+    return re.sub(r"\s+", " ", text or "").strip()
+
+
+def sentences(text):
+    parts = re.split(r"(?<=[.!?])\s+", normalize(text))
+    return [p.strip() for p in parts if len(p.strip()) >= 45]
+
+
+def source_links(soup):
+    links = []
     for a in soup.find_all("a", href=True):
         href = a.get("href", "").strip()
+        label = normalize(a.get_text(" ", strip=True))
         if href.startswith(("http://", "https://")):
-            urls.append(href)
-    return list(dict.fromkeys(urls))[:30]
+            links.append({"label": label, "url": href})
+    return links
 
 
-def fetch_source(url):
-    try:
-        r = requests.get(url, timeout=12, headers={"User-Agent": "MBA-Portal-Content-Auditor/1.0"})
-        if r.status_code >= 400:
-            return {"url": url, "status": r.status_code, "text": ""}
-        soup = BeautifulSoup(r.text, "html.parser")
-        for tag in soup(["script", "style", "noscript"]):
-            tag.decompose()
-        text = re.sub(r"\s+", " ", soup.get_text(" ", strip=True))
-        return {"url": url, "status": r.status_code, "text": text[:14000]}
-    except Exception as e:
-        return {"url": url, "status": 0, "text": "", "error": str(e)}
+def audit_html(path):
+    html = path.read_text(encoding="utf-8")
+    soup = clean_soup(html)
+    page_text = normalize(soup.get_text(" ", strip=True))
+    sents = sentences(page_text)
+    low_sents = [s.lower() for s in sents]
 
+    generic_hits = []
+    for pattern in GENERIC_PATTERNS:
+        for m in re.finditer(pattern, page_text, flags=re.I):
+            generic_hits.append(normalize(page_text[max(0, m.start()-90):m.end()+130]))
 
-def call_model(html, path):
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise RuntimeError("OpenAI secret is not available to the audit process")
+    promo_hits = []
+    for pattern in PROMO_PATTERNS:
+        for m in re.finditer(pattern, page_text, flags=re.I):
+            promo_hits.append(normalize(page_text[max(0, m.start()-90):m.end()+130]))
 
-    linked_sources = [fetch_source(u) for u in extract_urls(html)]
-    user_content = (
-        f"Audit page: {path}\n\n"
-        f"Existing HTML:\n{html[:200000]}\n\n"
-        f"Linked source material (supporting evidence only; may be incomplete):\n"
-        f"{json.dumps(linked_sources, ensure_ascii=False)[:110000]}\n\n"
-        "For every high-impact factual claim, use the web search tool to verify current authoritative evidence before editing. "
-        "Search official domains first. Do not invent missing data. "
-        "Return a JSON object with: overall_score, summary, issues, verified_facts, unverified_claims, replacement_content, keep_content, revised_html."
-    )
+    # Duplicate detection is conservative: exact normalized sentences only.
+    counts = Counter(low_sents)
+    duplicate_sents = [s for s, c in counts.items() if c > 1]
 
-    payload = {
-        "model": MODEL,
-        "tools": [{"type": "web_search_preview"}],
-        "input": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_content},
-        ],
-        "max_output_tokens": 50000,
-    }
-    r = requests.post(
-        OPENAI_API_URL,
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        json=payload,
-        timeout=300,
-    )
-    if r.status_code >= 400:
-        try:
-            detail = r.json().get("error", {})
-            message = detail.get("message") or detail.get("code") or r.text[:500]
-        except Exception:
-            message = r.text[:500]
-        raise RuntimeError(f"OpenAI API {r.status_code}: {message}")
+    numeric_sents = [s for s in sents if re.search(r"(?:\b20\d{2}\b|₹|%|\b\d+(?:\.\d+)?\s*(?:lakh|crore|LPA|years?|months?|students?|marks?|percentile))", s, re.I)]
+    links = source_links(soup)
+    official_links = [x for x in links if re.search(r"(?:iima\.ac\.in|iim[a-z-]*\.ac\.in|gov\.in|nta\.ac\.in|cat\.ac\.in|nirfindia\.org)", x["url"], re.I)]
 
-    data = r.json()
-    text = data.get("output_text")
-    if not text:
+    headings = []
+    for h in soup.find_all(["h2", "h3"]):
+        title = normalize(h.get_text(" ", strip=True))
+        if not title:
+            continue
         chunks = []
-        for item in data.get("output", []):
-            for c in item.get("content", []):
-                if c.get("type") == "output_text":
-                    chunks.append(c.get("text", ""))
-        text = "".join(chunks)
-    if not text:
-        raise RuntimeError("OpenAI response did not contain output text")
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"OpenAI returned non-JSON audit output: {e}") from e
+        for sib in h.next_siblings:
+            if getattr(sib, "name", None) in {"h2", "h3"}:
+                break
+            if hasattr(sib, "get_text"):
+                chunks.append(sib.get_text(" ", strip=True))
+        section_text = normalize(" ".join(chunks))
+        headings.append({"heading": title, "chars": len(section_text), "text": section_text[:280]})
 
+    thin_sections = [x for x in headings if x["chars"] < 180]
+    missing = []
+    text_lower = page_text.lower()
+    for key, terms in INTENT_TERMS.items():
+        if not any(t in text_lower for t in terms):
+            missing.append(key)
 
-def audit_file(path):
-    original = path.read_text(encoding="utf-8")
-    result = call_model(original, str(path.relative_to(ROOT)))
-    revised = result.get("revised_html", "").strip()
-    if revised and "<html" in revised.lower() and len(revised) >= max(1000, int(len(original) * 0.55)):
-        path.write_text(revised, encoding="utf-8")
-        result["auto_applied"] = True
-    else:
-        result["auto_applied"] = False
-        result["auto_apply_reason"] = "Safety gate rejected the proposed HTML; report retained for review."
-    return result
+    word_count = len(page_text.split())
+    generic_ratio = min(1, len(generic_hits) / max(1, word_count / 350))
+    promo_ratio = min(1, len(promo_hits) / max(1, word_count / 500))
+    repetition_ratio = min(1, len(duplicate_sents) / max(1, len(sents) / 100))
+    thin_ratio = min(1, len(thin_sections) / max(1, len(headings))) if headings else 0
+    source_ratio = min(1, len(official_links) / 6)
+
+    # 100 = stronger editorial hygiene. This is a risk score, not a factual accuracy score.
+    score = round(max(0, min(100, 100 - generic_ratio*25 - promo_ratio*20 - repetition_ratio*15 - thin_ratio*15 + source_ratio*10)))
+
+    issues = []
+    if generic_hits:
+        issues.append({"severity":"high","type":"generic","text":f"Found {len(generic_hits)} generic/AI-like phrase patterns.","location":"page text","examples":generic_hits[:5],"recommendation":"Rewrite or remove these sentences so they explain a specific IIM Ahmedabad fact, student implication, or decision point."})
+    if promo_hits:
+        issues.append({"severity":"high","type":"misleading","text":f"Found {len(promo_hits)} promotional/absolute claim patterns.","location":"page text","examples":promo_hits[:5],"recommendation":"Replace absolute language with precise, sourced wording or remove it."})
+    if duplicate_sents:
+        issues.append({"severity":"medium","type":"repetition","text":f"Found {len(duplicate_sents)} repeated sentences.","location":"page text","examples":duplicate_sents[:5],"recommendation":"Keep the stronger occurrence and remove the duplicate."})
+    if missing:
+        issues.append({"severity":"medium","type":"student_intent","text":"Potentially missing student-decision topics: " + ", ".join(missing),"location":"page structure","recommendation":"Add only genuinely relevant sections, using verified official information."})
+    if thin_sections:
+        issues.append({"severity":"low","type":"structure","text":f"Found {len(thin_sections)} sections with less than 180 characters of supporting text.","location":"sections","examples":[x["heading"] for x in thin_sections[:10]],"recommendation":"Merge thin headings into stronger sections or add decision-useful detail; do not add filler just to increase length."})
+    if len(numeric_sents) >= 10 and not official_links:
+        issues.append({"severity":"high","type":"unsupported","text":f"Found {len(numeric_sents)} sentences containing dates, figures, percentages or monetary values but no detected official source links.","location":"page text","recommendation":"Manually verify every high-impact figure against the current official source before publication."})
+    elif numeric_sents:
+        issues.append({"severity":"medium","type":"fact_check","text":f"Found {len(numeric_sents)} sentences containing high-impact figures/dates.","location":"page text","recommendation":"Use the linked official sources to verify each figure and label historical/trend data clearly."})
+
+    recommendations = []
+    if generic_hits: recommendations.append({"priority":"high","action":"rewrite_generic_content","count":len(generic_hits)})
+    if promo_hits: recommendations.append({"priority":"high","action":"remove_absolute_claims","count":len(promo_hits)})
+    if duplicate_sents: recommendations.append({"priority":"medium","action":"remove_repetition","count":len(duplicate_sents)})
+    if missing: recommendations.append({"priority":"medium","action":"fill_student_intent_gaps","sections":missing})
+    if thin_sections: recommendations.append({"priority":"low","action":"merge_or_strengthen_thin_sections","count":len(thin_sections)})
+    recommendations.append({"priority":"high","action":"manual_verify_high_impact_facts","count":len(numeric_sents),"note":"The free audit does not claim these facts are true or false."})
+
+    return {
+        "file": path.name,
+        "overall_score": score,
+        "summary":"Free editorial audit completed. This audit identifies relevance and factual-risk patterns; it does not prove that a factual claim is true.",
+        "auto_applied": False,
+        "auto_apply_reason":"Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
+        "metrics":{
+            "word_count":word_count,
+            "generic_phrase_hits":len(generic_hits),
+            "promotional_hits":len(promo_hits),
+            "duplicate_sentences":len(duplicate_sents),
+            "numeric_or_date_sentences":len(numeric_sents),
+            "official_links":len(official_links),
+            "all_external_links":len(links),
+            "headings":len(headings),
+            "thin_sections":len(thin_sections),
+            "missing_intent_sections":missing,
+        },
+        "issues":issues,
+        "recommendations":recommendations,
+        "verified_facts":[],
+        "unverified_claims":[
+            {"claim":s,"reason":"Contains a high-impact number/date/figure. The free auditor does not verify external truth.","action":"manual_review"}
+            for s in numeric_sents[:50]
+        ],
+        "replacement_content":[],
+        "keep_content":[],
+    }
 
 
 def main():
-    target = os.getenv("TARGET_PAGE", "").strip()
+    target = __import__("os").environ.get("TARGET_PAGE", "").strip()
     if target:
         candidate = (ROOT / target).resolve()
         if candidate.parent != ROOT or candidate.suffix.lower() != ".html" or not candidate.exists():
             raise RuntimeError(f"Invalid TARGET_PAGE: {target}")
-        html_files = [candidate]
+        files = [candidate]
     else:
-        html_files = [p for p in sorted(ROOT.glob("*.html")) if p.name not in EXCLUDED]
+        files = [p for p in sorted(ROOT.glob("*.html")) if p.name not in EXCLUDED]
 
     results = []
-    for path in html_files:
-        if path.name in EXCLUDED:
-            continue
+    for path in files:
         try:
-            item = audit_file(path)
-            item["file"] = path.name
-            results.append(item)
+            results.append(audit_html(path))
         except Exception as e:
-            results.append({
-                "file": path.name,
-                "overall_score": 0,
-                "summary": f"Audit failed: {e}",
-                "issues": [{"severity":"high","type":"system","text":str(e),"location":path.name,"recommendation":"Review the workflow configuration and rerun the audit."}],
-                "auto_applied": False,
-            })
+            results.append({"file":path.name,"overall_score":0,"summary":f"Audit failed: {e}","auto_applied":False,"issues":[{"severity":"high","type":"system","text":str(e),"location":path.name,"recommendation":"Fix the audit configuration and rerun."}]})
 
-    from datetime import datetime, timezone
-    report = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "pages_audited": len(results),
-        "pages_changed": sum(1 for x in results if x.get("auto_applied")),
-        "target_page": target or None,
-        "results": results,
-    }
-    REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-
+    report={"generated_at":datetime.now(timezone.utc).isoformat(),"mode":"free-editorial-audit","pages_audited":len(results),"pages_changed":0,"target_page":target or None,"results":results}
+    REPORT_PATH.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 
 if __name__ == "__main__":
     main()
