@@ -44,7 +44,6 @@ jobs:
         run: pip install beautifulsoup4
 
       - name: Determine pages to process
-        id: pages
         env:
           TARGET_PAGE: ${{ inputs.target_page }}
           EVENT_BEFORE: ${{ github.event.before }}
@@ -63,25 +62,16 @@ jobs:
           cat changed-html.txt || true
 
       - name: Run automatic safe editorial fixer
-        if: ${{ hashFiles('changed-html.txt') != '' }}
-        env:
-          TARGET_PAGES: ${{ steps.pages.outputs.pages }}
+        if: ${{ (github.event_name == 'push' || inputs.apply_changes == true) && hashFiles('changed-html.txt') != '' }}
         run: |
           export TARGET_PAGES="$(cat changed-html.txt)"
           python scripts/auto_content_fixer.py
 
       - name: Run content audit after automatic fixes
-        env:
-          TARGET_PAGE: ${{ inputs.target_page }}
+        if: ${{ hashFiles('changed-html.txt') != '' }}
         run: |
-          if [ -n "$TARGET_PAGE" ]; then
-            python scripts/free_content_auditor.py
-          elif [ -s changed-html.txt ]; then
-            export TARGET_PAGE="$(head -n 1 changed-html.txt)"
-            python scripts/free_content_auditor.py
-          else
-            echo 'No HTML pages changed; nothing to audit.'
-          fi
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/free_content_auditor.py
 
       - name: Verify hero protection
         if: ${{ hashFiles('changed-html.txt') != '' }}
@@ -98,18 +88,17 @@ jobs:
                   continue
               soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
               hero = soup.select_one('.hero')
-              if hero is not None:
-                  # Automatic content fixes must never introduce audit notices into the hero.
-                  if hero.select('.notice'):
-                      raise SystemExit(f'Hero protection failed: notice found in {name}')
+              if hero is not None and hero.select('.notice'):
+                  raise SystemExit(f'Hero protection failed: notice found in {name}')
               print(f'Hero protection PASS: {name}')
           PY
 
       - name: Commit automatic HTML improvements
+        if: ${{ github.event_name == 'push' || inputs.apply_changes == true }}
         run: |
           git config user.name "MBA Portal Content Auditor"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html'
+          git add -- '*.html'
           if git diff --cached --quiet; then
             echo "No automatic HTML changes required."
           else
@@ -119,6 +108,7 @@ jobs:
 
       - name: Upload audit artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: content-audit-results
           path: |
