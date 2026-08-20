@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T07:55:06.989979+00:00",
+  "generated_at": "2026-08-20T07:56:56.984424+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -7,34 +7,31 @@
   "results": [
     {
       "file": "iim-ahmedabad.html",
-      "overall_score": 68,
+      "overall_score": 71,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
-        "word_count": 2167,
+        "word_count": 2344,
         "generic_phrase_hits": 0,
-        "promotional_hits": 4,
+        "promotional_hits": 3,
         "duplicate_sentences": 1,
-        "numeric_or_date_sentences": 43,
-        "official_links": 9,
-        "all_external_links": 17,
-        "missing_intent_sections": [
-          "scholarship"
-        ],
+        "numeric_or_date_sentences": 51,
+        "official_links": 11,
+        "all_external_links": 19,
+        "missing_intent_sections": [],
         "thin_sections": 0
       },
       "issues": [
         {
           "severity": "high",
           "type": "misleading",
-          "text": "Found 4 promotional/absolute claim patterns.",
+          "text": "Found 3 promotional/absolute claim patterns.",
           "location": "page text",
           "examples": [
             "80 80 SC 85 75 75 75 ST 75 65 65 65 PwD 85 75 75 75 Important: cutoff does not guarantee a call These are minimum screening thresholds. Meeting the published CAT threshold does not automatically guarantee an",
             "creening thresholds. Meeting the published CAT threshold does not automatically guarantee an interview call because IIMA uses additional profile and application-rating components. Selection Process IIMA's sele",
-            "al management and other career paths. Placement reality An IIMA degree does not guarantee a specific company, function or salary. Individual outcomes depend on the student's profile, skills, academic performan",
-            "minimums of 85 in VARC, DILR and QA. These are screening thresholds and do not guarantee an interview call. Can a non-engineer get into IIM Ahmedabad? Yes. Non-engineering candidates form a substantial part o"
+            "al management and other career paths. Placement reality An IIMA degree does not guarantee a specific company, function or salary. Individual outcomes depend on the student's profile, skills, academic performan"
           ],
           "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims."
         },
@@ -51,23 +48,16 @@
         {
           "severity": "medium",
           "type": "fact_check",
-          "text": "Found 43 sentences containing dates, figures, percentages or monetary values.",
+          "text": "Found 51 sentences containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Manually verify every high-impact claim against the current authoritative source. The free audit does not determine whether the number is true."
-        },
-        {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
         }
       ],
       "recommendations": [
         {
           "priority": "high",
           "action": "remove_absolute_claims",
-          "count": 4
+          "count": 3
         },
         {
           "priority": "medium",
@@ -77,15 +67,8 @@
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 43,
-          "official_source_links": 9
-        },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "scholarship"
-          ]
+          "count": 51,
+          "official_source_links": 11
         }
       ],
       "verified_facts": [],
@@ -251,6 +234,46 @@
           "action": "manual_review"
         },
         {
+          "claim": "Scholarships & Financial Assistance IIM Ahmedabad provides need-based financial assistance for students in the two-year PGP and PGP-FABM programmes.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The institute states that scholarship decisions consider factors such as annual gross family income, family assets and the number of dependants.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Applications for the Special Need Based Scholarship are invited each year, with the current admission page directing students to the institute's financial-assistance process.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "What this means for applicants Do not treat a scholarship as an automatic fee waiver.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Assistance route What students should know IIMA Need-Based Scholarship Financial assistance is assessed using financial circumstances such as family income, assets and dependants.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Alumni / industry scholarships IIMA also lists scholarships supported by alumni, industry and other donors; eligibility and award amounts vary by scheme.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Government scholarships Eligible students can also explore applicable Government of India scholarship schemes through the relevant official portals.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Source: IIMA MBA admission page and IIMA scholarship rules .",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
           "claim": "Strong Fit Strong academic record Excellent CAT preparation Clear career objective Good communication and interview ability Comfort with analytical and case-based learning Interest in consulting, finance, strategy, technology, product or general management Think Carefully If You are applying only because of the brand You expect a relaxed academic environment You have no clear reason for pursuing an MBA The opportunity cost of leaving your current career is high A specialised qualification would better match your career goal Freshers Freshers can apply.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
@@ -297,11 +320,6 @@
         },
         {
           "claim": "The 2025 audited placement report lists a median salary of ₹34.59 LPA.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Official Sources IIM Ahmedabad — Official Website → IIMA PGP Admission 2026–28 → PGP 2026–28 Admission Status → IIMA Rankings → PGP 2026–28 Batch Profile → PGP Final Placements 2025–26 → Audited Placement Report 2025 →",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
