@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: pip install beautifulsoup4
 
-      - name: Run free editorial audit
+      - name: Run initial free editorial audit
         env:
           TARGET_PAGE: ${{ github.event.inputs.target_page || 'iim-ahmedabad.html' }}
         run: python scripts/free_content_auditor.py
@@ -51,6 +51,36 @@ jobs:
       - name: Apply reviewed IIM Ahmedabad improvements
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true' && github.event.inputs.target_page == 'iim-ahmedabad.html' }}
         run: python scripts/apply_iima_content_updates.py
+
+      - name: Re-run audit after approved changes
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true' && github.event.inputs.target_page == 'iim-ahmedabad.html' }}
+        env:
+          TARGET_PAGE: iim-ahmedabad.html
+        run: python scripts/free_content_auditor.py
+
+      - name: Verify approved IIM Ahmedabad changes
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true' && github.event.inputs.target_page == 'iim-ahmedabad.html' }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+
+          path = Path('iim-ahmedabad.html')
+          soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+          text = soup.get_text(' ', strip=True)
+
+          checks = {
+              'scholarship section': soup.find(id='scholarships') is not None,
+              'official IIMA admission source': 'https://www.iima.ac.in/academics/mba/admissions/indians' in str(soup),
+              'official scholarship rules source': 'Financial%20AssistanceScholarships.pdf' in str(soup),
+          }
+
+          for label, ok in checks.items():
+              print(f'{label}: {"PASS" if ok else "FAIL"}')
+
+          if not all(checks.values()):
+              raise SystemExit('Approved content verification failed; refusing to commit.')
+          PY
 
       - name: Commit audit report and approved HTML changes
         run: |
