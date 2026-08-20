@@ -2,6 +2,12 @@ name: Content Relevance Audit
 
 on:
   workflow_dispatch:
+    inputs:
+      target_page:
+        description: 'Optional HTML filename to audit; leave blank for all pages'
+        required: false
+        type: string
+        default: 'iim-ahmedabad.html'
   push:
     branches: [main]
     paths:
@@ -11,6 +17,10 @@ on:
 
 permissions:
   contents: write
+
+concurrency:
+  group: content-audit-main
+  cancel-in-progress: true
 
 jobs:
   audit-and-update:
@@ -33,6 +43,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5
+          TARGET_PAGE: ${{ github.event.inputs.target_page || 'iim-ahmedabad.html' }}
         run: python scripts/content_auditor.py
 
       - name: Commit improved pages and audit report
