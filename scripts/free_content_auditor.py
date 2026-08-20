@@ -51,6 +51,25 @@ def sentences(text):
     return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if len(s.strip()) > 35]
 
 
+def factual_claim_sentences(soup):
+    """Extract readable content blocks instead of flattening the entire page.
+
+    This prevents headings, navigation labels, stat cards and adjacent sections from
+    being concatenated into one false 'factual sentence'.
+    """
+    blocks = []
+    seen = set()
+    for tag in soup.find_all(["p", "li", "td", "blockquote"]):
+        if tag.find_parent(["nav", "header", "footer", "script", "style", "noscript"]):
+            continue
+        value = re.sub(r"\s+", " ", tag.get_text(" ", strip=True)).strip()
+        if len(value) < 20 or value in seen:
+            continue
+        seen.add(value)
+        blocks.extend(sentences(value))
+    return blocks
+
+
 def is_negated_guarantee_sentence(sentence):
     normalized = re.sub(r"\s+", " ", sentence.lower())
     return any(marker in normalized for marker in NEGATED_PROMO_MARKERS)
@@ -62,6 +81,7 @@ def audit(path):
     text = clean_text(soup)
     lower = text.lower()
     sents = sentences(text)
+    fact_sents = factual_claim_sentences(soup)
     issues, recommendations = [], []
 
     generic_examples = []
@@ -77,8 +97,7 @@ def audit(path):
     for pattern in PROMOTIONAL_PATTERNS:
         for m in re.finditer(pattern, text, flags=re.I):
             if pattern == r"guarantee(?:d|s)?":
-                # Evaluate the complete sentence rather than a small character window.
-                containing_sentence = next((s for s in sents if s.lower().find(m.group(0).lower()) >= 0), "")
+                containing_sentence = next((s for s in sents if m.group(0).lower() in s.lower()), "")
                 if containing_sentence and is_negated_guarantee_sentence(containing_sentence):
                     continue
             promo_examples.append(text[max(0, m.start()-80):m.end()+120].strip())
@@ -93,13 +112,14 @@ def audit(path):
         issues.append({"severity":"medium","type":"repetition","text":f"Found {len(dupes)} repeated sentences/near-identical statements.","location":"page text","examples":dupes[:5],"recommendation":"Keep the stronger occurrence and remove the duplicate."})
         recommendations.append({"priority":"medium","action":"remove_repetition","count":len(dupes)})
 
-    number_sents = [s for s in sents if re.search(r"(?:₹|rs\.?|%|\b20\d{2}\b|\b\d+(?:\.\d+)?\s*(?:lakh|crore|LPA|years?|months?|seats?|students?|marks?)\b)", s, flags=re.I)]
+    number_pattern = r"(?:₹|rs\.?|%|\b20\d{2}\b|\b\d+(?:\.\d+)?\s*(?:lakh|crore|LPA|years?|months?|seats?|students?|marks?)\b)"
+    number_sents = [s for s in fact_sents if re.search(number_pattern, s, flags=re.I)]
     external_links = [a.get("href") for a in soup.find_all("a", href=True) if a.get("href", "").startswith(("http://", "https://"))]
     official_domains = ["iima.ac.in", "iimb.ac.in", "iimcal.ac.in", "iiml.ac.in", "iimk.ac.in", "iimidr.ac.in", ".gov.in", ".nic.in", "nta.ac.in", "cat.ac.in", "nirfindia.org"]
     official_links = [u for u in external_links if any(x in urlparse(u).netloc.lower() for x in official_domains)]
     if number_sents:
         severity = "high" if not official_links else "medium"
-        issues.append({"severity":severity,"type":"fact_check","text":f"Found {len(number_sents)} sentences containing dates, figures, percentages or monetary values.","location":"factual claims","recommendation":"Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."})
+        issues.append({"severity":severity,"type":"fact_check","text":f"Found {len(number_sents)} content blocks containing dates, figures, percentages or monetary values.","location":"factual claims","recommendation":"Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."})
         recommendations.append({"priority":"high","action":"manual_verify_high_impact_facts","count":len(number_sents),"official_source_links":len(official_links)})
 
     missing = [section for section, terms in IMPORTANT_TERMS.items() if not any(t in lower for t in terms)]
@@ -129,7 +149,7 @@ def audit(path):
         "summary":"Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
         "auto_applied":False,
         "auto_apply_reason":"Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
-        "metrics":{"word_count":word_count,"generic_phrase_hits":generic_count,"promotional_hits":len(promo_examples),"duplicate_sentences":len(dupes),"numeric_or_date_sentences":len(number_sents),"official_links":len(official_links),"all_external_links":len(external_links),"missing_intent_sections":missing,"thin_sections":len(thin)},
+        "metrics":{"word_count":word_count,"generic_phrase_hits":generic_count,"promotional_hits":len(promo_examples),"duplicate_sentences":len(dupes),"numeric_or_date_content_blocks":len(number_sents),"official_links":len(official_links),"all_external_links":len(external_links),"missing_intent_sections":missing,"thin_sections":len(thin)},
         "issues":issues,"recommendations":recommendations,"verified_facts":[],
         "unverified_claims":[{"claim":s,"reason":"Contains a high-impact number/date/figure; free audit does not verify external truth.","action":"manual_review"} for s in number_sents[:50]],
         "replacement_content":[],"keep_content":[]
