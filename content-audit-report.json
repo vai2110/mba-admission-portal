@@ -1,243 +1,250 @@
 {
-  "generated_at": "2026-08-20T08:33:42.467996+00:00",
+  "generated_at": "2026-08-20T08:35:59.994570+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
-  "target_page": "iim-ahmedabad.html",
+  "target_page": "iim-indore.html",
   "results": [
     {
-      "file": "iim-ahmedabad.html",
-      "overall_score": 87,
+      "file": "iim-indore.html",
+      "overall_score": 80,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
-        "word_count": 2444,
+        "word_count": 1502,
         "generic_phrase_hits": 0,
-        "promotional_hits": 1,
-        "duplicate_sentences": 1,
-        "numeric_or_date_content_blocks": 34,
-        "official_links": 12,
-        "all_external_links": 20,
-        "missing_intent_sections": [],
-        "thin_sections": 0
+        "promotional_hits": 2,
+        "duplicate_sentences": 0,
+        "numeric_or_date_content_blocks": 32,
+        "official_links": 6,
+        "all_external_links": 8,
+        "missing_intent_sections": [
+          "scholarship"
+        ],
+        "thin_sections": 1
       },
       "issues": [
         {
           "severity": "high",
           "type": "misleading",
-          "text": "Found 1 promotional/absolute claim patterns.",
+          "text": "Found 2 promotional/absolute claim patterns.",
           "location": "page text",
           "examples": [
-            "he reported placement outcome for that cycle; they should not be presented as a guaranteed salary for future batches. Batch Profile & Student Life 2026–28 PGP Batch Profile 414 PGP students 60.87% Engineering b"
+            "udget. Admission benchmark 90 minimum Use this as an admission benchmark, not a guaranteed call or convert. Placement reference ₹29.57L Compare this with the median salary and role-wise outcomes before deciding",
+            "two years against their target career and not assume that an IIM automatically guarantees a high-paying role. References, Official Sources & Student Discussions See the linked institute and NIRF pages for admi"
           ],
           "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements are excluded."
         },
         {
           "severity": "medium",
-          "type": "repetition",
-          "text": "Found 1 repeated sentences/near-identical statements.",
-          "location": "page text",
-          "examples": [
-            "IIMA's PGP includes both fresh graduates and candidates with prior work experience."
-          ],
-          "recommendation": "Keep the stronger occurrence and remove the duplicate."
+          "type": "fact_check",
+          "text": "Found 32 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
         },
         {
           "severity": "medium",
-          "type": "fact_check",
-          "text": "Found 34 factual content blocks containing dates, figures, percentages or monetary values.",
-          "location": "factual claims",
-          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: scholarship",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 1 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "References, Official Sources & Student Discussions"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
       ],
       "recommendations": [
         {
           "priority": "high",
           "action": "remove_absolute_claims",
-          "count": 1
-        },
-        {
-          "priority": "medium",
-          "action": "remove_repetition",
-          "count": 1
+          "count": 2
         },
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 34,
-          "official_source_links": 12
+          "count": 32,
+          "official_source_links": 6
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "scholarship"
+          ]
+        },
+        {
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 1
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "Courses, Fees, Eligibility, CAT Cutoff, Admission Process & Placements",
+          "claim": "IIM Indore offers a broad PGP and also a separate PGP-HRM.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Ahmedabad retained the first position in the NIRF Management category in 2025.",
+          "claim": "Its current PGP fee is materially higher than the old ₹20–21 lakh figures found in many articles, so students should budget from the 2026–28 official schedule.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The IIM Ahmedabad PGP 2026–28 admission cycle through CAT 2025 has concluded and the 2026–28 batch has commenced.",
+          "claim": "Use ranking as a starting point; make the final decision using programme fit, fees, career outcomes, admission probability and personal preference.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "For the PGP 2026–28 batch, candidates must hold a bachelor's degree with at least 50% marks or equivalent CGPA.",
+          "claim": "India Rankings 2025: Management, Ministry of Education.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The minimum is relaxed to 45% for SC, ST and PwD candidates.",
+          "claim": "For PGP 2026–28, the official CAT 2025 admission procedure uses a 90 overall minimum for General/EWS and 80 in each section; the subsequent shortlist is composite.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Domestic candidates for the 2026–28 PGP admission process applied through CAT 2025.",
+          "claim": "CAT 2025 + IIM Indore's 2026–28 PGP admission procedure.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIMA's selection process includes shortlisting for the Analytical Writing Test and Personal Interview followed by final selection.",
+          "claim": "A qualifying cutoff is only the first filter; your academic profile, CAT performance and interview performance also matter.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The Application Rating incorporates components related to academic performance, work experience and diversity-related profile factors as specified by IIMA.",
+          "claim": "₹20.70 lakh course fee + ₹50,000 caution + mess*",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Explore the detailed IIM Ahmedabad MBA / PGP 2026–28 guide covering eligibility, CAT 2025 cutoff, selection process, application rating, final selection, fees, admission timeline and FAQs.",
+          "claim": "₹6.00 lakh/year for first 3 years*; Years 4–5 at prevailing PGP fee",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Management programme focused on food, agriculture, agribusiness and allied sectors.",
+          "claim": "Management route for human resources and people-management careers.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Blended postgraduate management programme designed for working professionals and entrepreneurs.",
+          "claim": "PGP 2026–28 official schedule: ₹12,00,000 course fee per year + ₹50,000 refundable caution deposit + ₹54,000 mess deposit in Year 1; Year 2 adds ₹11,800 alumni fee including GST.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIMA currently publishes a PGP programme fee of ₹27.50 lakh for the 2025–27 batch, including ₹20.10 lakh in tuition fees.",
+          "claim": "The two-year course fee alone is ₹24 lakh; with the listed first-year deposits and second-year alumni fee, the published academic/mandatory components total ₹24.65 lakh before any actual insurance/personal expenses.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The latest publicly published PGP programme fee available from IIMA is for the 2025–27 batch.",
+          "claim": "Official 2026–28 schedule lists ₹12 lakh in each academic year.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "It is the latest programme fee publicly listed by IIMA for the 2025–27 batch.",
+          "claim": "IIM Indore's 2025 PGP/IPM placement report records 225+ recruiters, ₹29.57 lakh average package, ₹27 lakh median and ₹70 lakh highest.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Ahmedabad's placement ecosystem covers consulting, finance, technology, analytics, consumer businesses, conglomerates, healthcare and other sectors.",
+          "claim": "Consulting accounted for about 35.4% of offers, followed by finance at 14.5%, sales & marketing 13.2%, IT/analytics 10.4% and general management/operations/HR 26.5%.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The breadth of the recruiter ecosystem means that students can pursue consulting, finance, technology, analytics, consumer businesses, general management and other career paths.",
+          "claim": "IIM Indore's Final Placement Report 2025 records ₹29.57 lakh average package, ₹27 lakh median package, ₹70 lakh highest package and 225+ recruiters.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Placement data source: IIMA's 2025 IPRS report lists a median salary of ₹34.59 LPA and mean salary of ₹35.50 LPA for the MBA-PGP.",
+          "claim": "Consulting accounted for 35.4% and finance 26.5% of the reported domain distribution.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Engineering students form the majority of the latest PGP cohort, but non-engineers constitute a substantial part of the class.",
+          "claim": "Do not choose it only because it is an IIM; compare your expected career domain with the actual role distribution and the ₹24 lakh+ academic cost.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Freshers are part of the programme, while candidates with previous professional experience form the larger share of the latest batch.",
+          "claim": "A 2026 IIM Indore passout AMA argues that many negative online claims do not reflect the whole student experience and gives a useful insider counterpoint.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Students and aspirants frequently discuss the intensity of the first-year curriculum, academic competition and the challenge of managing multiple commitments.",
+          "claim": "A current-student AMA covers academics, campus culture, hostel life, clubs, internships and placement expectations.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "A recurring discussion theme is whether the MBA should be pursued for a specific career objective rather than simply for brand value.",
+          "claim": "The official PGP page lists ₹24,11,800 as the two-year course fee for resident Indian students.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Community discussions frequently compare the experiences of freshers and candidates who enter the MBA after working for a few years.",
+          "claim": "This is the number students should use instead of older ₹20–21 lakh figures found on third-party sites.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIMA has a highly selective admission process, a strong placement ecosystem and a diverse PGP cohort.",
+          "claim": "For PGP 2026–28, the official minimum for General/EWS candidates is 90 overall and 80 in each section.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIMA is particularly suitable for candidates who want a highly competitive MBA environment and have a clear reason for pursuing management education.",
+          "claim": "The 2025 PGP/IPM placement report records ₹29.57 lakh average, ₹27 lakh median and ₹70 lakh highest package, with 225+ recruiters.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The institute states that scholarship decisions consider factors such as annual gross family income, family assets and the number of dependants.",
+          "claim": "Consulting was the largest reported domain at about 35.4% of offers.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Applications for the Special Need Based Scholarship are invited each year, with the current admission page directing students to the institute's financial-assistance process.",
+          "claim": "IIM Lucknow has a stronger traditional top-IIM positioning for many consulting and finance aspirants, while IIM Indore offers a broad PGP and strong consulting outcomes.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIMA also lists scholarships supported by alumni, industry and other donors; eligibility and award amounts vary by scheme.",
+          "claim": "If both convert, compare the role mix and your personal career goal rather than relying only on rank.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Eligible students can also explore applicable Government of India scholarship schemes through the relevant official portals.",
+          "claim": "Its 2026–28 official course fee is ₹10.35 lakh per year, plus ₹50,000 refundable caution deposit and mess-related charges.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "You have no clear reason for pursuing an MBA",
+          "claim": "For domestic applicants, the institute currently lists ₹6 lakh per year for the first three years, subject to revision.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "For CAT 2025, the published minimum overall percentile for General/EWS candidates was 95, with sectional minimums of 85 in VARC, DILR and QA.",
+          "claim": "The fourth and fifth years are charged at the prevailing PGP fee.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The final selection methodology also considers PI, AWT and Application Rating.",
+          "claim": "The first three years include lodging, lectures, internet and library access.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The latest publicly published PGP programme fee is ₹27.50 lakh for the 2025–27 batch.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "A separate public fee figure for 2026–28 should not be assumed unless officially published by IIMA.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The 2025 audited placement report lists a median salary of ₹34.59 LPA.",
+          "claim": "Freshers should nevertheless compare the opportunity cost of two years against their target career and not assume that an IIM automatically guarantees a high-paying role.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
