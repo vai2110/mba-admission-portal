@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T07:57:33.125552+00:00",
+  "generated_at": "2026-08-20T08:01:44.099292+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -33,7 +33,7 @@
             "creening thresholds. Meeting the published CAT threshold does not automatically guarantee an interview call because IIMA uses additional profile and application-rating components. Selection Process IIMA's sele",
             "al management and other career paths. Placement reality An IIMA degree does not guarantee a specific company, function or salary. Individual outcomes depend on the student's profile, skills, academic performan"
           ],
-          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims."
+          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."
         },
         {
           "severity": "medium",
@@ -50,7 +50,7 @@
           "type": "fact_check",
           "text": "Found 51 sentences containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
-          "recommendation": "Manually verify every high-impact claim against the current authoritative source. The free audit does not determine whether the number is true."
+          "recommendation": "Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."
         }
       ],
       "recommendations": [
