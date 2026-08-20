@@ -64,15 +64,22 @@ def in_hero(node):
     return False
 
 
+def remove_hero_notices(soup):
+    """Remove legacy audit notice blocks from the hero before rebuilding content."""
+    hero = soup.select_one(".hero")
+    if not hero:
+        return
+    for notice in hero.select(".notice"):
+        notice.decompose()
+
+
 def insert_after_real_section_heading(soup, terms, html, marker):
     """Insert only inside a .main-section; never after hero headings."""
-    # If a previous version placed the generated block in the hero, remove it
-    # so it can be recreated in the correct section.
     existing = soup.find(id=marker)
     if existing and in_hero(existing):
         existing.decompose()
     elif existing:
-        return True
+        existing.decompose()
 
     for section in soup.find_all(["section", "div"], class_=lambda c: c and "main-section" in c):
         heading = section.find(["h2", "h3"], recursive=False)
@@ -87,7 +94,7 @@ def before_section(soup, terms, html, marker):
     if existing and in_hero(existing):
         existing.decompose()
     elif existing:
-        return
+        existing.decompose()
     for section in soup.find_all(["section", "div"], class_=lambda c: c and "main-section" in c):
         heading = section.find(["h2", "h3"], recursive=False)
         if heading and any(term in heading.get_text(" ", strip=True).lower() for term in terms):
@@ -97,6 +104,9 @@ def before_section(soup, terms, html, marker):
 
 def main():
     soup = BeautifulSoup(PATH.read_text(encoding="utf-8"), "html.parser")
+
+    # Hard rule: audit-driven content must never remain in the hero.
+    remove_hero_notices(soup)
 
     replace_text(soup, {
         "₹20.70 lakh course fee + ₹50,000 caution + mess*": "₹24.00 lakh course fee across 2026–27 and 2027–28 + listed deposits*",
@@ -133,7 +143,7 @@ def main():
         if in_hero(node):
             raise SystemExit(f"Hero-content safety check failed for #{marker}; refusing to write the page.")
 
-    # No audit-generated notice may exist in the hero.
+    # Final hard safety check: no notice component may exist inside the hero.
     hero = soup.select_one(".hero")
     if hero and hero.select(".notice"):
         raise SystemExit("Hero-content safety check failed: notice found inside hero; refusing to write the page.")
