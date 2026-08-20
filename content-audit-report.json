@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T06:07:46.217362+00:00",
+  "generated_at": "2026-08-20T07:01:31.707274+00:00",
   "pages_audited": 1,
   "pages_changed": 0,
   "target_page": "iim-ahmedabad.html",
@@ -7,12 +7,12 @@
     {
       "file": "iim-ahmedabad.html",
       "overall_score": 0,
-      "summary": "Audit failed: OPENAI_API_KEY GitHub secret is not configured",
+      "summary": "Audit failed: 400 Client Error: Bad Request for url: https://api.openai.com/v1/responses",
       "issues": [
         {
           "severity": "high",
           "type": "system",
-          "text": "OPENAI_API_KEY GitHub secret is not configured",
+          "text": "400 Client Error: Bad Request for url: https://api.openai.com/v1/responses",
           "location": "iim-ahmedabad.html",
           "recommendation": "Review workflow configuration and rerun the audit."
         }
