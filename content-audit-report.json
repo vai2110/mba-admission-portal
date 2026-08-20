@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T07:01:31.707274+00:00",
+  "generated_at": "2026-08-20T07:02:43.610728+00:00",
   "pages_audited": 1,
   "pages_changed": 0,
   "target_page": "iim-ahmedabad.html",
@@ -7,14 +7,14 @@
     {
       "file": "iim-ahmedabad.html",
       "overall_score": 0,
-      "summary": "Audit failed: 400 Client Error: Bad Request for url: https://api.openai.com/v1/responses",
+      "summary": "Audit failed: OpenAI API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
       "issues": [
         {
           "severity": "high",
           "type": "system",
-          "text": "400 Client Error: Bad Request for url: https://api.openai.com/v1/responses",
+          "text": "OpenAI API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
           "location": "iim-ahmedabad.html",
-          "recommendation": "Review workflow configuration and rerun the audit."
+          "recommendation": "Review the workflow configuration and rerun the audit."
         }
       ],
       "auto_applied": false
