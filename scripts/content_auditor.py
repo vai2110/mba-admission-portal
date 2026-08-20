@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 
 OPENAI_API_URL = "https://api.openai.com/v1/responses"
-MODEL = os.getenv("OPENAI_MODEL", "gpt-5")
+MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-luna")
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "content-audit-report.json"
 EXCLUDED = {"content-audit.html"}
@@ -28,19 +28,9 @@ NON-NEGOTIABLE RULES:
 9. Do not keyword-stuff. Write naturally for an Indian MBA aspirant.
 10. Prioritise high-value sections: eligibility, application route, selection process, fees, important dates, accepted exams, cutoff interpretation, placements, scholarships, programme fit, and decision guidance.
 11. Do not add a generic conclusion just to increase length.
-12. Before changing a factual statement, actively verify it using available web search and the supplied linked sources. Search official domains first when the entity is identifiable.
+12. Before changing a factual statement, actively verify it using web search and the supplied linked sources. Search official domains first when the entity is identifiable.
 
-OUTPUT ONLY valid JSON:
-{
-  "overall_score": 0-100,
-  "summary": "...",
-  "issues": [{"severity":"high|medium|low","type":"generic|irrelevant|unsupported|misleading|outdated|repetition|student_intent|structure","text":"...","location":"...","recommendation":"..."}],
-  "verified_facts": [{"claim":"...","source":"...","why_authoritative":"..."}],
-  "unverified_claims": [{"claim":"...","reason":"...","action":"remove|rewrite|manual_review"}],
-  "replacement_content": [{"location":"...","old_text":"...","new_text":"...","reason":"..."}],
-  "keep_content": [{"location":"...","reason":"..."}],
-  "revised_html":"FULL HTML DOCUMENT"
-}
+OUTPUT ONLY valid JSON matching the requested keys. Do not wrap JSON in markdown fences.
 '''
 
 
@@ -71,7 +61,7 @@ def fetch_source(url):
 def call_model(html, path):
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY GitHub secret is not configured")
+        raise RuntimeError("OpenAI secret is not available to the audit process")
 
     linked_sources = [fetch_source(u) for u in extract_urls(html)]
     user_content = (
@@ -79,8 +69,9 @@ def call_model(html, path):
         f"Existing HTML:\n{html[:200000]}\n\n"
         f"Linked source material (supporting evidence only; may be incomplete):\n"
         f"{json.dumps(linked_sources, ensure_ascii=False)[:110000]}\n\n"
-        "For every high-impact factual claim, use web search to verify current authoritative evidence before editing. "
-        "Do not cite search results you did not actually inspect."
+        "For every high-impact factual claim, use the web search tool to verify current authoritative evidence before editing. "
+        "Search official domains first. Do not invent missing data. "
+        "Return a JSON object with: overall_score, summary, issues, verified_facts, unverified_claims, replacement_content, keep_content, revised_html."
     )
 
     payload = {
@@ -90,7 +81,6 @@ def call_model(html, path):
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_content},
         ],
-        "text": {"format": {"type": "json_object"}},
         "max_output_tokens": 50000,
     }
     r = requests.post(
@@ -99,7 +89,14 @@ def call_model(html, path):
         json=payload,
         timeout=300,
     )
-    r.raise_for_status()
+    if r.status_code >= 400:
+        try:
+            detail = r.json().get("error", {})
+            message = detail.get("message") or detail.get("code") or r.text[:500]
+        except Exception:
+            message = r.text[:500]
+        raise RuntimeError(f"OpenAI API {r.status_code}: {message}")
+
     data = r.json()
     text = data.get("output_text")
     if not text:
@@ -111,7 +108,10 @@ def call_model(html, path):
         text = "".join(chunks)
     if not text:
         raise RuntimeError("OpenAI response did not contain output text")
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"OpenAI returned non-JSON audit output: {e}") from e
 
 
 def audit_file(path):
@@ -150,7 +150,7 @@ def main():
                 "file": path.name,
                 "overall_score": 0,
                 "summary": f"Audit failed: {e}",
-                "issues": [{"severity":"high","type":"system","text":str(e),"location":path.name,"recommendation":"Review workflow configuration and rerun the audit."}],
+                "issues": [{"severity":"high","type":"system","text":str(e),"location":path.name,"recommendation":"Review the workflow configuration and rerun the audit."}],
                 "auto_applied": False,
             })
 
