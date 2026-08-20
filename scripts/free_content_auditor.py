@@ -36,9 +36,12 @@ FACTUAL_GUIDANCE_MARKERS = [
     "individual experiences vary", "should not be presented as", "should not be labelled as",
 ]
 IMPORTANT_TERMS = {
-    "eligibility": ["eligibility", "eligible", "qualification"], "admission": ["admission", "application", "apply", "selection", "shortlist"],
-    "fees": ["fee", "fees", "tuition", "programme fee"], "dates": ["date", "deadline", "last date", "schedule"],
-    "exam": ["cat", "xat", "gmat", "exam", "entrance"], "cutoff": ["cutoff", "cut-off", "percentile"],
+    "eligibility": ["eligibility", "eligible", "qualification"],
+    "admission": ["admission", "application", "apply", "selection", "shortlist"],
+    "fees": ["fee", "fees", "tuition", "programme fee"],
+    "dates": ["date", "deadline", "last date", "schedule"],
+    "exam": ["cat", "xat", "gmat", "exam", "entrance"],
+    "cutoff": ["cutoff", "cut-off", "percentile"],
     "placement": ["placement", "salary", "package", "recruiter", "median", "average"],
     "scholarship": ["scholarship", "financial aid", "fee waiver"],
     "fit": ["who should", "suitable", "fit", "consider", "decision", "pros", "cons"],
@@ -57,7 +60,6 @@ def sentences(text):
 
 
 def factual_claim_sentences(soup):
-    """Extract readable content blocks without flattening adjacent page elements."""
     blocks = []
     seen = set()
     for tag in soup.find_all(["p", "li", "td", "blockquote"]):
@@ -119,12 +121,7 @@ def audit(path):
         recommendations.append({"priority":"medium","action":"remove_repetition","count":len(dupes)})
 
     number_pattern = r"(?:₹|rs\.?|%|\b20\d{2}\b|\b\d+(?:\.\d+)?\s*(?:lakh|crore|LPA|years?|months?|seats?|students?|marks?|percentile)\b)"
-    number_sents = [
-        s for s in fact_sents
-        if re.search(number_pattern, s, flags=re.I)
-        and not is_guidance_or_caution(s)
-        and not re.match(r"^(?:source|note|updated|last updated)\s*:", s, flags=re.I)
-    ]
+    number_sents = [s for s in fact_sents if re.search(number_pattern, s, flags=re.I) and not is_guidance_or_caution(s) and not re.match(r"^(?:source|note|updated|last updated)\s*:", s, flags=re.I)]
 
     external_links = [a.get("href") for a in soup.find_all("a", href=True) if a.get("href", "").startswith(("http://", "https://"))]
     official_domains = ["iima.ac.in", "iimb.ac.in", "iimcal.ac.in", "iiml.ac.in", "iimk.ac.in", "iimidr.ac.in", ".gov.in", ".nic.in", "nta.ac.in", "cat.ac.in", "nirfindia.org"]
@@ -160,7 +157,7 @@ def audit(path):
         "file": path.name, "overall_score": score,
         "summary":"Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
         "auto_applied":False,
-        "auto_apply_reason":"Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
+        "auto_apply_reason":"Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
         "metrics":{"word_count":word_count,"generic_phrase_hits":generic_count,"promotional_hits":len(promo_examples),"duplicate_sentences":len(dupes),"numeric_or_date_content_blocks":len(number_sents),"official_links":len(official_links),"all_external_links":len(external_links),"missing_intent_sections":missing,"thin_sections":len(thin)},
         "issues":issues,"recommendations":recommendations,"verified_facts":[],
         "unverified_claims":[{"claim":s,"reason":"Contains a high-impact number/date/figure; free audit does not verify external truth.","action":"manual_review"} for s in number_sents[:50]],
@@ -168,17 +165,29 @@ def audit(path):
     }
 
 
-def main():
+def resolve_targets():
+    target_pages = os.environ.get("TARGET_PAGES", "").strip()
     target = os.environ.get("TARGET_PAGE", "").strip()
+    if target_pages:
+        names = [x.strip() for x in target_pages.splitlines() if x.strip()]
+        files = []
+        for name in names:
+            candidate = (ROOT / name).resolve()
+            if candidate.parent == ROOT and candidate.suffix.lower() == ".html" and candidate.exists() and candidate.name not in EXCLUDED:
+                files.append(candidate)
+        return files
     if target:
         candidate = (ROOT / target).resolve()
         if candidate.parent != ROOT or candidate.suffix.lower() != ".html" or not candidate.exists():
             raise RuntimeError(f"Invalid TARGET_PAGE: {target}")
-        files = [candidate]
-    else:
-        files = [p for p in sorted(ROOT.glob("*.html")) if p.name not in EXCLUDED]
+        return [candidate]
+    return [p for p in sorted(ROOT.glob("*.html")) if p.name not in EXCLUDED]
+
+
+def main():
+    files = resolve_targets()
     results = [audit(p) for p in files]
-    report={"generated_at":datetime.now(timezone.utc).isoformat(),"mode":"free-editorial-audit","pages_audited":len(results),"pages_changed":0,"target_page":target or None,"results":results}
+    report={"generated_at":datetime.now(timezone.utc).isoformat(),"mode":"free-editorial-audit","pages_audited":len(results),"pages_changed":0,"target_page":os.environ.get("TARGET_PAGE") or None,"target_pages": [p.name for p in files],"results":results}
     REPORT_PATH.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 
 if __name__ == "__main__":
