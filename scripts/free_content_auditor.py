@@ -30,6 +30,11 @@ NEGATED_PROMO_MARKERS = [
     "not guarantee", "not guaranteed", "cannot guarantee", "can't guarantee",
     "does not by itself guarantee", "does not automatically guarantee",
 ]
+FACTUAL_GUIDANCE_MARKERS = [
+    "do not treat", "should not be treated", "should not assume", "do not assume",
+    "does not determine", "does not mean", "not a guarantee", "not guaranteed",
+    "individual experiences vary", "should not be presented as", "should not be labelled as",
+]
 IMPORTANT_TERMS = {
     "eligibility": ["eligibility", "eligible", "qualification"], "admission": ["admission", "application", "apply", "selection", "shortlist"],
     "fees": ["fee", "fees", "tuition", "programme fee"], "dates": ["date", "deadline", "last date", "schedule"],
@@ -52,11 +57,7 @@ def sentences(text):
 
 
 def factual_claim_sentences(soup):
-    """Extract readable content blocks instead of flattening the entire page.
-
-    This prevents headings, navigation labels, stat cards and adjacent sections from
-    being concatenated into one false 'factual sentence'.
-    """
+    """Extract readable content blocks without flattening adjacent page elements."""
     blocks = []
     seen = set()
     for tag in soup.find_all(["p", "li", "td", "blockquote"]):
@@ -73,6 +74,11 @@ def factual_claim_sentences(soup):
 def is_negated_guarantee_sentence(sentence):
     normalized = re.sub(r"\s+", " ", sentence.lower())
     return any(marker in normalized for marker in NEGATED_PROMO_MARKERS)
+
+
+def is_guidance_or_caution(sentence):
+    normalized = re.sub(r"\s+", " ", sentence.lower())
+    return any(marker in normalized for marker in FACTUAL_GUIDANCE_MARKERS)
 
 
 def audit(path):
@@ -102,7 +108,7 @@ def audit(path):
                     continue
             promo_examples.append(text[max(0, m.start()-80):m.end()+120].strip())
     if promo_examples:
-        issues.append({"severity":"high","type":"misleading","text":f"Found {len(promo_examples)} promotional/absolute claim patterns.","location":"page text","examples":promo_examples[:6],"recommendation":"Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."})
+        issues.append({"severity":"high","type":"misleading","text":f"Found {len(promo_examples)} promotional/absolute claim patterns.","location":"page text","examples":promo_examples[:6],"recommendation":"Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements are excluded."})
         recommendations.append({"priority":"high","action":"remove_absolute_claims","count":len(promo_examples)})
 
     norm = [re.sub(r"[^a-z0-9 ]", "", s.lower()) for s in sents]
@@ -112,14 +118,20 @@ def audit(path):
         issues.append({"severity":"medium","type":"repetition","text":f"Found {len(dupes)} repeated sentences/near-identical statements.","location":"page text","examples":dupes[:5],"recommendation":"Keep the stronger occurrence and remove the duplicate."})
         recommendations.append({"priority":"medium","action":"remove_repetition","count":len(dupes)})
 
-    number_pattern = r"(?:₹|rs\.?|%|\b20\d{2}\b|\b\d+(?:\.\d+)?\s*(?:lakh|crore|LPA|years?|months?|seats?|students?|marks?)\b)"
-    number_sents = [s for s in fact_sents if re.search(number_pattern, s, flags=re.I)]
+    number_pattern = r"(?:₹|rs\.?|%|\b20\d{2}\b|\b\d+(?:\.\d+)?\s*(?:lakh|crore|LPA|years?|months?|seats?|students?|marks?|percentile)\b)"
+    number_sents = [
+        s for s in fact_sents
+        if re.search(number_pattern, s, flags=re.I)
+        and not is_guidance_or_caution(s)
+        and not re.match(r"^(?:source|note|updated|last updated)\s*:", s, flags=re.I)
+    ]
+
     external_links = [a.get("href") for a in soup.find_all("a", href=True) if a.get("href", "").startswith(("http://", "https://"))]
     official_domains = ["iima.ac.in", "iimb.ac.in", "iimcal.ac.in", "iiml.ac.in", "iimk.ac.in", "iimidr.ac.in", ".gov.in", ".nic.in", "nta.ac.in", "cat.ac.in", "nirfindia.org"]
     official_links = [u for u in external_links if any(x in urlparse(u).netloc.lower() for x in official_domains)]
     if number_sents:
         severity = "high" if not official_links else "medium"
-        issues.append({"severity":severity,"type":"fact_check","text":f"Found {len(number_sents)} content blocks containing dates, figures, percentages or monetary values.","location":"factual claims","recommendation":"Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."})
+        issues.append({"severity":severity,"type":"fact_check","text":f"Found {len(number_sents)} factual content blocks containing dates, figures, percentages or monetary values.","location":"factual claims","recommendation":"Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."})
         recommendations.append({"priority":"high","action":"manual_verify_high_impact_facts","count":len(number_sents),"official_source_links":len(official_links)})
 
     missing = [section for section, terms in IMPORTANT_TERMS.items() if not any(t in lower for t in terms)]
