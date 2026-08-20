@@ -13,19 +13,12 @@ on:
         required: true
         type: boolean
         default: false
-  push:
-    branches: [main]
-    paths:
-      - '**.html'
-      - 'scripts/free_content_auditor.py'
-      - 'scripts/apply_iima_content_updates.py'
-      - '.github/workflows/content-audit.yml'
 
 permissions:
   contents: write
 
 concurrency:
-  group: content-audit-main
+  group: content-audit-manual
   cancel-in-progress: true
 
 jobs:
@@ -45,21 +38,21 @@ jobs:
 
       - name: Run initial free editorial audit
         env:
-          TARGET_PAGE: ${{ github.event.inputs.target_page || 'iim-ahmedabad.html' }}
+          TARGET_PAGE: ${{ inputs.target_page }}
         run: python scripts/free_content_auditor.py
 
       - name: Apply reviewed IIM Ahmedabad improvements
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true' && github.event.inputs.target_page == 'iim-ahmedabad.html' }}
+        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-ahmedabad.html' }}
         run: python scripts/apply_iima_content_updates.py
 
       - name: Re-run audit after approved changes
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true' && github.event.inputs.target_page == 'iim-ahmedabad.html' }}
+        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-ahmedabad.html' }}
         env:
           TARGET_PAGE: iim-ahmedabad.html
         run: python scripts/free_content_auditor.py
 
       - name: Verify approved IIM Ahmedabad changes
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true' && github.event.inputs.target_page == 'iim-ahmedabad.html' }}
+        if: ${{ inputs.apply_changes == true && inputs.target_page == 'iim-ahmedabad.html' }}
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -67,7 +60,6 @@ jobs:
 
           path = Path('iim-ahmedabad.html')
           soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
-          text = soup.get_text(' ', strip=True)
 
           checks = {
               'scholarship section': soup.find(id='scholarships') is not None,
