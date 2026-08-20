@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T08:25:53.407210+00:00",
+  "generated_at": "2026-08-20T08:29:15.055001+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -7,22 +7,32 @@
   "results": [
     {
       "file": "iim-ahmedabad.html",
-      "overall_score": 95,
+      "overall_score": 87,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
-        "word_count": 2344,
+        "word_count": 2444,
         "generic_phrase_hits": 0,
-        "promotional_hits": 0,
+        "promotional_hits": 1,
         "duplicate_sentences": 1,
-        "numeric_or_date_content_blocks": 36,
-        "official_links": 11,
-        "all_external_links": 19,
+        "numeric_or_date_content_blocks": 39,
+        "official_links": 12,
+        "all_external_links": 20,
         "missing_intent_sections": [],
         "thin_sections": 0
       },
       "issues": [
+        {
+          "severity": "high",
+          "type": "misleading",
+          "text": "Found 1 promotional/absolute claim patterns.",
+          "location": "page text",
+          "examples": [
+            "he reported placement outcome for that cycle; they should not be presented as a guaranteed salary for future batches. Batch Profile & Student Life 2026–28 PGP Batch Profile 414 PGP students 60.87% Engineering b"
+          ],
+          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."
+        },
         {
           "severity": "medium",
           "type": "repetition",
@@ -36,12 +46,17 @@
         {
           "severity": "medium",
           "type": "fact_check",
-          "text": "Found 36 content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 39 content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."
         }
       ],
       "recommendations": [
+        {
+          "priority": "high",
+          "action": "remove_absolute_claims",
+          "count": 1
+        },
         {
           "priority": "medium",
           "action": "remove_repetition",
@@ -50,8 +65,8 @@
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 36,
-          "official_source_links": 11
+          "count": 39,
+          "official_source_links": 12
         }
       ],
       "verified_facts": [],
@@ -112,6 +127,16 @@
           "action": "manual_review"
         },
         {
+          "claim": "IIMA currently publishes a PGP programme fee of ₹27.50 lakh for the 2025–27 batch, including ₹20.10 lakh in tuition fees.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The institute states that fees for future batches will be announced later, so the 2025–27 figure should not be presented as the confirmed 2026–28 fee.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
           "claim": "The latest publicly published PGP programme fee available from IIMA is for the 2025–27 batch.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
@@ -133,6 +158,11 @@
         },
         {
           "claim": "The breadth of the recruiter ecosystem means that students can pursue consulting, finance, technology, analytics, consumer businesses, general management and other career paths.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Placement data source: IIMA's 2025 IPRS report lists a median salary of ₹34.59 LPA and mean salary of ₹35.50 LPA for the MBA-PGP.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
