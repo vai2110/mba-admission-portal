@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T08:48:13.478534+00:00",
+  "generated_at": "2026-08-20T08:57:15.671688+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -12,13 +12,13 @@
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
-        "word_count": 1940,
+        "word_count": 1855,
         "generic_phrase_hits": 0,
         "promotional_hits": 2,
         "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 46,
-        "official_links": 14,
-        "all_external_links": 16,
+        "numeric_or_date_content_blocks": 43,
+        "official_links": 11,
+        "all_external_links": 13,
         "missing_intent_sections": [],
         "thin_sections": 0
       },
@@ -37,7 +37,7 @@
         {
           "severity": "medium",
           "type": "fact_check",
-          "text": "Found 46 factual content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 43 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
         }
@@ -51,27 +51,12 @@
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 46,
-          "official_source_links": 14
+          "count": 43,
+          "official_source_links": 11
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
-        {
-          "claim": "IIM Indore's official 2026–28 fee schedule lists the two-year PGP course fee at ₹24,00,000, with a ₹50,000 refundable caution deposit and ₹54,000 first-year mess deposit.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The PGP-HRM fee is different: ₹10,35,000 per year, plus the applicable caution/mess and second-year alumni charges.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Fees are based on the institute's published 2026–28 schedules and should be checked again before payment.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
         {
           "claim": "IIM Indore offers a broad PGP and also a separate PGP-HRM.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
@@ -188,6 +173,31 @@
           "action": "manual_review"
         },
         {
+          "claim": "IIM Indore offers Need Based Financial Assistance (NBFA) to admitted PGP, PGP-HRM and IPM participants who need financial support.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The institute states that participants with annual family income below ₹12 lakh are eligible to apply; the amount of assistance is not automatic and is decided after assessment of financial need, family income and assets.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Some applicants may be called for a personal interaction with the NBFA Committee before the award is decided.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The institute also lists merit-linked and other scholarship opportunities.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Eligibility, award amount and application requirements can differ by scheme, so students should check the current official notices rather than assume that every scholarship is available to every participant.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
           "claim": "Do not choose it only because it is an IIM; compare your expected career domain with the actual role distribution and the the current 2026–28 academic cost.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
@@ -259,31 +269,6 @@
         },
         {
           "claim": "Freshers should nevertheless compare the opportunity cost of two years against their target career and not assume that an IIM automatically leads to a high-paying role.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "IIM Indore offers Need Based Financial Assistance (NBFA) for participants who need financial support.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The institute states that admitted PGP, PGP-HRM and IPM students with annual family income below ₹12 lakh can apply, with the final assistance determined after assessment of family income, assets and other relevant factors.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Applicants submit financial information and supporting documents, and some applicants may be called for a personal interaction with the NBFA Committee.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "IIM Indore also administers merit-linked awards and other scholarships.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Official NBFA details PGP 2026–28 admission procedure",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
