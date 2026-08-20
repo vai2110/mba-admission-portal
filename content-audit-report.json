@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T08:35:59.994570+00:00",
+  "generated_at": "2026-08-20T08:39:21.075274+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -7,87 +7,70 @@
   "results": [
     {
       "file": "iim-indore.html",
-      "overall_score": 80,
+      "overall_score": 92,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
-        "word_count": 1502,
+        "word_count": 1759,
         "generic_phrase_hits": 0,
-        "promotional_hits": 2,
+        "promotional_hits": 1,
         "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 32,
-        "official_links": 6,
-        "all_external_links": 8,
-        "missing_intent_sections": [
-          "scholarship"
-        ],
-        "thin_sections": 1
+        "numeric_or_date_content_blocks": 40,
+        "official_links": 10,
+        "all_external_links": 12,
+        "missing_intent_sections": [],
+        "thin_sections": 0
       },
       "issues": [
         {
           "severity": "high",
           "type": "misleading",
-          "text": "Found 2 promotional/absolute claim patterns.",
+          "text": "Found 1 promotional/absolute claim patterns.",
           "location": "page text",
           "examples": [
-            "udget. Admission benchmark 90 minimum Use this as an admission benchmark, not a guaranteed call or convert. Placement reference ₹29.57L Compare this with the median salary and role-wise outcomes before deciding",
-            "two years against their target career and not assume that an IIM automatically guarantees a high-paying role. References, Official Sources & Student Discussions See the linked institute and NIRF pages for admi"
+            "udget. Admission benchmark 90 minimum Use this as an admission benchmark, not a guarantee of a shortlist or admission. Placement reference ₹29.57L Compare this with the median salary and role-wise outcomes bef"
           ],
           "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements are excluded."
         },
         {
           "severity": "medium",
           "type": "fact_check",
-          "text": "Found 32 factual content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 40 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
-        },
-        {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 1 major sections with thin supporting content.",
-          "location": "main content sections",
-          "examples": [
-            "References, Official Sources & Student Discussions"
-          ],
-          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
       ],
       "recommendations": [
         {
           "priority": "high",
           "action": "remove_absolute_claims",
-          "count": 2
+          "count": 1
         },
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 32,
-          "official_source_links": 6
-        },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "scholarship"
-          ]
-        },
-        {
-          "priority": "low",
-          "action": "merge_or_strengthen_thin_sections",
-          "count": 1
+          "count": 40,
+          "official_source_links": 10
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
+        {
+          "claim": "IIM Indore's official 2026–28 fee schedule lists the two-year PGP course fee at ₹24,00,000, with a ₹50,000 refundable caution deposit and ₹54,000 first-year mess deposit.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The PGP-HRM fee is different: ₹10,35,000 per year, plus the applicable caution/mess and second-year alumni charges.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Fees are based on the institute's published 2026–28 schedules and should be checked again before payment.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
         {
           "claim": "IIM Indore offers a broad PGP and also a separate PGP-HRM.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
@@ -244,7 +227,32 @@
           "action": "manual_review"
         },
         {
-          "claim": "Freshers should nevertheless compare the opportunity cost of two years against their target career and not assume that an IIM automatically guarantees a high-paying role.",
+          "claim": "Freshers should nevertheless compare the opportunity cost of two years against their target career and not assume that an IIM automatically leads to a high-paying role.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "IIM Indore offers Need Based Financial Assistance (NBFA) for participants who need financial support.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The institute states that admitted PGP, PGP-HRM and IPM students with annual family income below ₹12 lakh can apply, with the final assistance determined after assessment of family income, assets and other relevant factors.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Applicants submit financial information and supporting documents, and some applicants may be called for a personal interaction with the NBFA Committee.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "IIM Indore also administers merit-linked awards and other scholarships.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Official NBFA details PGP 2026–28 admission procedure",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
