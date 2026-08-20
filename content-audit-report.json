@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T08:02:59.917539+00:00",
+  "generated_at": "2026-08-20T08:05:00.554809+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -7,14 +7,14 @@
   "results": [
     {
       "file": "iim-ahmedabad.html",
-      "overall_score": 71,
+      "overall_score": 95,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
         "word_count": 2344,
         "generic_phrase_hits": 0,
-        "promotional_hits": 3,
+        "promotional_hits": 0,
         "duplicate_sentences": 1,
         "numeric_or_date_sentences": 51,
         "official_links": 11,
@@ -23,18 +23,6 @@
         "thin_sections": 0
       },
       "issues": [
-        {
-          "severity": "high",
-          "type": "misleading",
-          "text": "Found 3 promotional/absolute claim patterns.",
-          "location": "page text",
-          "examples": [
-            "80 80 SC 85 75 75 75 ST 75 65 65 65 PwD 85 75 75 75 Important: cutoff does not guarantee a call These are minimum screening thresholds. Meeting the published CAT threshold does not automatically guarantee an",
-            "creening thresholds. Meeting the published CAT threshold does not automatically guarantee an interview call because IIMA uses additional profile and application-rating components. Selection Process IIMA's sele",
-            "al management and other career paths. Placement reality An IIMA degree does not guarantee a specific company, function or salary. Individual outcomes depend on the student's profile, skills, academic performan"
-          ],
-          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."
-        },
         {
           "severity": "medium",
           "type": "repetition",
@@ -54,11 +42,6 @@
         }
       ],
       "recommendations": [
-        {
-          "priority": "high",
-          "action": "remove_absolute_claims",
-          "count": 3
-        },
         {
           "priority": "medium",
           "action": "remove_repetition",
