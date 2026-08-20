@@ -51,10 +51,9 @@ def sentences(text):
     return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if len(s.strip()) > 35]
 
 
-def is_negated_promo(text, match):
-    start = max(0, match.start() - 80)
-    context = text[start:match.start()].lower()
-    return any(marker in context for marker in NEGATED_PROMO_MARKERS)
+def is_negated_guarantee_sentence(sentence):
+    normalized = re.sub(r"\s+", " ", sentence.lower())
+    return any(marker in normalized for marker in NEGATED_PROMO_MARKERS)
 
 
 def audit(path):
@@ -77,8 +76,11 @@ def audit(path):
     promo_examples = []
     for pattern in PROMOTIONAL_PATTERNS:
         for m in re.finditer(pattern, text, flags=re.I):
-            if pattern == r"guarantee(?:d|s)?" and is_negated_promo(text, m):
-                continue
+            if pattern == r"guarantee(?:d|s)?":
+                # Evaluate the complete sentence rather than a small character window.
+                containing_sentence = next((s for s in sents if s.lower().find(m.group(0).lower()) >= 0), "")
+                if containing_sentence and is_negated_guarantee_sentence(containing_sentence):
+                    continue
             promo_examples.append(text[max(0, m.start()-80):m.end()+120].strip())
     if promo_examples:
         issues.append({"severity":"high","type":"misleading","text":f"Found {len(promo_examples)} promotional/absolute claim patterns.","location":"page text","examples":promo_examples[:6],"recommendation":"Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."})
