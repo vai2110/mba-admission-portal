@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       target_page:
-        description: 'Optional HTML filename to audit; leave blank for all pages'
+        description: 'HTML filename to audit; leave blank for all pages'
         required: false
         type: string
         default: 'iim-ahmedabad.html'
@@ -12,7 +12,7 @@ on:
     branches: [main]
     paths:
       - '**.html'
-      - 'scripts/content_auditor.py'
+      - 'scripts/free_content_auditor.py'
       - '.github/workflows/content-audit.yml'
 
 permissions:
@@ -23,48 +23,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  audit-and-update:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Verify OpenAI secret is available
-        env:
-          OPENAI_API_KEY: ${{ secrets.MBA_PORTAL_OPENAI_KEY }}
-        run: |
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "MBA_PORTAL_OPENAI_KEY is NOT available to this workflow job."
-            echo "Confirm it is a Repository secret under Settings > Secrets and variables > Actions."
-            exit 1
-          fi
-          echo "OpenAI secret is available to the workflow (value not displayed)."
-
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install beautifulsoup4
 
-      - name: Audit and improve HTML content
+      - name: Run free editorial audit
         env:
-          OPENAI_API_KEY: ${{ secrets.MBA_PORTAL_OPENAI_KEY }}
-          OPENAI_MODEL: gpt-5
           TARGET_PAGE: ${{ github.event.inputs.target_page || 'iim-ahmedabad.html' }}
-        run: python scripts/content_auditor.py
+        run: python scripts/free_content_auditor.py
 
-      - name: Commit improved pages and audit report
+      - name: Commit audit report
         run: |
-          git config user.name "MBA Portal Content Auditor"
+          git config user.name "MBA Portal Free Content Auditor"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html' content-audit-report.json
+          git add content-audit-report.json
           if git diff --cached --quiet; then
-            echo "No content changes required."
+            echo "No report changes."
           else
-            git commit -m "Audit and improve page content"
+            git commit -m "Run free content relevance audit"
             git push
           fi
