@@ -38,21 +38,21 @@ jobs:
 
       - name: Verify OpenAI secret is available
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.MBA_PORTAL_OPENAI_KEY }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "OPENAI_API_KEY is NOT available to this workflow job."
-            echo "Check that it is a Repository secret and that Actions are permitted to access repository secrets."
+            echo "MBA_PORTAL_OPENAI_KEY is NOT available to this workflow job."
+            echo "Confirm it is a Repository secret under Settings > Secrets and variables > Actions."
             exit 1
           fi
-          echo "OPENAI_API_KEY is available to the workflow (value not displayed)."
+          echo "OpenAI secret is available to the workflow (value not displayed)."
 
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
       - name: Audit and improve HTML content
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.MBA_PORTAL_OPENAI_KEY }}
           OPENAI_MODEL: gpt-5
           TARGET_PAGE: ${{ github.event.inputs.target_page || 'iim-ahmedabad.html' }}
         run: python scripts/content_auditor.py
