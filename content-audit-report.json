@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T08:29:15.055001+00:00",
+  "generated_at": "2026-08-20T08:33:42.467996+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -16,7 +16,7 @@
         "generic_phrase_hits": 0,
         "promotional_hits": 1,
         "duplicate_sentences": 1,
-        "numeric_or_date_content_blocks": 39,
+        "numeric_or_date_content_blocks": 34,
         "official_links": 12,
         "all_external_links": 20,
         "missing_intent_sections": [],
@@ -31,7 +31,7 @@
           "examples": [
             "he reported placement outcome for that cycle; they should not be presented as a guaranteed salary for future batches. Batch Profile & Student Life 2026–28 PGP Batch Profile 414 PGP students 60.87% Engineering b"
           ],
-          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements such as 'does not guarantee a call' are not promotional claims."
+          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements are excluded."
         },
         {
           "severity": "medium",
@@ -46,9 +46,9 @@
         {
           "severity": "medium",
           "type": "fact_check",
-          "text": "Found 39 content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 34 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
-          "recommendation": "Manually verify high-impact claims against the current authoritative source. The free audit does not determine whether the number is true."
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
         }
       ],
       "recommendations": [
@@ -65,7 +65,7 @@
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 39,
+          "count": 34,
           "official_source_links": 12
         }
       ],
@@ -132,17 +132,7 @@
           "action": "manual_review"
         },
         {
-          "claim": "The institute states that fees for future batches will be announced later, so the 2025–27 figure should not be presented as the confirmed 2026–28 fee.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
           "claim": "The latest publicly published PGP programme fee available from IIMA is for the 2025–27 batch.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The ₹27.50 lakh figure should not be labelled as the confirmed 2026–28 fee.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
@@ -173,11 +163,6 @@
         },
         {
           "claim": "Freshers are part of the programme, while candidates with previous professional experience form the larger share of the latest batch.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Individual experiences vary and should not be treated as universal.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
@@ -217,22 +202,12 @@
           "action": "manual_review"
         },
         {
-          "claim": "Do not treat a scholarship as an automatic fee waiver.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
           "claim": "IIMA also lists scholarships supported by alumni, industry and other donors; eligibility and award amounts vary by scheme.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Eligible students can also explore applicable Government of India scholarship schemes through the relevant official portals.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Source: IIMA MBA admission page and IIMA scholarship rules .",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
