@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T07:11:05.136267+00:00",
+  "generated_at": "2026-08-20T07:12:15.557857+00:00",
   "mode": "free-editorial-audit",
   "pages_audited": 1,
   "pages_changed": 0,
@@ -7,221 +7,302 @@
   "results": [
     {
       "file": "iim-ahmedabad.html",
-      "overall_score": 0,
-      "summary": "Free editorial audit completed. This audit flags risk and relevance patterns; it does not prove that a factual claim is true.",
+      "overall_score": 68,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
       "metrics": {
+        "word_count": 2167,
         "generic_phrase_hits": 0,
         "promotional_hits": 4,
-        "duplicate_sentences": 2,
-        "numeric_or_date_sentences": 42,
-        "official_links": 8,
+        "duplicate_sentences": 1,
+        "numeric_or_date_sentences": 43,
+        "official_links": 9,
+        "all_external_links": 17,
         "missing_intent_sections": [
           "scholarship"
         ],
-        "thin_sections": 48
+        "thin_sections": 0
       },
       "issues": [
         {
           "severity": "high",
           "type": "misleading",
-          "text": "Found 4 high-risk promotional claims such as guarantees/best/unmatched language.",
+          "text": "Found 4 promotional/absolute claim patterns.",
           "location": "page text",
-          "recommendation": "Remove absolute claims unless backed by a clearly cited authoritative source."
+          "examples": [
+            "80 80 SC 85 75 75 75 ST 75 65 65 65 PwD 85 75 75 75 Important: cutoff does not guarantee a call These are minimum screening thresholds. Meeting the published CAT threshold does not automatically guarantee an",
+            "creening thresholds. Meeting the published CAT threshold does not automatically guarantee an interview call because IIMA uses additional profile and application-rating components. Selection Process IIMA's sele",
+            "al management and other career paths. Placement reality An IIMA degree does not guarantee a specific company, function or salary. Individual outcomes depend on the student's profile, skills, academic performan",
+            "minimums of 85 in VARC, DILR and QA. These are screening thresholds and do not guarantee an interview call. Can a non-engineer get into IIM Ahmedabad? Yes. Non-engineering candidates form a substantial part o"
+          ],
+          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims."
         },
         {
           "severity": "medium",
           "type": "repetition",
-          "text": "Found 2 repeated sentences/near-identical statements.",
+          "text": "Found 1 repeated sentences/near-identical statements.",
           "location": "page text",
-          "recommendation": "Keep the stronger occurrence and remove repeated wording."
+          "examples": [
+            "IIMA's PGP includes both fresh graduates and candidates with prior work experience."
+          ],
+          "recommendation": "Keep the stronger occurrence and remove the duplicate."
+        },
+        {
+          "severity": "medium",
+          "type": "fact_check",
+          "text": "Found 43 sentences containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Manually verify every high-impact claim against the current authoritative source. The free audit does not determine whether the number is true."
         },
         {
           "severity": "medium",
           "type": "student_intent",
-          "text": "Potentially missing student-decision sections: scholarship",
+          "text": "Potentially missing student-decision topics: scholarship",
           "location": "page structure",
-          "recommendation": "Add only the sections relevant to this programme, using verified institution/exam-authority information."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 48 headings with thin supporting content.",
-          "location": "sections",
-          "recommendation": "Strengthen only if the heading answers a real student question; otherwise merge/remove it."
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
         }
       ],
       "recommendations": [
         {
           "priority": "high",
           "action": "remove_absolute_claims",
-          "reason": "Avoid presenting promotional language as an objective fact."
+          "count": 4
         },
         {
           "priority": "medium",
           "action": "remove_repetition",
-          "reason": "Reduce content bloat and improve scanability."
+          "count": 1
+        },
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 43,
+          "official_source_links": 9
         },
         {
           "priority": "medium",
           "action": "fill_student_intent_gaps",
           "sections": [
             "scholarship"
-          ],
-          "reason": "Students need decision-useful information, not generic institutional description."
+          ]
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "IIM Ahmedabad MBA Admission 2026: Courses, Fees, Eligibility & Placements MBA Portal Home MBA Colleges Entrance Exams Admissions Cutoffs Placements & Career Outcomes IIM Ahmedabad MBA 2026 Courses, Fees, Eligibility, CAT Cutoff, Admission Process & Placements Ahmedabad, Gujarat • MBA / PGP • Official Website ↗ On this page ⌄ College Overview IIM Ahmedabad Rankings MBA Admission 2026–28 Other Popular Programmes Fees & ROI Placements & Career Outcomes Batch Profile & Student Life Student & Community Insights Who Should Apply?",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "claim": "IIM Ahmedabad MBA Admission 2026: Courses, Fees, Eligibility & Placements IIM Ahmedabad MBA 2026 Courses, Fees, Eligibility, CAT Cutoff, Admission Process & Placements Ahmedabad, Gujarat • MBA / PGP • Official Website ↗ On this page ⌄ College Overview IIM Ahmedabad Rankings MBA Admission 2026–28 Other Popular Programmes Fees & ROI Placements & Career Outcomes Batch Profile & Student Life Student & Community Insights Who Should Apply?",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "FAQs References & Sources Programme MBA / PGP Entrance Exam CAT NIRF Management Rank 2025 #1 Location Ahmedabad, Gujarat IIM Ahmedabad MBA College Overview MBA Admission 2026–28 Detailed MBA / PGP Guide → Other Popular Programmes Fees & ROI Placements & Career Outcomes Batch Profile & Student Life Student & Community Insights Who Should Apply?",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "NIRF Ranking Ranking Agency Year Management Rank NIRF 2025 #1 Why the ranking matters IIM Ahmedabad retained the first position in the NIRF Management category in 2025.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "2025–26 NIRF #1 Management NIRF 2025 View Source ↗ Outlook-ICARE #1 Public B-Schools Outlook-ICARE 2026 View Source ↗ India Today #1 Government B-Schools India Today 2025 View Source ↗ IIRF #1 Government B-Schools IIRF 2025 View Source ↗ Business Today–MDRA #1 B-Schools Business Today 2025 View Source ↗ MBA Admission 2026–28 Admission Status: 2026–28 Batch The IIM Ahmedabad PGP 2026–28 admission cycle through CAT 2025 has concluded and the 2026–28 batch has commenced.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Eligibility For the PGP 2026–28 batch, candidates must hold a bachelor's degree with at least 50% marks or equivalent CGPA.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "The minimum is relaxed to 45% for SC, ST and PwD candidates.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Entrance Exam Domestic candidates for the 2026–28 PGP admission process applied through CAT 2025.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "CAT 2025 Minimum Screening Cutoff Category Overall VARC DILR QA General / EWS 95 85 85 85 NC-OBC 90 80 80 80 SC 85 75 75 75 ST 75 65 65 65 PwD 85 75 75 75 Important: cutoff does not guarantee a call These are minimum screening thresholds.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Selection Process IIMA's selection process includes shortlisting for the Analytical Writing Test and Personal Interview followed by final selection.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Final Selection Component Weight Personal Interview 50% Analytical Writing Test 10% CAT Score 25% Application Rating 15% Application Rating The Application Rating incorporates components related to academic performance, work experience and diversity-related profile factors as specified by IIMA.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "What Students Should Understand A high CAT percentile is important, but the published selection methodology makes it clear that admission is not determined by CAT score alone.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Explore the detailed IIM Ahmedabad MBA / PGP 2026–28 guide covering eligibility, CAT 2025 cutoff, selection process, application rating, final selection, fees, admission timeline and FAQs.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "FLAGSHIP · 2 YEARS · FULL TIME MBA / PGP Detailed guide to CAT, eligibility, selection criteria, fees, admission process, batch profile and placements.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View Detailed MBA / PGP Guide → SPECIALISED MBA · 2 YEARS MBA-FABM Management programme focused on food, agriculture, agribusiness and allied sectors.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View MBA-PGPX Guide → BLENDED MBA · 2 YEARS Business Analytics & AI Blended MBA combining analytics, AI and management for early-to-mid career professionals.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View Business Analytics & AI Guide → BLENDED PG PROGRAMME · 2 YEARS BPGP Blended postgraduate management programme designed for working professionals and entrepreneurs.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View BPGP Guide → How to use this page: The main IIM Ahmedabad page answers “What does the institute offer?” Each programme page answers “What do I need to know before applying to this specific programme?” Fees & ROI IIM Ahmedabad MBA Fees The latest publicly published PGP programme fee available from IIMA is for the 2025–27 batch.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "₹27.50 Lakh Latest published PGP programme fee (2025–27) ₹20.10 Lakh Tuition fee included in 2025–27 programme fee 2026–28 Official public fee figure not yet published on the admission page Officially Published Fee Information Fee Component Amount / Status PGP Programme Fee — 2025–27 ₹27,50,000 Tuition Fee Included ₹20,10,000 PGP 2026–28 Public Fee Not currently published on IIMA's public admission page Personal Expenses Additional Important fee note The ₹27.50 lakh figure should not be labelled as the confirmed 2026–28 fee.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "It is the latest programme fee publicly listed by IIMA for the 2025–27 batch.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Boarding-related personal expenses Laptop / personal computer Travel Clothes Stationery Laundry ROI Perspective For a realistic ROI assessment, students should compare programme cost with median compensation, career options, opportunity cost, financing cost and the type of role they want after the MBA.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "₹34.59 LPA 2025 audited median salary ₹35.50 LPA 2025 audited mean salary Audited IPRS placement reporting Placements & Career Outcomes Placement Overview IIM Ahmedabad's placement ecosystem covers consulting, finance, technology, analytics, consumer businesses, conglomerates, healthcare and other sectors.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Placement Landscape Career Area Representative Recruiting Areas Management Consulting Strategy consulting and management consulting firms Banking & Financial Services Banking, investment-related and financial-services roles Technology & Analytics Technology, analytics and IT consulting roles Consumer & FMCG Consumer, FMCG and retail businesses Conglomerates Large diversified business groups Healthcare & Pharmaceuticals Pharmaceutical and healthcare businesses Latest Audited Placement Snapshot Metric Latest Verified Information Placement cycle 2025–26 2025 audited median salary ₹34.59 LPA 2025 audited mean salary ₹35.50 LPA Reporting Audited IPRS placement report Career Opportunities The breadth of the recruiter ecosystem means that students can pursue consulting, finance, technology, analytics, consumer businesses, general management and other career paths.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View Detailed Placement Report → Batch Profile & Student Life 2026–28 PGP Batch Profile 414 PGP students 60.87% Engineering background 39.13% Non-engineering background 30.92% Female students 24 Months Average work experience ~77% Students with prior work experience What the Batch Profile Means Engineering students form the majority of the latest PGP cohort, but non-engineers constitute a substantial part of the class.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Freshers are part of the programme, while candidates with previous professional experience form the larger share of the latest batch.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Individual experiences vary and should not be treated as universal.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Reddit Discussions Reddit Academic Workload Students and aspirants frequently discuss the intensity of the first-year curriculum, academic competition and the challenge of managing multiple commitments.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View discussion → Reddit Freshers & Work Experience A recurring community question is whether candidates need work experience before attempting IIMA.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "View discussion → Quora & Alumni Perspectives Community Theme Why Pursue an MBA?",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "A recurring discussion theme is whether the MBA should be pursued for a specific career objective rather than simply for brand value.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
           "claim": "Community discussions frequently compare the experiences of freshers and candidates who enter the MBA after working for a few years.",
-          "reason": "Contains a high-impact number/date/figure; this free auditor does not verify it against external sources.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Community Sentiment Career Opportunities Very Strong Peer Quality Strong Academic Rigor Very High Competition Very High Work-Life Balance Variable Brand / Alumni Value Very Strong Realistic Student Perspective What the official data indicates IIMA has a highly selective admission process, a strong placement ecosystem and a diverse PGP cohort.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Our interpretation IIMA is particularly suitable for candidates who want a highly competitive MBA environment and have a clear reason for pursuing management education.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Strong Fit Strong academic record Excellent CAT preparation Clear career objective Good communication and interview ability Comfort with analytical and case-based learning Interest in consulting, finance, strategy, technology, product or general management Think Carefully If You are applying only because of the brand You expect a relaxed academic environment You have no clear reason for pursuing an MBA The opportunity cost of leaving your current career is high A specialised qualification would better match your career goal Freshers Freshers can apply.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Engineers Engineering candidates form the largest academic-background group in the latest PGP cohort, but engineering is not the only pathway into IIMA.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Non-Engineers Non-engineering students form a substantial share of the latest batch, making IIMA relevant to candidates from commerce, arts, science and other academic backgrounds.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "What was the CAT cutoff for IIM Ahmedabad MBA 2026–28?",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "For CAT 2025, the published minimum overall percentile for General/EWS candidates was 95, with sectional minimums of 85 in VARC, DILR and QA.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Does IIMA consider Class 10 and Class 12 marks?",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The final selection methodology also considers PI, AWT and Application Rating.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The latest publicly published PGP programme fee is ₹27.50 lakh for the 2025–27 batch.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "A separate public fee figure for 2026–28 should not be assumed unless officially published by IIMA.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The 2025 audited placement report lists a median salary of ₹34.59 LPA.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Official Sources IIM Ahmedabad — Official Website → IIMA PGP Admission 2026–28 → PGP 2026–28 Admission Status → IIMA Rankings → PGP 2026–28 Batch Profile → PGP Final Placements 2025–26 → Audited Placement Report 2025 →",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
       ],
