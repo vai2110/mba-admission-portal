@@ -1,19 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MBA Colleges in India | Fees, Cutoffs, Admissions & Placements</title>
-
-<meta
-name="description"
-content="Explore MBA colleges in India by college name, state and NIRF Management ranking. Compare leading MBA and PGDM colleges."
->
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MBA Colleges in India | Fees, Cutoffs, Admissions &amp; Placements</title>
+<meta content="Explore MBA colleges in India by college name, state and NIRF Management ranking. Compare leading MBA and PGDM colleges." name="description"/>
 <style>
 
 /* =========================
@@ -704,88 +696,53 @@ footer {
 }
 
 </style>
-
 </head>
-
-
 <body>
-
-
 <!-- =========================
      HEADER
 ========================= -->
-
 <header>
-
 <div class="navbar">
-
-<a
-href="index.html"
-class="logo"
->
+<a class="logo" href="index.html">
 MBA<span>Portal</span>
 </a>
-
-
 <nav class="nav-links">
-
 <a href="index.html">
 Home
 </a>
-
 <a href="colleges.html">
 MBA Colleges
 </a>
-
 <a href="exams.html">
 Entrance Exams
 </a>
-
 <a href="index.html#admissions">
 Admissions
 </a>
-
 <a href="index.html#cutoffs">
 Cutoffs
 </a>
-
 <a href="index.html#placements">
 Placements
 </a>
-
-<a
-href="index.html#colleges"
-class="nav-button"
->
+<a class="nav-button" href="index.html#colleges">
 Compare Colleges
 </a>
-
 </nav>
-
 </div>
-
 </header>
-
-
 <!-- =========================
      HERO
 ========================= -->
-
 <section class="page-hero">
-
 <div class="hero-inner">
-
 <div class="breadcrumb">
 <a href="index.html">Home</a> › MBA Colleges
 </div>
-
-
 <h1>
 Find the Right
 <span>MBA College</span>
 </h1>
-
-
 <p class="hero-text">
 
 Explore MBA and PGDM colleges across India.
@@ -793,200 +750,99 @@ Search by college name, city or state and
 filter colleges by NIRF Management ranking.
 
 </p>
-
 </div>
-
 </section>
-
-
 <!-- =========================
      SEARCH + FILTERS
 ========================= -->
-
 <div class="search-wrapper">
-
 <div class="search-panel">
-
-
 <div class="search-row">
-
-<input
-type="text"
-id="searchInput"
-class="search-input"
-placeholder="Search MBA college by name, city or state..."
-autocomplete="off"
->
-
-<button
-type="button"
-class="search-button"
-onclick="filterColleges()"
->
+<input autocomplete="off" class="search-input" id="searchInput" placeholder="Search MBA college by name, city or state..." type="text"/>
+<button class="search-button" onclick="filterColleges()" type="button">
 Search
 </button>
-
 </div>
-
-
 <div class="filters">
-
-
-<select
-id="stateFilter"
-class="filter-select"
-onchange="filterColleges()"
->
-
+<select class="filter-select" id="stateFilter" onchange="filterColleges()">
 <option value="">
 All States
 </option>
-
 </select>
-
-
-<select
-id="rankFilter"
-class="filter-select"
-onchange="filterColleges()"
->
-
+<select class="filter-select" id="rankFilter" onchange="filterColleges()">
 <option value="">
 All NIRF Ranks
 </option>
-
 <option value="1-10">
 Top 10
 </option>
-
 <option value="11-25">
 Rank 11–25
 </option>
-
 <option value="26-50">
 Rank 26–50
 </option>
-
 <option value="51-100">
 Rank 51–100
 </option>
-
 </select>
-
-
-<select
-id="sortFilter"
-class="filter-select"
-onchange="filterColleges()"
->
-
+<select class="filter-select" id="sortFilter" onchange="filterColleges()">
 <option value="rank-asc">
 NIRF Rank: Low to High
 </option>
-
 <option value="rank-desc">
 NIRF Rank: High to Low
 </option>
-
 <option value="name-asc">
 College Name: A–Z
 </option>
-
 <option value="name-desc">
 College Name: Z–A
 </option>
-
 </select>
-
-
-<button
-type="button"
-class="reset-button"
-onclick="resetFilters()"
->
+<button class="reset-button" onclick="resetFilters()" type="button">
 Reset
 </button>
-
-
 </div>
-
 </div>
-
 </div>
-
-
 <!-- =========================
      COLLEGES
 ========================= -->
-
 <main class="container">
-
-
 <div class="section-header">
-
 <h2>
 MBA Colleges in India
 </h2>
-
-
-<div
-id="collegeCount"
-class="college-count"
->
+<div class="college-count" id="collegeCount">
 Loading colleges...
 </div>
-
 </div>
-
-
-<div
-id="collegeGrid"
-class="college-grid"
->
-
+<div class="college-grid" id="collegeGrid">
 <div class="loading">
 Loading MBA colleges...
 </div>
-
 </div>
-
-
-<div
-id="noResults"
-class="no-results"
->
-
+<div class="no-results" id="noResults">
 <h3>
 No colleges found
 </h3>
-
 <p>
 Try changing your search or filters.
 </p>
-
 </div>
-
-
 </main>
-
-
 <!-- =========================
      FOOTER
 ========================= -->
-
 <footer>
-
 <div class="footer-inner">
-
 <p>
-
 <strong>MBA Portal</strong> —
 MBA colleges, entrance exams,
 admissions, cutoffs and placements.
 
 </p>
-
-
 <p style="margin-top:8px;">
 
 Ranking information is based on the
@@ -995,12 +851,8 @@ Always verify current admission information
 from official sources.
 
 </p>
-
 </div>
-
 </footer>
-
-
 <script>
 
 /* =====================================================
@@ -1968,8 +1820,5 @@ function escapeHTML(value) {
 }
 
 </script>
-
-
 </body>
-
 </html>
