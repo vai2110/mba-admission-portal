@@ -1,0 +1,57 @@
+name: Repair IIT Roorkee HTML markup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/repair-iit-roorkee-html.yml'
+  workflow_dispatch:
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Repair malformed HTML
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          files=['iit-roorkee.html','iit-roorkee-mba.html','iit-roorkee-executive-mba.html','iit-roorkee-placements.html']
+          for name in files:
+              p=Path(name); s=p.read_text(encoding='utf-8')
+              # Convert malformed h2-opened paragraphs back into paragraphs.
+              s=re.sub(r'<h2(\s[^>]*)?>(.*?)</p>', lambda m:'<p'+(m.group(1) or '')+'>'+m.group(2)+'</p>', s, flags=re.I|re.S)
+              # Convert any paragraph that accidentally closes as h2 back to a paragraph.
+              s=re.sub(r'<p(\s[^>]*)?>(.*?)</h2>', lambda m:'<p'+(m.group(1) or '')+'>'+m.group(2)+'</p>', s, flags=re.I|re.S)
+              # The Quick Answer must be one compact answer box with a paragraph body.
+              def quick(m):
+                  inner=m.group(1)
+                  inner=re.sub(r'<h2(\s[^>]*)?>(.*?)</p>', lambda x:'<p'+(x.group(1) or '')+'>'+x.group(2)+'</p>', inner, flags=re.I|re.S)
+                  inner=re.sub(r'<h2(\s[^>]*)?>(.*?)</h2>', lambda x:'<p'+(x.group(1) or '')+'>'+x.group(2)+'</p>', inner, flags=re.I|re.S)
+                  return '<div class="ans"><strong>Quick answer</strong>'+re.sub(r'<strong>Quick answer</strong>','',inner,flags=re.I)+'</div>'
+              s=re.sub(r'<div\s+class=["\']ans["\']>(.*?)</div>', quick, s, flags=re.I|re.S)
+              # Remove duplicate answer boxes, retaining the first.
+              matches=list(re.finditer(r'<div\s+class=["\']ans["\']>.*?</div>', s, flags=re.I|re.S))
+              if len(matches)>1:
+                  for m in reversed(matches[1:]): s=s[:m.start()]+s[m.end():]
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Verify HTML structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          for name in ['iit-roorkee.html','iit-roorkee-mba.html','iit-roorkee-executive-mba.html','iit-roorkee-placements.html']:
+              s=Path(name).read_text(encoding='utf-8')
+              assert s.count('class="ans"') == 1, f'{name}: expected exactly one Quick Answer'
+              assert not re.search(r'<h2[^>]*>.*?</p>',s,re.I|re.S), f'{name}: h2 contains paragraph close'
+              assert not re.search(r'<p[^>]*>.*?</h2>',s,re.I|re.S), f'{name}: paragraph closes as h2'
+          print('All IIT Roorkee pages passed HTML heading/paragraph checks.')
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iit-roorkee.html iit-roorkee-mba.html iit-roorkee-executive-mba.html iit-roorkee-placements.html
+          git diff --cached --quiet || git commit -m 'Fix IIT Roorkee heading and quick answer markup'
+          git push
