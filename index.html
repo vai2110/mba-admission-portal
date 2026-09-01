@@ -669,8 +669,8 @@ button,input{font:inherit;}
             <input
                 type="search"
                 id="collegeSearch"
-                placeholder="Search MBA colleges, exams or courses..."
-                aria-label="Search MBA information"
+                placeholder="Search MBA colleges or entrance exams..."
+                aria-label="Search MBA colleges or entrance exams"
             >
             <button type="button" onclick="searchContent()">Search</button>
         </div>
@@ -830,6 +830,23 @@ button,input{font:inherit;}
             </div>
         </article>
 
+
+        <article class="college-card">
+            <div class="college-top">
+                <h3>SIBM Pune</h3>
+                <p>Pune, Maharashtra</p>
+            </div>
+            <div class="college-body">
+                <div class="info-row"><span>Programme</span><strong>MBA</strong></div>
+                <div class="info-row"><span>Entrance</span><strong>SNAP</strong></div>
+                <div class="card-fee">
+                    <small>Programme Fee</small>
+                    <strong>View Details</strong>
+                </div>
+                <a href="sibm-pune.html" class="card-button">View College Details →</a>
+            </div>
+        </article>
+
     </div>
 </section>
 
@@ -875,7 +892,6 @@ button,input{font:inherit;}
     </div>
 </section>
 
-<!-- EXAMS -->
 <!-- EXAMS -->
 <section id="exams" class="home-section">
     <div class="section-heading">
@@ -1113,82 +1129,278 @@ button,input{font:inherit;}
 </footer>
 
 <script>
-const dedicatedCollegeSearch=[
-{name:"IIM Ahmedabad",names:["iim ahmedabad","indian institute of management ahmedabad"],city:"Ahmedabad, Gujarat",programme:"MBA / PGP",entrance:"CAT",rank:"NIRF #1",href:"iim-ahmedabad.html"},
-{name:"IIM Bangalore",names:["iim bangalore","indian institute of management bangalore","iimb"],city:"Bengaluru, Karnataka",programme:"MBA / PGP",entrance:"CAT",rank:"NIRF #2",href:"iim-bangalore.html"},
-{name:"IIM Kozhikode",names:["iim kozhikode","indian institute of management kozhikode","iimk"],city:"Kozhikode, Kerala",programme:"MBA / PGP",entrance:"CAT",rank:"NIRF #3",href:"iim-kozhikode.html"},
-{name:"IIT Delhi DMS",names:["iit delhi","iit delhi dms","department of management studies iit delhi"],city:"New Delhi, Delhi",programme:"MBA",entrance:"CAT",rank:"NIRF #4",href:"iit-delhi-dms.html"},
-{name:"IIM Lucknow",names:["iim lucknow","indian institute of management lucknow","iiml"],city:"Lucknow, Uttar Pradesh",programme:"PGP / MBA",entrance:"CAT",rank:"NIRF #5",href:"iim-lucknow.html"},
-{name:"IIM Mumbai",names:["iim mumbai","indian institute of management mumbai","iimm"],city:"Mumbai, Maharashtra",programme:"MBA",entrance:"CAT",rank:"NIRF #6",href:"iim-mumbai.html"},
-{name:"IIM Calcutta",names:["iim calcutta","indian institute of management calcutta","iimc"],city:"Kolkata, West Bengal",programme:"MBA",entrance:"CAT",rank:"NIRF #7",href:"iim-calcutta.html"},
-{name:"IIM Indore",names:["iim indore","indian institute of management indore","iimi"],city:"Indore, Madhya Pradesh",programme:"PGP / MBA",entrance:"CAT",rank:"NIRF #8",href:"iim-indore.html"},
-{name:"MDI Gurugram",names:["mdi gurugram","mdi gurgaon","management development institute","mdi"],city:"Gurugram, Haryana",programme:"PGDM",entrance:"CAT / GMAT",rank:"NIRF #9",href:"mdi-gurugram.html"},
-{name:"XLRI Jamshedpur",names:["xlri","xlri jamshedpur","xlri xavier school of management"],city:"Jamshedpur, Jharkhand",programme:"PGDM",entrance:"XAT",rank:"NIRF #10",href:"xlri-jamshedpur.html"}
+const collegeDirectory = [
+    {
+        name:"IIM Ahmedabad",
+        aliases:["iim ahmedabad","indian institute of management ahmedabad","iima"],
+        city:"Ahmedabad, Gujarat",
+        programme:"MBA / PGP",
+        entrance:"CAT",
+        rank:"NIRF #1",
+        href:"iim-ahmedabad.html"
+    },
+    {
+        name:"IIM Bangalore",
+        aliases:["iim bangalore","indian institute of management bangalore","iimb"],
+        city:"Bengaluru, Karnataka",
+        programme:"MBA / PGP",
+        entrance:"CAT",
+        rank:"NIRF #2",
+        href:"iim-bangalore.html"
+    },
+    {
+        name:"IIM Kozhikode",
+        aliases:["iim kozhikode","indian institute of management kozhikode","iimk"],
+        city:"Kozhikode, Kerala",
+        programme:"MBA / PGP",
+        entrance:"CAT",
+        rank:"NIRF #3",
+        href:"iim-kozhikode.html"
+    },
+    {
+        name:"IIT Delhi DMS",
+        aliases:["iit delhi","iit delhi dms","department of management studies iit delhi"],
+        city:"New Delhi, Delhi",
+        programme:"MBA",
+        entrance:"CAT",
+        rank:"NIRF #4",
+        href:"iit-delhi-dms.html"
+    },
+    {
+        name:"IIM Lucknow",
+        aliases:["iim lucknow","indian institute of management lucknow","iiml"],
+        city:"Lucknow, Uttar Pradesh",
+        programme:"PGP / MBA",
+        entrance:"CAT",
+        rank:"NIRF #5",
+        href:"iim-lucknow.html"
+    },
+    {
+        name:"IIM Mumbai",
+        aliases:["iim mumbai","indian institute of management mumbai","iimm"],
+        city:"Mumbai, Maharashtra",
+        programme:"MBA",
+        entrance:"CAT",
+        rank:"NIRF #6",
+        href:"iim-mumbai.html"
+    },
+    {
+        name:"IIM Calcutta",
+        aliases:["iim calcutta","indian institute of management calcutta","iimc"],
+        city:"Kolkata, West Bengal",
+        programme:"MBA",
+        entrance:"CAT",
+        rank:"NIRF #7",
+        href:"iim-calcutta.html"
+    },
+    {
+        name:"IIM Indore",
+        aliases:["iim indore","indian institute of management indore","iimi"],
+        city:"Indore, Madhya Pradesh",
+        programme:"PGP / MBA",
+        entrance:"CAT",
+        rank:"NIRF #8",
+        href:"iim-indore.html"
+    },
+    {
+        name:"MDI Gurugram",
+        aliases:["mdi gurugram","mdi gurgaon","management development institute","mdi"],
+        city:"Gurugram, Haryana",
+        programme:"PGDM",
+        entrance:"CAT / GMAT",
+        rank:"NIRF #9",
+        href:"mdi-gurugram.html"
+    },
+    {
+        name:"XLRI Jamshedpur",
+        aliases:["xlri","xlri jamshedpur","xlri xavier school of management"],
+        city:"Jamshedpur, Jharkhand",
+        programme:"PGDM",
+        entrance:"XAT",
+        rank:"NIRF #10",
+        href:"xlri-jamshedpur.html"
+    },
+    {
+        name:"SIBM Pune",
+        aliases:["sibm pune","symbiosis institute of business management pune","sibm"],
+        city:"Pune, Maharashtra",
+        programme:"MBA",
+        entrance:"SNAP",
+        rank:"NIRF #11",
+        href:"sibm-pune.html"
+    }
 ];
 
-function normalizeSearch(v){return v.toLowerCase().trim().replace(/[^a-z0-9]+/g," ");}
+const examDirectory = [
+    {
+        name:"CAT",
+        aliases:["cat","common admission test"],
+        href:"cat.html"
+    },
+    {
+        name:"XAT",
+        aliases:["xat","xavier aptitude test"],
+        href:"xat.html"
+    },
+    {
+        name:"CMAT",
+        aliases:["cmat","common management admission test"],
+        href:"cmat.html"
+    },
+    {
+        name:"MAT",
+        aliases:["mat","management aptitude test"],
+        href:"mat.html"
+    },
+    {
+        name:"SNAP",
+        aliases:["snap","symbiosis national aptitude test"],
+        href:"snap.html"
+    },
+    {
+        name:"NMAT",
+        aliases:["nmat","nmat by gmac","nmat by gmac exam"],
+        href:"nmat.html"
+    }
+];
+
+function normalizeSearch(value){
+    return String(value || "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g," ")
+        .replace(/\s+/g," ");
+}
+
+function findDirectoryMatch(directory, query){
+    return directory.find(item =>
+        item.aliases.some(alias => {
+            const normalizedAlias = normalizeSearch(alias);
+            return normalizedAlias === query ||
+                   normalizedAlias.includes(query) ||
+                   query.includes(normalizedAlias);
+        })
+    );
+}
+
+function showSearchResult(html){
+    const result = document.getElementById("collegeSearchResult");
+    result.innerHTML = html;
+    result.style.display = "block";
+}
 
 function searchContent(){
-    const input=document.getElementById("collegeSearch");
-    const result=document.getElementById("collegeSearchResult");
-    const query=normalizeSearch(input.value);
+    const input = document.getElementById("collegeSearch");
+    const result = document.getElementById("collegeSearchResult");
+    const query = normalizeSearch(input.value);
 
     if(!query){
-        result.style.display="none";
-        result.innerHTML="";
-        document.getElementById("colleges").scrollIntoView({behavior:"smooth"});
+        result.style.display = "none";
+        result.innerHTML = "";
+        document.getElementById("colleges").scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
         return;
     }
 
-    const cards=document.querySelectorAll(".college-card,.exam-card");
-    let found=false;
-    cards.forEach(card=>{
-        if(normalizeSearch(card.innerText).includes(query)){
-            card.scrollIntoView({behavior:"smooth",block:"center"});
-            found=true;
+    /*
+       1. Search the central college directory first.
+       This makes colleges searchable even when they are not visible
+       as cards on the homepage.
+    */
+    const college = findDirectoryMatch(collegeDirectory, query);
+
+    if(college){
+        result.innerHTML = `
+            <div class="search-result-inner">
+                <h3>${college.name}</h3>
+                <div class="search-location">${college.city}</div>
+
+                <div class="search-result-meta">
+                    <span>Programme: <strong>${college.programme}</strong></span>
+                    <span>Entrance: <strong>${college.entrance}</strong></span>
+                    <span>Rank: <strong>${college.rank}</strong></span>
+                </div>
+
+                <a class="search-result-button" href="${college.href}">
+                    View College Overview →
+                </a>
+            </div>
+        `;
+        result.style.display = "block";
+        return;
+    }
+
+    /*
+       2. Search the exam directory.
+       CAT, XAT, CMAT, MAT, SNAP and NMAT therefore use the same
+       search box and open their dedicated pages directly.
+    */
+    const exam = findDirectoryMatch(examDirectory, query);
+
+    if(exam){
+        result.innerHTML = `
+            <div class="search-result-inner">
+                <h3>${exam.name}</h3>
+                <div class="search-location">
+                    MBA entrance exam information
+                </div>
+
+                <div class="search-result-meta">
+                    <span>Type: <strong>Management Entrance Exam</strong></span>
+                </div>
+
+                <a class="search-result-button" href="${exam.href}">
+                    Explore ${exam.name} →
+                </a>
+            </div>
+        `;
+        result.style.display = "block";
+        return;
+    }
+
+    /*
+       3. Fall back to visible homepage cards for partial text searches.
+    */
+    const cards = document.querySelectorAll(".college-card,.exam-card");
+    let matchedCard = null;
+
+    cards.forEach(card => {
+        const cardText = normalizeSearch(card.innerText);
+        if(!matchedCard && cardText.includes(query)){
+            matchedCard = card;
         }
     });
 
-    if(found){
-        result.style.display="none";
-        result.innerHTML="";
+    if(matchedCard){
+        result.style.display = "none";
+        result.innerHTML = "";
+        matchedCard.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
         return;
     }
 
-    const college=dedicatedCollegeSearch.find(item=>
-        item.names.some(n=>{
-            n=normalizeSearch(n);
-            return n.includes(query)||query.includes(n);
-        })
-    );
-
-    if(!college){
-        result.innerHTML='<div class="search-result-inner"><h3>No matching college found</h3><div class="search-location">Try IIM Ahmedabad, IIM Bangalore, IIM Kozhikode, IIT Delhi, IIM Lucknow, IIM Mumbai, IIM Calcutta, IIM Indore, MDI Gurugram or XLRI.</div></div>';
-        result.style.display="block";
-        return;
-    }
-
-    const action=college.href
-        ? `<a class="search-result-button" href="${college.href}">View College Overview →</a>`
-        : `<span class="search-result-button disabled">Overview Coming Soon</span>`;
-    const note=college.note?`<div class="search-result-note">${college.note}</div>`:"";
-
-    result.innerHTML=`<div class="search-result-inner">
-        <h3>${college.name}</h3>
-        <div class="search-location">${college.city}</div>
-        <div class="search-result-meta">
-            <span>Programme: <strong>${college.programme}</strong></span>
-            <span>Entrance: <strong>${college.entrance}</strong></span>
-            <span>Rank: <strong>${college.rank}</strong></span>
+    showSearchResult(`
+        <div class="search-result-inner">
+            <h3>No matching college or exam found</h3>
+            <div class="search-location">
+                Try a college such as IIM Ahmedabad, IIM Bangalore,
+                IIM Mumbai, XLRI Jamshedpur or SIBM Pune, or search
+                for CAT, XAT, CMAT, MAT, SNAP or NMAT.
+            </div>
         </div>
-        ${action}${note}
-    </div>`;
-    result.style.display="block";
+    `);
 }
 
-document.getElementById("collegeSearch").addEventListener("keydown",function(event){
-    if(event.key==="Enter") searchContent();
+document.getElementById("collegeSearch").addEventListener("keydown", function(event){
+    if(event.key === "Enter"){
+        searchContent();
+    }
 });
+
 </script>
 
 </body>
