@@ -58,8 +58,8 @@ jobs:
               assert s.count('class="ans"') == 1, f'{name}: Quick Answer count != 1'
               assert 'class="answer-first"' not in s, f'{name}: legacy duplicate answer block'
               assert 'iit-roorkee-final-ui-lock' in s, f'{name}: UI lock missing'
-              assert not re.search(r'<h2[^>]*>.*?</p>',s,re.I|re.S), f'{name}: malformed H2/paragraph markup'
-              assert not re.search(r'<p[^>]*>.*?</h2>',s,re.I|re.S), f'{name}: malformed paragraph/H2 markup'
+              assert not re.search(r'<h2[^>]*>[^<]*</p>',s,re.I|re.S), f'{name}: malformed H2/paragraph markup'
+              assert not re.search(r'<p[^>]*>[^<]*</h2>',s,re.I|re.S), f'{name}: malformed paragraph/H2 markup'
           print('Final IIT Roorkee benchmark state verified for all four pages.')
           PY
       - name: Commit final pages
