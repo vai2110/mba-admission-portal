@@ -85,3 +85,12 @@ Update `college-page-audit-dashboard.xlsx` after each processing stage. Each pag
 
 ## Existing-page mode
 When asked to audit existing pages, preserve architecture and design. Modify only what is necessary to reach the benchmark. Never rewrite a compliant page for cosmetic reasons. Always re-audit after modifications.
+
+
+## Locked Hero, Quick Answer and H2 Rules
+- Use the SIBM Pune hero container as the benchmark: compact text-first hero, same proportions, spacing and established typography; never redesign it independently.
+- Use the IIM Ahmedabad/SIBM Pune approved `Arial, Helvetica, sans-serif` font stack and established font sizes.
+- Exactly one visible Quick Answer block per page; remove duplicate introductory answer blocks.
+- H2s must be short, specific, student-intent driven and naturally keyword optimised, never generic filler.
+- Placement H1s must be concise and keyword-led; keep year-specific details in metadata/body.
+- These are hard QA rules for every new page and every existing-page modification.
