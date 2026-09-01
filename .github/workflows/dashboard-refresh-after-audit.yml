@@ -1,0 +1,30 @@
+name: Refresh Audit Dashboard After Benchmark Audit
+on:
+  push:
+    paths:
+      - '.github/workflows/dashboard-refresh-after-audit.yml'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl beautifulsoup4
+      - name: Refresh dashboards
+        run: |
+          python scripts/update_audit_dashboard.py
+          python scripts/update_audit_dashboard_html.py
+      - name: Commit dashboard
+        run: |
+          git config user.name "MBA Portal Audit Dashboard"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add college-page-audit-dashboard.xlsx college-page-audit-dashboard.html
+          git commit -m "Update audit dashboard after IIT Roorkee benchmark repair" || echo "No dashboard changes"
+          git push || true
