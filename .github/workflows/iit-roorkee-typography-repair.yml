@@ -1,0 +1,72 @@
+name: IIT Roorkee Typography and Hero Repair
+on:
+  push:
+    paths:
+      - '.github/workflows/iit-roorkee-typography-repair.yml'
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply IIMA typography and SIBM hero structure
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          pages = [
+            'iit-roorkee.html',
+            'iit-roorkee-mba.html',
+            'iit-roorkee-executive-mba.html',
+            'iit-roorkee-placements.html',
+          ]
+          for name in pages:
+              p = Path(name)
+              s = p.read_text(encoding='utf-8')
+              # Keep the hero text-first and structurally aligned with SIBM Pune.
+              s = s.replace('.hero{background:linear-gradient(120deg,#17336f,#2857c7);color:#fff;padding:20px 0 18px}', '.hero{background:linear-gradient(110deg,#172554 0%,#1d4ed8 100%);color:#fff;padding:30px 0}')
+              s = s.replace('.hero h1{font-size:29px;line-height:1.2;margin:0 0 7px}', '.hero h1{font-size:34px;line-height:1.18;margin:0 0 5px;max-width:900px}')
+              s = s.replace('.hero p{font-size:12.5px;margin:6px 0;color:#dbeafe;max-width:900px}', '.hero p{font-size:17px;line-height:1.4;font-weight:600;color:#e0ecff;margin:0 0 8px;max-width:900px}')
+              s = s.replace('.sec h2{font-size:21px', '.sec h2{font-size:24px')
+              s = s.replace('.ans p,.sec p,.sec li{font-size:12.5px', '.ans p,.sec p,.sec li{font-size:14px')
+              s = s.replace('table{border-collapse:collapse;width:100%;min-width:620px;font-size:11.5px}', 'table{border-collapse:collapse;width:100%;min-width:620px;font-size:13px}')
+              s = s.replace(' .hero h1{font-size:25px}', ' .hero h1{font-size:26px}')
+              # Transform the existing hero markup without changing its content hierarchy.
+              hero = re.search(r'<section class="hero"><div class="w">(.*?)</div></section>', s, re.S)
+              if hero:
+                  inner = hero.group(1)
+                  inner = inner.replace('<p>', '<h2>').replace('</p>', '</h2>')
+                  inner = inner.replace('<small>', '<div class="hero-location">').replace('</small>', '</div>')
+                  replacement = '<section class="hero"><div class="hero-container">' + inner + '</div></section>'
+                  s = s[:hero.start()] + replacement + s[hero.end():]
+              # Add the same container typography used by the locked IIMA/SIBM design system.
+              marker = '.hero h1{'
+              if '.hero-container{' not in s:
+                  s = s.replace(marker, '.hero-container{width:min(1240px,calc(100% - 40px));margin:auto}\n.hero h2{font-size:17px;line-height:1.4;font-weight:600;color:#e0ecff;margin:0 0 8px;max-width:900px}.hero-location{font-size:13px;color:#dbeafe;font-weight:600}.hero h1{', 1)
+              else:
+                  s = s.replace('.hero-container{', '.hero-container{', 1)
+              # Remove any duplicate Quick Answer helper block if one remains.
+              s = re.sub(r'<div class="answer-first"[^>]*>.*?</div>\s*', '', s, flags=re.S)
+              p.write_text(s, encoding='utf-8')
+      - name: Verify
+        shell: python
+        run: |
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          for name in ['iit-roorkee.html','iit-roorkee-mba.html','iit-roorkee-executive-mba.html','iit-roorkee-placements.html']:
+              soup=BeautifulSoup(Path(name).read_text(encoding='utf-8'),'html.parser')
+              hero=soup.select_one('.hero')
+              assert hero and hero.select_one('.hero-container'), name
+              assert not soup.select('.answer-first'), name
+              assert len(soup.select('.ans')) == 1, name
+              assert soup.select_one('.hero h1'), name
+          print('IIT Roorkee hero/typography verification passed')
+      - name: Commit
+        run: |
+          git config user.name "MBA Portal Benchmark Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iit-roorkee*.html
+          git commit -m "Align IIT Roorkee typography with IIMA and hero with SIBM" || echo "No changes"
+          git push || true
