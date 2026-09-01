@@ -1,0 +1,60 @@
+name: MBA Portal QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  html-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check local HTML links and placeholders
+        shell: python
+        run: |
+          import os, re, sys
+          from html import unescape
+
+          root = os.getcwd()
+          html_files = []
+          for base, dirs, files in os.walk(root):
+              if '.git' in dirs:
+                  dirs.remove('.git')
+              if '.github' in dirs:
+                  # Workflow files are not portal pages.
+                  dirs.remove('.github')
+              for f in files:
+                  if f.lower().endswith('.html'):
+                      html_files.append(os.path.join(base, f))
+
+          errors = []
+          placeholder_pattern = re.compile(r'href\\s*=\\s*[\"\\\']#(?:[\"\\\'])', re.I)
+          href_pattern = re.compile(r'href\\s*=\\s*[\"\\\']([^\"\\\']+)[\"\\\']', re.I)
+
+          for path in html_files:
+              rel = os.path.relpath(path, root)
+              text = unescape(open(path, encoding='utf-8').read())
+
+              if placeholder_pattern.search(text):
+                  errors.append(f'{rel}: contains placeholder href="#"')
+
+              for href in href_pattern.findall(text):
+                  href = href.strip()
+                  if not href or href.startswith(('#', 'http://', 'https://', 'mailto:', 'tel:', 'javascript:')):
+                      continue
+                  target = href.split('#', 1)[0].split('?', 1)[0]
+                  if not target:
+                      continue
+                  candidate = os.path.normpath(os.path.join(os.path.dirname(path), target))
+                  if not os.path.isfile(candidate):
+                      errors.append(f'{rel}: broken local link -> {href}')
+
+          if errors:
+              print('\n'.join(errors))
+              sys.exit(1)
+
+          print(f'QA passed: checked {len(html_files)} HTML files.')
