@@ -41,13 +41,17 @@ Hero; Latest Placement Highlights; Placement Snapshot; year-wise comparison for 
 - No generic filler. Replace claims such as "world-class", "holistic", "excellent placements", "vibrant campus" and similar promotional language with a specific sourced fact or remove them.
 - Write for a student making an application/college decision, not for an institutional brochure.
 - Use concise, search-intent H2s and useful long-tail coverage naturally.
+- H2s must be short, keyword-led and student-intent focused. Avoid vague constructions such as "What Students Can Study", "How Students Should Read...", "What the Programme Is" and similar generic phrasing when a direct keyword heading can answer the intent.
 - Use a mix of paragraphs, bullets and tables; tables only where comparison or exact figures benefit the reader.
 - FAQs must answer real student/search questions and contain college-specific answers. No generic MBA questions.
 - Bold important decision-useful numbers and facts.
 - Add `<hr/>` between consecutive H2 sections according to the locked site architecture.
+- **Quick Answer must appear exactly once per page.** Do not duplicate a hero summary as a second Quick Answer card. The overview page may use one answer-first block immediately before the main content; course and placement pages should use one concise, factual answer block only.
+- **Hero must stay compact and text-first, following the SIBM Pune benchmark.** Use a restrained hero height/padding, one clear H1, a short supporting description and source/location line. Do not add bulky statistic panels, logos or decorative modules inside the hero.
 
 ## SEO/AEO/GEO
 - One clear, search-intent H1 per page.
+- Placement-page H1s must not include a placement year. Put the latest year in the supporting copy, metadata where useful, tables and section headings instead.
 - Unique title, meta description, canonical and appropriate Open Graph/Twitter metadata.
 - Natural primary and secondary keywords plus long-tail intent.
 - Direct answers to high-intent questions near the relevant section; do not bury the answer.
