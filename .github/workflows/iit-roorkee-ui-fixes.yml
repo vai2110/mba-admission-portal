@@ -1,0 +1,113 @@
+name: IIT Roorkee UI and heading fixes
+
+on:
+  push:
+    paths:
+      - '.github/workflows/iit-roorkee-ui-fixes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply locked page rules
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          files = [
+              Path('iit-roorkee.html'),
+              Path('iit-roorkee-mba.html'),
+              Path('iit-roorkee-executive-mba.html'),
+              Path('iit-roorkee-placements.html'),
+          ]
+
+          replacements = {
+              # Overview
+              'IIT Roorkee Management Studies: What Students Can Study': 'IIT Roorkee MBA & Executive MBA',
+              'IIT Roorkee MBA Admission Process': 'IIT Roorkee MBA Admission',
+              'IIT Roorkee MBA Fees 2026-27: Semester-wise & Total Cost': 'IIT Roorkee MBA Fees 2026-27',
+              'IIT Roorkee MBA Curriculum & Specialisations': 'IIT Roorkee MBA Curriculum',
+              'IIT Roorkee MBA Placements': 'IIT Roorkee MBA Placements 2025',
+              # MBA course
+              'IIT Roorkee MBA: Programme Overview': 'IIT Roorkee MBA Overview',
+              'IIT Roorkee MBA Selection Criteria & CAT Cutoff': 'IIT Roorkee MBA Selection & CAT Cutoff',
+              'IIT Roorkee MBA Curriculum & Specialisations': 'IIT Roorkee MBA Curriculum',
+              # EMBA course
+              'IIT Roorkee Executive MBA: What the Programme Is': 'IIT Roorkee Executive MBA Overview',
+              'IIT Roorkee Executive MBA Admission 2026: Current Status': 'IIT Roorkee Executive MBA Admission 2026',
+              'Executive MBA Programme Structure & Specialisations': 'Executive MBA Structure & Specialisations',
+              'How the IIT Roorkee Executive MBA Is Delivered': 'IIT Roorkee Executive MBA Format',
+              'IIT Roorkee Executive MBA: What Students Receive': 'IIT Roorkee Executive MBA Benefits',
+              # Placement page
+              'IIT Roorkee MBA Placements 2025: Latest Highlights': 'IIT Roorkee MBA Placement Highlights',
+              'IIT Roorkee MBA Placement Salary Distribution': 'IIT Roorkee MBA Salary Trends',
+              'IIT Roorkee MBA Placement Reports: 2025 and Earlier': 'IIT Roorkee MBA Placement Trends',
+              'Roles and Sectors in IIT Roorkee MBA Placements': 'IIT Roorkee MBA Roles & Recruiters',
+              'IIT Roorkee MBA Summer Placements: 2024-26 Batch': 'IIT Roorkee MBA Summer Placements',
+              'How Students Should Read IIT Roorkee Placement Data': 'IIT Roorkee Placement Data Explained',
+              'Official Placement Sources': 'IIT Roorkee Placement Reports',
+          }
+
+          for path in files:
+              html = path.read_text(encoding='utf-8')
+
+              # Exactly one Quick Answer: retain the factual .ans block and remove the duplicate answer-first block.
+              html = re.sub(r'<div class="answer-first"[^>]*>.*?</div>', '', html, flags=re.S)
+
+              # Compact, text-first SIBM Pune benchmark hero. No architecture redesign.
+              html = html.replace('.hero{background:linear-gradient(120deg,#17336f,#2857c7);color:#fff;padding:28px 0}', '.hero{background:linear-gradient(120deg,#17336f,#2857c7);color:#fff;padding:20px 0 18px}')
+              html = html.replace('.hero h1{font-size:31px;line-height:1.2;', '.hero h1{font-size:29px;line-height:1.2;')
+              html = html.replace('.hero h1{font-size:31px;', '.hero h1{font-size:29px;')
+              html = html.replace('.hero p{font-size:13px;', '.hero p{font-size:12.5px;margin:6px 0;')
+
+              # Short, keyword-led H2s.
+              for old, new in replacements.items():
+                  html = html.replace(f'<h2>{old}</h2>', f'<h2>{new}</h2>')
+
+              # Placement H1/title/meta should not quote the placement year; latest year remains in body/facts.
+              if path.name == 'iit-roorkee-placements.html':
+                  html = html.replace('IIT Roorkee MBA Placements 2025: Average Package, Median, Highest CTC &amp; Trends', 'IIT Roorkee MBA Placements: Average Package, Median, Highest CTC &amp; Trends')
+                  html = html.replace('IIT Roorkee MBA Placements 2025: Average Package, Median, Highest CTC & Trends', 'IIT Roorkee MBA Placements: Average Package, Median, Highest CTC & Trends')
+
+              path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Verify locked rules
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, sys
+          files = [Path('iit-roorkee.html'), Path('iit-roorkee-mba.html'), Path('iit-roorkee-executive-mba.html'), Path('iit-roorkee-placements.html')]
+          for p in files:
+              s = p.read_text(encoding='utf-8')
+              if s.count('class="answer-first"') != 0:
+                  raise SystemExit(f'Duplicate answer-first block remains: {p}')
+              if s.count('<div class="ans">') != 1:
+                  raise SystemExit(f'Quick Answer count is not exactly one: {p}')
+              if 'padding:28px 0' in s:
+                  raise SystemExit(f'Bulky hero padding remains: {p}')
+              if p.name == 'iit-roorkee-placements.html':
+                  m = re.search(r'<h1>(.*?)</h1>', s, re.S)
+                  if m and re.search(r'Placements\s+2025', m.group(1), re.I):
+                      raise SystemExit('Placement year remains in H1')
+          print('IIT Roorkee locked UI/content rules passed.')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name 'mba-page-agent'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iit-roorkee.html iit-roorkee-mba.html iit-roorkee-executive-mba.html iit-roorkee-placements.html
+          if git diff --cached --quiet; then
+            echo 'No page changes required.'
+          else
+            git commit -m 'Fix IIT Roorkee page UI and keyword headings'
+            git push
+          fi
