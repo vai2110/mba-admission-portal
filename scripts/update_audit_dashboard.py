@@ -6,60 +6,41 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.worksheet.table import Table, TableStyleInfo
 from openpyxl.utils import get_column_letter
-
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"college-page-audit-dashboard.xlsx"
 EXCLUDED={"index.html","404.html","content-audit.html","college-page-audit-dashboard.html"}
 NAVY="17336F"; BLUE="2563EB"; GREEN="15803D"; AMBER="B45309"; GRAY="64748B"; BORDER="DCE3EB"; WHITE="FFFFFF"
 THIN=Side(style="thin",color=BORDER)
-
-def run(cmd):
-    return subprocess.check_output(cmd,cwd=ROOT,text=True,stderr=subprocess.DEVNULL).strip()
-
+def run(cmd): return subprocess.check_output(cmd,cwd=ROOT,text=True,stderr=subprocess.DEVNULL).strip()
 def read_json(name):
     try:return json.loads((ROOT/name).read_text(encoding="utf-8"))
     except Exception:return {}
-
 def report_item(report,filename):
     for x in report.get("results",[]):
         if x.get("file")==filename:return x
     return {}
-
 def college_name(path):
     s=Path(path).stem
-    if s.startswith("iim-rohtak"):return "IIM Rohtak"
-    if s.startswith("iim-udaipur"):return "IIM Udaipur"
-    if s.startswith("iim-mumbai"):return "IIM Mumbai"
-    if s.startswith("iim-raipur"):return "IIM Raipur"
-    if s.startswith("iim-ranchi"):return "IIM Ranchi"
-    if s.startswith("iim-trichy"):return "IIM Trichy"
+    for prefix,name in [("iim-rohtak","IIM Rohtak"),("iim-udaipur","IIM Udaipur"),("iim-mumbai","IIM Mumbai"),("iim-raipur","IIM Raipur"),("iim-ranchi","IIM Ranchi"),("iim-trichy","IIM Trichy")]:
+        if s.startswith(prefix):return name
     return s
-
 def page_type(path):
     s=Path(path).stem
     if "placement" in s:return "Placement"
     if s.count("-")<=2:return "Overview"
     return "Course-specific"
-
 def today_pages():
-    # Include pages changed in the current audit window. Exclude locked benchmarks.
-    try:
-        out=run(["git","log","--since=24 hours ago","--name-only","--pretty=format:","--","*.html"])
+    try: out=run(["git","log","--since=24 hours ago","--name-only","--pretty=format:","--","*.html"])
     except Exception: out=""
     return sorted({x.strip() for x in out.splitlines() if x.strip().endswith(".html") and Path(x.strip()).name not in EXCLUDED and not x.startswith("sibm-pune") and not x.startswith("iim-ahmedabad")})
-
 def make():
-    content=read_json("content-audit-report.json"); seo=read_json("seo-geo-aeo-report.json")
-    pages=today_pages(); rows=[]
+    content=read_json("content-audit-report.json"); seo=read_json("seo-geo-aeo-report.json"); pages=today_pages(); rows=[]
     for p in pages:
         c=report_item(content,p); s=report_item(seo,p); audited=bool(c or s)
-        cscore=c.get("overall_score"); sscore=s.get("overall_score")
-        vals=[v for v in (cscore,sscore) if isinstance(v,(int,float))]
-        score=round(sum(vals)/len(vals)) if vals else None
+        cscore=c.get("overall_score"); sscore=s.get("overall_score"); vals=[v for v in (cscore,sscore) if isinstance(v,(int,float))]; score=round(sum(vals)/len(vals)) if vals else None
         status="AUDITED" if audited else "IN QUEUE"
         modified="MODIFIED / VERIFIED" if audited and (c.get("auto_applied") or s.get("auto_applied")) else ("AUDITED – NO CHANGE" if audited else "Awaiting audit")
-        wc=c.get("metrics",{}).get("word_count",0)
-        notes=[]
+        wc=c.get("metrics",{}).get("word_count",0); notes=[]
         if c.get("issues"):notes.append(f"Content audit: {len(c['issues'])} issue group(s)")
         if s.get("issues"):notes.append(f"SEO/AEO/GEO audit: {len(s['issues'])} issue group(s)")
         if not notes:notes.append("Awaiting benchmark-level verification.")
@@ -81,8 +62,7 @@ def make():
     for r in [["IIM Ahmedabad","Content depth","Detailed programme-specific admission logic, exact eligibility/selection criteria, official-source discipline, student-intent coverage and actual data."],["SIBM Pune","Architecture & design","Compact text-first hero, clean navigation, section hierarchy, cards/tables, responsive layout and no invented hero components."],["Both","SEO/AEO/GEO","Search-intent H1/H2s, long-tail coverage, direct answers, metadata/canonical, structured data, local/entity signals and internal linking."],["Both","Data integrity","Use official institute numbers; if unavailable, explicitly say unavailable rather than fabricate estimates."]]:bm.append(r)
     cl=wb.create_sheet("Audit Checklist"); cl.append(["Category","Check","Required Outcome"])
     for r in [["Architecture","Hero","SIBM Pune-style compact text-first hero; no invented logo/placement/stat cards."],["Architecture","Navigation","Consistent On-this-page navigation, hierarchy and internal buttons."],["Content","Admission","Detailed eligibility → application → exam/test → shortlist → PI/selection → final offer."],["Content","Fees","Fee bifurcation + actual course-period cost; additional student-incurred costs separated."],["Content","Cutoff","Official cutoff where published; otherwise clearly labelled expected/indicative without false precision."],["Content","Placements","Latest highlights + maximum 3 comparable years of actual placement statistics."],["Content","Specificity","No generic filler; programme/college-specific facts and student decision support."],["SEO","Metadata","Unique title, meta description, canonical, OG/Twitter and clean H1."],["AEO","Answer blocks","Direct answers to high-intent queries and useful non-generic FAQs."],["GEO","Entity/location","Institute, city/state and official identity clearly represented."],["Technical","Section separation","<hr/> between consecutive H2 sections where required."],["Technical","Responsive","Hero, cards, tables and navigation usable on mobile and desktop."],["Integrity","Sources","Factual claims grounded in official institute sources; unavailable data not invented."]]:cl.append(r)
-    lg=wb.create_sheet("Change Log"); lg.append(["Timestamp UTC","College","Page","Audit Status","Modification Status","Commit"])
-    stamp=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    lg=wb.create_sheet("Change Log"); lg.append(["Timestamp UTC","College","Page","Audit Status","Modification Status","Commit"]); stamp=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     for r in rows:lg.append([stamp,r[0],r[1],r[3],r[4],r[14]])
     for sh in wb.worksheets:
         sh.sheet_view.showGridLines=False
@@ -98,5 +78,4 @@ def make():
             if cell.value in ("AUDITED","MODIFIED / VERIFIED","Pass"):cell.font=Font(color=GREEN,bold=True)
             elif cell.value in ("IN QUEUE","Awaiting audit","Review"):cell.font=Font(color=AMBER,bold=True)
     wb.save(OUT)
-
 if __name__=="__main__":make()
