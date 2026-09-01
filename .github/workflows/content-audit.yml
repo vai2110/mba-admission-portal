@@ -4,8 +4,10 @@ on:
   push:
     paths:
       - '**.html'
-      - 'scripts/seo_geo_aeo_audit.py'
+      - 'scripts/*.py'
       - '.github/workflows/content-audit.yml'
+  schedule:
+    - cron: '*/15 * * * *'
   workflow_dispatch:
     inputs:
       target_page:
@@ -42,7 +44,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install beautifulsoup4
+        run: pip install beautifulsoup4 openpyxl
 
       - name: Determine pages to process
         env:
@@ -56,12 +58,13 @@ jobs:
             printf '%s\n' "$TARGET_PAGE" > changed-html.txt
           elif [ "$EVENT_NAME" = "push" ]; then
             git diff --name-only "$AUDIT_BASE" "$EVENT_AFTER" -- '*.html' \
-              | grep -vE '^(index\.html|404\.html|content-audit\.html|sibm-pune[^/]*\.html)$' \
+              | grep -vE '^(index\.html|404\.html|content-audit\.html|college-page-audit-dashboard\.html|sibm-pune[^/]*\.html)$' \
               | sort -u > changed-html.txt || true
           else
             find . -type f -name '*.html' -not -path './.git/*' \
               -not -name 'index.html' -not -name '404.html' -not -name 'content-audit.html' \
-              -not -name 'sibm-pune*.html' | sed 's#^./##' | sort > changed-html.txt
+              -not -name 'college-page-audit-dashboard.html' -not -name 'sibm-pune*.html' \
+              | sed 's#^./##' | sort > changed-html.txt
           fi
           echo "Pages selected:"
           cat changed-html.txt || true
@@ -84,18 +87,16 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from bs4 import BeautifulSoup
-
-          excluded = {'index.html', '404.html', 'content-audit.html'}
-          pages = [p.strip() for p in Path('changed-html.txt').read_text().splitlines() if p.strip()]
+          excluded = {'index.html','404.html','content-audit.html','college-page-audit-dashboard.html'}
+          pages=[p.strip() for p in Path('changed-html.txt').read_text().splitlines() if p.strip()]
           for name in pages:
-              path = Path(name)
-              if path.name in excluded or not path.exists():
-                  continue
-              raw = path.read_text(encoding='utf-8')
-              if raw.count('<!DOCTYPE html>') > 1 or raw.lower().count('<html') > 1:
-                  raise SystemExit(f'HTML integrity failed: duplicate document root in {name}')
-              soup = BeautifulSoup(raw, 'html.parser')
-              hero = soup.select_one('.hero')
+              path=Path(name)
+              if path.name in excluded or not path.exists(): continue
+              raw=path.read_text(encoding='utf-8')
+              if raw.count('<!DOCTYPE html>')>1 or raw.lower().count('<html')>1:
+                  raise SystemExit(f'HTML integrity failed: {name}')
+              soup=BeautifulSoup(raw,'html.parser')
+              hero=soup.select_one('.hero')
               if hero is not None and hero.select('.notice'):
                   raise SystemExit(f'Hero protection failed: notice found in {name}')
               print(f'Integrity PASS: {name}')
@@ -111,6 +112,21 @@ jobs:
             echo "No automatic HTML changes required."
           else
             git commit -m "SEO AEO GEO audit and improve updated college pages"
+            git push
+          fi
+
+      - name: Generate live Excel audit dashboard
+        run: python scripts/update_audit_dashboard.py
+
+      - name: Commit live Excel dashboard
+        run: |
+          git config user.name "MBA Portal Audit Dashboard"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add college-page-audit-dashboard.xlsx
+          if git diff --cached --quiet; then
+            echo "Excel dashboard is already current."
+          else
+            git commit -m "Update live college page audit Excel dashboard"
             git push
           fi
 
