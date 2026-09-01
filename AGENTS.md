@@ -94,3 +94,11 @@ When asked to audit existing pages, preserve architecture and design. Modify onl
 - H2s must be short, specific, student-intent driven and naturally keyword optimised, never generic filler.
 - Placement H1s must be concise and keyword-led; keep year-specific details in metadata/body.
 - These are hard QA rules for every new page and every existing-page modification.
+
+
+## Locked Hero HTML Structure
+- Match the SIBM Pune hero HTML pattern: one compact hero container, one search-intent H1, one concise supporting H2 and one location/official-site line.
+- Do not add fact cards, logos, badges or other modules inside the hero unless the benchmark architecture explicitly contains them.
+- Use the approved Arial font stack and SIBM benchmark type scale: H1 36px desktop, H2 16px, location 13px; retain the responsive mobile scale already established.
+- Exactly one Quick Answer block is permitted in visible page content.
+- H2s elsewhere must remain short, specific and keyword-led.
