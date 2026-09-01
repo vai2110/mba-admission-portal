@@ -47,6 +47,8 @@ jobs:
               p=Path(name); s=p.read_text(encoding='utf-8')
               s=re.sub(r'<div\s+class=["\']answer-first["\'][^>]*>.*?</div>','',s,flags=re.I|re.S)
               for old,new in replacements.items(): s=s.replace(old,new)
+              # Title changes must stay inside the existing compact hero container.
+              s=s.replace('<section class="hero"><div class="w">','<section class="hero"><div class="hero-container">',1)
               s=re.sub(r'<style\s+id=["\']iit-roorkee-final-ui-lock["\']>.*?</style>','',s,flags=re.I|re.S)
               s=s.replace('</head>',css+'</head>',1)
               p.write_text(s,encoding='utf-8')
@@ -61,6 +63,7 @@ jobs:
               assert s.count('class="ans"') == 1, f'{name}: Quick Answer count != 1'
               assert 'class="answer-first"' not in s, f'{name}: legacy duplicate answer block'
               assert 'iit-roorkee-final-ui-lock' in s, f'{name}: UI lock missing'
+              assert '<section class="hero"><div class="hero-container">' in s, f'{name}: hero container is not locked'
               assert not re.search(r'<h2[^>]*>[^<]*</p>',s,re.I|re.S), f'{name}: malformed H2/paragraph markup'
               assert not re.search(r'<p[^>]*>[^<]*</h2>',s,re.I|re.S), f'{name}: malformed paragraph/H2 markup'
           print('Final IIT Roorkee benchmark state verified for all four pages.')
