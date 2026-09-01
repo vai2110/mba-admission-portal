@@ -1,0 +1,136 @@
+name: Repair IIT Roorkee pages
+
+on:
+  push:
+    paths:
+      - '.github/workflows/repair-iit-roorkee.yml'
+  workflow_dispatch:
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Repair pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          files = [
+              'iit-roorkee.html',
+              'iit-roorkee-mba.html',
+              'iit-roorkee-executive-mba.html',
+              'iit-roorkee-placements.html',
+          ]
+
+          override = '''<style id="iit-roorkee-final-ui-lock">
+          /* IIT Roorkee final UI lock: SIBM Pune hero structure + IIMA typography baseline */
+          html { scroll-behavior:smooth; scroll-padding-top:82px; }
+          body { font-family:Arial,Helvetica,sans-serif; }
+          .hero { background:linear-gradient(110deg,#172554 0%,#1d4ed8 100%); color:#fff; padding:38px 0; }
+          .hero-container { width:min(1240px,calc(100% - 40px)); margin:0 auto; min-height:0; display:block; }
+          .hero h1 { font-family:Arial,Helvetica,sans-serif; font-size:34px; line-height:1.18; font-weight:700; color:#fff; margin:0 0 7px; max-width:980px; }
+          .hero h2 { font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:1.45; font-weight:600; color:#dbeafe; margin:0 0 9px; max-width:900px; }
+          .hero p { font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.5; color:#dbeafe; margin:0 0 9px; max-width:900px; }
+          .hero small, .hero-location { font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.4; color:#dbeafe; font-weight:600; }
+          .hero a { color:#fff; text-decoration:underline; text-underline-offset:2px; }
+          .facts { width:min(1240px,calc(100% - 40px)); margin:0 auto; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; padding:16px 0 22px; }
+          .fact { background:#fff; border:1px solid #dfe5ed; border-radius:7px; padding:13px 15px; min-height:66px; }
+          .fact strong { display:block; color:#173f82; font-size:17px; line-height:1.25; font-weight:700; }
+          .fact span { display:block; color:#64748b; font-size:10px; line-height:1.4; margin-top:4px; }
+          .layout { width:min(1240px,calc(100% - 40px)); margin:0 auto; display:grid; grid-template-columns:225px minmax(0,1fr); gap:22px; align-items:start; }
+          .sec h2 { font-family:Arial,Helvetica,sans-serif; font-size:21px; line-height:1.3; font-weight:700; color:#102a43; }
+          .ans { background:#eef6ff; border:1px solid #cfe0f5; border-radius:8px; padding:15px 17px; margin-bottom:16px; }
+          .ans strong { display:block; color:#173f82; font-size:13px; margin-bottom:5px; }
+          .ans p { margin:0; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.65; color:#334155; }
+          @media(max-width:700px){
+            .hero { padding:27px 0; }
+            .hero-container { width:calc(100% - 24px); }
+            .hero h1 { font-size:26px; line-height:1.2; }
+            .hero h2 { font-size:13px; line-height:1.45; }
+            .hero small,.hero-location { font-size:11px; }
+            .facts { width:calc(100% - 20px); grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:12px 0 16px; }
+            .fact { padding:11px; min-height:62px; }
+            .layout { width:calc(100% - 20px); display:block; }
+          }
+          </style>'''
+
+          def fix_paragraph_closings(html):
+              # Repair malformed </h2> endings that were accidentally inserted inside <p> blocks.
+              tokens = re.compile(r'<p\b[^>]*>|</p>|<h2\b[^>]*>|</h2>', re.I).finditer(html)
+              out=[]; last=0; in_p=False
+              for m in tokens:
+                  out.append(html[last:m.start()])
+                  tok=m.group(0)
+                  low=tok.lower()
+                  if low.startswith('<p'):
+                      in_p=True; out.append(tok)
+                  elif low == '</p>':
+                      in_p=False; out.append(tok)
+                  elif low == '</h2>' and in_p:
+                      in_p=False; out.append('</p>')
+                  else:
+                      out.append(tok)
+                  last=m.end()
+              out.append(html[last:])
+              return ''.join(out)
+
+          for name in files:
+              p=Path(name)
+              html=p.read_text(encoding='utf-8')
+
+              # Remove any legacy answer-first boxes. The approved page architecture uses one Quick answer box.
+              html=re.sub(r'<div\s+class=["\']answer-first["\'][^>]*>.*?</div>', '', html, flags=re.I|re.S)
+
+              # Convert malformed Quick Answer heading into a paragraph and keep exactly one answer box.
+              html=re.sub(
+                  r'<div\s+class=["\']ans["\']>(.*?)</div>',
+                  lambda m: '<div class="ans">'+re.sub(r'<h2\b[^>]*>(.*?)</h2>', r'<p>\1</p>', m.group(1), flags=re.I|re.S)+'</div>',
+                  html, flags=re.I|re.S
+              )
+              html=fix_paragraph_closings(html)
+
+              # If accidental duplicate .ans blocks exist, retain the first one only.
+              ans_matches=list(re.finditer(r'<div\s+class=["\']ans["\'][^>]*>.*?</div>', html, flags=re.I|re.S))
+              if len(ans_matches)>1:
+                  for m in reversed(ans_matches[1:]):
+                      html=html[:m.start()]+html[m.end():]
+
+              # Replace any prior UI-lock style so the final benchmark rules are authoritative.
+              html=re.sub(r'<style\s+id=["\']iit-roorkee-final-ui-lock["\']>.*?</style>', '', html, flags=re.I|re.S)
+              html=html.replace('</head>', override+'\n</head>', 1)
+              p.write_text(html, encoding='utf-8')
+
+          # Persist the new design rule in the agent skill.
+          agent=Path('AGENTS.md')
+          text=agent.read_text(encoding='utf-8')
+          rule='''\n## Locked hero and typography rules\n- For all college pages, use the approved SIBM Pune hero container as the structural benchmark: compact text-first hero, no model-invented logo/placement/ranking/image modules unless that page's approved architecture explicitly contains them.\n- Keep the approved benchmark typography: Arial/Helvetica baseline, hero H1 around 34-36px desktop and 26px mobile, hero H2 around 16px desktop and 13px mobile, with compact vertical spacing.\n- Never alter the page-wide layout while changing a title/H1. A request to change title wording means change the title text inside the existing hero container, not redesign the hero.\n- Every page must contain exactly one Quick Answer block. Never duplicate it, and never use an H2 heading as the Quick Answer body.\n- H2s must be short, keyword-led and student-intent focused; avoid generic headings.\n'''
+          if 'Locked hero and typography rules' not in text:
+              agent.write_text(text.rstrip()+rule, encoding='utf-8')
+          PY
+
+      - name: Verify
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          files=['iit-roorkee.html','iit-roorkee-mba.html','iit-roorkee-executive-mba.html','iit-roorkee-placements.html']
+          for f in files:
+              s=Path(f).read_text(encoding='utf-8')
+              assert s.count('class="ans"') == 1, f'{f}: Quick Answer count is not 1'
+              assert 'class="answer-first"' not in s, f'{f}: legacy answer-first remains'
+              assert 'iit-roorkee-final-ui-lock' in s, f'{f}: final UI lock missing'
+              assert s.count('<p>') >= s.count('</p>'), f'{f}: paragraph structure invalid'
+          print('IIT Roorkee UI/architecture verification passed for all 4 pages.')
+          PY
+
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iit-roorkee.html iit-roorkee-mba.html iit-roorkee-executive-mba.html iit-roorkee-placements.html AGENTS.md
+          git diff --cached --quiet || git commit -m 'Restore IIT Roorkee benchmark hero and typography'
+          git push
