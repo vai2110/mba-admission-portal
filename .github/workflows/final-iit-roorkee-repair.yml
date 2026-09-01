@@ -6,6 +6,9 @@ on:
       - '.github/workflows/final-iit-roorkee-repair.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   repair:
     runs-on: ubuntu-latest
