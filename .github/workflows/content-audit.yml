@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - '**.html'
+      - 'scripts/seo_geo_aeo_audit.py'
+      - '.github/workflows/content-audit.yml'
   workflow_dispatch:
     inputs:
       target_page:
@@ -33,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -51,15 +53,28 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           set -e
+          # 71a844d7 is the last pre-today baseline used for this audit batch.
+          # This keeps today's scope stable even when the workflow/script itself changes.
+          AUDIT_BASE="71a844d7b643c982103fe59542444600b4b92fb7"
           if [ -n "$TARGET_PAGE" ]; then
             printf '%s\n' "$TARGET_PAGE" > changed-html.txt
-          elif [ "$EVENT_NAME" = "push" ] && [ -n "$EVENT_BEFORE" ] && [ "$EVENT_BEFORE" != "0000000000000000000000000000000000000000" ]; then
-            git diff --name-only "$EVENT_BEFORE" "$EVENT_AFTER" -- '*.html' | grep -vE '^(index\.html|404\.html|content-audit\.html)$' > changed-html.txt || true
+          elif [ "$EVENT_NAME" = "push" ]; then
+            git diff --name-only "$AUDIT_BASE" "$EVENT_AFTER" -- '*.html' \
+              | grep -vE '^(index\.html|404\.html|content-audit\.html|sibm-pune[^/]*\.html)$' \
+              | sort -u > changed-html.txt || true
           else
-            find . -type f -name '*.html' -not -path './.git/*' -not -name 'index.html' -not -name '404.html' -not -name 'content-audit.html' | sed 's#^./##' | sort > changed-html.txt
+            find . -type f -name '*.html' -not -path './.git/*' \
+              -not -name 'index.html' -not -name '404.html' -not -name 'content-audit.html' \
+              -not -name 'sibm-pune*.html' | sed 's#^./##' | sort > changed-html.txt
           fi
           echo "Pages selected:"
           cat changed-html.txt || true
+
+      - name: Run SEO + AEO + GEO audit fixer
+        if: ${{ (github.event_name == 'push' || inputs.apply_changes == true) && hashFiles('changed-html.txt') != '' }}
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/seo_geo_aeo_audit.py
 
       - name: Run automatic safe editorial fixer
         if: ${{ (github.event_name == 'push' || inputs.apply_changes == true) && hashFiles('changed-html.txt') != '' }}
@@ -102,7 +117,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No automatic HTML changes required."
           else
-            git commit -m "Auto-audit and improve updated college pages"
+            git commit -m "SEO AEO GEO audit and improve updated college pages"
             git push
           fi
 
@@ -114,4 +129,5 @@ jobs:
           path: |
             content-audit-report.json
             auto-fix-report.json
+            seo-geo-aeo-report.json
           if-no-files-found: ignore
