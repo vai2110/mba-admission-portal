@@ -31,36 +31,39 @@ def upsert_canonical(text, url):
     return re.sub(r'</head>', replacement + '</head>', text, count=1, flags=re.I)
 
 
+def clean_fragment(value):
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', value))).strip()
+
+
 def extract_title(text, filename):
     m = re.search(r'<title\b[^>]*>(.*?)</title>', text, flags=re.I | re.S)
-    return re.sub(r'\s+', ' ', html.unescape(m.group(1))).strip() if m else filename.removesuffix('.html')
+    return clean_fragment(m.group(1)) if m else filename.removesuffix('.html')
 
 
 def extract_description(text, title):
-    # Accept either attribute order: name="description" content="..." or content="..." name="description".
-    patterns = [
-        r'<meta\b(?=[^>]*\bname=["\']description["\'])[^>]*\bcontent=["\'](.*?)["\'][^>]*>',
+    for pattern in [
+        r'<meta\b(?=[^>]*\bname=["\']description["\'])[^>]*>',
         r'<meta\b(?=[^>]*\bcontent=["\'].*?["\'])[^>]*\bname=["\']description["\'][^>]*>',
-    ]
-    for pattern in patterns:
+    ]:
         m = re.search(pattern, text, flags=re.I | re.S)
         if m:
-            # In the second pattern the content value may not be group 1, so locate it explicitly.
             tag = m.group(0)
             cm = re.search(r'\bcontent=["\'](.*?)["\']', tag, flags=re.I | re.S)
-            if cm:
-                value = re.sub(r'\s+', ' ', html.unescape(cm.group(1))).strip()
-                if value:
-                    return value
+            if cm and clean_fragment(cm.group(1)):
+                return clean_fragment(cm.group(1))
     return title[:155].rstrip()
+
+
+def extract_answer_text(text, fallback):
+    m = re.search(r'<section\b[^>]*class=["\']hero["\'][^>]*>.*?<p\b[^>]*>(.*?)</p>', text, flags=re.I | re.S)
+    return clean_fragment(m.group(1)) if m else fallback
 
 
 def extract_location(text):
     m = re.search(r'<div\b[^>]*class=["\']hero-meta["\'][^>]*>(.*?)</div>', text, flags=re.I | re.S)
     if not m:
         return None
-    value = re.sub(r'<[^>]+>', ' ', m.group(1))
-    value = html.unescape(re.sub(r'\s+', ' ', value)).strip()
+    value = clean_fragment(m.group(1))
     value = re.split(r'\s*[·|]\s*Official Website', value, flags=re.I)[0]
     return value.strip(' ·|-|') or None
 
@@ -71,8 +74,7 @@ def extract_faqs(text):
         q = re.search(r'<h[1-6]\b[^>]*>(.*?)</h[1-6]>', block, flags=re.I | re.S)
         a = re.search(r'<p\b[^>]*>(.*?)</p>', block, flags=re.I | re.S)
         if q and a:
-            clean = lambda x: re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', x))).strip()
-            items.append((clean(q.group(1)), clean(a.group(1))))
+            items.append((clean_fragment(q.group(1)), clean_fragment(a.group(1))))
     return items
 
 
@@ -93,14 +95,13 @@ def add_schema(text, page_url, title, description, location, faq_items):
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
             for q, a in faq_items]})
     payload = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
-    script = f'<script type="application/ld+json" data-mba-schema="seo-geo-aeo">{payload}</script>'
-    return re.sub(r'</head>', script + '</head>', text, count=1, flags=re.I)
+    return re.sub(r'</head>', f'<script type="application/ld+json" data-mba-schema="seo-geo-aeo">{payload}</script></head>', text, count=1, flags=re.I)
 
 
-def add_answer_first(text, description):
+def add_answer_first(text, answer_text):
     if re.search(r'class=["\'][^"\']*answer-first', text, flags=re.I):
         return text, False
-    block = f'<div class="answer-first" aria-label="Quick answer"><strong>Quick answer</strong><p>{html.escape(description)}</p></div>'
+    block = f'<div class="answer-first" aria-label="Quick answer"><strong>Quick answer</strong><p>{html.escape(answer_text)}</p></div>'
     updated = re.sub(r'(<main\b[^>]*>)', r'\1' + block, text, count=1, flags=re.I)
     return updated, updated != text
 
@@ -119,6 +120,7 @@ def fix_page(path):
     page_url = urljoin(BASE_URL, filename)
     title = extract_title(text, filename)
     description = extract_description(text, title)
+    answer_text = extract_answer_text(text, description)
     location = extract_location(text)
     faq_items = extract_faqs(text)
     changes = []
@@ -130,14 +132,10 @@ def fix_page(path):
 
     for kwargs in [
         {"name": "robots", "content": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"},
-        {"prop": "og:title", "content": title},
-        {"prop": "og:description", "content": description},
-        {"prop": "og:url", "content": page_url},
-        {"prop": "og:type", "content": "website"},
-        {"prop": "og:locale", "content": "en_IN"},
-        {"name": "twitter:card", "content": "summary"},
-        {"name": "twitter:title", "content": title},
-        {"name": "twitter:description", "content": description},
+        {"prop": "og:title", "content": title}, {"prop": "og:description", "content": description},
+        {"prop": "og:url", "content": page_url}, {"prop": "og:type", "content": "website"},
+        {"prop": "og:locale", "content": "en_IN"}, {"name": "twitter:card", "content": "summary"},
+        {"name": "twitter:title", "content": title}, {"name": "twitter:description", "content": description},
     ]:
         text = upsert_meta(text, **kwargs)
     changes.append("standardized social/search metadata")
@@ -149,7 +147,7 @@ def fix_page(path):
     if faq_items:
         changes.append(f"added FAQPage schema for {len(faq_items)} visible FAQs")
 
-    text, answer_changed = add_answer_first(text, description)
+    text, answer_changed = add_answer_first(text, answer_text)
     if answer_changed:
         changes.append("added answer-first summary for AEO")
     text, css_changed = add_css(text)
