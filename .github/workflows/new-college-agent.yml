@@ -1,0 +1,92 @@
+name: New College Page Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      college_name:
+        description: 'Full official college/institute name'
+        required: true
+        type: string
+      college_slug:
+        description: 'URL-safe slug, e.g. iim-lucknow'
+        required: true
+        type: string
+      page_count:
+        description: 'Target package size (normally 5; agent may reduce if programmes lack sufficient official information)'
+        required: true
+        type: choice
+        options:
+          - '5'
+          - '4'
+          - '3'
+        default: '5'
+      create_pages:
+        description: 'Create HTML pages after research and programme selection'
+        required: true
+        type: boolean
+        default: true
+      run_full_audit:
+        description: 'Run SEO/AEO/GEO + content + integrity audit after creation'
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: new-college-${{ inputs.college_slug }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Register college creation request
+        env:
+          COLLEGE_NAME: ${{ inputs.college_name }}
+          COLLEGE_SLUG: ${{ inputs.college_slug }}
+          PAGE_COUNT: ${{ inputs.page_count }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from datetime import datetime, timezone
+          p=Path('new-college-queue.json')
+          if p.exists():
+              data=json.loads(p.read_text(encoding='utf-8'))
+          else:
+              data={"requests":[]}
+          request={
+              "college_name":os.environ["COLLEGE_NAME"],
+              "college_slug":os.environ["COLLEGE_SLUG"],
+              "target_package":int(os.environ["PAGE_COUNT"]),
+              "status":"RESEARCHING",
+              "requested_at":datetime.now(timezone.utc).isoformat(),
+              "pages":[],
+              "programme_selection":[],
+              "notes":"Use AGENTS.md. Select only programmes with sufficient official information and meaningful student intent; do not create thin pages."
+          }
+          data["requests"]=[r for r in data.get("requests",[]) if r.get("college_slug")!=request["college_slug"]]
+          data["requests"].append(request)
+          p.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+
+      - name: Commit queue registration
+        run: |
+          git config user.name "MBA Portal College Agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add new-college-queue.json
+          git commit -m "Queue new college page package" || true
+          git push || true
+
+  audit-existing-after-creation:
+    needs: prepare
+    if: ${{ inputs.create_pages == true && inputs.run_full_audit == true }}
+    uses: ./.github/workflows/content-audit.yml
+    secrets: inherit
