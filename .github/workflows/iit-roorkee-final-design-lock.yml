@@ -11,28 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install verifier
+        run: pip install beautifulsoup4
       - name: Match IIMA typography and SIBM hero structure
         shell: python
         run: |
           from pathlib import Path
           import re
           pages=['iit-roorkee.html','iit-roorkee-mba.html','iit-roorkee-executive-mba.html','iit-roorkee-placements.html']
-          css='''<style id="iit-roorkee-final-design-lock">\n*{box-sizing:border-box}\nhtml{scroll-behavior:smooth;scroll-padding-top:82px}\nbody{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;background:#f5f7fb;color:#172033}\n.hero{background:linear-gradient(110deg,#172554 0%,#1d4ed8 100%);color:#fff;padding:30px 0}\n.hero-container{width:min(1240px,calc(100% - 40px));margin:0 auto;min-height:0;display:block}\n.hero h1{font-family:Arial,Helvetica,sans-serif;font-size:34px;line-height:1.18;font-weight:700;color:#fff;margin:0 0 9px;max-width:900px}\n.hero h2{font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.4;font-weight:600;color:#dbeafe;margin:0 0 10px;max-width:900px}\n.hero-location{font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.4;color:#dbeafe;font-weight:600}\n.hero a{color:#fff;text-decoration:underline}\n.sec{background:#fff}\n.sec h2{font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:1.3;font-weight:700;color:#102a43}\n.sec p,.sec li{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.75;color:#334155}\ntable{font-family:Arial,Helvetica,sans-serif;font-size:13px}\n.ans{font-family:Arial,Helvetica,sans-serif}\n.ans p{font-size:13px;line-height:1.65}\nhr{border:0;border-top:1px solid #e5eaf0;margin:0}\n@media(max-width:700px){.hero{padding:27px 0}.hero-container{width:calc(100% - 24px)}.hero h1{font-size:26px}.hero h2{font-size:13px}.hero-location{font-size:11px}.sec h2{font-size:21px}.sec p,.sec li{font-size:13px}}\n</style>'''
+          css='''<style id="iit-roorkee-final-design-lock">\n*{box-sizing:border-box}\nhtml{scroll-behavior:smooth;scroll-padding-top:82px}\nbody{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;background:#f5f7fb;color:#172033}\n.hero{background:linear-gradient(110deg,#172554 0%,#1d4ed8 100%);color:#fff;padding:30px 0}\n.hero-container{width:min(1240px,calc(100% - 40px));margin:0 auto;min-height:0;display:block}\n.hero h1{font-family:Arial,Helvetica,sans-serif;font-size:34px;line-height:1.18;font-weight:700;color:#fff;margin:0 0 9px;max-width:900px}\n.hero h2{font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.4;font-weight:600;color:#dbeafe;margin:0 0 10px;max-width:900px}\n.hero-location{font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.4;color:#dbeafe;font-weight:600}\n.hero a{color:#fff;text-decoration:underline}\n.sec h2{font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:1.3;font-weight:700;color:#102a43}\n.sec p,.sec li{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.75;color:#334155}\ntable{font-family:Arial,Helvetica,sans-serif;font-size:13px}\n.ans{font-family:Arial,Helvetica,sans-serif}\n.ans p{font-size:13px;line-height:1.65}\nhr{border:0;border-top:1px solid #e5eaf0;margin:0}\n@media(max-width:700px){.hero{padding:27px 0}.hero-container{width:calc(100% - 24px)}.hero h1{font-size:26px}.hero h2{font-size:13px}.hero-location{font-size:11px}.sec h2{font-size:21px}.sec p,.sec li{font-size:13px}}\n</style>'''
           for name in pages:
               p=Path(name); s=p.read_text(encoding='utf-8')
-              # Convert only the hero's existing summary/location tags to the locked SIBM structure.
               m=re.search(r'<section class="hero"><div class="hero-container">(.*?)</div></section>',s,re.S)
-              if not m:
-                  m=re.search(r'<section class="hero"><div class="w">(.*?)</div></section>',s,re.S)
+              if not m: m=re.search(r'<section class="hero"><div class="w">(.*?)</div></section>',s,re.S)
               if m:
                   inner=m.group(1)
                   inner=re.sub(r'<p>(.*?)</p>',r'<h2>\1</h2>',inner,count=1,flags=re.S)
                   inner=re.sub(r'<small>(.*?)</small>',r'<div class="hero-location">\1</div>',inner,count=1,flags=re.S)
-                  repl='<section class="hero"><div class="hero-container">'+inner+'</div></section>'
-                  s=s[:m.start()]+repl+s[m.end():]
-              # Remove duplicate helper answer blocks; keep the canonical .ans quick answer.
+                  s=s[:m.start()]+'<section class="hero"><div class="hero-container">'+inner+'</div></section>'+s[m.end():]
               s=re.sub(r'<div class="answer-first"[^>]*>.*?</div>\s*','',s,flags=re.S)
-              # Append a final cascade so legacy styles cannot override the locked typography.
               s=re.sub(r'<style id="iit-roorkee-final-design-lock">.*?</style>','',s,flags=re.S)
               s=s.replace('</head>',css+'</head>',1)
               p.write_text(s,encoding='utf-8')
@@ -50,7 +47,7 @@ jobs:
               assert hero.select_one('.hero-location'), name
               assert not soup.select('.answer-first'), name
               assert len(soup.select('.ans'))==1, name
-              assert 'iit-roorkee-final-design-lock' in [x.get('id') for x in soup.find_all('style')]
+              assert soup.select_one('#iit-roorkee-final-design-lock'), name
           print('IIT Roorkee final design contract passed')
       - name: Commit final lock
         run: |
