@@ -9,7 +9,6 @@ permissions:
 
 jobs:
   fix-heroes:
-    if: github.event.head_commit.message != 'Fix IIM Rohtak hero headers across pages'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,7 +46,6 @@ jobs:
                   print(f'Skipping missing page: {filename}')
                   continue
               text = path.read_text(encoding='utf-8')
-              text = re.sub(r'\.hero\{[^}]*\}', lambda m: m.group(0), text, count=1)
               if '/* SIBM Pune benchmark hero:' not in text:
                   text = text.replace('</style>', css + '</style>', 1)
               text = re.sub(r'(<section class="hero">.*?<h1>).*?(</h1>)', lambda m: m.group(1) + h1 + m.group(2), text, count=1, flags=re.S)
