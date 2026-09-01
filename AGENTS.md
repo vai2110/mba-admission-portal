@@ -47,7 +47,7 @@ Hero; Latest Placement Highlights; Placement Snapshot; year-wise comparison for 
 - Bold important decision-useful numbers and facts.
 - Add `<hr/>` between consecutive H2 sections according to the locked site architecture.
 - **Quick Answer must appear exactly once per page.** Do not duplicate a hero summary as a second Quick Answer card. The overview page may use one answer-first block immediately before the main content; course and placement pages should use one concise, factual answer block only.
-- **Hero must stay compact and text-first, following the SIBM Pune benchmark.** Use a restrained hero height/padding, one clear H1, a short supporting description and source/location line. Do not add bulky statistic panels, logos or decorative modules inside the hero.
+- **Hero must stay compact and text-first, following the SIBM Pune benchmark.** Use a restrained hero height/padding, one clear H1, a short supporting H2 and source/location line. Do not add bulky statistic panels, logos or decorative modules inside the hero.
 
 ## SEO/AEO/GEO
 - One clear, search-intent H1 per page.
@@ -86,19 +86,19 @@ Update `college-page-audit-dashboard.xlsx` after each processing stage. Each pag
 ## Existing-page mode
 When asked to audit existing pages, preserve architecture and design. Modify only what is necessary to reach the benchmark. Never rewrite a compliant page for cosmetic reasons. Always re-audit after modifications.
 
-
 ## Locked Hero, Quick Answer and H2 Rules
 - Use the SIBM Pune hero container as the benchmark: compact text-first hero, same proportions, spacing and established typography; never redesign it independently.
-- Use the IIM Ahmedabad/SIBM Pune approved `Arial, Helvetica, sans-serif` font stack and established font sizes.
+- Use the IIM Ahmedabad/SIBM Pune approved `Arial, Helvetica, sans-serif` font stack.
+- For the current locked portal scale, use **IIM Ahmedabad typography for body/content:** body 14px, H2 24px desktop, H3 17px, table 13px; use the established mobile reductions.
+- For heroes, use the SIBM structure but the IIM Ahmedabad visual type scale: H1 34px desktop, supporting H2 17px, location 13px; mobile H1 26px, H2 13px, location 11px.
 - Exactly one visible Quick Answer block per page; remove duplicate introductory answer blocks.
 - H2s must be short, specific, student-intent driven and naturally keyword optimised, never generic filler.
 - Placement H1s must be concise and keyword-led; keep year-specific details in metadata/body.
 - These are hard QA rules for every new page and every existing-page modification.
 
-
 ## Locked Hero HTML Structure
 - Match the SIBM Pune hero HTML pattern: one compact hero container, one search-intent H1, one concise supporting H2 and one location/official-site line.
 - Do not add fact cards, logos, badges or other modules inside the hero unless the benchmark architecture explicitly contains them.
-- Use the approved Arial font stack and SIBM benchmark type scale: H1 36px desktop, H2 16px, location 13px; retain the responsive mobile scale already established.
+- Use the approved Arial font stack and the locked type scale above.
 - Exactly one Quick Answer block is permitted in visible page content.
 - H2s elsewhere must remain short, specific and keyword-led.
