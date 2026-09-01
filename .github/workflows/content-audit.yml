@@ -75,6 +75,12 @@ jobs:
           export TARGET_PAGES="$(cat changed-html.txt)"
           python scripts/seo_geo_aeo_audit.py
 
+      - name: Apply locked benchmark UI fixes
+        if: ${{ (github.event_name == 'push' || inputs.apply_changes == true) && hashFiles('changed-html.txt') != '' }}
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/locked_benchmark_ui_audit.py
+
       - name: Run content audit after SEO/AEO/GEO fixes
         if: ${{ hashFiles('changed-html.txt') != '' }}
         run: |
@@ -99,6 +105,8 @@ jobs:
               hero=soup.select_one('.hero')
               if hero is not None and hero.select('.notice'):
                   raise SystemExit(f'Hero protection failed: notice found in {name}')
+              if len(soup.select('.answer-first')) > 0:
+                  raise SystemExit(f'Duplicate Quick Answer guard failed: answer-first block remains in {name}')
               print(f'Integrity PASS: {name}')
           PY
 
@@ -111,22 +119,24 @@ jobs:
           if git diff --cached --quiet; then
             echo "No automatic HTML changes required."
           else
-            git commit -m "SEO AEO GEO audit and improve updated college pages"
+            git commit -m "SEO AEO GEO and locked benchmark UI improvements"
             git push
           fi
 
-      - name: Generate live Excel audit dashboard
-        run: python scripts/update_audit_dashboard.py
+      - name: Generate live Excel and HTML audit dashboard
+        run: |
+          python scripts/update_audit_dashboard.py
+          python scripts/update_audit_dashboard_html.py
 
-      - name: Commit live Excel dashboard
+      - name: Commit live audit dashboards
         run: |
           git config user.name "MBA Portal Audit Dashboard"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add college-page-audit-dashboard.xlsx
+          git add college-page-audit-dashboard.xlsx college-page-audit-dashboard.html
           if git diff --cached --quiet; then
-            echo "Excel dashboard is already current."
+            echo "Audit dashboards are already current."
           else
-            git commit -m "Update live college page audit Excel dashboard"
+            git commit -m "Update live college page audit dashboards"
             git push
           fi
 
