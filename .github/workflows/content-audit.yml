@@ -28,7 +28,6 @@ concurrency:
 
 jobs:
   audit-and-update:
-    # Ignore the workflow's own follow-up commit so automation cannot loop.
     if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
@@ -48,13 +47,10 @@ jobs:
       - name: Determine pages to process
         env:
           TARGET_PAGE: ${{ inputs.target_page }}
-          EVENT_BEFORE: ${{ github.event.before }}
           EVENT_AFTER: ${{ github.sha }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           set -e
-          # 71a844d7 is the last pre-today baseline used for this audit batch.
-          # This keeps today's scope stable even when the workflow/script itself changes.
           AUDIT_BASE="71a844d7b643c982103fe59542444600b4b92fb7"
           if [ -n "$TARGET_PAGE" ]; then
             printf '%s\n' "$TARGET_PAGE" > changed-html.txt
@@ -76,19 +72,13 @@ jobs:
           export TARGET_PAGES="$(cat changed-html.txt)"
           python scripts/seo_geo_aeo_audit.py
 
-      - name: Run automatic safe editorial fixer
-        if: ${{ (github.event_name == 'push' || inputs.apply_changes == true) && hashFiles('changed-html.txt') != '' }}
-        run: |
-          export TARGET_PAGES="$(cat changed-html.txt)"
-          python scripts/auto_content_fixer.py
-
-      - name: Run content audit after automatic fixes
+      - name: Run content audit after SEO/AEO/GEO fixes
         if: ${{ hashFiles('changed-html.txt') != '' }}
         run: |
           export TARGET_PAGES="$(cat changed-html.txt)"
           python scripts/free_content_auditor.py
 
-      - name: Verify hero protection
+      - name: Verify HTML integrity and hero protection
         if: ${{ hashFiles('changed-html.txt') != '' }}
         run: |
           python - <<'PY'
@@ -101,11 +91,14 @@ jobs:
               path = Path(name)
               if path.name in excluded or not path.exists():
                   continue
-              soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+              raw = path.read_text(encoding='utf-8')
+              if raw.count('<!DOCTYPE html>') > 1 or raw.lower().count('<html') > 1:
+                  raise SystemExit(f'HTML integrity failed: duplicate document root in {name}')
+              soup = BeautifulSoup(raw, 'html.parser')
               hero = soup.select_one('.hero')
               if hero is not None and hero.select('.notice'):
                   raise SystemExit(f'Hero protection failed: notice found in {name}')
-              print(f'Hero protection PASS: {name}')
+              print(f'Integrity PASS: {name}')
           PY
 
       - name: Commit automatic HTML improvements
@@ -128,6 +121,5 @@ jobs:
           name: content-audit-results
           path: |
             content-audit-report.json
-            auto-fix-report.json
             seo-geo-aeo-report.json
           if-no-files-found: ignore
