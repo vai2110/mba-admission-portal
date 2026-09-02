@@ -1,274 +1,505 @@
 {
-  "generated_at": "2026-08-20T08:57:15.671688+00:00",
+  "generated_at": "2026-09-02T11:41:48.372687+00:00",
   "mode": "free-editorial-audit",
-  "pages_audited": 1,
+  "pages_audited": 4,
   "pages_changed": 0,
-  "target_page": "iim-indore.html",
+  "target_page": null,
+  "target_pages": [
+    "nmims.html",
+    "nmims-placements.html",
+    "nmims-mba.html",
+    "nmims-mba-pharma-tech.html"
+  ],
   "results": [
     {
-      "file": "iim-indore.html",
-      "overall_score": 84,
+      "file": "nmims.html",
+      "overall_score": 98,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
-      "auto_apply_reason": "Free audit mode never rewrites factual content automatically. Review recommendations before applying changes.",
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
       "metrics": {
-        "word_count": 1855,
+        "word_count": 1588,
         "generic_phrase_hits": 0,
-        "promotional_hits": 2,
+        "promotional_hits": 0,
         "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 43,
-        "official_links": 11,
-        "all_external_links": 13,
+        "numeric_or_date_content_blocks": 24,
+        "official_links": 0,
+        "all_external_links": 8,
         "missing_intent_sections": [],
-        "thin_sections": 0
+        "thin_sections": 1
       },
       "issues": [
         {
           "severity": "high",
-          "type": "misleading",
-          "text": "Found 2 promotional/absolute claim patterns.",
-          "location": "page text",
-          "examples": [
-            "udget. Admission benchmark 90 minimum Use this as an admission benchmark, not a guarantee of a shortlist or admission. Placement reference ₹29.57L Compare this with the median salary and role-wise outcomes bef",
-            "rted placement cycle and should be used to understand recent outcomes, not as a guaranteed salary or role for a future batch. IIM Indore's Final Placement Report 2025 records ₹29.57 lakh average package, ₹27 la"
-          ],
-          "recommendation": "Use precise, sourced language. Avoid guarantees, superlatives and absolute claims. Negated cautionary statements are excluded."
-        },
-        {
-          "severity": "medium",
           "type": "fact_check",
-          "text": "Found 43 factual content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 24 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 1 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "Official NMIMS SBM Sources"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
       ],
       "recommendations": [
         {
           "priority": "high",
-          "action": "remove_absolute_claims",
-          "count": 2
+          "action": "manual_verify_high_impact_facts",
+          "count": 24,
+          "official_source_links": 0
         },
         {
-          "priority": "high",
-          "action": "manual_verify_high_impact_facts",
-          "count": 43,
-          "official_source_links": 11
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 1
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "IIM Indore offers a broad PGP and also a separate PGP-HRM.",
+          "claim": "NMIMS is a multi-school deemed-to-be university, while the School of Business Management (SBM) in Mumbai is its flagship management school.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Its current PGP fee is materially higher than the old ₹20–21 lakh figures found in many articles, so students should budget from the 2026–28 official schedule.",
+          "claim": "SBM's MBA is a two-year full-time programme spread over six trimesters.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Use ranking as a starting point; make the final decision using programme fit, fees, career outcomes, admission probability and personal preference.",
+          "claim": "NMIMS also offers specialised programmes in HR, Business Analytics, Digital Transformation, Pharmaceutical Management and Healthcare Management, plus MBA-NEx for working executives.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "India Rankings 2025: Management, Ministry of Education.",
+          "claim": "The current official SBM website highlights 45 years of legacy, 29,000+ alumni and 250+ recruiters.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "For PGP 2026–28, the official CAT 2025 admission procedure uses a 90 overall minimum for General/EWS and 80 in each section; the subsequent shortlist is composite.",
+          "claim": "A six-to-eight-week summer internship is compulsory between the first and second year.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "CAT 2025 + IIM Indore's 2026–28 PGP admission procedure.",
+          "claim": "SBM NMIMS Mumbai was ranked 24th in NIRF 2025 Management .",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "A qualifying cutoff is only the first filter; your academic profile, CAT performance and interview performance also matter.",
+          "claim": "The SBM admissions page currently lists NMIMS MBA NMAT registrations 2026 .",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "₹24.00 lakh course fee across 2026–27 and 2027–28 + listed deposits*",
+          "claim": "Candidates should verify the qualifying degree, minimum marks and final-year rules in the 2026 document.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "₹6.00 lakh/year for first 3 years*; Years 4–5 at prevailing PGP fee",
+          "claim": "The current MBA programme page describes a written examination followed by group discussion and personal interview.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The PGP-HRM 2026–28 schedule lists ₹10.35 lakh course fee in each academic year, while the PGP/IPM schedule lists ₹12 lakh course fee per year for Indian students.",
+          "claim": "The accessible official SBM sources do not provide one consolidated 2026 fee that can safely be applied to all management programmes, so this overview does not invent a universal number.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Official PGP-HRM 2026–28 fee structure Official PGP/IPM 2026–28 fee structure",
+          "claim": "Two-year full-time flagship programme spread over six trimesters with a compulsory summer internship.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Management route for human resources and people-management careers.",
+          "claim": "Domain-specific MBA focused on management careers in the pharmaceutical sector.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "PGP 2026–28 official schedule: ₹12,00,000 course fee per year + ₹50,000 refundable caution deposit + ₹54,000 mess deposit in Year 1; Year 2 adds ₹11,800 alumni fee including GST.",
+          "claim": "The official SBM Mumbai placement page reports that the 2025-26 placement season included 190 recruiters for MBA Core and 37 for MBA HR.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The two-year course fee alone is ₹24 lakh; with the listed first-year deposits and second-year alumni fee, the published academic/mandatory components total ₹24.65 lakh before any actual insurance/personal expenses.",
+          "claim": "Average CTC was ₹24.60 LPA for MBA Core and ₹19.08 LPA for MBA HR.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "For Indian students entering the PGP 2026–28 batch through CAT, IIM Indore's current fee schedule lists ₹12 lakh course fee for 2026–27 and ₹12 lakh for 2027–28, plus the listed caution deposit, first-year mess deposit and second-year alumni fee.",
+          "claim": "Students should inspect the detailed report for median CTC, highest CTC, roles and sectors when published.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The official PGP programme page separately describes the two-year resident-Indian course fee as ₹24,11,800.",
+          "claim": "Official programme material describes case-based learning, industry interaction, simulations, group activities, seminars and the compulsory summer internship as parts of the full-time MBA experience.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Official PGP 2026–28 fee structure Official PGP programme page",
+          "claim": "SBM's ecosystem includes student activities, case competitions, seminars, industry interactions and social-impact initiatives.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Official 2026–28 schedule lists ₹12 lakh in each academic year.",
+          "claim": "Scholarship and financial-assistance rules vary by programme and cycle.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Indore's 2025 PGP/IPM placement report records 225+ recruiters, ₹29.57 lakh average package, ₹27 lakh median and ₹70 lakh highest.",
+          "claim": "Programme-specific scholarship availability",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Consulting accounted for about 35.4% of offers, followed by finance at 14.5%, sales & marketing 13.2%, IT/analytics 10.4% and general management/operations/HR 26.5%.",
+          "claim": "Do not use one universal cutoff across programmes and campuses.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Placement interpretation: The placement figures shown on this page describe a reported placement cycle and should be used to understand recent outcomes, not as a guaranteed salary or role for a future batch.",
+          "claim": "₹24.60 LPA for MBA Core in the 2025-26 SBM Mumbai placement disclosure; MBA HR was ₹19.08 LPA.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Indore's Final Placement Report 2025 records ₹29.57 lakh average package, ₹27 lakh median package, ₹70 lakh highest package and 225+ recruiters.",
+          "claim": "The 2025-26 disclosure reports 190 recruiters for MBA Core and 37 for MBA HR.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Consulting accounted for 35.4% and finance 26.5% of the reported domain distribution.",
+          "claim": "This overview does not insert a universal number without a current official fee schedule applicable to the exact programme.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Indore offers Need Based Financial Assistance (NBFA) to admitted PGP, PGP-HRM and IPM participants who need financial support.",
+          "claim": "Freshers can consider eligible full-time programmes; fit depends on programme, academic background, career target and current criteria.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "nmims-placements.html",
+      "overall_score": 92,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 447,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 0,
+        "numeric_or_date_content_blocks": 10,
+        "official_links": 0,
+        "all_external_links": 2,
+        "missing_intent_sections": [
+          "admission",
+          "cutoff",
+          "scholarship"
+        ],
+        "thin_sections": 1
+      },
+      "issues": [
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 10 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "medium",
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: admission, cutoff, scholarship",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 1 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "NMIMS Placement Reports"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 10,
+          "official_source_links": 0
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "admission",
+            "cutoff",
+            "scholarship"
+          ]
+        },
+        {
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 1
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "SBM NMIMS Mumbai reports 190 recruiters for MBA Core and 37 recruiters for MBA HR in the 2025-26 placement season.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The institute states that participants with annual family income below ₹12 lakh are eligible to apply; the amount of assistance is not automatic and is decided after assessment of financial need, family income and assets.",
+          "claim": "Average CTC is ₹24.6 LPA for MBA Core and ₹19.08 LPA for MBA HR.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Some applicants may be called for a personal interaction with the NBFA Committee before the award is decided.",
+          "claim": "SBM NMIMS Mumbai describes its placement ecosystem as a dedicated placement and corporate-relations function supported by faculty, student placement committees and corporate partners.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The institute also lists merit-linked and other scholarship opportunities.",
+          "claim": "MBA HR has a separate placement cohort and dedicated programme leadership within SBM.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Eligibility, award amount and application requirements can differ by scheme, so students should check the current official notices rather than assume that every scholarship is available to every participant.",
+          "claim": "The placement office works with recruiters and industry partners around hiring, corporate interaction and student preparation.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Do not choose it only because it is an IIM; compare your expected career domain with the actual role distribution and the the current 2026–28 academic cost.",
+          "claim": "Average CTC is useful, but a better ROI assessment also considers programme fee, role quality, sector mix, location, recruiter diversity and the difference between programme-level and campus-wide statistics.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "A 2026 IIM Indore passout AMA argues that many negative online claims do not reflect the whole student experience and gives a useful insider counterpoint.",
+          "claim": "The official placement page currently provides a Final Placement 2025-26 section and also maintains previous placement-report references.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "A current-student AMA covers academics, campus culture, hostel life, clubs, internships and placement expectations.",
+          "claim": "SBM Mumbai reports an average CTC of ₹24.6 LPA for MBA Core in 2025-26.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The official PGP page lists ₹24,11,800 as the two-year course fee for resident Indian students.",
+          "claim": "SBM Mumbai reports an average CTC of ₹19.08 LPA for MBA HR in 2025-26.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Use the latest official 2026–28 fee schedule rather than older third-party figures found on third-party sites.",
+          "claim": "The official placement page reports 190 recruiters for MBA Core in 2025-26.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "nmims-mba.html",
+      "overall_score": 90,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 496,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 0,
+        "numeric_or_date_content_blocks": 4,
+        "official_links": 0,
+        "all_external_links": 1,
+        "missing_intent_sections": [
+          "scholarship"
+        ],
+        "thin_sections": 4
+      },
+      "issues": [
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 4 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "medium",
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: scholarship",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 4 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "NMIMS MBA Specialisations",
+            "NMIMS MBA Admission Process",
+            "NMIMS MBA Fees",
+            "NMIMS MBA Placements"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 4,
+          "official_source_links": 0
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "scholarship"
+          ]
+        },
+        {
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 4
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "The current 2026 handout is the final authority for the exact academic percentage, category and other eligibility rules.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "For PGP 2026–28, the official minimum for General/EWS candidates is 90 overall and 80 in each section.",
+          "claim": "Official information regarding the 2026-27 fee structure is currently unavailable on the public domain.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The 2025 PGP/IPM placement report records ₹29.57 lakh average, ₹27 lakh median and ₹70 lakh highest package, with 225+ recruiters.",
+          "claim": "SBM Mumbai reports ₹24.6 LPA average CTC for 2025-26.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Consulting was the largest reported domain at about 35.4% of offers.",
+          "claim": "No universal cutoff should be assumed.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "nmims-mba-pharma-tech.html",
+      "overall_score": 94,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 513,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 0,
+        "numeric_or_date_content_blocks": 6,
+        "official_links": 0,
+        "all_external_links": 4,
+        "missing_intent_sections": [
+          "scholarship"
+        ],
+        "thin_sections": 2
+      },
+      "issues": [
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 6 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "medium",
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: scholarship",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 2 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "Specialisations",
+            "NMIMS MBA Pharma Tech Fees"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 6,
+          "official_source_links": 0
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "scholarship"
+          ]
+        },
+        {
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 2
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "The MBA Pharma Tech is an integrated programme designed to bridge the gap between pharmaceutical sciences and business management, preparing graduates for leadership roles in the healthcare and life sciences sectors.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Lucknow has a stronger traditional top-IIM positioning for many consulting and finance aspirants, while IIM Indore offers a broad PGP and strong consulting outcomes.",
+          "claim": "Focuses on pharmaceutical technology, regulatory affairs, and healthcare product life cycles.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "If both convert, compare the role mix and your personal career goal rather than relying only on rank.",
+          "claim": "Covers marketing, finance, operations, and strategic management tailored for the pharma industry.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Its 2026–28 official course fee is ₹10.35 lakh per year, plus ₹50,000 refundable caution deposit and mess-related charges.",
+          "claim": "The MBA Pharma Tech is an ideal fit for candidates with a strong interest in the intersection of science and commerce.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "For domestic applicants, the institute currently lists ₹6 lakh per year for the first three years, subject to revision.",
+          "claim": "Please consult the official NMIMS portal for the most recent fee schedule for the 2026-27 academic year.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The fourth and fifth years are charged at the prevailing PGP fee.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The first three years include lodging, lectures, internet and library access.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Freshers should nevertheless compare the opportunity cost of two years against their target career and not assume that an IIM automatically leads to a high-paying role.",
+          "claim": "Selection is merit-based, typically involving entrance test scores followed by personal interviews.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }

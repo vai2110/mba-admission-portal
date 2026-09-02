@@ -1,0 +1,151 @@
+{
+  "standard": "six-reference benchmark gate",
+  "pages": [
+    {
+      "page": "nmims-mba.html",
+      "college_rank": 24,
+      "kind": "course",
+      "passed": true,
+      "before": {
+        "kind": "course",
+        "score": 100,
+        "missing_content": [],
+        "architecture_failures": [],
+        "design_failures": [],
+        "h2s": [
+          "SBM Mumbai flagship MBA with NMAT-based admission and case-driven management education",
+          "NMIMS MBA Overview",
+          "NMIMS MBA Specialisations",
+          "NMIMS MBA Eligibility",
+          "NMIMS MBA Admission Process",
+          "NMIMS MBA Curriculum & Pedagogy",
+          "NMIMS MBA Fees",
+          "NMIMS MBA Placements",
+          "Is NMIMS MBA the right fit?",
+          "NMIMS MBA FAQs"
+        ],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 10,
+          "hr_between_sections": true,
+          "tables_or_cards": true,
+          "internal_links": 5
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "compact_hero": true,
+          "responsive_css": true,
+          "single_h1": true
+        }
+      },
+      "after": {
+        "kind": "course",
+        "score": 100,
+        "missing_content": [],
+        "architecture_failures": [],
+        "design_failures": [],
+        "h2s": [
+          "SBM Mumbai flagship MBA with NMAT-based admission and case-driven management education",
+          "NMIMS MBA Overview",
+          "NMIMS MBA Specialisations",
+          "NMIMS MBA Eligibility",
+          "NMIMS MBA Admission Process",
+          "NMIMS MBA Curriculum & Pedagogy",
+          "NMIMS MBA Fees",
+          "NMIMS MBA Placements",
+          "Is NMIMS MBA the right fit?",
+          "NMIMS MBA FAQs"
+        ],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 10,
+          "hr_between_sections": true,
+          "tables_or_cards": true,
+          "internal_links": 5
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "compact_hero": true,
+          "responsive_css": true,
+          "single_h1": true
+        }
+      }
+    },
+    {
+      "page": "nmims-mba-pharma-tech.html",
+      "college_rank": 24,
+      "kind": "course",
+      "passed": true,
+      "before": {
+        "kind": "course",
+        "score": 100,
+        "missing_content": [],
+        "architecture_failures": [],
+        "design_failures": [],
+        "h2s": [
+          "Integrated pharmaceutical and management education for careers across healthcare and business",
+          "NMIMS MBA Pharma Tech Overview",
+          "MBA Pharma Tech Admission",
+          "MBA Pharma Tech Curriculum",
+          "Specialisations",
+          "Career Scope After MBA Pharma Tech",
+          "Is This Programme Right For You?",
+          "NMIMS MBA Pharma Tech Fees",
+          "MBA Pharma Tech FAQs"
+        ],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 9,
+          "hr_between_sections": true,
+          "tables_or_cards": true,
+          "internal_links": 4
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "compact_hero": true,
+          "responsive_css": true,
+          "single_h1": true
+        }
+      },
+      "after": {
+        "kind": "course",
+        "score": 100,
+        "missing_content": [],
+        "architecture_failures": [],
+        "design_failures": [],
+        "h2s": [
+          "Integrated pharmaceutical and management education for careers across healthcare and business",
+          "NMIMS MBA Pharma Tech Overview",
+          "MBA Pharma Tech Admission",
+          "MBA Pharma Tech Curriculum",
+          "Specialisations",
+          "Career Scope After MBA Pharma Tech",
+          "Is This Programme Right For You?",
+          "NMIMS MBA Pharma Tech Fees",
+          "MBA Pharma Tech FAQs"
+        ],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 9,
+          "hr_between_sections": true,
+          "tables_or_cards": true,
+          "internal_links": 4
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "compact_hero": true,
+          "responsive_css": true,
+          "single_h1": true
+        }
+      }
+    }
+  ]
+}
