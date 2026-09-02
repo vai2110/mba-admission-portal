@@ -90,6 +90,10 @@ jobs:
           print('Audit targets:',', '.join(pages) if pages else 'none')
           PY
 
+      - name: Run six-reference benchmark gate and repair
+        run: |
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/reference_benchmark_gate.py; fi
+
       - name: Run SEO + AEO + GEO audit fixer
         run: |
           if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/seo_geo_aeo_audit.py; fi
@@ -104,7 +108,7 @@ jobs:
 
       - name: Re-audit after modifications
         run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/seo_geo_aeo_audit.py; python scripts/locked_benchmark_ui_audit.py; python scripts/free_content_auditor.py; fi
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/reference_benchmark_gate.py; python scripts/seo_geo_aeo_audit.py; python scripts/locked_benchmark_ui_audit.py; python scripts/free_content_auditor.py; fi
 
       - name: Verify HTML integrity
         run: python scripts/verify_html_integrity.py
@@ -120,5 +124,5 @@ jobs:
         run: |
           git config user.name "MBA Portal College Production"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html' college-production-tracker.xlsx college-production-tracker.csv data/college-production-state.json
-          if git diff --cached --quiet; then echo "No production changes to commit."; else git commit -m "Audit and publish college production cluster"; git push; fi
+          git add '*.html' college-production-tracker.xlsx college-production-tracker.csv data/college-production-state.json reference-benchmark-audit.json
+          if git diff --cached --quiet; then echo "No production changes to commit."; else git commit -m "Benchmark audit and publish college production cluster"; git push; fi
