@@ -69,7 +69,22 @@ jobs:
           fi
 
       - name: Create next college cluster
-        run: python scripts/college_queue_agent.py
+        run: |
+          # AI responses can occasionally be truncated or malformed even when the
+          # API request itself succeeds. Retry the whole college transaction so a
+          # transient generation error cannot stall the sequential queue. The
+          # agent's validation and audit gates remain authoritative.
+          for attempt in 1 2 3 4 5; do
+            echo "College cluster generation pass $attempt/5"
+            if python scripts/college_queue_agent.py; then
+              echo "College cluster generation succeeded on pass $attempt"
+              exit 0
+            fi
+            echo "College cluster generation failed on pass $attempt; retrying without weakening validation."
+            sleep $((15 * attempt))
+          done
+          echo "::error::College cluster generation failed after 5 recovery passes."
+          exit 1
 
       - name: Prepare audit target list
         run: |
