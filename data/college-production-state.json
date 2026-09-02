@@ -1,10 +1,78 @@
 {
-  "legacy_completed_ranks": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],
-  "colleges": {},
+  "legacy_completed_ranks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "colleges": {
+    "22": {
+      "course_plan": [
+        {
+          "name": "MBA"
+        },
+        {
+          "name": "Executive MBA"
+        },
+        null
+      ],
+      "course_filenames": [
+        "indian-institute-of-technology-roorkee-mba.html",
+        "indian-institute-of-technology-roorkee-executive-mba.html",
+        null
+      ],
+      "research_pack": {
+        "summary": "The provided official source material from the Indian Institute of Technology Roorkee website contains general institutional information, recent news, and administrative links. It does not contain specific details regarding MBA or Executive MBA admissions, eligibility criteria, selection processes, fee structures, or placement statistics.",
+        "sources": [
+          {
+            "url": "https://www.iitr.ac.in",
+            "title": "Indian Institute of Technology Roorkee",
+            "supports": "General institutional overview and existence of academic programmes"
+          }
+        ],
+        "source_material": "SOURCE URL: https://www.iitr.ac.in\nTITLE: Indian Institute of Technology Roorkee\nCONTENT: Indian Institute of Technology Roorkee Contact Us Directory iConnect Webmail A A हिन्दी │ Eng Institute About the Institute Institute Time Capsule IITR By Numbers Luminaries Governing Acts NIRF Newsroom Admissions UG Admissions PG Admissions PHD Admissions Administration Senate Student Affairs Council Deans Corner Institute Central Administration Organisations Academics Notifications Academic Calendar Fee Structure Academic Programmes Downloads DAPC/CAPC/ScAPC and DRC/CRC/ScRC Academic login LHCC Booking Portal Academic Documents Request Portal Research Award Portal OASIS Campus Life Clubs Estate office Facilities Fresher's FAQ Guest House Hostel Life Sports Student Groups Departments Departments Centres School Research Careers Intern@IITR (SPARK) Faculty Positions Other Job Openings Non Teaching Jobs Post Doctoral Fellowship Position Project Jobs Recruitment Examination FAQ's Placements Resources Library For Alumni Pan IIT Other Alumni Portals Healthcare Funds Transfer Payment Gateway Online Fee Deposit Internal Committees Internal Audit Internal Complaints Council Services and Support Administrative Miscellaneous Inititative and Foundations Anushruti Academy IITR Heritage Foundation IITR Foundation Scholarships & Awards More Webmail iConnect Directory Contact Us हिन्दी │ Eng For Students Find all resources for students in one place! For Faculty Find all resources for faculty in one place! For Visitors Find all resources for visitors in one place! RECENT ACHIEVEMENTS Vasantotsav 2026 concludes in Dehradun; IIT Roorkee bags top honours The three-day Vasantotsav concluded on Sunday at Lok Bhawan in Dehradun. Over the course of the festival, a large number of visitors enjoyed the natural beauty of flowers along with various cultural and competitive events. READ MORE Minister Jitendra Singh hails IIT Roorkeee as Asia's first engineering college Science and Technology Minister Jitendra Singh today said, \"IIT Roorkee's nearly 240 startuos-out of 1.7 lakh across India-stand testimony to its significant contribution to the country's startup system. READ MORE IIT Roorkee’s Department of Water Resources Development and Management (WRD&M) The Department of Water Resources Development and Management (WRD&M), IIT Roorkee, celebrated its 70th anniversary with two significant academic events that underscored its commitment to innovation and leadership in the field of water resources: Research Scholars Day 2025 READ MORE IIT-Roorkee gets CII’s Most InnovativeInstt Award 2024 for 5th consecutive yr IIT-Roorkee was awarded the Confederation of Indian Industry Award 2024, marking the fifth consecutive year of this prestigious recognition. READ MORE IIT Roorkee wins 10th CII Industrial IP Awards 2024 for excellence in India's IP The Indian Institute of Technology (IIT) Roorkee has been awarded with Confederation of Indian Industry (CII) Intellectual Property (IP) Award 2024 READ MORE IIT Roorkee, Kyoto University launch joint lab on healthy aging in Japan IIT Roorkee and Kyoto University have launched a joint research lab, IN-CBI, in Japan to advance research on healthy aging, focusing initially on eye vision. READ MORE IITRoorkee inaugurates Uttarakhand’s first RuTAGe Smart Village Centre in Almora The RuTAGe Smart Village Centre (RSVC) model, conceptualised by the Office of the Principal Scientific Advisor (PSA), Government of India, and led by IIT Roorkee, was honoured with the first prize at the NSE's Social Stock Exchange event in Varanasi on August 31, 2024. READ MORE IIT Roorkee's Perovskite Start-Up Wins in IOCL Challenge for Solar Innovation IIT Roorkee's Perovskite Innovation Pvt Ltd wins Indian Oil's Start-Up Challenge award, aiming to drive green energy initiatives for a sustainable future. Know details here Perovskite Innovation Pvt Ltd, an Indian start-up focusing on indigenous perovskite solar cell production, incubated READ MORE IIT Roorkee-based startup develops gun-shot detection technology A startup, Linearised Amplifier Technologies and Services (Linear-AmpTech), incubated at iHub DivyaSampark of Indian Institute of Technology (IIT) Roorkee has secured the top spot in the Dare to Dream 4.0 contest hosted by Defence Research and Development Organisation (DRDO). READ MORE IIT-R Partners with UTPL for urology & medical device technology Indian Institute of Technology, Roorkee and UnivLabs Technology Private Limited, India, have signed a Technology Transfer Agreement and a MOA for translating research findings into real-world applications. READ MORE IIT Roorkee licences 3 environmentally sustainable tech to Permionics Global The Indian Institute of Technology (IIT) Roorkee on Monday signed a technology transfer agreement with Gujarat-based Permionics Global Technologies for licensing of three innovative, environmentally sustainable technologies. READ MORE IIT Roorkee professors discover fossil of 47-million-year-old snake in Gujarat Researchers at the Department of Earth Sciences at IIT-Roorkee made a groundbreaking discovery in Gujarat, unearthing the fossil of a 47-million-year-old snake. READ MORE IIT Roorkee Wins Most Innovative Institute Awards At CII Industrial Innovation The Indian Institute of Technology Roorkee (IIT Roorkee) was recognized with the Grand Jury Award for its outstanding innovative research contributions and was also presented with the Most Innovative Institute award for 2023 at the 10th edition of the Confederation of Indian Industry (CII) READ MORE IIT Roorkee leads study on Advanced Grid-Scale Energy Storage Technologies This comprehensive study positions IIT Roorkee at the forefront of cutting-edge research, showcasing its dedication to providing India-centric solutions for a sustainable and resilient energy future Secretary READ MORE IIT Roorkee shines at 'G20 Standards Dialogue', representing India on global IIT Roorkee made its mark at the \"G20 Standards Dialogue\" event, showcasing its commitment to strengthening stakeholder engagement and global standardisatio"
+      },
+      "Course Page 3": "Not Applicable",
+      "Overview Page": "Created + Audited",
+      "Placement Page": "Created + Audited",
+      "Course Page 1": "Created + Audited",
+      "Course Page 2": "Created + Audited",
+      "created_pages_last_run": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-placements.html",
+        "indian-institute-of-technology-roorkee-mba.html",
+        "indian-institute-of-technology-roorkee-executive-mba.html"
+      ],
+      "last_audit": "passed"
+    }
+  },
   "outside_queue": {
     "SIBM Bengaluru": {
       "status": "Created + Audited",
-      "pages": ["Overview", "MBA", "MBA Business Analytics", "MBA Executive", "Placements"]
+      "pages": [
+        "Overview",
+        "MBA",
+        "MBA Business Analytics",
+        "MBA Executive",
+        "Placements"
+      ]
     }
   }
 }
