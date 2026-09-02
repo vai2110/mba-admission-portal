@@ -50,14 +50,20 @@ def saves(s):
 
 def pending(q, s):
     legacy = {int(x) for x in s.get('legacy_completed_ranks', [])}
+    unheld = []
+    held = []
     for row in q:
         rank = int(row['rank'])
         if rank in legacy:
             continue
         rec = s.setdefault('colleges', {}).setdefault(str(rank), {})
-        if any(rec.get(c) not in (DONE, 'Not Applicable') for c in COLS):
-            return row
-    return None
+        if all(rec.get(c) in (DONE, 'Not Applicable') for c in COLS):
+            continue
+        if rec.get('held'):
+            held.append(row)
+        else:
+            unheld.append(row)
+    return (unheld + held)[0] if (unheld or held) else None
 
 
 def fetch_url(url, timeout=15):
@@ -95,9 +101,17 @@ def crawl_official_site(start_url, domain, max_pages=16):
         if any(x in parsed.path.lower() for x in ['/login', '/logout', '/search']):
             continue
         seen.add(url)
-        try:
-            ctype, data = fetch_url(url)
-        except Exception:
+        last_error = None
+        for attempt in range(3):
+            try:
+                ctype, data = fetch_url(url)
+                break
+            except Exception as exc:
+                last_error = exc
+                if attempt < 2:
+                    time.sleep(2 * (attempt + 1))
+        else:
+            print(f'WARN official fetch failed after retries: {url}: {last_error}')
             continue
 
         if 'application/pdf' in ctype or parsed.path.lower().endswith('.pdf'):
@@ -228,6 +242,12 @@ def main():
     official_url = row['official_url'].rstrip('/')
     domain = urlparse(official_url).netloc
     rec = s.setdefault('colleges', {}).setdefault(str(rank), {})
+    if rec.get('held'):
+        print(f'Revisiting previously held college: #{rank} {college}')
+        rec.pop('held', None)
+        rec.pop('hold_reason', None)
+        rec.pop('hold_timestamp_utc', None)
+        saves(s)
     print(f'Next college: #{rank} {college}')
 
     if 'research_pack' not in rec:
@@ -247,7 +267,7 @@ Official domain: {domain}
 
 The material below was fetched directly from the college's official domain. Use ONLY this material. Do not add facts from memory or third-party sources.
 
-Determine the actual substantial MBA/management programmes that deserve dedicated pages. Exclude PhD/doctoral programmes, certificates, short courses, and quota/category-only pages. For IIT Roorkee specifically, select MBA and Executive MBA only, excluding PhD.
+Determine the actual substantial MBA/management programmes that deserve dedicated pages. Exclude PhD/doctoral programmes, certificates, short courses, and quota/category-only pages.
 
 Return JSON with exactly these keys:
 {{
