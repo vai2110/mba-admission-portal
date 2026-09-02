@@ -2,15 +2,6 @@ name: College Production Queue
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/college-production.yml'
-      - 'scripts/apply_popular_name_rules.py'
-  schedule:
-    - cron: '3-58/5 * * * *'
-  workflow_run:
-    workflows: ["Content Relevance Audit"]
-    types: [completed]
 
 permissions:
   contents: write
@@ -26,7 +17,7 @@ concurrency:
 
 jobs:
   produce:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event_name == 'schedule' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'schedule') }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
@@ -48,7 +39,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           if [ -z "$GEMINI_API_KEY" ]; then
-            echo "::error::GEMINI_API_KEY is not available to College Production Queue. Add it under Settings > Secrets and variables > Actions > Repository secrets."
+            echo "::error::GEMINI_API_KEY is not available to College Production Queue."
             exit 1
           fi
           echo "GEMINI_API_KEY is available to the production job."
@@ -78,81 +69,49 @@ jobs:
       - name: Prepare audit target list
         run: |
           python - <<'PY'
-          import csv
-          import json
+          import csv,json
           from pathlib import Path
-
-          state = json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
-          cols = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']
-          pages = []
-
-          with open('data/college-queue.csv', encoding='utf-8-sig', newline='') as f:
-              queue = list(csv.DictReader(f))
-
+          state=json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
+          cols=['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']
+          pages=[]
+          with open('data/college-queue.csv',encoding='utf-8-sig',newline='') as f: queue=list(csv.DictReader(f))
           for row in queue:
-              rec = state.get('colleges', {}).get(str(row['rank']), {})
-              popular = rec.get('popular_name') or row['college_name']
-              slug = ''.join(ch.lower() if ch.isalnum() else '-' for ch in popular).strip('-')
-              while '--' in slug:
-                  slug = slug.replace('--', '-')
-
-              if rec.get('Overview Page') == 'Created — Audit Pending':
-                  pages.append(f'{slug}.html')
-              if rec.get('Placement Page') == 'Created — Audit Pending':
-                  pages.append(f'{slug}-placements.html')
-
-              files = rec.get('course_filenames', [])
-              for idx, key in enumerate(cols[2:]):
-                  if rec.get(key) == 'Created — Audit Pending' and idx < len(files) and files[idx]:
-                      pages.append(files[idx])
-
-          pages = list(dict.fromkeys(pages))
-          Path('changed-html.txt').write_text('\n'.join(pages) + ('\n' if pages else ''), encoding='utf-8')
-          print('Audit targets:', ', '.join(pages) if pages else 'none')
+              rec=state.get('colleges',{}).get(str(row['rank']),{})
+              popular=rec.get('popular_name') or row['college_name']
+              slug=''.join(ch.lower() if ch.isalnum() else '-' for ch in popular).strip('-')
+              while '--' in slug: slug=slug.replace('--','-')
+              if rec.get('Overview Page')=='Created — Audit Pending': pages.append(f'{slug}.html')
+              if rec.get('Placement Page')=='Created — Audit Pending': pages.append(f'{slug}-placements.html')
+              files=rec.get('course_filenames',[])
+              for idx,key in enumerate(cols[2:]):
+                  if rec.get(key)=='Created — Audit Pending' and idx<len(files) and files[idx]: pages.append(files[idx])
+          pages=list(dict.fromkeys(pages))
+          Path('changed-html.txt').write_text('\n'.join(pages)+('\n' if pages else ''),encoding='utf-8')
+          print('Audit targets:',', '.join(pages) if pages else 'none')
           PY
 
       - name: Run SEO + AEO + GEO audit fixer
         run: |
-          if [ -s changed-html.txt ]; then
-            export TARGET_PAGES="$(cat changed-html.txt)"
-            python scripts/seo_geo_aeo_audit.py
-          else
-            echo "No newly created pages awaiting audit."
-          fi
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/seo_geo_aeo_audit.py; fi
 
       - name: Apply locked benchmark UI fixes
         run: |
-          if [ -s changed-html.txt ]; then
-            export TARGET_PAGES="$(cat changed-html.txt)"
-            python scripts/locked_benchmark_ui_audit.py
-          fi
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/locked_benchmark_ui_audit.py; fi
 
       - name: Run content audit
         run: |
-          if [ -s changed-html.txt ]; then
-            export TARGET_PAGES="$(cat changed-html.txt)"
-            python scripts/free_content_auditor.py
-          fi
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/free_content_auditor.py; fi
 
       - name: Re-audit after modifications
         run: |
-          if [ -s changed-html.txt ]; then
-            export TARGET_PAGES="$(cat changed-html.txt)"
-            python scripts/seo_geo_aeo_audit.py
-            python scripts/locked_benchmark_ui_audit.py
-            python scripts/free_content_auditor.py
-          fi
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/seo_geo_aeo_audit.py; python scripts/locked_benchmark_ui_audit.py; python scripts/free_content_auditor.py; fi
 
       - name: Verify HTML integrity
         run: python scripts/verify_html_integrity.py
 
       - name: Mark audited pages complete
         run: |
-          if [ -s changed-html.txt ]; then
-            python scripts/mark_college_audit_complete.py
-          else
-            echo "No pages to mark as audited."
-          fi
+          if [ -s changed-html.txt ]; then python scripts/mark_college_audit_complete.py; fi
 
       - name: Refresh production tracker after audit
         run: python scripts/update_college_production_tracker.py
@@ -162,9 +121,4 @@ jobs:
           git config user.name "MBA Portal College Production"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html' college-production-tracker.xlsx college-production-tracker.csv data/college-production-state.json
-          if git diff --cached --quiet; then
-            echo "No production changes to commit."
-          else
-            git commit -m "Audit and publish college production cluster"
-            git push
-          fi
+          if git diff --cached --quiet; then echo "No production changes to commit."; else git commit -m "Audit and publish college production cluster"; git push; fi
