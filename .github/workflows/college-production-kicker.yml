@@ -1,0 +1,45 @@
+name: College Production Queue Kicker
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+  push:
+    paths:
+      - 'production-queue.trigger'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: college-production-kicker
+  cancel-in-progress: true
+
+jobs:
+  ensure-production-running:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure College Production Queue is running
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          echo "Checking College Production Queue state..."
+          runs="$(curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/actions/workflows/college-production.yml/runs?per_page=20")"
+          active="$(printf '%s' "$runs" | jq '[.workflow_runs[] | select(.status == "queued" or .status == "in_progress")] | length')"
+          echo "Active/queued College Production Queue runs: ${active}"
+          if [ "$active" -gt 0 ]; then
+            echo "Production is already active; no dispatch needed."
+            exit 0
+          fi
+          echo "No active production run found; dispatching the queue now."
+          curl -fsSL -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${REPO}/actions/workflows/college-production.yml/dispatches" \
+            -d '{"ref":"main"}'
+          echo "College Production Queue dispatched."
