@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       target_page:
-        description: 'HTML filename to audit (leave blank for all HTML pages)'
+        description: 'HTML filename(s) to audit; comma-separated or blank for all HTML pages'
         required: false
         type: string
         default: ''
@@ -23,6 +23,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: content-audit-${{ github.ref }}
@@ -55,7 +56,7 @@ jobs:
           set -e
           AUDIT_BASE="71a844d7b643c982103fe59542444600b4b92fb7"
           if [ -n "$TARGET_PAGE" ]; then
-            printf '%s\n' "$TARGET_PAGE" > changed-html.txt
+            printf '%s\n' "$TARGET_PAGE" | tr ',' '\n' | sed '/^[[:space:]]*$/d' > changed-html.txt
           elif [ "$EVENT_NAME" = "push" ]; then
             git diff --name-only "$AUDIT_BASE" "$EVENT_AFTER" -- '*.html' \
               | grep -vE '^(index\.html|404\.html|content-audit\.html|college-page-audit-dashboard\.html|sibm-pune[^/]*\.html)$' \
@@ -128,15 +129,19 @@ jobs:
           python scripts/update_audit_dashboard.py
           python scripts/update_audit_dashboard_html.py
 
-      - name: Commit live audit dashboards
+      - name: Generate college production tracker
+        run: |
+          python scripts/update_college_production_tracker.py
+
+      - name: Commit live audit dashboards and production tracker
         run: |
           git config user.name "MBA Portal Audit Dashboard"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add college-page-audit-dashboard.xlsx college-page-audit-dashboard.html
+          git add college-page-audit-dashboard.xlsx college-page-audit-dashboard.html college-production-tracker.xlsx
           if git diff --cached --quiet; then
-            echo "Audit dashboards are already current."
+            echo "Dashboards are already current."
           else
-            git commit -m "Update live college page audit dashboards"
+            git commit -m "Update live college audit and production trackers"
             git push
           fi
 
