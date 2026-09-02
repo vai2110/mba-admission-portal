@@ -1,0 +1,78 @@
+name: NMIMS Benchmark Rerun
+
+on:
+  push:
+    paths:
+      - 'nmims-rerun.trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  GEMINI_MODEL: gemini-3.1-flash-lite
+
+concurrency:
+  group: nmims-benchmark-rerun
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install audit dependencies
+        run: pip install beautifulsoup4 openpyxl pypdf
+      - name: Check Gemini credentials
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then echo "::error::GEMINI_API_KEY is unavailable."; exit 1; fi
+      - name: Set NMIMS audit targets
+        run: |
+          printf '%s\n' nmims.html nmims-placements.html nmims-mba.html nmims-mba-pharma-tech.html > changed-html.txt
+      - name: Six-reference benchmark gate and repair
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/reference_benchmark_gate.py
+      - name: SEO + AEO + GEO audit
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/seo_geo_aeo_audit.py
+      - name: Locked UI benchmark fixes
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/locked_benchmark_ui_audit.py
+      - name: Editorial content audit
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/free_content_auditor.py
+      - name: Final benchmark re-audit
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/reference_benchmark_gate.py
+          python scripts/seo_geo_aeo_audit.py
+          python scripts/locked_benchmark_ui_audit.py
+          python scripts/free_content_auditor.py
+      - name: Verify HTML
+        run: python scripts/verify_html_integrity.py
+      - name: Commit NMIMS benchmark repair
+        run: |
+          git config user.name "MBA Portal NMIMS Benchmark"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nmims.html nmims-placements.html nmims-mba.html nmims-mba-pharma-tech.html reference-benchmark-audit.json content-audit-report.json
+          if git diff --cached --quiet; then echo "No NMIMS changes required."; else git commit -m "Benchmark audit and repair NMIMS pages"; git push; fi
