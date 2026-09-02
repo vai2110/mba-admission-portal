@@ -2,7 +2,6 @@ from pathlib import Path
 
 AGENT = Path('scripts/college_queue_agent.py')
 
-# The queue keeps official names. Production pages use the names students commonly search.
 POPULAR = {
     'SVKM`s Narsee Monjee Institute of Management Studies': 'NMIMS',
     'Management Development Institute': 'MDI Gurgaon',
@@ -30,7 +29,6 @@ POPULAR = {
     'Kalinga Institute of Industrial Technology': 'KIIT',
     'Koneru Lakshmaiah Education Foundation University (K L College of Engineering)': 'KL University',
     'Jagan Institute of Management Studies': 'JIMS Rohini',
-    'Rajagiri Business School': 'Rajagiri Business School',
     'Pandit Deendayal Energy University': 'PDEU',
     'Thiagarajar School of Management': 'TSM Madurai',
     'New Delhi Institute of Management': 'NDIM Delhi',
@@ -42,17 +40,15 @@ POPULAR = {
 }
 
 
-def popular_name(official, url=''):
+def popular_name(official):
     if official in POPULAR:
         return POPULAR[official]
     if official.startswith('Indian Institute of Management, '):
         return 'IIM ' + official.split(',', 1)[1].strip()
     if official.startswith('Indian Institute of Management '):
-        suffix = official[len('Indian Institute of Management '):].strip()
-        return 'IIM ' + suffix.split('(')[0].strip()
+        return 'IIM ' + official[len('Indian Institute of Management '):].split('(')[0].strip()
     if official.startswith('Indian Institute of Technology '):
-        suffix = official[len('Indian Institute of Technology '):].strip()
-        return 'IIT ' + suffix.split('(')[0].strip()
+        return 'IIT ' + official[len('Indian Institute of Technology '):].split('(')[0].strip()
     if official.startswith('National Institute of Technology '):
         return 'NIT ' + official[len('National Institute of Technology '):].strip()
     return official
@@ -60,8 +56,13 @@ def popular_name(official, url=''):
 text = AGENT.read_text(encoding='utf-8')
 if 'def popular_name(' not in text:
     marker = '\ndef loadq():'
-    injection = '''\n\nPOPULAR = ''' + repr(POPULAR) + '''\n\n\ndef popular_name(official, url=''):\n    if official in POPULAR:\n        return POPULAR[official]\n    if official.startswith('Indian Institute of Management, '):\n        return 'IIM ' + official.split(',', 1)[1].strip()\n    if official.startswith('Indian Institute of Management '):\n        suffix = official[len('Indian Institute of Management '):].strip()\n        return 'IIM ' + suffix.split('(')[0].strip()\n    if official.startswith('Indian Institute of Technology '):\n        suffix = official[len('Indian Institute of Technology '):].strip()\n        return 'IIT ' + suffix.split('(')[0].strip()\n    if official.startswith('National Institute of Technology '):\n        return 'NIT ' + official[len('National Institute of Technology '):].strip()\n    return official\n'''
+    injection = '\n\nPOPULAR = ' + repr(POPULAR) + '''\n\n\ndef popular_name(official):\n    if official in POPULAR:\n        return POPULAR[official]\n    if official.startswith('Indian Institute of Management, '):\n        return 'IIM ' + official.split(',', 1)[1].strip()\n    if official.startswith('Indian Institute of Management '):\n        return 'IIM ' + official[len('Indian Institute of Management '):].split('(')[0].strip()\n    if official.startswith('Indian Institute of Technology '):\n        return 'IIT ' + official[len('Indian Institute of Technology '):].split('(')[0].strip()\n    if official.startswith('National Institute of Technology '):\n        return 'NIT ' + official[len('National Institute of Technology '):].strip()\n    return official\n'''
     text = text.replace(marker, injection + marker, 1)
-text = text.replace("    college = row['college_name']\n", "    official_name = row['college_name']\n    college = rec.get('popular_name') or popular_name(official_name, official_url)\n    rec['popular_name'] = college\n", 1)
+
+old = "    rank = int(row['rank'])\n    college = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    print(f'Next college: #{rank} {college}')\n"
+new = "    rank = int(row['rank'])\n    official_name = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    college = rec.get('popular_name') or popular_name(official_name)\n    rec['popular_name'] = college\n    print(f'Next college: #{rank} {college} (official: {official_name})')\n"
+if old not in text:
+    raise SystemExit('Expected production-agent main block was not found; refusing unsafe patch.')
+text = text.replace(old, new, 1)
 AGENT.write_text(text, encoding='utf-8')
 print('Applied popular-name SEO rules to production agent.')
