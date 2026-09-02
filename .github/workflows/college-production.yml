@@ -2,14 +2,16 @@ name: College Production Queue
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Content Relevance Audit"]
-    types: [completed]
-    branches: [main]
+  schedule:
+    - cron: '*/15 * * * *'
 
 permissions:
   contents: write
   actions: write
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: gpt-5.6-luna
 
 concurrency:
   group: college-production-main
@@ -17,7 +19,6 @@ concurrency:
 
 jobs:
   produce:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
@@ -34,14 +35,10 @@ jobs:
       - name: Install production dependencies
         run: pip install openai beautifulsoup4 openpyxl
 
-      - name: Mark audited pages complete after successful content audit
-        if: ${{ github.event_name == 'workflow_run' }}
-        run: python scripts/mark_college_audit_complete.py
-
-      - name: Generate live production tracker
+      - name: Reconcile production tracker
         run: python scripts/update_college_production_tracker.py
 
-      - name: Commit tracker/state reconciliation
+      - name: Commit tracker reconciliation
         run: |
           git config user.name "MBA Portal College Production"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -53,16 +50,128 @@ jobs:
             git push
           fi
 
-      - name: Create next college automatically
-        if: ${{ secrets.OPENAI_API_KEY != '' }}
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-5.6-luna
-          GH_TOKEN: ${{ github.token }}
+      - name: Create next college cluster
+        if: ${{ env.OPENAI_API_KEY != '' }}
         run: python scripts/college_queue_agent.py
 
-      - name: Explain manual setup requirement when API key is absent
-        if: ${{ secrets.OPENAI_API_KEY == '' }}
+      - name: Prepare audit target list
         run: |
-          echo "OPENAI_API_KEY is not configured. Queue reconciliation ran, but autonomous page creation was skipped."
-          echo "Add the repository Actions secret OPENAI_API_KEY to enable autonomous creation and audit chaining."
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
+          cols = ['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']
+          pages = []
+          for rec in state.get('colleges', {}).values():
+              for key in cols:
+                  if rec.get(key) == 'Created — Audit Pending':
+                      idx = cols.index(key)
+                      files = rec.get('course_filenames', [])
+                      if key == 'Overview Page':
+                          # Filename is reconstructed from the queue/record below when available.
+                          pass
+                      elif key == 'Placement Page':
+                          pass
+                      elif idx >= 2 and idx-2 < len(files) and files[idx-2]:
+                          pages.append(files[idx-2])
+          # Derive overview/placement filenames from the queue and rank.
+          queue = []
+          import csv
+          with open('data/college-queue.csv', encoding='utf-8-sig', newline='') as f:
+              queue = list(csv.DictReader(f))
+          for row in queue:
+              rec = state.get('colleges', {}).get(str(row['rank']), {})
+              if rec.get('Overview Page') == 'Created — Audit Pending':
+                  name = row['college_name'].lower()
+                  import re
+                  slug = re.sub(r'[^a-z0-9]+','-',name.replace('&',' and ')).strip('-')
+                  pages.append(f'{slug}.html')
+              if rec.get('Placement Page') == 'Created — Audit Pending':
+                  name = row['college_name'].lower()
+                  import re
+                  slug = re.sub(r'[^a-z0-9]+','-',name.replace('&',' and ')).strip('-')
+                  pages.append(f'{slug}-placements.html')
+          pages = list(dict.fromkeys(pages))
+          Path('changed-html.txt').write_text('\n'.join(pages) + ('\n' if pages else ''), encoding='utf-8')
+          print('Audit targets:', ', '.join(pages) if pages else 'none')
+          PY
+
+      - name: Run SEO + AEO + GEO audit fixer
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        run: |
+          if [ -s changed-html.txt ]; then
+            export TARGET_PAGES="$(cat changed-html.txt)"
+            python scripts/seo_geo_aeo_audit.py
+          else
+            echo "No newly created pages awaiting audit."
+          fi
+
+      - name: Apply locked benchmark UI fixes
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        run: |
+          if [ -s changed-html.txt ]; then
+            export TARGET_PAGES="$(cat changed-html.txt)"
+            python scripts/locked_benchmark_ui_audit.py
+          fi
+
+      - name: Run content audit
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        run: |
+          if [ -s changed-html.txt ]; then
+            export TARGET_PAGES="$(cat changed-html.txt)"
+            python scripts/free_content_auditor.py
+          fi
+
+      - name: Re-audit after modifications
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        run: |
+          if [ -s changed-html.txt ]; then
+            export TARGET_PAGES="$(cat changed-html.txt)"
+            python scripts/seo_geo_aeo_audit.py
+            python scripts/locked_benchmark_ui_audit.py
+            python scripts/free_content_auditor.py
+          fi
+
+      - name: Verify HTML integrity
+        run: |
+          if [ -s changed-html.txt ]; then
+            python - <<'PY'
+            from pathlib import Path
+            from bs4 import BeautifulSoup
+            for name in [p.strip() for p in Path('changed-html.txt').read_text().splitlines() if p.strip()]:
+                path = Path(name)
+                if not path.exists(): raise SystemExit(f'Missing generated page: {name}')
+                raw = path.read_text(encoding='utf-8')
+                soup = BeautifulSoup(raw, 'html.parser')
+                if raw.lower().count('<html') != 1 or not soup.find('title') or not soup.find('h1'):
+                    raise SystemExit(f'HTML integrity failed: {name}')
+                if not soup.find('meta', attrs={'name':'description'}):
+                    raise SystemExit(f'Meta description missing: {name}')
+                if not soup.find('link', attrs={'rel':'canonical'}):
+                    raise SystemExit(f'Canonical missing: {name}')
+                print(f'Integrity PASS: {name}')
+            PY
+          fi
+
+      - name: Mark audited pages complete
+        if: ${{ env.OPENAI_API_KEY != '' && hashFiles('changed-html.txt') != '' }}
+        run: python scripts/mark_college_audit_complete.py
+
+      - name: Refresh production tracker after audit
+        run: python scripts/update_college_production_tracker.py
+
+      - name: Commit audited pages and tracker
+        run: |
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' college-production-tracker.xlsx college-production-tracker.csv data/college-production-state.json
+          if git diff --cached --quiet; then
+            echo "No production changes to commit."
+          else
+            git commit -m "Audit and publish college production cluster"
+            git push
+          fi
+
+      - name: Report missing API key
+        if: ${{ env.OPENAI_API_KEY == '' }}
+        run: echo "OPENAI_API_KEY is not available to this workflow. Add the repository Actions secret to enable autonomous production."
