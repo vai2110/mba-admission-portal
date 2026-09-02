@@ -35,12 +35,14 @@ def validate(html):
     if not soup.find('meta',attrs={'name':'description'}): raise ValueError('Missing meta description')
     if not soup.find('link',attrs={'rel':'canonical'}): raise ValueError('Missing canonical')
     if html.lower().count('<html')!=1: raise ValueError('Invalid HTML structure')
-def commit(msg):
+def commit(msg,pages):
     subprocess.run(['git','config','user.name','MBA Portal College Agent'],cwd=ROOT,check=True)
     subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],cwd=ROOT,check=True)
     subprocess.run(['git','add','*.html','data/college-production-state.json'],cwd=ROOT,check=True)
     if subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT).returncode: return
     subprocess.run(['git','commit','-m',msg],cwd=ROOT,check=True); subprocess.run(['git','push'],cwd=ROOT,check=True)
+    target=','.join(pages)
+    subprocess.run(['gh','workflow','run','content-audit.yml','-f',f'target_page={target}','-f','apply_changes=true'],cwd=ROOT,check=True)
 
 def main():
     if not os.getenv('OPENAI_API_KEY'): raise SystemExit('OPENAI_API_KEY GitHub secret is required for autonomous creation.')
@@ -59,6 +61,7 @@ def main():
         if c: targets.append((key,rec['course_filenames'][i],'course'))
         else: rec[key]='Not Applicable'
     saves(s)
+    created_pages=[]
     for col,filename,kind in targets:
         if rec.get(col)==DONE: continue
         rec[col]='Creating'; saves(s)
@@ -67,9 +70,9 @@ def main():
 
 Locked standards: IIM Ahmedabad is the content-depth benchmark (exact eligibility, selection logic, programme facts, student intent, official-source discipline). SIBM Pune is the architecture/design benchmark (compact text-first hero, clean navigation, hierarchy, useful tables/cards, mobile-first). Link college-page.css. Use simple student-centric English; no generic filler. Research ONLY official sources on the supplied domain. Never invent fees, cutoffs, dates, intake, placement numbers, selection weights or programmes; say when official data is unavailable. Include unique title, meta description, canonical, OG/Twitter, one H1, JSON-LD where appropriate, On This Page navigation, FAQs, official source links, internal links when known, and <hr> between consecutive H2 sections. Placement pages must use latest official data and up to three comparable years where available. Overview pages cover admission, eligibility, application, entrance, shortlist, selection, fees, programmes and placements where available. Course pages cover overview, duration, eligibility, admission, curriculum/specialisations, fees, selection, outcomes and FAQs. Return JSON only as {{"html":"FULL HTML DOCUMENT"}} with no markdown fences.'''
         try:
-            html=json_out(ask(client,prompt,domain))['html']; validate(html); (ROOT/filename).write_text(html,encoding='utf-8'); rec[col]='Created — Audit Pending'; saves(s); print('CREATED',filename)
+            html=json_out(ask(client,prompt,domain))['html']; validate(html); (ROOT/filename).write_text(html,encoding='utf-8'); rec[col]='Created — Audit Pending'; created_pages.append(filename); saves(s); print('CREATED',filename)
         except Exception as e:
             rec[col]='Needs Review'; rec.setdefault('errors',[]).append({'page':col,'error':str(e)}); saves(s); raise
-    commit(f'Create {college} college page cluster')
+    if created_pages: commit(f'Create {college} college page cluster',created_pages)
 
 if __name__=='__main__': main()
