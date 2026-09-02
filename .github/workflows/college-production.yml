@@ -10,8 +10,8 @@ permissions:
   actions: write
 
 env:
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-  OPENAI_MODEL: gpt-5.6-luna
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: gemini-3.7-flash
 
 concurrency:
   group: college-production-main
@@ -33,17 +33,18 @@ jobs:
           python-version: '3.12'
 
       - name: Install production dependencies
-        run: pip install openai beautifulsoup4 openpyxl
+        run: pip install beautifulsoup4 openpyxl pypdf
 
-      - name: Check AI production credentials
+      - name: Check free AI production credentials
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::error::OPENAI_API_KEY is not available to College Production Queue. Check the repository Actions secret and workflow access."
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::GEMINI_API_KEY is not available to College Production Queue. Add it under Settings > Secrets and variables > Actions > Repository secrets."
             exit 1
           fi
-          echo "OPENAI_API_KEY is available to the production job."
+          echo "GEMINI_API_KEY is available to the production job."
+          echo "Using Gemini free-tier model: $GEMINI_MODEL"
 
       - name: Reconcile production tracker
         run: python scripts/update_college_production_tracker.py
