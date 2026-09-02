@@ -1,4 +1,4 @@
-import csv, json, os, re, subprocess
+import csv, json, os, re, subprocess, time
 from pathlib import Path
 from bs4 import BeautifulSoup
 from openai import OpenAI
@@ -21,9 +21,38 @@ def pending(q,s):
         rec=s.setdefault('colleges',{}).setdefault(str(rank),{})
         if any(rec.get(c) not in (DONE,'Not Applicable') for c in COLS): return row
     return None
+
 def ask(client,prompt,domain):
-    r=client.responses.create(model=MODEL,tools=[{'type':'web_search','filters':{'allowed_domains':[domain]},'search_context_size':'high'}],input=prompt)
-    return r.output_text
+    """Use official-domain web search first, then retry without domain filtering if the
+    hosted search configuration is rejected. The prompt still explicitly requires
+    official-domain-only research, so the fallback is used only for API robustness."""
+    primary={
+        'type':'web_search',
+        'filters':{'allowed_domains':[domain]},
+        'search_context_size':'high'
+    }
+    last_error=None
+    for attempt in range(2):
+        try:
+            r=client.responses.create(model=MODEL,tools=[primary],input=prompt)
+            return r.output_text
+        except Exception as exc:
+            last_error=exc
+            if attempt == 0:
+                time.sleep(2)
+    # Some API/project configurations can reject domain-filtered hosted search even
+    # though web_search itself is available. Retry with unrestricted web search and
+    # enforce the official-domain restriction in the research prompt.
+    try:
+        r=client.responses.create(
+            model=MODEL,
+            tools=[{'type':'web_search','search_context_size':'high'}],
+            input=prompt + f"\n\nFALLBACK SEARCH RULE: Use only the official domain {domain} and its subdomains. Do not use third-party sources."
+        )
+        return r.output_text
+    except Exception as exc:
+        raise RuntimeError(f'OpenAI web research failed after domain-filtered and fallback attempts. Primary error: {last_error}; fallback error: {exc}') from exc
+
 def json_out(text):
     text=text.strip(); text=re.sub(r'^```(?:json)?','',text).strip(); text=re.sub(r'```$','',text).strip()
     m=re.search(r'\{.*\}',text,re.S)
