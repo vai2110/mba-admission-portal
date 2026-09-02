@@ -2,6 +2,9 @@ name: College Production Queue
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/college-production.yml'
   schedule:
     - cron: '3-58/5 * * * *'
   workflow_run:
@@ -22,7 +25,7 @@ concurrency:
 
 jobs:
   produce:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'schedule') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event_name == 'schedule' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'schedule') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
@@ -99,7 +102,7 @@ jobs:
                       pages.append(files[idx])
 
           pages = list(dict.fromkeys(pages))
-          Path('changed-html.txt').write_text('\\n'.join(pages) + ('\\n' if pages else ''), encoding='utf-8')
+          Path('changed-html.txt').write_text('\n'.join(pages) + ('\n' if pages else ''), encoding='utf-8')
           print('Audit targets:', ', '.join(pages) if pages else 'none')
           PY
 
