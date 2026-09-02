@@ -23,7 +23,6 @@ rank,college_name,official_url
 22,Indian Institute of Technology Roorkee,https://www.iitr.ac.in
 23,Indian Institute of Management Kashipur,https://www.iimkashipur.ac.in
 24,SVKM`s Narsee Monjee Institute of Management Studies,https://www.nmims.edu
-25,Indian Institute of Management Nagpur,https://www.iimnagpur.ac.in/admissions/mba/admissions-policy/
 26,Amrita Vishwa Vidyapeetham,https://www.amrita.edu
 27,Indian Institute of Technology Kanpur,https://www.iitk.ac.in
 28,Jamia Millia Islamia,https://www.jmi.ac.in
@@ -99,3 +98,4 @@ rank,college_name,official_url
 98,Indian Institute of Technology Jodhpur,https://www.iitj.ac.in
 99,"Institute of Management Technology, Nagpur",https://www.imtnagpur.ac.in
 100,University of Lucknow,https://www.lkouniv.ac.in
+25,Indian Institute of Management Nagpur,https://www.iimnagpur.ac.in/admissions/mba/admissions-policy/
