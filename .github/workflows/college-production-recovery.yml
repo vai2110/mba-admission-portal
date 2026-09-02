@@ -1,0 +1,49 @@
+name: College Production Recovery
+
+on:
+  push:
+    paths:
+      - '.github/production-recovery/**'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: college-production-main
+  cancel-in-progress: false
+
+env:
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: gemini-3.1-flash-lite
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install production dependencies
+        run: pip install beautifulsoup4 openpyxl pypdf
+
+      - name: Seed official research fallback
+        run: python scripts/seed_iim_nagpur_research.py
+
+      - name: Commit seeded research pack
+        run: |
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/college-production-state.json
+          if git diff --cached --quiet; then echo "Research pack already present."; else git commit -m "Seed IIM Nagpur official research pack"; git push; fi
+
+      - name: Produce next college cluster
+        run: python scripts/college_queue_agent.py
