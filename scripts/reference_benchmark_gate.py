@@ -2,7 +2,7 @@
 # This gate enforces IIM Ahmedabad content depth + SIBM Pune architecture/design,
 # plus mandatory fees, detailed admission, cutoff tables and latest + prior-three-year placement comparison.
 # The full implementation is intentionally kept compact and deterministic.
-import csv, json, os, re, time
+import csv, json, os, re, time, subprocess, sys
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
@@ -56,13 +56,13 @@ def audit(path,k):
   design={'viewport':bool(s.find('meta',attrs={'name':'viewport'})),'shared_css':bool(any('college-page.css' in (l.get('href') or '') for l in s.find_all('link',href=True))),'hero':bool(s.select_one('.hero')),'responsive':bool(s.find('link',href=lambda x:x and 'college-page.css' in x)),'single_h1':len(s.find_all('h1'))==1}; df=[x for x,v in design.items() if not v]
   return {'kind':k,'score':max(0,100-len(missing)*5-len(fails)*4-len(df)*4),'missing_content':missing,'architecture_failures':fails,'design_failures':df,'architecture':arch,'design':design}
 def gemini(prompt):
-  key=os.getenv('GEMINI_API_KEY'); endpoint=f'https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent'; payload={'contents':[{'parts':[{'text':prompt}]}],'generationConfig':{'responseMimeType':'application/json','temperature':0.15,'maxOutputTokens':12000}}; body=json.dumps(payload).encode()
-  for a in range(3):
+  key=os.getenv('GEMINI_API_KEY'); endpoint=f'https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent'; payload={'contents':[{'parts':[{'text':prompt}]}],'generationConfig':{'responseMimeType':'application/json','temperature':0.1,'maxOutputTokens':12000}}; body=json.dumps(payload).encode()
+  for a in range(4):
     try:
       req=Request(endpoint,data=body,method='POST',headers={'Content-Type':'application/json','x-goog-api-key':key});
       with urlopen(req,timeout=90) as r: return json.loads(r.read().decode())['candidates'][0]['content']['parts'][0]['text']
-    except (HTTPError,URLError,TimeoutError,KeyError,IndexError,ValueError) as e:
-      if a==2: raise
+    except (HTTPError,URLError,TimeoutError,KeyError,IndexError,ValueError):
+      if a==3: raise
       time.sleep(5*(a+1))
 def parse(x):
   x=re.sub(r'^```(?:json)?','',x.strip()).strip(); x=re.sub(r'```$','',x).strip(); m=re.search(r'\{.*\}',x,re.S)
@@ -77,17 +77,22 @@ def main():
     rank,rec=college_for(name,s)
     if not rec: continue
     k=kind(name,rec); before=audit(p,k); best=before
-    for _ in range(2):
+    for _ in range(4):
       if not(best['missing_content'] or best['architecture_failures'] or best['design_failures']): break
-      rp=rec.get('research_pack',{}); prompt=f'''Repair this MBA portal page to PASS the mandatory production gate. Use IIM Ahmedabad as content-depth benchmark and SIBM Pune as architecture/design benchmark. MANDATORY: latest official fee statistics on overview/course pages; include fee bifurcation whenever officially available in a table. Placement pages and overview pages must show latest official placement metrics plus a comparison table for latest year and previous three years; where an older official report is unavailable, keep the year row and write Official data not available. Admission process must be detailed and sequential. Cutoff must be a table wherever applicable: use official cutoff first; if official cutoff is absent, use supplied student-discussion evidence only as an explicitly labelled unofficial/student-reported indicator; never present it as official. If no reliable discussion evidence exists, state that clearly. Never invent facts.
-AUDIT: {json.dumps(best,ensure_ascii=False)}
+      rp=rec.get('research_pack',{}); prompt=f'''Repair ONLY the deficiencies identified in this audit while preserving all valid existing content. The output MUST satisfy every audit item; do not merely describe changes. Use IIM Ahmedabad as content-depth benchmark and SIBM Pune as architecture/design benchmark. Never invent facts. Use only supplied official research; if an official fact is absent, explicitly state that it is unavailable. For cutoff, create a real HTML table with an explicitly labelled official-unavailable/student-reported status rather than prose. For placement comparison, create a real HTML table containing the latest year and the previous three years; use exact official figures when present in the supplied research and write "Official data not available in supplied research material" only where a year is genuinely unavailable. Preserve/add <link rel="stylesheet" href="college-page.css">, a .hero, a Quick Answer block, On This Page navigation, at least the required number of H2 sections, at least two relative internal links to existing portal pages, and <hr> between top-level sections. Admission process must be sequential and factual from supplied research. Do not remove existing useful tables or facts.
+AUDIT TO FIX: {json.dumps(best,ensure_ascii=False)}
 CURRENT HTML:\n{p.read_text(encoding='utf-8')}
 OFFICIAL RESEARCH:\n{rp.get('source_material','')}
 STUDENT DISCUSSION CUTOFF MATERIAL (UNOFFICIAL ONLY):\n{rp.get('student_discussion_material','')}
-Return JSON only with key html containing the full HTML document. Keep college-page.css, Quick Answer, On This Page, mobile-first structure, short H2s, tables/cards, FAQs and official source links.'''
-      repaired=parse(gemini(prompt)).get('html','');
+Return JSON only with key html containing the FULL repaired HTML document. Do not return commentary.'''
+      repaired=parse(gemini(prompt)).get('html','')
       if not repaired: raise RuntimeError('Empty repaired HTML')
       p.write_text(repaired,encoding='utf-8'); best=audit(p,k)
+    if best['missing_content'] or best['architecture_failures'] or best['design_failures']:
+      print(f'Gemini repair incomplete for {name}; invoking deterministic structural recovery.')
+      env=os.environ.copy(); env['TARGET_PAGES']=name
+      subprocess.run([sys.executable,str(ROOT/'scripts/deterministic_benchmark_repair.py')],env=env,cwd=ROOT,check=True)
+      best=audit(p,k)
     passed=not(best['missing_content'] or best['architecture_failures'] or best['design_failures']); report.append({'page':name,'college_rank':rank,'kind':k,'passed':passed,'before':before,'after':best})
     if not passed: raise SystemExit(f'BENCHMARK GATE FAILED: {name}: {best}')
     print('BENCHMARK PASS',name,k,best['score'])
