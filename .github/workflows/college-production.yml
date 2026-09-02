@@ -57,40 +57,34 @@ jobs:
       - name: Prepare audit target list
         run: |
           python - <<'PY'
-          import json
-          from pathlib import Path
-          state = json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
-          cols = ['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']
-          pages = []
-          for rec in state.get('colleges', {}).values():
-              for key in cols:
-                  if rec.get(key) == 'Created — Audit Pending':
-                      idx = cols.index(key)
-                      files = rec.get('course_filenames', [])
-                      if key == 'Overview Page':
-                          # Filename is reconstructed from the queue/record below when available.
-                          pass
-                      elif key == 'Placement Page':
-                          pass
-                      elif idx >= 2 and idx-2 < len(files) and files[idx-2]:
-                          pages.append(files[idx-2])
-          # Derive overview/placement filenames from the queue and rank.
-          queue = []
           import csv
-          with open('data/college-queue.csv', encoding='utf-8-sig', newline='') as f:
+          import json
+          import re
+          from pathlib import Path
+
+          state = json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
+          cols = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']
+          pages = []
+
+          queue_path = Path('data/college-queue.csv')
+          with queue_path.open(encoding='utf-8-sig', newline='') as f:
               queue = list(csv.DictReader(f))
+
           for row in queue:
               rec = state.get('colleges', {}).get(str(row['rank']), {})
+              name = row['college_name'].lower()
+              slug = re.sub(r'[^a-z0-9]+', '-', name.replace('&', ' and ')).strip('-')
+
               if rec.get('Overview Page') == 'Created — Audit Pending':
-                  name = row['college_name'].lower()
-                  import re
-                  slug = re.sub(r'[^a-z0-9]+','-',name.replace('&',' and ')).strip('-')
                   pages.append(f'{slug}.html')
               if rec.get('Placement Page') == 'Created — Audit Pending':
-                  name = row['college_name'].lower()
-                  import re
-                  slug = re.sub(r'[^a-z0-9]+','-',name.replace('&',' and ')).strip('-')
                   pages.append(f'{slug}-placements.html')
+
+              files = rec.get('course_filenames', [])
+              for idx, key in enumerate(cols[2:]):
+                  if rec.get(key) == 'Created — Audit Pending' and idx < len(files) and files[idx]:
+                      pages.append(files[idx])
+
           pages = list(dict.fromkeys(pages))
           Path('changed-html.txt').write_text('\n'.join(pages) + ('\n' if pages else ''), encoding='utf-8')
           print('Audit targets:', ', '.join(pages) if pages else 'none')
@@ -133,29 +127,16 @@ jobs:
           fi
 
       - name: Verify HTML integrity
-        run: |
-          if [ -s changed-html.txt ]; then
-            python - <<'PY'
-            from pathlib import Path
-            from bs4 import BeautifulSoup
-            for name in [p.strip() for p in Path('changed-html.txt').read_text().splitlines() if p.strip()]:
-                path = Path(name)
-                if not path.exists(): raise SystemExit(f'Missing generated page: {name}')
-                raw = path.read_text(encoding='utf-8')
-                soup = BeautifulSoup(raw, 'html.parser')
-                if raw.lower().count('<html') != 1 or not soup.find('title') or not soup.find('h1'):
-                    raise SystemExit(f'HTML integrity failed: {name}')
-                if not soup.find('meta', attrs={'name':'description'}):
-                    raise SystemExit(f'Meta description missing: {name}')
-                if not soup.find('link', attrs={'rel':'canonical'}):
-                    raise SystemExit(f'Canonical missing: {name}')
-                print(f'Integrity PASS: {name}')
-            PY
-          fi
+        run: python scripts/verify_html_integrity.py
 
       - name: Mark audited pages complete
-        if: ${{ env.OPENAI_API_KEY != '' && hashFiles('changed-html.txt') != '' }}
-        run: python scripts/mark_college_audit_complete.py
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        run: |
+          if [ -s changed-html.txt ]; then
+            python scripts/mark_college_audit_complete.py
+          else
+            echo "No pages to mark as audited."
+          fi
 
       - name: Refresh production tracker after audit
         run: python scripts/update_college_production_tracker.py
