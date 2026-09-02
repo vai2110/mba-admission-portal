@@ -97,7 +97,17 @@ jobs:
 
       - name: Run six-reference benchmark gate and repair
         run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/reference_benchmark_gate.py; fi
+          if [ -s changed-html.txt ]; then
+            for attempt in 1 2 3; do
+              echo "Benchmark repair pass $attempt/3"
+              if TARGET_PAGES="$(cat changed-html.txt)" python scripts/reference_benchmark_gate.py; then
+                echo "Benchmark gate passed on pass $attempt"
+                exit 0
+              fi
+            done
+            echo "::error::Benchmark gate did not pass after 3 repair passes."
+            exit 1
+          fi
 
       - name: Run SEO + AEO + GEO audit fixer
         run: |
