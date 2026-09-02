@@ -23,6 +23,15 @@ def resolve(name, state):
 def section(title, body):
     return f'<hr><section><h2>{title}</h2>{body}</section>'
 
+def normalize_hr_between_sections(main):
+    direct_sections=[x for x in main.find_all('section', recursive=False)]
+    for sec in direct_sections[1:]:
+        prev=sec.previous_sibling
+        while prev is not None and getattr(prev,'name',None) is None and not str(prev).strip():
+            prev=prev.previous_sibling
+        if getattr(prev,'name',None) != 'hr':
+            sec.insert_before(main.new_tag('hr'))
+
 def repair(name, state):
     rank, rec=resolve(name,state)
     if not rec: return False
@@ -75,6 +84,7 @@ def repair(name, state):
         if files:
             sec=BeautifulSoup('<hr><section><h2>Related Programmes</h2><ul>'+''.join(f'<li><a href="{f}">{f.rsplit("/",1)[-1].rsplit(".",1)[0].replace("-"," ").title()}</a></li>' for f in files)+'</ul></section>','html.parser').section
             main.append(sec)
+    normalize_hr_between_sections(main)
     p.write_text(str(soup),encoding='utf-8')
     return True
 
