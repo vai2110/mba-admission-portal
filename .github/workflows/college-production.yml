@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - '.github/workflows/college-production.yml'
+      - 'scripts/apply_popular_name_rules.py'
   schedule:
     - cron: '3-58/5 * * * *'
   workflow_run:
@@ -53,6 +54,9 @@ jobs:
           echo "GEMINI_API_KEY is available to the production job."
           echo "Using Gemini free-tier model: $GEMINI_MODEL"
 
+      - name: Apply popular-name SEO rules
+        run: python scripts/apply_popular_name_rules.py
+
       - name: Reconcile production tracker
         run: python scripts/update_college_production_tracker.py
 
@@ -76,7 +80,6 @@ jobs:
           python - <<'PY'
           import csv
           import json
-          import re
           from pathlib import Path
 
           state = json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
@@ -88,8 +91,10 @@ jobs:
 
           for row in queue:
               rec = state.get('colleges', {}).get(str(row['rank']), {})
-              name = row['college_name'].lower()
-              slug = re.sub(r'[^a-z0-9]+', '-', name.replace('&', ' and ')).strip('-')
+              popular = rec.get('popular_name') or row['college_name']
+              slug = ''.join(ch.lower() if ch.isalnum() else '-' for ch in popular).strip('-')
+              while '--' in slug:
+                  slug = slug.replace('--', '-')
 
               if rec.get('Overview Page') == 'Created — Audit Pending':
                   pages.append(f'{slug}.html')
