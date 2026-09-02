@@ -11,7 +11,7 @@ permissions:
 
 env:
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-  GEMINI_MODEL: gemini-3.7-flash
+  GEMINI_MODEL: gemini-3.1-flash-lite
 
 concurrency:
   group: college-production-main
