@@ -8,6 +8,7 @@ from collections import deque
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, urldefrag
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
@@ -15,7 +16,7 @@ from pypdf import PdfReader
 ROOT = Path(__file__).resolve().parents[1]
 QUEUE = ROOT / 'data/college-queue.csv'
 STATE = ROOT / 'data/college-production-state.json'
-MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.7-flash')
+MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.1-flash-lite')
 DONE = 'Created + Audited'
 COLS = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']
 
@@ -59,11 +60,11 @@ def pending(q, s):
     return None
 
 
-def fetch_url(url, timeout=20):
+def fetch_url(url, timeout=15):
     req = Request(url, headers={'User-Agent': 'MBA-Admission-Portal-Research/1.0'})
     with urlopen(req, timeout=timeout) as r:
         content_type = r.headers.get('Content-Type', '').lower()
-        data = r.read(3_000_000)
+        data = r.read(2_000_000)
         return content_type, data
 
 
@@ -79,24 +80,19 @@ def score_url(url):
     return sum(weight for word, weight in KEYWORDS.items() if word in path)
 
 
-def crawl_official_site(start_url, domain, max_pages=24):
-    """Collect a compact research pack from the official domain only.
-    This deliberately avoids paid/hosted search APIs: GitHub Actions fetches public
-    official pages/PDFs directly, then Gemini only structures and writes from them.
-    """
-    start_url = start_url.rstrip('/')
-    queue = deque([start_url])
+def crawl_official_site(start_url, domain, max_pages=16):
+    """Collect a compact research pack from the official domain only."""
+    queue = deque([start_url.rstrip('/')])
     seen = set()
     candidates = []
     docs = []
 
-    while queue and len(seen) < max_pages * 3:
-        url = queue.popleft()
-        url = urldefrag(url)[0]
+    while queue and len(seen) < max_pages:
+        url = urldefrag(queue.popleft())[0]
         parsed = urlparse(url)
         if parsed.netloc.lower() != domain.lower() or url in seen:
             continue
-        if any(x in parsed.path.lower() for x in ['/login', '/logout', '/search?', 'mailto:']):
+        if any(x in parsed.path.lower() for x in ['/login', '/logout', '/search']):
             continue
         seen.add(url)
         try:
@@ -108,10 +104,10 @@ def crawl_official_site(start_url, domain, max_pages=24):
             try:
                 import io
                 reader = PdfReader(io.BytesIO(data))
-                text = '\n'.join((p.extract_text() or '') for p in reader.pages[:20])
+                text = '\n'.join((p.extract_text() or '') for p in reader.pages[:12])
                 text = re.sub(r'\s+', ' ', text).strip()
                 if text:
-                    docs.append({'url': url, 'title': parsed.path.rsplit('/', 1)[-1], 'text': text[:9000]})
+                    docs.append({'url': url, 'title': parsed.path.rsplit('/', 1)[-1], 'text': text[:7000]})
             except Exception:
                 pass
             continue
@@ -123,36 +119,26 @@ def crawl_official_site(start_url, domain, max_pages=24):
         if text:
             title = BeautifulSoup(html, 'html.parser').title
             title = title.get_text(' ', strip=True) if title else url
-            candidates.append({'url': url, 'title': title, 'text': text[:7000], 'score': score_url(url)})
+            candidates.append({'url': url, 'title': title, 'text': text[:6000], 'score': score_url(url)})
 
         soup = BeautifulSoup(html, 'html.parser')
         links = []
         for a in soup.find_all('a', href=True):
             href = urldefrag(urljoin(url, a['href']))[0]
             p = urlparse(href)
-            if p.netloc.lower() != domain.lower():
-                continue
-            if p.scheme not in ('http', 'https'):
+            if p.netloc.lower() != domain.lower() or p.scheme not in ('http', 'https'):
                 continue
             if p.path.lower().endswith('.pdf') or any(k in href.lower() for k in KEYWORDS):
                 links.append((score_url(href), href))
-        for _, href in sorted(set(links), reverse=True)[:35]:
+        for _, href in sorted(set(links), reverse=True)[:20]:
             if href not in seen:
                 queue.append(href)
 
     candidates.sort(key=lambda x: x['score'], reverse=True)
-    selected = candidates[:18]
-    # Add PDFs discovered through HTML links after the main HTML pass.
-    selected += docs[:8]
-    selected = selected[:24]
-    return selected
+    return (candidates[:12] + docs[:4])[:16]
 
 
-def gemini_json(prompt):
-    """Call Gemini generateContent directly, avoiding an extra SDK dependency."""
-    import json as _json
-    from urllib.error import HTTPError, URLError
-
+def gemini_json(prompt, max_output_tokens=12000):
     api_key = os.getenv('GEMINI_API_KEY')
     if not api_key:
         raise SystemExit('GEMINI_API_KEY GitHub secret is required for autonomous creation.')
@@ -163,32 +149,32 @@ def gemini_json(prompt):
         'generationConfig': {
             'responseMimeType': 'application/json',
             'temperature': 0.2,
-            'maxOutputTokens': 24000
+            'maxOutputTokens': max_output_tokens
         }
     }
-    body = _json.dumps(payload).encode('utf-8')
+    body = json.dumps(payload).encode('utf-8')
     last = None
-    for attempt in range(4):
+    for attempt in range(3):
         try:
             req = Request(endpoint, data=body, method='POST', headers={
                 'Content-Type': 'application/json',
                 'x-goog-api-key': api_key,
                 'User-Agent': 'MBA-Admission-Portal-Production/1.0'
             })
-            with urlopen(req, timeout=180) as r:
-                data = _json.loads(r.read().decode('utf-8'))
+            with urlopen(req, timeout=90) as r:
+                data = json.loads(r.read().decode('utf-8'))
             return data['candidates'][0]['content']['parts'][0]['text']
         except HTTPError as exc:
             detail = exc.read().decode('utf-8', errors='ignore')
             last = f'HTTP {exc.code}: {detail[:1200]}'
-            if exc.code in (429, 500, 502, 503, 504) and attempt < 3:
-                time.sleep(20 * (attempt + 1))
+            if exc.code in (429, 500, 502, 503, 504) and attempt < 2:
+                time.sleep(8 * (attempt + 1))
                 continue
             raise RuntimeError(f'Gemini API request failed: {last}') from exc
-        except (URLError, KeyError, IndexError, ValueError) as exc:
+        except (URLError, TimeoutError, KeyError, IndexError, ValueError) as exc:
             last = str(exc)
-            if attempt < 3:
-                time.sleep(10 * (attempt + 1))
+            if attempt < 2:
+                time.sleep(5 * (attempt + 1))
                 continue
             raise RuntimeError(f'Gemini API request failed: {last}') from exc
     raise RuntimeError(f'Gemini API request failed: {last}')
@@ -249,10 +235,11 @@ def main():
         sources = crawl_official_site(official_url, domain)
         if not sources:
             raise RuntimeError(f'Could not retrieve usable public content from official domain {domain}')
+
         research_text = '\n\n'.join(
             f"SOURCE URL: {x['url']}\nTITLE: {x['title']}\nCONTENT: {x['text']}"
             for x in sources
-        )[:110000]
+        )[:60000]
 
         prompt = f'''You are the research controller for an Indian MBA admissions portal.
 College: {college}
@@ -274,7 +261,7 @@ Keep research_summary factual and compact. If a fact is not present in the suppl
 OFFICIAL SOURCE MATERIAL:
 {research_text}'''
 
-        plan = json_out(gemini_json(prompt))
+        plan = json_out(gemini_json(prompt, max_output_tokens=5000))
         courses = [x for x in plan.get('courses', []) if x and x.get('name')][:3]
         rec['course_plan'] = courses
         rec['course_filenames'] = [f"{slug(college)}-{slug(x['name'])}.html" for x in courses]
@@ -353,7 +340,7 @@ OFFICIAL SOURCE MATERIAL:
 Return JSON only: {{"html":"FULL HTML DOCUMENT"}}. No markdown fences.'''
 
         try:
-            html = json_out(gemini_json(prompt))['html']
+            html = json_out(gemini_json(prompt, max_output_tokens=12000))['html']
             validate(html)
             (ROOT / filename).write_text(html, encoding='utf-8')
             rec[col] = 'Created — Audit Pending'
