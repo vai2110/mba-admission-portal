@@ -70,10 +70,6 @@ jobs:
 
       - name: Create next college cluster
         run: |
-          # AI responses can occasionally be truncated or malformed even when the
-          # API request itself succeeds. Retry the whole college transaction so a
-          # transient generation error cannot stall the sequential queue. The
-          # agent's validation and audit gates remain authoritative.
           for attempt in 1 2 3 4 5; do
             echo "College cluster generation pass $attempt/5"
             if python scripts/college_queue_agent.py; then
@@ -111,6 +107,8 @@ jobs:
           PY
 
       - name: Run six-reference benchmark gate and repair
+        id: benchmark
+        continue-on-error: true
         run: |
           if [ -s changed-html.txt ]; then
             for attempt in 1 2 3; do
@@ -124,33 +122,64 @@ jobs:
             exit 1
           fi
 
+      - name: Hold failed college and resume queue
+        if: ${{ steps.benchmark.outcome == 'failure' }}
+        run: |
+          python scripts/hold_failed_college.py
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/college-production-state.json
+          if git diff --cached --quiet; then
+            echo "No hold-state change was required."
+          else
+            git commit -m "Hold benchmark-failed college and continue queue"
+            git push
+          fi
+          printf 'queue-resume %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> production-queue.trigger
+          git add production-queue.trigger
+          git commit -m "Resume production queue after benchmark hold"
+          git push
+          echo "Benchmark failure isolated; next unheld college will be processed by the queued run."
+
+      - name: Stop this transaction after safe hold
+        if: ${{ steps.benchmark.outcome == 'failure' }}
+        run: exit 0
+
       - name: Run SEO + AEO + GEO audit fixer
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: |
           if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/seo_geo_aeo_audit.py; fi
 
       - name: Apply locked benchmark UI fixes
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: |
           if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/locked_benchmark_ui_audit.py; fi
 
       - name: Run content audit
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: |
           if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/free_content_auditor.py; fi
 
       - name: Re-audit after modifications
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: |
           if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/reference_benchmark_gate.py; python scripts/seo_geo_aeo_audit.py; python scripts/locked_benchmark_ui_audit.py; python scripts/free_content_auditor.py; fi
 
       - name: Verify HTML integrity
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: python scripts/verify_html_integrity.py
 
       - name: Mark audited pages complete
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: |
           if [ -s changed-html.txt ]; then python scripts/mark_college_audit_complete.py; fi
 
       - name: Refresh production tracker after audit
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: python scripts/update_college_production_tracker.py
 
       - name: Commit audited pages and tracker
+        if: ${{ steps.benchmark.outcome == 'success' }}
         run: |
           git config user.name "MBA Portal College Production"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
