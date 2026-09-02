@@ -9,6 +9,92 @@ QUEUE=ROOT/'data/college-queue.csv'; STATE=ROOT/'data/college-production-state.j
 OUT=ROOT/'college-production-tracker.xlsx'; CSV_OUT=ROOT/'college-production-tracker.csv'
 PAGE_COLS=['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']; DONE='Created + Audited'; PENDING='Pending'
 
+# Keep the production queue's official/full names unchanged, but show the
+# names students are more likely to recognise in the tracker/Google Sheet.
+ALIASES={
+    'Management Development Institute':'MDI Gurgaon',
+    'XLRI - Xavier School of Management':'XLRI',
+    'Symbiosis Institute of Business Management':'SIBM Pune',
+    'Indian Institute of Foreign Trade':'IIFT',
+    'S. P. Jain Institute of Management and Research':'SPJIMR',
+    'Amrita Vishwa Vidyapeetham':'Amrita Vishwa Vidyapeetham',
+    'Jamia Millia Islamia':'JMI',
+    'Chandigarh University':'CU',
+    'MICA':'MICA',
+    'UPES':'UPES',
+    'Great Lakes Institute of Management':'Great Lakes Institute of Management',
+    'T. A. Pai Management Institute Manipal':'TAPMI Manipal',
+    'IMI Delhi':'IMI Delhi',
+    'IMI Kolkata':'IMI Kolkata',
+    'Goa Institute of Management':'GIM',
+    'Lovely Professional University':'LPU',
+    'XIM University':'XIM University',
+    'Thapar Institute of Engineering and Technology (Deemed-to-be-university)':'Thapar University',
+    'Amity University':'Amity University',
+    'Graphic Era University':'Graphic Era',
+    'Nirma University':'Nirma University',
+    'Institute of Rural Management Anand':'IRMA',
+    'Loyola Institute of Business Administration':'LIBA',
+    'S.R.M. Institute of Science and Technology':'SRMIST',
+    'Christ University':'Christ University',
+    'Fore School of Management':'FORE School of Management',
+    'Banaras Hindu University':'BHU',
+    'Birla Institute of Management Technology':'BIMTECH',
+    'Malaviya National Institute of Technology':'MNIT Jaipur',
+    'Saveetha Institute of Medical and Technical Sciences':'SIMATS',
+    'K.J.Somaiya Institute of Management':'K J Somaiya Institute of Management',
+    'Siksha `O` Anusandhan':'SOA University',
+    'Kalinga Institute of Industrial Technology':'KIIT',
+    'Aligarh Muslim University':'AMU',
+    'Alliance University':'Alliance University',
+    'Prin. L.N. Welingkar Institute of Management Development and Research (PGDM)':'Welingkar (WeSchool)',
+    'Guru Gobind Singh Indraprastha University':'GGSIPU',
+    'BML Munjal University':'BMU',
+    'Chitkara University':'Chitkara University',
+    'Babasheb Bhimrao Ambedkar University':'BBAU',
+    'Thiagarajar School of Management':'TSM',
+    'Manipal University Jaipur':'MUJ',
+    'Cochin University of Science and Technology':'CUSAT',
+    'Madan Mohan Malaviya University of Technology':'MMMUT',
+    'PSG College of Technology':'PSG Tech',
+    'New Delhi Institute of Management':'NDIM',
+    'Jamia Hamdard':'Jamia Hamdard',
+    'Anna University':'Anna University',
+    'Pandit Deendayal Energy University':'PDEU',
+    'Jagan Institute of Management Studies':'JIMS',
+    'Rajagiri Business School':'RBS',
+    'Panjab University':'PU',
+    'Atal Bihari Vajpayee Indian Institute of Information Technology and Management':'ABV-IIITM Gwalior',
+    'National Institute of Agricultural Extension Management':'MANAGE',
+    'Bharathidasan Institute of Management':'BIM Trichy',
+    'Birla Institute of Technology':'BIT Mesra',
+    'University of Lucknow':'Lucknow University',
+}
+
+def display_name(r):
+    name=r['college_name'].strip(); url=r.get('official_url','').lower(); rank=int(r['rank'])
+    if name.startswith('Indian Institute of Management'):
+        if rank==25 or 'iimnagpur' in url: return 'IIM Nagpur'
+        return name.replace('Indian Institute of Management, Mumbai','IIM Mumbai').replace('Indian Institute of Management, Amritsar','IIM Amritsar').replace('Indian Institute of Management Jammu (IIMJ)','IIM Jammu').replace('Indian Institute of Management ','IIM ')
+    if name.startswith('Indian Institute of Technology'):
+        if 'Indian School of Mines' in name: return 'IIT (ISM) Dhanbad'
+        return name.replace('Indian Institute of Technology ','IIT ')
+    if name.startswith('National Institute of Technology'):
+        return name.replace('National Institute of Technology Tiruchirappalli','NIT Trichy').replace('National Institute of Technology ','NIT ')
+    if name=='Institute of Management Technology':
+        return 'IMT Nagpur' if 'imtnagpur' in url else 'IMT Ghaziabad'
+    if 'Institute of Management Technology, Nagpur' in name: return 'IMT Nagpur'
+    if 'Great Lakes Institute of Management' in name:
+        return 'Great Lakes Gurgaon' if 'greatlakesgurgaon' in url else 'Great Lakes Chennai'
+    if 'Jaipuria Institute of Management, Lucknow' in name: return 'Jaipuria Lucknow'
+    if name=='Jaipuria Institute of Management' and 'noida' in url: return 'Jaipuria Noida'
+    if name=='Jaipuria Institute of Management': return 'Jaipuria Institute of Management'
+    if name=='SVKM`s Narsee Monjee Institute of Management Studies': return 'NMIMS'
+    if name=='ICFAI Foundation for Higher Education, Hyderabad': return 'ICFAI Business School Hyderabad'
+    if name=='Koneru Lakshmaiah Education Foundation University (K L College of Engineering)': return 'KL University'
+    if name=='Jain university,Bangalore': return 'JAIN University'
+    return ALIASES.get(name,name)
+
 def loadq():
     with QUEUE.open(encoding='utf-8-sig',newline='') as f: return list(csv.DictReader(f))
 def loads():
@@ -18,7 +104,7 @@ def rows():
     q=loadq(); s=loads(); legacy={int(x) for x in s.get('legacy_completed_ranks',list(range(1,22)))}; out=[]
     for r in q:
         rank=int(r['rank']); rec=s.get('colleges',{}).get(str(rank),{}); vals=[rec.get(c,DONE if rank in legacy else PENDING) for c in PAGE_COLS]
-        out.append([r['college_name'],*vals])
+        out.append([display_name(r),*vals])
     return out
 
 def build():
