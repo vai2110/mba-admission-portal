@@ -1,0 +1,68 @@
+name: College Production Queue
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Content Relevance Audit"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: college-production-main
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install production dependencies
+        run: pip install openai beautifulsoup4 openpyxl
+
+      - name: Mark audited pages complete after successful content audit
+        if: ${{ github.event_name == 'workflow_run' }}
+        run: python scripts/mark_college_audit_complete.py
+
+      - name: Generate live production tracker
+        run: python scripts/update_college_production_tracker.py
+
+      - name: Commit tracker/state reconciliation
+        run: |
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add college-production-tracker.xlsx data/college-production-state.json
+          if git diff --cached --quiet; then
+            echo "No tracker/state changes."
+          else
+            git commit -m "Update college production queue status"
+            git push
+          fi
+
+      - name: Create next college automatically
+        if: ${{ secrets.OPENAI_API_KEY != '' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5.6-luna
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/college_queue_agent.py
+
+      - name: Explain manual setup requirement when API key is absent
+        if: ${{ secrets.OPENAI_API_KEY == '' }}
+        run: |
+          echo "OPENAI_API_KEY is not configured. Queue reconciliation ran, but autonomous page creation was skipped."
+          echo "Add the repository Actions secret OPENAI_API_KEY to enable autonomous creation and audit chaining."
