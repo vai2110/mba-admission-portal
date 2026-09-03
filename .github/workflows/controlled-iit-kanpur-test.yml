@@ -1,4 +1,4 @@
-name: Controlled IIT Kanpur Agent Test
+name: Controlled College Agent Test - IIM Visakhapatnam
 
 on:
   workflow_dispatch:
@@ -7,11 +7,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: controlled-iit-kanpur-agent-test
+  group: controlled-college-agent-test
   cancel-in-progress: false
 
 jobs:
-  test-production:
+  controlled-college-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
