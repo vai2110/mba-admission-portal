@@ -57,45 +57,85 @@ jobs:
           print(data)
           PY
 
-      - name: Apply V8 research variable hotfixes
+      - name: Apply V8 hardening hotfixes
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('scripts/independent_college_content_agent_v8.py')
           s = p.read_text(encoding='utf-8')
 
-          # Hotfix 1: main generation path must pass the research TEXT, not the function.
+          # 1) Research text must be passed consistently on generation and revision paths.
           old1 = '        research,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research,types,existing)'
           new1 = '        research_text,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research_text,types,existing)'
           if old1 in s:
               s = s.replace(old1, new1, 1)
-              print('Applied V8 main research-variable hotfix')
-          elif 'research_text,source_pages=research(url)' in s:
-              print('V8 main research-variable hotfix already present')
-          else:
-              raise SystemExit('V8 main research pattern not found; refusing to run with an unknown source layout')
+          if 'research_text,source_pages=research(url)' not in s:
+              raise SystemExit('V8 research-text generation pattern not present')
 
-          # Hotfix 2: revision path must also pass the research TEXT, not the research function.
           old2 = 'revised=gemini(content_prompt(college,rank,url,research,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")'
           new2 = 'revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")'
           if old2 in s:
               s = s.replace(old2, new2, 1)
-              print('Applied V8 revision research-variable hotfix')
-          elif 'content_prompt(college,rank,url,research_text,[p.get("type")],existing)' in s:
-              print('V8 revision research-variable hotfix already present')
+          if 'content_prompt(college,rank,url,research_text,[p.get("type")],existing)' not in s:
+              raise SystemExit('V8 research-text revision pattern not present')
+
+          # 2) Official source URLs must never disappear merely because Gemini omitted source_urls.
+          old_sig = 'def render_page(page, college, rank, official_url, internal_links, filename):'
+          new_sig = 'def render_page(page, college, rank, official_url, internal_links, filename, source_pages=None):'
+          if old_sig in s:
+              s = s.replace(old_sig, new_sig, 1)
+          elif new_sig not in s:
+              raise SystemExit('V8 render_page signature pattern not found')
+
+          old_src = '    sources=sources[:8]\n'
+          new_src = '''    if not sources:\n        for sp in (source_pages or []):\n            u=str(sp.get("url", "")).strip() if isinstance(sp, dict) else ""\n            if u and urlparse(u).netloc.lower().replace("www.", "")==domain and u not in sources:\n                sources.append(u)\n    if not sources and official_url:\n        sources=[official_url]\n    sources=sources[:8]\n'''
+          if old_src in s and 'if not sources:\n        for sp in (source_pages or []):' not in s:
+              s = s.replace(old_src, new_src, 1)
+
+          # 3) New colleges need valid internal links even before their first page exists.
+          old_internal = '''def internal_targets(existing, package_types, college):\n    # Prefer known pages from the same college; then current package filenames.\n    cs=slug(college); hits=sorted(x for x in existing if x.startswith(cs+"-"))\n    return hits\n'''
+          new_internal = '''def internal_targets(existing, package_types, college):\n    # Prefer known pages from the same college. For a fresh college, use stable\n    # existing site entry points as a fallback; generated sibling pages are added\n    # by main() before rendering the package.\n    cs=slug(college); hits=sorted(x for x in existing if x.startswith(cs+"-"))\n    if cs+".html" in existing and cs+".html" not in hits:\n        hits.insert(0, cs+".html")\n    for common in ("index.html", "cat.html", "cmat.html"):\n        if len(hits)>=4: break\n        if common in existing and common not in hits:\n            hits.append(common)\n    return hits[:4]\n'''
+          if old_internal in s:
+              s = s.replace(old_internal, new_internal, 1)
+
+          # 4) Build the package's planned filenames up front so overview/placement/programme
+          # pages can link to each other and the deterministic broken-link check recognizes them.
+          marker = '        if {p.get("type") for p in pages} != set(types):\n            print("Blocked: model did not return every required page type"); continue\n        final=[]; page_scores=[]; all_issues=[]\n'
+          replacement = '''        if {p.get("type") for p in pages} != set(types):\n            print("Blocked: model did not return every required page type"); continue\n        planned_files=[]\n        for pp in pages:\n            ptype=pp.get("type")\n            ptitle=pp.get("title") or ptype\n            if ptype=="overview": planned_files.append(f"{slug(college)}.html")\n            elif ptype=="placement": planned_files.append(f"{slug(college)}-placements.html")\n            else: planned_files.append(f"{slug(college)}-{slug(ptitle)}.html")\n        allowed_existing=existing | set(planned_files)\n        final=[]; page_scores=[]; all_issues=[]\n'''
+          if marker in s:
+              s = s.replace(marker, replacement, 1)
+          elif 'planned_files=[]' not in s:
+              raise SystemExit('V8 package planning insertion point not found')
+
+          old_related = '            related=internal_targets(existing,{p.get("type")},college)\n            html=render_page(p,college,rank,url,related,fn)\n            sc,issues,critical=audit(html,p,url,existing,fn)\n'
+          new_related = '''            related=[x for x in planned_files if x != fn][:4]\n            for x in internal_targets(existing,{p.get("type")},college):\n                if x != fn and x not in related and len(related)<4:\n                    related.append(x)\n            html=render_page(p,college,rank,url,related,fn,source_pages)\n            sc,issues,critical=audit(html,p,url,allowed_existing,fn)\n'''
+          if old_related in s:
+              s = s.replace(old_related, new_related, 1)
           else:
-              raise SystemExit('V8 revision research pattern not found; refusing to run with an unknown source layout')
+              raise SystemExit('V8 first render/audit insertion point not found')
+
+          old_revision = '                p=rp[0]; html=render_page(p,college,rank,url,related,fn); sc,issues,critical=audit(html,p,url,existing,fn)\n                print(f"Revision {rev+1}: {fn} score={sc} critical={critical}")\n'
+          new_revision = '                p=rp[0]; html=render_page(p,college,rank,url,related,fn,source_pages); sc,issues,critical=audit(html,p,url,allowed_existing,fn)\n                print(f"Revision {rev+1}: {fn} score={sc} critical={critical} issues={issues}")\n'
+          if old_revision in s:
+              s = s.replace(old_revision, new_revision, 1)
+
+          # 5) A transient Gemini failure during revision must not crash the entire batch.
+          old_call = '                revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")\n                rp=normalize_content(revised,[p.get("type")])\n'
+          new_call = '''                try:\n                    revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")\n                except Exception as exc:\n                    print(f"Revision generation failed for {fn}: {type(exc).__name__}: {exc}")\n                    break\n                rp=normalize_content(revised,[p.get("type")])\n'''
+          if old_call in s:
+              s = s.replace(old_call, new_call, 1)
 
           p.write_text(s, encoding='utf-8')
+          print('V8 hardening hotfixes applied')
           PY
 
-      - name: Persist V8 source hotfix
+      - name: Persist V8 source hardening
         run: |
           if git diff --quiet -- scripts/independent_college_content_agent_v8.py; then
             echo 'No V8 source change to persist'
           else
             git add scripts/independent_college_content_agent_v8.py
-            git commit -m "Fix V8 research variable handling"
+            git commit -m "Harden V8 source and revision handling"
             git push origin main
           fi
 
