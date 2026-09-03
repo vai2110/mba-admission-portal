@@ -51,133 +51,33 @@ jobs:
           import os, urllib.parse, urllib.request, json
           url=os.environ['GOOGLE_SHEET_WEBAPP_URL']
           u=url+('&' if '?' in url else '?')+urllib.parse.urlencode({'action':'health'})
-          with urllib.request.urlopen(u,timeout=30) as r: data=json.loads(r.read().decode())
-          if not data.get('success'): raise SystemExit(data)
+          with urllib.request.urlopen(u,timeout=30) as r:
+              data=json.loads(r.read().decode())
+          if not data.get('success'):
+              raise SystemExit(data)
           print('Google Sheet endpoint: healthy')
           print(data)
           PY
 
-      - name: Apply V8 hardening hotfixes
+      - name: Verify V8 source integrity
         run: |
           python - <<'PY'
           from pathlib import Path
-          p = Path('scripts/independent_college_content_agent_v8.py')
-          s = p.read_text(encoding='utf-8')
-
-          # 1) Research text must be passed consistently on generation and revision paths.
-          old1 = '        research,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research,types,existing)'
-          new1 = '        research_text,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research_text,types,existing)'
-          if old1 in s:
-              s = s.replace(old1, new1, 1)
-          if 'research_text,source_pages=research(url)' not in s:
-              raise SystemExit('V8 research-text generation pattern not present')
-
-          old2 = 'revised=gemini(content_prompt(college,rank,url,research,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")'
-          new2 = 'revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")'
-          if old2 in s:
-              s = s.replace(old2, new2, 1)
-          if 'content_prompt(college,rank,url,research_text,[p.get("type")],existing)' not in s:
-              raise SystemExit('V8 research-text revision pattern not present')
-
-          # 2) Official source URLs must never disappear merely because Gemini omitted source_urls.
-          old_sig = 'def render_page(page, college, rank, official_url, internal_links, filename):'
-          new_sig = 'def render_page(page, college, rank, official_url, internal_links, filename, source_pages=None):'
-          if old_sig in s:
-              s = s.replace(old_sig, new_sig, 1)
-          elif new_sig not in s:
-              raise SystemExit('V8 render_page signature pattern not found')
-
-          old_src = '    sources=sources[:8]\n'
-          new_src = '''    if not sources:\n        for sp in (source_pages or []):\n            u=str(sp.get("url", "")).strip() if isinstance(sp, dict) else ""\n            if u and urlparse(u).netloc.lower().replace("www.", "")==domain and u not in sources:\n                sources.append(u)\n    if not sources and official_url:\n        sources=[official_url]\n    sources=sources[:8]\n'''
-          if old_src in s and 'if not sources:\n        for sp in (source_pages or []):' not in s:
-              s = s.replace(old_src, new_src, 1)
-
-          # 3) New colleges need valid internal links even before their first page exists.
-          old_internal = '''def internal_targets(existing, package_types, college):\n    # Prefer known pages from the same college; then current package filenames.\n    cs=slug(college); hits=sorted(x for x in existing if x.startswith(cs+"-"))\n    return hits\n'''
-          new_internal = '''def internal_targets(existing, package_types, college):\n    # Prefer known pages from the same college. For a fresh college, use stable\n    # existing site entry points as a fallback; generated sibling pages are added\n    # by main() before rendering the package.\n    cs=slug(college); hits=sorted(x for x in existing if x.startswith(cs+"-"))\n    if cs+".html" in existing and cs+".html" not in hits:\n        hits.insert(0, cs+".html")\n    for common in ("index.html", "cat.html", "cmat.html"):\n        if len(hits)>=4: break\n        if common in existing and common not in hits:\n            hits.append(common)\n    return hits[:4]\n'''
-          if old_internal in s:
-              s = s.replace(old_internal, new_internal, 1)
-
-          # 4) Build the package's planned filenames up front so overview/placement/programme
-          # pages can link to each other and the deterministic broken-link check recognizes them.
-          marker = '        if {p.get("type") for p in pages} != set(types):\n            print("Blocked: model did not return every required page type"); continue\n        final=[]; page_scores=[]; all_issues=[]\n'
-          replacement = '''        if {p.get("type") for p in pages} != set(types):\n            print("Blocked: model did not return every required page type"); continue\n        planned_files=[]\n        for pp in pages:\n            ptype=pp.get("type")\n            ptitle=pp.get("title") or ptype\n            if ptype=="overview": planned_files.append(f"{slug(college)}.html")\n            elif ptype=="placement": planned_files.append(f"{slug(college)}-placements.html")\n            else: planned_files.append(f"{slug(college)}-{slug(ptitle)}.html")\n        allowed_existing=existing | set(planned_files)\n        final=[]; page_scores=[]; all_issues=[]\n'''
-          if marker in s:
-              s = s.replace(marker, replacement, 1)
-          elif 'planned_files=[]' not in s:
-              raise SystemExit('V8 package planning insertion point not found')
-
-          old_related = '            related=internal_targets(existing,{p.get("type")},college)\n            html=render_page(p,college,rank,url,related,fn)\n            sc,issues,critical=audit(html,p,url,existing,fn)\n'
-          new_related = '''            related=[x for x in planned_files if x != fn][:4]\n            for x in internal_targets(existing,{p.get("type")},college):\n                if x != fn and x not in related and len(related)<4:\n                    related.append(x)\n            html=render_page(p,college,rank,url,related,fn,source_pages)\n            sc,issues,critical=audit(html,p,url,allowed_existing,fn)\n'''
-          if old_related in s:
-              s = s.replace(old_related, new_related, 1)
-          else:
-              raise SystemExit('V8 first render/audit insertion point not found')
-
-          old_revision = '                p=rp[0]; html=render_page(p,college,rank,url,related,fn); sc,issues,critical=audit(html,p,url,existing,fn)\n                print(f"Revision {rev+1}: {fn} score={sc} critical={critical}")\n'
-          new_revision = '                p=rp[0]; html=render_page(p,college,rank,url,related,fn,source_pages); sc,issues,critical=audit(html,p,url,allowed_existing,fn)\n                print(f"Revision {rev+1}: {fn} score={sc} critical={critical} issues={issues}")\n'
-          if old_revision in s:
-              s = s.replace(old_revision, new_revision, 1)
-
-          # 5) A transient Gemini failure during revision must not crash the entire batch.
-          old_call = '                revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")\n                rp=normalize_content(revised,[p.get("type")])\n'
-          new_call = '''                try:\n                    revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")\n                except Exception as exc:\n                    print(f"Revision generation failed for {fn}: {type(exc).__name__}: {exc}")\n                    break\n                rp=normalize_content(revised,[p.get("type")])\n'''
-          if old_call in s:
-              s = s.replace(old_call, new_call, 1)
-
-          # 6) Benchmark content must be deep enough before it can clear the >70 gate.
-          # Eight substantive generated sections are required; the deterministic FAQ,
-          # Next Steps and Official Sources sections do not count toward this minimum.
-          old_content = '''Return JSON exactly as {{"pages":[...]}}. Each page object must contain type, title, hero_subtitle, location_line, facts (exactly 4 items with label/value), quick_answer, sections (ordered list), faqs (at least 5), cta_label, cta_url, source_urls. Each section has id,title,answer,paragraphs,bullets,table with columns and rows, callout. Keep empty arrays when genuinely not applicable. Do not put HTML in the response.\n'''
-          new_content = '''Return JSON exactly as {{"pages":[...]}}. Each page object must contain type, title, hero_subtitle, location_line, facts (exactly 4 items with label/value), quick_answer, sections (ordered list), faqs (at least 5), cta_label, cta_url, source_urls. Each section has id,title,answer,paragraphs,bullets,table with columns and rows, callout. Keep empty arrays when genuinely not applicable. Do not put HTML in the response.\n\nDEPTH GATE: Return at least 8 substantive sections for EVERY requested page. A substantive section needs a meaningful H2 title plus useful student-facing answer/paragraph/bullets/table content. Do not split one fact into many thin sections just to reach the count. For placement pages, include separate substantive sections for highlights/snapshot, multi-year data, CTC interpretation, recruiters or sector/function mix where officially available, trends, programme-specific interpretation, and applicant decision factors. For programme pages, cover overview, dates, eligibility, admission process, entrance exam, selection criteria, cutoff/qualifying threshold, fees/cost, curriculum/structure, career/placement information, and decision factors. For overview pages, cover admissions, programmes, eligibility, process, entrance exam, selection, cutoff, fees/cost, placements and decision factors. If an item is not officially published, state that clearly rather than inventing it.\n'''
-          if old_content in s:
-              s = s.replace(old_content, new_content, 1)
-
-          # 7) Revision prompts must explicitly repair depth and page-type coverage.
-          old_feedback = 'Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.'
-          new_feedback = 'Fix these issues in the structured content: {feedback}\\nThe revised page MUST contain at least 8 substantive sections, at least 5 genuine FAQs, and the required page-type coverage from the content contract. Do not remove valid source-backed detail while fixing the issues. Return exactly one page of the requested type.'
-          if old_feedback in s:
-              s = s.replace(old_feedback, new_feedback)
-
-          # 8) Replace a known template link that is not guaranteed to exist.
-          s = s.replace('<a href="pgp.html">PGP</a>', '<a href="index.html">MBA Programmes</a>')
-
-          # 9) Make Gemini failures diagnosable. The API response exposes status,
-          # prompt feedback and candidate finish reason; generic failures hide the
-          # actual cause, especially when a response is truncated or blocked.
-          old_gemini = '''            if r.status_code in (429,500,502,503,504):\n                time.sleep(5*(attempt+1)); continue\n            r.raise_for_status()\n            return json.loads(r.json()["candidates"][0]["content"]["parts"][0]["text"])\n        except requests.RequestException:\n            if attempt == 3: raise\n            time.sleep(5*(attempt+1))\n    raise RuntimeError("Gemini request failed")\n'''
-          new_gemini = '''            if r.status_code in (429,500,502,503,504):\n                if attempt == 3:\n                    raise RuntimeError(f"Gemini HTTP {r.status_code}: {r.text[:1200]}")\n                time.sleep(5*(attempt+1)); continue\n            if not r.ok:\n                raise RuntimeError(f"Gemini HTTP {r.status_code}: {r.text[:1200]}")\n            body=r.json()\n            candidates=body.get("candidates") or []\n            if not candidates:\n                pf=body.get("promptFeedback") or {}\n                raise RuntimeError(f"Gemini returned no candidates: {json.dumps(pf)[:1200]}")\n            candidate=candidates[0]\n            finish=candidate.get("finishReason")\n            parts=((candidate.get("content") or {}).get("parts") or [])\n            raw="".join(str(part.get("text", "")) for part in parts if isinstance(part,dict))\n            if not raw.strip():\n                raise RuntimeError(f"Gemini returned empty content; finishReason={finish}; response={json.dumps(body)[:1800]}")\n            if finish == "MAX_TOKENS":\n                raise RuntimeError("Gemini response truncated at MAX_TOKENS")\n            return json.loads(raw)\n        except requests.RequestException as exc:\n            if attempt == 3: raise RuntimeError(f"Gemini network error: {type(exc).__name__}: {exc}")\n            time.sleep(5*(attempt+1))\n    raise RuntimeError("Gemini request failed after retries")\n'''
-          if old_gemini in s:
-              s = s.replace(old_gemini, new_gemini, 1)
-
-          # 10) Make the audit identify the exact failed architecture component and
-          # enforce eight substantive generated sections rather than counting the
-          # deterministic wrapper sections.
-          old_arch = '''    arch=[bool(soup.select_one("header .navbar .nav-links")),bool(soup.select_one(".hero .hero-container h1")),len(soup.select(".quick-fact"))==4,bool(soup.select_one(".page-layout .sidebar .sidebar-card")),bool(soup.select_one(".mobile-on-page")),len(soup.select(".main-section"))>=6,bool(soup.select_one(".answer-box")),bool(soup.select_one(".cta")),bool(soup.select_one(".official-links .official-link"))]\n    score+=sum(2 for x in arch if x)\n    if not all(arch): issues.append("reference architecture mismatch")\n'''
-          new_arch = '''    arch_checks=[\n        ("header/nav",bool(soup.select_one("header .navbar .nav-links"))),\n        ("hero",bool(soup.select_one(".hero .hero-container h1"))),\n        ("quick facts",len(soup.select(".quick-fact"))==4),\n        ("desktop sidebar",bool(soup.select_one(".page-layout .sidebar .sidebar-card"))),\n        ("mobile on-page",bool(soup.select_one(".mobile-on-page"))),\n        ("answer box",bool(soup.select_one(".answer-box"))),\n        ("CTA",bool(soup.select_one(".cta"))),\n        ("official source link",bool(soup.select_one(".official-links .official-link"))),\n    ]\n    score+=sum(2 for _,x in arch_checks if x)\n    generated_sections=[sec for sec in soup.select(".main-section") if sec.get("id") not in {"faqs","next-steps","official-sources"}]\n    substantive=sum(1 for sec in generated_sections if len(sec.get_text(" ",strip=True))>=180)\n    depth_ok=substantive>=8\n    score+=2 if depth_ok else 0\n    if not depth_ok: issues.append(f"insufficient substantive sections: {substantive}/8")\n    failed_arch=[name for name,ok in arch_checks if not ok]\n    if failed_arch: issues.append("reference architecture mismatch: "+", ".join(failed_arch))\n'''
-          if old_arch in s:
-              s = s.replace(old_arch, new_arch, 1)
-
-          # 11) Page-type-specific heading coverage catches pages that technically render
-          # correctly but miss the information architecture expected by students.
-          marker2 = '    # Technical / SEO 20\n'
-          insert2 = '''    # Page-type content coverage\n    headings=" ".join(h.get_text(" ",strip=True).lower() for h in soup.find_all("h2"))\n    required_sets={\n        "overview": ["admission","eligibility","fee","placement","programme","cutoff","selection"],\n        "placement": ["placement","ctc","recruit","trend","career","sector"],\n        "programme": ["eligibility","admission","fee","selection","curriculum","cutoff","career","programme"],\n    }\n    ptype=str(page.get("type","")).lower()\n    if ptype in required_sets:\n        hits=sum(1 for term in required_sets[ptype] if term in headings)\n        minimum=5 if ptype!="placement" else 4\n        if hits<minimum: issues.append(f"page-type coverage weak: {hits}/{minimum}")\n        else: score+=2\n\n    # Technical / SEO 20\n'''
-          if marker2 in s and 'Page-type content coverage' not in s:
-              s=s.replace(marker2,insert2,1)
-
-          p.write_text(s, encoding='utf-8')
-          print('V8 quality/depth/Gemini diagnostics hotfixes applied')
+          p=Path('scripts/independent_college_content_agent_v8.py')
+          s=p.read_text(encoding='utf-8')
+          required=[
+              'research_text,source_pages=research(url)',
+              'content_prompt(college,rank,url,research_text,[p.get("type")],existing)',
+              'def render_page(page, college, rank, official_url, internal_links, filename, source_pages=None):',
+              'planned_files=[]',
+              'allowed_existing=existing | set(planned_files)',
+              'render_page(p,college,rank,url,related,fn,source_pages)',
+          ]
+          missing=[x for x in required if x not in s]
+          if missing:
+              raise SystemExit('V8 source integrity check failed: '+repr(missing))
+          print('V8 source integrity: OK')
           PY
-
-      - name: Persist V8 source hardening
-        run: |
-          if git diff --quiet -- scripts/independent_college_content_agent_v8.py; then
-            echo 'No V8 source change to persist'
-          else
-            git add scripts/independent_college_content_agent_v8.py
-            git commit -m "Strengthen V8 benchmark quality gate"
-            git push origin main
-          fi
 
       - name: Run controlled V8 benchmark test
         env:
@@ -186,4 +86,5 @@ jobs:
           GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
           GEMINI_MODEL: gemini-3.1-flash-lite
           COLLEGE_BATCH_SIZE: '1'
+          COLLEGE_TEST_RANK: '30'
         run: python scripts/controlled_v8_rank30_test.py
