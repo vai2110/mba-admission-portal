@@ -57,22 +57,36 @@ jobs:
           print(data)
           PY
 
-      - name: Apply V8 research variable hotfix
+      - name: Apply V8 research variable hotfixes
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('scripts/independent_college_content_agent_v8.py')
           s = p.read_text(encoding='utf-8')
-          old = '        research,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research,types,existing)'
-          new = '        research_text,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research_text,types,existing)'
-          if old not in s:
-              if 'research_text,source_pages=research(url)' in s:
-                  print('V8 research variable hotfix already present')
-              else:
-                  raise SystemExit('V8 source pattern not found; refusing to run with an unknown source layout')
+
+          # Hotfix 1: main generation path must pass the research TEXT, not the function.
+          old1 = '        research,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research,types,existing)'
+          new1 = '        research_text,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research_text,types,existing)'
+          if old1 in s:
+              s = s.replace(old1, new1, 1)
+              print('Applied V8 main research-variable hotfix')
+          elif 'research_text,source_pages=research(url)' in s:
+              print('V8 main research-variable hotfix already present')
           else:
-              p.write_text(s.replace(old, new, 1), encoding='utf-8')
-              print('Applied V8 research variable hotfix')
+              raise SystemExit('V8 main research pattern not found; refusing to run with an unknown source layout')
+
+          # Hotfix 2: revision path must also pass the research TEXT, not the research function.
+          old2 = 'revised=gemini(content_prompt(college,rank,url,research,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")'
+          new2 = 'revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\\n\\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\\nReturn exactly one page of the requested type.")'
+          if old2 in s:
+              s = s.replace(old2, new2, 1)
+              print('Applied V8 revision research-variable hotfix')
+          elif 'content_prompt(college,rank,url,research_text,[p.get("type")],existing)' in s:
+              print('V8 revision research-variable hotfix already present')
+          else:
+              raise SystemExit('V8 revision research pattern not found; refusing to run with an unknown source layout')
+
+          p.write_text(s, encoding='utf-8')
           PY
 
       - name: Persist V8 source hotfix
@@ -81,7 +95,7 @@ jobs:
             echo 'No V8 source change to persist'
           else
             git add scripts/independent_college_content_agent_v8.py
-            git commit -m "Fix V8 research variable shadowing"
+            git commit -m "Fix V8 research variable handling"
             git push origin main
           fi
 
