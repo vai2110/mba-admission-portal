@@ -23,6 +23,7 @@ rank,college_name,official_url
 22,Indian Institute of Technology Roorkee,https://www.iitr.ac.in
 23,Indian Institute of Management Kashipur,https://www.iimkashipur.ac.in
 24,SVKM`s Narsee Monjee Institute of Management Studies,https://www.nmims.edu
+25,Indian Institute of Management Nagpur,https://www.iimnagpur.ac.in/admissions/mba/admissions-policy/
 26,Amrita Vishwa Vidyapeetham,https://www.amrita.edu
 27,Indian Institute of Technology Kanpur,https://www.iitk.ac.in
 28,Jamia Millia Islamia,https://www.jmi.ac.in
@@ -44,7 +45,7 @@ rank,college_name,official_url
 44,Lovely Professional University,https://www.lpu.in
 45,XIM University,https://www.xim.edu.in
 46,"ICFAI Foundation for Higher Education, Hyderabad",https://www.ifheindia.org
-46,Thapar Institute of Engineering and Technology (Deemed-to-be-university),https://www.thapar.edu
+47,Thapar Institute of Engineering and Technology (Deemed-to-be-university),https://www.thapar.edu
 48,Indian Institute of Technology (Indian School of Mines),https://www.iitism.ac.in
 49,Amity University,https://www.amity.edu
 50,Great Lakes Institute of Management,https://www.greatlakesgurgaon.edu.in
@@ -55,7 +56,7 @@ rank,college_name,official_url
 55,Loyola Institute of Business Administration,https://www.liba.edu
 56,S.R.M. Institute of Science and Technology,https://www.srmist.edu.in
 57,Christ University,https://christuniversity.in
-57,National Institute of Technology Tiruchirappalli,https://www.nitt.edu
+58,National Institute of Technology Tiruchirappalli,https://www.nitt.edu
 59,Fore School of Management,https://www.fsm.ac.in
 60,Banaras Hindu University,https://www.bhu.ac.in
 61,Birla Institute of Management Technology,https://www.bimtech.ac.in
@@ -98,4 +99,3 @@ rank,college_name,official_url
 98,Indian Institute of Technology Jodhpur,https://www.iitj.ac.in
 99,"Institute of Management Technology, Nagpur",https://www.imtnagpur.ac.in
 100,University of Lucknow,https://www.lkouniv.ac.in
-25,Indian Institute of Management Nagpur,https://www.iimnagpur.ac.in/admissions/mba/admissions-policy/
