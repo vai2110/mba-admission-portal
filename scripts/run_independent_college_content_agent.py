@@ -34,7 +34,6 @@ BASE_MISSING_TYPES = agent.missing_types
 BASE_AUDIT = agent.audit
 BASE_GENERATION_PROMPT = agent.generation_prompt
 BASE_REVISION_PROMPT = agent.revision_prompt
-BASE_NORMALIZE_PAGES = agent.normalize_pages
 
 
 def google_get(action, **params):
@@ -99,7 +98,7 @@ def get_sheet_batch():
             "placement_status": str(_field(college, "placementStatus", "Placement Page", "placement_page")).strip(),
             "popular_course_status": str(_field(college, "popularCourseStatus", "Popular Course Pages", "popular_course_pages")).strip(),
         })
-    return selected
+    return selected[:BATCH_SIZE]
 
 
 def restrict_agent_to_sheet_batch(rows, selected):
@@ -126,6 +125,9 @@ def _is_not_applicable(value):
     return v in {"n/a", "na", "not applicable", "not required", "none"}
 
 
+_CURRENT_SELECTED = []
+
+
 def sheet_missing_types(college, tracker, forced=None):
     """Use Sheet statuses as the production source of truth; fall back safely to the base agent detector."""
     meta = next((x for x in _CURRENT_SELECTED if x["college_name"].strip().lower() == college.strip().lower()), None)
@@ -146,9 +148,26 @@ def sheet_missing_types(college, tracker, forced=None):
     return missing
 
 
+def _official_urls_from_html(html, official_url):
+    """Recover official source links from generated HTML when Gemini omitted source_urls."""
+    soup = __import__("bs4").BeautifulSoup(html or "", "html.parser")
+    domain = urlparse(official_url).netloc.lower().replace("www.", "")
+    found = []
+    for a in soup.find_all("a", href=True):
+        href = str(a.get("href", "")).strip()
+        if not href.startswith(("http://", "https://")):
+            continue
+        if urlparse(href).netloc.lower().replace("www.", "") == domain and href not in found:
+            found.append(href)
+    return found
+
+
 def strict_audit(html, source_urls, official_url, files, page_type=""):
     """Combine the existing content/SEO audit with deterministic reference QA."""
-    score, critical, notes = BASE_AUDIT(html, source_urls, official_url, files, page_type)
+    effective_sources = list(source_urls or [])
+    if not effective_sources:
+        effective_sources = _official_urls_from_html(html, official_url)
+    score, critical, notes = BASE_AUDIT(html, effective_sources, official_url, files, page_type)
     penalty, arch_critical, arch_notes, checks = validate_reference_architecture(html, page_type)
     merged_critical = list(dict.fromkeys(list(critical) + list(arch_critical)))
     merged_notes = list(dict.fromkeys(list(notes) + list(arch_notes)))
@@ -184,58 +203,10 @@ def strict_revision_prompt(college, rank, url, research, types, failures, previo
     return append_reference_contract(prompt) + "\n\n" + _known_files_contract()
 
 
-def collision_safe_normalize_pages(pages, college):
-    """Normalize generated filenames while preserving every existing HTML file.
-
-    The Sheet is authoritative about which page type is missing. If Gemini
-    happens to return an old/generic filename that collides with an existing
-    protected file, do not silently discard the page. Give the new page a
-    deterministic college-specific unused filename instead.
-    """
-    normalized = BASE_NORMALIZE_PAGES(pages, college)
-    reserved = {p.name for p in ROOT.glob("*.html")}
-    used = set(reserved)
-    mapping = {}
-    college_slug = re.sub(r"[^a-z0-9]+", "-", str(college or "").lower()).strip("-")
-
-    for page in normalized:
-        old = Path(str(page.get("filename", "")).strip()).name
-        if not old or old not in used:
-            used.add(old)
-            continue
-
-        page_type = str(page.get("type", "programme")).strip().lower()
-        title_slug = re.sub(r"[^a-z0-9]+", "-", str(page.get("title", "")).lower()).strip("-")
-        if page_type == "overview":
-            stem = f"{college_slug}-overview"
-        elif page_type == "placement":
-            stem = f"{college_slug}-placements"
-        else:
-            stem = f"{college_slug}-{title_slug or 'mba-programme'}"
-        candidate = f"{stem}.html"
-        n = 2
-        while candidate in used:
-            candidate = f"{stem}-{n}.html"
-            n += 1
-        page["filename"] = candidate
-        mapping[old] = candidate
-        used.add(candidate)
-        print(f"Filename collision protected: {old} -> {candidate}")
-
-    if mapping:
-        for page in normalized:
-            html = str(page.get("html", ""))
-            for old, new in mapping.items():
-                html = re.sub(rf'([\"\'(]){re.escape(old)}([\"\')#?])', rf'\1{new}\2', html)
-            page["html"] = html
-    return normalized
-
-
 def install_quality_gate():
     agent.audit = strict_audit
     agent.generation_prompt = strict_generation_prompt
     agent.revision_prompt = strict_revision_prompt
-    agent.normalize_pages = collision_safe_normalize_pages
     print("Installed deterministic reference-architecture QA gate v1.3")
 
 
@@ -291,9 +262,6 @@ def sync_master_to_sheet(selected):
         raise RuntimeError("Could not sync selected ranks: " + ", ".join(sorted(missing, key=int)))
 
 
-_CURRENT_SELECTED = []
-
-
 def main():
     global _CURRENT_SELECTED
     install_quality_gate()
@@ -307,29 +275,41 @@ def main():
 
     _CURRENT_SELECTED = selected
     rows = agent.read_master()
-    restricted = restrict_agent_to_sheet_batch(rows, selected)
-    if not restricted:
+    # IMPORTANT: do not retain row dicts from this pre-main read. The agent's
+    # apply_overrides/read_master cycle creates the authoritative current rows.
+    # Re-filter current rows at invocation time so status mutations persist.
+    selected_ranks = {str(x["rank"]) for x in selected}
+    selected_names = {x["college_name"].strip().lower() for x in selected if x.get("college_name")}
+    if not any(str(r.get("rank", "")).strip() in selected_ranks for r in rows):
         raise RuntimeError("Google Sheet returned colleges, but none matched the GitHub master list")
-    if len(restricted) != len(selected):
-        missing = [x["rank"] for x in selected if x["rank"] not in {str(r.get("rank")) for r in restricted}]
-        raise RuntimeError("GitHub master is missing Google Sheet ranks: " + ", ".join(missing))
 
     mark_batch_researching(selected)
     original_priority_rows = agent.priority_rows
     original_batch_size = agent.BATCH_SIZE
     original_missing_types = agent.missing_types
-    original_normalize_pages = agent.normalize_pages
     try:
-        agent.priority_rows = lambda _rows: restricted
-        agent.BATCH_SIZE = len(restricted)
+        def current_selected_rows(current_rows):
+            # Filter the rows passed by agent.main(), not the stale pre-main copy.
+            ordered = original_priority_rows(current_rows)
+            by_rank = {str(row.get("rank", "")).strip(): row for row in ordered}
+            out = []
+            for item in selected:
+                row = by_rank.get(str(item["rank"]))
+                if row is None:
+                    name = item["college_name"].strip().lower()
+                    row = next((x for x in ordered if str(x.get("college_name", "")).strip().lower() == name), None)
+                if row is not None:
+                    out.append(row)
+            return out
+
+        agent.priority_rows = current_selected_rows
+        agent.BATCH_SIZE = len(selected)
         agent.missing_types = sheet_missing_types
-        agent.normalize_pages = collision_safe_normalize_pages
         agent.main()
     finally:
         agent.priority_rows = original_priority_rows
         agent.BATCH_SIZE = original_batch_size
         agent.missing_types = original_missing_types
-        agent.normalize_pages = original_normalize_pages
         _CURRENT_SELECTED = []
 
     sync_master_to_sheet(selected)
