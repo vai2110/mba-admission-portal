@@ -1,148 +1,151 @@
 {
-  "standard": "six-reference benchmark gate",
+  "standard": "six-reference benchmark",
+  "production_threshold": 70,
   "pages": [
     {
-      "page": "nmims-mba.html",
-      "college_rank": 24,
-      "kind": "course",
+      "page": "iit-kanpur.html",
+      "college_rank": 27,
+      "kind": "overview",
       "passed": true,
+      "threshold": 70,
       "before": {
-        "kind": "course",
-        "score": 100,
-        "missing_content": [],
-        "architecture_failures": [],
-        "design_failures": [],
-        "h2s": [
-          "SBM Mumbai flagship MBA with NMAT-based admission and case-driven management education",
-          "NMIMS MBA Overview",
-          "NMIMS MBA Specialisations",
-          "NMIMS MBA Eligibility",
-          "NMIMS MBA Admission Process",
-          "NMIMS MBA Curriculum & Pedagogy",
-          "NMIMS MBA Fees",
-          "NMIMS MBA Placements",
-          "Is NMIMS MBA the right fit?",
-          "NMIMS MBA FAQs"
+        "kind": "overview",
+        "score": 76,
+        "missing_content": [
+          "faqs",
+          "selection_logic",
+          "scholarships",
+          "fee_table"
         ],
+        "architecture_failures": [
+          "internal links"
+        ],
+        "design_failures": [],
         "architecture": {
           "quick_answer": true,
           "on_this_page": true,
-          "h2_count": 10,
-          "hr_between_sections": true,
+          "h2_count": 15,
           "tables_or_cards": true,
-          "internal_links": 5
+          "internal_links": 0,
+          "has_fee_table": true,
+          "has_placement_comparison_table": true,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
         },
         "design": {
           "viewport": true,
           "shared_css": true,
-          "compact_hero": true,
-          "responsive_css": true,
+          "hero": true,
+          "responsive": true,
           "single_h1": true
         }
       },
       "after": {
-        "kind": "course",
-        "score": 100,
-        "missing_content": [],
-        "architecture_failures": [],
-        "design_failures": [],
-        "h2s": [
-          "SBM Mumbai flagship MBA with NMAT-based admission and case-driven management education",
-          "NMIMS MBA Overview",
-          "NMIMS MBA Specialisations",
-          "NMIMS MBA Eligibility",
-          "NMIMS MBA Admission Process",
-          "NMIMS MBA Curriculum & Pedagogy",
-          "NMIMS MBA Fees",
-          "NMIMS MBA Placements",
-          "Is NMIMS MBA the right fit?",
-          "NMIMS MBA FAQs"
+        "kind": "overview",
+        "score": 76,
+        "missing_content": [
+          "faqs",
+          "selection_logic",
+          "scholarships",
+          "fee_table"
         ],
+        "architecture_failures": [
+          "internal links"
+        ],
+        "design_failures": [],
         "architecture": {
           "quick_answer": true,
           "on_this_page": true,
-          "h2_count": 10,
-          "hr_between_sections": true,
+          "h2_count": 15,
           "tables_or_cards": true,
-          "internal_links": 5
+          "internal_links": 0,
+          "has_fee_table": true,
+          "has_placement_comparison_table": true,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
         },
         "design": {
           "viewport": true,
           "shared_css": true,
-          "compact_hero": true,
-          "responsive_css": true,
+          "hero": true,
+          "responsive": true,
           "single_h1": true
         }
       }
     },
     {
-      "page": "nmims-mba-pharma-tech.html",
-      "college_rank": 24,
-      "kind": "course",
+      "page": "iit-kanpur-placements.html",
+      "college_rank": 27,
+      "kind": "placement",
       "passed": true,
+      "threshold": 70,
       "before": {
-        "kind": "course",
-        "score": 100,
-        "missing_content": [],
-        "architecture_failures": [],
-        "design_failures": [],
-        "h2s": [
-          "Integrated pharmaceutical and management education for careers across healthcare and business",
-          "NMIMS MBA Pharma Tech Overview",
-          "MBA Pharma Tech Admission",
-          "MBA Pharma Tech Curriculum",
-          "Specialisations",
-          "Career Scope After MBA Pharma Tech",
-          "Is This Programme Right For You?",
-          "NMIMS MBA Pharma Tech Fees",
-          "MBA Pharma Tech FAQs"
+        "kind": "placement",
+        "score": 70,
+        "missing_content": [
+          "latest_metrics",
+          "how_to_read"
+        ],
+        "architecture_failures": [
+          "Quick Answer",
+          "section hierarchy",
+          "internal links"
+        ],
+        "design_failures": [
+          "shared_css",
+          "responsive"
         ],
         "architecture": {
-          "quick_answer": true,
+          "quick_answer": false,
           "on_this_page": true,
-          "h2_count": 9,
-          "hr_between_sections": true,
+          "h2_count": 4,
           "tables_or_cards": true,
-          "internal_links": 4
+          "internal_links": 0,
+          "has_fee_table": false,
+          "has_placement_comparison_table": true,
+          "has_cutoff_table": false,
+          "hr_between_sections": true
         },
         "design": {
           "viewport": true,
-          "shared_css": true,
-          "compact_hero": true,
-          "responsive_css": true,
+          "shared_css": false,
+          "hero": true,
+          "responsive": false,
           "single_h1": true
         }
       },
       "after": {
-        "kind": "course",
-        "score": 100,
-        "missing_content": [],
-        "architecture_failures": [],
-        "design_failures": [],
-        "h2s": [
-          "Integrated pharmaceutical and management education for careers across healthcare and business",
-          "NMIMS MBA Pharma Tech Overview",
-          "MBA Pharma Tech Admission",
-          "MBA Pharma Tech Curriculum",
-          "Specialisations",
-          "Career Scope After MBA Pharma Tech",
-          "Is This Programme Right For You?",
-          "NMIMS MBA Pharma Tech Fees",
-          "MBA Pharma Tech FAQs"
+        "kind": "placement",
+        "score": 70,
+        "missing_content": [
+          "latest_metrics",
+          "how_to_read"
+        ],
+        "architecture_failures": [
+          "Quick Answer",
+          "section hierarchy",
+          "internal links"
+        ],
+        "design_failures": [
+          "shared_css",
+          "responsive"
         ],
         "architecture": {
-          "quick_answer": true,
+          "quick_answer": false,
           "on_this_page": true,
-          "h2_count": 9,
-          "hr_between_sections": true,
+          "h2_count": 4,
           "tables_or_cards": true,
-          "internal_links": 4
+          "internal_links": 0,
+          "has_fee_table": false,
+          "has_placement_comparison_table": true,
+          "has_cutoff_table": false,
+          "hr_between_sections": true
         },
         "design": {
           "viewport": true,
-          "shared_css": true,
-          "compact_hero": true,
-          "responsive_css": true,
+          "shared_css": false,
+          "hero": true,
+          "responsive": false,
           "single_h1": true
         }
       }

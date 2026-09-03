@@ -1,340 +1,48 @@
 {
-  "generated_at": "2026-09-02T11:41:48.372687+00:00",
+  "generated_at": "2026-09-03T09:55:21.209035+00:00",
   "mode": "free-editorial-audit",
-  "pages_audited": 4,
+  "pages_audited": 2,
   "pages_changed": 0,
   "target_page": null,
   "target_pages": [
-    "nmims.html",
-    "nmims-placements.html",
-    "nmims-mba.html",
-    "nmims-mba-pharma-tech.html"
+    "iit-kanpur.html",
+    "iit-kanpur-placements.html"
   ],
   "results": [
     {
-      "file": "nmims.html",
-      "overall_score": 98,
+      "file": "iit-kanpur.html",
+      "overall_score": 87,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
       "metrics": {
-        "word_count": 1588,
+        "word_count": 492,
         "generic_phrase_hits": 0,
         "promotional_hits": 0,
-        "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 24,
+        "duplicate_sentences": 1,
+        "numeric_or_date_content_blocks": 5,
         "official_links": 0,
-        "all_external_links": 8,
-        "missing_intent_sections": [],
-        "thin_sections": 1
-      },
-      "issues": [
-        {
-          "severity": "high",
-          "type": "fact_check",
-          "text": "Found 24 factual content blocks containing dates, figures, percentages or monetary values.",
-          "location": "factual claims",
-          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 1 major sections with thin supporting content.",
-          "location": "main content sections",
-          "examples": [
-            "Official NMIMS SBM Sources"
-          ],
-          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
-        }
-      ],
-      "recommendations": [
-        {
-          "priority": "high",
-          "action": "manual_verify_high_impact_facts",
-          "count": 24,
-          "official_source_links": 0
-        },
-        {
-          "priority": "low",
-          "action": "merge_or_strengthen_thin_sections",
-          "count": 1
-        }
-      ],
-      "verified_facts": [],
-      "unverified_claims": [
-        {
-          "claim": "NMIMS is a multi-school deemed-to-be university, while the School of Business Management (SBM) in Mumbai is its flagship management school.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM's MBA is a two-year full-time programme spread over six trimesters.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "NMIMS also offers specialised programmes in HR, Business Analytics, Digital Transformation, Pharmaceutical Management and Healthcare Management, plus MBA-NEx for working executives.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The current official SBM website highlights 45 years of legacy, 29,000+ alumni and 250+ recruiters.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "A six-to-eight-week summer internship is compulsory between the first and second year.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM NMIMS Mumbai was ranked 24th in NIRF 2025 Management .",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The SBM admissions page currently lists NMIMS MBA NMAT registrations 2026 .",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Candidates should verify the qualifying degree, minimum marks and final-year rules in the 2026 document.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The current MBA programme page describes a written examination followed by group discussion and personal interview.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The accessible official SBM sources do not provide one consolidated 2026 fee that can safely be applied to all management programmes, so this overview does not invent a universal number.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Two-year full-time flagship programme spread over six trimesters with a compulsory summer internship.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Domain-specific MBA focused on management careers in the pharmaceutical sector.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The official SBM Mumbai placement page reports that the 2025-26 placement season included 190 recruiters for MBA Core and 37 for MBA HR.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Average CTC was ₹24.60 LPA for MBA Core and ₹19.08 LPA for MBA HR.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Students should inspect the detailed report for median CTC, highest CTC, roles and sectors when published.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Official programme material describes case-based learning, industry interaction, simulations, group activities, seminars and the compulsory summer internship as parts of the full-time MBA experience.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM's ecosystem includes student activities, case competitions, seminars, industry interactions and social-impact initiatives.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Scholarship and financial-assistance rules vary by programme and cycle.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Programme-specific scholarship availability",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Do not use one universal cutoff across programmes and campuses.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "₹24.60 LPA for MBA Core in the 2025-26 SBM Mumbai placement disclosure; MBA HR was ₹19.08 LPA.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The 2025-26 disclosure reports 190 recruiters for MBA Core and 37 for MBA HR.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "This overview does not insert a universal number without a current official fee schedule applicable to the exact programme.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Freshers can consider eligible full-time programmes; fit depends on programme, academic background, career target and current criteria.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        }
-      ],
-      "replacement_content": [],
-      "keep_content": []
-    },
-    {
-      "file": "nmims-placements.html",
-      "overall_score": 92,
-      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
-      "auto_applied": false,
-      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
-      "metrics": {
-        "word_count": 447,
-        "generic_phrase_hits": 0,
-        "promotional_hits": 0,
-        "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 10,
-        "official_links": 0,
-        "all_external_links": 2,
+        "all_external_links": 5,
         "missing_intent_sections": [
-          "admission",
-          "cutoff",
           "scholarship"
         ],
-        "thin_sections": 1
+        "thin_sections": 3
       },
       "issues": [
-        {
-          "severity": "high",
-          "type": "fact_check",
-          "text": "Found 10 factual content blocks containing dates, figures, percentages or monetary values.",
-          "location": "factual claims",
-          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
-        },
         {
           "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: admission, cutoff, scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 1 major sections with thin supporting content.",
-          "location": "main content sections",
+          "type": "repetition",
+          "text": "Found 1 repeated sentences/near-identical statements.",
+          "location": "page text",
           "examples": [
-            "NMIMS Placement Reports"
+            "No unsupported figure or claim has been added."
           ],
-          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
-        }
-      ],
-      "recommendations": [
-        {
-          "priority": "high",
-          "action": "manual_verify_high_impact_facts",
-          "count": 10,
-          "official_source_links": 0
+          "recommendation": "Keep the stronger occurrence and remove the duplicate."
         },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "admission",
-            "cutoff",
-            "scholarship"
-          ]
-        },
-        {
-          "priority": "low",
-          "action": "merge_or_strengthen_thin_sections",
-          "count": 1
-        }
-      ],
-      "verified_facts": [],
-      "unverified_claims": [
-        {
-          "claim": "SBM NMIMS Mumbai reports 190 recruiters for MBA Core and 37 recruiters for MBA HR in the 2025-26 placement season.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Average CTC is ₹24.6 LPA for MBA Core and ₹19.08 LPA for MBA HR.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM NMIMS Mumbai describes its placement ecosystem as a dedicated placement and corporate-relations function supported by faculty, student placement committees and corporate partners.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "MBA HR has a separate placement cohort and dedicated programme leadership within SBM.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The placement office works with recruiters and industry partners around hiring, corporate interaction and student preparation.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Average CTC is useful, but a better ROI assessment also considers programme fee, role quality, sector mix, location, recruiter diversity and the difference between programme-level and campus-wide statistics.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The official placement page currently provides a Final Placement 2025-26 section and also maintains previous placement-report references.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM Mumbai reports an average CTC of ₹24.6 LPA for MBA Core in 2025-26.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM Mumbai reports an average CTC of ₹19.08 LPA for MBA HR in 2025-26.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The official placement page reports 190 recruiters for MBA Core in 2025-26.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        }
-      ],
-      "replacement_content": [],
-      "keep_content": []
-    },
-    {
-      "file": "nmims-mba.html",
-      "overall_score": 90,
-      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
-      "auto_applied": false,
-      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
-      "metrics": {
-        "word_count": 496,
-        "generic_phrase_hits": 0,
-        "promotional_hits": 0,
-        "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 4,
-        "official_links": 0,
-        "all_external_links": 1,
-        "missing_intent_sections": [
-          "scholarship"
-        ],
-        "thin_sections": 4
-      },
-      "issues": [
         {
           "severity": "high",
           "type": "fact_check",
-          "text": "Found 4 factual content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 5 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
         },
@@ -348,13 +56,118 @@
         {
           "severity": "low",
           "type": "structure",
-          "text": "Found 4 major sections with thin supporting content.",
+          "text": "Found 3 major sections with thin supporting content.",
           "location": "main content sections",
           "examples": [
-            "NMIMS MBA Specialisations",
-            "NMIMS MBA Admission Process",
-            "NMIMS MBA Fees",
-            "NMIMS MBA Placements"
+            "Identity & Overview",
+            "Research",
+            "Placements"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "medium",
+          "action": "remove_repetition",
+          "count": 1
+        },
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 5,
+          "official_source_links": 0
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "scholarship"
+          ]
+        },
+        {
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 3
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "Admissions are managed by the Office of Academic Affairs.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The application portal for the July 2026 semester is open from March 19, 2026, to April 15, 2026.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Final year students graduating by July 27, 2026, are eligible to apply.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Official data for the 2025-26 season is provided below.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "IIT Kanpur Sets Record with 672 Job Offers on Day 1 of 2025–26 Placement Season | IIT Kanpur",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "iit-kanpur-placements.html",
+      "overall_score": 86,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 243,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 0,
+        "numeric_or_date_content_blocks": 4,
+        "official_links": 0,
+        "all_external_links": 3,
+        "missing_intent_sections": [
+          "eligibility",
+          "fees",
+          "dates",
+          "cutoff",
+          "fit"
+        ],
+        "thin_sections": 2
+      },
+      "issues": [
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 4 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "medium",
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: eligibility, fees, dates, cutoff, fit",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 2 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "Quick Answer",
+            "Admissions"
           ],
           "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
@@ -370,99 +183,11 @@
           "priority": "medium",
           "action": "fill_student_intent_gaps",
           "sections": [
-            "scholarship"
-          ]
-        },
-        {
-          "priority": "low",
-          "action": "merge_or_strengthen_thin_sections",
-          "count": 4
-        }
-      ],
-      "verified_facts": [],
-      "unverified_claims": [
-        {
-          "claim": "The current 2026 handout is the final authority for the exact academic percentage, category and other eligibility rules.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Official information regarding the 2026-27 fee structure is currently unavailable on the public domain.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "SBM Mumbai reports ₹24.6 LPA average CTC for 2025-26.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "No universal cutoff should be assumed.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        }
-      ],
-      "replacement_content": [],
-      "keep_content": []
-    },
-    {
-      "file": "nmims-mba-pharma-tech.html",
-      "overall_score": 94,
-      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
-      "auto_applied": false,
-      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
-      "metrics": {
-        "word_count": 513,
-        "generic_phrase_hits": 0,
-        "promotional_hits": 0,
-        "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 6,
-        "official_links": 0,
-        "all_external_links": 4,
-        "missing_intent_sections": [
-          "scholarship"
-        ],
-        "thin_sections": 2
-      },
-      "issues": [
-        {
-          "severity": "high",
-          "type": "fact_check",
-          "text": "Found 6 factual content blocks containing dates, figures, percentages or monetary values.",
-          "location": "factual claims",
-          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
-        },
-        {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 2 major sections with thin supporting content.",
-          "location": "main content sections",
-          "examples": [
-            "Specialisations",
-            "NMIMS MBA Pharma Tech Fees"
-          ],
-          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
-        }
-      ],
-      "recommendations": [
-        {
-          "priority": "high",
-          "action": "manual_verify_high_impact_facts",
-          "count": 6,
-          "official_source_links": 0
-        },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "scholarship"
+            "eligibility",
+            "fees",
+            "dates",
+            "cutoff",
+            "fit"
           ]
         },
         {
@@ -474,32 +199,22 @@
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "The MBA Pharma Tech is an integrated programme designed to bridge the gap between pharmaceutical sciences and business management, preparing graduates for leadership roles in the healthcare and life sciences sectors.",
+          "claim": "The Department of Management Sciences at IIT Kanpur offers a PhD programme.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Focuses on pharmaceutical technology, regulatory affairs, and healthcare product life cycles.",
+          "claim": "The institute's 2025-26 placement season recorded 672 job offers on Day 1.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Covers marketing, finance, operations, and strategic management tailored for the pharma industry.",
+          "claim": "The 2025-26 season has shown significant growth in industry engagement.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The MBA Pharma Tech is an ideal fit for candidates with a strong interest in the intersection of science and commerce.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Please consult the official NMIMS portal for the most recent fee schedule for the 2026-27 academic year.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Selection is merit-based, typically involving entrance test scores followed by personal interviews.",
+          "claim": "Yes, Institute Assistantships/Scholarships are provided to non-sponsored PhD students.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
