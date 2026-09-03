@@ -1,24 +1,17 @@
-name: College Production Recovery
+name: College Production Queue Recovery
 
 on:
-  push:
-    paths:
-      - '.github/production-recovery/**'
+  workflow_run:
+    workflows: ["College Production Queue"]
+    types: [completed]
 
 permissions:
   contents: write
   actions: write
 
-concurrency:
-  group: college-production-main
-  cancel-in-progress: false
-
-env:
-  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-  GEMINI_MODEL: gemini-3.1-flash-lite
-
 jobs:
-  recover:
+  recover-failed-transaction:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
@@ -27,23 +20,47 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install production dependencies
-        run: pip install beautifulsoup4 openpyxl pypdf
-
-      - name: Seed official research fallback
-        run: python scripts/seed_iim_nagpur_research.py
-
-      - name: Commit seeded research pack
+      - name: Release failed audit transaction
         run: |
-          git config user.name "MBA Portal College Production"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/college-production-state.json
-          if git diff --cached --quiet; then echo "Research pack already present."; else git commit -m "Seed IIM Nagpur official research pack"; git push; fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
 
-      - name: Produce next college cluster
-        run: python scripts/college_queue_agent.py
+          state_path = Path('data/college-production-state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          cols = ['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']
+          pending = []
+
+          for rank, rec in state.get('colleges', {}).items():
+              if any(rec.get(c) == 'Created — Audit Pending' for c in cols):
+                  pending.append((int(rank), rank, rec))
+
+          if not pending:
+              print('No audit-pending transaction to release.')
+              Path('recovery-needed.txt').write_text('false\n', encoding='utf-8')
+          else:
+              pending.sort(key=lambda x: x[0])
+              _, rank, rec = pending[0]
+              for c in cols:
+                  if rec.get(c) == 'Created — Audit Pending':
+                      rec[c] = 'Needs Review'
+              rec['last_audit'] = 'failed — released by queue recovery'
+              rec['audit_block_reason'] = 'Production transaction failed an automated gate. College was not published; queue released so later colleges can proceed.'
+              state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+              Path('recovery-needed.txt').write_text('true\n', encoding='utf-8')
+              print(f'Released failed transaction: #{rank}')
+          PY
+
+      - name: Refresh tracker and resume queue
+        run: |
+          if grep -qx 'true' recovery-needed.txt; then
+            python scripts/update_college_production_tracker.py
+            printf 'queue-recovery %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> production-queue.trigger
+            git config user.name "MBA Portal Queue Recovery"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/college-production-state.json college-production-tracker.csv college-production-tracker.xlsx production-queue.trigger
+            git commit -m "Release failed college and resume production queue"
+            git push
+          else
+            echo "No queue recovery required."
+          fi
