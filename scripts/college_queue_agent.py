@@ -20,6 +20,34 @@ MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.1-flash-lite')
 DONE = 'Created + Audited'
 COLS = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']
 
+# MANDATORY AGENT SKILLS — locked production contract.
+MANDATORY_ARCHITECTURE_SKILL = (
+    'IIM Ahmedabad is the mandatory content-depth benchmark; SIBM Pune is the mandatory information-architecture benchmark. '
+    'Every page must use the locked text-first hero, navigation, Quick Answer, clear section hierarchy, student-intent coverage, '
+    'tables/cards where useful, FAQs, official-source discipline and mobile-first structure.'
+)
+MANDATORY_DESIGN_SKILL = (
+    'Use the existing college-page.css and locked benchmark UI. Never invent a new frontend, layout, typography, spacing, cards, tables or responsive pattern.'
+)
+
+def validate_agent_skill_contract():
+    if not (MANDATORY_ARCHITECTURE_SKILL and MANDATORY_DESIGN_SKILL):
+        raise RuntimeError('Mandatory architecture/design skills are missing.')
+
+def prioritize_management_courses(raw_courses):
+    courses = [x for x in raw_courses if x and x.get('name')]
+    excluded = ('phd', 'doctor of philosophy', 'doctoral', 'certificate', 'short term', 'short-term', 'mdp', 'fellowship')
+    courses = [x for x in courses if not any(bad in str(x.get('name', '')).lower() for bad in excluded)]
+    def priority(item):
+        name = re.sub(r'[^a-z0-9]+', ' ', str(item.get('name', '')).lower()).strip()
+        if 'executive mba' in name:
+            return 2
+        if re.search(r'\bmba\b', name) or 'master of business administration' in name:
+            return 0
+        related = ('management', 'business analytics', 'analytics', 'human resource', 'finance', 'marketing', 'operations', 'supply chain', 'healthcare management', 'pharmaceutical management', 'international business', 'entrepreneurship', 'digital transformation', 'pgdm', 'post graduate programme in management')
+        return 1 if any(term in name for term in related) else 99
+    return [x for x in sorted(courses, key=priority) if priority(x) < 99][:3]
+
 KEYWORDS = {
     'mba': 12, 'management': 10, 'admission': 10, 'programme': 8, 'program': 8,
     'executive': 9, 'fees': 8, 'fee': 8, 'placement': 10, 'placements': 10,
@@ -227,6 +255,7 @@ def commit(msg):
 
 
 def main():
+    validate_agent_skill_contract()
     if not os.getenv('GEMINI_API_KEY'):
         raise SystemExit('GEMINI_API_KEY GitHub secret is required for autonomous creation.')
 
@@ -267,7 +296,7 @@ Official domain: {domain}
 
 The material below was fetched directly from the college's official domain. Use ONLY this material. Do not add facts from memory or third-party sources.
 
-Determine the actual substantial MBA/management programmes that deserve dedicated pages. Exclude PhD/doctoral programmes, certificates, short courses, and quota/category-only pages.
+Determine the actual substantial MANAGEMENT programmes that deserve dedicated pages because this queue is based on NIRF Management rankings. MBA is mandatory/preferred whenever the institution officially offers an MBA or Master of Business Administration. After MBA, prioritize closely related management programmes such as MBA specializations, Business Analytics/Analytics, HR, Finance, Marketing, Operations, Healthcare Management, Pharmaceutical Management, Digital Transformation, International Business, Supply Chain Management, and similar management degrees. Executive MBA/PGDM may be selected after core MBA/management programmes. Exclude PhD/doctoral programmes, certificates, short courses, MDPs, fellowships, engineering/science/law/unrelated degrees, and quota/category-only pages. Return only programmes supported by the supplied official-domain material and preserve their official names.
 
 Return JSON with exactly these keys:
 {{
@@ -282,7 +311,7 @@ OFFICIAL SOURCE MATERIAL:
 {research_text}'''
 
         plan = json_out(gemini_json(prompt, max_output_tokens=5000))
-        courses = [x for x in plan.get('courses', []) if x and x.get('name')][:3]
+        courses = prioritize_management_courses(plan.get('courses', []))
         rec['course_plan'] = courses
         rec['course_filenames'] = [f"{slug(college)}-{slug(x['name'])}.html" for x in courses]
         while len(rec['course_plan']) < 3:
