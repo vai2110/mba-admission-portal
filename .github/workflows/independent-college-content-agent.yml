@@ -50,4 +50,4 @@ jobs:
       - name: Run independent college content agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/independent_college_content_agent_v6.py
+        run: python scripts/independent_college_content_agent_v7.py
