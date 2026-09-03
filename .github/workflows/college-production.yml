@@ -6,7 +6,7 @@ on:
     paths:
       - 'production-queue.trigger'
   schedule:
-    - cron: '3-58/5 * * * *'
+    - cron: '3,18,33,48 * * * *'
 
 permissions:
   contents: write
@@ -68,11 +68,6 @@ jobs:
             git push
           fi
 
-      # -------------------------------------------------------
-      # TRANSACTION RULE:
-      # Never start a new college while an earlier college has
-      # pages sitting in Created — Audit Pending.
-      # -------------------------------------------------------
       - name: Detect existing audit transaction
         id: audit_state
         run: |
@@ -144,7 +139,6 @@ jobs:
           with open('data/college-queue.csv',encoding='utf-8-sig',newline='') as f:
               queue=list(csv.DictReader(f))
 
-          # Only audit the first college that has an audit-pending transaction.
           for row in queue:
               rank=str(row['rank'])
               rec=state.get('colleges',{}).get(rank,{})
@@ -216,11 +210,6 @@ jobs:
         if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
         run: python scripts/update_college_production_tracker.py
 
-      # -------------------------------------------------------
-      # ONLY THIS STEP PUBLISHES THE generated transaction.
-      # By this point benchmark + SEO/AEO/GEO + UI + content
-      # audits + re-audit + HTML integrity must all have passed.
-      # -------------------------------------------------------
       - name: Commit audited pages and tracker
         if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
         run: |
@@ -233,3 +222,13 @@ jobs:
             git commit -m "Publish fully audited college production cluster"
             git push
           fi
+
+      - name: Immediately trigger next college transaction
+        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
+        run: |
+          printf 'auto-advance-after-audit %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> production-queue.trigger
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add production-queue.trigger
+          git commit -m "Auto-advance college production queue"
+          git push
