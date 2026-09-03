@@ -57,6 +57,20 @@ jobs:
           print(data)
           PY
 
+      - name: Apply V8 research variable hotfix
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/independent_college_content_agent_v8.py')
+          s = p.read_text(encoding='utf-8')
+          old = '        research,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research,types,existing)'
+          new = '        research_text,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research_text,types,existing)'
+          if old not in s:
+              raise SystemExit('V8 source pattern not found; refusing to run with an unknown source layout')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          print('Applied V8 research variable hotfix')
+          PY
+
       - name: Run controlled V8 benchmark test
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
