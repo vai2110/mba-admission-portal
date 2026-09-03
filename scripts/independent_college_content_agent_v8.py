@@ -186,9 +186,17 @@ def existing_files(): return {p.name for p in ROOT.glob("*.html")}
 
 
 def internal_targets(existing, package_types, college):
-    # Prefer known pages from the same college; then current package filenames.
+    # Prefer known pages from the same college. For a fresh college, use stable
+    # existing site entry points as a fallback; generated sibling pages are added
+    # by main() before rendering the package.
     cs=slug(college); hits=sorted(x for x in existing if x.startswith(cs+"-"))
-    return hits
+    if cs+".html" in existing and cs+".html" not in hits:
+        hits.insert(0, cs+".html")
+    for common in ("index.html", "cat.html", "cmat.html"):
+        if len(hits)>=4: break
+        if common in existing and common not in hits:
+            hits.append(common)
+    return hits[:4]
 
 
 def content_prompt(college, rank, url, research, types, existing):
@@ -264,7 +272,7 @@ def render_section(sec):
     return s+'</section>'
 
 
-def render_page(page, college, rank, official_url, internal_links, filename):
+def render_page(page, college, rank, official_url, internal_links, filename, source_pages=None):
     typ=page.get("type","")
     title=page.get("title") or f"{college} MBA"
     hero=page.get("hero_subtitle") or "MBA admission, eligibility, fees, selection and programme details."
@@ -281,6 +289,13 @@ def render_page(page, college, rank, official_url, internal_links, filename):
     domain=urlparse(official_url).netloc.lower().replace("www.","")
     for u in page.get("source_urls",[]):
         if urlparse(str(u)).netloc.lower().replace("www.","")==domain and u not in sources: sources.append(u)
+    if not sources:
+        for sp in (source_pages or []):
+            u=str(sp.get("url", "")).strip() if isinstance(sp, dict) else ""
+            if u and urlparse(u).netloc.lower().replace("www.", "")==domain and u not in sources:
+                sources.append(u)
+    if not sources and official_url:
+        sources=[official_url]
     sources=sources[:8]
     related=''.join(f'<a class="programme-link" href="{escape("/"+x)}">{text(Path(x).stem.replace("-"," ").title())}</a>' for x in internal_links[:4] if x!=filename)
     cta_url=page.get("cta_url") or official_url
@@ -374,6 +389,14 @@ def main():
         data=gemini(prompt); pages=normalize_content(data,types)
         if {p.get("type") for p in pages} != set(types):
             print("Blocked: model did not return every required page type"); continue
+        planned_files=[]
+        for pp in pages:
+            ptype=pp.get("type")
+            ptitle=pp.get("title") or ptype
+            if ptype=="overview": planned_files.append(f"{slug(college)}.html")
+            elif ptype=="placement": planned_files.append(f"{slug(college)}-placements.html")
+            else: planned_files.append(f"{slug(college)}-{slug(ptitle)}.html")
+        allowed_existing=existing | set(planned_files)
         final=[]; page_scores=[]; all_issues=[]
         for p in pages:
             fn=f"{slug(college)}-{slug(p.get('title') or p.get('type'))}.html"
@@ -382,18 +405,25 @@ def main():
             # programme filenames remain descriptive and college-specific
             if fn in existing or (ROOT/fn).exists():
                 print(f"Protected collision: {fn}"); continue
-            related=internal_targets(existing,{p.get("type")},college)
-            html=render_page(p,college,rank,url,related,fn)
-            sc,issues,critical=audit(html,p,url,existing,fn)
+            related=[x for x in planned_files if x != fn][:4]
+            for x in internal_targets(existing,{p.get("type")},college):
+                if x != fn and x not in related and len(related)<4:
+                    related.append(x)
+            html=render_page(p,college,rank,url,related,fn,source_pages)
+            sc,issues,critical=audit(html,p,url,allowed_existing,fn)
             # v8's content revision is a structured-content revision, not an HTML rewrite.
             for rev in range(MAX_REVISIONS):
                 if sc>PUBLISH_THRESHOLD and not critical: break
                 feedback=json.dumps(issues)
-                revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\n\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\nReturn exactly one page of the requested type.")
+                try:
+                    revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\n\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\nReturn exactly one page of the requested type.")
+                except Exception as exc:
+                    print(f"Revision generation failed for {fn}: {type(exc).__name__}: {exc}")
+                    break
                 rp=normalize_content(revised,[p.get("type")])
                 if not rp: break
-                p=rp[0]; html=render_page(p,college,rank,url,related,fn); sc,issues,critical=audit(html,p,url,existing,fn)
-                print(f"Revision {rev+1}: {fn} score={sc} critical={critical}")
+                p=rp[0]; html=render_page(p,college,rank,url,related,fn,source_pages); sc,issues,critical=audit(html,p,url,allowed_existing,fn)
+                print(f"Revision {rev+1}: {fn} score={sc} critical={critical} issues={issues}")
             if sc<=PUBLISH_THRESHOLD or critical:
                 all_issues += [f"{fn}: {x}" for x in issues]; print(f"NOT PUBLISHABLE: {fn} score={sc} issues={issues}"); continue
             final.append((fn,html,p)); page_scores.append(sc); all_issues += [f"{fn}: {x}" for x in issues]
