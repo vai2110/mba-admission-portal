@@ -27,6 +27,10 @@ GOOGLE_SHEETS_API_SECRET = os.getenv("GOOGLE_SHEETS_API_SECRET", "").strip()
 BATCH_SIZE = int(os.getenv("COLLEGE_BATCH_SIZE", "10"))
 COMPLETED_UPTO_RANK = 26
 
+# Keep an immutable reference to the standalone agent's original page-type
+# detector. This prevents the Sheet adapter from recursively calling itself.
+BASE_MISSING_TYPES = agent.missing_types
+
 
 def google_get(action, **params):
     if not GOOGLE_SHEET_WEBAPP_URL:
@@ -118,14 +122,14 @@ def _is_not_applicable(value):
 
 
 def sheet_missing_types(college, tracker, forced=None):
-    """Use Sheet statuses as the production source of truth; fall back only if fields are absent."""
+    """Use Sheet statuses as the production source of truth; fall back safely to the base agent detector."""
     meta = next((x for x in _CURRENT_SELECTED if x["college_name"].strip().lower() == college.strip().lower()), None)
     if not meta:
-        return agent.missing_types(college, tracker, forced)
+        return BASE_MISSING_TYPES(college, tracker, forced)
 
     values = [meta.get("overview_status", ""), meta.get("placement_status", ""), meta.get("popular_course_status", "")]
     if not any(values):
-        return agent.missing_types(college, tracker, forced)
+        return BASE_MISSING_TYPES(college, tracker, forced)
 
     missing = set()
     if not _is_done(meta.get("overview_status")) and not _is_not_applicable(meta.get("overview_status")):
@@ -211,9 +215,7 @@ def main():
         missing = [x["rank"] for x in selected if x["rank"] not in {str(r.get("rank")) for r in restricted}]
         raise RuntimeError("GitHub master is missing Google Sheet ranks: " + ", ".join(missing))
 
-    restricted_ranks = {str(r.get("rank")) for r in restricted}
     mark_batch_researching(selected)
-
     original_priority_rows = agent.priority_rows
     original_batch_size = agent.BATCH_SIZE
     original_missing_types = agent.missing_types
