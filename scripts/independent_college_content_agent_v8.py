@@ -389,7 +389,7 @@ def main():
             for rev in range(MAX_REVISIONS):
                 if sc>PUBLISH_THRESHOLD and not critical: break
                 feedback=json.dumps(issues)
-                revised=gemini(content_prompt(college,rank,url,research,[p.get("type")],existing)+f"\n\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\nReturn exactly one page of the requested type.")
+                revised=gemini(content_prompt(college,rank,url,research_text,[p.get("type")],existing)+f"\n\nREVISION REQUIRED. Fix these issues in the structured content: {feedback}\nReturn exactly one page of the requested type.")
                 rp=normalize_content(revised,[p.get("type")])
                 if not rp: break
                 p=rp[0]; html=render_page(p,college,rank,url,related,fn); sc,issues,critical=audit(html,p,url,existing,fn)
