@@ -1,0 +1,107 @@
+name: Fix Agent And Resume Queue
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-agent-and-resume.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Repair agent skill block and enforce management course priority
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('scripts/college_queue_agent.py')
+          text = p.read_text(encoding='utf-8')
+
+          # Remove the malformed literal-escape skill block inserted by the previous patch.
+          start = text.find('\\n\\n# MANDATORY AGENT SKILLS')
+          if start != -1:
+              end = text.find("\\n\\nKEYWORDS = {", start)
+              if end == -1:
+                  raise SystemExit('Malformed skill block found but KEYWORDS boundary is missing.')
+              text = text[:start] + '\n\n' + text[end + len('\\n\\n'):]
+
+          skill = '''# MANDATORY AGENT SKILLS — locked production contract.
+          MANDATORY_ARCHITECTURE_SKILL = (
+              'Use the locked IIM Ahmedabad content-depth architecture and SIBM Pune information architecture. '
+              'Every page must have a compact text-first hero, clear navigation, Quick Answer, useful section hierarchy, '
+              'student-intent coverage, tables/cards where useful, FAQs, official-source discipline, and mobile-first structure.'
+          )
+          MANDATORY_DESIGN_SKILL = (
+              'Use the existing college-page.css design system and locked benchmark UI. Do not invent a new frontend, '
+              'layout, typography system, spacing system, card style, table style, or responsive pattern for an individual college.'
+          )
+
+          def validate_agent_skill_contract():
+              if not (MANDATORY_ARCHITECTURE_SKILL and MANDATORY_DESIGN_SKILL):
+                  raise RuntimeError('Mandatory architecture/design agent skills are not configured.')
+
+          '''
+          # Remove accidental indentation introduced by the triple-quoted workflow string.
+          skill = '\n'.join(line[10:] if line.startswith('          ') else line for line in skill.splitlines())
+          marker = "COLS = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']\n"
+          if 'MANDATORY_ARCHITECTURE_SKILL' not in text:
+              if marker not in text:
+                  raise SystemExit('COLS marker missing; refusing unsafe patch.')
+              text = text.replace(marker, marker + '\n' + skill, 1)
+
+          old_prompt = "Determine the actual substantial MBA/management programmes that deserve dedicated pages. Exclude PhD/doctoral programmes, certificates, short courses, and quota/category-only pages."
+          new_prompt = """Determine the actual substantial MANAGEMENT programmes that deserve dedicated pages because this queue is based on NIRF Management rankings. MBA is mandatory/preferred whenever the institution officially offers an MBA or Master of Business Administration. After MBA, prioritize closely related management programmes such as MBA specializations, Business Analytics/Analytics, HR, Finance, Marketing, Operations, Healthcare Management, Pharmaceutical Management, Digital Transformation, International Business, Supply Chain Management, and similar management degrees. Executive MBA/PGDM may be selected after core MBA/management programmes. Exclude PhD/doctoral programmes, certificates, short courses, MDPs, fellowships, engineering/science/law/unrelated degrees, and quota/category-only pages. Return only programmes supported by the supplied official-domain material and preserve their official names."""
+          if old_prompt in text:
+              text = text.replace(old_prompt, new_prompt, 1)
+
+          old_courses = "courses = [x for x in plan.get('courses', []) if x and x.get('name')][:3]"
+          new_courses = '''raw_courses = [x for x in plan.get('courses', []) if x and x.get('name')]
+          def course_priority(item):
+              name = re.sub(r'[^a-z0-9]+', ' ', str(item.get('name', '')).lower()).strip()
+              if 'executive mba' in name:
+                  return 2
+              if re.search(r'\\bmba\\b', name) or 'master of business administration' in name:
+                  return 0
+              related = ('management', 'business analytics', 'analytics', 'human resource', 'finance', 'marketing', 'operations', 'supply chain', 'healthcare management', 'pharmaceutical management', 'international business', 'entrepreneurship', 'digital transformation', 'pgdm', 'post graduate programme in management')
+              if any(term in name for term in related):
+                  return 1
+              return 99
+          excluded = ('phd', 'doctor of philosophy', 'doctoral', 'certificate', 'short term', 'short-term', 'mdp', 'fellowship')
+          raw_courses = [x for x in raw_courses if not any(bad in str(x.get('name', '')).lower() for bad in excluded)]
+          courses = sorted(raw_courses, key=course_priority)
+          courses = [x for x in courses if course_priority(x) < 99][:3]'''
+          if old_courses in text:
+              text = text.replace(old_courses, new_courses, 1)
+
+          main_marker = "def main():\n    if not os.getenv('GEMINI_API_KEY'):"
+          main_replacement = "def main():\n    validate_agent_skill_contract()\n    if not os.getenv('GEMINI_API_KEY'):"
+          if main_marker in text and 'validate_agent_skill_contract()\n    if not os.getenv' not in text:
+              text = text.replace(main_marker, main_replacement, 1)
+
+          p.write_text(text, encoding='utf-8')
+          print('Agent repaired and locked: IIM Ahmedabad architecture + SIBM Pune design + management-course priority.')
+          PY
+
+      - name: Validate agent
+        run: python -m py_compile scripts/college_queue_agent.py
+
+      - name: Remove one-shot patch workflows
+        run: |
+          rm -f .github/workflows/queue-agent-skill-and-iit-kanpur.yml
+
+      - name: Commit repair
+        run: |
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/college_queue_agent.py .github/workflows/queue-agent-skill-and-iit-kanpur.yml
+          git commit -m "Repair agent skills and resume IIT Kanpur queue"
+          git push
