@@ -1,14 +1,16 @@
 {
   "college": "Indian Institute of Technology Kanpur",
   "rank": "27",
-  "score": 67,
+  "score": 74,
+  "threshold": 70,
   "page_scores": [
-    67
+    74
   ],
   "critical_failures": [],
   "notes": [],
   "source_count": 28,
   "generated_pages": [
-    "programme.html"
-  ]
+    "indian-institute-of-technology-kanpur-mba-programme.html"
+  ],
+  "revision_passes": 2
 }
