@@ -161,6 +161,11 @@ jobs:
           print('Audit targets:',', '.join(pages) if pages else 'none')
           PY
 
+      - name: Enforce IIM Ahmedabad + SIBM Pune frontend contract
+        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
+        run: |
+          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/frontend_benchmark_enforcer.py; fi
+
       - name: Run six-reference benchmark gate and repair
         id: benchmark
         if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
