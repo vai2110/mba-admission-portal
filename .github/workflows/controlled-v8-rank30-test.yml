@@ -66,10 +66,24 @@ jobs:
           old = '        research,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research,types,existing)'
           new = '        research_text,source_pages=research(url)\n        prompt=content_prompt(college,rank,url,research_text,types,existing)'
           if old not in s:
-              raise SystemExit('V8 source pattern not found; refusing to run with an unknown source layout')
-          p.write_text(s.replace(old, new, 1), encoding='utf-8')
-          print('Applied V8 research variable hotfix')
+              if 'research_text,source_pages=research(url)' in s:
+                  print('V8 research variable hotfix already present')
+              else:
+                  raise SystemExit('V8 source pattern not found; refusing to run with an unknown source layout')
+          else:
+              p.write_text(s.replace(old, new, 1), encoding='utf-8')
+              print('Applied V8 research variable hotfix')
           PY
+
+      - name: Persist V8 source hotfix
+        run: |
+          if git diff --quiet -- scripts/independent_college_content_agent_v8.py; then
+            echo 'No V8 source change to persist'
+          else
+            git add scripts/independent_college_content_agent_v8.py
+            git commit -m "Fix V8 research variable shadowing"
+            git push origin main
+          fi
 
       - name: Run controlled V8 benchmark test
         env:
