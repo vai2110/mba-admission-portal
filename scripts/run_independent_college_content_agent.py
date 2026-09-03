@@ -160,19 +160,33 @@ def strict_audit(html, source_urls, official_url, files, page_type=""):
     return final_score, merged_critical, merged_notes
 
 
+def _known_html_files():
+    files = sorted(p.name for p in ROOT.glob("*.html"))
+    return files[:250]
+
+
+def _known_files_contract():
+    files = _known_html_files()
+    if not files:
+        return "KNOWN EXISTING HTML FILES: none"
+    return "KNOWN EXISTING HTML FILES (internal links may target only these or another page in the current generated package):\n- " + "\n- ".join(files)
+
+
 def strict_generation_prompt(college, rank, url, research, types, feedback=""):
-    return append_reference_contract(BASE_GENERATION_PROMPT(college, rank, url, research, types, feedback))
+    prompt = BASE_GENERATION_PROMPT(college, rank, url, research, types, feedback)
+    return append_reference_contract(prompt) + "\n\n" + _known_files_contract()
 
 
 def strict_revision_prompt(college, rank, url, research, types, failures, previous):
-    return append_reference_contract(BASE_REVISION_PROMPT(college, rank, url, research, types, failures, previous))
+    prompt = BASE_REVISION_PROMPT(college, rank, url, research, types, failures, previous)
+    return append_reference_contract(prompt) + "\n\n" + _known_files_contract()
 
 
 def install_quality_gate():
     agent.audit = strict_audit
     agent.generation_prompt = strict_generation_prompt
     agent.revision_prompt = strict_revision_prompt
-    print("Installed deterministic reference-architecture QA gate v1.1")
+    print("Installed deterministic reference-architecture QA gate v1.2")
 
 
 def mark_batch_researching(selected):
