@@ -32,22 +32,18 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install dependencies
         run: pip install requests beautifulsoup4 openpyxl
-
       - name: Validate AI credentials
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
-
       - name: Run independent college content agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/independent_college_content_agent.py
+        run: python scripts/independent_college_content_agent_v2.py
