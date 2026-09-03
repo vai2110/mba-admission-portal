@@ -6,11 +6,14 @@
   "page_scores": [
     74
   ],
-  "critical_failures": [],
+  "critical_failures": [
+    "indian-institute-of-technology-kanpur-mba-programme-at-iit-kanpur-department-of-management-sciences-3.html: no official sources",
+    "indian-institute-of-technology-kanpur-mba-programme-at-iit-kanpur-department-of-management-sciences-3.html: reference architecture: 1 main-section component(s) are effectively empty"
+  ],
   "notes": [],
   "source_count": 28,
   "generated_pages": [
-    "indian-institute-of-technology-kanpur-mba-programme.html"
+    "indian-institute-of-technology-kanpur-mba-programme-at-iit-kanpur-department-of-management-sciences-3.html"
   ],
   "revision_passes": 2
 }
