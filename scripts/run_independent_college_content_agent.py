@@ -17,7 +17,7 @@ import os
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 
 import independent_college_content_agent_v7 as agent
@@ -150,7 +150,8 @@ def sheet_missing_types(college, tracker, forced=None):
 
 def _official_urls_from_html(html, official_url):
     """Recover official source links from generated HTML when Gemini omitted source_urls."""
-    soup = __import__("bs4").BeautifulSoup(html or "", "html.parser")
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html or "", "html.parser")
     domain = urlparse(official_url).netloc.lower().replace("www.", "")
     found = []
     for a in soup.find_all("a", href=True):
@@ -160,6 +161,52 @@ def _official_urls_from_html(html, official_url):
         if urlparse(href).netloc.lower().replace("www.", "") == domain and href not in found:
             found.append(href)
     return found
+
+
+def _official_urls_from_research(source_pages, official_url):
+    domain = urlparse(official_url).netloc.lower().replace("www.", "")
+    found = []
+    for page in source_pages or []:
+        href = str(page.get("url", "")).strip()
+        if href and urlparse(href).netloc.lower().replace("www.", "") == domain and href not in found:
+            found.append(href)
+    return found
+
+
+def ensure_official_source_section(html, source_pages, official_url):
+    """Guarantee a visible official-source component using URLs actually crawled from the official domain."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html or "", "html.parser")
+    existing = soup.find(class_=re.compile(r"official[-_ ]links?|official[-_ ]sources?", re.I))
+    existing_links = []
+    if existing:
+        existing_links = [a.get("href") for a in existing.find_all("a", href=True)]
+    official = _official_urls_from_research(source_pages, official_url)
+    if not official:
+        official = _official_urls_from_html(html, official_url)
+    if not official:
+        return html, []
+    if existing and any(x in official for x in existing_links):
+        return str(soup), official
+    section = soup.new_tag("section", attrs={"class": "main-section official-links", "id": "official-sources"})
+    h2 = soup.new_tag("h2")
+    h2.string = "Official Sources"
+    section.append(h2)
+    p = soup.new_tag("p")
+    p.string = "The following official IIT Kanpur sources were used to verify the information on this page."
+    section.append(p)
+    grid = soup.new_tag("div", attrs={"class": "grid"})
+    for href in official[:5]:
+        card = soup.new_tag("div", attrs={"class": "official-link"})
+        a = soup.new_tag("a", href=href, target="_blank", rel="noopener")
+        a.string = href
+        card.append(a)
+        grid.append(card)
+    section.append(grid)
+    container = soup.find("main") or soup.find("body")
+    if container:
+        container.append(section)
+    return str(soup), official
 
 
 def strict_audit(html, source_urls, official_url, files, page_type=""):
@@ -275,11 +322,7 @@ def main():
 
     _CURRENT_SELECTED = selected
     rows = agent.read_master()
-    # IMPORTANT: do not retain row dicts from this pre-main read. The agent's
-    # apply_overrides/read_master cycle creates the authoritative current rows.
-    # Re-filter current rows at invocation time so status mutations persist.
     selected_ranks = {str(x["rank"]) for x in selected}
-    selected_names = {x["college_name"].strip().lower() for x in selected if x.get("college_name")}
     if not any(str(r.get("rank", "")).strip() in selected_ranks for r in rows):
         raise RuntimeError("Google Sheet returned colleges, but none matched the GitHub master list")
 
@@ -289,15 +332,13 @@ def main():
     original_missing_types = agent.missing_types
     try:
         def current_selected_rows(current_rows):
-            # Filter the rows passed by agent.main(), not the stale pre-main copy.
+            # Re-filter the current rows passed by agent.main(). This prevents
+            # stale pre-main row dictionaries from losing QA/status mutations.
             ordered = original_priority_rows(current_rows)
             by_rank = {str(row.get("rank", "")).strip(): row for row in ordered}
             out = []
             for item in selected:
                 row = by_rank.get(str(item["rank"]))
-                if row is None:
-                    name = item["college_name"].strip().lower()
-                    row = next((x for x in ordered if str(x.get("college_name", "")).strip().lower() == name), None)
                 if row is not None:
                     out.append(row)
             return out
