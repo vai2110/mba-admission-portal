@@ -82,4 +82,4 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
           GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
-        run: python scripts/run_independent_college_content_agent.py
+        run: python scripts/run_independent_college_content_agent_post.py
