@@ -1,0 +1,22 @@
+{
+  "college": "Jamia Millia Islamia",
+  "rank": "28",
+  "score": 51,
+  "page_scores": [
+    53,
+    50,
+    50
+  ],
+  "critical_failures": [],
+  "notes": [
+    "overview.html: low content depth",
+    "placement.html: low content depth",
+    "programme.html: low content depth"
+  ],
+  "source_count": 28,
+  "generated_pages": [
+    "overview.html",
+    "placement.html",
+    "programme.html"
+  ]
+}
