@@ -1,0 +1,29 @@
+{
+  "college": "Management Development Institute",
+  "rank": "9",
+  "score": 47,
+  "page_scores": [
+    47,
+    47,
+    47
+  ],
+  "critical_failures": [
+    "overview.html: non-official source URL",
+    "placement.html: non-official source URL",
+    "programme.html: non-official source URL"
+  ],
+  "notes": [
+    "overview.html: thin heading structure",
+    "overview.html: low content depth",
+    "placement.html: thin heading structure",
+    "placement.html: low content depth",
+    "programme.html: thin heading structure",
+    "programme.html: low content depth"
+  ],
+  "source_count": 28,
+  "generated_pages": [
+    "overview.html",
+    "placement.html",
+    "programme.html"
+  ]
+}

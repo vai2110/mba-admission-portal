@@ -1,13 +1,13 @@
 ﻿rank,college_name,nirf_2025,overview_status,placement_status,popular_course_status,official_website,quality_score,research_status,qa_status,deployment_status,live_verification
-1,Indian Institute of Management Ahmedabad,1,Done,Done,Done,https://www.iima.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-2,Indian Institute of Management Bangalore,2,Done,Done,Done,https://www.iimb.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-3,Indian Institute of Management Kozhikode,3,Done,Done,Done,https://www.iimk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-4,Indian Institute of Technology Delhi,4,Done,Done,Done,https://home.iitd.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-5,Indian Institute of Management Lucknow,5,Done,Done,Done,https://www.iiml.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-6,"Indian Institute of Management, Mumbai",6,Done,Done,Done,https://www.iimmumbai.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-7,Indian Institute of Management Calcutta,7,Done,Done,Done,https://www.iimcal.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-8,Indian Institute of Management Indore,8,Done,Done,Done,https://www.iimidr.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-9,Management Development Institute,9,Done,Done,Done,https://www.mdi.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+1,Indian Institute of Management Ahmedabad,1,Done,Done,Done,https://www.iima.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+2,Indian Institute of Management Bangalore,2,Done,Done,Done,https://www.iimb.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+3,Indian Institute of Management Kozhikode,3,Done,Done,Done,https://www.iimk.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+4,Indian Institute of Technology Delhi,4,Done,Done,Done,https://home.iitd.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+5,Indian Institute of Management Lucknow,5,Done,Done,Done,https://www.iiml.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+6,"Indian Institute of Management, Mumbai",6,Done,Done,Done,https://www.iimmumbai.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+7,Indian Institute of Management Calcutta,7,Done,Done,Done,https://www.iimcal.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+8,Indian Institute of Management Indore,8,Done,Done,Done,https://www.iimidr.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+9,Management Development Institute,9,Done,Done,Done,https://support.google.com/websearch,47,Research Complete,Failed,Blocked - QA <= 70 or critical failure,Not Started
 10,XLRI - Xavier School of Management,10,Done,Done,Done,https://www.xlri.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 11,Symbiosis Institute of Business Management,11,Done,Done,Done,https://www.sibmpune.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 12,Indian Institute of Technology Kharagpur,12,Done,Done,Done,https://www.iitkgp.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
@@ -22,7 +22,7 @@
 21,Indian Institute of Management Udaipur,21,,,,https://www.iimu.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 22,Indian Institute of Technology Roorkee,22,,,,https://www.iitr.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 23,Indian Institute of Management Kashipur,23,,,,https://www.iimkashipur.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
-24,SVKM`s Narsee Monjee Institute of Management Studies,24,Done,Done,Done,https://www.nmims.edu/,47,Research Complete,Failed,Blocked - QA <= 70 or critical failure,Not Started
+24,SVKM`s Narsee Monjee Institute of Management Studies,24,Done,Done,Done,https://www.nmims.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 25,Indian Institute of Management,25,,,,https://www.iimnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 26,Amrita Vishwa Vidyapeetham,26,,,,https://www.amrita.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 27,Indian Institute of Technology Kanpur,27,,,,https://www.iitk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
