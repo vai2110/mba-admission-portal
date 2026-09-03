@@ -20,6 +20,14 @@ jobs:
           fetch-depth: 0
           ref: main
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tracker dependencies
+        run: pip install openpyxl
+
       - name: Release failed audit transaction
         run: |
           python - <<'PY'
