@@ -15,9 +15,12 @@ original_google_get = runner.google_get
 original_batch_size = runner.BATCH_SIZE
 original_sheet_missing_types = runner.sheet_missing_types
 
-# The Apps Script queue's authenticated POST route is the reliable production
-# path. Use the same transport for nextBatch during the controlled test.
+# The deployed Apps Script exposes the authenticated batch-assignment operation
+# as assignBatch. The standalone runner still asks for nextBatch, so translate
+# only that action during this controlled test.
 def google_get_via_post(action, **params):
+    if action == "nextBatch":
+        action = "assignBatch"
     return runner.google_post(action, **params)
 
 
