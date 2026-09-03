@@ -22,7 +22,6 @@ concurrency:
 env:
   GEMINI_MODEL: gemini-3.1-flash-lite
   COLLEGE_BATCH_SIZE: ${{ inputs.batch_size || '10' }}
-  GOOGLE_SHEET_WEBAPP_URL: https://script.google.com/macros/s/AKfycbxiFlF-p-0G0xxocXP1LKphHApsdxMA9cgDnexj6pDEAVxnZXe5kkHx7hlPuQaSL_d5/exec
 
 jobs:
   produce:
@@ -33,22 +32,37 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install dependencies
         run: pip install requests beautifulsoup4 openpyxl
+
       - name: Configure Git identity
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
+
       - name: Validate AI credentials
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
+
+      - name: Validate Google Sheet credentials
+        env:
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+        run: |
+          test -n "$GOOGLE_SHEET_WEBAPP_URL" || { echo '::error::GOOGLE_SHEETS_WEBAPP_URL is unavailable'; exit 1; }
+          test -n "$GOOGLE_SHEETS_API_SECRET" || { echo '::error::GOOGLE_SHEETS_API_SECRET is unavailable'; exit 1; }
+
       - name: Validate Google Sheet queue endpoint
+        env:
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
         run: |
           python - <<'PY'
           import os, urllib.parse, urllib.request, json
@@ -62,8 +76,10 @@ jobs:
           print("Permanent completed rank boundary:", data.get("completedUpToRank"))
           print("Default batch size:", data.get("defaultBatchSize"))
           PY
+
       - name: Run independent college content agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GOOGLE_SHEET_WEBAPP_URL: ${{ env.GOOGLE_SHEET_WEBAPP_URL }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
         run: python scripts/run_independent_college_content_agent.py
