@@ -1,0 +1,53 @@
+name: Independent College Content Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'Number of eligible colleges to process'
+        required: false
+        default: '10'
+        type: string
+  push:
+    paths:
+      - 'independent-agent-trigger.txt'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: independent-college-content-production
+  cancel-in-progress: false
+
+env:
+  GEMINI_MODEL: gemini-3.1-flash-lite
+  COLLEGE_BATCH_SIZE: ${{ inputs.batch_size || '10' }}
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openpyxl
+
+      - name: Validate AI credentials
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
+
+      - name: Run independent college content agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/independent_college_content_agent.py
