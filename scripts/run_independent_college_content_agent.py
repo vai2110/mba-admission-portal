@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Run the independent MBA college content agent from the Google Sheet queue.
 
-Rules:
-- Google Sheet is the production queue/status source.
-- NIRF ranks 1-26 are never selected for new production.
+Production rules:
+- Google Sheet is the live production queue/status source.
+- NIRF ranks 1-26 are permanently excluded from new production.
 - The next eligible batch is requested from Apps Script.
 - Only those exact ranks are passed to the independent agent.
-- After processing, GitHub-side status is synchronized back to the Sheet.
+- Selected colleges are marked as Researching before generation starts.
+- Final research/QA/deployment/quality/live-verification status is synced back.
 - No existing AGENTS.md or repository agent configuration is imported/executed.
 """
 
@@ -24,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MASTER = ROOT / "data" / "college-content-master.csv"
 
 GOOGLE_SHEET_WEBAPP_URL = os.getenv("GOOGLE_SHEET_WEBAPP_URL", "").strip()
+GOOGLE_SHEETS_API_SECRET = os.getenv("GOOGLE_SHEETS_API_SECRET", "").strip()
 BATCH_SIZE = int(os.getenv("COLLEGE_BATCH_SIZE", "10"))
 COMPLETED_UPTO_RANK = 26
 
@@ -44,6 +46,38 @@ def google_get(action, **params):
         raise RuntimeError(payload.get("error", "Google Sheet request failed"))
 
     return payload
+
+
+def google_post(action, **payload_fields):
+    if not GOOGLE_SHEET_WEBAPP_URL:
+        raise RuntimeError("GOOGLE_SHEET_WEBAPP_URL is missing")
+    if not GOOGLE_SHEETS_API_SECRET:
+        raise RuntimeError("GOOGLE_SHEETS_API_SECRET is missing")
+
+    payload = {
+        "secret": GOOGLE_SHEETS_API_SECRET,
+        "action": action,
+        **payload_fields,
+    }
+
+    body = json.dumps(payload).encode("utf-8")
+    request = Request(
+        GOOGLE_SHEET_WEBAPP_URL,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "MBA-College-Content-Agent/1.0",
+        },
+        method="POST",
+    )
+
+    with urlopen(request, timeout=60) as response:
+        result = json.loads(response.read().decode("utf-8"))
+
+    if not result.get("success", False):
+        raise RuntimeError(result.get("error", "Google Sheet update failed"))
+
+    return result
 
 
 def get_sheet_batch():
@@ -98,29 +132,77 @@ def restrict_agent_to_sheet_batch(rows, selected):
     return result
 
 
-def sync_master_to_sheet(selected):
-    """Sync final statuses for the selected ranks back to Google Sheet.
+def mark_batch_researching(selected):
+    """Lock the selected colleges in the Sheet before expensive generation."""
+    for college in selected:
+        google_post(
+            "updateStatus",
+            rank=int(college["rank"]),
+            researchStatus="Researching",
+        )
+        print(f"Sheet status: rank {college['rank']} -> Researching")
 
-    POST is deliberately avoided here because the current Apps Script web app
-    is unauthenticated. The agent can still use the public GET queue endpoint.
-    Once a token-protected POST endpoint is installed, this function can be
-    enabled without changing the production selection logic.
-    """
+
+def read_final_statuses(selected):
     if not MASTER.exists():
-        return
+        return []
 
     with MASTER.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
 
     selected_ranks = {str(x["rank"]) for x in selected}
+    return [
+        row for row in rows
+        if str(row.get("rank", "")).strip() in selected_ranks
+    ]
 
-    final_rows = []
-    for row in rows:
-        if str(row.get("rank", "")).strip() in selected_ranks:
-            final_rows.append(row)
 
-    # Print a machine-readable summary for the workflow log.
-    print("GOOGLE_SHEET_SYNC_PENDING=" + json.dumps(final_rows, ensure_ascii=False))
+def sync_master_to_sheet(selected):
+    """Write the agent's final per-college status fields to Google Sheet."""
+    final_rows = read_final_statuses(selected)
+
+    if not final_rows:
+        raise RuntimeError("No final status rows found in GitHub master tracker for selected batch")
+
+    selected_ranks = {str(x["rank"]) for x in selected}
+    synced_ranks = set()
+
+    for row in final_rows:
+        rank = str(row.get("rank", "")).strip()
+        if rank not in selected_ranks:
+            continue
+
+        raw_score = str(row.get("quality_score", "")).strip()
+        quality_score = None
+        try:
+            quality_score = float(raw_score)
+            if quality_score.is_integer():
+                quality_score = int(quality_score)
+        except (TypeError, ValueError):
+            pass
+
+        google_post(
+            "updateStatus",
+            rank=int(rank),
+            overviewStatus=str(row.get("overview_status", "")).strip(),
+            placementStatus=str(row.get("placement_status", "")).strip(),
+            popularCourseStatus=str(row.get("popular_course_status", "")).strip(),
+            qualityScore=quality_score,
+            researchStatus=str(row.get("research_status", "")).strip(),
+            qaStatus=str(row.get("qa_status", "")).strip(),
+            deploymentStatus=str(row.get("deployment_status", "")).strip(),
+            liveVerification=str(row.get("live_verification", "")).strip(),
+        )
+        synced_ranks.add(rank)
+        print(
+            f"Sheet sync: rank {rank} | quality={quality_score} | "
+            f"research={row.get('research_status')} | qa={row.get('qa_status')} | "
+            f"deployment={row.get('deployment_status')} | live={row.get('live_verification')}"
+        )
+
+    missing = selected_ranks - synced_ranks
+    if missing:
+        raise RuntimeError("Could not sync selected ranks: " + ", ".join(sorted(missing, key=int)))
 
 
 def main():
@@ -141,7 +223,10 @@ def main():
         raise RuntimeError("Google Sheet returned colleges, but none matched the GitHub master list")
 
     if len(restricted) != len(selected):
-        missing = [x["rank"] for x in selected if x["rank"] not in {str(r.get("rank")) for r in restricted}]
+        missing = [
+            x["rank"] for x in selected
+            if x["rank"] not in {str(r.get("rank")) for r in restricted}
+        ]
         raise RuntimeError("GitHub master is missing Google Sheet ranks: " + ", ".join(missing))
 
     # Permanently exclude ranks 1-26 at the runner level as a second safety gate.
@@ -149,6 +234,9 @@ def main():
 
     if not restricted:
         raise RuntimeError("Safety gate removed the entire selected batch")
+
+    # Prevent accidental double-processing if the same workflow is retried.
+    mark_batch_researching(selected)
 
     original_priority_rows = agent.priority_rows
     original_batch_size = agent.BATCH_SIZE
