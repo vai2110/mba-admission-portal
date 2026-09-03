@@ -1,4 +1,33 @@
 rank,college_name,official_website
+1,Indian Institute of Management Ahmedabad,https://www.iima.ac.in
+2,Indian Institute of Management Bangalore,https://www.iimb.ac.in
+3,Indian Institute of Management Kozhikode,https://www.iimk.ac.in
+4,Indian Institute of Technology Delhi,https://home.iitd.ac.in
+5,Indian Institute of Management Lucknow,https://www.iiml.ac.in
+6,"Indian Institute of Management, Mumbai",https://www.iimmumbai.ac.in
+7,Indian Institute of Management Calcutta,https://www.iimcal.ac.in
+8,Indian Institute of Management Indore,https://www.iimidr.ac.in
+9,Management Development Institute,https://www.mdi.ac.in
+10,XLRI - Xavier School of Management,https://www.xlri.ac.in
+11,Symbiosis Institute of Business Management,https://www.sibmpune.edu.in
+12,Indian Institute of Technology Kharagpur,https://www.iitkgp.ac.in
+13,Indian Institute of Technology Madras,https://www.iitm.ac.in
+14,Indian Institute of Technology Bombay,https://www.iitb.ac.in
+15,Indian Institute of Management Raipur,https://www.iimraipur.ac.in
+16,Indian Institute of Management Tiruchirappalli,https://www.iimtrichy.ac.in
+17,Indian Institute of Foreign Trade,https://www.iift.edu
+18,Indian Institute of Management Ranchi,https://www.iimranchi.ac.in
+19,Indian Institute of Management Rohtak,https://www.iimrohtak.ac.in
+20,S. P. Jain Institute of Management and Research,https://www.spjimr.org
+21,Indian Institute of Management Udaipur,https://www.iimu.ac.in
+22,Indian Institute of Technology Roorkee,https://www.iitr.ac.in
+23,Indian Institute of Management Kashipur,https://www.iimkashipur.ac.in
+24,SVKM`s Narsee Monjee Institute of Management Studies,https://www.nmims.edu
+25,Indian Institute of Management,https://www.iimnagpur.ac.in
+26,Amrita Vishwa Vidyapeetham,https://www.amrita.edu
+27,Indian Institute of Technology Kanpur,https://www.iitk.ac.in
+28,Jamia Millia Islamia,https://www.jmi.ac.in
+29,Indian Institute of Management Visakhapatnam,https://www.iimv.ac.in
 30,Institute of Management Technology,https://www.imt.edu
 31,Indian Institute of Management Bodh Gaya,https://www.iimbg.ac.in
 32,Chandigarh University,https://www.cuchd.in
@@ -9,3 +38,64 @@ rank,college_name,official_website
 37,Great Lakes Institute of Management,https://www.greatlakes.edu.in
 38,Indian Institute of Management Shillong,https://www.iimshillong.ac.in
 39,T. A. Pai Management Institute Manipal,https://www.tapmi.edu.in
+40,IMI Delhi,https://www.imi.edu
+41,Jaipuria Institute of Management,https://www.jaipuria.ac.in
+42,IMI Kolkata,https://www.imikolkata.ac.in
+43,Goa Institute of Management,https://www.gim.ac.in
+44,Lovely Professional University,https://www.lpu.in
+45,XIM University,https://www.xim.edu.in
+46,"ICFAI Foundation for Higher Education, Hyderabad",https://www.ifheindia.org
+46,Thapar Institute of Engineering and Technology (Deemed-to-be-university),https://www.thapar.edu
+48,Indian Institute of Technology (Indian School of Mines),https://www.iitism.ac.in
+49,Amity University,https://www.amity.edu
+50,Great Lakes Institute of Management,https://www.greatlakesgurgaon.edu.in
+51,Indian Institute of Management Sirmaur,https://www.iimsirmaur.ac.in
+52,Graphic Era University,https://www.geu.ac.in
+53,Nirma University,https://www.nirmauni.ac.in
+54,Institute of Rural Management Anand,https://www.irma.ac.in
+55,Loyola Institute of Business Administration,https://www.liba.edu
+56,S.R.M. Institute of Science and Technology,https://www.srmist.edu.in
+57,Christ University,https://christuniversity.in
+57,National Institute of Technology Tiruchirappalli,https://www.nitt.edu
+59,Fore School of Management,https://www.fsm.ac.in
+60,Banaras Hindu University,https://www.bhu.ac.in
+61,Birla Institute of Management Technology,https://www.bimtech.ac.in
+62,Malaviya National Institute of Technology,https://www.mnit.ac.in
+63,Saveetha Institute of Medical and Technical Sciences,https://www.saveetha.com
+64,"Indian Institute of Management, Amritsar",https://www.iimamritsar.ac.in
+65,K.J.Somaiya Institute of Management,https://simsr.somaiya.edu
+66,Siksha `O` Anusandhan,https://www.soa.ac.in
+67,"Jaipuria Institute of Management, Lucknow",https://www.jaipuria.ac.in/lucknow
+68,Kalinga Institute of Industrial Technology,https://www.kiit.ac.in
+69,Aligarh Muslim University,https://www.amu.ac.in
+70,Koneru Lakshmaiah Education Foundation University (K L College of Engineering),https://www.kluniversity.in
+71,Alliance University,https://www.alliance.edu.in
+72,Institute of Management Technology,https://www.imtnagpur.ac.in
+73,"Jain university,Bangalore",https://www.jainuniversity.ac.in
+74,Jaipuria Institute of Management,https://www.jaipuria.ac.in/noida
+75,Prin. L.N. Welingkar Institute of Management Development and Research (PGDM),https://www.welingkar.org
+76,Guru Gobind Singh Indraprastha University,https://www.ipu.ac.in
+77,BML Munjal University,https://www.bmu.edu.in
+78,Chitkara University,https://www.chitkara.edu.in
+79,Babasheb Bhimrao Ambedkar University,https://www.bbau.ac.in
+80,Thiagarajar School of Management,https://www.tsm.ac.in
+81,Manipal University Jaipur,https://jaipur.manipal.edu
+82,Cochin University of Science and Technology,https://www.cusat.ac.in
+83,Madan Mohan Malaviya University of Technology,https://www.mmmut.ac.in
+84,PSG College of Technology,https://www.psgtech.edu
+85,National Institute of Technology Calicut,https://nitc.ac.in
+86,New Delhi Institute of Management,https://www.ndimdelhi.org
+87,Jamia Hamdard,https://www.jamiahamdard.edu
+88,Anna University,https://www.annauniv.edu
+89,Pandit Deendayal Energy University,https://www.pdeu.ac.in
+90,Jagan Institute of Management Studies,https://www.jimsindia.org
+91,Rajagiri Business School,https://www.rajagiribs.com
+92,Panjab University,https://www.puchd.ac.in
+93,Atal Bihari Vajpayee Indian Institute of Information Technology and Management,https://www.iiitm.ac.in
+94,IMI Bhubaneswar,https://www.imibhubaneswar.ac.in
+95,National Institute of Agricultural Extension Management,https://www.manage.gov.in
+96,Bharathidasan Institute of Management,https://www.bim.edu
+97,Birla Institute of Technology,https://www.bitmesra.ac.in
+98,Indian Institute of Technology Jodhpur,https://www.iitj.ac.in
+99,"Institute of Management Technology, Nagpur",https://www.imtnagpur.ac.in
+100,University of Lucknow,https://www.lkouniv.ac.in
