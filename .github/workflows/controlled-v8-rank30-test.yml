@@ -48,15 +48,27 @@ jobs:
           GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
         run: |
           python - <<'PY'
-          import os, urllib.parse, urllib.request, json
+          import json, os, time, urllib.parse, urllib.request
           url=os.environ['GOOGLE_SHEET_WEBAPP_URL']
-          u=url+('&' if '?' in url else '?')+urllib.parse.urlencode({'action':'health'})
-          with urllib.request.urlopen(u,timeout=30) as r:
-              data=json.loads(r.read().decode())
-          if not data.get('success'):
-              raise SystemExit(data)
-          print('Google Sheet endpoint: healthy')
-          print(data)
+          last=None
+          for attempt in range(5):
+              try:
+                  u=url+('&' if '?' in url else '?')+urllib.parse.urlencode({'action':'health'})
+                  req=urllib.request.Request(u,headers={'User-Agent':'MBA-V8-Benchmark/1.0'})
+                  with urllib.request.urlopen(req,timeout=90) as r:
+                      data=json.loads(r.read().decode())
+                  if data.get('success'):
+                      print('Google Sheet endpoint: healthy')
+                      print(data)
+                      break
+                  last=data
+              except Exception as exc:
+                  last=repr(exc)
+                  print(f'Health check attempt {attempt+1}/5 failed: {last}')
+              if attempt < 4:
+                  time.sleep(10*(attempt+1))
+          else:
+              raise SystemExit(f'Google Sheet health check failed after 5 attempts: {last}')
           PY
 
       - name: Verify V8 source integrity
