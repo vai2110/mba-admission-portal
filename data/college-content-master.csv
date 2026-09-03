@@ -1,4 +1,4 @@
-rank,college_name,nirf_2025,overview_status,placement_status,popular_course_status,official_website,quality_score,research_status,qa_status,deployment_status,live_verification
+﻿rank,college_name,nirf_2025,overview_status,placement_status,popular_course_status,official_website,quality_score,research_status,qa_status,deployment_status,live_verification
 1,Indian Institute of Management Ahmedabad,1,Done,Done,Done,https://www.iima.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 2,Indian Institute of Management Bangalore,2,Done,Done,Done,https://www.iimb.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 3,Indian Institute of Management Kozhikode,3,Done,Done,Done,https://www.iimk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
@@ -15,87 +15,87 @@ rank,college_name,nirf_2025,overview_status,placement_status,popular_course_stat
 14,Indian Institute of Technology Bombay,14,Done,Done,Done,https://www.iitb.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 15,Indian Institute of Management Raipur,15,Done,Done,Done,https://www.iimraipur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 16,Indian Institute of Management Tiruchirappalli,16,Done,Done,Done,https://www.iimtrichy.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-17,Indian Institute of Foreign Trade,17,Done,Done,Done,https://www.iift.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+17,Indian Institute of Foreign Trade,17,Done,Done,Done,https://www.iift.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 18,Indian Institute of Management Ranchi,18,Done,Done,Done,https://www.iimranchi.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 19,Indian Institute of Management Rohtak,19,Done,Done,Done,https://www.iimrohtak.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 20,S. P. Jain Institute of Management and Research,20,Done,Done,Done,https://www.spjimr.org,Pending Audit,Not Started,Not Started,Not Started,Not Started
-21,Indian Institute of Management Udaipur,21,,,,https://www.iimu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-22,Indian Institute of Technology Roorkee,22,,,,https://www.iitr.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-23,Indian Institute of Management Kashipur,23,,,,https://www.iimkashipur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-24,"SVKM`s Narsee Monjee Institute of Management Studies",24,,,,https://www.nmims.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
-25,Indian Institute of Management,25,,,,,Pending Audit,Not Started,Not Started,Not Started,Not Started
+21,Indian Institute of Management Udaipur,21,,,,https://www.iimu.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+22,Indian Institute of Technology Roorkee,22,,,,https://www.iitr.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+23,Indian Institute of Management Kashipur,23,,,,https://www.iimkashipur.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+24,SVKM`s Narsee Monjee Institute of Management Studies,24,Done,Done,Done,https://www.nmims.edu/,47,Research Complete,Failed,Blocked - QA <= 70 or critical failure,Not Started
+25,Indian Institute of Management,25,,,,https://www.iimnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 26,Amrita Vishwa Vidyapeetham,26,,,,https://www.amrita.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 27,Indian Institute of Technology Kanpur,27,,,,https://www.iitk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 28,Jamia Millia Islamia,28,,,,https://www.jmi.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 29,Indian Institute of Management Visakhapatnam,29,,,,https://www.iimv.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 30,Institute of Management Technology,30,,,,https://www.imt.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
-31,Indian Institute of Management Nagpur,31,,,,https://www.iimnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-32,Indian Institute of Technology Bombay - Shailesh J Mehta School of Management,32,,,,https://www.som.iitb.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-33,Indian Institute of Technology Delhi - Department of Management Studies,33,,,,https://dms.iitd.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-34,Indian Institute of Technology Madras - Department of Management Studies,34,,,,https://doms.iitm.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-35,Indian Institute of Technology Roorkee - Department of Management Studies,35,,,,https://doms.iitr.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-36,Indian Institute of Technology Kharagpur - Vinod Gupta School of Management,36,,,,https://vgso.iitkgp.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-37,Indian Institute of Technology Kanpur - Department of Industrial and Management Engineering,37,,,,https://ime.iitk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-38,Indian Institute of Management Bodh Gaya,38,,,,https://iimbg.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-39,Indian Institute of Management Jammu,39,,,,https://www.iimj.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-40,Indian Institute of Management Sirmaur,40,,,,https://www.iimsirmaur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-41,Indian Institute of Management Amritsar,41,,,,https://www.iimamritsar.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-42,Indian Institute of Management Sambalpur,42,,,,https://iimsambalpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-43,Indian Institute of Management Shillong,43,,,,https://www.iimshillong.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-44,Indian Institute of Technology Dhanbad,44,,,,https://www.iitism.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-45,Indian Institute of Technology Guwahati,45,,,,https://www.iitg.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-46,Indian Institute of Technology Bhubaneswar,46,,,,https://www.iitbbs.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+31,Indian Institute of Management Bodh Gaya,31,,,,https://www.iimbg.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+32,Chandigarh University,32,,,,https://www.cuchd.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+33,MICA,33,,,,https://www.mica.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+34,Indian Institute of Management Sambalpur,34,,,,https://www.iimsambalpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+35,Indian Institute of Management Jammu (IIMJ),35,,,,https://www.iimj.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+36,UPES,36,,,,https://www.upes.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+37,Great Lakes Institute of Management,37,,,,https://www.greatlakes.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+38,Indian Institute of Management Shillong,38,,,,https://www.iimshillong.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+39,T. A. Pai Management Institute Manipal,39,,,,https://www.tapmi.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+40,IMI Delhi,40,,,,https://www.imi.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+41,Jaipuria Institute of Management,41,,,,https://www.jaipuria.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+42,IMI Kolkata,42,,,,https://www.imikolkata.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+43,Goa Institute of Management,43,,,,https://www.gim.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+44,Lovely Professional University,44,,,,https://www.lpu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+45,XIM University,45,,,,https://www.xim.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+46,Thapar Institute of Engineering and Technology (Deemed-to-be-university),46,,,,https://www.thapar.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 47,Indian Institute of Technology Hyderabad,47,,,,https://iith.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-48,Indian Institute of Technology Jodhpur,48,,,,https://iitj.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-49,Indian Institute of Technology Patna,49,,,,https://www.iitp.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-50,Indian Institute of Technology Ropar,50,,,,https://www.iitrpr.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-51,Indian Institute of Technology Indore,51,,,,https://iiti.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-52,Indian Institute of Technology Mandi,52,,,,https://iitmandi.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-53,Indian Institute of Technology Bhilai,53,,,,https://www.iitbhilai.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-54,Indian Institute of Technology Goa,54,,,,https://iitgoa.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-55,Indian Institute of Technology Jammu,55,,,,https://iitjammu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-56,National Institute of Industrial Engineering,56,,,,https://www.nitie.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-57,Great Lakes Institute of Management,57,,,,https://www.greatlakes.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+48,Indian Institute of Technology (Indian School of Mines),48,,,,https://www.iitism.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+49,Amity University,49,,,,https://www.amity.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+50,Great Lakes Institute of Management,50,,,,https://www.greatlakesgurgaon.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+51,Indian Institute of Management Sirmaur,51,,,,https://www.iimsirmaur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+52,Graphic Era University,52,,,,https://www.geu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+53,Nirma University,53,,,,https://www.nirmauni.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+54,Institute of Rural Management Anand,54,,,,https://www.irma.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+55,Loyola Institute of Business Administration,55,,,,https://www.liba.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+56,S.R.M. Institute of Science and Technology,56,,,,https://www.srmist.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+57,National Institute of Technology Tiruchirappalli,57,,,,https://www.nitt.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 58,FORE School of Management,58,,,,https://www.fsm.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-59,T. A. Pai Management Institute,59,,,,https://www.tapmi.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-60,Institute of Rural Management Anand,60,,,,https://www.iramaan.org,Pending Audit,Not Started,Not Started,Not Started,Not Started
-61,International Management Institute Delhi,61,,,,https://www.imi.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
-62,Goa Institute of Management,62,,,,https://www.gim.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-63,National Institute of Technology Tiruchirappalli,63,,,,https://www.nitt.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
-64,National Institute of Technology Karnataka,64,,,,https://www.nitk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-65,National Institute of Technology Warangal,65,,,,https://www.nitw.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-66,Indian Institute of Management Nagpur,66,,,,https://www.iimnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-67,Indian Institute of Management Visakhapatnam,67,,,,https://www.iimv.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-68,Indian Institute of Management Udaipur,68,,,,https://www.iimu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-69,Indian Institute of Management Kashipur,69,,,,https://www.iimkashipur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-70,Indian Institute of Management Bodh Gaya,70,,,,https://iimbg.ac.in, Pending Audit,Not Started,Not Started,Not Started,Not Started
-71,Indian Institute of Management Jammu,71,,,,https://www.iimj.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-72,Indian Institute of Management Sirmaur,72,,,,https://www.iimsirmaur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-73,Indian Institute of Management Amritsar,73,,,,https://www.iimamritsar.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-74,Indian Institute of Management Sambalpur,74,,,,https://iimsambalpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-75,Indian Institute of Management Shillong,75,,,,https://www.iimshillong.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-76,Indian Institute of Technology Dhanbad,76,,,,https://www.iitism.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-77,Indian Institute of Technology Guwahati,77,,,,https://www.iitg.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-78,Indian Institute of Technology Hyderabad,78,,,,https://iith.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-79,Indian Institute of Technology Jodhpur,79,,,,https://iitj.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-80,Indian Institute of Technology Patna,80,,,,https://www.iitp.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-81,Indian Institute of Technology Ropar,81,,,,https://www.iitrpr.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-82,Indian Institute of Technology Indore,82,,,,https://iiti.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-83,Indian Institute of Technology Mandi,83,,,,https://iitmandi.ac.in, Pending Audit,Not Started,Not Started,Not Started,Not Started
-84,Indian Institute of Technology Bhilai,84,,,,https://www.iitbhilai.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-85,Indian Institute of Technology Goa,85,,,,https://iitgoa.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-86,Indian Institute of Technology Jammu,86,,,,https://iitjammu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-87,National Institute of Industrial Engineering,87,,,,https://www.nitie.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-88,Great Lakes Institute of Management,88,,,,https://www.greatlakes.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-89,FORE School of Management,89,,,,https://www.fsm.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-90,T. A. Pai Management Institute,90,,,,https://www.tapmi.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-91,Institute of Rural Management Anand,91,,,,https://www.iramaan.org,Pending Audit,Not Started,Not Started,Not Started,Not Started
-92,International Management Institute Delhi,92,,,,https://www.imi.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
-93,Goa Institute of Management,93,,,,https://www.gim.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-94,National Institute of Technology Tiruchirappalli,94,,,,https://www.nitt.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
-95,National Institute of Technology Karnataka,95,,,,https://www.nitk.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-96,National Institute of Technology Warangal,96,,,,https://www.nitw.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-97,Indian Institute of Management Nagpur,97,,,,https://www.iimnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-98,Indian Institute of Management Visakhapatnam,98,,,,https://www.iimv.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-99,Indian Institute of Management Udaipur,99,,,,https://www.iimu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
-100,Indian Institute of Management Kashipur,100,,,,https://www.iimkashipur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+59,Fore School of Management,59,,,,https://www.fsm.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+60,Banaras Hindu University,60,,,,https://www.bhu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+61,Birla Institute of Management Technology,61,,,,https://www.bimtech.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+62,Malaviya National Institute of Technology,62,,,,https://www.mnit.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+63,Saveetha Institute of Medical and Technical Sciences,63,,,,https://www.saveetha.com,Pending Audit,Not Started,Not Started,Not Started,Not Started
+64,"Indian Institute of Management, Amritsar",64,,,,https://www.iimamritsar.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+65,K.J.Somaiya Institute of Management,65,,,,https://simsr.somaiya.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+66,Siksha `O` Anusandhan,66,,,,https://www.soa.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+67,"Jaipuria Institute of Management, Lucknow",67,,,,https://www.jaipuria.ac.in/lucknow,Pending Audit,Not Started,Not Started,Not Started,Not Started
+68,Kalinga Institute of Industrial Technology,68,,,,https://www.kiit.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+69,Aligarh Muslim University,69,,,,https://www.amu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+70,Koneru Lakshmaiah Education Foundation University (K L College of Engineering),70,,,,https://www.kluniversity.in, Pending Audit,Not Started,Not Started,Not Started,Not Started
+71,Alliance University,71,,,,https://www.alliance.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+72,Institute of Management Technology,72,,,,https://www.imtnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+73,"Jain university,Bangalore",73,,,,https://www.jainuniversity.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+74,Jaipuria Institute of Management,74,,,,https://www.jaipuria.ac.in/noida,Pending Audit,Not Started,Not Started,Not Started,Not Started
+75,Prin. L.N. Welingkar Institute of Management Development and Research (PGDM),75,,,,https://www.welingkar.org,Pending Audit,Not Started,Not Started,Not Started,Not Started
+76,Guru Gobind Singh Indraprastha University,76,,,,https://www.ipu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+77,BML Munjal University,77,,,,https://www.bmu.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+78,Chitkara University,78,,,,https://www.chitkara.edu.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+79,Babasheb Bhimrao Ambedkar University,79,,,,https://www.bbau.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+80,Thiagarajar School of Management,80,,,,https://www.tsm.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+81,Manipal University Jaipur,81,,,,https://jaipur.manipal.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+82,Cochin University of Science and Technology,82,,,,https://www.cusat.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+83,Madan Mohan Malaviya University of Technology,83,,,,https://www.mmmut.ac.in, Pending Audit,Not Started,Not Started,Not Started,Not Started
+84,PSG College of Technology,84,,,,https://www.psgtech.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+85,National Institute of Technology Calicut,85,,,,https://nitc.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+86,New Delhi Institute of Management,86,,,,https://www.ndimdelhi.org,Pending Audit,Not Started,Not Started,Not Started,Not Started
+87,Jamia Hamdard,87,,,,https://www.jamiahamdard.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+88,Anna University,88,,,,https://www.annauniv.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+89,Pandit Deendayal Energy University,89,,,,https://www.pdeu.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+90,Jagan Institute of Management Studies,90,,,,https://www.jimsindia.org,Pending Audit,Not Started,Not Started,Not Started,Not Started
+91,Rajagiri Business School,91,,,,https://www.rajagiribs.com,Pending Audit,Not Started,Not Started,Not Started,Not Started
+92,Panjab University,92,,,,https://www.puchd.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+93,Atal Bihari Vajpayee Indian Institute of Information Technology and Management,93,,,,https://www.iiitm.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+94,IMI Bhubaneswar,94,,,,https://www.imibhubaneswar.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+95,National Institute of Agricultural Extension Management,95,,,,https://www.manage.gov.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+96,Bharathidasan Institute of Management,96,,,,https://www.bim.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
+97,Birla Institute of Technology,97,,,,https://www.bitmesra.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+98,Indian Institute of Technology Jodhpur,98,,,,https://www.iitj.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+99,"Institute of Management Technology, Nagpur",99,,,,https://www.imtnagpur.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
+100,University of Lucknow,100,,,,https://www.lkouniv.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
