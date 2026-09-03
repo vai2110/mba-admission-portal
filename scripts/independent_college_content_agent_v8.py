@@ -369,8 +369,8 @@ def main():
         url=discover_official(college,meta["official_website"])
         if not url:
             print("Blocked: official site unavailable"); continue
-        research,source_pages=research(url)
-        prompt=content_prompt(college,rank,url,research,types,existing)
+        research_text,source_pages=research(url)
+        prompt=content_prompt(college,rank,url,research_text,types,existing)
         data=gemini(prompt); pages=normalize_content(data,types)
         if {p.get("type") for p in pages} != set(types):
             print("Blocked: model did not return every required page type"); continue
