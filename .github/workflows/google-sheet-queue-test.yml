@@ -1,0 +1,50 @@
+name: Google Sheet Queue Connection Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-queue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Google Sheet secrets and queue
+        env:
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          url = os.environ.get("GOOGLE_SHEET_WEBAPP_URL", "").strip()
+          secret = os.environ.get("GOOGLE_SHEETS_API_SECRET", "").strip()
+
+          if not url:
+              raise SystemExit("GOOGLE_SHEETS_WEBAPP_URL secret is missing")
+          if not secret:
+              raise SystemExit("GOOGLE_SHEETS_API_SECRET secret is missing")
+
+          def get(action, **params):
+              query = {"action": action, **params}
+              target = url + ("&" if "?" in url else "?") + urllib.parse.urlencode(query)
+              request = urllib.request.Request(target, headers={"User-Agent": "MBA-College-Content-Agent-Test/1.0"})
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  data = json.loads(response.read().decode("utf-8"))
+              if not data.get("success"):
+                  raise SystemExit("Google Sheet API error: " + str(data))
+              return data
+
+          health = get("health")
+          batch = get("nextBatch", batchSize=1)
+
+          print("Google Sheet connection: OK")
+          print("Completed-up-to rank:", health.get("completedUpToRank"))
+          print("Queue test batch:")
+          for college in batch.get("colleges", []):
+              print(f"- Rank {college.get('rank')}: {college.get('collegeName')}")
+          PY
