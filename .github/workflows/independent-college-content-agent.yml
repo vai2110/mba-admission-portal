@@ -22,6 +22,7 @@ concurrency:
 env:
   GEMINI_MODEL: gemini-3.1-flash-lite
   COLLEGE_BATCH_SIZE: ${{ inputs.batch_size || '10' }}
+  GOOGLE_SHEET_WEBAPP_URL: https://script.google.com/macros/s/AKfycbxiFlF-p-0G0xxocXP1LKphHApsdxMA9cgDnexj6pDEAVxnZXe5kkHx7hlPuQaSL_d5/exec
 
 jobs:
   produce:
@@ -47,7 +48,22 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
+      - name: Validate Google Sheet queue endpoint
+        run: |
+          python - <<'PY'
+          import os, urllib.parse, urllib.request, json
+          url = os.environ["GOOGLE_SHEET_WEBAPP_URL"]
+          test_url = url + ("&" if "?" in url else "?") + urllib.parse.urlencode({"action":"health"})
+          with urllib.request.urlopen(test_url, timeout=30) as r:
+              data = json.loads(r.read().decode("utf-8"))
+          if not data.get("success"):
+              raise SystemExit("Google Sheet health check failed: " + str(data))
+          print("Google Sheet endpoint: healthy")
+          print("Permanent completed rank boundary:", data.get("completedUpToRank"))
+          print("Default batch size:", data.get("defaultBatchSize"))
+          PY
       - name: Run independent college content agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ env.GOOGLE_SHEET_WEBAPP_URL }}
         run: python scripts/run_independent_college_content_agent.py
