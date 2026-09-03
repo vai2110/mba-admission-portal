@@ -27,7 +27,7 @@
 26,Amrita Vishwa Vidyapeetham,26,,,,https://www.amrita.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 27,Indian Institute of Technology Kanpur,27,,,,https://www.iitk.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 28,Jamia Millia Islamia,28,Done,Done,Done,https://www.jmi.ac.in,51,Research Complete,Failed,Blocked - QA <= 70 or critical failure,Not Started
-29,Indian Institute of Management Visakhapatnam,29,,,Done,https://www.iimv.ac.in/,93,Research Complete,Passed,Eligible - Auto Publish,Not Started
+29,Indian Institute of Management Visakhapatnam,29,,,Done,https://www.iimv.ac.in/,93,Research Complete,Passed,Pushed - Awaiting Pages,Verified
 30,Institute of Management Technology,30,,,,https://www.imt.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 31,Indian Institute of Management Bodh Gaya,31,,,,https://www.iimbg.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 32,Chandigarh University,32,,,,https://www.cuchd.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
