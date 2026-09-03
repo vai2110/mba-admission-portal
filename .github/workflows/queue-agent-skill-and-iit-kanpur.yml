@@ -1,0 +1,108 @@
+name: Lock Agent Skills and Resume IIT Kanpur
+
+on:
+  push:
+    paths:
+      - '.github/workflows/queue-agent-skill-and-iit-kanpur.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Patch agent skills and queue position
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+
+          agent = Path('scripts/college_queue_agent.py')
+          text = agent.read_text(encoding='utf-8')
+
+          marker = "COLS = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']\n"
+          skill_block = r'''\n\n# MANDATORY AGENT SKILLS — locked production contract.\nMANDATORY_ARCHITECTURE_SKILL = (\n    'Use the locked IIM Ahmedabad content-depth architecture and SIBM Pune information architecture. '\n    'Every page must have a compact text-first hero, clear navigation, Quick Answer, useful section hierarchy, '\n    'student-intent coverage, tables/cards where useful, FAQs, official-source discipline, and mobile-first structure.'\n)\nMANDATORY_DESIGN_SKILL = (\n    'Use the existing college-page.css design system and locked benchmark UI. Do not invent a new frontend, '\n    'layout, typography system, spacing system, card style, table style, or responsive pattern for an individual college.'\n)\n\n\ndef validate_agent_skill_contract():\n    required = (MANDATORY_ARCHITECTURE_SKILL, MANDATORY_DESIGN_SKILL)\n    if not all(required):\n        raise RuntimeError('Mandatory architecture/design agent skills are not configured.')\n\n'''
+          if 'MANDATORY_ARCHITECTURE_SKILL' not in text:
+              if marker not in text:
+                  raise SystemExit('Agent marker not found; refusing unsafe patch.')
+              text = text.replace(marker, marker + skill_block, 1)
+
+          old_prompt = "Determine the actual substantial MBA/management programmes that deserve dedicated pages. Exclude PhD/doctoral programmes, certificates, short courses, and quota/category-only pages."
+          new_prompt = """Determine the actual substantial MANAGEMENT programmes that deserve dedicated pages because this queue is based on NIRF Management rankings. MBA is mandatory/preferred whenever the institution officially offers an MBA or Master of Business Administration. After MBA, prioritize closely related management programmes such as MBA specializations, Business Analytics/Analytics, HR, Finance, Marketing, Operations, Healthcare Management, Pharmaceutical Management, Digital Transformation, International Business, Supply Chain Management, and similar management degrees. Executive MBA/PGDM may be selected after core MBA/management programmes. Exclude PhD/doctoral programmes, certificates, short courses, MDPs, fellowships, engineering/science/law/unrelated degrees, and quota/category-only pages. Return only programmes supported by the supplied official-domain material and preserve their official names."""
+          if old_prompt not in text:
+              raise SystemExit('Course-selection prompt marker not found; refusing unsafe patch.')
+          text = text.replace(old_prompt, new_prompt, 1)
+
+          old_courses = "courses = [x for x in plan.get('courses', []) if x and x.get('name')][:3]"
+          new_courses = r'''raw_courses = [x for x in plan.get('courses', []) if x and x.get('name')]
+          def course_priority(item):
+              name = re.sub(r'[^a-z0-9]+', ' ', str(item.get('name', '')).lower()).strip()
+              if 'executive mba' in name:
+                  return 2
+              if re.search(r'\bmba\b', name) or 'master of business administration' in name:
+                  return 0
+              related = (
+                  'management', 'business analytics', 'analytics', 'human resource', 'finance',
+                  'marketing', 'operations', 'supply chain', 'healthcare management',
+                  'pharmaceutical management', 'international business', 'entrepreneurship',
+                  'digital transformation', 'pgdm', 'post graduate programme in management'
+              )
+              if any(term in name for term in related):
+                  return 1
+              return 99
+          excluded = ('phd', 'doctor of philosophy', 'doctoral', 'certificate', 'short term', 'short-term', 'mdp', 'fellowship')
+          raw_courses = [x for x in raw_courses if not any(bad in str(x.get('name', '')).lower() for bad in excluded)]
+          courses = sorted(raw_courses, key=course_priority)
+          courses = [x for x in courses if course_priority(x) < 99][:3]'''
+          if old_courses not in text:
+              raise SystemExit('Course list marker not found; refusing unsafe patch.')
+          text = text.replace(old_courses, new_courses, 1)
+
+          main_marker = "def main():\n    if not os.getenv('GEMINI_API_KEY'):"
+          main_replacement = "def main():\n    validate_agent_skill_contract()\n    if not os.getenv('GEMINI_API_KEY'):"
+          if main_marker not in text:
+              raise SystemExit('main() marker not found; refusing unsafe patch.')
+          if 'validate_agent_skill_contract()\n    if not os.getenv' not in text:
+              text = text.replace(main_marker, main_replacement, 1)
+
+          agent.write_text(text, encoding='utf-8')
+
+          state_path = Path('data/college-production-state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          colleges = state.setdefault('colleges', {})
+          cols = ['Overview Page', 'Placement Page', 'Course Page 1', 'Course Page 2', 'Course Page 3']
+
+          # Explicit queue start: hold earlier unresolved transactions and reset IIT Kanpur for a fresh audited run.
+          for rank in ('25', '26'):
+              rec = colleges.setdefault(rank, {})
+              rec['held'] = True
+              rec['hold_reason'] = 'Explicit queue start requested: resume production from IIT Kanpur.'
+          rec = colleges.setdefault('27', {})
+          for key in cols:
+              rec.pop(key, None)
+          for key in ('course_plan', 'course_filenames', 'research_pack', 'created_pages_last_run', 'last_audit', 'held', 'hold_reason', 'hold_timestamp_utc'):
+              rec.pop(key, None)
+
+          # Keep JMI untouched; its failed transaction has not been published.
+          state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          print('Agent skills locked and queue reset to IIT Kanpur (#27).')
+          PY
+
+      - name: Validate Python syntax
+        run: python -m py_compile scripts/college_queue_agent.py
+
+      - name: Commit patch
+        run: |
+          git config user.name "MBA Portal College Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/college_queue_agent.py data/college-production-state.json
+          git commit -m "Lock agent skills and resume from IIT Kanpur"
+          git push
