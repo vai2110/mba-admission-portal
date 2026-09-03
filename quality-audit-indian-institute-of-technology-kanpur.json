@@ -1,14 +1,12 @@
 {
   "college": "Indian Institute of Technology Kanpur",
   "rank": "27",
-  "score": 62,
+  "score": 67,
   "page_scores": [
-    62
+    67
   ],
   "critical_failures": [],
-  "notes": [
-    "programme.html: missing JSON-LD"
-  ],
+  "notes": [],
   "source_count": 28,
   "generated_pages": [
     "programme.html"
