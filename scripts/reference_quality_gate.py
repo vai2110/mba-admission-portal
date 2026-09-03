@@ -8,7 +8,7 @@ contract for Gemini.
 import re
 from bs4 import BeautifulSoup
 
-VERSION = "1.1"
+VERSION = "1.2"
 
 
 def _has_class(soup, pattern):
@@ -27,11 +27,7 @@ def _internal_links(soup):
 
 def _faq_questions(soup):
     items = soup.find_all(class_=re.compile(r"faq-item", re.I))
-    count = 0
-    for item in items:
-        if item.find(["h3", "h4", "h5"]):
-            count += 1
-    return count
+    return sum(1 for item in items if item.find(["h3", "h4", "h5"]))
 
 
 def validate_reference_architecture(html, page_type=""):
@@ -44,20 +40,23 @@ def validate_reference_architecture(html, page_type=""):
     penalty = 0
 
     def required(name, ok, message, weight=4):
+        nonlocal penalty
         checks[name] = bool(ok)
         if not ok:
             critical.append("reference architecture: " + message)
-            nonlocal penalty
             penalty += weight
 
     required("html5", bool(re.search(r"<!doctype\s+html", html or "", re.I)), "missing HTML5 doctype")
     required("header", bool(soup.find("header")), "site header missing")
+    required("navbar", _has_class(soup, r"^navbar$"), "reference navbar component missing")
+    required("nav_links", _has_class(soup, r"^nav[-_ ]links$"), "reference navigation links component missing")
     required("nav", bool(soup.find("nav")), "primary navigation missing")
     required("hero", _has_class(soup, r"^hero$|college[-_ ]hero"), "hero section missing")
     required("quick_facts", _has_class(soup, r"quick[-_ ]facts?"), "quick-facts strip missing")
     required("quick_fact_items", len(soup.find_all(class_=re.compile(r"quick[-_ ]fact$", re.I))) >= 3, "fewer than 3 quick-fact cards")
     required("page_layout", _has_class(soup, r"^page[-_ ]layout$"), "reference page-layout container missing")
-    required("desktop_on_page", _has_class(soup, r"^sidebar$|^sidebar[-_ ]card$|on[-_ ]this[-_ ]page|table[-_ ]of[-_ ]contents|^toc$"), "desktop On This Page/sidebar navigation missing")
+    required("sidebar", _has_class(soup, r"^sidebar$"), "desktop sticky sidebar missing")
+    required("sidebar_card", _has_class(soup, r"^sidebar[-_ ]card$"), "desktop On This Page card missing")
     required("mobile_on_page", _has_class(soup, r"^mobile[-_ ]on[-_ ]page$|mobile[-_ ]section[-_ ]nav"), "mobile On This Page navigation missing")
     required("content_container", _has_class(soup, r"^content$"), "main content container missing")
     required("main_sections", len(soup.find_all(class_=re.compile(r"^main[-_ ]section$", re.I))) >= 5, "fewer than 5 reference main-section cards")
@@ -139,7 +138,7 @@ Use these exact shared component classes from college-page.css wherever applicab
 - `.answer-box`
 - `.table-wrapper` around factual tables
 - `.programme-grid`, `.highlight-grid`, `.two-column`, `.programme-card`, `.highlight`, `.pro-box`, or `.warning-box` where useful
-- `.cta` for the main student action
+- `.cta` for the main student action; if the shared stylesheet does not define it, include minimal component styling in the page
 - `.faq-item` inside a clearly identified FAQ section
 - `.official-links` with `.official-link` cards
 
