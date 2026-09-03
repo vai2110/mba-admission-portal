@@ -14,6 +14,7 @@ Production rules:
 import csv
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from urllib.parse import urlencode
@@ -33,6 +34,7 @@ BASE_MISSING_TYPES = agent.missing_types
 BASE_AUDIT = agent.audit
 BASE_GENERATION_PROMPT = agent.generation_prompt
 BASE_REVISION_PROMPT = agent.revision_prompt
+BASE_NORMALIZE_PAGES = agent.normalize_pages
 
 
 def google_get(action, **params):
@@ -182,11 +184,59 @@ def strict_revision_prompt(college, rank, url, research, types, failures, previo
     return append_reference_contract(prompt) + "\n\n" + _known_files_contract()
 
 
+def collision_safe_normalize_pages(pages, college):
+    """Normalize generated filenames while preserving every existing HTML file.
+
+    The Sheet is authoritative about which page type is missing. If Gemini
+    happens to return an old/generic filename that collides with an existing
+    protected file, do not silently discard the page. Give the new page a
+    deterministic college-specific unused filename instead.
+    """
+    normalized = BASE_NORMALIZE_PAGES(pages, college)
+    reserved = {p.name for p in ROOT.glob("*.html")}
+    used = set(reserved)
+    mapping = {}
+    college_slug = re.sub(r"[^a-z0-9]+", "-", str(college or "").lower()).strip("-")
+
+    for page in normalized:
+        old = Path(str(page.get("filename", "")).strip()).name
+        if not old or old not in used:
+            used.add(old)
+            continue
+
+        page_type = str(page.get("type", "programme")).strip().lower()
+        title_slug = re.sub(r"[^a-z0-9]+", "-", str(page.get("title", "")).lower()).strip("-")
+        if page_type == "overview":
+            stem = f"{college_slug}-overview"
+        elif page_type == "placement":
+            stem = f"{college_slug}-placements"
+        else:
+            stem = f"{college_slug}-{title_slug or 'mba-programme'}"
+        candidate = f"{stem}.html"
+        n = 2
+        while candidate in used:
+            candidate = f"{stem}-{n}.html"
+            n += 1
+        page["filename"] = candidate
+        mapping[old] = candidate
+        used.add(candidate)
+        print(f"Filename collision protected: {old} -> {candidate}")
+
+    if mapping:
+        for page in normalized:
+            html = str(page.get("html", ""))
+            for old, new in mapping.items():
+                html = re.sub(rf'([\"\'(]){re.escape(old)}([\"\')#?])', rf'\1{new}\2', html)
+            page["html"] = html
+    return normalized
+
+
 def install_quality_gate():
     agent.audit = strict_audit
     agent.generation_prompt = strict_generation_prompt
     agent.revision_prompt = strict_revision_prompt
-    print("Installed deterministic reference-architecture QA gate v1.2")
+    agent.normalize_pages = collision_safe_normalize_pages
+    print("Installed deterministic reference-architecture QA gate v1.3")
 
 
 def mark_batch_researching(selected):
@@ -268,15 +318,18 @@ def main():
     original_priority_rows = agent.priority_rows
     original_batch_size = agent.BATCH_SIZE
     original_missing_types = agent.missing_types
+    original_normalize_pages = agent.normalize_pages
     try:
         agent.priority_rows = lambda _rows: restricted
         agent.BATCH_SIZE = len(restricted)
         agent.missing_types = sheet_missing_types
+        agent.normalize_pages = collision_safe_normalize_pages
         agent.main()
     finally:
         agent.priority_rows = original_priority_rows
         agent.BATCH_SIZE = original_batch_size
         agent.missing_types = original_missing_types
+        agent.normalize_pages = original_normalize_pages
         _CURRENT_SELECTED = []
 
     sync_master_to_sheet(selected)
