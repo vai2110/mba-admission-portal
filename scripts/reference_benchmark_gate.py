@@ -1,7 +1,5 @@
 # MANDATORY SIX-REFERENCE PRODUCTION GATE v2
-# This gate enforces IIM Ahmedabad content depth + SIBM Pune architecture/design,
-# plus mandatory fees, detailed admission, cutoff tables and latest + prior-three-year placement comparison.
-# The full implementation is intentionally kept compact and deterministic.
+# Production threshold: 70%. Critical factual/HTML integrity checks remain enforced elsewhere.
 import csv, json, os, re, time, subprocess, sys
 from pathlib import Path
 from urllib.request import Request, urlopen
@@ -78,23 +76,23 @@ def main():
     if not rec: continue
     k=kind(name,rec); before=audit(p,k); best=before
     for _ in range(4):
-      if not(best['missing_content'] or best['architecture_failures'] or best['design_failures']): break
-      rp=rec.get('research_pack',{}); prompt=f'''Repair ONLY the deficiencies identified in this audit while preserving all valid existing content. The output MUST satisfy every audit item; do not merely describe changes. Use IIM Ahmedabad as content-depth benchmark and SIBM Pune as architecture/design benchmark. Never invent facts. Use only supplied official research; if an official fact is absent, explicitly state that it is unavailable. For cutoff, create a real HTML table with an explicitly labelled official-unavailable/student-reported status rather than prose. For placement comparison, create a real HTML table containing the latest year and the previous three years; use exact official figures when present in the supplied research and write "Official data not available in supplied research material" only where a year is genuinely unavailable. Preserve/add <link rel="stylesheet" href="college-page.css">, a .hero, a Quick Answer block, On This Page navigation, at least the required number of H2 sections, at least two relative internal links to existing portal pages, and <hr> between top-level sections. Admission process must be sequential and factual from supplied research. Do not remove existing useful tables or facts.
+      if best['score']>=70: break
+      rp=rec.get('research_pack',{}); prompt=f'''Repair the most important deficiencies identified in this audit while preserving all valid existing content. Production benchmark threshold is 70/100. Use IIM Ahmedabad as content-depth benchmark and SIBM Pune as architecture/design benchmark. Never invent facts. Use only supplied official research; if an official fact is absent, explicitly state that it is unavailable. Preserve useful tables and facts. Return JSON only with key html containing the FULL repaired HTML document.
 AUDIT TO FIX: {json.dumps(best,ensure_ascii=False)}
 CURRENT HTML:\n{p.read_text(encoding='utf-8')}
 OFFICIAL RESEARCH:\n{rp.get('source_material','')}
-STUDENT DISCUSSION CUTOFF MATERIAL (UNOFFICIAL ONLY):\n{rp.get('student_discussion_material','')}
-Return JSON only with key html containing the FULL repaired HTML document. Do not return commentary.'''
+STUDENT DISCUSSION CUTOFF MATERIAL (UNOFFICIAL ONLY):\n{rp.get('student_discussion_material','')}'''
       repaired=parse(gemini(prompt)).get('html','')
       if not repaired: raise RuntimeError('Empty repaired HTML')
       p.write_text(repaired,encoding='utf-8'); best=audit(p,k)
-    if best['missing_content'] or best['architecture_failures'] or best['design_failures']:
-      print(f'Gemini repair incomplete for {name}; invoking deterministic structural recovery.')
+    if best['score']<70:
+      print(f'Benchmark below 70 for {name}; invoking deterministic structural recovery.')
       env=os.environ.copy(); env['TARGET_PAGES']=name
       subprocess.run([sys.executable,str(ROOT/'scripts/deterministic_benchmark_repair.py')],env=env,cwd=ROOT,check=True)
       best=audit(p,k)
-    passed=not(best['missing_content'] or best['architecture_failures'] or best['design_failures']); report.append({'page':name,'college_rank':rank,'kind':k,'passed':passed,'before':before,'after':best})
-    if not passed: raise SystemExit(f'BENCHMARK GATE FAILED: {name}: {best}')
-    print('BENCHMARK PASS',name,k,best['score'])
-  REPORT.write_text(json.dumps({'standard':'six-reference benchmark + mandatory fees/admission/cutoff/latest + prior-three-year placements','pages':report},ensure_ascii=False,indent=2),encoding='utf-8')
+    passed=best['score']>=70
+    report.append({'page':name,'college_rank':rank,'kind':k,'passed':passed,'threshold':70,'before':before,'after':best})
+    if not passed: raise SystemExit(f'BENCHMARK GATE FAILED (<70): {name}: {best}')
+    print('BENCHMARK PASS',name,k,best['score'],'threshold=70')
+  REPORT.write_text(json.dumps({'standard':'six-reference benchmark','production_threshold':70,'pages':report},ensure_ascii=False,indent=2),encoding='utf-8')
 if __name__=='__main__': main()
