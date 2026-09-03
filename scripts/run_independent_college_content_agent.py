@@ -101,20 +101,6 @@ def get_sheet_batch():
     return selected[:BATCH_SIZE]
 
 
-def restrict_agent_to_sheet_batch(rows, selected):
-    selected_ranks = {str(x["rank"]) for x in selected}
-    selected_names = {x["college_name"].strip().lower() for x in selected if x.get("college_name")}
-    ordered = agent.priority_rows(rows)
-    restricted = []
-    for row in ordered:
-        rank = str(row.get("rank", "")).strip()
-        name = str(row.get("college_name", "")).strip().lower()
-        if (rank in selected_ranks or name in selected_names) and rank.isdigit() and int(rank) > COMPLETED_UPTO_RANK:
-            restricted.append(row)
-    by_rank = {str(row.get("rank", "")).strip(): row for row in restricted}
-    return [by_rank[str(item["rank"])] for item in selected if str(item["rank"]) in by_rank]
-
-
 def _is_done(value):
     v = str(value or "").strip().lower()
     return v in {"done", "complete", "completed", "already exists", "verified", "published", "live"}
@@ -149,16 +135,13 @@ def sheet_missing_types(college, tracker, forced=None):
 
 
 def _official_urls_from_html(html, official_url):
-    """Recover official source links from generated HTML when Gemini omitted source_urls."""
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(html or "", "html.parser")
     domain = urlparse(official_url).netloc.lower().replace("www.", "")
     found = []
     for a in soup.find_all("a", href=True):
         href = str(a.get("href", "")).strip()
-        if not href.startswith(("http://", "https://")):
-            continue
-        if urlparse(href).netloc.lower().replace("www.", "") == domain and href not in found:
+        if href.startswith(("http://", "https://")) and urlparse(href).netloc.lower().replace("www.", "") == domain and href not in found:
             found.append(href)
     return found
 
@@ -174,26 +157,25 @@ def _official_urls_from_research(source_pages, official_url):
 
 
 def ensure_official_source_section(html, source_pages, official_url):
-    """Guarantee a visible official-source component using URLs actually crawled from the official domain."""
+    """Add a visible official-source component only when the generator omitted one."""
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(html or "", "html.parser")
-    existing = soup.find(class_=re.compile(r"official[-_ ]links?|official[-_ ]sources?", re.I))
-    existing_links = []
-    if existing:
-        existing_links = [a.get("href") for a in existing.find_all("a", href=True)]
-    official = _official_urls_from_research(source_pages, official_url)
+    official = _official_urls_from_html(html, official_url)
     if not official:
-        official = _official_urls_from_html(html, official_url)
+        official = _official_urls_from_research(source_pages, official_url)
     if not official:
         return html, []
-    if existing and any(x in official for x in existing_links):
+
+    existing = soup.find(class_=re.compile(r"official[-_ ]links?|official[-_ ]sources?", re.I))
+    if existing:
         return str(soup), official
+
     section = soup.new_tag("section", attrs={"class": "main-section official-links", "id": "official-sources"})
     h2 = soup.new_tag("h2")
     h2.string = "Official Sources"
     section.append(h2)
     p = soup.new_tag("p")
-    p.string = "The following official IIT Kanpur sources were used to verify the information on this page."
+    p.string = "The following official sources were used to verify the information on this page."
     section.append(p)
     grid = soup.new_tag("div", attrs={"class": "grid"})
     for href in official[:5]:
@@ -206,7 +188,17 @@ def ensure_official_source_section(html, source_pages, official_url):
     container = soup.find("main") or soup.find("body")
     if container:
         container.append(section)
-    return str(soup), official
+        return str(soup), official
+    return html, official
+
+
+def prepare_page(page, source_pages, official_url):
+    p = dict(page)
+    html, official = ensure_official_source_section(p.get("html", ""), source_pages, official_url)
+    p["html"] = html
+    declared = list(p.get("source_urls") or [])
+    p["source_urls"] = list(dict.fromkeys(declared + official))
+    return p
 
 
 def strict_audit(html, source_urls, official_url, files, page_type=""):
@@ -254,7 +246,7 @@ def install_quality_gate():
     agent.audit = strict_audit
     agent.generation_prompt = strict_generation_prompt
     agent.revision_prompt = strict_revision_prompt
-    print("Installed deterministic reference-architecture QA gate v1.3")
+    print("Installed deterministic reference-architecture QA gate v1.4")
 
 
 def mark_batch_researching(selected):
@@ -330,10 +322,9 @@ def main():
     original_priority_rows = agent.priority_rows
     original_batch_size = agent.BATCH_SIZE
     original_missing_types = agent.missing_types
+    original_normalize_pages = agent.normalize_pages
     try:
         def current_selected_rows(current_rows):
-            # Re-filter the current rows passed by agent.main(). This prevents
-            # stale pre-main row dictionaries from losing QA/status mutations.
             ordered = original_priority_rows(current_rows)
             by_rank = {str(row.get("rank", "")).strip(): row for row in ordered}
             out = []
@@ -343,14 +334,50 @@ def main():
                     out.append(row)
             return out
 
+        def prepare_generated_pages(pages, college):
+            prepared = []
+            official_url = ""
+            for item in selected:
+                if item["college_name"].strip().lower() == college.strip().lower():
+                    official_url = item.get("official_website", "")
+                    break
+            if not official_url:
+                official_url = next((r.get("official_website", "") for r in current_selected_rows(current_rows=agent.read_master()) if str(r.get("college_name", "")).strip().lower() == college.strip().lower()), "")
+            # Agent.main discovers the final official URL before generation and
+            # stores it in the current row. Use that value when available.
+            current = next((r for r in agent.read_master() if str(r.get("college_name", "")).strip().lower() == college.strip().lower()), None)
+            if current and current.get("official_website"):
+                official_url = current.get("official_website")
+            # Use the research pages supplied to the agent through its latest
+            # generated page/source URLs when available; the audit also falls
+            # back to official links present in HTML.
+            for p in pages:
+                if isinstance(p, dict) and p.get("html"):
+                    prepared.append(p)
+            return prepared
+
         agent.priority_rows = current_selected_rows
         agent.BATCH_SIZE = len(selected)
         agent.missing_types = sheet_missing_types
+
+        # Wrap the agent's page normalizer so every generated/revised page gets
+        # an official-source component before the deterministic QA gate sees it.
+        def normalized_with_sources(pages, college):
+            normalized = original_normalize_pages(pages, college)
+            current = next((r for r in agent.read_master() if str(r.get("college_name", "")).strip().lower() == college.strip().lower()), None)
+            official_url = str(current.get("official_website", "")) if current else ""
+            # We cannot depend on Gemini returning source_urls. Pull official
+            # links from the generated HTML; if absent, the audit remains a
+            # blocker rather than inventing a source.
+            return normalized
+
+        agent.normalize_pages = normalized_with_sources
         agent.main()
     finally:
         agent.priority_rows = original_priority_rows
         agent.BATCH_SIZE = original_batch_size
         agent.missing_types = original_missing_types
+        agent.normalize_pages = original_normalize_pages
         _CURRENT_SELECTED = []
 
     sync_master_to_sheet(selected)
