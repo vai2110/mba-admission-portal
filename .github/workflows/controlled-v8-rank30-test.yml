@@ -1,0 +1,67 @@
+name: Controlled V8 Benchmark Test - Rank 30
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: controlled-v8-benchmark-test
+  cancel-in-progress: false
+
+jobs:
+  benchmark-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openpyxl
+
+      - name: Configure Git identity
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Validate credentials
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+        run: |
+          test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
+          test -n "$GOOGLE_SHEET_WEBAPP_URL" || { echo '::error::GOOGLE_SHEETS_WEBAPP_URL is unavailable'; exit 1; }
+          test -n "$GOOGLE_SHEETS_API_SECRET" || { echo '::error::GOOGLE_SHEETS_API_SECRET is unavailable'; exit 1; }
+
+      - name: Validate Google Sheet health
+        env:
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+        run: |
+          python - <<'PY'
+          import os, urllib.parse, urllib.request, json
+          url=os.environ['GOOGLE_SHEET_WEBAPP_URL']
+          u=url+('&' if '?' in url else '?')+urllib.parse.urlencode({'action':'health'})
+          with urllib.request.urlopen(u,timeout=30) as r: data=json.loads(r.read().decode())
+          if not data.get('success'): raise SystemExit(data)
+          print('Google Sheet endpoint: healthy')
+          print(data)
+          PY
+
+      - name: Run controlled V8 benchmark test
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+          GEMINI_MODEL: gemini-3.1-flash-lite
+          COLLEGE_BATCH_SIZE: '1'
+        run: python scripts/controlled_v8_rank30_test.py
