@@ -8,6 +8,7 @@ Production rules:
 - Sheet page-status fields are authoritative for deciding which page types are missing.
 - Existing HTML files remain protected by the independent agent.
 - No AGENTS.md or repository agent configuration is imported/executed.
+- A deterministic reference-architecture QA gate is installed before generation.
 """
 
 import csv
@@ -19,6 +20,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 import independent_college_content_agent_v7 as agent
+from reference_quality_gate import append_reference_contract, validate_reference_architecture
 
 ROOT = Path(__file__).resolve().parents[1]
 MASTER = ROOT / "data" / "college-content-master.csv"
@@ -27,9 +29,10 @@ GOOGLE_SHEETS_API_SECRET = os.getenv("GOOGLE_SHEETS_API_SECRET", "").strip()
 BATCH_SIZE = int(os.getenv("COLLEGE_BATCH_SIZE", "10"))
 COMPLETED_UPTO_RANK = 26
 
-# Keep an immutable reference to the standalone agent's original page-type
-# detector. This prevents the Sheet adapter from recursively calling itself.
 BASE_MISSING_TYPES = agent.missing_types
+BASE_AUDIT = agent.audit
+BASE_GENERATION_PROMPT = agent.generation_prompt
+BASE_REVISION_PROMPT = agent.revision_prompt
 
 
 def google_get(action, **params):
@@ -141,6 +144,37 @@ def sheet_missing_types(college, tracker, forced=None):
     return missing
 
 
+def strict_audit(html, source_urls, official_url, files, page_type=""):
+    """Combine the existing content/SEO audit with deterministic reference QA."""
+    score, critical, notes = BASE_AUDIT(html, source_urls, official_url, files, page_type)
+    penalty, arch_critical, arch_notes, checks = validate_reference_architecture(html, page_type)
+    merged_critical = list(dict.fromkeys(list(critical) + list(arch_critical)))
+    merged_notes = list(dict.fromkeys(list(notes) + list(arch_notes)))
+    final_score = max(0, int(score) - int(penalty))
+    failed_checks = [k for k, ok in checks.items() if not ok]
+    print(f"Reference QA: type={page_type} base_score={score} architecture_penalty={penalty} final_score={final_score} failed_checks={failed_checks}")
+    if merged_critical:
+        print("Reference QA blockers:")
+        for item in merged_critical:
+            print(f"- {item}")
+    return final_score, merged_critical, merged_notes
+
+
+def strict_generation_prompt(college, rank, url, research, types, feedback=""):
+    return append_reference_contract(BASE_GENERATION_PROMPT(college, rank, url, research, types, feedback))
+
+
+def strict_revision_prompt(college, rank, url, research, types, failures, previous):
+    return append_reference_contract(BASE_REVISION_PROMPT(college, rank, url, research, types, failures, previous))
+
+
+def install_quality_gate():
+    agent.audit = strict_audit
+    agent.generation_prompt = strict_generation_prompt
+    agent.revision_prompt = strict_revision_prompt
+    print("Installed deterministic reference-architecture QA gate v1.1")
+
+
 def mark_batch_researching(selected):
     for college in selected:
         google_post("updateStatus", rank=int(college["rank"]), researchStatus="Researching")
@@ -198,6 +232,7 @@ _CURRENT_SELECTED = []
 
 def main():
     global _CURRENT_SELECTED
+    install_quality_gate()
     selected = get_sheet_batch()
     if not selected:
         print("No eligible colleges returned by Google Sheet.")
