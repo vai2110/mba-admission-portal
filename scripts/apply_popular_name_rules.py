@@ -53,16 +53,28 @@ def popular_name(official):
         return 'NIT ' + official[len('National Institute of Technology '):].strip()
     return official
 
+
 text = AGENT.read_text(encoding='utf-8')
+
 if 'def popular_name(' not in text:
     marker = '\ndef loadq():'
     injection = '\n\nPOPULAR = ' + repr(POPULAR) + '''\n\n\ndef popular_name(official):\n    if official in POPULAR:\n        return POPULAR[official]\n    if official.startswith('Indian Institute of Management, '):\n        return 'IIM ' + official.split(',', 1)[1].strip()\n    if official.startswith('Indian Institute of Management '):\n        return 'IIM ' + official[len('Indian Institute of Management '):].split('(')[0].strip()\n    if official.startswith('Indian Institute of Technology '):\n        return 'IIT ' + official[len('Indian Institute of Technology '):].split('(')[0].strip()\n    if official.startswith('National Institute of Technology '):\n        return 'NIT ' + official[len('National Institute of Technology '):].strip()\n    return official\n'''
+    if marker not in text:
+        raise SystemExit('Production-agent insertion point was not found; refusing unsafe patch.')
     text = text.replace(marker, injection + marker, 1)
+else:
+    print('Popular-name helper already present; skipping helper injection.')
 
 old = "    rank = int(row['rank'])\n    college = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    print(f'Next college: #{rank} {college}')\n"
 new = "    rank = int(row['rank'])\n    official_name = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    college = rec.get('popular_name') or popular_name(official_name)\n    rec['popular_name'] = college\n    print(f'Next college: #{rank} {college} (official: {official_name})')\n"
-if old not in text:
-    raise SystemExit('Expected production-agent main block was not found; refusing unsafe patch.')
-text = text.replace(old, new, 1)
+
+if old in text:
+    text = text.replace(old, new, 1)
+else:
+    expected_new = "    rank = int(row['rank'])\n    official_name = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    college = rec.get('popular_name') or popular_name(official_name)\n    rec['popular_name'] = college\n    print(f'Next college: #{rank} {college} (official: {official_name})')\n"
+    if expected_new not in text:
+        raise SystemExit('Expected production-agent main block was not found; refusing unsafe patch.')
+    print('Popular-name production-agent block already applied; no replacement needed.')
+
 AGENT.write_text(text, encoding='utf-8')
-print('Applied popular-name SEO rules to production agent.')
+print('Popular-name SEO rules are now idempotent.')
