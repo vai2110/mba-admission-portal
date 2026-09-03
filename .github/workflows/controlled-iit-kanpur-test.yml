@@ -1,0 +1,53 @@
+name: Controlled IIT Kanpur Agent Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: controlled-iit-kanpur-agent-test
+  cancel-in-progress: false
+
+jobs:
+  test-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openpyxl
+
+      - name: Configure Git identity
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Validate credentials
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+        run: |
+          test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
+          test -n "$GOOGLE_SHEET_WEBAPP_URL" || { echo '::error::GOOGLE_SHEETS_WEBAPP_URL is unavailable'; exit 1; }
+          test -n "$GOOGLE_SHEETS_API_SECRET" || { echo '::error::GOOGLE_SHEETS_API_SECRET is unavailable'; exit 1; }
+
+      - name: Run controlled one-college test
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+          COLLEGE_BATCH_SIZE: '1'
+          GEMINI_MODEL: gemini-3.1-flash-lite
+        run: python scripts/controlled_iit_kanpur_test.py
