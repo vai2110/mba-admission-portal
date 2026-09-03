@@ -54,41 +54,37 @@ def popular_name(official):
     return official
 
 
-text = AGENT.read_text(encoding='utf-8')
+def main():
+    text = AGENT.read_text(encoding='utf-8')
 
-# Make this patcher safely idempotent. The production agent already has a
-# held-college recovery branch, so do not require the older exact main block.
-if 'def popular_name(' not in text:
-    marker = '\ndef loadq():'
-    injection = '\n\nPOPULAR = ' + repr(POPULAR) + '''\n\n\ndef popular_name(official):\n    if official in POPULAR:\n        return POPULAR[official]\n    if official.startswith('Indian Institute of Management, '):\n        return 'IIM ' + official.split(',', 1)[1].strip()\n    if official.startswith('Indian Institute of Management '):\n        return 'IIM ' + official[len('Indian Institute of Management '):].split('(')[0].strip()\n    if official.startswith('Indian Institute of Technology '):\n        return 'IIT ' + official[len('Indian Institute of Technology '):].split('(')[0].strip()\n    if official.startswith('National Institute of Technology '):\n        return 'NIT ' + official[len('National Institute of Technology '):].strip()\n    return official\n'''
-    if marker not in text:
-        raise SystemExit('Production-agent insertion point was not found; refusing unsafe patch.')
-    text = text.replace(marker, injection + marker, 1)
-else:
-    print('Popular-name helper already present; skipping helper injection.')
+    # Idempotency guard: if the current agent already contains the popular-name
+    # selection logic, this workflow step must be a safe no-op.
+    if "official_name = row['college_name']" in text and "rec['popular_name'] = college" in text:
+        print('Popular-name production-agent block already applied; skipping.')
+        return
 
-# Support both the original agent block and the newer held-college block.
-old_variants = [
-    "    rank = int(row['rank'])\n    college = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    print(f'Next college: #{rank} {college}')\n",
-    "    rank = int(row['rank'])\n    college = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    if rec.get('held'):\n        print(f'Revisiting previously held college: #{rank} {college}')\n        rec.pop('held', None)\n        rec.pop('hold_reason', None)\n        rec.pop('hold_timestamp_utc', None)\n        saves(s)\n    print(f'Next college: #{rank} {college}')\n"
-]
+    if 'def popular_name(' not in text:
+        marker = '\ndef loadq():'
+        injection = '\n\nPOPULAR = ' + repr(POPULAR) + '''\n\n\ndef popular_name(official):\n    if official in POPULAR:\n        return POPULAR[official]\n    if official.startswith('Indian Institute of Management, '):\n        return 'IIM ' + official.split(',', 1)[1].strip()\n    if official.startswith('Indian Institute of Management '):\n        return 'IIM ' + official[len('Indian Institute of Management '):].split('(')[0].strip()\n    if official.startswith('Indian Institute of Technology '):\n        return 'IIT ' + official[len('Indian Institute of Technology '):].split('(')[0].strip()\n    if official.startswith('National Institute of Technology '):\n        return 'NIT ' + official[len('National Institute of Technology '):].strip()\n    return official\n'''
+        if marker not in text:
+            raise SystemExit('Production-agent insertion point was not found; refusing unsafe patch.')
+        text = text.replace(marker, injection + marker, 1)
 
-new = "    rank = int(row['rank'])\n    official_name = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    if rec.get('held'):\n        print(f'Revisiting previously held college: #{rank} {official_name}')\n        rec.pop('held', None)\n        rec.pop('hold_reason', None)\n        rec.pop('hold_timestamp_utc', None)\n        saves(s)\n    college = rec.get('popular_name') or popular_name(official_name)\n    rec['popular_name'] = college\n    print(f'Next college: #{rank} {college} (official: {official_name})')\n"
-
-if new not in text:
+    old_variants = [
+        "    rank = int(row['rank'])\n    college = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    print(f'Next college: #{rank} {college}')\n",
+        "    rank = int(row['rank'])\n    college = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    if rec.get('held'):\n        print(f'Revisiting previously held college: #{rank} {college}')\n        rec.pop('held', None)\n        rec.pop('hold_reason', None)\n        rec.pop('hold_timestamp_utc', None)\n        saves(s)\n    print(f'Next college: #{rank} {college}')\n"
+    ]
+    new = "    rank = int(row['rank'])\n    official_name = row['college_name']\n    official_url = row['official_url'].rstrip('/')\n    domain = urlparse(official_url).netloc\n    rec = s.setdefault('colleges', {}).setdefault(str(rank), {})\n    if rec.get('held'):\n        print(f'Revisiting previously held college: #{rank} {official_name}')\n        rec.pop('held', None)\n        rec.pop('hold_reason', None)\n        rec.pop('hold_timestamp_utc', None)\n        saves(s)\n    college = rec.get('popular_name') or popular_name(official_name)\n    rec['popular_name'] = college\n    print(f'Next college: #{rank} {college} (official: {official_name})')\n"
     for old in old_variants:
         if old in text:
             text = text.replace(old, new, 1)
             break
     else:
-        # If the intended logic is already present but formatted differently,
-        # treat the patch as a no-op rather than breaking production.
-        if "rec['popular_name'] = college" in text and 'popular_name(official_name)' in text:
-            print('Popular-name production-agent block already applied; skipping.')
-        else:
-            raise SystemExit('Expected production-agent college-selection block was not found; refusing unsafe patch.')
-else:
-    print('Popular-name production-agent block already applied; skipping.')
+        raise SystemExit('Expected production-agent college-selection block was not found; refusing unsafe patch.')
 
-AGENT.write_text(text, encoding='utf-8')
-print('Popular-name SEO rules are now idempotent.')
+    AGENT.write_text(text, encoding='utf-8')
+    print('Popular-name SEO rules applied safely.')
+
+
+if __name__ == '__main__':
+    main()
