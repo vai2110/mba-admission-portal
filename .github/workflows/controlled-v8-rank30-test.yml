@@ -1,4 +1,4 @@
-name: Controlled V8 Benchmark Test - Rank 30
+name: V8 Benchmark - Rank 30
 
 on:
   workflow_dispatch:
@@ -97,7 +97,7 @@ jobs:
           GEMINI_MODEL: gemini-3.1-flash-lite
         run: |
           python - <<'PY'
-          import json, os, requests
+          import os, requests
           model=os.environ['GEMINI_MODEL']
           key=os.environ['GEMINI_API_KEY']
           url=f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent'
@@ -129,8 +129,7 @@ jobs:
             r = session.post(endpoint, headers={"x-goog-api-key": API_KEY, "Content-Type": "application/json"}, json=payload, timeout=180)
             print(f"Gemini request: model={MODEL} attempt={attempt+1}/4 http={r.status_code} prompt_chars={len(prompt)}")
             if not r.ok:
-                body = r.text[:5000]
-                print(f"Gemini error body: {body}")
+                print(f"Gemini error body: {r.text[:5000]}")
             if r.status_code in (429,500,502,503,504):
                 last_error = f"HTTP {r.status_code}: {r.text[:2000]}"
                 time.sleep(5*(attempt+1)); continue
