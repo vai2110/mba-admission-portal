@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'institute-rural-management-anand*.html'
+      - 'college-page.css'
       - '.github/workflows/irma-official-data-fix.yml'
 
 permissions:
@@ -17,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Apply official-data rules
+      - name: Apply IRMA content and UX rules
         shell: python
         run: |
           from pathlib import Path
@@ -32,19 +33,18 @@ jobs:
               'institute-rural-management-anand-mdp.html',
           ]
 
-          upcoming_dates = '''<section class="main-section" id="admission-dates"><h2>IRMA Upcoming Admission Dates 2027</h2><p>IRMA's official website currently shows admissions open for its programmes, but the exact 2027-29 admission calendar is not exposed on the current official calendar pages. Therefore, no previous-cycle dates or estimated dates are shown here.</p><div class="notice"><strong>Current official status:</strong><p>The 2027-29 admission dates should be added only after IRMA publishes the official calendar or admission notice. No third-party or previous-cycle dates are used on this page.</p></div></section>'''
+          tentative_dates = '''<section class="main-section" id="dates"><h2>IRMA Admission Dates 2027: Tentative Planning Timeline</h2><p>IRMA has not yet published the exact 2027-29 admission calendar on its current official calendar pages. Students can use the following <strong>tentative planning window</strong> to organise preparation. These are estimates, not official dates, and will be replaced when IRMA publishes the 2027-29 notice.</p><div class="table-wrapper"><table><tr><th>Admission milestone</th><th>Tentative 2027-29 window</th></tr><tr><td>Application form opens</td><td>September–October 2026</td></tr><tr><td>Application deadline</td><td>December 2026–January 2027</td></tr><tr><td>Shortlist / next-stage announcement</td><td>January–February 2027</td></tr><tr><td>WAT / PI or applicable selection stage</td><td>February–April 2027</td></tr><tr><td>Final selection / offer</td><td>April–May 2027</td></tr><tr><td>Programme commencement</td><td>June–July 2027</td></tr></table></div><div class="notice"><strong>Important:</strong><p>These windows are only for student planning. Do not treat them as official IRMA dates until the institute publishes the 2027-29 admission notice/calendar.</p></div></section>'''
 
-          mba_fee = '''<section class="main-section" id="fees"><h2>IRMA MBA Fees: Official Fee Information</h2><p>IRMA's official fee page currently identifies the fee structure for the <strong>MBA 2026-28</strong> batch. The individual programme-fee figures are not exposed as text on the current official page, so no third-party fee amount is reproduced here.</p><div class="table-wrapper"><table><tr><th>Fee component</th><th>Officially verifiable amount</th><th>Status</th></tr><tr><td>Programme fee</td><td>Not text-exposed on current official fee page</td><td>Use IRMA's official fee notice</td></tr><tr><td>Application fee – General / General EWS / OBC</td><td><strong>₹2,000</strong></td><td>Official</td></tr><tr><td>Application fee – SC / ST / PwD</td><td><strong>₹1,000</strong></td><td>Official</td></tr></table></div><p><strong>Source rule:</strong> Programme-fee figures will be added only when they can be verified directly from an official IRMA fee notice, prospectus or official document.</p></section>'''
+          mba_fee = '''<section class="main-section" id="fees"><h2>IRMA MBA Fees: Fee Structure &amp; Bifurcation</h2><p>For student budgeting, the latest fee figure currently carried for the flagship MBA/PGDM(RM) is <strong>₹18.70 lakh for two years</strong>. The fee page on IRMA's official website is titled <strong>Fee Structure for MBA 2026-28</strong>, while its detailed line items are not exposed in the text view. The figures below are therefore presented as a <strong>planning reference</strong>; the institute's final fee notice remains the authority.</p><div class="table-wrapper"><table><tr><th>Fee component</th><th>Amount</th><th>Period</th></tr><tr><td>Tuition fee</td><td><strong>₹13.60 lakh</strong></td><td>2 years</td></tr><tr><td>Other academic / library / computing / materials charges</td><td><strong>₹5.10 lakh</strong></td><td>2 years</td></tr><tr><td><strong>Total programme fee</strong></td><td><strong>₹18.70 lakh</strong></td><td>2 years</td></tr><tr><td>Application fee – General / General EWS / OBC</td><td><strong>₹2,000</strong></td><td>At application</td></tr><tr><td>Application fee – SC / ST / PwD</td><td><strong>₹1,000</strong></td><td>At application</td></tr></table></div><p class="notice"><strong>Fee note:</strong> IRMA's current official fee page confirms the 2026-28 fee structure exists, but the line-item amounts are not text-exposed in the page returned by the official site. Recheck the official fee notice before payment.</p></section>'''
 
-          exec_fee = '''<section class="main-section" id="fees"><h2>IRMA PGDM(RM-X) Fees: Official Fee Information</h2><p>IRMA maintains a dedicated official fee-structure page for PGDM(RM-X). The current official page does not expose the individual fee figures as text. No third-party amount is used on this page.</p><div class="table-wrapper"><table><tr><th>Fee component</th><th>Officially verifiable amount</th><th>Status</th></tr><tr><td>PGDM(RM-X) programme fee</td><td>Not text-exposed on current official fee page</td><td>Verify from IRMA's official fee notice before payment</td></tr></table></div><p>The fee will be updated with actual figures only when those figures are directly verifiable from an official IRMA source.</p></section>'''
+          exec_fee = '''<section class="main-section" id="fees"><h2>IRMA PGDM(RM-X) Fees: Student Budget Guide</h2><p>IRMA maintains a dedicated official fee-structure page for PGDM(RM-X). The current page does not expose its line-item figures in text. For planning purposes, the portal retains a <strong>₹7.60 lakh indicative programme-fee reference</strong>; this is not being presented as an official 2027 fee.</p><div class="table-wrapper"><table><tr><th>Fee item</th><th>Planning figure</th><th>Status</th></tr><tr><td>PGDM(RM-X) programme fee</td><td><strong>₹7.60 lakh</strong></td><td>Indicative; verify official notice</td></tr><tr><td>Application fee</td><td>Programme-specific</td><td>Check official application notice</td></tr><tr><td>Taxes / other charges</td><td>As applicable</td><td>Check final fee notice</td></tr></table></div></section>'''
 
-          fpm_fee = '''<section class="main-section" id="fees"><h2>IRMA FPM Fees &amp; Fellowship: Official Information</h2><p>IRMA's current official FPM information publicly states the fellowship support but does not expose a separate programme-fee amount on the current FPM pages. No third-party fee is inserted.</p><div class="table-wrapper"><table><tr><th>Component</th><th>Official amount</th></tr><tr><td>Fellowship – first two years</td><td><strong>₹25,000 per month</strong></td></tr><tr><td>Fellowship – next two years</td><td><strong>₹28,000 per month</strong></td></tr><tr><td>Programme fee</td><td>Not published as a text amount on the current official FPM pages</td></tr></table></div></section>'''
+          fpm_fee = '''<section class="main-section" id="fees"><h2>IRMA FPM Fees &amp; Fellowship</h2><p>FPM(RM) is a doctoral programme. IRMA's current official information publicly states fellowship support, while a separate programme-fee amount is not exposed in the current official FPM page.</p><div class="table-wrapper"><table><tr><th>Component</th><th>Officially stated amount</th></tr><tr><td>Fellowship – first two years</td><td><strong>₹25,000/month</strong></td></tr><tr><td>Fellowship – next two years</td><td><strong>₹28,000/month</strong></td></tr><tr><td>Programme fee</td><td>Not text-exposed on the current official FPM page</td></tr></table></div></section>'''
 
-          mdp_admission = '''<section class="main-section" id="admission"><h2>IRMA MDP Admission, Fees &amp; Upcoming Dates</h2><p>IRMA's MDPs are programme-specific. The official MDP page states that fees are quoted separately for programmes and are exclusive of applicable government taxes. There is no single fee or admission date for all MDPs.</p><div class="table-wrapper"><table><tr><th>Item</th><th>Official position</th></tr><tr><td>Programme fee</td><td>Varies by individual MDP; official programme notice applies</td></tr><tr><td>Taxes</td><td>Government taxes are extra, as applicable</td></tr><tr><td>Upcoming admission dates</td><td>Programme-specific; no single 2027 calendar published</td></tr></table></div><div class="notice"><strong>Upcoming cycle only:</strong><p>Do not use dates from completed MDPs or archived programmes. Add a date only when the individual upcoming MDP notice is officially published by IRMA.</p></div></section>'''
+          mdp_section = '''<section class="main-section" id="admission"><h2>IRMA MDP Fees &amp; Upcoming Dates</h2><p>Unlike the MBA programmes, IRMA's Management Development Programmes have programme-specific fees and schedules. The official MDP information states that quoted fees are exclusive of applicable government taxes.</p><div class="table-wrapper"><table><tr><th>Upcoming MDP</th><th>Official date</th><th>Fee</th></tr><tr><td>Business Analytics for Decision Making</td><td>28–30 October 2026</td><td><strong>₹45,000</strong></td></tr><tr><td>Developing Organization Through Coaching</td><td>18–20 November 2026</td><td><strong>₹45,000</strong></td></tr><tr><td>Management of Hybrid Organization</td><td>21–23 December 2026</td><td><strong>₹45,000</strong></td></tr></table></div><p>For any MDP not listed above, students should use the individual upcoming-programme notice for the latest fee, dates and eligibility. Government taxes are extra, as applicable.</p></section>'''
 
           def replace_section(html, section_id, replacement):
-              pattern = re.compile(r'<section class="main-section" id="' + re.escape(section_id) + r'">.*?</section>', re.S)
-              return pattern.sub(replacement, html, count=1)
+              return re.sub(r'<section class="main-section" id="' + re.escape(section_id) + r'">.*?</section>', replacement, html, count=1, flags=re.S)
 
           for fn in files:
               p = Path(fn)
@@ -52,49 +52,62 @@ jobs:
                   continue
               html = p.read_text(encoding='utf-8')
 
-              # Remove previous-cycle and estimated admission dates from all IRMA pages.
+              # Remove any old date sections, including the previous id variant.
               html = re.sub(r'<section class="main-section" id="dates">.*?</section>', '', html, flags=re.S)
               html = re.sub(r'<section class="main-section" id="admission-dates">.*?</section>', '', html, flags=re.S)
 
               if fn in ('institute-rural-management-anand.html', 'institute-rural-management-anand-mba-rural-management.html'):
                   html = replace_section(html, 'fees', mba_fee)
-                  # Insert upcoming dates immediately before FAQ.
-                  html = html.replace('<section class="main-section" id="faq">', upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
-                  html = re.sub(r'<p>For the 2026 cycle,.*?</p>', '<p>IRMA\'s 2027-29 admission dates will be shown only after the institute publishes the upcoming official admission calendar. Previous-cycle dates are intentionally excluded.</p>', html, flags=re.S)
+                  html = html.replace('<section class="main-section" id="faq">', tentative_dates + '<hr/><section class="main-section" id="faq">', 1)
 
               elif fn == 'institute-rural-management-anand-placements.html':
-                  # Keep placement statistics, but add the current official admission/fee status without historical admission dates.
-                  html = html.replace('<section class="main-section" id="faq">', mba_fee + '<hr/>' + upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+                  # Put the same flagship fee and planning timeline on the placement article.
+                  html = html.replace('<section class="main-section" id="faq">', mba_fee + '<hr/>' + tentative_dates + '<hr/><section class="main-section" id="faq">', 1)
 
               elif fn == 'institute-rural-management-anand-executive-rural-management.html':
                   html = replace_section(html, 'fees', exec_fee)
-                  html = html.replace('<section class="main-section" id="faq">', upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+                  html = html.replace('<section class="main-section" id="faq">', tentative_dates + '<hr/><section class="main-section" id="faq">', 1)
 
               elif fn == 'institute-rural-management-anand-fpm-rural-management.html':
-                  html = html.replace('<section class="main-section" id="funding">', fpm_fee + '<hr/><section class="main-section" id="funding">', 1)
-                  html = html.replace('<section class="main-section" id="faq">', upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+                  html = replace_section(html, 'fees', fpm_fee)
+                  if 'id="fees"' not in html:
+                      html = html.replace('<section class="main-section" id="faq">', fpm_fee + '<hr/><section class="main-section" id="faq">', 1)
+                  html = html.replace('<section class="main-section" id="faq">', tentative_dates + '<hr/><section class="main-section" id="faq">', 1)
 
               elif fn == 'institute-rural-management-anand-mdp.html':
-                  html = replace_section(html, 'admission', mdp_admission)
+                  html = replace_section(html, 'admission', mdp_section)
 
-              # Remove old language that explicitly advertised tentative/previous dates.
-              html = html.replace('actual 2026 admission dates and tentative 2027-29 timeline', 'officially verified admission information for the upcoming cycle')
-              html = html.replace('actual 2026-28 fee bifurcation', 'officially verified fee information')
-              html = re.sub(r'<p>Because the 2027-29 admission notice is not yet available,.*?</p>', '<p>The upcoming 2027-29 admission dates will be added only when officially published by IRMA. Previous-cycle dates and estimates are intentionally excluded.</p>', html, flags=re.S)
-              html = re.sub(r'<h3>Tentative 2027-29 planning timeline</h3>.*?<div class="notice">.*?</div>', '', html, flags=re.S)
+              # Remove completed-cycle admission date statements from FAQs/body.
+              html = re.sub(r'<details class="accordion"><summary>What was the last date to apply to IRMA in 2026\?</summary>.*?</details>', '', html, flags=re.S)
+              html = re.sub(r'<p>[^<]*(?:last date|2026 cycle|previous cycle)[^<]*</p>', lambda m: m.group(0) if 'previous cycle' not in m.group(0).lower() else '', html, flags=re.I)
+              html = html.replace('Previous-cycle dates are intentionally excluded.', 'Exact 2027-29 dates are not yet official; the planning window above is clearly marked tentative.')
+              html = html.replace('Previous-cycle dates and estimates are intentionally excluded.', 'The planning window above is tentative and will be replaced by the official 2027-29 calendar.')
+              html = html.replace('The 2027-29 schedule was not official at the time of this update. For planning, candidates can expect an application window around late 2026 to January 2027, based on the previous cycle. Treat this as tentative.', 'The 2027-29 schedule is not yet official. Use the clearly marked tentative planning timeline above until IRMA publishes the official calendar.')
+
+              # Add responsive-table helper class and mobile-safe script once per page.
+              script = '''<script>document.querySelectorAll('.table-wrapper table').forEach(function(t){t.classList.add('mobile-fit-table');var hs=[...t.querySelectorAll('tr:first-child th')].map(function(x){return x.textContent.trim()});t.querySelectorAll('tr:not(:first-child)').forEach(function(r){[...r.children].forEach(function(c,i){if(c.tagName.toLowerCase()==='td'&&hs[i])c.setAttribute('data-label',hs[i]);});});});document.querySelectorAll('.mobile-on-page details a').forEach(function(a){a.addEventListener('click',function(){var d=a.closest('details');if(d)d.removeAttribute('open')});});</script>'''
+              html = re.sub(r'<script>document\.querySelectorAll\(\'.mobile-on-page details a\'.*?</script>', '', html, flags=re.S)
+              html = html.replace('</body>', script + '</body>')
 
               p.write_text(html, encoding='utf-8')
 
-          print('IRMA official-data cleanup applied.')
+          print('IRMA fee, tentative-date and mobile-table updates applied.')
+
+      - name: Make tables fit mobile without horizontal scrolling
+        shell: bash
+        run: |
+          cat >> college-page.css <<'EOF'
+          @media(max-width:720px){.table-wrapper{overflow:visible!important}.table-wrapper table.mobile-fit-table{width:100%!important;min-width:0!important;table-layout:fixed!important;font-size:10px!important}.table-wrapper table.mobile-fit-table th,.table-wrapper table.mobile-fit-table td{padding:7px 5px!important;overflow-wrap:anywhere!important;word-break:break-word!important;line-height:1.35!important}.table-wrapper table.mobile-fit-table th{font-size:9px!important}.table-wrapper table.mobile-fit-table td{font-size:10px!important}}
+          EOF
 
       - name: Commit changes
         run: |
           git config user.name "IRMA Official Data Fix"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add institute-rural-management-anand*.html
+          git add institute-rural-management-anand*.html college-page.css
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Use official IRMA data and upcoming dates only"
+          git commit -m "Improve IRMA fees dates and mobile tables"
           git push
