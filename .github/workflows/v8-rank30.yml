@@ -70,6 +70,57 @@ jobs:
       - name: Apply V8 QA sanity patch
         run: python scripts/fix_v8_qa_runtime.py
 
+      - name: Apply free-tier runtime hardening
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/independent_college_content_agent_v8.py')
+          s = p.read_text(encoding='utf-8')
+
+          # Free-tier policy: do not spend additional Gemini requests on
+          # automatic revisions. A college gets one generation call; QA and
+          # rendering remain deterministic and free.
+          s = s.replace('MAX_REVISIONS = 2', 'MAX_REVISIONS = 0')
+          s = s.replace('def gemini(prompt, tokens=30000):', 'def gemini(prompt, tokens=18000):')
+          s = s.replace('for attempt in range(6):', 'for attempt in range(1):')
+
+          # Reduce input-token pressure by selecting the most relevant official
+          # pages and capping the evidence package sent to Gemini.
+          a = s.index('def research(start):')
+          b = s.index('\ndef gemini(', a)
+          new_research = '''def research(start):
+              pages = official_crawl(start)
+              keywords = ("mba","pgdm","pgp","management","admission","placement","fee","fees","eligibility","selection","cutoff","curriculum","programme","program","brochure","prospectus","career","annual report")
+              ranked=[]
+              for p in pages:
+                  hay=(p.get("title","")+" "+p.get("url","")+" "+p.get("text","")[:5000]).lower()
+                  relevance=sum(1 for k in keywords if k in hay)
+                  ranked.append((relevance,p))
+              ranked.sort(key=lambda x:x[0], reverse=True)
+              selected=[]; total=0
+              for _,p in ranked:
+                  chunk=str(p.get("text", ""))[:9000]
+                  if not chunk: continue
+                  if selected and total + len(chunk) > 60000: continue
+                  selected.append({"url":p.get("url",""),"title":p.get("title",""),"text":chunk})
+                  total += len(chunk)
+                  if total >= 60000: break
+              block="\\n\\n--- OFFICIAL SOURCE ---\\n\\n".join(f"SOURCE URL: {p['url']}\\nTITLE: {p['title']}\\nCONTENT:\\n{p['text']}" for p in selected)
+              print(f"Free-tier research package: {len(selected)} official pages, {len(block)} characters")
+              return block, selected
+          '''
+          s = s[:a] + new_research + s[b:]
+
+          # Make the first-pass contract explicit enough that programme pages
+          # are not returned as thin two-section drafts.
+          old = 'Each section has id,title,answer,paragraphs,bullets,table with columns and rows, callout. Keep empty arrays when genuinely not applicable. Do not put HTML in the response.'
+          new = '''Each section has id,title,answer,paragraphs,bullets,table with columns and rows,callout. IMPORTANT: overview and programme pages MUST return at least 8 substantive sections; placement pages MUST return at least 7. Do not count FAQs as one of these sections. Every required section must contain either a useful answer/paragraphs, bullets, or a table grounded in the supplied official evidence. Include at least 5 college-specific FAQs. Never collapse the page into a short summary. Keep empty arrays only when the field is genuinely not applicable. Do not put HTML in the response.'''
+          s = s.replace(old, new)
+
+          p.write_text(s, encoding='utf-8')
+          print('Free-tier V8 runtime hardening applied')
+          PY
+
       - name: Compile benchmark code
         run: python -m py_compile scripts/independent_college_content_agent_v8.py scripts/controlled_v8_rank30_test.py scripts/harden_v8_runtime.py scripts/fix_v8_qa_runtime.py
 
