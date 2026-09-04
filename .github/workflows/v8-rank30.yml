@@ -3,9 +3,75 @@ name: V8 Benchmark - Rank 30
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: v8-rank30-benchmark
+  cancel-in-progress: false
+
+env:
+  GEMINI_MODEL: gemini-3.1-flash-lite
+  COLLEGE_TEST_RANK: '30'
+  COLLEGE_BATCH_SIZE: '1'
+
 jobs:
-  benchmark-registration:
+  benchmark:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - name: Confirm workflow registration
-        run: echo "V8 Benchmark - Rank 30 registered successfully"
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openpyxl
+
+      - name: Validate AI credentials
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is unavailable'; exit 1; }
+
+      - name: Validate Google Sheet credentials
+        env:
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+        run: |
+          test -n "$GOOGLE_SHEET_WEBAPP_URL" || { echo '::error::GOOGLE_SHEETS_WEBAPP_URL is unavailable'; exit 1; }
+          test -n "$GOOGLE_SHEETS_API_SECRET" || { echo '::error::GOOGLE_SHEETS_API_SECRET is unavailable'; exit 1; }
+
+      - name: Validate Google Sheet queue endpoint
+        env:
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+        run: |
+          python - <<'PY'
+          import os, urllib.parse, urllib.request, json
+          url = os.environ['GOOGLE_SHEET_WEBAPP_URL']
+          test_url = url + ('&' if '?' in url else '?') + urllib.parse.urlencode({'action':'health'})
+          with urllib.request.urlopen(test_url, timeout=30) as r:
+              data = json.loads(r.read().decode('utf-8'))
+          if not data.get('success'):
+              raise SystemExit('Google Sheet health check failed: ' + str(data))
+          print('Google Sheet endpoint: healthy')
+          print('Permanent completed rank boundary:', data.get('completedUpToRank'))
+
+      - name: Apply V8.1 runtime hardening
+        run: python scripts/harden_v8_runtime.py
+
+      - name: Compile benchmark code
+        run: python -m py_compile scripts/independent_college_content_agent_v8.py scripts/controlled_v8_rank30_test.py scripts/harden_v8_runtime.py
+
+      - name: Run controlled Rank 30 benchmark
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
+          GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+        run: python scripts/controlled_v8_rank30_test.py
