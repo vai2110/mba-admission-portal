@@ -1,0 +1,50 @@
+name: Fix Mobile On Page Navigation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-mobile-nav.yml'
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add mobile navigation auto-collapse script
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          script = '''<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.mobile-on-page details a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var details = link.closest('details');
+      if (details) details.removeAttribute('open');
+    });
+  });
+});
+</script>'''
+          for path in Path('.').glob('*.html'):
+            text = path.read_text(encoding='utf-8')
+            if 'document.querySelectorAll(\'.mobile-on-page details a[href^="#"]\')' in text:
+              continue
+            if 'class="mobile-on-page"' not in text:
+              continue
+            marker = '</body>'
+            if marker in text:
+              text = text.replace(marker, script + marker, 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+          rm -f .github/workflows/fix-mobile-nav.yml
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' .github/workflows/fix-mobile-nav.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Fix mobile On This Page auto-collapse [skip ci]"
+          git push
