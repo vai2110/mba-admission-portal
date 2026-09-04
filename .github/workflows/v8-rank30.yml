@@ -1,0 +1,11 @@
+name: V8 Benchmark - Rank 30
+
+on:
+  workflow_dispatch:
+
+jobs:
+  benchmark-registration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm workflow registration
+        run: echo "V8 Benchmark - Rank 30 registered successfully"
