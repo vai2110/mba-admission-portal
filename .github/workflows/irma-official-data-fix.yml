@@ -1,0 +1,100 @@
+name: IRMA Official Data Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'institute-rural-management-anand*.html'
+      - '.github/workflows/irma-official-data-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-irma-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply official-data rules
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          files = [
+              'institute-rural-management-anand.html',
+              'institute-rural-management-anand-placements.html',
+              'institute-rural-management-anand-mba-rural-management.html',
+              'institute-rural-management-anand-executive-rural-management.html',
+              'institute-rural-management-anand-fpm-rural-management.html',
+              'institute-rural-management-anand-mdp.html',
+          ]
+
+          upcoming_dates = '''<section class="main-section" id="admission-dates"><h2>IRMA Upcoming Admission Dates 2027</h2><p>IRMA's official website currently shows admissions open for its programmes, but the exact 2027-29 admission calendar is not exposed on the current official calendar pages. Therefore, no previous-cycle dates or estimated dates are shown here.</p><div class="notice"><strong>Current official status:</strong><p>The 2027-29 admission dates should be added only after IRMA publishes the official calendar or admission notice. No third-party or previous-cycle dates are used on this page.</p></div></section>'''
+
+          mba_fee = '''<section class="main-section" id="fees"><h2>IRMA MBA Fees: Official Fee Information</h2><p>IRMA's official fee page currently identifies the fee structure for the <strong>MBA 2026-28</strong> batch. The individual programme-fee figures are not exposed as text on the current official page, so no third-party fee amount is reproduced here.</p><div class="table-wrapper"><table><tr><th>Fee component</th><th>Officially verifiable amount</th><th>Status</th></tr><tr><td>Programme fee</td><td>Not text-exposed on current official fee page</td><td>Use IRMA's official fee notice</td></tr><tr><td>Application fee – General / General EWS / OBC</td><td><strong>₹2,000</strong></td><td>Official</td></tr><tr><td>Application fee – SC / ST / PwD</td><td><strong>₹1,000</strong></td><td>Official</td></tr></table></div><p><strong>Source rule:</strong> Programme-fee figures will be added only when they can be verified directly from an official IRMA fee notice, prospectus or official document.</p></section>'''
+
+          exec_fee = '''<section class="main-section" id="fees"><h2>IRMA PGDM(RM-X) Fees: Official Fee Information</h2><p>IRMA maintains a dedicated official fee-structure page for PGDM(RM-X). The current official page does not expose the individual fee figures as text. No third-party amount is used on this page.</p><div class="table-wrapper"><table><tr><th>Fee component</th><th>Officially verifiable amount</th><th>Status</th></tr><tr><td>PGDM(RM-X) programme fee</td><td>Not text-exposed on current official fee page</td><td>Verify from IRMA's official fee notice before payment</td></tr></table></div><p>The fee will be updated with actual figures only when those figures are directly verifiable from an official IRMA source.</p></section>'''
+
+          fpm_fee = '''<section class="main-section" id="fees"><h2>IRMA FPM Fees &amp; Fellowship: Official Information</h2><p>IRMA's current official FPM information publicly states the fellowship support but does not expose a separate programme-fee amount on the current FPM pages. No third-party fee is inserted.</p><div class="table-wrapper"><table><tr><th>Component</th><th>Official amount</th></tr><tr><td>Fellowship – first two years</td><td><strong>₹25,000 per month</strong></td></tr><tr><td>Fellowship – next two years</td><td><strong>₹28,000 per month</strong></td></tr><tr><td>Programme fee</td><td>Not published as a text amount on the current official FPM pages</td></tr></table></div></section>'''
+
+          mdp_admission = '''<section class="main-section" id="admission"><h2>IRMA MDP Admission, Fees &amp; Upcoming Dates</h2><p>IRMA's MDPs are programme-specific. The official MDP page states that fees are quoted separately for programmes and are exclusive of applicable government taxes. There is no single fee or admission date for all MDPs.</p><div class="table-wrapper"><table><tr><th>Item</th><th>Official position</th></tr><tr><td>Programme fee</td><td>Varies by individual MDP; official programme notice applies</td></tr><tr><td>Taxes</td><td>Government taxes are extra, as applicable</td></tr><tr><td>Upcoming admission dates</td><td>Programme-specific; no single 2027 calendar published</td></tr></table></div><div class="notice"><strong>Upcoming cycle only:</strong><p>Do not use dates from completed MDPs or archived programmes. Add a date only when the individual upcoming MDP notice is officially published by IRMA.</p></div></section>'''
+
+          def replace_section(html, section_id, replacement):
+              pattern = re.compile(r'<section class="main-section" id="' + re.escape(section_id) + r'">.*?</section>', re.S)
+              return pattern.sub(replacement, html, count=1)
+
+          for fn in files:
+              p = Path(fn)
+              if not p.exists():
+                  continue
+              html = p.read_text(encoding='utf-8')
+
+              # Remove previous-cycle and estimated admission dates from all IRMA pages.
+              html = re.sub(r'<section class="main-section" id="dates">.*?</section>', '', html, flags=re.S)
+              html = re.sub(r'<section class="main-section" id="admission-dates">.*?</section>', '', html, flags=re.S)
+
+              if fn in ('institute-rural-management-anand.html', 'institute-rural-management-anand-mba-rural-management.html'):
+                  html = replace_section(html, 'fees', mba_fee)
+                  # Insert upcoming dates immediately before FAQ.
+                  html = html.replace('<section class="main-section" id="faq">', upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+                  html = re.sub(r'<p>For the 2026 cycle,.*?</p>', '<p>IRMA\'s 2027-29 admission dates will be shown only after the institute publishes the upcoming official admission calendar. Previous-cycle dates are intentionally excluded.</p>', html, flags=re.S)
+
+              elif fn == 'institute-rural-management-anand-placements.html':
+                  # Keep placement statistics, but add the current official admission/fee status without historical admission dates.
+                  html = html.replace('<section class="main-section" id="faq">', mba_fee + '<hr/>' + upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+
+              elif fn == 'institute-rural-management-anand-executive-rural-management.html':
+                  html = replace_section(html, 'fees', exec_fee)
+                  html = html.replace('<section class="main-section" id="faq">', upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+
+              elif fn == 'institute-rural-management-anand-fpm-rural-management.html':
+                  html = html.replace('<section class="main-section" id="funding">', fpm_fee + '<hr/><section class="main-section" id="funding">', 1)
+                  html = html.replace('<section class="main-section" id="faq">', upcoming_dates + '<hr/><section class="main-section" id="faq">', 1)
+
+              elif fn == 'institute-rural-management-anand-mdp.html':
+                  html = replace_section(html, 'admission', mdp_admission)
+
+              # Remove old language that explicitly advertised tentative/previous dates.
+              html = html.replace('actual 2026 admission dates and tentative 2027-29 timeline', 'officially verified admission information for the upcoming cycle')
+              html = html.replace('actual 2026-28 fee bifurcation', 'officially verified fee information')
+              html = re.sub(r'<p>Because the 2027-29 admission notice is not yet available,.*?</p>', '<p>The upcoming 2027-29 admission dates will be added only when officially published by IRMA. Previous-cycle dates and estimates are intentionally excluded.</p>', html, flags=re.S)
+              html = re.sub(r'<h3>Tentative 2027-29 planning timeline</h3>.*?<div class="notice">.*?</div>', '', html, flags=re.S)
+
+              p.write_text(html, encoding='utf-8')
+
+          print('IRMA official-data cleanup applied.')
+
+      - name: Commit changes
+        run: |
+          git config user.name "IRMA Official Data Fix"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add institute-rural-management-anand*.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Use official IRMA data and upcoming dates only"
+          git push
