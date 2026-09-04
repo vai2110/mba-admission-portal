@@ -168,6 +168,35 @@ jobs:
           git commit -m "Improve V8 Gemini diagnostics" || echo "No Gemini source changes to commit"
           git push origin main || true
 
+      - name: Apply V8.1 QA and revision hardening
+        run: python scripts/harden_v8_runtime.py
+
+      - name: Persist V8.1 hardening
+        run: |
+          python -m py_compile scripts/independent_college_content_agent_v8.py scripts/harden_v8_runtime.py
+          git diff -- scripts/independent_college_content_agent_v8.py
+          git add scripts/independent_college_content_agent_v8.py
+          git commit -m "Harden V8 QA and compact revisions" || echo "No V8.1 source changes to commit"
+          git push origin main || true
+
+      - name: Verify V8.1 hardening
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('scripts/independent_college_content_agent_v8.py').read_text(encoding='utf-8')
+          required=[
+              'def revise_page(page, college, rank, official_url, issues):',
+              'architecture failures:',
+              'insufficient content sections',
+              'required_generated_sections=7 if ptype=="placement" else 8',
+              'revised=revise_page(p,college,rank,url,issues)',
+          ]
+          missing=[x for x in required if x not in s]
+          if missing:
+              raise SystemExit('V8.1 hardening verification failed: '+repr(missing))
+          print('V8.1 hardening: OK')
+          PY
+
       - name: Run controlled V8 benchmark test
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
