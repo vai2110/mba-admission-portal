@@ -1,0 +1,51 @@
+name: Fix Nirma popular courses
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove duplicate course cards
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('nirma-university.html')
+          html = path.read_text(encoding='utf-8')
+          marker = '<section class="main-section" id="courses">'
+          start = html.find(marker)
+          if start == -1:
+              raise SystemExit('courses section not found')
+
+          section_end = html.find('</section>', start)
+          if section_end == -1:
+              raise SystemExit('courses section end not found')
+
+          section = html[start:section_end]
+          pattern = r'<div class="two-column">.*?</div><div class="table-wrapper">'
+          updated, count = re.subn(pattern, '<div class="table-wrapper">', section, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('duplicate course-card block not found')
+
+          html = html[:start] + updated + html[section_end:]
+          path.write_text(html, encoding='utf-8')
+
+      - name: Commit fix and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nirma-university.html
+          git rm .github/workflows/fix-nirma-popular-courses.yml
+          git commit -m "Fix Nirma popular courses table navigation"
+          git push
