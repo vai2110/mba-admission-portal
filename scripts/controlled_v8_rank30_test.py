@@ -9,10 +9,11 @@ is incomplete.
 
 No AGENTS.md or repository agent configuration is read or executed.
 
-The benchmark adds a temporary, deterministic network resolver around V8's
-fetch/discovery layer. It handles redirects, www/non-www, HTTP fallback,
-transient failures and the known IMT official-domain fallback. The same
-resolver logic should be folded into V8 after this benchmark passes.
+The benchmark adds temporary network/transport resolvers around V8's
+fetch/discovery and Google Sheet queue layers. These handle redirects,
+www/non-www, HTTP fallback, transient failures and the deployed Apps Script
+transport contract. The same transport logic should be folded into V8 after
+this benchmark passes.
 """
 import os
 import time
@@ -87,6 +88,24 @@ def robust_fetch(url):
 
 
 agent.fetch = robust_fetch
+
+
+# The deployed Apps Script endpoint exposes the queue-assignment operation
+# through authenticated POST. V8's generic sheet_get() historically attempted
+# GET ?action=nextBatch, which can return HTTP 404 on the deployed version.
+# Keep the benchmark deterministic by adapting only the queue transport here.
+_original_sheet_get = agent.sheet_get
+
+
+def robust_sheet_get(action, **params):
+    if action == "nextBatch":
+        print("Google Sheet queue transport: nextBatch -> authenticated assignBatch POST")
+        return agent.sheet_post("assignBatch", **params)
+    return _original_sheet_get(action, **params)
+
+
+agent.sheet_get = robust_sheet_get
+
 
 _original_discover = agent.discover_official
 
