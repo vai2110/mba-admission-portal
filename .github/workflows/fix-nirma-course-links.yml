@@ -1,0 +1,37 @@
+name: Fix Nirma Course Links
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add course navigation cards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('nirma-university.html')
+          s=p.read_text()
+          start=s.index('<section class="main-section" id="courses">')
+          end=s.index('</section>', start)+len('</section>')
+          old=s[start:end]
+          if 'View B.Tech CSE details' not in old:
+              cards='''<section class="main-section" id="courses"><h2>Popular Courses Offered at Nirma University</h2><p>These six courses are selected across different streams. Open a dedicated course page for detailed eligibility, admission process, fees, selection criteria, career options, placement information and student FAQs.</p><div class="two-column"><div class="pro-box"><h3>B.Tech Computer Science &amp; Engineering</h3><p>JEE Main/ACPC, fees, curriculum, placements and career options.</p><a class="cta" href="nirma-university-btech-cse.html">View B.Tech CSE details →</a></div><div class="pro-box"><h3>BBA (Hons.)</h3><p>IPMAT, selection weightage, eligibility, fees and career outcomes.</p><a class="cta" href="nirma-university-bba-hons.html">View BBA (Hons.) details →</a></div><div class="pro-box"><h3>B.Com (Hons.)</h3><p>Eligibility, fees, admission route, specialisations and career paths.</p><a class="cta" href="nirma-university-bcom-hons.html">View B.Com (Hons.) details →</a></div><div class="pro-box"><h3>B.Pharm</h3><p>Eligibility, admission route, fees, academic structure and careers.</p><a class="cta" href="nirma-university-bpharm.html">View B.Pharm details →</a></div><div class="pro-box"><h3>B.A., LL.B. (Hons.)</h3><p>CLAT, eligibility, fees, admission and legal career options.</p><a class="cta" href="nirma-university-ba-llb.html">View B.A. LL.B. details →</a></div><div class="pro-box"><h3>MBA</h3><p>CAT, TDP, PI, fees, scholarships, specialisations and placements.</p><a class="cta" href="nirma-university-mba.html">View MBA details →</a></div></div><div class="table-wrapper"><table><tr><th>Course name</th><th>Eligibility</th><th>Fees</th><th>Selection criteria</th></tr><tr><td><a href="nirma-university-btech-cse.html">B.Tech Computer Science &amp; Engineering</a></td><td>12th Science with PCM/relevant subject</td><td>₹2.75 lakh tuition/year</td><td>JEE Main for All-India seats; ACPC for state seats</td></tr><tr><td><a href="nirma-university-bba-hons.html">BBA (Hons.)</a></td><td>SSC &amp; HSC each 60%; IPMAT</td><td>₹3.89 lakh tuition/year + exam fee</td><td>IPMAT 50% + PI 30% + XII 20%</td></tr><tr><td><a href="nirma-university-bcom-hons.html">B.Com (Hons.)</a></td><td>Class XII/equivalent</td><td>₹2.25 lakh tuition/year</td><td>Merit/qualifying exam route</td></tr><tr><td><a href="nirma-university-bpharm.html">B.Pharm</a></td><td>HSC 50%, English + PCM/PCB/PCMB</td><td>₹2.80 lakh/year</td><td>Merit/ACPC route as applicable</td></tr><tr><td><a href="nirma-university-ba-llb.html">B.A., LL.B. (Hons.)</a></td><td>HSC 45%</td><td>₹3.75 lakh tuition/year</td><td>CLAT All-India merit</td></tr><tr><td><a href="nirma-university-mba.html">MBA</a></td><td>Bachelor's 50%</td><td>₹6.40 lakh/year tuition</td><td>CAT + TDP + PI + academics/profile</td></tr></table></div></section>'''
+              p.write_text(s[:start]+cards+s[end:])
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nirma-university.html
+          git diff --cached --quiet || git commit -m 'Add Nirma course navigation buttons'
+          git push
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          git rm .github/workflows/fix-nirma-course-links.yml || true
+          git commit -m 'Remove temporary Nirma link fixer' || true
+          git push || true
