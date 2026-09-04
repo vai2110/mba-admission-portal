@@ -3,10 +3,10 @@
 
 Rank 30 (Institute of Management Technology) is intentionally used instead of
 rank 27/29 because rank 27 is protected and rank 29 already has generated
-content. This benchmark uses the Google Sheet for production transport/status
-validation, but the benchmark target itself is explicitly selected from the
-repository master row so an already-busy/temporarily ineligible queue cannot
-prevent the controlled test from exercising V8.
+content. This benchmark uses the Google Sheet for endpoint health/transport
+validation, while the benchmark target itself is explicitly selected from the
+repository master row so a temporarily ineligible queue cannot prevent V8 from
+being exercised.
 
 No AGENTS.md or repository agent configuration is read or executed.
 
@@ -108,14 +108,27 @@ def robust_sheet_get(action, **params):
 agent.sheet_get = robust_sheet_get
 
 
-# The normal production queue is intentionally eligibility-driven. For this
-# controlled benchmark we must exercise Rank 30 even if a prior interrupted
-# run left it Researching or otherwise temporarily unavailable in assignBatch.
-# Pull the Rank-30 metadata from the repository master CSV, which is already
-# part of V8's local production input. This does NOT alter Sheet statuses and
-# does not affect production queue behaviour.
-_original_eligible_from_sheet = agent.eligible_from_sheet
+# Do not let the controlled benchmark mutate the production Sheet statuses.
+# Endpoint health and authenticated queue transport have already been tested;
+# the benchmark's purpose here is V8 generation/QA, not queue-state mutation.
+_original_sheet_post = agent.sheet_post
 
+
+def benchmark_sheet_post(action, **fields):
+    if action == "updateStatus":
+        print(f"Controlled benchmark: skipped Sheet status mutation for rank {fields.get('rank')}")
+        return {"success": True, "benchmark_only": True}
+    return _original_sheet_post(action, **fields)
+
+
+agent.sheet_post = benchmark_sheet_post
+
+
+# The normal production queue is eligibility-driven. For this controlled
+# benchmark we must exercise Rank 30 even if a prior interrupted run left it
+# Researching or otherwise temporarily unavailable in assignBatch. Pull the
+# target metadata from the repository master CSV. This override is local to
+# this benchmark and does not affect production queue behaviour.
 
 def benchmark_target_from_master():
     target = os.environ.get("COLLEGE_TEST_RANK", "30").strip()
@@ -148,8 +161,6 @@ def robust_discover(college, supplied):
     if resolved:
         return resolved
 
-    # Rank 30's Sheet entry has historically pointed at an IMT URL that can
-    # fail from CI even though the official domain itself is reachable.
     if str(college).strip().lower() in {
         "institute of management technology",
         "institute of management technology ghaziabad",
