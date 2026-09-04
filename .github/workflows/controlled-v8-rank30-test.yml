@@ -91,6 +91,83 @@ jobs:
           print('V8 source integrity: OK')
           PY
 
+      - name: Gemini API preflight
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.1-flash-lite
+        run: |
+          python - <<'PY'
+          import json, os, requests
+          model=os.environ['GEMINI_MODEL']
+          key=os.environ['GEMINI_API_KEY']
+          url=f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent'
+          payload={"contents":[{"role":"user","parts":[{"text":"Reply with exactly: GEMINI_PREFLIGHT_OK"}]}],"generationConfig":{"temperature":0,"maxOutputTokens":20}}
+          r=requests.post(url,headers={'x-goog-api-key':key,'Content-Type':'application/json'},json=payload,timeout=60)
+          print('Gemini preflight HTTP:',r.status_code)
+          if not r.ok:
+              print('Gemini preflight body:',r.text[:4000])
+              r.raise_for_status()
+          print('Gemini preflight response:',r.json())
+          PY
+
+      - name: Harden Gemini error reporting
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/independent_college_content_agent_v8.py')
+          s=p.read_text(encoding='utf-8')
+          start=s.index('def gemini(')
+          end=s.index('\ndef read_master', start)
+          replacement='''def gemini(prompt, tokens=30000):
+    if not API_KEY:
+        raise RuntimeError("GEMINI_API_KEY is missing")
+    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
+    payload = {"contents":[{"role":"user","parts":[{"text":prompt}]}],"generationConfig":{"temperature":0.12,"maxOutputTokens":tokens,"responseMimeType":"application/json"}}
+    last_error = None
+    for attempt in range(4):
+        try:
+            r = session.post(endpoint, headers={"x-goog-api-key": API_KEY, "Content-Type": "application/json"}, json=payload, timeout=180)
+            print(f"Gemini request: model={MODEL} attempt={attempt+1}/4 http={r.status_code} prompt_chars={len(prompt)}")
+            if not r.ok:
+                body = r.text[:5000]
+                print(f"Gemini error body: {body}")
+            if r.status_code in (429,500,502,503,504):
+                last_error = f"HTTP {r.status_code}: {r.text[:2000]}"
+                time.sleep(5*(attempt+1)); continue
+            r.raise_for_status()
+            data = r.json()
+            candidates = data.get("candidates") or []
+            if not candidates:
+                raise RuntimeError(f"Gemini returned no candidates: {json.dumps(data)[:5000]}")
+            content = candidates[0].get("content") or {}
+            parts = content.get("parts") or []
+            raw = "".join(str(x.get("text", "")) for x in parts if isinstance(x, dict))
+            if not raw.strip():
+                finish = candidates[0].get("finishReason")
+                raise RuntimeError(f"Gemini returned empty text; finishReason={finish}; response={json.dumps(data)[:5000]}")
+            try:
+                return json.loads(raw)
+            except json.JSONDecodeError as exc:
+                finish = candidates[0].get("finishReason")
+                raise RuntimeError(f"Gemini JSON parse failed: {exc}; finishReason={finish}; raw_prefix={raw[:3000]}") from exc
+        except requests.RequestException as exc:
+            last_error = f"{type(exc).__name__}: {exc}"
+            if attempt == 3:
+                raise RuntimeError(f"Gemini HTTP request failed after 4 attempts: {last_error}") from exc
+            time.sleep(5*(attempt+1))
+    raise RuntimeError(f"Gemini request failed after retries: {last_error}")
+'''
+          p.write_text(s[:start]+replacement+s[end:],encoding='utf-8')
+          print('Gemini diagnostics patch: applied')
+          PY
+
+      - name: Persist Gemini diagnostics patch
+        run: |
+          git diff -- scripts/independent_college_content_agent_v8.py
+          git add scripts/independent_college_content_agent_v8.py
+          git commit -m "Improve V8 Gemini diagnostics" || echo "No Gemini source changes to commit"
+          git push origin main || true
+
       - name: Run controlled V8 benchmark test
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
