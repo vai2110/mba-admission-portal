@@ -1,0 +1,51 @@
+name: Christ Cutoff Rewrite
+
+on:
+  push:
+    paths:
+      - '.github/workflows/christ-cutoff-rewrite.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite cutoff sections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          replacements = {
+            'christ-university.html': '''<section class="main-section" id="cutoff"><h2>What Is the Christ University Cutoff?</h2><p>There is no single Christ University cutoff because admission rules are different for each programme. A student applying for MBA should look at the accepted entrance-test score first, while UG applicants should check the academic eligibility and the selection process for the exact course.</p><p>For MBA, the 2026 eligibility thresholds were CAT 60 percentile, XAT 60 percentile, CMAT 60 percentile, ATMA 60 percentile, MAT 600, GMAT Focus 450 and GRE 295. These numbers tell you whether you meet the minimum test-score requirement; they do not mean that a student at that score will receive an offer.</p><p>For BBA, BCA, BCom, BTech and other UG programmes, Christ does not provide one university-wide closing cutoff. Your relevant benchmark is the eligibility requirement plus the programme's entrance test and selection stages. If you are checking a specific course, use its dedicated page for the applicable admission criteria.</p></section>''',
+            'christ-university-mba.html': '''<section class="main-section" id="cutoff"><h2>What CAT/XAT Score Is Needed for Christ MBA?</h2><p>For the 2026 MBA admission cycle, Christ listed minimum eligibility scores of CAT 60 percentile, XAT 60 percentile, CMAT 60 percentile, ATMA 60 percentile, MAT 600, GMAT Focus 450 and GRE 295.</p><p>These are minimum scores required to be considered eligible. They are not final admission cutoffs. A student who meets the CAT 60 percentile requirement still has to go through Christ's selection process, which includes Group Discussion, Micro Presentation, Written Assessment and Personal Interview, along with academic performance.</p><p>So, if you are asking whether 60 percentile guarantees admission, the answer is no. The useful way to read the cutoff is: below the published minimum, you do not meet the stated test eligibility; at or above it, you can enter the selection process, but the final decision depends on the complete selection process.</p></section>''',
+            'christ-university-btech-cse.html': '''<section class="main-section" id="cutoff"><h2>What Is the Christ BTech CSE Cutoff?</h2><p>Christ does not publish a JEE Main-style closing rank for BTech CSE on the programme information used for this page. So there is no official rank number that can be quoted as the Christ BTech CSE cutoff.</p><p>For a student, the more useful number is the academic eligibility: Class 12 with Physics, Mathematics and one prescribed third subject, with 50% aggregate in those three subjects and 50% in Mathematics.</p><p>Meeting this requirement only makes you academically eligible. It does not confirm admission because BTech selection is based on the university's notified admission and selection process. If you are comparing Christ with colleges that publish JEE Main closing ranks, do not use those ranks as a direct benchmark for Christ BTech CSE.</p></section>'''
+          }
+
+          for name, section in replacements.items():
+              p = Path(name)
+              text = p.read_text(encoding='utf-8')
+              new_text, count = re.subn(r'<section class="main-section" id="cutoff">.*?</section>', section, text, count=1, flags=re.S)
+              if count:
+                  p.write_text(new_text, encoding='utf-8')
+                  print('Updated', name)
+              else:
+                  print('No cutoff section found in', name)
+
+          # Remove this one-time workflow after the rewrite is committed.
+          wf = Path('.github/workflows/christ-cutoff-rewrite.yml')
+          if wf.exists():
+              wf.unlink()
+          PY
+
+      - name: Commit rewrite
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add christ-university.html christ-university-mba.html christ-university-btech-cse.html .github/workflows/christ-cutoff-rewrite.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Rewrite Christ cutoff sections for student intent"
+          git push
