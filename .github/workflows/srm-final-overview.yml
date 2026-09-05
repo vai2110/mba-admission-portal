@@ -1,0 +1,106 @@
+name: Finalize SRMIST Overview
+on:
+  push:
+    paths:
+      - '.github/workflows/srm-final-overview.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite SRMIST overview
+        shell: bash
+        run: |
+          cat > srm-institute-science-technology.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SRMIST 2026-27: Courses, Fees, Admission, Cutoff & Placements</title>
+<meta name="description" content="SRMIST 2026-27 courses, fees, admission, B.Tech cutoff, SRMJEEE, MBA, placements, campuses, scholarships and popular programme links.">
+<link rel="canonical" href="https://vai2110.github.io/mba-admission-portal/srm-institute-science-technology.html">
+<link rel="stylesheet" href="college-page.css">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+</head>
+<body>
+<header><div class="navbar"><a class="logo" href="index.html">MBA<span>Portal</span></a><nav class="nav-links"><a href="index.html">Home</a><a href="colleges.html">MBA Colleges</a><a href="srm-institute-science-technology.html">SRMIST</a></nav></div></header>
+<section class="hero"><div class="hero-container">
+<h1>SRM Institute of Science and Technology (SRMIST), Chennai: Courses, Fees, Admission 2026-27 & Placements</h1>
+<h2>Courses, fees, admission routes, B.Tech cutoff information, placements and programme-wise links for students comparing SRMIST.</h2>
+<div class="hero-location">Kattankulathur, Chengalpattu, Tamil Nadu · <a href="https://www.srmist.edu.in/" target="_blank" rel="noopener">Official SRMIST Website ↗</a></div>
+</div></section>
+<div class="page-container">
+<div class="quick-facts">
+<div class="quick-fact"><span class="quick-fact-label">Campuses</span><span class="quick-fact-value">6</span></div>
+<div class="quick-fact"><span class="quick-fact-label">B.Tech entrance</span><span class="quick-fact-value">SRMJEEE</span></div>
+<div class="quick-fact"><span class="quick-fact-label">MBA entrance</span><span class="quick-fact-value">SRMJEEM</span></div>
+<div class="quick-fact"><span class="quick-fact-label">Official 2023 avg. salary</span><span class="quick-fact-value">₹10.5 LPA</span></div>
+</div>
+<div class="mobile-on-page"><details><summary>On this page</summary><a href="#overview">Overview</a><a href="#courses">Courses</a><a href="#popular">Popular Courses</a><a href="#admission">Admission</a><a href="#btech-cutoff">B.Tech Cutoff</a><a href="#fees">Fees</a><a href="#placements">Placements</a><a href="#scholarships">Scholarships</a><a href="#faq">FAQs</a></details></div>
+<div class="page-layout"><aside class="sidebar"><div class="sidebar-card"><div class="sidebar-title">On this page</div><a href="#overview">Overview</a><a href="#courses">Courses</a><a href="#popular">Popular Courses</a><a href="#admission">Admission</a><a href="#btech-cutoff">B.Tech Cutoff</a><a href="#fees">Fees</a><a href="#placements">Placements</a><a href="#scholarships">Scholarships</a><a href="#faq">FAQs</a></div></aside>
+<main class="content">
+<section class="main-section" id="overview"><h2>SRMIST Overview</h2>
+<p>SRM Institute of Science and Technology (SRMIST) is a deemed university with its flagship Kattankulathur campus in the Chennai region. The university has six SRMIST campuses: Kattankulathur, Ramapuram, Vadapalani, Modinagar, Tiruchirappalli and Baburayanpettai.</p>
+<p>Students commonly compare SRMIST for B.Tech, MBA, MBBS, MCA and other UG, PG and doctoral programmes. Programme availability, fees and admission routes differ by course and campus, so the course page should be checked before making a choice.</p>
+</section><hr/>
+<section class="main-section" id="courses"><h2>SRMIST Courses</h2>
+<p>SRMIST offers programmes in Engineering &amp; Technology, Management, Medicine &amp; Health Sciences, Science &amp; Humanities, Law and Agricultural Sciences. B.Tech includes CSE, Artificial Intelligence, Information Technology, ECE and several specialised technology programmes. Management includes MBA Business Administration and specialised MBA programmes.</p>
+</section><hr/>
+<section class="main-section" id="popular"><h2>Popular SRMIST Courses</h2>
+<div class="table-wrapper"><table><tr><th>Programme</th><th>Student-useful detail</th><th>Dedicated page</th></tr>
+<tr><td>B.Tech CSE</td><td>Core computer science pathway; SRMJEEE route.</td><td><a href="srm-institute-science-technology-btech-cse.html">B.Tech CSE fees, eligibility &amp; admission</a></td></tr>
+<tr><td>B.Tech Artificial Intelligence</td><td>AI-focused engineering pathway; SRMJEEE route.</td><td><a href="srm-institute-science-technology-btech-ai.html">B.Tech AI details</a></td></tr>
+<tr><td>B.Tech Information Technology</td><td>Software and IT-focused engineering pathway.</td><td><a href="srm-institute-science-technology-btech-it.html">B.Tech IT details</a></td></tr>
+<tr><td>B.Tech ECE</td><td>Electronics, communication and embedded-systems pathway.</td><td><a href="srm-institute-science-technology-btech-ece.html">B.Tech ECE details</a></td></tr>
+<tr><td>MBA</td><td>Broad management programme; SRMJEEM + PI or eligible national-level test route.</td><td><a href="srm-institute-science-technology-mba.html">MBA fees, eligibility &amp; admission</a></td></tr>
+<tr><td>MBA Business Analytics</td><td>Management with analytics focus.</td><td><a href="srm-institute-science-technology-mba-business-analytics.html">MBA Business Analytics details</a></td></tr>
+<tr><td>MBA Financial Services with NSE</td><td>Finance and capital-markets oriented MBA.</td><td><a href="srm-institute-science-technology-mba-financial-services-nse.html">MBA Financial Services details</a></td></tr>
+<tr><td>MBBS</td><td>Medical UG programme at Kattankulathur; NEET-UG route.</td><td><a href="srm-institute-science-technology-mbbs.html">MBBS details</a></td></tr>
+<tr><td>MCA</td><td>Postgraduate computer applications programme.</td><td><a href="srm-institute-science-technology-mca.html">MCA details</a></td></tr>
+</table></div></section><hr/>
+<section class="main-section" id="admission"><h2>SRMIST Admission 2026-27</h2>
+<h3>B.Tech admission</h3><p>SRMIST uses SRMJEEE (UG) for B.Tech admissions. The official 2026 FAQ listed three application phases, with deadlines of April 16, June 4 and June 30, 2026. These dates belong to the 2026 cycle and should not be treated as a future 2027 schedule.</p>
+<h3>MBA admission</h3><p>For MBA, SRMIST lists SRMJEEM followed by personal interview. Candidates with CAT, XAT, MAT, GMAT, NMAT, CMAT or TANCET scores can receive direct consideration for the PI subject to the stated eligibility.</p>
+<h3>Other programmes</h3><p>MBBS admission follows the NEET-UG and medical counselling route. Other UG and PG programmes have course-specific eligibility and admission rules.</p>
+</section><hr/>
+<section class="main-section" id="btech-cutoff"><h2>SRMIST B.Tech Cutoff: What Rank Should You Target?</h2>
+<p>SRMIST does not publish a single official branch-wise closing-rank table on the current programme pages that can be used as a universal B.Tech cutoff. Therefore, this page does <strong>not</strong> present unofficial CSE/ECE closing ranks as official cutoffs.</p>
+<div class="answer-box"><strong>What is officially available?</strong><p>SRMJEEE rank is used in counselling, and the official counselling manual states that programme/campus allotment depends on rank, preferences and seat availability. Students should use their actual SRMJEEE rank during counselling rather than relying on an unverified internet cutoff.</p></div>
+</section><hr/>
+<section class="main-section" id="fees"><h2>SRMIST Fees</h2>
+<h3>Selected official management fees</h3><div class="table-wrapper"><table><tr><th>Programme / campus</th><th>Official fee</th></tr>
+<tr><td>MBA Business Administration, Kattankulathur</td><td>₹4,50,000</td></tr>
+<tr><td>MBA Business Administration, Ramapuram</td><td>₹3,25,000</td></tr>
+<tr><td>MBA Business Administration, Vadapalani</td><td>₹3,00,000</td></tr>
+<tr><td>MBA Financial Services with NSE, Kattankulathur</td><td>₹5,75,000</td></tr>
+<tr><td>MBA Executive PGDM, Kattankulathur</td><td>₹12,00,000</td></tr>
+</table></div>
+<h3>B.Tech fee example</h3><p>The official SRMIST B.Tech CSE with Big Data Analytics page lists an annual fee of ₹4,25,000 for the Kattankulathur programme. Fees vary by branch and campus, so the dedicated course page should be used for the exact programme.</p>
+</section><hr/>
+<section class="main-section" id="placements"><h2>SRMIST Placements</h2>
+<p>The latest consolidated university-level placement figures identified in SRMIST's official 2023 brochure report <strong>1,311 companies visited, 13,069 offers, 3,970 high-paying offers, a maximum salary of ₹1 crore per annum and an average salary of ₹10.5 LPA</strong>.</p>
+<p>For engineering students, official NIRF 2026 data for 2024-25 reports 4,144 placed out of 4,408 graduating students in four-year UG programmes, with a median salary of ₹6.32 lakh. For two-year PG programmes, 595 of 621 graduates were placed, with a median salary of ₹6.35 lakh.</p>
+</section><hr/>
+<section class="main-section" id="scholarships"><h2>SRMIST Scholarships</h2><p>SRMIST offers scholarships including Founder’s Scholarship and SRM Merit Scholarship. B.Tech scholarship criteria include specified SRMJEEE and JEE Main rank bands, along with other academic achievement categories. Renewal conditions apply, so students should check the current scholarship policy for the exact rank, CGPA and renewal requirements.</p></section><hr/>
+<section class="main-section" id="faq"><h2>SRMIST FAQs Students Actually Ask</h2>
+<div class="accordion"><details><summary>Is SRMIST the same as SRM University?</summary><p>SRM Institute of Science and Technology is the deemed university commonly referred to as SRMIST. The broader SRM group also contains other institutions, so a student should verify that the programme is offered by SRMIST itself.</p></details>
+<details><summary>Which SRMIST campus is the main campus?</summary><p>Kattankulathur is the flagship SRMIST campus in the Chennai region and has the broadest multi-faculty academic ecosystem.</p></details>
+<details><summary>Does SRMIST accept JEE Main for B.Tech?</summary><p>SRMJEEE is the principal B.Tech admission route. SRMIST also publishes scholarship criteria involving JEE Main ranks; students should not confuse scholarship eligibility with the normal admission route.</p></details>
+<details><summary>Does SRMIST publish branch-wise B.Tech closing ranks?</summary><p>A universal official branch-wise closing-rank table is not available on the current SRMIST pages used for this guide. Counselling allotment depends on rank, preference and seat availability.</p></details>
+<details><summary>What is the SRMIST MBA fee?</summary><p>For MBA Business Administration, the official management admission page lists ₹4.50 lakh at Kattankulathur, ₹3.25 lakh at Ramapuram and ₹3 lakh at Vadapalani. Specialised MBA fees differ.</p></details>
+<details><summary>What was SRMIST's official average placement salary?</summary><p>The official 2023 university placement figures report an average salary of ₹10.5 LPA. This is a university-level historical figure, not a guaranteed salary for every programme or student.</p></details>
+</div></section>
+</main></div></div>
+<script>document.querySelectorAll('table').forEach(t=>{t.classList.add('mobile-fit-table');t.querySelectorAll('tr').forEach(r=>{[...r.children].forEach((c,i)=>{if(r.parentElement.tagName==='THEAD')return; const h=t.querySelector('tr').children[i]; if(h)c.dataset.label=h.textContent.trim();});});});</script>
+</body></html>
+EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add srm-institute-science-technology.html
+          git diff --cached --quiet || git commit -m "Finalize SRMIST overview content and links"
+          git push
