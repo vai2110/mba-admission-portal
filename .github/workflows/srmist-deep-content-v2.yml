@@ -1,0 +1,33 @@
+name: Build SRMIST Deep Content v2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/srmist_deep_content_v2.py'
+      - 'scripts/run_srmist_deep_content_v2.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: srmist-deep-content-v2
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate and validate SRMIST pages
+        run: python scripts/run_srmist_deep_content_v2.py
+      - name: Commit generated pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add srm-institute-science-technology.html srmist-placements.html srmist-btech-cse.html srmist-btech-artificial-intelligence.html srmist-btech-information-technology.html srmist-btech-ece.html srmist-mba.html srmist-mba-business-analytics.html srmist-mba-financial-services-nse.html srmist-mbbs.html srmist-mca.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Expand SRMIST pages for student query coverage'
+          git push
