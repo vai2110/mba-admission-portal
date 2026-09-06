@@ -1,0 +1,69 @@
+name: IIM Amritsar overview placement fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/iim-amritsar-placement-overview-fix.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recreate student-facing overview placement section
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p = Path('iim-amritsar.html')
+          html = p.read_text(encoding='utf-8')
+
+          old_h1 = 'IIM Amritsar Admission 2027: Fees, Cutoff, Courses &amp; Placements'
+          new_h1 = 'IIM Amritsar: Courses, Fees, Placements &amp; Admission Overview'
+          if old_h1 not in html:
+              raise SystemExit('Expected IIM Amritsar hero H1 not found')
+          html = html.replace(old_h1, new_h1, 1)
+
+          placement = '''<section class="main-section" id="placements"><h2>What are IIM Amritsar placements like?</h2>
+          <p>If you are comparing IIM Amritsar with other B-schools, do not look at the highest package alone. The latest official MBA 2024-26 placement update reports a <strong>₹43 LPA highest CTC</strong>, but its published salary metrics are segmented: the <strong>top 50 students averaged ₹18.60 LPA with a ₹18 LPA median</strong>, while the <strong>top 50% averaged ₹16.30 LPA with a ₹15.25 LPA median</strong>. The graduating cohort comprised 256 students.</p>
+          <div class="table-wrapper"><table><thead><tr><th>Latest MBA placement metric</th><th>Officially reported figure</th></tr></thead><tbody>
+          <tr><td>Highest CTC, 2024-26</td><td>₹43 LPA</td></tr>
+          <tr><td>Top 50 average CTC</td><td>₹18.60 LPA</td></tr>
+          <tr><td>Top 50 median CTC</td><td>₹18.00 LPA</td></tr>
+          <tr><td>Top 50% average CTC</td><td>₹16.30 LPA</td></tr>
+          <tr><td>Top 50% median CTC</td><td>₹15.25 LPA</td></tr>
+          <tr><td>Graduating cohort</td><td>256 students</td></tr>
+          </tbody></table></div>
+          <div class="notice"><strong>Important: ₹18.60 LPA is not the overall-batch average.</strong><p>IIM Amritsar's latest public update attaches that figure specifically to the top 50 students. This distinction matters when you compare the institute with colleges that publish an overall-batch average.</p></div>
+          <h3>Which roles and sectors are visible in the latest placement season?</h3>
+          <p>The 2024-26 final-placement season covered BFSI, IT and ITeS, Consulting, Manufacturing, FMCG/FMCD, Fintech, Analytics, Logistics, Construction and Real Estate, Energy, EdTech, Hospitality and Media. Roles included Finance, Marketing and Sales, General Management, Analytics, Consulting and Strategy, Human Resource Management, Product Management and Operations.</p>
+          <h3>Which companies recruit from IIM Amritsar?</h3>
+          <p>The institute's latest update names recruiters such as ICICI Bank, ICICI Lombard, Arcesium, Moody's, D.E. Shaw, Flipkart, Cognizant, TresVista, PwC, EY, Genpact, Kotak Life, Axis Bank, CRISIL, MongoDB, Tech Mahindra, Tata Capital, Bharat Electronics Limited, Hewlett Packard Enterprise, Network18, SAJ Food Products, Heritage Foods and Duroply.</p>
+          <h3>How have placement outcomes changed across recent batches?</h3>
+          <div class="table-wrapper"><table><thead><tr><th>Batch</th><th>Reported salary outcome</th><th>Highest CTC</th></tr></thead><tbody>
+          <tr><td>2024-26</td><td>Top 50 avg ₹18.60 L; top 50 median ₹18 L</td><td>₹43 LPA</td></tr>
+          <tr><td>2023-25</td><td>Top 20% avg ₹19.11 L; top 20% median ₹18 L</td><td>₹25.86 LPA</td></tr>
+          <tr><td>2022-24</td><td>Top quartile avg ₹19.73 L; top quartile median ₹18.01 L</td><td>₹58.52 LPA international; ₹28 LPA domestic</td></tr>
+          <tr><td>2021-23</td><td>Overall average ₹16.51 L; median ₹16 L</td><td>See official placement report</td></tr>
+          <tr><td>2020-22</td><td>Overall average ₹14.63 L</td><td>₹25.21 LPA</td></tr>
+          </tbody></table></div>
+          <p>The reporting format has changed across batches, so these figures should not be treated as a perfectly like-for-like salary trend. For the latest batch, the institute highlights top-segment outcomes rather than publishing an overall-batch average in the same format used by some older reports.</p>
+          <h3>What should a student take away from the placement numbers?</h3>
+          <p><strong>Three things matter more than the ₹43 LPA headline:</strong> the median for the reported group, the scope of the group being measured, and the roles available in your target function. IIM Amritsar's latest recruiter list shows opportunities across finance, analytics, consulting, technology, product, operations, marketing and HR, so students should compare the role mix as well as CTC.</p>
+          <p><a href="iim-amritsar-placements.html">Read the detailed IIM Amritsar placements page →</a> · <a href="https://www.iimamritsar.ac.in/placements/final-placement" rel="noopener" target="_blank">Verify the latest official placement update →</a></p>
+          </section><hr/>'''
+
+          pattern = re.compile(r'<section class="main-section" id="placements">.*?</section><hr/>', re.S)
+          html, count = pattern.subn(placement, html, count=1)
+          if count != 1:
+              raise SystemExit(f'Expected placement section replacement once; got {count}')
+
+          p.write_text(html, encoding='utf-8')
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iim-amritsar.html
+          git diff --cached --quiet || git commit -m "Recreate IIM Amritsar overview placements"
+          git push
