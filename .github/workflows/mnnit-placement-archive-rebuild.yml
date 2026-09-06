@@ -60,13 +60,15 @@ jobs:
 
           placement_page = repo/'school-management-studies-mnnit-allahabad-placements.html'
           s = placement_page.read_text()
-          # Keep one placement comparison table only: the five requested columns.
           s = replace_section(s, 'comparison', '')
           s = replace_section(s, 'latest', '')
           s = replace_section(s, 'year-wise', placement_section)
+          s = re.sub(r'<hr/>(?=<hr/>)', '', s)
           s = s.replace('<a href="#comparison">Year-wise Comparison</a>', '')
           s = s.replace('<a href="#latest">Latest Data</a>', '')
-          s = s.replace('<a href="#year-wise">Year-wise Comparison</a>', '<a href="#year-wise">Year-wise Comparison</a>', 1)
+          sidebar = '<div class="sidebar-title">On this page</div><a href="#overview">Overview</a><a href="#year-wise">Year-wise Comparison</a><a href="#batch">Batch Profile</a><a href="#sectors">Sectors</a><a href="#recruiters">Recruiters</a><a href="#faqs">FAQs</a>'
+          s = re.sub(r'<div class="sidebar-card">.*?</div>', '<div class="sidebar-card">' + sidebar + '</div>', s, count=1, flags=re.S)
+          s = s.replace('The page compares the official 2020-22 and 2024-26 MBA placement reports and explains the differences in reporting scope.', 'The page compares MBA placement outcomes year by year using the official MNNIT Training &amp; Placement Office archive.')
           placement_page.write_text(s)
           PY
       - name: Commit changes
@@ -74,5 +76,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add school-management-studies-mnnit-allahabad.html school-management-studies-mnnit-allahabad-mba.html school-management-studies-mnnit-allahabad-placements.html
-          git diff --cached --quiet || git commit -m 'Simplify MNNIT MBA placement tables'
+          git diff --cached --quiet || git commit -m 'Polish MNNIT placement page navigation'
           git push
