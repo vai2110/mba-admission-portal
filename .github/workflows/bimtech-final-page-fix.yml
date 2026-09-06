@@ -1,0 +1,106 @@
+name: BIMTECH final page fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bimtech-final-page-fix.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update BIMTECH pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('.')
+          residential = [
+              'birla-institute-management-technology.html',
+              'birla-institute-management-technology-pgdm.html',
+              'birla-institute-management-technology-pgdm-ib.html',
+              'birla-institute-management-technology-pgdm-ibm.html',
+              'birla-institute-management-technology-pgdm-retail-management.html',
+          ]
+
+          dates = '''<!-- BIMTECH-ADMISSION-DATES -->
+          <section class="main-section" id="important-dates"><h2>What are the important BIMTECH admission dates for 2027-29?</h2>
+          <p><strong>Officially confirmed:</strong> BIMTECH says the final selection list will be declared in <strong>March 2027</strong>, and the academic session is likely to start in <strong>June/July 2027</strong>. Final-year graduation candidates must submit their final result with at least 50% marks by <strong>31 October 2027</strong>.</p>
+          <div class="table-wrapper"><table><thead><tr><th>Admission stage</th><th>2027-29 date / window</th><th>Status</th></tr></thead><tbody>
+          <tr><td>Application window</td><td>September 2026 – February 2027*</td><td>Tentative planning window</td></tr>
+          <tr><td>Entrance exams</td><td>CAT 2026 / XAT 2027 / GMAT / CMAT 2027</td><td>Exam schedules depend on test bodies</td></tr>
+          <tr><td>Shortlisting &amp; selection process</td><td>Likely February–March 2027*</td><td>Tentative planning window</td></tr>
+          <tr><td>Final selection list</td><td>March 2027</td><td>Officially stated by BIMTECH</td></tr>
+          <tr><td>Academic session</td><td>June/July 2027</td><td>Officially stated as likely</td></tr>
+          <tr><td>Final-year result deadline</td><td>31 October 2027</td><td>Official requirement</td></tr>
+          </tbody></table></div>
+          <p><small>*BIMTECH has not published exact application-opening and application-closing dates on the current 2027-29 admission page. The September–February and February–March windows are planning estimates, not official deadlines.</small></p>
+          </section><hr/>
+          '''
+
+          def add_nav(html):
+              if 'href="#important-dates"' not in html:
+                  html = html.replace('<a href="#cutoff">Cutoff</a>', '<a href="#important-dates">Important Dates</a><a href="#cutoff">Cutoff</a>', 1)
+                  html = html.replace('<a href="#cutoff">Cutoff</a>', '<a href="#important-dates">Important Dates</a><a href="#cutoff">Cutoff</a>', 1)
+              return html
+
+          for fn in residential:
+              p = root / fn
+              html = p.read_text()
+              if '<section class="main-section" id="important-dates">' not in html:
+                  marker = '<section class="main-section" id="cutoff">'
+                  if marker in html:
+                      html = html.replace(marker, dates + marker, 1)
+              html = add_nav(html)
+              p.write_text(html)
+
+          # Make the online page explicit about its current intake and avoid implying residential admission dates.
+          p = root / 'birla-institute-management-technology-pgdm-online.html'
+          html = p.read_text()
+          if '<section class="main-section" id="important-dates">' not in html:
+              online_dates = '''<!-- BIMTECH-ONLINE-DATES -->
+          <section class="main-section" id="important-dates"><h2>What are the important BIMTECH Online PGDM admission dates?</h2>
+          <p>The Online PGDM follows a separate admission process from BIMTECH's residential 2027-29 PGDM programmes. The online programme pages do not publish a fixed annual 2027-29 deadline calendar; applicants should use the active Online PGDM admission portal for the current intake.</p>
+          <div class="table-wrapper"><table><thead><tr><th>Admission stage</th><th>Current information</th></tr></thead><tbody><tr><td>Application</td><td>Online application is available through the BIMTECH Online admission process</td></tr><tr><td>Academic fee</td><td>₹1.95 lakh on the current 2026 online programme material</td></tr><tr><td>Selection</td><td>Application → fee/document upload → interaction &amp; verification → final offer</td></tr></tbody></table></div>
+          <p><small>Do not use the residential PGDM 2027-29 dates for Online PGDM.</small></p></section><hr/>
+          '''
+              html = html.replace('<section class="main-section" id="fees">', online_dates + '<section class="main-section" id="fees">', 1)
+              html = html.replace('<a href="#fees">Fees</a>', '<a href="#important-dates">Important Dates</a><a href="#fees">Fees</a>', 1)
+              html = html.replace('<a href="#fees">Fees</a>', '<a href="#important-dates">Important Dates</a><a href="#fees">Fees</a>', 1)
+              p.write_text(html)
+
+          # Deepen placement page for students.
+          p = root / 'birla-institute-management-technology-placements.html'
+          html = p.read_text()
+          if '<!-- BIMTECH-PLACEMENT-DEPTH -->' not in html:
+              depth = '''<!-- BIMTECH-PLACEMENT-DEPTH -->
+          <section class="main-section" id="student-read"><h2>How should a student read BIMTECH placement data?</h2>
+          <p>If you are choosing between BIMTECH programmes, do not look only at the highest package. The more useful comparison is the combination of <strong>placement percentage, median CTC, average CTC and programme-specific outcomes</strong>.</p>
+          <h3>What does the median salary tell you?</h3>
+          <p>The median is the middle salary in the reported group. It is generally more useful than the highest package for understanding the central outcome because one unusually high offer does not pull it upward in the same way as an average.</p>
+          <h3>Which programme looks strongest on the 2023-25 placement report?</h3>
+          <p>PGDM recorded the highest Indian CTC at ₹22 LPA and an average of ₹10.90 LPA. PGDM-IBM had the highest median among the four programmes at ₹10.45 LPA. PGDM-IB and PGDM-RM reported 100% placement, while PGDM reported 96.79%.</p>
+          <h3>Does a ₹22 LPA package mean most students earn ₹22 LPA?</h3>
+          <p>No. ₹22 LPA is the highest Indian CTC reported for PGDM. For the same programme, the reported average was ₹10.90 LPA and median was ₹10 LPA. Students should use the median and average to understand the broader salary picture.</p>
+          <h3>What do the NIRF numbers add?</h3>
+          <p>NIRF gives a standardised institution-level view. For the 2023-24 graduating cohort, BIMTECH reported 454 students graduating in minimum stipulated time, all 454 placed, with a median salary of ₹10.50 LPA. This should not be presented as the salary of every BIMTECH programme.</p>
+          <h3>Which sectors recruit from BIMTECH?</h3>
+          <p>BIMTECH's placement ecosystem covers BFSI, consulting, IT/ITES, retail, FMCG/FMCD, insurance, manufacturing and other services. The institute also highlights more than 100 companies visiting campus for talent acquisition.</p>
+          <h3>What happens before final placement?</h3>
+          <p>The Centre for Corporate Relations supports students through CV and soft-skills workshops, recruiter sessions, pre-placement talks, industry interactions and internship-related activities. BIMTECH's current placement page says the 2026-27 placement season began from <strong>1 September 2026</strong>, with pre-placement talks from August 2026 onward and final placement activities from September 2026 onward.</p>
+          </section><hr/>
+          '''
+              html = html.replace('<section class="main-section" id="courses">', depth + '<section class="main-section" id="courses">', 1)
+              html = html.replace('<a href="#interpretation">How to read it</a>', '<a href="#student-read">Student Guide</a><a href="#interpretation">How to read it</a>', 1)
+              html = html.replace('<a href="#interpretation">How to read it</a>', '<a href="#student-read">Student Guide</a><a href="#interpretation">How to read it</a>', 1)
+              p.write_text(html)
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add birla-institute-management-technology*.html
+          git diff --cached --quiet || git commit -m "Improve BIMTECH admission dates and placement guidance"
+          git push
