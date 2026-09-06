@@ -23,50 +23,56 @@ jobs:
           archive_url = 'https://tpo.mnnit.ac.in/tnp/placement/placementarchive.php'
 
           rows = [
-            ('2026', '60', '53', '55', '88.33%', '₹7.98 LPA', '₹13.96 LPA', '₹9 LPA'),
-            ('2025', '56', '38', '38', '67.86%', '₹7.34 LPA', '₹12 LPA', '₹7.2 LPA'),
-            ('2024', '29', '19', '20', '65.52%', '₹7.10 LPA', '₹8.39 LPA', '₹8.39 LPA'),
-            ('2023', '27', '27', '27', '100%', '₹8.37 LPA', '₹13.58 LPA', '₹8.3 LPA'),
-            ('2022', '43', '41', '—', '95.35%', '₹6.90 LPA', '₹12.5 LPA', '₹6.6 LPA'),
-            ('2021', '30', '21', '—', '70%', '₹5.09 LPA', '₹8.46 LPA', '₹4.98 LPA'),
-            ('2020', '38', '26', '—', '68.42%', '₹5.85 LPA', '₹10 LPA', '₹5.75 LPA'),
-            ('2019', '34', '31', '35', '91.18%', '₹4.14 LPA', '₹5.75 LPA', '—'),
-            ('2018', '38', '38', '39', '100%', '₹4.32 LPA', '₹6.06 LPA', '—'),
+            ('2026', '88.33%', '₹7.98 LPA', '₹9 LPA', '₹13.96 LPA'),
+            ('2025', '67.86%', '₹7.34 LPA', '₹7.2 LPA', '₹12 LPA'),
+            ('2024', '65.52%', '₹7.10 LPA', '₹8.39 LPA', '₹8.39 LPA'),
+            ('2023', '100%', '₹8.37 LPA', '₹8.3 LPA', '₹13.58 LPA'),
+            ('2022', '95.35%', '₹6.90 LPA', '₹6.6 LPA', '₹12.5 LPA'),
+            ('2021', '70%', '₹5.09 LPA', '₹4.98 LPA', '₹8.46 LPA'),
+            ('2020', '68.42%', '₹5.85 LPA', '₹5.75 LPA', '₹10 LPA'),
+            ('2019', '91.18%', '₹4.14 LPA', '—', '₹5.75 LPA'),
+            ('2018', '100%', '₹4.32 LPA', '—', '₹6.06 LPA'),
           ]
 
           def table():
-              body = ''.join(f'<tr><td>{y}</td><td>{e}</td><td>{p}</td><td>{o}</td><td>{pct}</td><td>{avg}</td><td>{mx}</td><td>{med}</td></tr>' for y,e,p,o,pct,avg,mx,med in rows)
-              return f'''<div class="table-wrapper"><table><thead><tr><th>Year</th><th>Eligible</th><th>Placed</th><th>Offers</th><th>Placement</th><th>Average CTC</th><th>Highest CTC</th><th>Median CTC</th></tr></thead><tbody>{body}</tbody></table></div>'''
+              body = ''.join(f'<tr><td>{y}</td><td>{pct}</td><td>{avg}</td><td>{med}</td><td>{mx}</td></tr>' for y,pct,avg,med,mx in rows)
+              return f'''<div class="table-wrapper"><table><thead><tr><th>Year</th><th>Placement Rate</th><th>Average CTC</th><th>Median CTC</th><th>Highest CTC</th></tr></thead><tbody>{body}</tbody></table></div>'''
 
-          comparison = f'''<section class="main-section" id="year-wise"><h2>MNNIT MBA placement: year-wise comparison</h2><p>The Training &amp; Placement Office archive provides year-wise MBA placement records. The comparison below uses the MBA row for each placement year, rather than mixing MBA figures with institute-wide placement numbers.</p>{table()}<p><small>Source: MNNIT Training &amp; Placement Office placement archive. The 2026 figures are the latest archive snapshot and the archive notes that placement statistics may be updated as offers are received and verified.</small></p><p><a href="{archive_url}" target="_blank" rel="noopener">View the official MNNIT T&amp;P placement archive</a></p></section>'''
+          overview_section = f'''<section class="main-section" id="placements"><h2>What are MNNIT MBA placements like?</h2><p>The official MNNIT Training &amp; Placement Office archive records MBA outcomes by placement year. The latest 2026 archive snapshot reports 88.33% placement, ₹7.98 LPA average CTC, ₹13.96 LPA highest CTC and ₹9 LPA median CTC for the MBA row.</p>{table()}<p><small>The 2026 archive figures are subject to updates because the placement season can continue as offers are received and verified.</small></p><p><a href="school-management-studies-mnnit-allahabad-placements.html">See the detailed MNNIT MBA placements page</a> · <a href="{archive_url}" target="_blank" rel="noopener">Official T&amp;P placement archive</a></p></section>'''
 
-          latest = f'''<section class="main-section" id="latest"><h2>Latest MNNIT MBA placement data</h2><div class="table-wrapper"><table><thead><tr><th>Metric</th><th>2026 T&amp;P archive</th></tr></thead><tbody><tr><td>Eligible candidates</td><td>60</td></tr><tr><td>Placed</td><td>53</td></tr><tr><td>Offer count</td><td>55</td></tr><tr><td>Placement rate</td><td>88.33%</td></tr><tr><td>Average CTC</td><td>₹7.98 LPA</td></tr><tr><td>Highest CTC</td><td>₹13.96 LPA</td></tr><tr><td>Minimum CTC</td><td>₹4.5 LPA</td></tr><tr><td>Median CTC</td><td>₹9 LPA</td></tr></tbody></table></div><p>The latest archive snapshot reports 53 MBA students placed from 60 eligible candidates, with 55 offers. The archive itself cautions that placement statistics may be updated periodically as new offers are received and verified.</p><p><a href="{archive_url}" target="_blank" rel="noopener">Check the official T&amp;P archive</a></p></section>'''
+          mba_section = f'''<section class="main-section" id="placements"><h2>What is the MNNIT MBA placement record?</h2><p>The official Training &amp; Placement Office archive gives a multi-year view of MBA outcomes. For the latest 2026 archive snapshot, the MBA row reports 88.33% placement, ₹7.98 LPA average CTC, ₹13.96 LPA highest CTC and ₹9 LPA median CTC.</p>{table()}<p><small>2026 figures are the latest archive snapshot and may change as additional offers are received and verified.</small></p><p><a href="school-management-studies-mnnit-allahabad-placements.html">Read the detailed MNNIT MBA placement analysis</a> · <a href="{archive_url}" target="_blank" rel="noopener">Official T&amp;P placement archive</a></p></section>'''
 
-          placement_page = repo/'school-management-studies-mnnit-allahabad-placements.html'
-          s = placement_page.read_text()
-          s = re.sub(r'<section class="main-section" id="latest">.*?</section>', latest, s, count=1, flags=re.S)
-          marker = '<section class="main-section" id="batch">'
-          if 'id="year-wise"' not in s:
-              s = s.replace(marker, comparison + marker, 1)
-          s = s.replace('Latest Data</a>', 'Latest Data</a><a href="#year-wise">Year-wise Comparison</a>', 2)
-          placement_page.write_text(s)
+          placement_section = f'''<section class="main-section" id="year-wise"><h2>MNNIT MBA placement: year-wise comparison</h2><p>The official Training &amp; Placement Office archive provides year-wise MBA placement records. The table below keeps only the five student-relevant placement metrics: year, placement rate, average CTC, median CTC and highest CTC.</p>{table()}<p><small>Source: MNNIT Training &amp; Placement Office placement archive. The 2026 figures are the latest archive snapshot and the archive notes that placement statistics may be updated as offers are received and verified.</small></p><p><a href="{archive_url}" target="_blank" rel="noopener">View the official MNNIT T&amp;P placement archive</a></p></section>'''
+
+          def replace_section(text, section_id, replacement):
+              pattern = rf'<section class="main-section" id="{section_id}">.*?</section>'
+              return re.sub(pattern, replacement, text, count=1, flags=re.S)
 
           overview_page = repo/'school-management-studies-mnnit-allahabad.html'
           s = overview_page.read_text()
-          overview_section = f'''<section class="main-section" id="placements"><h2>What are MNNIT MBA placements like?</h2><p>The official MNNIT Training &amp; Placement Office archive records MBA outcomes by placement year. The latest 2026 archive snapshot reports 88.33% placement, ₹7.98 LPA average CTC, ₹13.96 LPA highest CTC and ₹9 LPA median CTC for the MBA row.</p>{table()}<p><small>The 2026 archive figures are subject to updates because the placement season can continue as offers are received and verified.</small></p><p><a href="school-management-studies-mnnit-allahabad-placements.html">See the detailed MNNIT MBA placements page</a> · <a href="{archive_url}" target="_blank" rel="noopener">Official T&amp;P placement archive</a></p></section>'''
-          s = re.sub(r'<section class="main-section" id="placements">.*?</section>', overview_section, s, count=1, flags=re.S)
+          s = replace_section(s, 'placements', overview_section)
           overview_page.write_text(s)
 
           mba_page = repo/'school-management-studies-mnnit-allahabad-mba.html'
           s = mba_page.read_text()
-          mba_section = f'''<section class="main-section" id="placements"><h2>What is the MNNIT MBA placement record?</h2><p>The official Training &amp; Placement Office archive gives a multi-year view of MBA outcomes. For the latest 2026 archive snapshot, 53 of 60 eligible MBA candidates are shown as placed, with 55 offers, 88.33% placement, ₹7.98 LPA average CTC, ₹13.96 LPA highest CTC and ₹9 LPA median CTC.</p>{table()}<p><small>2026 figures are the latest archive snapshot and may change as additional offers are received and verified.</small></p><p><a href="school-management-studies-mnnit-allahabad-placements.html">Read the detailed MNNIT MBA placement analysis</a> · <a href="{archive_url}" target="_blank" rel="noopener">Official T&amp;P placement archive</a></p></section>'''
-          s = re.sub(r'<section class="main-section" id="placements">.*?</section>', mba_section, s, count=1, flags=re.S)
+          s = replace_section(s, 'placements', mba_section)
           mba_page.write_text(s)
+
+          placement_page = repo/'school-management-studies-mnnit-allahabad-placements.html'
+          s = placement_page.read_text()
+          # Keep one placement comparison table only: the five requested columns.
+          s = replace_section(s, 'comparison', '')
+          s = replace_section(s, 'latest', '')
+          s = replace_section(s, 'year-wise', placement_section)
+          s = s.replace('<a href="#comparison">Year-wise Comparison</a>', '')
+          s = s.replace('<a href="#latest">Latest Data</a>', '')
+          s = s.replace('<a href="#year-wise">Year-wise Comparison</a>', '<a href="#year-wise">Year-wise Comparison</a>', 1)
+          placement_page.write_text(s)
           PY
       - name: Commit changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add school-management-studies-mnnit-allahabad.html school-management-studies-mnnit-allahabad-mba.html school-management-studies-mnnit-allahabad-placements.html
-          git diff --cached --quiet || git commit -m 'Rebuild MNNIT MBA placements from official TPO archive'
+          git diff --cached --quiet || git commit -m 'Simplify MNNIT MBA placement tables'
           git push
