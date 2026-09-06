@@ -1,0 +1,31 @@
+name: IIM Amritsar hero fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/iim-amritsar-hero-fix.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix overview H1
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('iim-amritsar.html')
+          html = p.read_text(encoding='utf-8')
+          old = '<h1>IIM Amritsar Admission 2027: Fees, Cutoff, Courses &amp; Placements</h1>'
+          new = '<h1>IIM Amritsar: Courses, Fees, Placements &amp; Admission Overview</h1>'
+          if old not in html:
+              raise SystemExit('Expected hero H1 not found')
+          p.write_text(html.replace(old, new, 1), encoding='utf-8')
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iim-amritsar.html
+          git diff --cached --quiet || git commit -m "Fix IIM Amritsar overview hero"
+          git push
