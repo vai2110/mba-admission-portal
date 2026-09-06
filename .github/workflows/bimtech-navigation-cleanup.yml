@@ -1,0 +1,45 @@
+name: BIMTECH navigation cleanup
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bimtech-navigation-cleanup.yml'
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Normalize BIMTECH navigation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          residential = [
+            'birla-institute-management-technology.html',
+            'birla-institute-management-technology-pgdm.html',
+            'birla-institute-management-technology-pgdm-ib.html',
+            'birla-institute-management-technology-pgdm-ibm.html',
+            'birla-institute-management-technology-pgdm-retail-management.html',
+          ]
+          for fn in residential:
+              p=Path(fn); html=p.read_text()
+              html=html.replace('<a href="#important-dates">Important Dates</a>','')
+              html=html.replace('<a href="#cutoff">Cutoff</a>','<a href="#important-dates">Important Dates</a><a href="#cutoff">Cutoff</a>')
+              p.write_text(html)
+          p=Path('birla-institute-management-technology-pgdm-online.html'); html=p.read_text()
+          html=html.replace('<a href="#important-dates">Important Dates</a>','')
+          html=html.replace('<a href="#fees">Fees</a>','<a href="#important-dates">Important Dates</a><a href="#fees">Fees</a>')
+          p.write_text(html)
+          p=Path('birla-institute-management-technology-placements.html'); html=p.read_text()
+          html=html.replace('<a href="#student-read">Student Guide</a>','')
+          html=html.replace('<a href="#interpretation">How to read it</a>','<a href="#student-read">Student Guide</a><a href="#interpretation">How to read it</a>')
+          p.write_text(html)
+          PY
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add birla-institute-management-technology*.html
+          git diff --cached --quiet || git commit -m "Normalize BIMTECH page navigation"
+          git push
