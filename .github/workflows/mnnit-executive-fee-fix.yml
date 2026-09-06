@@ -1,0 +1,85 @@
+name: MNNIT Executive MBA Fee Fix
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-fees:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update MNNIT Executive MBA fee information
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          fee_note = (
+              '<p><strong>Reported fee: ₹2.10 lakh for the three-year part-time MBA/Executive MBA listing.</strong> '
+              'This amount is reported by Shiksha for the MNNIT Allahabad part-time MBA and should be treated as indicative, '
+              'not as a confirmed 2027-29 institute fee. The current official SMS page confirms the Executive MBA programme and '
+              its intake of 30, but the accessible official material does not publish a numeric Executive MBA fee. The latest '
+              'MNNIT fee notification will override this reported figure.</p>'
+          )
+          fee_table = (
+              '<div class="table-wrapper"><table><thead><tr><th>Fee information</th><th>Amount</th><th>Status</th></tr></thead>'
+              '<tbody><tr><td>Executive MBA / part-time MBA total fee</td><td><strong>₹2.10 lakh</strong></td><td>Reported 2025-26/2026-cycle figure</td></tr>'
+              '<tr><td>Fee breakup</td><td>Not reliably published</td><td>Check latest MNNIT fee notice</td></tr></tbody></table></div>'
+          )
+          disclaimer = (
+              '<p><small><strong>Fee note:</strong> The ₹2.10 lakh figure is not presented as an official 2027 fee. '
+              'It is a current reported figure for MNNIT Allahabad’s three-year part-time MBA/Executive MBA listing. '
+              'MNNIT may revise fees, and the latest institute notification remains final.</small></p>'
+          )
+
+          files = [
+              Path('school-management-studies-mnnit-allahabad.html'),
+              Path('school-management-studies-mnnit-allahabad-mba.html'),
+              Path('school-management-studies-mnnit-allahabad-executive-mba.html'),
+          ]
+
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+
+              if path.name == 'school-management-studies-mnnit-allahabad-executive-mba.html':
+                  old = ('<p>A current numeric Executive MBA fee could not be verified from the official School material reviewed. '
+                         'Unlike the regular MBA, no reliable current fee bifurcation was found that can be safely presented as an official 2027 figure.</p>'
+                         '<p>Students should use the Executive MBA admission notification and latest institute fee notice when published. We have deliberately not inserted an old or third-party amount here.</p>')
+                  new = ('<p>The current official School of Management Studies page confirms the Executive MBA programme and an intake of 30, '
+                         'but the accessible official material does not publish a numeric fee. A current third-party course listing reports '
+                         '<strong>₹2.10 lakh total fee</strong> for MNNIT Allahabad’s three-year part-time MBA/Executive MBA route.</p>'
+                         + fee_table + disclaimer)
+                  if old not in text:
+                      raise SystemExit(f'Expected Executive MBA fee block not found in {path}')
+                  text = text.replace(old, new)
+              else:
+                  marker = '<section class="main-section" id="fees">'
+                  start = text.find(marker)
+                  if start == -1:
+                      raise SystemExit(f'Fees section not found in {path}')
+                  section_end = text.find('</section>', start)
+                  if section_end == -1:
+                      raise SystemExit(f'Fees section end not found in {path}')
+                  section = text[start:section_end]
+                  if 'Executive MBA fee' in section:
+                      continue
+                  insert = ('<hr/><section class="main-section" id="executive-fee"><h3>What is the MNNIT Executive MBA fee?</h3>'
+                            + fee_note + fee_table + disclaimer + '</section>')
+                  text = text[:section_end+10] + insert + text[section_end+10:]
+
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add school-management-studies-mnnit-allahabad.html school-management-studies-mnnit-allahabad-mba.html school-management-studies-mnnit-allahabad-executive-mba.html
+          git diff --cached --quiet || git commit -m "Add MNNIT Executive MBA fee details"
+          git push
