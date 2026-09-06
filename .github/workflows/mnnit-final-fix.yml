@@ -1,0 +1,43 @@
+name: MNNIT final content fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/mnnit-final-fix.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Correct MNNIT MBA content
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('school-management-studies-mnnit-allahabad.html')
+          h=p.read_text()
+          h=h.replace('<tr><td>Executive MBA</td><td>Intake 30</td><td>Written Test + Interview + academics + work experience</td></tr>','<tr><td><a href="school-management-studies-mnnit-allahabad-executive-mba.html">Executive MBA</a></td><td>Intake 30</td><td>Written Test + Interview + academics + work experience</td></tr>')
+          h=h.replace('Appear for the accepted management entrance examination and obtain a valid score.','For the regular MBA, MNNIT currently lists CAT, MAT, GMAT, CMAT, ATMA and XAT scores as accepted entrance routes.')
+          h=h.replace('Shortlisting is based on CAT percentile as stated by SMS MNNIT.','The School page highlights CAT-percentile-based shortlisting; the institute admission page also lists MAT, GMAT, CMAT, ATMA and XAT as accepted scores for regular MBA admission.')
+          h=h.replace('The regular MBA is the main student-facing programme for candidates seeking a full-time management degree at MNNIT.','The regular MBA is the main student-facing programme for candidates seeking a full-time management degree at MNNIT. The Executive MBA is a separate programme with an intake of 30.')
+          h=h.replace('<a href="school-management-studies-mnnit-allahabad-placements.html">MNNIT MBA Placements</a></p>','<a href="school-management-studies-mnnit-allahabad-placements.html">MNNIT MBA Placements</a> · <a href="school-management-studies-mnnit-allahabad-executive-mba.html">Executive MBA</a></p>')
+          p.write_text(h)
+
+          p=Path('school-management-studies-mnnit-allahabad-mba.html')
+          h=p.read_text()
+          h=h.replace('<span class="quick-fact-label">Entrance</span><span class="quick-fact-value">CAT</span>','<span class="quick-fact-label">Entrance</span><span class="quick-fact-value">CAT / MAT / XAT / GMAT / CMAT / ATMA</span>')
+          h=h.replace('Appear for CAT and obtain a valid score.','Appear for one of the entrance tests listed by MNNIT: CAT, MAT, GMAT, CMAT, ATMA or XAT.')
+          h=h.replace('Wait for the CAT-based shortlist.','Wait for the institute shortlist. SMS MNNIT highlights CAT-percentile-based shortlisting, while the institute admission page lists multiple accepted entrance tests.')
+          h=h.replace('The School\'s current official page specifically states CAT percentile-based shortlisting followed by GD and PI.','The School\'s current page states CAT-percentile-based shortlisting followed by GD and PI. MNNIT\'s central admission page also lists CAT, MAT, GMAT, CMAT, ATMA and XAT as accepted routes for regular MBA admission.')
+          h=h.replace('The exact 2027-29 eligibility conditions should be checked against the next official MNNIT admission brochure.','The exact 2027-29 eligibility conditions should be checked against the next official MNNIT admission brochure. The institute\'s current admission page confirms that the regular MBA is an entrance-test-based programme followed by GD and PI.')
+          h=h.replace('<a href="school-management-studies-mnnit-allahabad-placements.html">MNNIT MBA Placements</a></p>','<a href="school-management-studies-mnnit-allahabad-placements.html">MNNIT MBA Placements</a> · <a href="school-management-studies-mnnit-allahabad.html">SMS MNNIT Overview</a></p>')
+          p.write_text(h)
+          PY
+      - name: Commit correction
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add school-management-studies-mnnit-allahabad*.html
+          git diff --cached --quiet || git commit -m "Correct MNNIT MBA exam routes and links"
+          git push
