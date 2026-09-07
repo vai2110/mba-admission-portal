@@ -28,6 +28,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           rm -f .github/workflows/kiit-interlink.yml kiit-interlink.trigger
-          git add kiit-bhubaneswar.html kiit-bhubaneswar-placements.html .github/workflows/kiit-interlink.yml kiit-interlink.trigger
+          git add -A
           git commit -m 'Interlink all KIIT pages'
           git push
