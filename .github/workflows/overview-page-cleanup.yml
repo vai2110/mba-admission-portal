@@ -1,0 +1,55 @@
+name: Overview Page Cleanup
+
+on:
+  push:
+    paths:
+      - 'overview-cleanup.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix overview pages
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          pages = {
+              'soa-university-bhubaneswar.html': 'Courses, Fees, Admission 2026 & Placements',
+              'jaipuria-institute-of-management-lucknow.html': 'Courses, Fees, Admission 2026 & Placements',
+              'kiit-bhubaneswar.html': 'Courses, Fees, Admission 2026 & Placements',
+          }
+
+          citation_pattern = re.compile(r'cite.*?')
+          h1_pattern = re.compile(r'<h1>.*?</h1>', re.I | re.S)
+
+          for filename, h1 in pages.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              text = citation_pattern.sub('', text)
+              text, count = h1_pattern.subn(f'<h1>{h1}</h1>', text, count=1)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one hero H1 in {filename}; found {count}')
+              if 'cite' in text or '' in text:
+                  raise SystemExit(f'Citation artifact remains in {filename}')
+              path.write_text(text, encoding='utf-8')
+
+      - name: Commit changes and remove cleanup trigger
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f overview-cleanup.trigger .github/workflows/overview-page-cleanup.yml
+          git add soa-university-bhubaneswar.html jaipuria-institute-of-management-lucknow.html kiit-bhubaneswar.html .github/workflows/overview-page-cleanup.yml overview-cleanup.trigger
+          if git diff --cached --quiet; then
+            echo 'No changes required.'
+            exit 0
+          fi
+          git commit -m 'Fix overview H1s and citation artifacts'
+          git push
