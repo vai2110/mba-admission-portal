@@ -13,16 +13,14 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
+          import re
           p=Path('kiit-bhubaneswar.html')
           s=p.read_text(encoding='utf-8')
           if 'href="kiit-bca.html">Explore KIIT BCA' not in s:
-              needle='<div class="info-card"><span class="pill">Undergraduate</span><h3>KIIT BBA</h3>'
-              start=s.find(needle)
-              if start==-1: raise SystemExit('BBA card not found')
-              end=s.find('</div></div></section><section class="main-section" id="eligibility">', start)
-              if end==-1: raise SystemExit('course card boundary not found')
               card='<div class="info-card"><span class="pill">Computer Applications</span><h3>KIIT BCA</h3><p>Undergraduate computer applications programme for students targeting software and technology careers or a later MCA.</p><a href="kiit-bca.html">Explore KIIT BCA →</a></div>'
-              s=s[:end]+card+s[end:]
+              pattern=r'(<div class="info-card"><span class="pill">Undergraduate</span><h3>KIIT BBA</h3>.*?</div>)(</div></section><section class="main-section" id="eligibility">)'
+              s,n=re.subn(pattern,lambda m:m.group(1)+card+m.group(2),s,count=1,flags=re.S)
+              if n!=1: raise SystemExit('BBA card insertion point not found')
           p.write_text(s,encoding='utf-8')
           p=Path('kiit-bhubaneswar-placements.html')
           s=p.read_text(encoding='utf-8')
