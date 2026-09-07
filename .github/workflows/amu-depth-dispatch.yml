@@ -12,4 +12,4 @@ jobs:
       - name: Dispatch AMU depth workflow
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run amu-depth-upgrade.yml --ref main
+        run: gh workflow run amu-depth-upgrade.yml --repo vai2110/mba-admission-portal --ref main
