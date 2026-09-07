@@ -1,13 +1,11 @@
 name: Finalize KIIT page interlinks
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - 'kiit-interlink.trigger'
 permissions:
   contents: write
 jobs:
   patch:
+    if: ${{ !contains(github.event.head_commit.message, 'Interlink all KIIT pages') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +15,7 @@ jobs:
           from pathlib import Path
           p=Path('kiit-bhubaneswar.html')
           s=p.read_text(encoding='utf-8')
-          if 'href="kiit-bca.html">KIIT BCA' not in s:
+          if 'href="kiit-bca.html">Explore KIIT BCA' not in s:
               needle='<div class="info-card"><span class="pill">Undergraduate</span><h3>KIIT BBA</h3>'
               start=s.find(needle)
               if start==-1: raise SystemExit('BBA card not found')
@@ -25,18 +23,17 @@ jobs:
               if end==-1: raise SystemExit('course card boundary not found')
               card='<div class="info-card"><span class="pill">Computer Applications</span><h3>KIIT BCA</h3><p>Undergraduate computer applications programme for students targeting software and technology careers or a later MCA.</p><a href="kiit-bca.html">Explore KIIT BCA →</a></div>'
               s=s[:end]+card+s[end:]
-          if 'kiit-bhubaneswar-placements.html">Placements' not in s:
-              s=s.replace('<nav class="nav-links"><a href="#courses">Courses</a><a href="#admission">Admission</a><a href="#placements">Placements</a></nav>','<nav class="nav-links"><a href="#courses">Courses</a><a href="#admission">Admission</a><a href="#placements">Placements</a></nav>')
           p.write_text(s,encoding='utf-8')
           p=Path('kiit-bhubaneswar-placements.html')
           s=p.read_text(encoding='utf-8')
-          s=s.replace('<a href="kiit-bba.html">BBA</a></nav>','<a href="kiit-bba.html">BBA</a><a href="kiit-bca.html">BCA</a></nav>')
+          if 'href="kiit-bca.html">BCA</a></nav>' not in s:
+              s=s.replace('<a href="kiit-bba.html">BBA</a></nav>','<a href="kiit-bba.html">BBA</a><a href="kiit-bca.html">BCA</a></nav>')
           p.write_text(s,encoding='utf-8')
       - name: Commit and remove workflow
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          rm -f kiit-interlink.trigger .github/workflows/kiit-interlink.yml
-          git add kiit-bhubaneswar.html kiit-bhubaneswar-placements.html kiit-interlink.trigger .github/workflows/kiit-interlink.yml
+          rm -f .github/workflows/kiit-interlink.yml kiit-interlink.trigger
+          git add kiit-bhubaneswar.html kiit-bhubaneswar-placements.html .github/workflows/kiit-interlink.yml kiit-interlink.trigger
           git commit -m 'Interlink all KIIT pages'
           git push
