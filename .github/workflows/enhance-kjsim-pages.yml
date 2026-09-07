@@ -1,0 +1,58 @@
+name: Enhance KJSIM Pages
+
+on:
+  push:
+    paths:
+      - 'scripts/enhance_kjsim_pages.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  enhance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
+      - name: Enhance KJSIM pages
+        run: python scripts/enhance_kjsim_pages.py
+
+      - name: Verify target pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          pages=sorted(Path('.').glob('kj-somaiya-institute-of-management*.html'))
+          expected=6
+          if len(pages) != expected:
+              raise SystemExit(f'Expected {expected} KJSIM pages, found {len(pages)}')
+          for p in pages:
+              text=p.read_text(encoding='utf-8')
+              for marker in ['Student Reference Range','₹29.30 LPA','₹12 LPA','kjsim-enhancements.css']:
+                  if marker not in text:
+                      raise SystemExit(f'{marker} missing from {p}')
+          print('KJSIM enhancement verification passed.')
+          PY
+
+      - name: Commit enhanced pages
+        run: |
+          git config user.name "MBA Portal KJSIM Enhancer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kj-somaiya-institute-of-management*.html kjsim-enhancements.css
+          if git diff --cached --quiet; then
+            echo "No KJSIM changes required."
+          else
+            git commit -m "Improve KJSIM placement and cutoff content depth"
+            git push
+          fi
