@@ -1,7 +1,8 @@
 name: Remove IMT Nagpur Duplicate Programme Table
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: write
@@ -28,8 +29,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add imt-nagpur.html .github/workflows/remove-imt-overview-duplicate-table.yml
+          git add imt-nagpur.html
           git commit -m "Remove duplicate IMT Nagpur programme table"
+          git push
           git rm .github/workflows/remove-imt-overview-duplicate-table.yml
           git commit -m "Remove one-time duplicate table workflow"
           git push
