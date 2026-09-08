@@ -1,0 +1,35 @@
+name: Export Jain page changes
+on:
+  push:
+    paths:
+      - '.github/workflows/export-jain-changes.yml'
+jobs:
+  export:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reuse Jain updater script
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, subprocess
+          import yaml
+          wf=yaml.safe_load(Path('.github/workflows/update-jain-pages.yml').read_text())
+          step=next(x for x in wf['jobs']['update']['steps'] if x.get('name')=='Update Jain pages')
+          Path('/tmp/jain_update.sh').write_text(step['run'])
+          subprocess.run(['bash','-e','/tmp/jain_update.sh'],check=True)
+          PY
+      - name: Upload modified Jain pages
+        uses: actions/upload-artifact@v4
+        with:
+          name: jain-updated-pages
+          path: |
+            jain-university.html
+            jain-university-btech-cse.html
+            jain-university-mba.html
+            jain-university-bba.html
+            jain-university-bca.html
+            jain-university-bcom.html
+            jain-university-placements.html
+            jain-university.css
