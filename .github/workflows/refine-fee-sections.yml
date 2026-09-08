@@ -1,0 +1,149 @@
+name: Refine KL fee sections
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine fee sections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = {
+            'kl-university-btech-cse.html': {
+              'fee': '''<section class="main-section" id="fee-bifurcation">
+          <h2>KL University B.Tech CSE Fees: Fee Bifurcation</h2>
+          <p>The easiest way to understand the B.Tech CSE cost is to separate the one-time admission charge from the recurring semester fee. KLU fees can change by academic year and admission category, so the figures below are presented with their publication year rather than as confirmed 2026-27 fees.</p>
+          <div class="table-wrapper"><table>
+          <tr><th>Fee component</th><th>Amount</th><th>How it is charged</th></tr>
+          <tr><td>Admission fee</td><td>₹15,000</td><td>One time; 2024 Vijayawada reference</td></tr>
+          <tr><td>Semester tuition / merit fee</td><td>₹1,40,000</td><td>Per semester; 2024 Vijayawada reference</td></tr>
+          <tr><td><strong>First-semester academic fee</strong></td><td><strong>₹1,55,000</strong></td><td>Admission fee + semester fee</td></tr>
+          </table></div>
+          <p><strong>What you should add to this amount:</strong></p>
+          <ul>
+          <li><strong>Hostel and mess:</strong> budget separately because the cost depends on the accommodation and food plan selected.</li>
+          <li><strong>Examination and other university charges:</strong> check the current fee notice for applicable charges.</li>
+          <li><strong>Later semesters:</strong> confirm the current semester-wise schedule before estimating the full four-year academic cost.</li>
+          </ul>
+          <div class="answer-box"><strong>What is the confirmed 2026-27 B.Tech CSE fee?</strong><p>A final 2026-27 CSE fee is not established by the public material used for this page. Use the amount stated in your 2026-27 counselling or offer document before payment. The ₹1.55 lakh figure above is a 2024 Vijayawada reference.</p></div>
+          </section><hr/>''',
+              'fees': '''<section class="main-section" id="fees">
+          <h2>Hostel, Scholarships and Other B.Tech CSE Costs</h2>
+          <p>The academic fee is only one part of the total amount a student may spend at KLU. Your final budget should also account for living costs and any applicable university charges.</p>
+          <ul>
+          <li><strong>Hostel and mess:</strong> separate from the academic fee and dependent on the room and food option.</li>
+          <li><strong>Scholarships:</strong> check the current KLU scholarship rules to see whether your entrance score, merit or other eligibility criteria can reduce the payable amount.</li>
+          <li><strong>Other charges:</strong> verify examination, registration and any programme-specific charges in the current fee document.</li>
+          </ul>
+          <p class="source-note">Fee figures shown on this page are labelled by academic year wherever the published source is historical. Confirm the current amount with KLU before making a payment.</p>
+          </section><hr/>'''
+            },
+            'kl-university-btech-ai-data-science.html': {
+              'fee': '''<section class="main-section" id="fee-bifurcation">
+          <h2>KL University B.Tech AI &amp; Data Science Fees: Fee Bifurcation</h2>
+          <p>KLU publishes separate AI &amp; Data Science fees for Vijayawada and Hyderabad. The breakup below shows what is paid as the admission charge and what is charged as semester tuition, making it easier to estimate the initial academic outlay.</p>
+          <div class="table-wrapper"><table>
+          <tr><th>Fee component</th><th>Vijayawada</th><th>Hyderabad</th></tr>
+          <tr><td>Admission fee</td><td>₹16,000</td><td>₹16,000</td></tr>
+          <tr><td>Semester tuition fee</td><td>₹1,37,500</td><td>₹1,45,000</td></tr>
+          <tr><td><strong>First-semester academic fee</strong></td><td><strong>₹1,53,500</strong></td><td><strong>₹1,61,000</strong></td></tr>
+          </table></div>
+          <p><strong>These figures are based on the 2025-26 programme fee structure. For your actual budget, also consider:</strong></p>
+          <ul>
+          <li><strong>Hostel and mess:</strong> not included above and varies by campus and accommodation choice.</li>
+          <li><strong>Examination and other charges:</strong> verify the current fee notice for applicable amounts.</li>
+          <li><strong>Future semesters:</strong> do not assume the first-semester total is the final four-year cost; check the semester-wise schedule.</li>
+          </ul>
+          <div class="answer-box"><strong>Are these the confirmed 2026-27 fees?</strong><p>No. The published programme figures above are for 2025-26 and are subject to change for 2026-27. Students should use the current offer or counselling document for the payable amount.</p></div>
+          </section><hr/>''',
+              'fees': '''<section class="main-section" id="fees">
+          <h2>Scholarships and Other B.Tech AI &amp; Data Science Costs</h2>
+          <p>Before comparing the course cost with another college, look beyond tuition. The amount you actually spend depends on whether you stay on campus, your food and accommodation choice, and any applicable university charges.</p>
+          <ul>
+          <li><strong>Scholarships:</strong> check KLU's current merit and entrance-based scholarship rules before calculating your net fee.</li>
+          <li><strong>Hostel and mess:</strong> add separately according to the selected accommodation and food plan.</li>
+          <li><strong>Other charges:</strong> confirm examination, registration and programme-specific charges in the current fee document.</li>
+          </ul>
+          <p class="source-note">The ₹1,53,500 Vijayawada and ₹1,61,000 Hyderabad first-semester figures are 2025-26 references and should not be treated as confirmed 2026-27 fees.</p>
+          </section><hr/>'''
+            },
+            'kl-university-mba.html': {
+              'fee': '''<section class="main-section" id="fee-bifurcation">
+          <h2>KL University MBA Fees: Fee Bifurcation</h2>
+          <p>MBA costs vary by the format you choose. The table below separates the one-time admission fee from the semester fee and highlights major programme-specific costs. The published figures are from KLU's 2024 counselling schedule and are therefore reference figures, not confirmed 2026-27 fees.</p>
+          <div class="table-wrapper"><table>
+          <tr><th>MBA format</th><th>Admission fee</th><th>Semester fee</th><th>First-semester academic fee</th></tr>
+          <tr><td>MBA + ERP / multi-specialisations</td><td>₹15,000</td><td>₹1,57,500</td><td><strong>₹1,72,500</strong></td></tr>
+          <tr><td>MBA FinTech</td><td>₹15,000</td><td>₹2,75,000</td><td><strong>₹2,90,000</strong></td></tr>
+          <tr><td>MBA Global Program</td><td>₹15,000</td><td>₹3,00,000</td><td><strong>₹3,15,000</strong></td></tr>
+          </table></div>
+          <p><strong>Important cost components beyond the first-semester academic fee:</strong></p>
+          <ul>
+          <li><strong>ERP certification:</strong> the 2024 schedule listed ₹33,000 for the entire MBA + ERP programme; this should not be added again to the first-semester total.</li>
+          <li><strong>Global MBA:</strong> the international semester can involve foreign-university tuition plus travel, visa and living expenses.</li>
+          <li><strong>Hostel and mess:</strong> separate from the academic fee and dependent on campus and accommodation choice.</li>
+          </ul>
+          <div class="answer-box"><strong>What should I use for my 2026-27 MBA budget?</strong><p>Use the current 2026-27 offer or counselling fee sheet for your exact MBA format. The figures above are useful for understanding the fee structure, but they are based on the 2024 schedule.</p></div>
+          </section><hr/>''',
+              'fees': '''<section class="main-section" id="fees">
+          <h2>Scholarships and Other MBA Costs</h2>
+          <p>The payable MBA amount can be different from the headline semester fee because programme-specific, accommodation and international-study costs may apply.</p>
+          <ul>
+          <li><strong>Scholarships:</strong> check KLU's current scholarship criteria before estimating your net MBA fee.</li>
+          <li><strong>Hostel and mess:</strong> budget separately according to the campus and accommodation selected.</li>
+          <li><strong>Global MBA expenses:</strong> keep a separate budget for travel, visa, living and foreign-university costs where applicable.</li>
+          <li><strong>Other university charges:</strong> verify the current fee document for examination, registration and programme-specific charges.</li>
+          </ul>
+          <p class="source-note">The MBA fee figures shown above are based on KLU's 2024 counselling schedule and are included as historical references. Confirm the current 2026-27 fee before payment.</p>
+          </section><hr/>'''
+            }
+          }
+
+          for filename, data in pages.items():
+              path = Path(filename)
+              text = path.read_text()
+              text, n1 = re.subn(r'<section class="main-section" id="fee-bifurcation">.*?</section><hr/>', data['fee'], text, count=1, flags=re.S)
+              if n1 == 0:
+                  marker = '<section class="main-section" id="fees">'
+                  if marker not in text:
+                      raise SystemExit(f'Could not find insertion point in {filename}')
+                  text = text.replace(marker, data['fee'] + marker, 1)
+              text, n2 = re.subn(r'<section class="main-section" id="fees">.*?</section><hr/>', data['fees'], text, count=1, flags=re.S)
+              if n2 == 0:
+                  raise SystemExit(f'Could not replace fees section in {filename}')
+              # Keep navigation concise: one dedicated fee-bifurcation entry plus the renamed secondary-cost section.
+              text = re.sub(r'<a href="#fee-bifurcation">[^<]*</a>', '<a href="#fee-bifurcation">Fee Bifurcation</a>', text)
+              text = re.sub(r'<a href="#fees">Fees</a>', '<a href="#fees">Scholarships &amp; Other Costs</a>', text)
+              # Add the new navigation entry if the previous run did not already add it.
+              if '#fee-bifurcation' not in text:
+                  text = text.replace('<a href="#fees">Scholarships &amp; Other Costs</a>', '<a href="#fee-bifurcation">Fee Bifurcation</a><a href="#fees">Scholarships &amp; Other Costs</a>')
+              path.write_text(text)
+
+          PY
+      - name: Commit refined pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kl-university-btech-cse.html kl-university-btech-ai-data-science.html kl-university-mba.html
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Improve KL course fee sections"
+          git push
+      - name: Remove workflow
+        if: success()
+        run: |
+          rm -f .github/workflows/refine-fee-sections.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/refine-fee-sections.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Remove temporary fee refinement workflow"
+          git push
