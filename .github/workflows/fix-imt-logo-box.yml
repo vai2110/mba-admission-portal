@@ -1,0 +1,35 @@
+name: Fix IMT Nagpur Hero Logo Box
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-imt-logo-box.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix logo box dimensions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('imt-nagpur.css')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('width:110px;height:92px;flex:0 0 110px;', 'width:140px;height:92px;min-width:140px;flex:0 0 140px;')
+          s = s.replace('width:72px;height:62px;flex-basis:72px;', 'width:88px;height:62px;min-width:88px;flex-basis:88px;')
+          s = s.replace('font-size:17px;font-weight:900;line-height:1.08;', 'font-size:17px;font-weight:900;line-height:1.08;white-space:normal;word-break:keep-all;overflow-wrap:normal;')
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit CSS fix and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add imt-nagpur.css
+          git commit -m "Fix IMT Nagpur hero logo box dimensions"
+          git rm .github/workflows/fix-imt-logo-box.yml
+          git commit -m "Remove one-time IMT logo box workflow"
+          git push
