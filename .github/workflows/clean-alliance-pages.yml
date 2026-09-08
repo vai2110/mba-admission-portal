@@ -1,0 +1,34 @@
+name: Clean Alliance page markup
+on:
+  push:
+    branches: [main]
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove accidental citation tokens
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('alliance-university.html')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r'\s*cite[^]*','',s)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add alliance-university.html
+          git diff --cached --quiet || git commit -m "Clean Alliance overview markup"
+          git push
+      - name: Remove temporary workflow
+        run: |
+          rm .github/workflows/clean-alliance-pages.yml
+          git add .github/workflows/clean-alliance-pages.yml
+          git commit -m "Remove temporary Alliance cleanup workflow"
+          git push
