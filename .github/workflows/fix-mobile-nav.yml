@@ -1,50 +1,58 @@
-name: Fix Mobile On Page Navigation
+name: Fix KL Mobile On This Page
 
 on:
   push:
-    paths:
-      - '.github/workflows/fix-mobile-nav.yml'
+    branches: [main]
 
 jobs:
   fix:
+    if: contains(github.event.head_commit.message, 'Fix KL mobile On This Page behavior') == false
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Add mobile navigation auto-collapse script
-        shell: bash
+      - name: Patch KL mobile navigation
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          script = '''<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.mobile-on-page details a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      var details = link.closest('details');
-      if (details) details.removeAttribute('open');
-    });
-  });
-});
-</script>'''
-          for path in Path('.').glob('*.html'):
-            text = path.read_text(encoding='utf-8')
-            if 'document.querySelectorAll(\'.mobile-on-page details a[href^="#"]\')' in text:
-              continue
-            if 'class="mobile-on-page"' not in text:
-              continue
-            marker = '</body>'
-            if marker in text:
-              text = text.replace(marker, script + marker, 1)
-              path.write_text(text, encoding='utf-8')
+          files = ['kl-university.html','kl-university-btech-cse.html','kl-university-btech-ai-data-science.html','kl-university-mba.html','kl-university-placements.html']
+          script = '''<script id="mobile-nav-fix">
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('details').forEach(function (details) {
+              var summary = details.querySelector('summary');
+              if (!summary || summary.textContent.trim().toLowerCase().indexOf('on this page') === -1) return;
+              details.querySelectorAll('a[href^="#"]').forEach(function (link) {
+                link.addEventListener('click', function () {
+                  details.removeAttribute('open');
+                  setTimeout(function () {
+                    var target = document.querySelector(link.getAttribute('href'));
+                    if (target) window.scrollTo({top: target.getBoundingClientRect().top + window.pageYOffset - 84, behavior:'smooth'});
+                  }, 20);
+                });
+              });
+            });
+          });
+          </script>'''
+          for name in files:
+            p=Path(name)
+            if not p.exists(): continue
+            s=p.read_text(encoding='utf-8')
+            if 'id="mobile-nav-fix"' not in s:
+              s=s.replace('</body>',script+'\n</body>',1)
+              p.write_text(s,encoding='utf-8')
           PY
-          rm -f .github/workflows/fix-mobile-nav.yml
       - name: Commit changes
-        shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html' .github/workflows/fix-mobile-nav.yml
-          git diff --cached --quiet && exit 0
-          git commit -m "Fix mobile On This Page auto-collapse [skip ci]"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add kl-university*.html
+          git diff --cached --quiet || git commit -m 'Fix KL mobile On This Page behavior'
+          git push
+      - name: Remove temporary workflow
+        if: success()
+        run: |
+          rm -f .github/workflows/fix-mobile-nav.yml
+          git add .github/workflows/fix-mobile-nav.yml
+          git diff --cached --quiet || git commit -m 'Remove temporary mobile nav workflow'
           git push
