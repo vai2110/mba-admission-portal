@@ -18,13 +18,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import re
-          files = [
-            'kl-university.html',
-            'kl-university-btech-cse.html',
-            'kl-university-btech-ai-data-science.html',
-            'kl-university-mba.html',
-            'kl-university-placements.html'
-          ]
+          files = ['kl-university.html','kl-university-btech-cse.html','kl-university-btech-ai-data-science.html','kl-university-mba.html','kl-university-placements.html']
           script = '''<script id="mobile-nav-fix">
           document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('details').forEach(function (details) {
@@ -48,8 +42,7 @@ jobs:
           </script>'''
           for name in files:
             p = Path(name)
-            if not p.exists():
-              continue
+            if not p.exists(): continue
             s = p.read_text(encoding='utf-8')
             s = re.sub(r'<script id="mobile-nav-fix">.*?</script>\s*', '', s, flags=re.S)
             s = s.replace('</body>', script + '\n</body>', 1)
