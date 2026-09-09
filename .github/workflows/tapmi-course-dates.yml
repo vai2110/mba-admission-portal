@@ -1,0 +1,61 @@
+name: Add TAPMI course admission timelines
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tapmi-course-dates.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-course-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add upcoming 2027-29 tentative admission sections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = {
+              'tapmi-manipal-mba.html': ('TAPMI MBA', 'TAPMI MBA: Fees, Cutoff, Admission, Curriculum & Placements 2027', 'TAPMI MBA Core Admission Dates 2027-29'),
+              'tapmi-manipal-mba-bkfs.html': ('TAPMI MBA-BKFS', 'TAPMI MBA-BKFS: Fees, Cutoff, Curriculum & Placements 2027', 'TAPMI MBA-BKFS Admission Dates 2027-29'),
+              'tapmi-manipal-mba-hrm.html': ('TAPMI MBA-HRM', 'TAPMI MBA-HRM: Fees, Cutoff, Curriculum & Placements 2027', 'TAPMI MBA-HRM Admission Dates 2027-29'),
+          }
+
+          schedule = '''<section class="main-section" id="dates"><h2>{heading}: Tentative Admission Schedule</h2><p><strong>TAPMI has not yet published the official 2027-29 admission calendar.</strong> The timeline below is a planning estimate based on TAPMI's previous MBA admission cycles. TAPMI's official 2026-28 cycle opened applications in October 2025, closed in January 2026, conducted GD/WAT/PI in February-March, announced the first selection list in April and began the MBA academic year in June/July. These dates are therefore <strong>tentative and not confirmed dates</strong> for 2027-29.</p><div class="table-wrapper"><table><tr><th>2027-29 admission stage</th><th>Tentative timeline</th><th>Status</th></tr><tr><td>Application opening</td><td><strong>October-November 2026</strong></td><td>Expected from previous-cycle pattern</td></tr><tr><td>Application deadline</td><td><strong>January 2027</strong></td><td>Expected from previous-cycle pattern</td></tr><tr><td>Shortlist announcement</td><td><strong>January-February 2027</strong></td><td>Expected</td></tr><tr><td>GD/WAT/PI</td><td><strong>February-March 2027</strong></td><td>Expected from previous-cycle pattern</td></tr><tr><td>First selection list</td><td><strong>April 2027</strong></td><td>Expected from previous-cycle pattern</td></tr><tr><td>First-year Term I</td><td><strong>June-July 2027</strong></td><td>Expected from previous-cycle pattern</td></tr></table></div><div class="answer-box"><strong>How should students use this timeline?</strong><p>Start preparing for the 2027-29 cycle before the application window opens. Keep your CAT/XAT/GMAT preparation, academic documents, achievements and programme-specific application information ready. Because TAPMI can change dates and selection components each year, use the official TAPMI admissions page as the final source of truth once the 2027-29 notification is released.</p></div></section><hr>'''
+
+          for filename, (label, title, heading) in pages.items():
+              p = Path(filename)
+              text = p.read_text(encoding='utf-8')
+              original = text
+              text = re.sub(r'<title>.*?</title>', f'<title>{title}</title>', text, count=1, flags=re.S)
+              text = re.sub(r'<h1>.*?</h1>', f'<h1>{title}</h1>', text, count=1, flags=re.S)
+              if 'id="dates"' not in text:
+                  marker = '<hr><section class="main-section" id="admission">'
+                  if marker in text:
+                      text = text.replace(marker, schedule.format(heading=heading) + '<section class="main-section" id="admission">', 1)
+                  else:
+                      raise SystemExit(f'Admission section marker not found in {filename}')
+              # Add Dates to mobile and desktop On this page navigation after Overview.
+              text = text.replace('<a href="#overview">Overview</a><a href="#admission">', '<a href="#overview">Overview</a><a href="#dates">Admission Dates</a><a href="#admission">', 2)
+              if text != original:
+                  p.write_text(text, encoding='utf-8')
+                  print('UPDATED', filename)
+              else:
+                  print('NO CHANGE', filename)
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "TAPMI Course Dates"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tapmi-manipal-mba.html tapmi-manipal-mba-bkfs.html tapmi-manipal-mba-hrm.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add TAPMI course admission timelines"
+            git push
+          fi
