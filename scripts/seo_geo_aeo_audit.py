@@ -55,7 +55,7 @@ def extract_description(text, title):
 
 
 def extract_answer_text(text, fallback):
-    m = re.search(r'<section\b[^>]*class=["\']hero["\'][^>]*>.*?<p\b[^>]*>(.*?)</p>', text, flags=re.I | re.S)
+    m = re.search(r'<section\b[^>]*class=["\'][^"\']*hero[^"\']*["\'][^>]*>.*?<p\b[^>]*>(.*?)</p>', text, flags=re.I | re.S)
     return clean_fragment(m.group(1)) if m else fallback
 
 
@@ -102,12 +102,16 @@ def add_answer_first(text, answer_text):
     if re.search(r'class=["\'][^"\']*answer-first', text, flags=re.I):
         return text, False
     block = f'<div class="answer-first" aria-label="Quick answer"><strong>Quick answer</strong><p>{html.escape(answer_text)}</p></div>'
+    # Prefer the main content boundary so the answer is visible near the start of the article.
     updated = re.sub(r'(<main\b[^>]*>)', r'\1' + block, text, count=1, flags=re.I)
+    if updated == text:
+        # A number of legacy pages have no <main>; insert immediately after <body> instead.
+        updated = re.sub(r'(<body\b[^>]*>)', r'\1' + block, text, count=1, flags=re.I)
     return updated, updated != text
 
 
 def add_css(text):
-    if '.answer-first' in text:
+    if '.answer-first{' in text:
         return text, False
     updated = re.sub(r'</style>', ANSWER_CSS + '</style>', text, count=1, flags=re.I)
     return updated, updated != text
