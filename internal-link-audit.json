@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T08:50:05.058035+00:00",
+  "generated_at": "2026-09-09T08:58:01.410294+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 324,
-    "pages_with_internal_links": 311,
-    "broken_local_links": 17,
-    "college_clusters_detected": 53,
-    "cluster_reciprocal_gaps": 9,
-    "zero_incoming_pages": 11,
+    "pages_checked": 329,
+    "pages_with_internal_links": 325,
+    "broken_local_links": 2,
+    "college_clusters_detected": 54,
+    "cluster_reciprocal_gaps": 2,
+    "zero_incoming_pages": 8,
     "role_counts": {
-      "programme": 159,
-      "placement": 56,
-      "overview_or_hub": 109
+      "programme": 160,
+      "placement": 57,
+      "overview_or_hub": 112
     }
   },
   "college_clusters": [
@@ -166,6 +166,17 @@
         "iim-bangalore-mba.html",
         "iim-bangalore-pgpba.html",
         "iim-bangalore-pgpem.html"
+      ]
+    },
+    {
+      "overview": "iim-bodhgaya.html",
+      "placement": "iim-bodhgaya-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "iim-bodhgaya-dbai.html",
+        "iim-bodhgaya-hhm.html",
+        "iim-bodhgaya-ipm.html",
+        "iim-bodhgaya-mba.html"
       ]
     },
     {
@@ -537,70 +548,19 @@
   ],
   "reciprocal_link_gaps": [
     {
-      "source": "amrita-vishwa-vidyapeetham.html",
+      "source": "welingkar-mumbai.html",
       "missing": [
-        "amrita-vishwa-vidyapeetham-placements.html",
-        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
-        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
+        "welingkar-mumbai-links.html",
+        "welingkar-mumbai-programmes-note.html",
+        "welingkar-mumbai-programmes.html"
       ]
     },
     {
-      "source": "amrita-vishwa-vidyapeetham-placements.html",
+      "source": "welingkar-mumbai-placements.html",
       "missing": [
-        "amrita-vishwa-vidyapeetham.html",
-        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
-        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
-      ]
-    },
-    {
-      "source": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
-      "missing": [
-        "amrita-vishwa-vidyapeetham.html",
-        "amrita-vishwa-vidyapeetham-placements.html"
-      ]
-    },
-    {
-      "source": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
-      "missing": [
-        "amrita-vishwa-vidyapeetham.html",
-        "amrita-vishwa-vidyapeetham-placements.html"
-      ]
-    },
-    {
-      "source": "iim-nagpur.html",
-      "missing": [
-        "iim-nagpur-placements.html"
-      ]
-    },
-    {
-      "source": "iit-kanpur-placements.html",
-      "missing": [
-        "iit-kanpur.html",
-        "iit-kanpur-management-sciences-m-tech.html",
-        "iit-kanpur-management-sciences-phd.html"
-      ]
-    },
-    {
-      "source": "indian-institute-of-technology-roorkee.html",
-      "missing": [
-        "indian-institute-of-technology-roorkee-placements.html",
-        "indian-institute-of-technology-roorkee-executive-mba.html",
-        "indian-institute-of-technology-roorkee-mba.html"
-      ]
-    },
-    {
-      "source": "indian-institute-of-technology-roorkee-placements.html",
-      "missing": [
-        "indian-institute-of-technology-roorkee.html",
-        "indian-institute-of-technology-roorkee-executive-mba.html",
-        "indian-institute-of-technology-roorkee-mba.html"
-      ]
-    },
-    {
-      "source": "indian-institute-of-technology-roorkee-mba.html",
-      "missing": [
-        "indian-institute-of-technology-roorkee.html",
-        "indian-institute-of-technology-roorkee-placements.html"
+        "welingkar-mumbai-links.html",
+        "welingkar-mumbai-programmes-note.html",
+        "welingkar-mumbai-programmes.html"
       ]
     }
   ],
@@ -614,109 +574,9 @@
       "source": "iim-ahmedabad.html",
       "href": "iim-ahmedabad-bpgp.html",
       "target": "iim-ahmedabad-bpgp.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-mba.html",
-      "target": "iim-bodhgaya-mba.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-dbai.html",
-      "target": "iim-bodhgaya-dbai.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-hhm.html",
-      "target": "iim-bodhgaya-hhm.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-ipm.html",
-      "target": "iim-bodhgaya-ipm.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-placements.html",
-      "target": "iim-bodhgaya-placements.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-mba.html",
-      "target": "iim-bodhgaya-mba.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-dbai.html",
-      "target": "iim-bodhgaya-dbai.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-hhm.html",
-      "target": "iim-bodhgaya-hhm.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-ipm.html",
-      "target": "iim-bodhgaya-ipm.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-placements.html",
-      "target": "iim-bodhgaya-placements.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-mba.html",
-      "target": "iim-bodhgaya-mba.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-dbai.html",
-      "target": "iim-bodhgaya-dbai.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-hhm.html",
-      "target": "iim-bodhgaya-hhm.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-ipm.html",
-      "target": "iim-bodhgaya-ipm.html"
-    },
-    {
-      "source": "iim-bodhgaya.html",
-      "href": "iim-bodhgaya-placements.html",
-      "target": "iim-bodhgaya-placements.html"
     }
   ],
   "zero_incoming_pages": [
-    {
-      "page": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "amrita-vishwa-vidyapeetham-placements.html",
-      "role": "placement",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "amrita-vishwa-vidyapeetham.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "iim-nagpur-placements.html",
-      "role": "placement",
-      "incoming_internal_links": 0
-    },
     {
       "page": "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html",
       "role": "programme",
@@ -738,12 +598,22 @@
       "incoming_internal_links": 0
     },
     {
-      "page": "indian-institute-of-technology-roorkee-executive-mba.html",
+      "page": "jaipuria-lucknow-fpm.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
     {
-      "page": "jaipuria-lucknow-fpm.html",
+      "page": "welingkar-mumbai-links.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "welingkar-mumbai-programmes-note.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "welingkar-mumbai-programmes.html",
       "role": "programme",
       "incoming_internal_links": 0
     }
@@ -758,6 +628,10 @@
     "alliance-university-mba.html": 20,
     "alliance-university-placements.html": 18,
     "alliance-university.html": 21,
+    "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html": 3,
+    "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html": 3,
+    "amrita-vishwa-vidyapeetham-placements.html": 3,
+    "amrita-vishwa-vidyapeetham.html": 3,
     "amu-aligarh-placements.html": 8,
     "amu-aligarh.html": 6,
     "amu-barch.html": 6,
@@ -848,7 +722,12 @@
     "iim-bangalore-pgpem.html": 7,
     "iim-bangalore-placements.html": 14,
     "iim-bangalore.html": 12,
-    "iim-bodhgaya.html": 3,
+    "iim-bodhgaya-dbai.html": 18,
+    "iim-bodhgaya-hhm.html": 18,
+    "iim-bodhgaya-ipm.html": 17,
+    "iim-bodhgaya-mba.html": 20,
+    "iim-bodhgaya-placements.html": 18,
+    "iim-bodhgaya.html": 23,
     "iim-calcutta-mba.html": 6,
     "iim-calcutta-mbaex.html": 5,
     "iim-calcutta-pgdba.html": 5,
@@ -871,7 +750,8 @@
     "iim-mumbai-mba.html": 5,
     "iim-mumbai-placements.html": 6,
     "iim-mumbai.html": 7,
-    "iim-nagpur.html": 2,
+    "iim-nagpur-placements.html": 1,
+    "iim-nagpur.html": 3,
     "iim-raipur-epgp.html": 4,
     "iim-raipur-mba.html": 4,
     "iim-raipur-placements.html": 7,
@@ -908,10 +788,10 @@
     "iit-delhi-dms-mba.html": 5,
     "iit-delhi-dms-placements.html": 5,
     "iit-delhi-dms.html": 7,
-    "iit-kanpur-management-sciences-m-tech.html": 3,
-    "iit-kanpur-management-sciences-phd.html": 3,
+    "iit-kanpur-management-sciences-m-tech.html": 4,
+    "iit-kanpur-management-sciences-phd.html": 4,
     "iit-kanpur-placements.html": 5,
-    "iit-kanpur.html": 4,
+    "iit-kanpur.html": 5,
     "iit-kharagpur-placements.html": 7,
     "iit-kharagpur-vgsom-mba-ex.html": 4,
     "iit-kharagpur-vgsom-mba.html": 4,
@@ -936,9 +816,10 @@
     "indian-institute-of-management-kashipur-placements.html": 10,
     "indian-institute-of-management-kashipur.html": 8,
     "indian-institute-of-management-visakhapatnam-mba-programme.html": 1,
-    "indian-institute-of-technology-roorkee-mba.html": 1,
-    "indian-institute-of-technology-roorkee-placements.html": 1,
-    "indian-institute-of-technology-roorkee.html": 1,
+    "indian-institute-of-technology-roorkee-executive-mba.html": 3,
+    "indian-institute-of-technology-roorkee-mba.html": 3,
+    "indian-institute-of-technology-roorkee-placements.html": 3,
+    "indian-institute-of-technology-roorkee.html": 3,
     "institute-rural-management-anand-executive-rural-management.html": 6,
     "institute-rural-management-anand-fpm-rural-management.html": 6,
     "institute-rural-management-anand-mba-rural-management.html": 6,
@@ -1048,13 +929,10 @@
     "welingkar-mumbai-business-design.html": 25,
     "welingkar-mumbai-ebusiness.html": 25,
     "welingkar-mumbai-healthcare.html": 11,
-    "welingkar-mumbai-links.html": 11,
     "welingkar-mumbai-media-entertainment.html": 11,
     "welingkar-mumbai-mms.html": 11,
     "welingkar-mumbai-pgdm.html": 25,
     "welingkar-mumbai-placements.html": 34,
-    "welingkar-mumbai-programmes-note.html": 11,
-    "welingkar-mumbai-programmes.html": 11,
     "welingkar-mumbai-research-analytics.html": 25,
     "welingkar-mumbai-retail.html": 11,
     "welingkar-mumbai-rural.html": 11,
@@ -1073,6 +951,10 @@
     "alliance-university-mba.html": 16,
     "alliance-university-placements.html": 15,
     "alliance-university.html": 30,
+    "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html": 3,
+    "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html": 3,
+    "amrita-vishwa-vidyapeetham-placements.html": 3,
+    "amrita-vishwa-vidyapeetham.html": 3,
     "amu-aligarh-placements.html": 7,
     "amu-aligarh.html": 8,
     "amu-barch.html": 6,
@@ -1163,7 +1045,12 @@
     "iim-bangalore-pgpem.html": 12,
     "iim-bangalore-placements.html": 6,
     "iim-bangalore.html": 17,
-    "iim-bodhgaya.html": 18,
+    "iim-bodhgaya-dbai.html": 18,
+    "iim-bodhgaya-hhm.html": 18,
+    "iim-bodhgaya-ipm.html": 17,
+    "iim-bodhgaya-mba.html": 18,
+    "iim-bodhgaya-placements.html": 20,
+    "iim-bodhgaya.html": 23,
     "iim-calcutta-mba.html": 8,
     "iim-calcutta-mbaex.html": 8,
     "iim-calcutta-pgdba.html": 8,
@@ -1186,7 +1073,8 @@
     "iim-mumbai-mba.html": 11,
     "iim-mumbai-placements.html": 11,
     "iim-mumbai.html": 11,
-    "iim-nagpur-placements.html": 2,
+    "iim-nagpur-placements.html": 3,
+    "iim-nagpur.html": 1,
     "iim-raipur-epgp.html": 11,
     "iim-raipur-mba.html": 11,
     "iim-raipur-placements.html": 11,
@@ -1225,6 +1113,7 @@
     "iit-delhi-dms.html": 11,
     "iit-kanpur-management-sciences-m-tech.html": 6,
     "iit-kanpur-management-sciences-phd.html": 6,
+    "iit-kanpur-placements.html": 3,
     "iit-kanpur.html": 3,
     "iit-kharagpur-placements.html": 11,
     "iit-kharagpur-vgsom-mba-ex.html": 11,
@@ -1251,6 +1140,9 @@
     "indian-institute-of-management-kashipur.html": 14,
     "indian-institute-of-management-visakhapatnam-mba-programme.html": 2,
     "indian-institute-of-technology-roorkee-executive-mba.html": 3,
+    "indian-institute-of-technology-roorkee-mba.html": 3,
+    "indian-institute-of-technology-roorkee-placements.html": 3,
+    "indian-institute-of-technology-roorkee.html": 3,
     "institute-rural-management-anand-executive-rural-management.html": 10,
     "institute-rural-management-anand-fpm-rural-management.html": 9,
     "institute-rural-management-anand-mba-rural-management.html": 10,
@@ -1358,20 +1250,20 @@
     "srmist-mca.html": 9,
     "srmist-placements.html": 5,
     "top-mba-colleges-in-india.html": 2,
-    "welingkar-mumbai-business-design.html": 21,
-    "welingkar-mumbai-ebusiness.html": 21,
-    "welingkar-mumbai-healthcare.html": 21,
+    "welingkar-mumbai-business-design.html": 18,
+    "welingkar-mumbai-ebusiness.html": 18,
+    "welingkar-mumbai-healthcare.html": 18,
     "welingkar-mumbai-links.html": 11,
-    "welingkar-mumbai-media-entertainment.html": 21,
-    "welingkar-mumbai-mms.html": 21,
-    "welingkar-mumbai-pgdm.html": 21,
-    "welingkar-mumbai-placements.html": 20,
+    "welingkar-mumbai-media-entertainment.html": 18,
+    "welingkar-mumbai-mms.html": 18,
+    "welingkar-mumbai-pgdm.html": 18,
+    "welingkar-mumbai-placements.html": 17,
     "welingkar-mumbai-programmes-note.html": 7,
     "welingkar-mumbai-programmes.html": 7,
-    "welingkar-mumbai-research-analytics.html": 21,
-    "welingkar-mumbai-retail.html": 21,
-    "welingkar-mumbai-rural.html": 21,
-    "welingkar-mumbai.html": 25,
+    "welingkar-mumbai-research-analytics.html": 18,
+    "welingkar-mumbai-retail.html": 18,
+    "welingkar-mumbai-rural.html": 18,
+    "welingkar-mumbai.html": 22,
     "xat.html": 8,
     "xlri-jamshedpur-placements.html": 8,
     "xlri-jamshedpur.html": 5
