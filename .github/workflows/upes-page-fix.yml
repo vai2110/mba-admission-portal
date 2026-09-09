@@ -15,6 +15,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           files = [
             'upes-dehradun.html','upes-dehradun-btech.html','upes-dehradun-mba.html',
             'upes-dehradun-bba.html','upes-dehradun-bca.html','upes-dehradun-bdes.html',
@@ -50,18 +51,18 @@ jobs:
           }
           for fn in files:
             p=Path(fn); s=p.read_text(encoding='utf-8')
+
+            # Remove the unwanted college-level strip above the MBA Portal header.
+            s=re.sub(r'<nav class="college-cluster-nav"[\s\S]*?</nav>','',s,count=1)
+            s=re.sub(r'<style>\.college-cluster-nav\{[\s\S]*?</style>','',s,count=1)
+
             if 'upes-mobile-table' not in s:
               s=s.replace('</head>',css+'</head>',1)
-            # Make every existing table mobile-safe without changing the locked reference CSS.
             s=s.replace('<div class="table-wrapper">','<div class="table-wrapper upes-mobile-table">')
-            # Fix any repeated wrapper from previous pass.
             s=s.replace('upes-mobile-table upes-mobile-table','upes-mobile-table')
             if fn in specific and 'Fee Breakdown & Placement Comparison' not in s:
               marker='<section class="main-section" id="fees">'
-              # Insert detailed fee/placement comparison at the start of the existing fees section.
               if marker in s:
-                insert=marker+'<div class="answer-box">'+specific[fn].split('</h3>',1)[0]+'</h3></div>'
-                # Replace the generated placeholder with full detailed block after the opening section tag.
                 s=s.replace(marker, marker+specific[fn],1)
             if fn=='upes-dehradun.html':
               fee='<div class="upes-fee-grid"><div class="upes-fee-card"><strong>B.Tech</strong><span>₹8.06–13.46L tuition, programme-dependent</span></div><div class="upes-fee-card"><strong>MBA</strong><span>~₹18.37L for common listed streams</span></div><div class="upes-fee-card"><strong>BBA</strong><span>₹11.92–13.42L tuition</span></div><div class="upes-fee-card"><strong>BCA</strong><span>~₹7.16L listed 3-year fee</span></div><div class="upes-fee-card"><strong>B.Des</strong><span>~₹14.48L tuition + ₹12,800/year consumables</span></div><div class="upes-fee-card"><strong>LL.B</strong><span>~₹14.35L listed 3-year fee</span></div></div><p><strong>Fee components to budget:</strong> tuition/programme charges, academic/service charges, technology fee, refundable security, medical insurance, I-Card, hostel/hostel security, transport and programme-specific training/consumables. UPES lists ₹31,000 annual transport, ₹20,000 refundable security, ₹3,800/semester first-year technology fee and ₹10,000 refundable hostel security for 2026-27.</p>'
@@ -82,5 +83,5 @@ jobs:
           git config user.name "UPES Page Fix"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add upes-dehradun*.html
-          git commit -m "Improve UPES mobile tables fees and placement comparisons" || exit 0
+          git commit -m "Remove UPES college strip above MBA Portal" || exit 0
           git push
