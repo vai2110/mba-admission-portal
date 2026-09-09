@@ -8,6 +8,7 @@ EXCLUDED = {
     "welingkar-mumbai-links.html", "welingkar-mumbai-programmes-note.html", "welingkar-mumbai-programmes.html",
     "mica.html", "mica-pgdm-c.html", "mica-pgdm.html", "mica-placements.html"
 }
+MICA_PAGES = {"mica.html", "mica-pgdm-c.html", "mica-pgdm.html", "mica-placements.html"}
 NAV_CSS = ".college-cluster-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:10px 12px;background:#f8fbff;border:1px solid #dbe7f5;border-radius:8px;font-size:11px;line-height:1.4}.college-cluster-nav strong{color:#173f82;font-size:11px;margin-right:2px}.college-cluster-nav a{color:#2563eb!important;font-weight:700;text-decoration:none}.college-cluster-nav a:hover{text-decoration:underline}.college-cluster-nav .sep{color:#94a3b8}"
 
 ALIAS_CLUSTERS = {
@@ -44,6 +45,15 @@ def nav_html(current, members):
         if member != current: links.append(f'<a href="{member}">{"Overview" if member == members[0] else label(member)}</a>')
     return '<nav class="college-cluster-nav" aria-label="College page navigation"><strong>Explore this college</strong><span class="sep">|</span>' + '<span class="sep">|</span>'.join(links) + '</nav>'
 
+def remove_mica_nav(path):
+    text = path.read_text(encoding="utf-8")
+    pattern = r'<nav\b[^>]*class=["\'][^"\']*\bcollege-cluster-nav\b[^"\']*["\'][^>]*>.*?</nav>'
+    updated = re.sub(pattern, "", text, count=1, flags=re.I | re.S)
+    if updated != text:
+        path.write_text(updated, encoding="utf-8")
+        return True
+    return False
+
 def repair(path, members):
     if path.name in EXCLUDED: return False
     text = path.read_text(encoding="utf-8"); replacement = nav_html(path.name, members)
@@ -61,6 +71,9 @@ def repair(path, members):
 
 def main():
     pages = sorted(p.name for p in ROOT.glob("*.html")); changed = []
+    for name in sorted(MICA_PAGES):
+        path = ROOT / name
+        if path.exists() and remove_mica_nav(path): changed.append(name)
     for members in build_clusters(pages).values():
         for member in members:
             if repair(ROOT / member, members): changed.append(member)
