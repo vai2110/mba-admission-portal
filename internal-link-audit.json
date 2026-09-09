@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-09T10:39:07.595114+00:00",
+  "generated_at": "2026-09-09T10:39:25.884020+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 341,
-    "pages_with_internal_links": 341,
+    "pages_checked": 342,
+    "pages_with_internal_links": 342,
     "broken_local_links": 4,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 56,
     "cluster_reciprocal_gaps": 0,
-    "zero_incoming_pages": 1,
+    "zero_incoming_pages": 0,
     "role_counts": {
-      "programme": 167,
+      "programme": 168,
       "placement": 59,
       "overview_or_hub": 115
     }
@@ -573,9 +573,9 @@
       "target": "iim-ahmedabad-admission.html"
     },
     {
-      "source": "iim-sambalpur.html",
-      "href": "iim-sambalpur-mba.html",
-      "target": "iim-sambalpur-mba.html"
+      "source": "iim-sambalpur-mba.html",
+      "href": "iim-sambalpur-placements.html",
+      "target": "iim-sambalpur-placements.html"
     },
     {
       "source": "iim-sambalpur.html",
@@ -595,13 +595,7 @@
       "target": "iim-ahmedabad-bpgp.html"
     }
   ],
-  "zero_incoming_pages": [
-    {
-      "page": "iim-sambalpur.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    }
-  ],
+  "zero_incoming_pages": [],
   "incoming_link_counts": {
     "alliance-university-bba-llb.html": 12,
     "alliance-university-bba.html": 16,
@@ -756,6 +750,8 @@
     "iim-rohtak-pgpx.html": 5,
     "iim-rohtak-placements.html": 7,
     "iim-rohtak.html": 4,
+    "iim-sambalpur-mba.html": 1,
+    "iim-sambalpur.html": 1,
     "iim-sirmaur-mba-tourism.html": 5,
     "iim-sirmaur-mba-tthm.html": 5,
     "iim-sirmaur-placements.html": 9,
@@ -800,7 +796,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 729,
+    "index.html": 731,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -1095,6 +1091,7 @@
     "iim-rohtak-pgpx.html": 11,
     "iim-rohtak-placements.html": 12,
     "iim-rohtak.html": 14,
+    "iim-sambalpur-mba.html": 4,
     "iim-sambalpur.html": 5,
     "iim-sirmaur-mba-tourism.html": 10,
     "iim-sirmaur-mba-tthm.html": 10,
