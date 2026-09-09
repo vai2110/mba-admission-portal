@@ -9,6 +9,34 @@ EXCLUDED = {
 }
 NAV_CSS = ".college-cluster-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:10px 12px;background:#f8fbff;border:1px solid #dbe7f5;border-radius:8px;font-size:11px;line-height:1.4}.college-cluster-nav strong{color:#173f82;font-size:11px;margin-right:2px}.college-cluster-nav a{color:#2563eb!important;font-weight:700;text-decoration:none}.college-cluster-nav a:hover{text-decoration:underline}.college-cluster-nav .sep{color:#94a3b8}"
 
+# Some valid programme pages use a different institutional filename prefix than
+# the overview/placement pages. Keep these explicit mappings so they still join
+# the same reciprocal internal-link cluster.
+ALIAS_CLUSTERS = {
+    "iim-nagpur.html": [
+        "iim-nagpur.html",
+        "indian-institute-of-management-nagpur-mba.html",
+        "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html",
+        "indian-institute-of-management-nagpur-executive-mba-hybrid.html",
+        "iim-nagpur-placements.html",
+    ],
+    "iit-kanpur.html": [
+        "iit-kanpur.html",
+        "indian-institute-of-technology-kanpur-mba-programme.html",
+        "iit-kanpur-management-sciences-m-tech.html",
+        "iit-kanpur-management-sciences-phd.html",
+        "iit-kanpur-placements.html",
+    ],
+    "jaipuria-institute-of-management-lucknow.html": [
+        "jaipuria-institute-of-management-lucknow.html",
+        "jaipuria-lucknow-fpm.html",
+        "jaipuria-lucknow-pgdm.html",
+        "jaipuria-lucknow-pgdm-financial-services.html",
+        "jaipuria-lucknow-pgdm-retail-management.html",
+        "jaipuria-institute-of-management-lucknow-placements.html",
+    ],
+}
+
 
 def build_clusters(pages):
     names = set(pages)
@@ -20,6 +48,14 @@ def build_clusters(pages):
         prefix = base[:-5]
         programmes = sorted(n for n in pages if n not in {base, placement} and n not in EXCLUDED and n.startswith(prefix + "-"))
         clusters[base] = [base, *programmes, placement]
+
+    # Apply explicit filename-alias clusters after normal prefix discovery.
+    for overview, members in ALIAS_CLUSTERS.items():
+        if overview not in names:
+            continue
+        valid = [m for m in members if m in names and m not in EXCLUDED]
+        if len(valid) >= 2:
+            clusters[overview] = valid
     return clusters
 
 
