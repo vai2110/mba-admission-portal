@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T10:05:40.249352+00:00",
+  "generated_at": "2026-09-09T10:10:59.102042+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 338,
-    "pages_with_internal_links": 334,
-    "broken_local_links": 8,
+    "pages_checked": 340,
+    "pages_with_internal_links": 340,
+    "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 55,
+    "college_clusters_detected": 56,
     "cluster_reciprocal_gaps": 0,
-    "zero_incoming_pages": 5,
+    "zero_incoming_pages": 0,
     "role_counts": {
-      "programme": 166,
-      "placement": 58,
+      "programme": 167,
+      "placement": 59,
       "overview_or_hub": 114
     }
   },
@@ -467,6 +467,15 @@
       "programmes": []
     },
     {
+      "overview": "mica.html",
+      "placement": "mica-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "mica-pgdm-c.html",
+        "mica-pgdm.html"
+      ]
+    },
+    {
       "overview": "nirma-university.html",
       "placement": "nirma-university-placements.html",
       "programme_count": 6,
@@ -562,41 +571,6 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
-    },
-    {
-      "source": "mica-pgdm-c.html",
-      "href": "mica-pgdm.html",
-      "target": "mica-pgdm.html"
-    },
-    {
-      "source": "mica-pgdm-c.html",
-      "href": "mica-placements.html",
-      "target": "mica-placements.html"
-    },
-    {
-      "source": "mica-pgdm-c.html",
-      "href": "mica-placements.html",
-      "target": "mica-placements.html"
-    },
-    {
-      "source": "mica.html",
-      "href": "mica-pgdm.html",
-      "target": "mica-pgdm.html"
-    },
-    {
-      "source": "mica.html",
-      "href": "mica-placements.html",
-      "target": "mica-placements.html"
-    },
-    {
-      "source": "mica.html",
-      "href": "mica-pgdm.html",
-      "target": "mica-pgdm.html"
-    },
-    {
-      "source": "mica.html",
-      "href": "mica-placements.html",
-      "target": "mica-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -606,33 +580,7 @@
       "target": "iim-ahmedabad-bpgp.html"
     }
   ],
-  "zero_incoming_pages": [
-    {
-      "page": "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "indian-institute-of-management-nagpur-executive-mba-hybrid.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "indian-institute-of-management-nagpur-mba.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "indian-institute-of-technology-kanpur-mba-programme.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "jaipuria-lucknow-fpm.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    }
-  ],
+  "zero_incoming_pages": [],
   "incoming_link_counts": {
     "alliance-university-bba-llb.html": 12,
     "alliance-university-bba.html": 16,
@@ -772,8 +720,8 @@
     "iim-mumbai-mba.html": 5,
     "iim-mumbai-placements.html": 6,
     "iim-mumbai.html": 7,
-    "iim-nagpur-placements.html": 1,
-    "iim-nagpur.html": 3,
+    "iim-nagpur-placements.html": 4,
+    "iim-nagpur.html": 6,
     "iim-raipur-epgp.html": 4,
     "iim-raipur-mba.html": 4,
     "iim-raipur-placements.html": 7,
@@ -810,10 +758,10 @@
     "iit-delhi-dms-mba.html": 5,
     "iit-delhi-dms-placements.html": 5,
     "iit-delhi-dms.html": 7,
-    "iit-kanpur-management-sciences-m-tech.html": 4,
-    "iit-kanpur-management-sciences-phd.html": 4,
-    "iit-kanpur-placements.html": 5,
-    "iit-kanpur.html": 5,
+    "iit-kanpur-management-sciences-m-tech.html": 5,
+    "iit-kanpur-management-sciences-phd.html": 5,
+    "iit-kanpur-placements.html": 6,
+    "iit-kanpur.html": 6,
     "iit-kharagpur-placements.html": 7,
     "iit-kharagpur-vgsom-mba-ex.html": 4,
     "iit-kharagpur-vgsom-mba.html": 4,
@@ -831,13 +779,17 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 725,
+    "index.html": 727,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
     "indian-institute-of-management-kashipur-placements.html": 10,
     "indian-institute-of-management-kashipur.html": 8,
+    "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html": 4,
+    "indian-institute-of-management-nagpur-executive-mba-hybrid.html": 4,
+    "indian-institute-of-management-nagpur-mba.html": 4,
     "indian-institute-of-management-visakhapatnam-mba-programme.html": 1,
+    "indian-institute-of-technology-kanpur-mba-programme.html": 4,
     "indian-institute-of-technology-roorkee-executive-mba.html": 3,
     "indian-institute-of-technology-roorkee-mba.html": 3,
     "indian-institute-of-technology-roorkee-placements.html": 3,
@@ -856,11 +808,12 @@
     "jain-university-placements.html": 14,
     "jain-university.html": 13,
     "jaipuria-institute-management-noida.html": 5,
-    "jaipuria-institute-of-management-lucknow-placements.html": 10,
-    "jaipuria-institute-of-management-lucknow.html": 6,
-    "jaipuria-lucknow-pgdm-financial-services.html": 4,
-    "jaipuria-lucknow-pgdm-retail-management.html": 2,
-    "jaipuria-lucknow-pgdm.html": 5,
+    "jaipuria-institute-of-management-lucknow-placements.html": 14,
+    "jaipuria-institute-of-management-lucknow.html": 10,
+    "jaipuria-lucknow-fpm.html": 5,
+    "jaipuria-lucknow-pgdm-financial-services.html": 9,
+    "jaipuria-lucknow-pgdm-retail-management.html": 7,
+    "jaipuria-lucknow-pgdm.html": 10,
     "jaipuria-noida-pgdm-marketing.html": 6,
     "jaipuria-noida-pgdm-service-management.html": 6,
     "jaipuria-noida-pgdm.html": 6,
@@ -894,8 +847,10 @@
     "mat.html": 2,
     "mdi-gurugram-placements.html": 2,
     "mdi-gurugram.html": 2,
-    "mica-pgdm-c.html": 2,
-    "mica.html": 2,
+    "mica-pgdm-c.html": 5,
+    "mica-pgdm.html": 5,
+    "mica-placements.html": 6,
+    "mica.html": 6,
     "nirma-university-ba-llb.html": 8,
     "nirma-university-bba-hons.html": 8,
     "nirma-university-bcom-hons.html": 8,
@@ -1104,8 +1059,8 @@
     "iim-mumbai-mba.html": 11,
     "iim-mumbai-placements.html": 11,
     "iim-mumbai.html": 11,
-    "iim-nagpur-placements.html": 3,
-    "iim-nagpur.html": 1,
+    "iim-nagpur-placements.html": 6,
+    "iim-nagpur.html": 4,
     "iim-raipur-epgp.html": 11,
     "iim-raipur-mba.html": 11,
     "iim-raipur-placements.html": 11,
@@ -1142,10 +1097,10 @@
     "iit-delhi-dms-mba.html": 5,
     "iit-delhi-dms-placements.html": 9,
     "iit-delhi-dms.html": 11,
-    "iit-kanpur-management-sciences-m-tech.html": 6,
-    "iit-kanpur-management-sciences-phd.html": 6,
-    "iit-kanpur-placements.html": 3,
-    "iit-kanpur.html": 3,
+    "iit-kanpur-management-sciences-m-tech.html": 7,
+    "iit-kanpur-management-sciences-phd.html": 7,
+    "iit-kanpur-placements.html": 4,
+    "iit-kanpur.html": 4,
     "iit-kharagpur-placements.html": 11,
     "iit-kharagpur-vgsom-mba-ex.html": 11,
     "iit-kharagpur-vgsom-mba.html": 11,
@@ -1169,7 +1124,11 @@
     "indian-institute-of-management-kashipur-mba.html": 9,
     "indian-institute-of-management-kashipur-placements.html": 8,
     "indian-institute-of-management-kashipur.html": 14,
+    "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html": 4,
+    "indian-institute-of-management-nagpur-executive-mba-hybrid.html": 4,
+    "indian-institute-of-management-nagpur-mba.html": 4,
     "indian-institute-of-management-visakhapatnam-mba-programme.html": 2,
+    "indian-institute-of-technology-kanpur-mba-programme.html": 4,
     "indian-institute-of-technology-roorkee-executive-mba.html": 3,
     "indian-institute-of-technology-roorkee-mba.html": 3,
     "indian-institute-of-technology-roorkee-placements.html": 3,
@@ -1188,12 +1147,12 @@
     "jain-university-placements.html": 13,
     "jain-university.html": 21,
     "jaipuria-institute-management-noida.html": 11,
-    "jaipuria-institute-of-management-lucknow-placements.html": 4,
-    "jaipuria-institute-of-management-lucknow.html": 6,
-    "jaipuria-lucknow-fpm.html": 3,
-    "jaipuria-lucknow-pgdm-financial-services.html": 4,
-    "jaipuria-lucknow-pgdm-retail-management.html": 4,
-    "jaipuria-lucknow-pgdm.html": 6,
+    "jaipuria-institute-of-management-lucknow-placements.html": 8,
+    "jaipuria-institute-of-management-lucknow.html": 10,
+    "jaipuria-lucknow-fpm.html": 8,
+    "jaipuria-lucknow-pgdm-financial-services.html": 9,
+    "jaipuria-lucknow-pgdm-retail-management.html": 9,
+    "jaipuria-lucknow-pgdm.html": 11,
     "jaipuria-noida-pgdm-marketing.html": 7,
     "jaipuria-noida-pgdm-service-management.html": 7,
     "jaipuria-noida-pgdm.html": 7,
@@ -1228,6 +1187,8 @@
     "mdi-gurugram-placements.html": 8,
     "mdi-gurugram.html": 5,
     "mica-pgdm-c.html": 6,
+    "mica-pgdm.html": 6,
+    "mica-placements.html": 7,
     "mica.html": 8,
     "nirma-university-ba-llb.html": 11,
     "nirma-university-bba-hons.html": 11,
