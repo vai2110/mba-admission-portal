@@ -32,3 +32,5 @@ jobs:
             git commit -m "Phase 3: refresh internal link audit"
             git push
           fi
+
+# Phase 3 audit is intentionally read-only against page content.
