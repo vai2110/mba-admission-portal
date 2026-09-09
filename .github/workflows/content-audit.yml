@@ -133,6 +133,9 @@ jobs:
       - name: Run site-wide technical SEO audit
         run: python scripts/technical_seo_audit.py
 
+      - name: Run site-wide AEO GEO intent audit
+        run: python scripts/aeo_geo_intent_audit.py
+
       - name: Commit automatic HTML improvements
         if: ${{ github.event_name == 'push' || inputs.apply_changes == true }}
         run: |
@@ -176,4 +179,5 @@ jobs:
             content-audit-report.json
             seo-geo-aeo-report.json
             technical-seo-audit.json
+            aeo-geo-intent-audit.json
           if-no-files-found: ignore
