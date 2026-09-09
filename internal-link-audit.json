@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T08:49:45.331842+00:00",
+  "generated_at": "2026-09-09T08:50:05.058035+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 323,
-    "pages_with_internal_links": 310,
-    "broken_local_links": 2,
+    "pages_checked": 324,
+    "pages_with_internal_links": 311,
+    "broken_local_links": 17,
     "college_clusters_detected": 53,
     "cluster_reciprocal_gaps": 9,
     "zero_incoming_pages": 11,
     "role_counts": {
       "programme": 159,
       "placement": 56,
-      "overview_or_hub": 108
+      "overview_or_hub": 109
     }
   },
   "college_clusters": [
@@ -614,6 +614,81 @@
       "source": "iim-ahmedabad.html",
       "href": "iim-ahmedabad-bpgp.html",
       "target": "iim-ahmedabad-bpgp.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-mba.html",
+      "target": "iim-bodhgaya-mba.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-dbai.html",
+      "target": "iim-bodhgaya-dbai.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-hhm.html",
+      "target": "iim-bodhgaya-hhm.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-ipm.html",
+      "target": "iim-bodhgaya-ipm.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-placements.html",
+      "target": "iim-bodhgaya-placements.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-mba.html",
+      "target": "iim-bodhgaya-mba.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-dbai.html",
+      "target": "iim-bodhgaya-dbai.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-hhm.html",
+      "target": "iim-bodhgaya-hhm.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-ipm.html",
+      "target": "iim-bodhgaya-ipm.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-placements.html",
+      "target": "iim-bodhgaya-placements.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-mba.html",
+      "target": "iim-bodhgaya-mba.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-dbai.html",
+      "target": "iim-bodhgaya-dbai.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-hhm.html",
+      "target": "iim-bodhgaya-hhm.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-ipm.html",
+      "target": "iim-bodhgaya-ipm.html"
+    },
+    {
+      "source": "iim-bodhgaya.html",
+      "href": "iim-bodhgaya-placements.html",
+      "target": "iim-bodhgaya-placements.html"
     }
   ],
   "zero_incoming_pages": [
@@ -773,6 +848,7 @@
     "iim-bangalore-pgpem.html": 7,
     "iim-bangalore-placements.html": 14,
     "iim-bangalore.html": 12,
+    "iim-bodhgaya.html": 3,
     "iim-calcutta-mba.html": 6,
     "iim-calcutta-mbaex.html": 5,
     "iim-calcutta-pgdba.html": 5,
@@ -1087,6 +1163,7 @@
     "iim-bangalore-pgpem.html": 12,
     "iim-bangalore-placements.html": 6,
     "iim-bangalore.html": 17,
+    "iim-bodhgaya.html": 18,
     "iim-calcutta-mba.html": 8,
     "iim-calcutta-mbaex.html": 8,
     "iim-calcutta-pgdba.html": 8,
