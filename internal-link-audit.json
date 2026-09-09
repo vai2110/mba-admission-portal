@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T16:15:24.501061+00:00",
+  "generated_at": "2026-09-09T16:20:02.605581+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 364,
-    "pages_with_internal_links": 364,
-    "broken_local_links": 3,
+    "pages_checked": 366,
+    "pages_with_internal_links": 366,
+    "broken_local_links": 5,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 60,
+    "college_clusters_detected": 61,
     "cluster_reciprocal_gaps": 0,
     "zero_incoming_pages": 1,
     "role_counts": {
       "programme": 179,
-      "placement": 63,
-      "overview_or_hub": 122
+      "placement": 64,
+      "overview_or_hub": 123
     }
   },
   "college_clusters": [
@@ -298,6 +298,15 @@
       "programmes": [
         "iim-sambalpur-mba-ba.html",
         "iim-sambalpur-mba.html"
+      ]
+    },
+    {
+      "overview": "iim-shillong.html",
+      "placement": "iim-shillong-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iim-shillong-ipm.html",
+        "iim-shillong-mba.html"
       ]
     },
     {
@@ -614,14 +623,24 @@
       "target": "iim-ahmedabad-admission.html"
     },
     {
-      "source": "iim-shillong-mba.html",
-      "href": "iim-shillong-placements.html",
-      "target": "iim-shillong-placements.html"
+      "source": "tapmi-manipal.html",
+      "href": "tapmi-manipal-mba.html",
+      "target": "tapmi-manipal-mba.html"
     },
     {
-      "source": "iim-shillong.html",
-      "href": "iim-shillong-placements.html",
-      "target": "iim-shillong-placements.html"
+      "source": "tapmi-manipal.html",
+      "href": "tapmi-manipal-mba-bkfs.html",
+      "target": "tapmi-manipal-mba-bkfs.html"
+    },
+    {
+      "source": "tapmi-manipal.html",
+      "href": "tapmi-manipal-mba-hrm.html",
+      "target": "tapmi-manipal-mba-hrm.html"
+    },
+    {
+      "source": "tapmi-manipal.html",
+      "href": "tapmi-manipal-placements.html",
+      "target": "tapmi-manipal-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -633,7 +652,7 @@
   ],
   "zero_incoming_pages": [
     {
-      "page": "iim-shillong.html",
+      "page": "tapmi-manipal.html",
       "role": "programme",
       "incoming_internal_links": 0
     }
@@ -805,8 +824,10 @@
     "iim-sambalpur-mba.html": 4,
     "iim-sambalpur-placements.html": 6,
     "iim-sambalpur.html": 6,
-    "iim-shillong-ipm.html": 1,
-    "iim-shillong-mba.html": 1,
+    "iim-shillong-ipm.html": 4,
+    "iim-shillong-mba.html": 4,
+    "iim-shillong-placements.html": 5,
+    "iim-shillong.html": 3,
     "iim-sirmaur-mba-tourism.html": 5,
     "iim-sirmaur-mba-tthm.html": 5,
     "iim-sirmaur-placements.html": 9,
@@ -851,7 +872,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 762,
+    "index.html": 766,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -1167,9 +1188,10 @@
     "iim-sambalpur-mba.html": 7,
     "iim-sambalpur-placements.html": 6,
     "iim-sambalpur.html": 8,
-    "iim-shillong-ipm.html": 2,
-    "iim-shillong-mba.html": 3,
-    "iim-shillong.html": 5,
+    "iim-shillong-ipm.html": 5,
+    "iim-shillong-mba.html": 6,
+    "iim-shillong-placements.html": 5,
+    "iim-shillong.html": 8,
     "iim-sirmaur-mba-tourism.html": 10,
     "iim-sirmaur-mba-tthm.html": 10,
     "iim-sirmaur-placements.html": 9,
@@ -1339,6 +1361,7 @@
     "srmist-mbbs.html": 6,
     "srmist-mca.html": 9,
     "srmist-placements.html": 5,
+    "tapmi-manipal.html": 6,
     "top-mba-colleges-in-india.html": 2,
     "upes-dehradun-bba.html": 9,
     "upes-dehradun-bca.html": 9,
