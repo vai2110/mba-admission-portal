@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T08:58:01.410294+00:00",
+  "generated_at": "2026-09-09T08:58:19.141084+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 329,
-    "pages_with_internal_links": 325,
-    "broken_local_links": 2,
+    "pages_checked": 330,
+    "pages_with_internal_links": 326,
+    "broken_local_links": 22,
     "college_clusters_detected": 54,
     "cluster_reciprocal_gaps": 2,
     "zero_incoming_pages": 8,
     "role_counts": {
       "programme": 160,
       "placement": 57,
-      "overview_or_hub": 112
+      "overview_or_hub": 113
     }
   },
   "college_clusters": [
@@ -566,6 +566,106 @@
   ],
   "broken_local_links": [
     {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-btech.html",
+      "target": "chandigarh-university-btech.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-mba.html",
+      "target": "chandigarh-university-mba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bca.html",
+      "target": "chandigarh-university-bca.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bba.html",
+      "target": "chandigarh-university-bba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-placements.html",
+      "target": "chandigarh-university-placements.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-btech.html",
+      "target": "chandigarh-university-btech.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-mba.html",
+      "target": "chandigarh-university-mba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bca.html",
+      "target": "chandigarh-university-bca.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bba.html",
+      "target": "chandigarh-university-bba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-placements.html",
+      "target": "chandigarh-university-placements.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-btech.html",
+      "target": "chandigarh-university-btech.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-mba.html",
+      "target": "chandigarh-university-mba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bca.html",
+      "target": "chandigarh-university-bca.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bba.html",
+      "target": "chandigarh-university-bba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-placements.html",
+      "target": "chandigarh-university-placements.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-btech.html",
+      "target": "chandigarh-university-btech.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-mba.html",
+      "target": "chandigarh-university-mba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bca.html",
+      "target": "chandigarh-university-bca.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-bba.html",
+      "target": "chandigarh-university-bba.html"
+    },
+    {
+      "source": "chandigarh-university.html",
+      "href": "chandigarh-university-placements.html",
+      "target": "chandigarh-university-placements.html"
+    },
+    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -655,6 +755,7 @@
     "birla-institute-management-technology-placements.html": 17,
     "birla-institute-management-technology.html": 12,
     "cat.html": 3,
+    "chandigarh-university.html": 3,
     "christ-university-ba-llb.html": 11,
     "christ-university-bba.html": 11,
     "christ-university-bca.html": 11,
@@ -978,6 +1079,7 @@
     "birla-institute-management-technology-placements.html": 16,
     "birla-institute-management-technology.html": 17,
     "cat.html": 9,
+    "chandigarh-university.html": 23,
     "christ-university-ba-llb.html": 11,
     "christ-university-bba.html": 11,
     "christ-university-bca.html": 11,
