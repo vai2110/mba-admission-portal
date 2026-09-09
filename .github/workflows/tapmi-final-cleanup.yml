@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove TAPMI cluster strip and tool citation artefacts
+      - name: Apply final TAPMI navigation and upcoming-cycle dates
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -40,14 +40,22 @@ jobs:
               original = text
               text = re.sub(r'<nav class="college-cluster-nav".*?</nav>', '', text, flags=re.S)
               text = re.sub(r'\s*cite[^]*', '', text)
+              if name == 'tapmi-manipal.html':
+                  text = text.replace('TAPMI Manipal: MBA, Fees, Cutoff, Placements & Admission 2026', 'TAPMI Manipal: MBA, Fees, Cutoff, Placements & Admission 2027')
+                  text = text.replace('TAPMI Admission Dates: What Is the Current Status?', 'TAPMI Admission Dates 2027-29: Current Status')
+                  old_section = re.compile(r'<section class="main-section" id="dates">.*?</section><hr><section class="main-section" id="programmes">', re.S)
+                  new_section = '''<section class="main-section" id="dates"><h2>TAPMI Admission Dates 2027-29: Current Status</h2><p><strong>TAPMI has not yet published the official admission schedule for the 2027-29 MBA batch.</strong> The dates currently visible on TAPMI's official admissions page relate to the closed 2026-28 cycle and should not be presented as upcoming dates. Students targeting 2027-29 should wait for TAPMI's next official admission notification before treating any application, shortlist, GD/WAT/PI or programme-start date as confirmed.</p><div class="table-wrapper"><table><tr><th>2027-29 admission stage</th><th>Official status</th></tr><tr><td>Application opening</td><td><strong>Not announced yet</strong></td></tr><tr><td>Application deadline</td><td><strong>Not announced yet</strong></td></tr><tr><td>Shortlist announcement</td><td><strong>Not announced yet</strong></td></tr><tr><td>GD/WAT/PI</td><td><strong>Not announced yet</strong></td></tr><tr><td>First selection list</td><td><strong>Not announced yet</strong></td></tr><tr><td>First-year Term I</td><td><strong>Not announced yet</strong></td></tr></table></div><div class="answer-box"><strong>What should 2027-29 applicants do now?</strong><p>Use the waiting period to prepare for the relevant management entrance exams and keep your academic, work-experience and achievement documents ready. Do not assume that the 2026-28 application window or selection dates will repeat for 2027-29. TAPMI's official admissions page should be treated as the source of truth once the new cycle is announced.</p></div></section><hr><section class="main-section" id="programmes">'''
+                  text, n = old_section.subn(new_section, text, count=1)
+                  if n == 0:
+                      print('WARNING: dates section not found in tapmi-manipal.html')
               if text != original:
                   p.write_text(text, encoding='utf-8')
                   changed = True
-                  print(f'CLEANED: {name}')
+                  print(f'UPDATED: {name}')
           if not changed:
-              print('No TAPMI cleanup changes needed.')
+              print('No TAPMI changes needed.')
           PY
-      - name: Commit cleanup
+      - name: Commit final TAPMI fixes
         run: |
           git config user.name "TAPMI Final Cleanup"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -55,6 +63,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No cleanup changes to commit."
           else
-            git commit -m "Remove TAPMI college navigation strip"
+            git commit -m "Fix TAPMI upcoming admission cycle dates"
             git push
           fi
