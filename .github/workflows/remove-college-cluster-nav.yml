@@ -1,0 +1,45 @@
+name: Enforce no college cluster navigation
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  remove-cluster-nav:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove college cluster navigation from every HTML page
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          changed = False
+          for p in Path('.').glob('*.html'):
+              s = p.read_text(encoding='utf-8')
+              original = s
+              # Remove the navigation element regardless of attribute order/formatting.
+              s = re.sub(r'<nav\b[^>]*\bclass=["\']college-cluster-nav["\'][^>]*>.*?</nav>\s*', '', s, flags=re.I|re.S)
+              s = re.sub(r'<nav\b[^>]*\baria-label=["\']College page navigation["\'][^>]*>.*?</nav>\s*', '', s, flags=re.I|re.S)
+              # Remove the dedicated cluster-nav CSS block, while preserving all other page CSS.
+              s = re.sub(r'\.college-cluster-nav\{.*?\.college-cluster-nav\.sep\{[^}]*\}', '', s, flags=re.S)
+              if s != original:
+                  p.write_text(s, encoding='utf-8')
+                  changed = True
+                  print('UPDATED', p.name)
+          if not changed:
+              print('No college cluster navigation found.')
+          PY
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '*.html'
+          git diff --cached --quiet && exit 0
+          git commit -m 'Remove college cluster navigation from all pages'
+          git push
