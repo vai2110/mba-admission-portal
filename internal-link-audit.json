@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T16:07:46.749283+00:00",
+  "generated_at": "2026-09-09T16:15:07.177685+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 361,
-    "pages_with_internal_links": 361,
-    "broken_local_links": 1,
+    "pages_checked": 363,
+    "pages_with_internal_links": 363,
+    "broken_local_links": 4,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 60,
     "cluster_reciprocal_gaps": 0,
-    "zero_incoming_pages": 0,
+    "zero_incoming_pages": 1,
     "role_counts": {
-      "programme": 178,
+      "programme": 179,
       "placement": 63,
-      "overview_or_hub": 120
+      "overview_or_hub": 121
     }
   },
   "college_clusters": [
@@ -612,6 +612,21 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "iim-shillong-mba.html",
+      "href": "iim-shillong-placements.html",
+      "target": "iim-shillong-placements.html"
+    },
+    {
+      "source": "iim-shillong.html",
+      "href": "iim-shillong-ipm.html",
+      "target": "iim-shillong-ipm.html"
+    },
+    {
+      "source": "iim-shillong.html",
+      "href": "iim-shillong-placements.html",
+      "target": "iim-shillong-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -621,7 +636,13 @@
       "target": "iim-ahmedabad-bpgp.html"
     }
   ],
-  "zero_incoming_pages": [],
+  "zero_incoming_pages": [
+    {
+      "page": "iim-shillong.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    }
+  ],
   "incoming_link_counts": {
     "alliance-university-bba-llb.html": 12,
     "alliance-university-bba.html": 16,
@@ -789,6 +810,7 @@
     "iim-sambalpur-mba.html": 4,
     "iim-sambalpur-placements.html": 6,
     "iim-sambalpur.html": 6,
+    "iim-shillong-mba.html": 1,
     "iim-sirmaur-mba-tourism.html": 5,
     "iim-sirmaur-mba-tthm.html": 5,
     "iim-sirmaur-placements.html": 9,
@@ -833,7 +855,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 756,
+    "index.html": 760,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -1149,6 +1171,8 @@
     "iim-sambalpur-mba.html": 7,
     "iim-sambalpur-placements.html": 6,
     "iim-sambalpur.html": 8,
+    "iim-shillong-mba.html": 3,
+    "iim-shillong.html": 5,
     "iim-sirmaur-mba-tourism.html": 10,
     "iim-sirmaur-mba-tthm.html": 10,
     "iim-sirmaur-placements.html": 9,
