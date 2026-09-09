@@ -1,0 +1,30 @@
+name: Ensure IMI Delhi tables fit mobile viewport
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  fix-imi-tables:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch mobile table width
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          files=['imi-delhi.html','imi-delhi-pgdm.html','imi-delhi-pgdm-hrm.html','imi-delhi-pgdm-bfs.html','imi-delhi-placements.html']
+          for name in files:
+              p=Path(name)
+              s=p.read_text(encoding='utf-8')
+              s=s.replace('.table-wrapper table{width:100%;max-width:100%;table-layout:fixed}', '.table-wrapper table{width:100%;max-width:100%;min-width:0!important;table-layout:fixed}')
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add imi-delhi*.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix IMI Delhi mobile table width'
+          git push
