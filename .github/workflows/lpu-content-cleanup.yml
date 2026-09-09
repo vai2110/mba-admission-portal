@@ -1,0 +1,31 @@
+name: LPU content cleanup
+on:
+  push:
+    paths:
+      - 'lovely-professional-university.html'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clean generated citation markers and forbidden college strip
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('lovely-professional-university.html')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r'\s*cite[^]+', '', s)
+          s=re.sub(r'<[^>]*class=["\'][^"\']*college-cluster-nav[^"\']*["\'][^>]*>.*?</[^>]+>\s*', '', s, flags=re.S|re.I)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lovely-professional-university.html
+          git diff --cached --quiet || git commit -m 'Clean LPU page markup'
+          git push
