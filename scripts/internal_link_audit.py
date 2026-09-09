@@ -14,6 +14,11 @@ EXCLUDED = {
     "github-direct-edit-test.html", "irma-deploy-trigger.html"
 }
 BENCHMARKS = {"iim-ahmedabad.html", "sibm-pune.html"}
+HELPER_PAGES = {
+    "welingkar-mumbai-links.html",
+    "welingkar-mumbai-programmes-note.html",
+    "welingkar-mumbai-programmes.html",
+}
 
 
 def local_target(href: str):
@@ -43,14 +48,15 @@ def page_role(name: str):
 
 def build_clusters(pages):
     names = set(pages)
+    cluster_pages = names - HELPER_PAGES
     clusters = {}
-    for placement in sorted(n for n in pages if n.endswith("-placements.html")):
+    for placement in sorted(n for n in cluster_pages if n.endswith("-placements.html")):
         base = placement[:-len("-placements.html")] + ".html"
-        if base not in names:
+        if base not in cluster_pages:
             continue
         programme = []
         prefix = base[:-5]
-        for name in pages:
+        for name in cluster_pages:
             if name == base or name == placement:
                 continue
             if name.startswith(prefix + "-"):
@@ -64,6 +70,7 @@ def main():
     page_set = set(pages)
     outgoing = defaultdict(list)
     broken = []
+    benchmark_broken = []
     href_count = Counter()
 
     for name in pages:
@@ -76,7 +83,11 @@ def main():
             href_count[name] += 1
             outgoing[name].append(target)
             if target not in page_set:
-                broken.append({"source": name, "href": href, "target": target})
+                item = {"source": name, "href": href, "target": target}
+                if name in BENCHMARKS or any(name == b for b in BENCHMARKS):
+                    benchmark_broken.append(item)
+                else:
+                    broken.append(item)
 
     incoming = Counter(t for targets in outgoing.values() for t in targets if t in page_set)
     clusters = build_clusters(pages)
@@ -108,7 +119,7 @@ def main():
     orphan_candidates = [
         {"page": p, "role": page_role(p), "incoming_internal_links": incoming[p]}
         for p in pages
-        if incoming[p] == 0 and p not in BENCHMARKS
+        if incoming[p] == 0 and p not in BENCHMARKS and p not in HELPER_PAGES
     ]
 
     role_counts = Counter()
@@ -127,6 +138,7 @@ def main():
             "pages_checked": len(pages),
             "pages_with_internal_links": sum(1 for p in pages if outgoing.get(p)),
             "broken_local_links": len(broken),
+            "benchmark_legacy_broken_links": len(benchmark_broken),
             "college_clusters_detected": len(clusters),
             "cluster_reciprocal_gaps": len(missing_reciprocal),
             "zero_incoming_pages": len(orphan_candidates),
@@ -135,16 +147,20 @@ def main():
         "college_clusters": cluster_results,
         "reciprocal_link_gaps": missing_reciprocal,
         "broken_local_links": broken,
+        "benchmark_legacy_broken_links": benchmark_broken,
         "zero_incoming_pages": orphan_candidates,
         "incoming_link_counts": dict(sorted(incoming.items())),
         "outgoing_internal_link_counts": dict(sorted(href_count.items())),
         "benchmarks": sorted(BENCHMARKS),
+        "helper_pages_excluded_from_clusters": sorted(HELPER_PAGES),
         "rules": [
             "Overview pages should link to their placement page and every existing dedicated programme page.",
             "Programme pages should link back to the overview and placement page.",
             "Placement pages should link back to the overview and existing programme pages.",
             "Missing pages are not created by this audit; only existing destinations are evaluated.",
-            "Benchmark pages are never modified by the Phase 3 automation."
+            "Benchmark pages are never modified by the Phase 3 automation.",
+            "Welingkar helper/hub pages are excluded from reciprocal college clusters because they are navigation utilities, not dedicated programme pages.",
+            "Broken links originating from benchmark pages are reported separately and are never modified by the Phase 3 automation."
         ]
     }
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -152,6 +168,10 @@ def main():
     if broken:
         print("BROKEN LOCAL LINKS:")
         for item in broken:
+            print(f"- {item['source']} -> {item['href']}")
+    if benchmark_broken:
+        print("BENCHMARK LEGACY BROKEN LINKS (NOT MODIFIED):")
+        for item in benchmark_broken:
             print(f"- {item['source']} -> {item['href']}")
 
 
