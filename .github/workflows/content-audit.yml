@@ -147,8 +147,7 @@ jobs:
             echo "No automatic HTML changes required."
           else
             git commit -m "SEO AEO GEO and locked benchmark UI improvements"
-            git fetch origin main
-            git rebase origin/main
+            git pull --rebase --autostash origin main
             git push origin HEAD:main
           fi
 
@@ -171,8 +170,7 @@ jobs:
             echo "Dashboards are already current."
           else
             git commit -m "Update live college audit and production trackers"
-            git fetch origin main
-            git rebase origin/main
+            git pull --rebase --autostash origin main
             git push origin HEAD:main
           fi
 
