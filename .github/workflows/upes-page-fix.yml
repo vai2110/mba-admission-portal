@@ -1,4 +1,4 @@
-name: Fix UPES Dehradun Pages
+name: Fix mobile On this page menu
 on:
   workflow_dispatch:
   push:
@@ -11,77 +11,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update UPES pages
+      - name: Add mobile menu auto-close behavior
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
           files = [
-            'upes-dehradun.html','upes-dehradun-btech.html','upes-dehradun-mba.html',
-            'upes-dehradun-bba.html','upes-dehradun-bca.html','upes-dehradun-bdes.html',
-            'upes-dehradun-llb.html','upes-dehradun-placements.html'
+            'mica.html','mica-pgdm-c.html','mica-pgdm.html','mica-placements.html',
+            'iim-sambalpur.html','iim-sambalpur-mba.html','iim-sambalpur-mba-ba.html','iim-sambalpur-placements.html',
+            'iim-jammu.html','iim-jammu-mba.html','iim-jammu-mba-hc.html','iim-jammu-mba-ai-ba.html','iim-jammu-placements.html',
+            'upes-dehradun.html','upes-dehradun-btech.html','upes-dehradun-mba.html','upes-dehradun-bba.html',
+            'upes-dehradun-bca.html','upes-dehradun-bdes.html','upes-dehradun-llb.html','upes-dehradun-placements.html'
           ]
-          css='''<style>
-          /* UPES mobile table + student comparison fix */
-          .upes-mobile-table{width:100%;overflow:hidden!important}
-          .upes-mobile-table table{width:100%!important;min-width:0!important;table-layout:fixed!important;border-collapse:collapse}
-          .upes-mobile-table th,.upes-mobile-table td{overflow-wrap:anywhere;word-break:break-word;white-space:normal;font-size:13px;padding:8px 7px}
-          .upes-fee-grid,.upes-placement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}
-          .upes-fee-card,.upes-placement-card{padding:14px;border:1px solid #dbe4f0;border-radius:8px;background:#fff}
-          .upes-fee-card strong,.upes-placement-card strong{display:block;font-size:20px;color:#173f82;margin-bottom:5px}
-          .upes-fee-card span,.upes-placement-card span{font-size:13px;line-height:1.45}
-          @media(max-width:700px){
-            .upes-mobile-table th,.upes-mobile-table td{font-size:10.5px!important;padding:6px 4px!important;line-height:1.35}
-            .upes-fee-grid,.upes-placement-grid{grid-template-columns:1fr 1fr;gap:8px}
-            .upes-fee-card,.upes-placement-card{padding:10px}
-            .upes-fee-card strong,.upes-placement-card strong{font-size:16px}
-            .upes-fee-card span,.upes-placement-card span{font-size:11px}
-          }
-          @media(max-width:420px){.upes-fee-grid,.upes-placement-grid{grid-template-columns:1fr 1fr}.upes-mobile-table th,.upes-mobile-table td{font-size:9.5px!important;padding:5px 3px!important}}
-          </style>'''
-          fee_common='''<div class="upes-fee-grid"><div class="upes-fee-card"><strong>Tuition</strong><span>Core programme/semester fee; varies by programme and specialisation.</span></div><div class="upes-fee-card"><strong>Academic & service charges</strong><span>Programme-related academic/service components may be included in the published structure.</span></div><div class="upes-fee-card"><strong>Technology</strong><span>₹3,800 per semester for the first year; subsequent-year amount is communicated with semester fees.</span></div><div class="upes-fee-card"><strong>Security</strong><span>₹20,000 refundable, interest-free security at registration.</span></div><div class="upes-fee-card"><strong>Medical + I-Card</strong><span>₹500 medical insurance at registration + ₹500 one-time I-Card fee.</span></div><div class="upes-fee-card"><strong>Hostel / Transport</strong><span>Hostel is separate; 2026-27 transport is ₹31,000. Hostel security is ₹10,000 refundable.</span></div></div><div class="answer-box"><strong>What is usually NOT part of the headline tuition?</strong><p>Hostel, transport, technology, programme-specific consumables/training, insurance, I-Card and other applicable charges can be additional. UPES also lists a ₹31,300 one-time training/certification fee for applicable full-time programmes, ₹9,000 PDC fee for PG programmes and ₹23,300 for UG programmes, subject to programme exclusions.</p></div>'''
-          placement_common='''<div class="upes-mobile-table"><table><tr><th>Programme / area</th><th>Reported outcome</th><th>How to interpret it</th></tr><tr><td>MBA / School of Business</td><td>₹30 LPA highest; ₹14 LPA top-10% average; 390+ offers; 150+ recruiters (2023-24)</td><td>Useful MBA-specific benchmark; do not apply it to UG courses.</td></tr><tr><td>B.Tech / engineering</td><td>17.5 LPA top-10% average CTC is highlighted by UPES for B.Tech CSE</td><td>Compare specialisation and cohort; not the same as a median salary.</td></tr><tr><td>B.Des</td><td>₹6.48 LPA average and ₹15.17 LPA highest for a reported industrial/product-design programme</td><td>Design outcomes vary by discipline.</td></tr><tr><td>University-wide</td><td>92% placed in 2024-25; 800+ recruiters on campus in 2025</td><td>Broad headline; ask for course-wise denominator and roles.</td></tr><tr><td>Highest headline</td><td>₹1.3 Cr secured by an alumnus</td><td>Exceptional alumnus outcome, not a typical student package.</td></tr></table></div>'''
-          specific={
-            'upes-dehradun-btech.html': '''<h3>UPES B.Tech Fee Breakdown & Placement Comparison</h3><p>The currently listed tuition range is <strong>₹8.06–13.46 lakh</strong> across B.Tech programmes. International pathways can have different first-year fees; for example, the current global-program listing shows ₹5.16 lakh for B.Tech CSE and ₹3.01 lakh for several engineering pathways before partner-university costs.</p>'''+fee_common+placement_common,
-            'upes-dehradun-mba.html': '''<h3>UPES MBA Fee Breakdown & Placement Comparison</h3><p>For the common General/Power Management/International Business/Aviation Management structure, the current listing is about <strong>₹18.37 lakh</strong> across four semesters. Fees differ by specialisation and partner programme.</p>'''+fee_common+placement_common,
-            'upes-dehradun-bba.html': '''<h3>UPES BBA Fee Breakdown & Placement Comparison</h3><p>Current listings place BBA tuition at approximately <strong>₹11.92–13.42 lakh</strong>, depending on programme. BBA Global has a separately listed first-year UPES fee of ₹3.74 lakh before partner-university costs.</p>'''+fee_common+placement_common,
-            'upes-dehradun-bca.html': '''<h3>UPES BCA Fee Breakdown & Placement Comparison</h3><p>A current listing reports about <strong>₹7.16 lakh</strong> for the three-year BCA, with approximately ₹2.84 lakh, ₹2.09 lakh and ₹2.24 lakh year-wise. Verify the final payable structure on the official 2026-27 fee page.</p>'''+fee_common+placement_common,
-            'upes-dehradun-bdes.html': '''<h3>UPES B.Des Fee Breakdown & Placement Comparison</h3><p>Current listings place B.Des tuition at about <strong>₹14.48 lakh</strong>. UPES additionally lists a <strong>₹12,800 per year consumable fee</strong> for B.Des students. A Global Pathway listing shows ₹5.52 lakh first-year UPES fee before partner-university costs.</p>'''+fee_common+placement_common,
-            'upes-dehradun-llb.html': '''<h3>UPES LL.B Fee Breakdown & Placement Comparison</h3><p>The current three-year LL.B listing is approximately <strong>₹14.35 lakh</strong>, with hostel separate. The exact 2026-27 programme structure should be checked before payment.</p>'''+fee_common+placement_common,
-          }
+          script = '''<script>
+          /* Mobile "On this page" menu: close automatically after selecting a section. */
+          document.querySelectorAll('.mobile-on-page details').forEach(function(details){
+            details.querySelectorAll('a[href^="#"]').forEach(function(link){
+              link.addEventListener('click', function(){
+                details.open = false;
+              });
+            });
+          });
+          </script>'''
+          marker = '/* Mobile "On this page" menu: close automatically after selecting a section. */'
           for fn in files:
-            p=Path(fn); s=p.read_text(encoding='utf-8')
-
-            # Remove the unwanted college-level strip above the MBA Portal header.
-            s=re.sub(r'<nav class="college-cluster-nav"[\s\S]*?</nav>','',s,count=1)
-            s=re.sub(r'<style>\.college-cluster-nav\{[\s\S]*?</style>','',s,count=1)
-
-            if 'upes-mobile-table' not in s:
-              s=s.replace('</head>',css+'</head>',1)
-            s=s.replace('<div class="table-wrapper">','<div class="table-wrapper upes-mobile-table">')
-            s=s.replace('upes-mobile-table upes-mobile-table','upes-mobile-table')
-            if fn in specific and 'Fee Breakdown & Placement Comparison' not in s:
-              marker='<section class="main-section" id="fees">'
-              if marker in s:
-                s=s.replace(marker, marker+specific[fn],1)
-            if fn=='upes-dehradun.html':
-              fee='<div class="upes-fee-grid"><div class="upes-fee-card"><strong>B.Tech</strong><span>₹8.06–13.46L tuition, programme-dependent</span></div><div class="upes-fee-card"><strong>MBA</strong><span>~₹18.37L for common listed streams</span></div><div class="upes-fee-card"><strong>BBA</strong><span>₹11.92–13.42L tuition</span></div><div class="upes-fee-card"><strong>BCA</strong><span>~₹7.16L listed 3-year fee</span></div><div class="upes-fee-card"><strong>B.Des</strong><span>~₹14.48L tuition + ₹12,800/year consumables</span></div><div class="upes-fee-card"><strong>LL.B</strong><span>~₹14.35L listed 3-year fee</span></div></div><p><strong>Fee components to budget:</strong> tuition/programme charges, academic/service charges, technology fee, refundable security, medical insurance, I-Card, hostel/hostel security, transport and programme-specific training/consumables. UPES lists ₹31,000 annual transport, ₹20,000 refundable security, ₹3,800/semester first-year technology fee and ₹10,000 refundable hostel security for 2026-27.</p>'
-              if 'What UPES fees actually include' not in s:
-                s=s.replace('<section class="main-section" id="fees"><h2>UPES Dehradun Fees 2026-27</h2>','<section class="main-section" id="fees"><h2>UPES Dehradun Fees 2026-27: Numbers & What They Include</h2><h3>What UPES fees actually include</h3>'+fee,1)
-              comp='<section class="main-section" id="placement-comparison"><h2>UPES Placement Comparison by Course</h2><p>For students comparing courses, the most useful approach is to separate university-wide headlines from programme-specific outcomes.</p>'+placement_common+'</section><hr>'
-              if 'id="placement-comparison"' not in s:
-                s=s.replace('<section class="main-section" id="student-view">',comp+'<section class="main-section" id="student-view">',1)
-              s=s.replace('<a href="#placements">Placements</a><a href="#student-view">','<a href="#placements">Placements</a><a href="#placement-comparison">Placement Comparison</a><a href="#student-view">')
-            if fn=='upes-dehradun-placements.html' and 'id="course-comparison"' not in s:
-              comp='<hr><section class="main-section" id="course-comparison"><h2>UPES Placement Comparison: MBA vs B.Tech vs B.Des vs University-wide</h2><p>These figures are not directly interchangeable because they come from different programmes/cohorts. Use them as a comparison framework, not as a single university average.</p>'+placement_common+'<div class="answer-box"><strong>Student decision rule:</strong><p>Before paying fees, ask for the latest programme-specific placement report, number of students in the denominator, median/average CTC, fixed pay, role mix and the number of offers actually accepted.</p></div></section>'
-              s=s.replace('<section class="main-section" id="schools">',comp+'<section class="main-section" id="schools">',1)
-              s=s.replace('<a href="#schools">Schools</a>','<a href="#schools">Schools</a><a href="#course-comparison">Placement Comparison</a>',1)
-            p.write_text(s,encoding='utf-8')
+            p = Path(fn)
+            if not p.exists():
+              print(f'Skipped missing file: {fn}')
+              continue
+            s = p.read_text(encoding='utf-8')
+            if marker not in s and '<div class="mobile-on-page">' in s:
+              s = s.replace('</body>', script + '</body>', 1)
+              p.write_text(s, encoding='utf-8')
+              print(f'Updated: {fn}')
+            else:
+              print(f'Already fixed/no mobile menu: {fn}')
           PY
       - name: Commit changes
         run: |
-          git config user.name "UPES Page Fix"
+          git config user.name "Mobile Menu Fix"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add upes-dehradun*.html
-          git commit -m "Remove UPES college strip above MBA Portal" || exit 0
+          git add mica*.html iim-sambalpur*.html iim-jammu*.html upes-dehradun*.html
+          git commit -m "Auto-close mobile On this page menu" || exit 0
           git push
