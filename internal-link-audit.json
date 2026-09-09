@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-09T16:20:02.605581+00:00",
+  "generated_at": "2026-09-09T16:20:24.112511+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 366,
-    "pages_with_internal_links": 366,
+    "pages_checked": 367,
+    "pages_with_internal_links": 367,
     "broken_local_links": 5,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 61,
     "cluster_reciprocal_gaps": 0,
     "zero_incoming_pages": 1,
     "role_counts": {
-      "programme": 179,
+      "programme": 180,
       "placement": 64,
       "overview_or_hub": 123
     }
@@ -623,9 +623,9 @@
       "target": "iim-ahmedabad-admission.html"
     },
     {
-      "source": "tapmi-manipal.html",
-      "href": "tapmi-manipal-mba.html",
-      "target": "tapmi-manipal-mba.html"
+      "source": "tapmi-manipal-mba.html",
+      "href": "tapmi-manipal-placements.html",
+      "target": "tapmi-manipal-placements.html"
     },
     {
       "source": "tapmi-manipal.html",
@@ -872,7 +872,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 766,
+    "index.html": 768,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -997,6 +997,7 @@
     "srmist-mbbs.html": 1,
     "srmist-mca.html": 1,
     "srmist-placements.html": 30,
+    "tapmi-manipal-mba.html": 1,
     "top-mba-colleges-in-india.html": 10,
     "upes-dehradun-bba.html": 9,
     "upes-dehradun-bca.html": 9,
@@ -1361,6 +1362,7 @@
     "srmist-mbbs.html": 6,
     "srmist-mca.html": 9,
     "srmist-placements.html": 5,
+    "tapmi-manipal-mba.html": 3,
     "tapmi-manipal.html": 6,
     "top-mba-colleges-in-india.html": 2,
     "upes-dehradun-bba.html": 9,
