@@ -15,11 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install parser
-        run: python -m pip install beautifulsoup4
-
-      - name: Add reciprocal college navigation
-        run: python scripts/repair_internal_links.py
+      - name: Add/refine reciprocal college navigation
+        run: python scripts/repair_internal_links_v2.py
 
       - name: Commit repaired pages
         run: |
@@ -29,6 +26,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No internal-link changes required."
           else
-            git commit -m "Phase 3: repair reciprocal college internal links"
+            git commit -m "Phase 3: refine reciprocal college internal links"
             git push
           fi
