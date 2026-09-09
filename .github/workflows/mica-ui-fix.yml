@@ -1,0 +1,81 @@
+name: Apply MICA UI fixes
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-mica-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply MICA navigation and FAQ accordion fixes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = [Path(x) for x in [
+              'mica.html',
+              'mica-pgdm-c.html',
+              'mica-pgdm.html',
+              'mica-placements.html'
+          ]]
+
+          accordion_script = '''<script>
+          document.querySelectorAll('.faq-item.accordion').forEach(item => {
+            const question = item.querySelector('h3');
+            const answer = item.querySelector('p');
+            if (!question || !answer) return;
+            question.setAttribute('role','button');
+            question.setAttribute('tabindex','0');
+            question.style.cursor='pointer';
+            question.style.position='relative';
+            question.style.paddingRight='28px';
+            question.style.marginBottom='0';
+            answer.style.display='none';
+            answer.style.paddingTop='10px';
+            const icon=document.createElement('span');
+            icon.textContent='⌄';
+            icon.setAttribute('aria-hidden','true');
+            icon.style.position='absolute';
+            icon.style.right='4px';
+            icon.style.top='50%';
+            icon.style.transform='translateY(-50%)';
+            icon.style.fontSize='16px';
+            icon.style.color='#173f82';
+            question.appendChild(icon);
+            const toggle=()=>{
+              const open=answer.style.display!=='none';
+              answer.style.display=open?'none':'block';
+              icon.textContent=open?'⌄':'⌃';
+            };
+            question.addEventListener('click',toggle);
+            question.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+          });
+          </script>'''
+
+          for path in pages:
+              text = path.read_text(encoding='utf-8')
+              text = re.sub(r'<nav class="college-cluster-nav"[^>]*>.*?</nav>', '', text, count=1, flags=re.S)
+              text = text.replace('href="mica.css"', 'href="sibm-bengaluru.css"')
+              text = text.replace('class="faq-item"', 'class="faq-item accordion"')
+              if 'faq-item accordion' in text and "querySelectorAll('.faq-item.accordion')" not in text:
+                  text = text.replace('</body></html>', accordion_script + '</body></html>')
+              path.write_text(text, encoding='utf-8')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mica.html mica-pgdm-c.html mica-pgdm.html mica-placements.html
+          if git diff --cached --quiet; then
+            echo "No MICA changes needed"
+          else
+            git commit -m "Fix MICA top navigation and FAQ accordions"
+            git push
+          fi
