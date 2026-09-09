@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-09T16:20:43.035319+00:00",
+  "generated_at": "2026-09-09T16:46:05.385886+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 372,
-  "pages_with_issues": 307,
+  "pages_checked": 375,
+  "pages_with_issues": 310,
   "issue_counts": {
-    "broken_local_links": 5,
-    "canonical": 62,
+    "broken_local_links": 3,
+    "canonical": 65,
     "description_count": 4,
     "description_length": 126,
     "duplicate_title": 2,
     "h1_count": 2,
-    "jsonld": 69,
+    "jsonld": 72,
     "lang": 1,
-    "og_description": 80,
-    "og_title": 80,
-    "og_url": 81,
+    "og_description": 83,
+    "og_title": 83,
+    "og_url": 84,
     "title_length": 251,
-    "twitter_card": 90,
+    "twitter_card": 93,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -7251,6 +7251,48 @@
       ]
     },
     {
+      "file": "imi-delhi.html",
+      "benchmark": false,
+      "title": "IMI Delhi: PGDM, Fees, Cutoff, Placements & Admission 2027",
+      "title_length": 58,
+      "description": "Student-focused IMI Delhi guide covering PGDM, PGDM HRM, PGDM B&FS, admission, tentative 2027 dates, fees, scholarships, campus, curriculum and placements.",
+      "description_length": 155,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "IMI Delhi: PGDM, Fees, Cutoff, Placements & Admission 2027",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [
+        "imi-delhi-pgdm-bfs.html",
+        "imi-delhi-pgdm-hrm.html",
+        "imi-delhi-pgdm.html",
+        "imi-delhi-placements.html"
+      ],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld",
+        "broken_local_links"
+      ]
+    },
+    {
       "file": "imt-nagpur-pgdm-financial-management.html",
       "benchmark": false,
       "title": "IMT Nagpur PGDM Financial Management 2026: Fees, Admission & Placements",
@@ -11559,7 +11601,7 @@
     {
       "file": "tapmi-manipal-mba-bkfs.html",
       "benchmark": false,
-      "title": "TAPMI MBA-BKFS: Fees, Cutoff, Curriculum & Placements 2026",
+      "title": "TAPMI MBA-BKFS: Fees, Cutoff, Curriculum & Placements 2027",
       "title_length": 58,
       "description": "Detailed TAPMI MBA-BKFS guide covering banking and financial services admission, eligibility, fees, curriculum, finance careers and latest placements.",
       "description_length": 150,
@@ -11568,7 +11610,7 @@
       "canonical_count": 0,
       "canonical_self": false,
       "h1_count": 1,
-      "h1": "TAPMI MBA-BKFS: Fees, Cutoff, Curriculum & Placements 2026",
+      "h1": "TAPMI MBA-BKFS: Fees, Cutoff, Curriculum & Placements 2027",
       "lang": "en",
       "viewport": true,
       "robots": [],
@@ -11580,9 +11622,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "tapmi-manipal-placements.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -11591,14 +11631,49 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
+      ]
+    },
+    {
+      "file": "tapmi-manipal-mba-hrm.html",
+      "benchmark": false,
+      "title": "TAPMI MBA-HRM: Fees, Cutoff, Curriculum & Placements 2027",
+      "title_length": 57,
+      "description": "Detailed TAPMI MBA-HRM guide covering HR admission, eligibility, fees, curriculum, HR analytics, careers and latest placements.",
+      "description_length": 127,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "TAPMI MBA-HRM: Fees, Cutoff, Curriculum & Placements 2027",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
       "file": "tapmi-manipal-mba.html",
       "benchmark": false,
-      "title": "TAPMI MBA: Fees, Cutoff, Admission, Curriculum & Placements 2026",
+      "title": "TAPMI MBA: Fees, Cutoff, Admission, Curriculum & Placements 2027",
       "title_length": 64,
       "description": "Detailed TAPMI Manipal MBA Core guide covering eligibility, CAT XAT cutoff, selection process, fees, curriculum, experiential learning and placements.",
       "description_length": 150,
@@ -11607,7 +11682,7 @@
       "canonical_count": 0,
       "canonical_self": false,
       "h1_count": 1,
-      "h1": "TAPMI MBA: Fees, Cutoff, Admission, Curriculum & Placements 2026",
+      "h1": "TAPMI MBA: Fees, Cutoff, Admission, Curriculum & Placements 2027",
       "lang": "en",
       "viewport": true,
       "robots": [],
@@ -11619,9 +11694,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "tapmi-manipal-placements.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -11630,14 +11703,49 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
+      ]
+    },
+    {
+      "file": "tapmi-manipal-placements.html",
+      "benchmark": false,
+      "title": "TAPMI Manipal Placements 2025: MBA Salary, Recruiters & Roles",
+      "title_length": 61,
+      "description": "Detailed TAPMI Manipal placements guide covering 2025 MBA, BKFS and HRM salary outcomes, recruiters, roles, sectors and placement reality for students.",
+      "description_length": 151,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "TAPMI Manipal Placements 2025: MBA Salary, Recruiters & Roles",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
       "file": "tapmi-manipal.html",
       "benchmark": false,
-      "title": "TAPMI Manipal: MBA, Fees, Cutoff, Placements & Admission 2026",
+      "title": "TAPMI Manipal: MBA, Fees, Cutoff, Placements & Admission 2027",
       "title_length": 61,
       "description": "Student-focused TAPMI Manipal guide covering MBA programmes, admission, CAT XAT cutoff, fees, scholarships, campus, curriculum, placements and career outcomes.",
       "description_length": 159,
@@ -11646,7 +11754,7 @@
       "canonical_count": 0,
       "canonical_self": false,
       "h1_count": 1,
-      "h1": "TAPMI Manipal: MBA, Fees, Cutoff, Placements & Admission 2026",
+      "h1": "TAPMI Manipal: MBA, Fees, Cutoff, Placements & Admission 2027",
       "lang": "en",
       "viewport": true,
       "robots": [],
@@ -11658,10 +11766,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "tapmi-manipal-mba-hrm.html",
-        "tapmi-manipal-placements.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -11670,8 +11775,7 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
