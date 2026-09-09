@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T10:58:52.282124+00:00",
+  "generated_at": "2026-09-09T11:05:54.898968+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 348,
-    "pages_with_internal_links": 348,
-    "broken_local_links": 2,
+    "pages_checked": 349,
+    "pages_with_internal_links": 349,
+    "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 57,
+    "college_clusters_detected": 58,
     "cluster_reciprocal_gaps": 0,
     "zero_incoming_pages": 0,
     "role_counts": {
       "programme": 172,
-      "placement": 60,
+      "placement": 61,
       "overview_or_hub": 116
     }
   },
@@ -210,6 +210,16 @@
         "iim-indore-ipm.html",
         "iim-indore-mba.html",
         "iim-indore-pgp-hrm.html"
+      ]
+    },
+    {
+      "overview": "iim-jammu.html",
+      "placement": "iim-jammu-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iim-jammu-mba-ai-ba.html",
+        "iim-jammu-mba-hc.html",
+        "iim-jammu-mba.html"
       ]
     },
     {
@@ -580,11 +590,6 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
-    },
-    {
-      "source": "iim-jammu.html",
-      "href": "iim-jammu-placements.html",
-      "target": "iim-jammu-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -722,10 +727,11 @@
     "iim-indore-pgp-hrm.html": 5,
     "iim-indore-placements.html": 5,
     "iim-indore.html": 8,
-    "iim-jammu-mba-ai-ba.html": 1,
-    "iim-jammu-mba-hc.html": 1,
-    "iim-jammu-mba.html": 1,
-    "iim-jammu.html": 3,
+    "iim-jammu-mba-ai-ba.html": 6,
+    "iim-jammu-mba-hc.html": 6,
+    "iim-jammu-mba.html": 6,
+    "iim-jammu-placements.html": 5,
+    "iim-jammu.html": 8,
     "iim-kozhikode-pgp-bl.html": 6,
     "iim-kozhikode-pgp-finance.html": 5,
     "iim-kozhikode-pgp-lsm.html": 5,
@@ -801,7 +807,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 741,
+    "index.html": 742,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -1069,10 +1075,11 @@
     "iim-indore-pgp-hrm.html": 5,
     "iim-indore-placements.html": 11,
     "iim-indore.html": 11,
-    "iim-jammu-mba-ai-ba.html": 2,
-    "iim-jammu-mba-hc.html": 2,
-    "iim-jammu-mba.html": 3,
-    "iim-jammu.html": 6,
+    "iim-jammu-mba-ai-ba.html": 6,
+    "iim-jammu-mba-hc.html": 6,
+    "iim-jammu-mba.html": 7,
+    "iim-jammu-placements.html": 9,
+    "iim-jammu.html": 10,
     "iim-kozhikode-pgp-bl.html": 5,
     "iim-kozhikode-pgp-finance.html": 5,
     "iim-kozhikode-pgp-lsm.html": 5,
