@@ -23,11 +23,8 @@ jobs:
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
               original = s
-              # Remove the navigation element regardless of attribute order/formatting.
-              s = re.sub(r'<nav\b[^>]*\bclass=["\']college-cluster-nav["\'][^>]*>.*?</nav>\s*', '', s, flags=re.I|re.S)
-              s = re.sub(r'<nav\b[^>]*\baria-label=["\']College page navigation["\'][^>]*>.*?</nav>\s*', '', s, flags=re.I|re.S)
-              # Remove the dedicated cluster-nav CSS block, while preserving all other page CSS.
-              s = re.sub(r'\.college-cluster-nav\{.*?\.college-cluster-nav\.sep\{[^}]*\}', '', s, flags=re.S)
+              s = re.sub(r'<nav\b[^>]*(?:class=["\']college-cluster-nav["\']|aria-label=["\']College page navigation["\'])[^>]*>.*?</nav>\s*', '', s, flags=re.I|re.S)
+              s = re.sub(r'\.college-cluster-nav\{[^}]*\}(?:\.college-cluster-nav[^}]*\})*', '', s, flags=re.S)
               if s != original:
                   p.write_text(s, encoding='utf-8')
                   changed = True
