@@ -9,9 +9,6 @@ EXCLUDED = {
 }
 NAV_CSS = ".college-cluster-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:10px 12px;background:#f8fbff;border:1px solid #dbe7f5;border-radius:8px;font-size:11px;line-height:1.4}.college-cluster-nav strong{color:#173f82;font-size:11px;margin-right:2px}.college-cluster-nav a{color:#2563eb!important;font-weight:700;text-decoration:none}.college-cluster-nav a:hover{text-decoration:underline}.college-cluster-nav .sep{color:#94a3b8}"
 
-# Some valid programme pages use a different institutional filename prefix than
-# the overview/placement pages. Keep these explicit mappings so they still join
-# the same reciprocal internal-link cluster.
 ALIAS_CLUSTERS = {
     "iim-nagpur.html": [
         "iim-nagpur.html",
@@ -49,7 +46,6 @@ def build_clusters(pages):
         programmes = sorted(n for n in pages if n not in {base, placement} and n not in EXCLUDED and n.startswith(prefix + "-"))
         clusters[base] = [base, *programmes, placement]
 
-    # Apply explicit filename-alias clusters after normal prefix discovery.
     for overview, members in ALIAS_CLUSTERS.items():
         if overview not in names:
             continue
@@ -87,6 +83,13 @@ def label(name):
         "-pgdm-fm": "PGDM Finance",
         "-pgdm-ibm": "PGDM IBM",
         "-pgdm-ib": "PGDM International Business",
+        "-pgdm": "PGDM",
+        "-fpm": "FPM",
+        "-mba-programme": "MBA",
+        "-blended-mba-for-working-professionals": "Blended MBA",
+        "-executive-mba-hybrid": "Executive MBA",
+        "-management-sciences-m-tech": "M.Tech",
+        "-management-sciences-phd": "PhD",
         "-btech-ai-data-science": "BTech AI & Data Science",
         "-btech-cse": "BTech CSE",
         "-bba-llb": "BBA LL.B.",
@@ -120,12 +123,16 @@ def repair(path, members):
     replacement = nav_html(path.name, members)
     pattern = r'<nav\b[^>]*class=["\'][^"\']*\bcollege-cluster-nav\b[^"\']*["\'][^>]*>.*?</nav>'
     if re.search(pattern, text, flags=re.I | re.S):
-        updated = re.sub(pattern, replacement, text, count=1, flags=re.I | re.S)
+        # Keep the existing page content intact, but normalize the cluster nav
+        # to the top of <body> so it does not land inside a later <main> block.
+        without_nav = re.sub(pattern, "", text, count=1, flags=re.I | re.S)
+        updated = re.sub(r'(<body\b[^>]*>)', r'\1' + replacement, without_nav, count=1, flags=re.I)
+        if updated == without_nav:
+            updated = re.sub(r'(<main\b[^>]*>)', r'\1' + replacement, without_nav, count=1, flags=re.I)
     else:
-        main_pattern = r'(<main\b[^>]*>)'
-        updated = re.sub(main_pattern, r'\1' + replacement, text, count=1, flags=re.I)
+        updated = re.sub(r'(<body\b[^>]*>)', r'\1' + replacement, text, count=1, flags=re.I)
         if updated == text:
-            updated = re.sub(r'(<body\b[^>]*>)', r'\1' + replacement, text, count=1, flags=re.I)
+            updated = re.sub(r'(<main\b[^>]*>)', r'\1' + replacement, text, count=1, flags=re.I)
     if ".college-cluster-nav" not in updated:
         updated = re.sub(r'</style>', NAV_CSS + '</style>', updated, count=1, flags=re.I)
     if updated != text:
