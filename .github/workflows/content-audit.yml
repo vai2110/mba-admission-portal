@@ -25,9 +25,11 @@ permissions:
   contents: write
   actions: write
 
+# This workflow and the technical SEO writer share main. Queue writers instead
+# of letting independent runs race and reject each other's pushes.
 concurrency:
-  group: content-audit-${{ github.ref }}
-  cancel-in-progress: true
+  group: portal-main-writer
+  cancel-in-progress: false
 
 jobs:
   audit-and-update:
