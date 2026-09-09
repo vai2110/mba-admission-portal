@@ -1,0 +1,2092 @@
+{
+  "generated_at": "2026-09-09T08:48:13.384816+00:00",
+  "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
+  "summary": {
+    "pages_checked": 323,
+    "pages_with_internal_links": 305,
+    "broken_local_links": 2,
+    "college_clusters_detected": 53,
+    "cluster_reciprocal_gaps": 106,
+    "zero_incoming_pages": 33,
+    "role_counts": {
+      "programme": 159,
+      "placement": 56,
+      "overview_or_hub": 108
+    }
+  },
+  "college_clusters": [
+    {
+      "overview": "alliance-university.html",
+      "placement": "alliance-university-placements.html",
+      "programme_count": 7,
+      "programmes": [
+        "alliance-university-bba-llb.html",
+        "alliance-university-bba.html",
+        "alliance-university-bca.html",
+        "alliance-university-bcom.html",
+        "alliance-university-btech-ai-data-science.html",
+        "alliance-university-btech-cse.html",
+        "alliance-university-mba.html"
+      ]
+    },
+    {
+      "overview": "amrita-vishwa-vidyapeetham.html",
+      "placement": "amrita-vishwa-vidyapeetham-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
+      ]
+    },
+    {
+      "overview": "amu-aligarh.html",
+      "placement": "amu-aligarh-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "birla-institute-management-technology.html",
+      "placement": "birla-institute-management-technology-placements.html",
+      "programme_count": 5,
+      "programmes": [
+        "birla-institute-management-technology-pgdm-ib.html",
+        "birla-institute-management-technology-pgdm-ibm.html",
+        "birla-institute-management-technology-pgdm-online.html",
+        "birla-institute-management-technology-pgdm-retail-management.html",
+        "birla-institute-management-technology-pgdm.html"
+      ]
+    },
+    {
+      "overview": "christ-university.html",
+      "placement": "christ-university-placements.html",
+      "programme_count": 6,
+      "programmes": [
+        "christ-university-ba-llb.html",
+        "christ-university-bba.html",
+        "christ-university-bca.html",
+        "christ-university-bcom.html",
+        "christ-university-btech-cse.html",
+        "christ-university-mba.html"
+      ]
+    },
+    {
+      "overview": "department-management-studies-nit-trichy.html",
+      "placement": "department-management-studies-nit-trichy-placements.html",
+      "programme_count": 1,
+      "programmes": [
+        "department-management-studies-nit-trichy-mba.html"
+      ]
+    },
+    {
+      "overview": "dms-nit-trichy.html",
+      "placement": "dms-nit-trichy-placements.html",
+      "programme_count": 1,
+      "programmes": [
+        "dms-nit-trichy-mba.html"
+      ]
+    },
+    {
+      "overview": "fore-school-management.html",
+      "placement": "fore-school-management-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "fore-school-management-pgdm-bda.html",
+        "fore-school-management-pgdm-fm.html",
+        "fore-school-management-pgdm-ib.html",
+        "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "overview": "graphic-era-university.html",
+      "placement": "graphic-era-university-placements.html",
+      "programme_count": 11,
+      "programmes": [
+        "graphic-era-university-bba.html",
+        "graphic-era-university-bca.html",
+        "graphic-era-university-bcom-hons.html",
+        "graphic-era-university-bpt.html",
+        "graphic-era-university-btech-cse.html",
+        "graphic-era-university-mba-ai-data-science.html",
+        "graphic-era-university-mba-business-analytics.html",
+        "graphic-era-university-mba-finance.html",
+        "graphic-era-university-mba-impact.html",
+        "graphic-era-university-mba-marketing.html",
+        "graphic-era-university-mba.html"
+      ]
+    },
+    {
+      "overview": "great-lakes-gurgaon.html",
+      "placement": "great-lakes-gurgaon-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "great-lakes-gurgaon-pgdm.html",
+        "great-lakes-gurgaon-pgpm.html"
+      ]
+    },
+    {
+      "overview": "iift.html",
+      "placement": "iift-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iift-mba-business-analytics.html",
+        "iift-mba-international-business.html"
+      ]
+    },
+    {
+      "overview": "iim-ahmedabad.html",
+      "placement": "iim-ahmedabad-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "iim-ahmedabad-business-analytics-ai.html",
+        "iim-ahmedabad-mba-fabm.html",
+        "iim-ahmedabad-mba.html",
+        "iim-ahmedabad-pgpx.html"
+      ]
+    },
+    {
+      "overview": "iim-amritsar.html",
+      "placement": "iim-amritsar-placements.html",
+      "programme_count": 6,
+      "programmes": [
+        "iim-amritsar-executive-mba.html",
+        "iim-amritsar-ipm.html",
+        "iim-amritsar-mba-business-analytics.html",
+        "iim-amritsar-mba-hr.html",
+        "iim-amritsar-mba.html",
+        "iim-amritsar-msdsm.html"
+      ]
+    },
+    {
+      "overview": "iim-bangalore.html",
+      "placement": "iim-bangalore-placements.html",
+      "programme_count": 5,
+      "programmes": [
+        "iim-bangalore-epgp.html",
+        "iim-bangalore-mba-business-analytics.html",
+        "iim-bangalore-mba.html",
+        "iim-bangalore-pgpba.html",
+        "iim-bangalore-pgpem.html"
+      ]
+    },
+    {
+      "overview": "iim-calcutta.html",
+      "placement": "iim-calcutta-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iim-calcutta-mba.html",
+        "iim-calcutta-mbaex.html",
+        "iim-calcutta-pgdba.html"
+      ]
+    },
+    {
+      "overview": "iim-indore.html",
+      "placement": "iim-indore-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iim-indore-ipm.html",
+        "iim-indore-mba.html",
+        "iim-indore-pgp-hrm.html"
+      ]
+    },
+    {
+      "overview": "iim-kozhikode.html",
+      "placement": "iim-kozhikode-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iim-kozhikode-pgp-bl.html",
+        "iim-kozhikode-pgp-finance.html",
+        "iim-kozhikode-pgp-lsm.html"
+      ]
+    },
+    {
+      "overview": "iim-lucknow.html",
+      "placement": "iim-lucknow-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "iim-mumbai.html",
+      "placement": "iim-mumbai-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iim-mumbai-mba-oscm.html",
+        "iim-mumbai-mba-sm.html",
+        "iim-mumbai-mba.html"
+      ]
+    },
+    {
+      "overview": "iim-nagpur.html",
+      "placement": "iim-nagpur-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "iim-raipur.html",
+      "placement": "iim-raipur-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iim-raipur-epgp.html",
+        "iim-raipur-mba.html"
+      ]
+    },
+    {
+      "overview": "iim-ranchi.html",
+      "placement": "iim-ranchi-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iim-ranchi-mba-ba.html",
+        "iim-ranchi-mba.html"
+      ]
+    },
+    {
+      "overview": "iim-rohtak.html",
+      "placement": "iim-rohtak-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iim-rohtak-ipm.html",
+        "iim-rohtak-pgp.html",
+        "iim-rohtak-pgpx.html"
+      ]
+    },
+    {
+      "overview": "iim-sirmaur.html",
+      "placement": "iim-sirmaur-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iim-sirmaur-mba-tourism.html",
+        "iim-sirmaur-mba-tthm.html"
+      ]
+    },
+    {
+      "overview": "iim-trichy.html",
+      "placement": "iim-trichy-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iim-trichy-pgpm-hr.html",
+        "iim-trichy-pgpm.html"
+      ]
+    },
+    {
+      "overview": "iim-udaipur.html",
+      "placement": "iim-udaipur-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "iim-udaipur-executive-mba.html",
+        "iim-udaipur-mba-dem.html",
+        "iim-udaipur-mba-gscm.html",
+        "iim-udaipur-mba.html"
+      ]
+    },
+    {
+      "overview": "iit-bombay.html",
+      "placement": "iit-bombay-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iit-bombay-emba.html",
+        "iit-bombay-mba.html"
+      ]
+    },
+    {
+      "overview": "iit-delhi-dms.html",
+      "placement": "iit-delhi-dms-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "iit-delhi-dms-executive-mba.html",
+        "iit-delhi-dms-mba-telecom.html",
+        "iit-delhi-dms-mba.html"
+      ]
+    },
+    {
+      "overview": "iit-kanpur.html",
+      "placement": "iit-kanpur-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iit-kanpur-management-sciences-m-tech.html",
+        "iit-kanpur-management-sciences-phd.html"
+      ]
+    },
+    {
+      "overview": "iit-kharagpur.html",
+      "placement": "iit-kharagpur-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iit-kharagpur-vgsom-mba-ex.html",
+        "iit-kharagpur-vgsom-mba.html"
+      ]
+    },
+    {
+      "overview": "iit-madras.html",
+      "placement": "iit-madras-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iit-madras-emba.html",
+        "iit-madras-mba.html"
+      ]
+    },
+    {
+      "overview": "iit-roorkee.html",
+      "placement": "iit-roorkee-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "iit-roorkee-executive-mba.html",
+        "iit-roorkee-mba.html"
+      ]
+    },
+    {
+      "overview": "imt-nagpur.html",
+      "placement": "imt-nagpur-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "imt-nagpur-pgdm-financial-management.html",
+        "imt-nagpur-pgdm-marketing.html",
+        "imt-nagpur-pgdm.html"
+      ]
+    },
+    {
+      "overview": "indian-institute-of-management-kashipur.html",
+      "placement": "indian-institute-of-management-kashipur-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "indian-institute-of-management-kashipur-executive-mba.html",
+        "indian-institute-of-management-kashipur-mba-analytics.html",
+        "indian-institute-of-management-kashipur-mba.html"
+      ]
+    },
+    {
+      "overview": "indian-institute-of-technology-roorkee.html",
+      "placement": "indian-institute-of-technology-roorkee-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "indian-institute-of-technology-roorkee-executive-mba.html",
+        "indian-institute-of-technology-roorkee-mba.html"
+      ]
+    },
+    {
+      "overview": "institute-rural-management-anand.html",
+      "placement": "institute-rural-management-anand-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "institute-rural-management-anand-executive-rural-management.html",
+        "institute-rural-management-anand-fpm-rural-management.html",
+        "institute-rural-management-anand-mba-rural-management.html",
+        "institute-rural-management-anand-mdp.html"
+      ]
+    },
+    {
+      "overview": "jain-university.html",
+      "placement": "jain-university-placements.html",
+      "programme_count": 5,
+      "programmes": [
+        "jain-university-bba.html",
+        "jain-university-bca.html",
+        "jain-university-bcom.html",
+        "jain-university-btech-cse.html",
+        "jain-university-mba.html"
+      ]
+    },
+    {
+      "overview": "jaipuria-institute-of-management-lucknow.html",
+      "placement": "jaipuria-institute-of-management-lucknow-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "jamia-millia-islamia.html",
+      "placement": "jamia-millia-islamia-placements.html",
+      "programme_count": 1,
+      "programmes": [
+        "jamia-millia-islamia-mba.html"
+      ]
+    },
+    {
+      "overview": "kiit-bhubaneswar.html",
+      "placement": "kiit-bhubaneswar-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "kj-somaiya-institute-of-management.html",
+      "placement": "kj-somaiya-institute-of-management-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "kj-somaiya-institute-of-management-mba-healthcare-management.html",
+        "kj-somaiya-institute-of-management-mba-marketing-communications.html",
+        "kj-somaiya-institute-of-management-mba-sports-management.html",
+        "kj-somaiya-institute-of-management-mba.html"
+      ]
+    },
+    {
+      "overview": "kl-university.html",
+      "placement": "kl-university-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "kl-university-btech-ai-data-science.html",
+        "kl-university-btech-cse.html",
+        "kl-university-mba.html"
+      ]
+    },
+    {
+      "overview": "loyola-institute-business-administration.html",
+      "placement": "loyola-institute-business-administration-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "loyola-institute-business-administration-executive-diploma.html",
+        "loyola-institute-business-administration-fpm.html",
+        "loyola-institute-business-administration-online-pgdm.html",
+        "loyola-institute-business-administration-pgdm.html"
+      ]
+    },
+    {
+      "overview": "mdi-gurugram.html",
+      "placement": "mdi-gurugram-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "nirma-university.html",
+      "placement": "nirma-university-placements.html",
+      "programme_count": 6,
+      "programmes": [
+        "nirma-university-ba-llb.html",
+        "nirma-university-bba-hons.html",
+        "nirma-university-bcom-hons.html",
+        "nirma-university-bpharm.html",
+        "nirma-university-btech-cse.html",
+        "nirma-university-mba.html"
+      ]
+    },
+    {
+      "overview": "nmims.html",
+      "placement": "nmims-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "nmims-mba-pharma-tech.html",
+        "nmims-mba-tech.html",
+        "nmims-mba.html"
+      ]
+    },
+    {
+      "overview": "school-management-studies-mnnit-allahabad.html",
+      "placement": "school-management-studies-mnnit-allahabad-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "school-management-studies-mnnit-allahabad-executive-mba.html",
+        "school-management-studies-mnnit-allahabad-mba.html"
+      ]
+    },
+    {
+      "overview": "sibm-bengaluru.html",
+      "placement": "sibm-bengaluru-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "sibm-bengaluru-mba-business-analytics.html",
+        "sibm-bengaluru-mba-executive.html",
+        "sibm-bengaluru-mba.html"
+      ]
+    },
+    {
+      "overview": "sibm-pune.html",
+      "placement": "sibm-pune-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "sibm-pune-mba-executive.html",
+        "sibm-pune-mba-innovation-entrepreneurship.html",
+        "sibm-pune-mba.html"
+      ]
+    },
+    {
+      "overview": "soa-university-bhubaneswar.html",
+      "placement": "soa-university-bhubaneswar-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "spjimr.html",
+      "placement": "spjimr-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "spjimr-pgdm-bm.html",
+        "spjimr-pgdm.html"
+      ]
+    },
+    {
+      "overview": "welingkar-mumbai.html",
+      "placement": "welingkar-mumbai-placements.html",
+      "programme_count": 12,
+      "programmes": [
+        "welingkar-mumbai-business-design.html",
+        "welingkar-mumbai-ebusiness.html",
+        "welingkar-mumbai-healthcare.html",
+        "welingkar-mumbai-links.html",
+        "welingkar-mumbai-media-entertainment.html",
+        "welingkar-mumbai-mms.html",
+        "welingkar-mumbai-pgdm.html",
+        "welingkar-mumbai-programmes-note.html",
+        "welingkar-mumbai-programmes.html",
+        "welingkar-mumbai-research-analytics.html",
+        "welingkar-mumbai-retail.html",
+        "welingkar-mumbai-rural.html"
+      ]
+    },
+    {
+      "overview": "xlri-jamshedpur.html",
+      "placement": "xlri-jamshedpur-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    }
+  ],
+  "reciprocal_link_gaps": [
+    {
+      "source": "alliance-university-placements.html",
+      "missing": [
+        "alliance-university-bba-llb.html",
+        "alliance-university-bba.html",
+        "alliance-university-bca.html",
+        "alliance-university-bcom.html"
+      ]
+    },
+    {
+      "source": "alliance-university-bba-llb.html",
+      "missing": [
+        "alliance-university-placements.html"
+      ]
+    },
+    {
+      "source": "alliance-university-bba.html",
+      "missing": [
+        "alliance-university-placements.html"
+      ]
+    },
+    {
+      "source": "alliance-university-bca.html",
+      "missing": [
+        "alliance-university-placements.html"
+      ]
+    },
+    {
+      "source": "alliance-university-bcom.html",
+      "missing": [
+        "alliance-university-placements.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham-placements.html",
+        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham-placements.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham.html",
+        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham.html",
+        "amrita-vishwa-vidyapeetham-placements.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham.html",
+        "amrita-vishwa-vidyapeetham-placements.html"
+      ]
+    },
+    {
+      "source": "birla-institute-management-technology.html",
+      "missing": [
+        "birla-institute-management-technology-pgdm-online.html"
+      ]
+    },
+    {
+      "source": "birla-institute-management-technology-placements.html",
+      "missing": [
+        "birla-institute-management-technology-pgdm-online.html"
+      ]
+    },
+    {
+      "source": "fore-school-management-placements.html",
+      "missing": [
+        "fore-school-management-pgdm-bda.html",
+        "fore-school-management-pgdm-fm.html",
+        "fore-school-management-pgdm-ib.html",
+        "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "source": "graphic-era-university.html",
+      "missing": [
+        "graphic-era-university-mba-ai-data-science.html",
+        "graphic-era-university-mba-business-analytics.html",
+        "graphic-era-university-mba-finance.html",
+        "graphic-era-university-mba-impact.html",
+        "graphic-era-university-mba-marketing.html"
+      ]
+    },
+    {
+      "source": "graphic-era-university-placements.html",
+      "missing": [
+        "graphic-era-university-bba.html",
+        "graphic-era-university-bca.html",
+        "graphic-era-university-bcom-hons.html",
+        "graphic-era-university-bpt.html",
+        "graphic-era-university-btech-cse.html",
+        "graphic-era-university-mba-ai-data-science.html",
+        "graphic-era-university-mba-business-analytics.html",
+        "graphic-era-university-mba-finance.html",
+        "graphic-era-university-mba-impact.html",
+        "graphic-era-university-mba-marketing.html",
+        "graphic-era-university-mba.html"
+      ]
+    },
+    {
+      "source": "iift-placements.html",
+      "missing": [
+        "iift.html",
+        "iift-mba-business-analytics.html",
+        "iift-mba-international-business.html"
+      ]
+    },
+    {
+      "source": "iift-mba-business-analytics.html",
+      "missing": [
+        "iift.html"
+      ]
+    },
+    {
+      "source": "iift-mba-international-business.html",
+      "missing": [
+        "iift.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-placements.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-business-analytics-ai.html",
+        "iim-ahmedabad-mba-fabm.html",
+        "iim-ahmedabad-mba.html",
+        "iim-ahmedabad-pgpx.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-business-analytics-ai.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-fabm.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba.html",
+      "missing": [
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-pgpx.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-amritsar-placements.html",
+      "missing": [
+        "iim-amritsar-executive-mba.html",
+        "iim-amritsar-ipm.html"
+      ]
+    },
+    {
+      "source": "iim-amritsar-executive-mba.html",
+      "missing": [
+        "iim-amritsar.html",
+        "iim-amritsar-placements.html"
+      ]
+    },
+    {
+      "source": "iim-amritsar-ipm.html",
+      "missing": [
+        "iim-amritsar.html",
+        "iim-amritsar-placements.html"
+      ]
+    },
+    {
+      "source": "iim-amritsar-mba-business-analytics.html",
+      "missing": [
+        "iim-amritsar.html"
+      ]
+    },
+    {
+      "source": "iim-amritsar-mba-hr.html",
+      "missing": [
+        "iim-amritsar.html"
+      ]
+    },
+    {
+      "source": "iim-amritsar-msdsm.html",
+      "missing": [
+        "iim-amritsar.html",
+        "iim-amritsar-placements.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore.html",
+      "missing": [
+        "iim-bangalore-pgpba.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore-placements.html",
+      "missing": [
+        "iim-bangalore.html",
+        "iim-bangalore-epgp.html",
+        "iim-bangalore-mba-business-analytics.html",
+        "iim-bangalore-mba.html",
+        "iim-bangalore-pgpba.html",
+        "iim-bangalore-pgpem.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore-epgp.html",
+      "missing": [
+        "iim-bangalore.html",
+        "iim-bangalore-placements.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore-pgpba.html",
+      "missing": [
+        "iim-bangalore-placements.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore-pgpem.html",
+      "missing": [
+        "iim-bangalore.html",
+        "iim-bangalore-placements.html"
+      ]
+    },
+    {
+      "source": "iim-calcutta-placements.html",
+      "missing": [
+        "iim-calcutta.html",
+        "iim-calcutta-mba.html",
+        "iim-calcutta-mbaex.html",
+        "iim-calcutta-pgdba.html"
+      ]
+    },
+    {
+      "source": "iim-calcutta-mba.html",
+      "missing": [
+        "iim-calcutta-placements.html"
+      ]
+    },
+    {
+      "source": "iim-calcutta-mbaex.html",
+      "missing": [
+        "iim-calcutta-placements.html"
+      ]
+    },
+    {
+      "source": "iim-calcutta-pgdba.html",
+      "missing": [
+        "iim-calcutta-placements.html"
+      ]
+    },
+    {
+      "source": "iim-indore-placements.html",
+      "missing": [
+        "iim-indore-ipm.html",
+        "iim-indore-mba.html",
+        "iim-indore-pgp-hrm.html"
+      ]
+    },
+    {
+      "source": "iim-indore-ipm.html",
+      "missing": [
+        "iim-indore-placements.html"
+      ]
+    },
+    {
+      "source": "iim-indore-mba.html",
+      "missing": [
+        "iim-indore-placements.html"
+      ]
+    },
+    {
+      "source": "iim-indore-pgp-hrm.html",
+      "missing": [
+        "iim-indore-placements.html"
+      ]
+    },
+    {
+      "source": "iim-kozhikode-placements.html",
+      "missing": [
+        "iim-kozhikode-pgp-bl.html",
+        "iim-kozhikode-pgp-finance.html",
+        "iim-kozhikode-pgp-lsm.html"
+      ]
+    },
+    {
+      "source": "iim-kozhikode-pgp-bl.html",
+      "missing": [
+        "iim-kozhikode-placements.html"
+      ]
+    },
+    {
+      "source": "iim-kozhikode-pgp-finance.html",
+      "missing": [
+        "iim-kozhikode-placements.html"
+      ]
+    },
+    {
+      "source": "iim-kozhikode-pgp-lsm.html",
+      "missing": [
+        "iim-kozhikode-placements.html"
+      ]
+    },
+    {
+      "source": "iim-mumbai-placements.html",
+      "missing": [
+        "iim-mumbai-mba-oscm.html",
+        "iim-mumbai-mba-sm.html",
+        "iim-mumbai-mba.html"
+      ]
+    },
+    {
+      "source": "iim-mumbai-mba-oscm.html",
+      "missing": [
+        "iim-mumbai-placements.html"
+      ]
+    },
+    {
+      "source": "iim-mumbai-mba-sm.html",
+      "missing": [
+        "iim-mumbai-placements.html"
+      ]
+    },
+    {
+      "source": "iim-mumbai-mba.html",
+      "missing": [
+        "iim-mumbai.html"
+      ]
+    },
+    {
+      "source": "iim-nagpur.html",
+      "missing": [
+        "iim-nagpur-placements.html"
+      ]
+    },
+    {
+      "source": "iim-raipur-placements.html",
+      "missing": [
+        "iim-raipur.html",
+        "iim-raipur-epgp.html",
+        "iim-raipur-mba.html"
+      ]
+    },
+    {
+      "source": "iim-raipur-epgp.html",
+      "missing": [
+        "iim-raipur.html"
+      ]
+    },
+    {
+      "source": "iim-raipur-mba.html",
+      "missing": [
+        "iim-raipur.html"
+      ]
+    },
+    {
+      "source": "iim-ranchi-placements.html",
+      "missing": [
+        "iim-ranchi.html",
+        "iim-ranchi-mba-ba.html",
+        "iim-ranchi-mba.html"
+      ]
+    },
+    {
+      "source": "iim-ranchi-mba-ba.html",
+      "missing": [
+        "iim-ranchi.html"
+      ]
+    },
+    {
+      "source": "iim-ranchi-mba.html",
+      "missing": [
+        "iim-ranchi.html"
+      ]
+    },
+    {
+      "source": "iim-rohtak.html",
+      "missing": [
+        "iim-rohtak-placements.html"
+      ]
+    },
+    {
+      "source": "iim-rohtak-placements.html",
+      "missing": [
+        "iim-rohtak.html",
+        "iim-rohtak-ipm.html",
+        "iim-rohtak-pgp.html",
+        "iim-rohtak-pgpx.html"
+      ]
+    },
+    {
+      "source": "iim-rohtak-ipm.html",
+      "missing": [
+        "iim-rohtak.html"
+      ]
+    },
+    {
+      "source": "iim-rohtak-pgp.html",
+      "missing": [
+        "iim-rohtak.html"
+      ]
+    },
+    {
+      "source": "iim-rohtak-pgpx.html",
+      "missing": [
+        "iim-rohtak.html",
+        "iim-rohtak-placements.html"
+      ]
+    },
+    {
+      "source": "iim-sirmaur-placements.html",
+      "missing": [
+        "iim-sirmaur-mba-tourism.html",
+        "iim-sirmaur-mba-tthm.html"
+      ]
+    },
+    {
+      "source": "iim-trichy-placements.html",
+      "missing": [
+        "iim-trichy.html",
+        "iim-trichy-pgpm-hr.html",
+        "iim-trichy-pgpm.html"
+      ]
+    },
+    {
+      "source": "iim-trichy-pgpm-hr.html",
+      "missing": [
+        "iim-trichy.html"
+      ]
+    },
+    {
+      "source": "iim-trichy-pgpm.html",
+      "missing": [
+        "iim-trichy.html"
+      ]
+    },
+    {
+      "source": "iim-udaipur-placements.html",
+      "missing": [
+        "iim-udaipur-executive-mba.html",
+        "iim-udaipur-mba-dem.html",
+        "iim-udaipur-mba-gscm.html",
+        "iim-udaipur-mba.html"
+      ]
+    },
+    {
+      "source": "iit-bombay-placements.html",
+      "missing": [
+        "iit-bombay.html",
+        "iit-bombay-emba.html",
+        "iit-bombay-mba.html"
+      ]
+    },
+    {
+      "source": "iit-bombay-emba.html",
+      "missing": [
+        "iit-bombay.html"
+      ]
+    },
+    {
+      "source": "iit-bombay-mba.html",
+      "missing": [
+        "iit-bombay.html"
+      ]
+    },
+    {
+      "source": "iit-delhi-dms-placements.html",
+      "missing": [
+        "iit-delhi-dms.html",
+        "iit-delhi-dms-executive-mba.html",
+        "iit-delhi-dms-mba-telecom.html",
+        "iit-delhi-dms-mba.html"
+      ]
+    },
+    {
+      "source": "iit-delhi-dms-executive-mba.html",
+      "missing": [
+        "iit-delhi-dms-placements.html"
+      ]
+    },
+    {
+      "source": "iit-delhi-dms-mba-telecom.html",
+      "missing": [
+        "iit-delhi-dms-placements.html"
+      ]
+    },
+    {
+      "source": "iit-delhi-dms-mba.html",
+      "missing": [
+        "iit-delhi-dms-placements.html"
+      ]
+    },
+    {
+      "source": "iit-kanpur.html",
+      "missing": [
+        "iit-kanpur-placements.html",
+        "iit-kanpur-management-sciences-m-tech.html",
+        "iit-kanpur-management-sciences-phd.html"
+      ]
+    },
+    {
+      "source": "iit-kanpur-placements.html",
+      "missing": [
+        "iit-kanpur.html",
+        "iit-kanpur-management-sciences-m-tech.html",
+        "iit-kanpur-management-sciences-phd.html"
+      ]
+    },
+    {
+      "source": "iit-kharagpur-placements.html",
+      "missing": [
+        "iit-kharagpur.html",
+        "iit-kharagpur-vgsom-mba-ex.html",
+        "iit-kharagpur-vgsom-mba.html"
+      ]
+    },
+    {
+      "source": "iit-kharagpur-vgsom-mba-ex.html",
+      "missing": [
+        "iit-kharagpur.html"
+      ]
+    },
+    {
+      "source": "iit-kharagpur-vgsom-mba.html",
+      "missing": [
+        "iit-kharagpur.html"
+      ]
+    },
+    {
+      "source": "iit-madras-placements.html",
+      "missing": [
+        "iit-madras.html",
+        "iit-madras-emba.html",
+        "iit-madras-mba.html"
+      ]
+    },
+    {
+      "source": "iit-madras-emba.html",
+      "missing": [
+        "iit-madras.html"
+      ]
+    },
+    {
+      "source": "iit-madras-mba.html",
+      "missing": [
+        "iit-madras.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-management-kashipur-placements.html",
+      "missing": [
+        "indian-institute-of-management-kashipur-executive-mba.html",
+        "indian-institute-of-management-kashipur-mba-analytics.html",
+        "indian-institute-of-management-kashipur-mba.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee-placements.html",
+        "indian-institute-of-technology-roorkee-executive-mba.html",
+        "indian-institute-of-technology-roorkee-mba.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee-placements.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-executive-mba.html",
+        "indian-institute-of-technology-roorkee-mba.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee-executive-mba.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-placements.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee-mba.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-placements.html"
+      ]
+    },
+    {
+      "source": "institute-rural-management-anand-placements.html",
+      "missing": [
+        "institute-rural-management-anand-executive-rural-management.html",
+        "institute-rural-management-anand-fpm-rural-management.html",
+        "institute-rural-management-anand-mba-rural-management.html",
+        "institute-rural-management-anand-mdp.html"
+      ]
+    },
+    {
+      "source": "kj-somaiya-institute-of-management-placements.html",
+      "missing": [
+        "kj-somaiya-institute-of-management-mba-healthcare-management.html",
+        "kj-somaiya-institute-of-management-mba-marketing-communications.html",
+        "kj-somaiya-institute-of-management-mba-sports-management.html",
+        "kj-somaiya-institute-of-management-mba.html"
+      ]
+    },
+    {
+      "source": "kj-somaiya-institute-of-management-mba-healthcare-management.html",
+      "missing": [
+        "kj-somaiya-institute-of-management-placements.html"
+      ]
+    },
+    {
+      "source": "kj-somaiya-institute-of-management-mba-marketing-communications.html",
+      "missing": [
+        "kj-somaiya-institute-of-management-placements.html"
+      ]
+    },
+    {
+      "source": "kj-somaiya-institute-of-management-mba-sports-management.html",
+      "missing": [
+        "kj-somaiya-institute-of-management-placements.html"
+      ]
+    },
+    {
+      "source": "loyola-institute-business-administration-placements.html",
+      "missing": [
+        "loyola-institute-business-administration-executive-diploma.html",
+        "loyola-institute-business-administration-fpm.html",
+        "loyola-institute-business-administration-online-pgdm.html",
+        "loyola-institute-business-administration-pgdm.html"
+      ]
+    },
+    {
+      "source": "nirma-university-placements.html",
+      "missing": [
+        "nirma-university-ba-llb.html",
+        "nirma-university-bba-hons.html",
+        "nirma-university-bcom-hons.html",
+        "nirma-university-bpharm.html",
+        "nirma-university-btech-cse.html",
+        "nirma-university-mba.html"
+      ]
+    },
+    {
+      "source": "nmims.html",
+      "missing": [
+        "nmims-mba-tech.html"
+      ]
+    },
+    {
+      "source": "nmims-placements.html",
+      "missing": [
+        "nmims-mba-pharma-tech.html",
+        "nmims-mba-tech.html",
+        "nmims-mba.html"
+      ]
+    },
+    {
+      "source": "school-management-studies-mnnit-allahabad-placements.html",
+      "missing": [
+        "school-management-studies-mnnit-allahabad-executive-mba.html"
+      ]
+    },
+    {
+      "source": "sibm-bengaluru-placements.html",
+      "missing": [
+        "sibm-bengaluru-mba-executive.html"
+      ]
+    },
+    {
+      "source": "sibm-pune-placements.html",
+      "missing": [
+        "sibm-pune.html",
+        "sibm-pune-mba-executive.html",
+        "sibm-pune-mba-innovation-entrepreneurship.html",
+        "sibm-pune-mba.html"
+      ]
+    },
+    {
+      "source": "sibm-pune-mba-executive.html",
+      "missing": [
+        "sibm-pune.html",
+        "sibm-pune-placements.html"
+      ]
+    },
+    {
+      "source": "sibm-pune-mba-innovation-entrepreneurship.html",
+      "missing": [
+        "sibm-pune.html",
+        "sibm-pune-placements.html"
+      ]
+    },
+    {
+      "source": "sibm-pune-mba.html",
+      "missing": [
+        "sibm-pune.html"
+      ]
+    },
+    {
+      "source": "spjimr-placements.html",
+      "missing": [
+        "spjimr.html",
+        "spjimr-pgdm-bm.html",
+        "spjimr-pgdm.html"
+      ]
+    },
+    {
+      "source": "spjimr-pgdm-bm.html",
+      "missing": [
+        "spjimr.html"
+      ]
+    },
+    {
+      "source": "spjimr-pgdm.html",
+      "missing": [
+        "spjimr.html"
+      ]
+    },
+    {
+      "source": "welingkar-mumbai.html",
+      "missing": [
+        "welingkar-mumbai-healthcare.html",
+        "welingkar-mumbai-links.html",
+        "welingkar-mumbai-media-entertainment.html",
+        "welingkar-mumbai-mms.html",
+        "welingkar-mumbai-programmes-note.html",
+        "welingkar-mumbai-programmes.html",
+        "welingkar-mumbai-retail.html",
+        "welingkar-mumbai-rural.html"
+      ]
+    },
+    {
+      "source": "welingkar-mumbai-placements.html",
+      "missing": [
+        "welingkar-mumbai-healthcare.html",
+        "welingkar-mumbai-links.html",
+        "welingkar-mumbai-media-entertainment.html",
+        "welingkar-mumbai-mms.html",
+        "welingkar-mumbai-programmes-note.html",
+        "welingkar-mumbai-programmes.html",
+        "welingkar-mumbai-retail.html",
+        "welingkar-mumbai-rural.html"
+      ]
+    }
+  ],
+  "broken_local_links": [
+    {
+      "source": "iim-ahmedabad-placements.html",
+      "href": "iim-ahmedabad-admission.html",
+      "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "iim-ahmedabad.html",
+      "href": "iim-ahmedabad-bpgp.html",
+      "target": "iim-ahmedabad-bpgp.html"
+    }
+  ],
+  "zero_incoming_pages": [
+    {
+      "page": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "amrita-vishwa-vidyapeetham-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "amrita-vishwa-vidyapeetham.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "birla-institute-management-technology-pgdm-online.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "graphic-era-university-mba-ai-data-science.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "graphic-era-university-mba-business-analytics.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "graphic-era-university-mba-finance.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "graphic-era-university-mba-impact.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "graphic-era-university-mba-marketing.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iift.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-bangalore-pgpba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-nagpur-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-raipur.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-ranchi.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-rohtak.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-trichy.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iit-bombay.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iit-kharagpur.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iit-madras.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-management-nagpur-executive-mba-hybrid.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-management-nagpur-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-kanpur-mba-programme.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee-executive-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "jaipuria-lucknow-fpm.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "nmims-mba-tech.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "welingkar-mumbai-links.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "welingkar-mumbai-programmes-note.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "welingkar-mumbai-programmes.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    }
+  ],
+  "incoming_link_counts": {
+    "alliance-university-bba-llb.html": 4,
+    "alliance-university-bba.html": 8,
+    "alliance-university-bca.html": 6,
+    "alliance-university-bcom.html": 4,
+    "alliance-university-btech-ai-data-science.html": 9,
+    "alliance-university-btech-cse.html": 11,
+    "alliance-university-mba.html": 12,
+    "alliance-university-placements.html": 10,
+    "alliance-university.html": 13,
+    "amu-aligarh-placements.html": 7,
+    "amu-aligarh.html": 5,
+    "amu-barch.html": 6,
+    "amu-btech.html": 7,
+    "amu-mba.html": 8,
+    "amu-mbbs.html": 6,
+    "banaras-hindu-university.html": 15,
+    "bhu-ba-hons.html": 6,
+    "bhu-ba-llb.html": 7,
+    "bhu-bcom-hons.html": 8,
+    "bhu-bsc-agriculture.html": 6,
+    "bhu-bsc-hons.html": 8,
+    "bhu-btech-dairy-technology.html": 2,
+    "bhu-mba.html": 8,
+    "bhu-placements.html": 16,
+    "birla-institute-management-technology-pgdm-ib.html": 7,
+    "birla-institute-management-technology-pgdm-ibm.html": 7,
+    "birla-institute-management-technology-pgdm-retail-management.html": 7,
+    "birla-institute-management-technology-pgdm.html": 8,
+    "birla-institute-management-technology-placements.html": 11,
+    "birla-institute-management-technology.html": 6,
+    "cat.html": 3,
+    "christ-university-ba-llb.html": 4,
+    "christ-university-bba.html": 4,
+    "christ-university-bca.html": 4,
+    "christ-university-bcom.html": 4,
+    "christ-university-btech-cse.html": 4,
+    "christ-university-mba.html": 5,
+    "christ-university-placements.html": 10,
+    "christ-university.html": 8,
+    "cmat.html": 2,
+    "college.html": 3,
+    "colleges.html": 70,
+    "department-management-studies-nit-trichy-mba.html": 2,
+    "department-management-studies-nit-trichy-placements.html": 4,
+    "department-management-studies-nit-trichy.html": 3,
+    "dms-nit-trichy-mba.html": 3,
+    "dms-nit-trichy-placements.html": 4,
+    "dms-nit-trichy.html": 3,
+    "exams.html": 13,
+    "fore-school-management-pgdm-bda.html": 1,
+    "fore-school-management-pgdm-fm.html": 1,
+    "fore-school-management-pgdm-ib.html": 1,
+    "fore-school-management-pgdm.html": 1,
+    "fore-school-management-placements.html": 11,
+    "fore-school-management.html": 6,
+    "gmat.html": 1,
+    "graphic-era-university-bba.html": 5,
+    "graphic-era-university-bca.html": 5,
+    "graphic-era-university-bcom-hons.html": 5,
+    "graphic-era-university-bpt.html": 5,
+    "graphic-era-university-btech-cse.html": 5,
+    "graphic-era-university-mba.html": 6,
+    "graphic-era-university-placements.html": 14,
+    "graphic-era-university.html": 18,
+    "great-lakes-gurgaon-pgdm.html": 3,
+    "great-lakes-gurgaon-pgpm.html": 4,
+    "great-lakes-gurgaon-placements.html": 8,
+    "great-lakes-gurgaon.html": 7,
+    "iift-mba-business-analytics.html": 1,
+    "iift-mba-international-business.html": 1,
+    "iift-placements.html": 4,
+    "iim-ahmedabad-business-analytics-ai.html": 2,
+    "iim-ahmedabad-mba-fabm.html": 2,
+    "iim-ahmedabad-mba.html": 6,
+    "iim-ahmedabad-pgpx.html": 2,
+    "iim-ahmedabad-placements.html": 4,
+    "iim-ahmedabad.html": 2,
+    "iim-amritsar-executive-mba.html": 2,
+    "iim-amritsar-ipm.html": 2,
+    "iim-amritsar-mba-business-analytics.html": 4,
+    "iim-amritsar-mba-hr.html": 4,
+    "iim-amritsar-mba.html": 3,
+    "iim-amritsar-msdsm.html": 3,
+    "iim-amritsar-placements.html": 6,
+    "iim-amritsar.html": 2,
+    "iim-bangalore-epgp.html": 1,
+    "iim-bangalore-mba-business-analytics.html": 1,
+    "iim-bangalore-mba.html": 3,
+    "iim-bangalore-pgpem.html": 1,
+    "iim-bangalore-placements.html": 8,
+    "iim-bangalore.html": 6,
+    "iim-calcutta-mba.html": 2,
+    "iim-calcutta-mbaex.html": 1,
+    "iim-calcutta-pgdba.html": 1,
+    "iim-calcutta-placements.html": 2,
+    "iim-calcutta.html": 7,
+    "iim-indore-ipm.html": 1,
+    "iim-indore-mba.html": 1,
+    "iim-indore-pgp-hrm.html": 1,
+    "iim-indore-placements.html": 1,
+    "iim-indore.html": 4,
+    "iim-kozhikode-pgp-bl.html": 2,
+    "iim-kozhikode-pgp-finance.html": 1,
+    "iim-kozhikode-pgp-lsm.html": 1,
+    "iim-kozhikode-placements.html": 2,
+    "iim-kozhikode.html": 5,
+    "iim-lucknow-placements.html": 1,
+    "iim-lucknow.html": 1,
+    "iim-mumbai-mba-oscm.html": 1,
+    "iim-mumbai-mba-sm.html": 1,
+    "iim-mumbai-mba.html": 1,
+    "iim-mumbai-placements.html": 2,
+    "iim-mumbai.html": 3,
+    "iim-nagpur.html": 2,
+    "iim-raipur-epgp.html": 1,
+    "iim-raipur-mba.html": 1,
+    "iim-raipur-placements.html": 4,
+    "iim-ranchi-mba-ba.html": 1,
+    "iim-ranchi-mba.html": 1,
+    "iim-ranchi-placements.html": 4,
+    "iim-rohtak-ipm.html": 1,
+    "iim-rohtak-pgp.html": 1,
+    "iim-rohtak-pgpx.html": 1,
+    "iim-rohtak-placements.html": 3,
+    "iim-sirmaur-mba-tourism.html": 2,
+    "iim-sirmaur-mba-tthm.html": 2,
+    "iim-sirmaur-placements.html": 6,
+    "iim-sirmaur.html": 8,
+    "iim-trichy-pgpm-hr.html": 1,
+    "iim-trichy-pgpm.html": 1,
+    "iim-trichy-placements.html": 4,
+    "iim-udaipur-executive-mba.html": 1,
+    "iim-udaipur-mba-dem.html": 3,
+    "iim-udaipur-mba-gscm.html": 3,
+    "iim-udaipur-mba.html": 1,
+    "iim-udaipur-placements.html": 7,
+    "iim-udaipur.html": 9,
+    "iit-bombay-emba.html": 1,
+    "iit-bombay-mba.html": 1,
+    "iit-bombay-placements.html": 4,
+    "iit-delhi-dms-executive-mba.html": 1,
+    "iit-delhi-dms-mba-telecom.html": 1,
+    "iit-delhi-dms-mba.html": 1,
+    "iit-delhi-dms-placements.html": 1,
+    "iit-delhi-dms.html": 3,
+    "iit-kanpur-management-sciences-m-tech.html": 1,
+    "iit-kanpur-management-sciences-phd.html": 1,
+    "iit-kanpur-placements.html": 2,
+    "iit-kanpur.html": 2,
+    "iit-kharagpur-placements.html": 4,
+    "iit-kharagpur-vgsom-mba-ex.html": 1,
+    "iit-kharagpur-vgsom-mba.html": 1,
+    "iit-madras-emba.html": 1,
+    "iit-madras-mba.html": 1,
+    "iit-madras-placements.html": 4,
+    "iit-roorkee-executive-mba.html": 3,
+    "iit-roorkee-mba.html": 4,
+    "iit-roorkee-placements.html": 5,
+    "iit-roorkee.html": 3,
+    "imt-nagpur-pgdm-financial-management.html": 7,
+    "imt-nagpur-pgdm-marketing.html": 7,
+    "imt-nagpur-pgdm.html": 8,
+    "imt-nagpur-placements.html": 11,
+    "imt-nagpur.html": 9,
+    "index.html": 716,
+    "indian-institute-of-management-kashipur-executive-mba.html": 1,
+    "indian-institute-of-management-kashipur-mba-analytics.html": 1,
+    "indian-institute-of-management-kashipur-mba.html": 1,
+    "indian-institute-of-management-kashipur-placements.html": 6,
+    "indian-institute-of-management-kashipur.html": 4,
+    "indian-institute-of-management-visakhapatnam-mba-programme.html": 1,
+    "institute-rural-management-anand-executive-rural-management.html": 1,
+    "institute-rural-management-anand-fpm-rural-management.html": 1,
+    "institute-rural-management-anand-mba-rural-management.html": 1,
+    "institute-rural-management-anand-mdp.html": 1,
+    "institute-rural-management-anand-placements.html": 9,
+    "institute-rural-management-anand.html": 6,
+    "jain-university-bba.html": 8,
+    "jain-university-bca.html": 8,
+    "jain-university-bcom.html": 8,
+    "jain-university-btech-cse.html": 8,
+    "jain-university-mba.html": 8,
+    "jain-university-placements.html": 8,
+    "jain-university.html": 7,
+    "jaipuria-institute-management-noida.html": 5,
+    "jaipuria-institute-of-management-lucknow-placements.html": 9,
+    "jaipuria-institute-of-management-lucknow.html": 5,
+    "jaipuria-lucknow-pgdm-financial-services.html": 4,
+    "jaipuria-lucknow-pgdm-retail-management.html": 2,
+    "jaipuria-lucknow-pgdm.html": 5,
+    "jaipuria-noida-pgdm-marketing.html": 6,
+    "jaipuria-noida-pgdm-service-management.html": 6,
+    "jaipuria-noida-pgdm.html": 6,
+    "jaipuria-noida-placements.html": 9,
+    "jamia-millia-islamia-mba.html": 8,
+    "jamia-millia-islamia-placements.html": 6,
+    "jamia-millia-islamia.html": 4,
+    "kiit-bba.html": 8,
+    "kiit-bca.html": 7,
+    "kiit-bhubaneswar-placements.html": 12,
+    "kiit-bhubaneswar.html": 15,
+    "kiit-btech.html": 8,
+    "kiit-mba.html": 8,
+    "kj-somaiya-institute-of-management-mba-healthcare-management.html": 1,
+    "kj-somaiya-institute-of-management-mba-marketing-communications.html": 1,
+    "kj-somaiya-institute-of-management-mba-sports-management.html": 1,
+    "kj-somaiya-institute-of-management-mba.html": 1,
+    "kj-somaiya-institute-of-management-placements.html": 2,
+    "kj-somaiya-institute-of-management.html": 5,
+    "kl-university-btech-ai-data-science.html": 7,
+    "kl-university-btech-cse.html": 8,
+    "kl-university-mba.html": 7,
+    "kl-university-placements.html": 9,
+    "kl-university.html": 9,
+    "loyola-institute-business-administration-executive-diploma.html": 1,
+    "loyola-institute-business-administration-fpm.html": 1,
+    "loyola-institute-business-administration-online-pgdm.html": 1,
+    "loyola-institute-business-administration-pgdm.html": 1,
+    "loyola-institute-business-administration-placements.html": 8,
+    "loyola-institute-business-administration.html": 8,
+    "mat.html": 2,
+    "mdi-gurugram-placements.html": 1,
+    "mdi-gurugram.html": 1,
+    "nirma-university-ba-llb.html": 1,
+    "nirma-university-bba-hons.html": 1,
+    "nirma-university-bcom-hons.html": 1,
+    "nirma-university-bpharm.html": 1,
+    "nirma-university-btech-cse.html": 1,
+    "nirma-university-mba.html": 1,
+    "nirma-university-placements.html": 11,
+    "nirma-university.html": 8,
+    "nmat.html": 2,
+    "nmims-mba-pharma-tech.html": 1,
+    "nmims-mba.html": 5,
+    "nmims-placements.html": 5,
+    "nmims.html": 4,
+    "school-management-studies-mnnit-allahabad-executive-mba.html": 3,
+    "school-management-studies-mnnit-allahabad-mba.html": 4,
+    "school-management-studies-mnnit-allahabad-placements.html": 5,
+    "school-management-studies-mnnit-allahabad.html": 3,
+    "sibm-bengaluru-mba-business-analytics.html": 2,
+    "sibm-bengaluru-mba-executive.html": 1,
+    "sibm-bengaluru-mba.html": 2,
+    "sibm-bengaluru-placements.html": 6,
+    "sibm-bengaluru.html": 4,
+    "sibm-pune-mba-executive.html": 1,
+    "sibm-pune-mba-innovation-entrepreneurship.html": 1,
+    "sibm-pune-mba.html": 2,
+    "sibm-pune-placements.html": 3,
+    "sibm-pune.html": 1,
+    "snap.html": 2,
+    "soa-bba-integrated-mba.html": 2,
+    "soa-bds.html": 2,
+    "soa-bpharm.html": 1,
+    "soa-bsc-agriculture.html": 1,
+    "soa-bsc-nursing.html": 1,
+    "soa-btech.html": 2,
+    "soa-mbbs.html": 2,
+    "soa-university-bhubaneswar-placements.html": 4,
+    "soa-university-bhubaneswar.html": 16,
+    "spjimr-pgdm-bm.html": 1,
+    "spjimr-pgdm.html": 2,
+    "spjimr-placements.html": 5,
+    "spjimr.html": 1,
+    "srm-institute-science-technology.html": 21,
+    "srmist-btech-artificial-intelligence.html": 4,
+    "srmist-btech-cse.html": 5,
+    "srmist-btech-ece.html": 4,
+    "srmist-btech-information-technology.html": 4,
+    "srmist-mba-business-analytics.html": 3,
+    "srmist-mba-financial-services-nse.html": 3,
+    "srmist-mba.html": 4,
+    "srmist-mbbs.html": 1,
+    "srmist-mca.html": 1,
+    "srmist-placements.html": 30,
+    "top-mba-colleges-in-india.html": 10,
+    "welingkar-mumbai-business-design.html": 15,
+    "welingkar-mumbai-ebusiness.html": 15,
+    "welingkar-mumbai-healthcare.html": 1,
+    "welingkar-mumbai-media-entertainment.html": 1,
+    "welingkar-mumbai-mms.html": 1,
+    "welingkar-mumbai-pgdm.html": 15,
+    "welingkar-mumbai-placements.html": 24,
+    "welingkar-mumbai-research-analytics.html": 15,
+    "welingkar-mumbai-retail.html": 1,
+    "welingkar-mumbai-rural.html": 1,
+    "welingkar-mumbai.html": 14,
+    "xat.html": 3,
+    "xlri-jamshedpur-placements.html": 2,
+    "xlri-jamshedpur.html": 3
+  },
+  "outgoing_internal_link_counts": {
+    "alliance-university-bba-llb.html": 8,
+    "alliance-university-bba.html": 8,
+    "alliance-university-bca.html": 9,
+    "alliance-university-bcom.html": 9,
+    "alliance-university-btech-ai-data-science.html": 8,
+    "alliance-university-btech-cse.html": 8,
+    "alliance-university-mba.html": 8,
+    "alliance-university-placements.html": 7,
+    "alliance-university.html": 22,
+    "amu-aligarh-placements.html": 6,
+    "amu-aligarh.html": 7,
+    "amu-barch.html": 6,
+    "amu-btech.html": 7,
+    "amu-mba.html": 7,
+    "amu-mbbs.html": 6,
+    "banaras-hindu-university.html": 11,
+    "bhu-ba-hons.html": 10,
+    "bhu-ba-llb.html": 9,
+    "bhu-bcom-hons.html": 9,
+    "bhu-bsc-agriculture.html": 9,
+    "bhu-bsc-hons.html": 10,
+    "bhu-btech-dairy-technology.html": 9,
+    "bhu-mba.html": 10,
+    "bhu-placements.html": 9,
+    "birla-institute-management-technology-pgdm-ib.html": 7,
+    "birla-institute-management-technology-pgdm-ibm.html": 7,
+    "birla-institute-management-technology-pgdm-online.html": 4,
+    "birla-institute-management-technology-pgdm-retail-management.html": 7,
+    "birla-institute-management-technology-pgdm.html": 7,
+    "birla-institute-management-technology-placements.html": 10,
+    "birla-institute-management-technology.html": 11,
+    "cat.html": 9,
+    "christ-university-ba-llb.html": 4,
+    "christ-university-bba.html": 4,
+    "christ-university-bca.html": 4,
+    "christ-university-bcom.html": 4,
+    "christ-university-btech-cse.html": 4,
+    "christ-university-mba.html": 5,
+    "christ-university-placements.html": 16,
+    "christ-university.html": 11,
+    "cmat.html": 8,
+    "college.html": 10,
+    "colleges.html": 9,
+    "department-management-studies-nit-trichy-mba.html": 5,
+    "department-management-studies-nit-trichy-placements.html": 4,
+    "department-management-studies-nit-trichy.html": 6,
+    "dms-nit-trichy-mba.html": 5,
+    "dms-nit-trichy-placements.html": 4,
+    "dms-nit-trichy.html": 7,
+    "exams.html": 12,
+    "fore-school-management-pgdm-bda.html": 4,
+    "fore-school-management-pgdm-fm.html": 4,
+    "fore-school-management-pgdm-ib.html": 4,
+    "fore-school-management-pgdm.html": 4,
+    "fore-school-management-placements.html": 4,
+    "fore-school-management.html": 9,
+    "gmat.html": 8,
+    "graphic-era-university-bba.html": 11,
+    "graphic-era-university-bca.html": 11,
+    "graphic-era-university-bcom-hons.html": 11,
+    "graphic-era-university-bpt.html": 11,
+    "graphic-era-university-btech-cse.html": 11,
+    "graphic-era-university-mba-ai-data-science.html": 3,
+    "graphic-era-university-mba-business-analytics.html": 3,
+    "graphic-era-university-mba-finance.html": 3,
+    "graphic-era-university-mba-impact.html": 3,
+    "graphic-era-university-mba-marketing.html": 3,
+    "graphic-era-university-mba.html": 3,
+    "graphic-era-university-placements.html": 5,
+    "graphic-era-university.html": 12,
+    "great-lakes-gurgaon-pgdm.html": 9,
+    "great-lakes-gurgaon-pgpm.html": 9,
+    "great-lakes-gurgaon-placements.html": 8,
+    "great-lakes-gurgaon.html": 8,
+    "iift-mba-business-analytics.html": 8,
+    "iift-mba-international-business.html": 8,
+    "iift-placements.html": 8,
+    "iift.html": 10,
+    "iim-ahmedabad-business-analytics-ai.html": 1,
+    "iim-ahmedabad-mba-fabm.html": 1,
+    "iim-ahmedabad-mba.html": 1,
+    "iim-ahmedabad-pgpx.html": 1,
+    "iim-ahmedabad-placements.html": 6,
+    "iim-ahmedabad.html": 12,
+    "iim-amritsar-ipm.html": 1,
+    "iim-amritsar-mba-business-analytics.html": 2,
+    "iim-amritsar-mba-hr.html": 2,
+    "iim-amritsar-mba.html": 6,
+    "iim-amritsar-msdsm.html": 1,
+    "iim-amritsar-placements.html": 6,
+    "iim-amritsar.html": 15,
+    "iim-bangalore-epgp.html": 6,
+    "iim-bangalore-mba-business-analytics.html": 9,
+    "iim-bangalore-mba.html": 8,
+    "iim-bangalore-pgpba.html": 5,
+    "iim-bangalore-pgpem.html": 6,
+    "iim-bangalore.html": 11,
+    "iim-calcutta-mba.html": 4,
+    "iim-calcutta-mbaex.html": 4,
+    "iim-calcutta-pgdba.html": 4,
+    "iim-calcutta.html": 7,
+    "iim-indore-ipm.html": 1,
+    "iim-indore-mba.html": 1,
+    "iim-indore-pgp-hrm.html": 1,
+    "iim-indore-placements.html": 7,
+    "iim-indore.html": 7,
+    "iim-kozhikode-pgp-bl.html": 1,
+    "iim-kozhikode-pgp-finance.html": 1,
+    "iim-kozhikode-pgp-lsm.html": 1,
+    "iim-kozhikode-placements.html": 7,
+    "iim-kozhikode.html": 10,
+    "iim-lucknow-placements.html": 7,
+    "iim-lucknow.html": 4,
+    "iim-mumbai-mba-oscm.html": 1,
+    "iim-mumbai-mba-sm.html": 1,
+    "iim-mumbai-mba.html": 7,
+    "iim-mumbai-placements.html": 7,
+    "iim-mumbai.html": 7,
+    "iim-nagpur-placements.html": 2,
+    "iim-raipur-epgp.html": 8,
+    "iim-raipur-mba.html": 8,
+    "iim-raipur-placements.html": 8,
+    "iim-raipur.html": 10,
+    "iim-ranchi-mba-ba.html": 8,
+    "iim-ranchi-mba.html": 8,
+    "iim-ranchi-placements.html": 8,
+    "iim-ranchi.html": 10,
+    "iim-rohtak-ipm.html": 8,
+    "iim-rohtak-pgp.html": 8,
+    "iim-rohtak-pgpx.html": 7,
+    "iim-rohtak-placements.html": 8,
+    "iim-rohtak.html": 10,
+    "iim-sirmaur-mba-tourism.html": 7,
+    "iim-sirmaur-mba-tthm.html": 7,
+    "iim-sirmaur-placements.html": 6,
+    "iim-sirmaur.html": 10,
+    "iim-trichy-pgpm-hr.html": 8,
+    "iim-trichy-pgpm.html": 8,
+    "iim-trichy-placements.html": 8,
+    "iim-trichy.html": 10,
+    "iim-udaipur-executive-mba.html": 5,
+    "iim-udaipur-mba-dem.html": 5,
+    "iim-udaipur-mba-gscm.html": 5,
+    "iim-udaipur-mba.html": 8,
+    "iim-udaipur-placements.html": 6,
+    "iim-udaipur.html": 12,
+    "iit-bombay-emba.html": 8,
+    "iit-bombay-mba.html": 8,
+    "iit-bombay-placements.html": 8,
+    "iit-bombay.html": 10,
+    "iit-delhi-dms-executive-mba.html": 1,
+    "iit-delhi-dms-mba-telecom.html": 1,
+    "iit-delhi-dms-mba.html": 1,
+    "iit-delhi-dms-placements.html": 5,
+    "iit-delhi-dms.html": 7,
+    "iit-kanpur-management-sciences-m-tech.html": 3,
+    "iit-kanpur-management-sciences-phd.html": 3,
+    "iit-kharagpur-placements.html": 8,
+    "iit-kharagpur-vgsom-mba-ex.html": 8,
+    "iit-kharagpur-vgsom-mba.html": 8,
+    "iit-kharagpur.html": 10,
+    "iit-madras-emba.html": 8,
+    "iit-madras-mba.html": 8,
+    "iit-madras-placements.html": 8,
+    "iit-madras.html": 10,
+    "iit-roorkee-executive-mba.html": 5,
+    "iit-roorkee-mba.html": 5,
+    "iit-roorkee-placements.html": 5,
+    "iit-roorkee.html": 10,
+    "imt-nagpur-pgdm-financial-management.html": 9,
+    "imt-nagpur-pgdm-marketing.html": 9,
+    "imt-nagpur-pgdm.html": 9,
+    "imt-nagpur-placements.html": 10,
+    "imt-nagpur.html": 11,
+    "index.html": 41,
+    "indian-institute-of-management-kashipur-executive-mba.html": 4,
+    "indian-institute-of-management-kashipur-mba-analytics.html": 5,
+    "indian-institute-of-management-kashipur-mba.html": 5,
+    "indian-institute-of-management-kashipur-placements.html": 4,
+    "indian-institute-of-management-kashipur.html": 10,
+    "indian-institute-of-management-visakhapatnam-mba-programme.html": 2,
+    "institute-rural-management-anand-executive-rural-management.html": 5,
+    "institute-rural-management-anand-fpm-rural-management.html": 4,
+    "institute-rural-management-anand-mba-rural-management.html": 5,
+    "institute-rural-management-anand-mdp.html": 4,
+    "institute-rural-management-anand-placements.html": 4,
+    "institute-rural-management-anand.html": 10,
+    "jain-university-bba.html": 8,
+    "jain-university-bca.html": 8,
+    "jain-university-bcom.html": 8,
+    "jain-university-btech-cse.html": 8,
+    "jain-university-mba.html": 8,
+    "jain-university-placements.html": 7,
+    "jain-university.html": 15,
+    "jaipuria-institute-management-noida.html": 11,
+    "jaipuria-institute-of-management-lucknow-placements.html": 3,
+    "jaipuria-institute-of-management-lucknow.html": 5,
+    "jaipuria-lucknow-fpm.html": 3,
+    "jaipuria-lucknow-pgdm-financial-services.html": 4,
+    "jaipuria-lucknow-pgdm-retail-management.html": 4,
+    "jaipuria-lucknow-pgdm.html": 6,
+    "jaipuria-noida-pgdm-marketing.html": 7,
+    "jaipuria-noida-pgdm-service-management.html": 7,
+    "jaipuria-noida-pgdm.html": 7,
+    "jaipuria-noida-placements.html": 6,
+    "jamia-millia-islamia-mba.html": 8,
+    "jamia-millia-islamia-placements.html": 7,
+    "jamia-millia-islamia.html": 12,
+    "kiit-bba.html": 12,
+    "kiit-bca.html": 11,
+    "kiit-bhubaneswar-placements.html": 7,
+    "kiit-bhubaneswar.html": 6,
+    "kiit-btech.html": 11,
+    "kiit-mba.html": 11,
+    "kj-somaiya-institute-of-management-mba-healthcare-management.html": 2,
+    "kj-somaiya-institute-of-management-mba-marketing-communications.html": 2,
+    "kj-somaiya-institute-of-management-mba-sports-management.html": 2,
+    "kj-somaiya-institute-of-management-mba.html": 3,
+    "kj-somaiya-institute-of-management-placements.html": 2,
+    "kj-somaiya-institute-of-management.html": 7,
+    "kl-university-btech-ai-data-science.html": 7,
+    "kl-university-btech-cse.html": 7,
+    "kl-university-mba.html": 7,
+    "kl-university-placements.html": 8,
+    "kl-university.html": 13,
+    "loyola-institute-business-administration-executive-diploma.html": 5,
+    "loyola-institute-business-administration-fpm.html": 5,
+    "loyola-institute-business-administration-online-pgdm.html": 6,
+    "loyola-institute-business-administration-pgdm.html": 6,
+    "loyola-institute-business-administration-placements.html": 6,
+    "loyola-institute-business-administration.html": 10,
+    "mat.html": 8,
+    "mdi-gurugram-placements.html": 7,
+    "mdi-gurugram.html": 4,
+    "nirma-university-ba-llb.html": 4,
+    "nirma-university-bba-hons.html": 4,
+    "nirma-university-bcom-hons.html": 4,
+    "nirma-university-bpharm.html": 4,
+    "nirma-university-btech-cse.html": 5,
+    "nirma-university-mba.html": 5,
+    "nirma-university-placements.html": 4,
+    "nirma-university.html": 12,
+    "nmat.html": 8,
+    "nmims-mba-pharma-tech.html": 4,
+    "nmims-mba-tech.html": 4,
+    "nmims-mba.html": 5,
+    "nmims-placements.html": 3,
+    "nmims.html": 13,
+    "school-management-studies-mnnit-allahabad-executive-mba.html": 4,
+    "school-management-studies-mnnit-allahabad-mba.html": 5,
+    "school-management-studies-mnnit-allahabad-placements.html": 3,
+    "school-management-studies-mnnit-allahabad.html": 7,
+    "sibm-bengaluru-mba-business-analytics.html": 4,
+    "sibm-bengaluru-mba-executive.html": 3,
+    "sibm-bengaluru-mba.html": 4,
+    "sibm-bengaluru-placements.html": 4,
+    "sibm-bengaluru.html": 10,
+    "sibm-pune-mba-executive.html": 6,
+    "sibm-pune-mba-innovation-entrepreneurship.html": 6,
+    "sibm-pune-mba.html": 7,
+    "sibm-pune-placements.html": 6,
+    "sibm-pune.html": 10,
+    "snap.html": 8,
+    "soa-bba-integrated-mba.html": 4,
+    "soa-bds.html": 3,
+    "soa-bpharm.html": 3,
+    "soa-bsc-agriculture.html": 3,
+    "soa-bsc-nursing.html": 3,
+    "soa-btech.html": 4,
+    "soa-mbbs.html": 4,
+    "soa-university-bhubaneswar-placements.html": 7,
+    "soa-university-bhubaneswar.html": 10,
+    "spjimr-pgdm-bm.html": 8,
+    "spjimr-pgdm.html": 8,
+    "spjimr-placements.html": 8,
+    "spjimr.html": 10,
+    "srm-institute-science-technology.html": 15,
+    "srmist-btech-artificial-intelligence.html": 10,
+    "srmist-btech-cse.html": 10,
+    "srmist-btech-ece.html": 10,
+    "srmist-btech-information-technology.html": 10,
+    "srmist-mba-business-analytics.html": 9,
+    "srmist-mba-financial-services-nse.html": 9,
+    "srmist-mba.html": 9,
+    "srmist-mbbs.html": 6,
+    "srmist-mca.html": 9,
+    "srmist-placements.html": 5,
+    "top-mba-colleges-in-india.html": 2,
+    "welingkar-mumbai-business-design.html": 8,
+    "welingkar-mumbai-ebusiness.html": 8,
+    "welingkar-mumbai-healthcare.html": 8,
+    "welingkar-mumbai-links.html": 11,
+    "welingkar-mumbai-media-entertainment.html": 8,
+    "welingkar-mumbai-mms.html": 8,
+    "welingkar-mumbai-pgdm.html": 8,
+    "welingkar-mumbai-placements.html": 7,
+    "welingkar-mumbai-programmes-note.html": 7,
+    "welingkar-mumbai-programmes.html": 7,
+    "welingkar-mumbai-research-analytics.html": 8,
+    "welingkar-mumbai-retail.html": 8,
+    "welingkar-mumbai-rural.html": 8,
+    "welingkar-mumbai.html": 12,
+    "xat.html": 8,
+    "xlri-jamshedpur-placements.html": 7,
+    "xlri-jamshedpur.html": 4
+  },
+  "benchmarks": [
+    "iim-ahmedabad.html",
+    "sibm-pune.html"
+  ],
+  "rules": [
+    "Overview pages should link to their placement page and every existing dedicated programme page.",
+    "Programme pages should link back to the overview and placement page.",
+    "Placement pages should link back to the overview and existing programme pages.",
+    "Missing pages are not created by this audit; only existing destinations are evaluated.",
+    "Benchmark pages are never modified by the Phase 3 automation."
+  ]
+}
