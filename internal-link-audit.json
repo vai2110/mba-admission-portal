@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T17:06:00.832768+00:00",
+  "generated_at": "2026-09-09T17:24:41.831100+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 376,
-    "pages_with_internal_links": 358,
+    "pages_checked": 385,
+    "pages_with_internal_links": 367,
     "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 64,
-    "cluster_reciprocal_gaps": 135,
-    "zero_incoming_pages": 33,
+    "college_clusters_detected": 66,
+    "cluster_reciprocal_gaps": 136,
+    "zero_incoming_pages": 34,
     "role_counts": {
-      "programme": 185,
-      "placement": 66,
-      "overview_or_hub": 125
+      "programme": 190,
+      "placement": 68,
+      "overview_or_hub": 127
     }
   },
   "college_clusters": [
@@ -116,6 +116,17 @@
       "programmes": [
         "glim-chennai-pgdm.html",
         "glim-chennai-pgpm.html"
+      ]
+    },
+    {
+      "overview": "goa-institute-management.html",
+      "placement": "goa-institute-management-placements.html",
+      "programme_count": 4,
+      "programmes": [
+        "goa-institute-management-pgdm-bda.html",
+        "goa-institute-management-pgdm-bifs.html",
+        "goa-institute-management-pgdm-hcm.html",
+        "goa-institute-management-pgdm.html"
       ]
     },
     {
@@ -401,6 +412,14 @@
         "imi-delhi-pgdm-bfs.html",
         "imi-delhi-pgdm-hrm.html",
         "imi-delhi-pgdm.html"
+      ]
+    },
+    {
+      "overview": "imi-kolkata.html",
+      "placement": "imi-kolkata-placements.html",
+      "programme_count": 1,
+      "programmes": [
+        "imi-kolkata-pgdm.html"
       ]
     },
     {
@@ -757,6 +776,14 @@
         "fore-school-management-pgdm-fm.html",
         "fore-school-management-pgdm-ib.html",
         "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "source": "goa-institute-management-placements.html",
+      "missing": [
+        "goa-institute-management-pgdm-bda.html",
+        "goa-institute-management-pgdm-bifs.html",
+        "goa-institute-management-pgdm-hcm.html"
       ]
     },
     {
@@ -1366,7 +1393,10 @@
     {
       "source": "jaipuria-noida-placements.html",
       "missing": [
-        "jaipuria-noida.html"
+        "jaipuria-noida.html",
+        "jaipuria-noida-pgdm-marketing.html",
+        "jaipuria-noida-pgdm-service-management.html",
+        "jaipuria-noida-pgdm.html"
       ]
     },
     {
@@ -1758,6 +1788,11 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "jaipuria-institute-management-noida.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "jaipuria-lucknow-fpm.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -1841,6 +1876,12 @@
     "glim-chennai-placements.html": 3,
     "glim-chennai.html": 4,
     "gmat.html": 1,
+    "goa-institute-management-pgdm-bda.html": 2,
+    "goa-institute-management-pgdm-bifs.html": 2,
+    "goa-institute-management-pgdm-hcm.html": 2,
+    "goa-institute-management-pgdm.html": 4,
+    "goa-institute-management-placements.html": 11,
+    "goa-institute-management.html": 6,
     "graphic-era-university-bba.html": 5,
     "graphic-era-university-bca.html": 5,
     "graphic-era-university-bcom-hons.html": 5,
@@ -1966,12 +2007,15 @@
     "imi-delhi-pgdm-hrm.html": 1,
     "imi-delhi-pgdm.html": 1,
     "imi-delhi-placements.html": 4,
+    "imi-kolkata-pgdm.html": 3,
+    "imi-kolkata-placements.html": 5,
+    "imi-kolkata.html": 3,
     "imt-nagpur-pgdm-financial-management.html": 7,
     "imt-nagpur-pgdm-marketing.html": 7,
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 789,
+    "index.html": 808,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -1991,16 +2035,15 @@
     "jain-university-mba.html": 8,
     "jain-university-placements.html": 8,
     "jain-university.html": 7,
-    "jaipuria-institute-management-noida.html": 1,
     "jaipuria-institute-of-management-lucknow-placements.html": 9,
     "jaipuria-institute-of-management-lucknow.html": 5,
     "jaipuria-lucknow-pgdm-financial-services.html": 4,
     "jaipuria-lucknow-pgdm-retail-management.html": 2,
     "jaipuria-lucknow-pgdm.html": 5,
-    "jaipuria-noida-pgdm-marketing.html": 3,
-    "jaipuria-noida-pgdm-service-management.html": 3,
-    "jaipuria-noida-pgdm.html": 3,
-    "jaipuria-noida-placements.html": 6,
+    "jaipuria-noida-pgdm-marketing.html": 2,
+    "jaipuria-noida-pgdm-service-management.html": 2,
+    "jaipuria-noida-pgdm.html": 2,
+    "jaipuria-noida-placements.html": 5,
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 6,
     "jamia-millia-islamia.html": 4,
@@ -2184,6 +2227,12 @@
     "glim-chennai-placements.html": 7,
     "glim-chennai.html": 5,
     "gmat.html": 8,
+    "goa-institute-management-pgdm-bda.html": 6,
+    "goa-institute-management-pgdm-bifs.html": 6,
+    "goa-institute-management-pgdm-hcm.html": 6,
+    "goa-institute-management-pgdm.html": 6,
+    "goa-institute-management-placements.html": 5,
+    "goa-institute-management.html": 10,
     "graphic-era-university-bba.html": 11,
     "graphic-era-university-bca.html": 11,
     "graphic-era-university-bcom-hons.html": 11,
@@ -2320,6 +2369,9 @@
     "imi-delhi-pgdm.html": 3,
     "imi-delhi-placements.html": 2,
     "imi-delhi.html": 6,
+    "imi-kolkata-pgdm.html": 6,
+    "imi-kolkata-placements.html": 5,
+    "imi-kolkata.html": 6,
     "imt-nagpur-pgdm-financial-management.html": 9,
     "imt-nagpur-pgdm-marketing.html": 9,
     "imt-nagpur-pgdm.html": 9,
@@ -2355,7 +2407,7 @@
     "jaipuria-noida-pgdm-marketing.html": 3,
     "jaipuria-noida-pgdm-service-management.html": 3,
     "jaipuria-noida-pgdm.html": 3,
-    "jaipuria-noida-placements.html": 6,
+    "jaipuria-noida-placements.html": 2,
     "jaipuria-noida.html": 6,
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 7,
