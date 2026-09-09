@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T16:21:05.998860+00:00",
+  "generated_at": "2026-09-09T16:22:37.588631+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 369,
-    "pages_with_internal_links": 369,
-    "broken_local_links": 5,
+    "pages_checked": 370,
+    "pages_with_internal_links": 370,
+    "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 61,
+    "college_clusters_detected": 62,
     "cluster_reciprocal_gaps": 0,
-    "zero_incoming_pages": 1,
+    "zero_incoming_pages": 0,
     "role_counts": {
       "programme": 182,
-      "placement": 64,
+      "placement": 65,
       "overview_or_hub": 123
     }
   },
@@ -580,6 +580,16 @@
       ]
     },
     {
+      "overview": "tapmi-manipal.html",
+      "placement": "tapmi-manipal-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "tapmi-manipal-mba-bkfs.html",
+        "tapmi-manipal-mba-hrm.html",
+        "tapmi-manipal-mba.html"
+      ]
+    },
+    {
       "overview": "upes-dehradun.html",
       "placement": "upes-dehradun-placements.html",
       "programme_count": 6,
@@ -621,26 +631,6 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
-    },
-    {
-      "source": "tapmi-manipal-mba-bkfs.html",
-      "href": "tapmi-manipal-placements.html",
-      "target": "tapmi-manipal-placements.html"
-    },
-    {
-      "source": "tapmi-manipal-mba-hrm.html",
-      "href": "tapmi-manipal-placements.html",
-      "target": "tapmi-manipal-placements.html"
-    },
-    {
-      "source": "tapmi-manipal-mba.html",
-      "href": "tapmi-manipal-placements.html",
-      "target": "tapmi-manipal-placements.html"
-    },
-    {
-      "source": "tapmi-manipal.html",
-      "href": "tapmi-manipal-placements.html",
-      "target": "tapmi-manipal-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -650,13 +640,7 @@
       "target": "iim-ahmedabad-bpgp.html"
     }
   ],
-  "zero_incoming_pages": [
-    {
-      "page": "tapmi-manipal.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    }
-  ],
+  "zero_incoming_pages": [],
   "incoming_link_counts": {
     "alliance-university-bba-llb.html": 12,
     "alliance-university-bba.html": 16,
@@ -872,7 +856,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 772,
+    "index.html": 774,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -997,9 +981,11 @@
     "srmist-mbbs.html": 1,
     "srmist-mca.html": 1,
     "srmist-placements.html": 30,
-    "tapmi-manipal-mba-bkfs.html": 1,
-    "tapmi-manipal-mba-hrm.html": 1,
-    "tapmi-manipal-mba.html": 1,
+    "tapmi-manipal-mba-bkfs.html": 5,
+    "tapmi-manipal-mba-hrm.html": 5,
+    "tapmi-manipal-mba.html": 5,
+    "tapmi-manipal-placements.html": 8,
+    "tapmi-manipal.html": 5,
     "top-mba-colleges-in-india.html": 10,
     "upes-dehradun-bba.html": 9,
     "upes-dehradun-bca.html": 9,
@@ -1364,10 +1350,11 @@
     "srmist-mbbs.html": 6,
     "srmist-mca.html": 9,
     "srmist-placements.html": 5,
-    "tapmi-manipal-mba-bkfs.html": 3,
-    "tapmi-manipal-mba-hrm.html": 3,
-    "tapmi-manipal-mba.html": 3,
-    "tapmi-manipal.html": 6,
+    "tapmi-manipal-mba-bkfs.html": 7,
+    "tapmi-manipal-mba-hrm.html": 7,
+    "tapmi-manipal-mba.html": 7,
+    "tapmi-manipal-placements.html": 7,
+    "tapmi-manipal.html": 10,
     "top-mba-colleges-in-india.html": 2,
     "upes-dehradun-bba.html": 9,
     "upes-dehradun-bca.html": 9,
