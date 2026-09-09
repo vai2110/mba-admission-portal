@@ -1,0 +1,38 @@
+name: Run GLIM Chennai Content Upgrade
+
+on:
+  push:
+    paths:
+      - '.github/workflows/glim-upgrade-trigger.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute existing GLIM upgrade script
+        shell: python
+        run: |
+          from pathlib import Path
+          import re, textwrap, subprocess
+
+          workflow = Path('.github/workflows/glim-content-upgrade.yml').read_text(encoding='utf-8')
+          match = re.search(r'\n        run: \|\n((?:          .*\n?)*)', workflow)
+          if not match:
+              raise SystemExit('Could not locate GLIM upgrade script')
+          script = textwrap.dedent(match.group(1))
+          exec(compile(script, 'glim-content-upgrade.yml', 'exec'), {'__name__': '__main__'})
+
+          subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+          subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
+          subprocess.run(['git', 'add', 'glim-chennai.html', 'glim-chennai-pgpm.html', 'glim-chennai-pgdm.html', 'glim-chennai-placements.html'], check=True)
+          status = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True, check=True)
+          if status.stdout.strip():
+              subprocess.run(['git', 'commit', '-m', 'Upgrade all GLIM Chennai pages for student research intent'], check=True)
+              subprocess.run(['git', 'push'], check=True)
+          else:
+              print('GLIM pages already contain the upgrade or no changes were required.')
