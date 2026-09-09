@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T11:05:54.898968+00:00",
+  "generated_at": "2026-09-09T11:39:53.991724+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 349,
-    "pages_with_internal_links": 349,
-    "broken_local_links": 1,
+    "pages_checked": 358,
+    "pages_with_internal_links": 358,
+    "broken_local_links": 4,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 58,
+    "college_clusters_detected": 59,
     "cluster_reciprocal_gaps": 0,
-    "zero_incoming_pages": 0,
+    "zero_incoming_pages": 1,
     "role_counts": {
-      "programme": 172,
-      "placement": 61,
-      "overview_or_hub": 116
+      "programme": 176,
+      "placement": 62,
+      "overview_or_hub": 120
     }
   },
   "college_clusters": [
@@ -562,6 +562,19 @@
       ]
     },
     {
+      "overview": "upes-dehradun.html",
+      "placement": "upes-dehradun-placements.html",
+      "programme_count": 6,
+      "programmes": [
+        "upes-dehradun-bba.html",
+        "upes-dehradun-bca.html",
+        "upes-dehradun-bdes.html",
+        "upes-dehradun-btech.html",
+        "upes-dehradun-llb.html",
+        "upes-dehradun-mba.html"
+      ]
+    },
+    {
       "overview": "welingkar-mumbai.html",
       "placement": "welingkar-mumbai-placements.html",
       "programme_count": 9,
@@ -587,6 +600,21 @@
   "reciprocal_link_gaps": [],
   "broken_local_links": [
     {
+      "source": "glim-chennai.html",
+      "href": "glim-chennai-pgpm.html",
+      "target": "glim-chennai-pgpm.html"
+    },
+    {
+      "source": "glim-chennai.html",
+      "href": "glim-chennai-pgdm.html",
+      "target": "glim-chennai-pgdm.html"
+    },
+    {
+      "source": "glim-chennai.html",
+      "href": "glim-chennai-placements.html",
+      "target": "glim-chennai-placements.html"
+    },
+    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -599,7 +627,13 @@
       "target": "iim-ahmedabad-bpgp.html"
     }
   ],
-  "zero_incoming_pages": [],
+  "zero_incoming_pages": [
+    {
+      "page": "glim-chennai.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    }
+  ],
   "incoming_link_counts": {
     "alliance-university-bba-llb.html": 12,
     "alliance-university-bba.html": 16,
@@ -807,7 +841,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 742,
+    "index.html": 753,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -933,6 +967,14 @@
     "srmist-mca.html": 1,
     "srmist-placements.html": 30,
     "top-mba-colleges-in-india.html": 10,
+    "upes-dehradun-bba.html": 9,
+    "upes-dehradun-bca.html": 9,
+    "upes-dehradun-bdes.html": 9,
+    "upes-dehradun-btech.html": 9,
+    "upes-dehradun-llb.html": 9,
+    "upes-dehradun-mba.html": 9,
+    "upes-dehradun-placements.html": 8,
+    "upes-dehradun.html": 15,
     "welingkar-mumbai-business-design.html": 25,
     "welingkar-mumbai-ebusiness.html": 25,
     "welingkar-mumbai-healthcare.html": 11,
@@ -1016,6 +1058,7 @@
     "fore-school-management-pgdm.html": 9,
     "fore-school-management-placements.html": 9,
     "fore-school-management.html": 14,
+    "glim-chennai.html": 5,
     "gmat.html": 8,
     "graphic-era-university-bba.html": 23,
     "graphic-era-university-bca.html": 23,
@@ -1281,6 +1324,14 @@
     "srmist-mca.html": 9,
     "srmist-placements.html": 5,
     "top-mba-colleges-in-india.html": 2,
+    "upes-dehradun-bba.html": 9,
+    "upes-dehradun-bca.html": 9,
+    "upes-dehradun-bdes.html": 9,
+    "upes-dehradun-btech.html": 9,
+    "upes-dehradun-llb.html": 9,
+    "upes-dehradun-mba.html": 9,
+    "upes-dehradun-placements.html": 16,
+    "upes-dehradun.html": 16,
     "welingkar-mumbai-business-design.html": 18,
     "welingkar-mumbai-ebusiness.html": 18,
     "welingkar-mumbai-healthcare.html": 18,
