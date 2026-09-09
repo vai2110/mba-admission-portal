@@ -70,6 +70,22 @@ jobs:
           echo "Pages selected:"
           cat changed-html.txt || true
 
+      - name: Prepare answer-first CSS
+        if: ${{ hashFiles('changed-html.txt') != '' }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          CSS='.answer-first{background:#eef6ff;border:1px solid #cfe0f5;border-radius:8px;padding:13px 15px;margin:0 0 14px;color:#173f82}.answer-first strong{display:block;margin-bottom:4px}.answer-first p{margin:0;font-size:13px;color:#334155}'
+          pages=[p.strip() for p in Path('changed-html.txt').read_text().splitlines() if p.strip()]
+          for name in pages:
+              path=Path(name)
+              if not path.exists(): continue
+              raw=path.read_text(encoding='utf-8')
+              if '.answer-first{' not in raw:
+                  raw=raw.replace('</style>', CSS+'</style>', 1)
+                  path.write_text(raw, encoding='utf-8')
+          PY
+
       - name: Run SEO + AEO + GEO audit fixer
         if: ${{ (github.event_name == 'push' || inputs.apply_changes == true) && hashFiles('changed-html.txt') != '' }}
         run: |
@@ -106,8 +122,11 @@ jobs:
               hero=soup.select_one('.hero')
               if hero is not None and hero.select('.notice'):
                   raise SystemExit(f'Hero protection failed: notice found in {name}')
-              if len(soup.select('.answer-first')) > 0:
-                  raise SystemExit(f'Duplicate Quick Answer guard failed: answer-first block remains in {name}')
+              answer_blocks=soup.select('.answer-first')
+              if len(answer_blocks) > 1:
+                  raise SystemExit(f'Duplicate Quick Answer blocks found in {name}')
+              if answer_blocks and '.answer-first{' not in raw:
+                  raise SystemExit(f'Quick Answer styling missing in {name}')
               print(f'Integrity PASS: {name}')
           PY
 
