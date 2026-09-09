@@ -130,6 +130,9 @@ jobs:
               print(f'Integrity PASS: {name}')
           PY
 
+      - name: Run site-wide technical SEO audit
+        run: python scripts/technical_seo_audit.py
+
       - name: Commit automatic HTML improvements
         if: ${{ github.event_name == 'push' || inputs.apply_changes == true }}
         run: |
@@ -172,4 +175,5 @@ jobs:
           path: |
             content-audit-report.json
             seo-geo-aeo-report.json
+            technical-seo-audit.json
           if-no-files-found: ignore
