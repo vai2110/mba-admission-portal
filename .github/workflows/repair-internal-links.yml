@@ -8,18 +8,26 @@ on:
 permissions:
   contents: write
 
+# Keep this writer in the same queue as the SEO/content audit writers.
+concurrency:
+  group: portal-main-writer
+  cancel-in-progress: false
+
 jobs:
   repair:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Add/refine reciprocal college navigation
         run: python scripts/repair_internal_links_v2.py
 
       - name: Commit repaired pages
         run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html'
@@ -27,5 +35,6 @@ jobs:
             echo "No internal-link changes required."
           else
             git commit -m "Phase 3: refine reciprocal college internal links"
-            git push
+            git pull --rebase --autostash origin main
+            git push origin HEAD:main
           fi
