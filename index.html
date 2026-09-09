@@ -306,6 +306,94 @@ button,input{font:inherit;}
 .card-button:hover{background:#1d4ed8;}
 
 /* =========================
+   COLLEGE DISCOVERY
+========================= */
+.explore-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.explore-card{
+    display:block;
+    padding:16px;
+    background:#fff;
+    border:1px solid #dfe5ed;
+    border-radius:9px;
+    transition:.2s ease;
+}
+
+.explore-card:hover{
+    transform:translateY(-2px);
+    border-color:#b9cef2;
+    box-shadow:0 7px 18px rgba(15,23,42,.07);
+}
+
+.explore-card strong{
+    display:block;
+    margin-bottom:5px;
+    color:#173f82;
+    font-size:14px;
+}
+
+.explore-card span{
+    display:block;
+    color:#64748b;
+    font-size:10px;
+    line-height:1.5;
+}
+
+.featured-links{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+
+.featured-links a{
+    color:#2563eb;
+    font-size:10px;
+    font-weight:800;
+}
+
+.featured-links a:hover{text-decoration:underline;}
+
+.top100-banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding:22px 25px;
+    background:#eef5ff;
+    border:1px solid #d5e2f5;
+    border-radius:10px;
+}
+
+.top100-banner h3{
+    margin-bottom:4px;
+    color:#102a43;
+    font-size:19px;
+}
+
+.top100-banner p{
+    max-width:720px;
+    color:#475569;
+    font-size:11px;
+}
+
+.top100-button{
+    flex:0 0 auto;
+    padding:10px 15px;
+    border-radius:6px;
+    background:#2563eb;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+}
+
+.top100-button:hover{background:#1d4ed8;}
+
+/* =========================
    COMPARISON
 ========================= */
 .comparison{
@@ -534,6 +622,7 @@ button,input{font:inherit;}
 @media(max-width:950px){
     .quick-grid{grid-template-columns:repeat(3,1fr);}
     .college-grid{grid-template-columns:repeat(2,1fr);}
+    .explore-grid{grid-template-columns:repeat(3,1fr);}
     .exam-grid{grid-template-columns:repeat(2,1fr);}
     .guide-grid{grid-template-columns:repeat(2,1fr);}
     .cutoff-box{grid-template-columns:repeat(2,1fr);}
@@ -579,11 +668,22 @@ button,input{font:inherit;}
     }
 
     .college-grid,
+    .explore-grid,
     .exam-grid,
     .guide-grid,
     .cutoff-box,
     .placement-grid{
         grid-template-columns:1fr;
+    }
+
+    .top100-banner{
+        display:block;
+    }
+
+    .top100-button{
+        display:block;
+        margin-top:14px;
+        text-align:center;
     }
 
     .home-section{
@@ -641,7 +741,7 @@ button,input{font:inherit;}
 
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="#colleges">MBA Colleges</a>
+            <a href="top-mba-colleges-in-india.html">MBA Colleges</a>
             <a href="#exams">Entrance Exams</a>
             <a href="#admissions">Admissions</a>
             <a href="#cutoffs">Cutoffs</a>
@@ -661,16 +761,16 @@ button,input{font:inherit;}
         <h1>Everything You Need to Choose Your MBA College</h1>
 
         <p>
-            Compare MBA colleges, entrance exams, admissions, fees,
-            cutoffs and placements before making your decision.
+            Explore MBA colleges, fees, placements, cutoffs, entrance exams and
+            admission details — all in one place.
         </p>
 
         <div class="search-box">
             <input
                 type="search"
                 id="collegeSearch"
-                placeholder="Search MBA colleges or entrance exams..."
-                aria-label="Search MBA colleges or entrance exams"
+                placeholder="Search a college, exam, programme or city..."
+                aria-label="Search a college, exam, programme or city"
             >
             <button type="button" onclick="searchContent()">Search</button>
         </div>
@@ -687,47 +787,75 @@ button,input{font:inherit;}
 
     <div class="quick-grid">
 
-        <a href="#colleges" class="quick-card">
-            <strong>MBA Colleges</strong>
-            <span>Colleges, programmes and locations</span>
+        <a href="top-mba-colleges-in-india.html" class="quick-card">
+            <strong>Top MBA Colleges</strong>
+            <span>Explore leading MBA institutes and rankings</span>
         </a>
 
         <a href="#exams" class="quick-card">
-            <strong>Entrance Exams</strong>
-            <span>CAT, XAT, CMAT, MAT and more</span>
+            <strong>MBA Colleges by Exam</strong>
+            <span>Find colleges accepting major MBA exams</span>
         </a>
 
         <a href="#admissions" class="quick-card">
-            <strong>Admissions</strong>
-            <span>Eligibility, applications and process</span>
+            <strong>MBA Admissions</strong>
+            <span>Eligibility, applications and selection</span>
         </a>
 
         <a href="#fees" class="quick-card">
-            <strong>Fees</strong>
-            <span>Programme fee information</span>
+            <strong>MBA Fees</strong>
+            <span>Compare tuition and total programme cost</span>
         </a>
 
         <a href="#cutoffs" class="quick-card">
-            <strong>Cutoffs</strong>
-            <span>Understand college cutoff trends</span>
+            <strong>MBA Cutoffs</strong>
+            <span>Explore exam-wise and college-wise cutoffs</span>
         </a>
 
         <a href="#placements" class="quick-card">
-            <strong>Placements</strong>
-            <span>Salary, recruiters and outcomes</span>
+            <strong>MBA Placements</strong>
+            <span>Compare salaries, recruiters and outcomes</span>
         </a>
 
     </div>
 </section>
 
-<!-- POPULAR COLLEGES -->
+<!-- COLLEGE DISCOVERY -->
+<section id="explore" class="home-section">
+    <div class="section-heading">
+        <h2>Explore MBA Colleges</h2>
+        <p>Find colleges based on ranking, entrance exam, fees, placements and location instead of browsing randomly.</p>
+    </div>
+
+    <div class="explore-grid">
+        <a href="top-mba-colleges-in-india.html" class="explore-card">
+            <strong>Top 100 MBA Colleges</strong>
+            <span>NIRF-ranked management institutes with college-level details.</span>
+        </a>
+        <a href="#colleges" class="explore-card">
+            <strong>MBA Colleges by City</strong>
+            <span>Explore leading B-schools across major Indian education hubs.</span>
+        </a>
+        <a href="#exams" class="explore-card">
+            <strong>MBA Colleges by Exam</strong>
+            <span>Find colleges accepting CAT, XAT, CMAT, MAT, SNAP and NMAT.</span>
+        </a>
+        <a href="#fees" class="explore-card">
+            <strong>MBA Colleges by Fees</strong>
+            <span>Compare options across different programme fee ranges.</span>
+        </a>
+        <a href="#placements" class="explore-card">
+            <strong>MBA Colleges by Placements</strong>
+            <span>Compare salary outcomes, recruiters and placement information.</span>
+        </a>
+    </div>
+</section>
+
+<!-- FEATURED COLLEGES -->
 <section id="colleges" class="home-section">
     <div class="section-heading">
-        <h2>Popular MBA Colleges</h2>
-        <p>
-            Explore leading management institutes and compare the information
-            that matters before applying.
-        </p>
+        <h2>Featured MBA Colleges</h2>
+        <p>Start with some of the most searched management institutes, then explore their programme, admission and placement details.</p>
     </div>
 
     <div class="college-grid">
@@ -735,7 +863,7 @@ button,input{font:inherit;}
         <article class="college-card">
             <div class="college-top">
                 <h3>IIM Ahmedabad</h3>
-                <p>Ahmedabad, Gujarat</p>
+                <p>Ahmedabad, Gujarat · NIRF #1</p>
             </div>
             <div class="college-body">
                 <div class="info-row"><span>Programme</span><strong>MBA / PGP</strong></div>
@@ -744,16 +872,15 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>₹27.50 Lakh</strong>
                 </div>
-                <a href="iim-ahmedabad.html" class="card-button">
-                    View College Details →
-                </a>
+                <a href="iim-ahmedabad.html" class="card-button">Explore IIM Ahmedabad →</a>
+                <div class="featured-links"><a href="iim-ahmedabad-mba.html">MBA</a><a href="iim-ahmedabad-placements.html">Placements</a></div>
             </div>
         </article>
 
         <article class="college-card">
             <div class="college-top">
                 <h3>IIM Bangalore</h3>
-                <p>Bangalore, Karnataka</p>
+                <p>Bengaluru, Karnataka · NIRF #2</p>
             </div>
             <div class="college-body">
                 <div class="info-row"><span>Programme</span><strong>MBA / PGP</strong></div>
@@ -762,14 +889,15 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>₹26 Lakh</strong>
                 </div>
-                <a href="iim-bangalore.html" class="card-button">View College Details →</a>
+                <a href="iim-bangalore.html" class="card-button">Explore IIM Bangalore →</a>
+                <div class="featured-links"><a href="iim-bangalore-mba.html">MBA</a><a href="iim-bangalore-placements.html">Placements</a></div>
             </div>
         </article>
 
         <article class="college-card">
             <div class="college-top">
                 <h3>IIM Calcutta</h3>
-                <p>Kolkata, West Bengal</p>
+                <p>Kolkata, West Bengal · NIRF #7</p>
             </div>
             <div class="college-body">
                 <div class="info-row"><span>Programme</span><strong>MBA</strong></div>
@@ -778,14 +906,15 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="iim-calcutta.html" class="card-button">View College Details →</a>
+                <a href="iim-calcutta.html" class="card-button">Explore IIM Calcutta →</a>
+                <div class="featured-links"><a href="iim-calcutta-mba.html">MBA</a><a href="iim-calcutta-placements.html">Placements</a></div>
             </div>
         </article>
 
         <article class="college-card">
             <div class="college-top">
                 <h3>XLRI Jamshedpur</h3>
-                <p>Jamshedpur, Jharkhand</p>
+                <p>Jamshedpur, Jharkhand · NIRF #10</p>
             </div>
             <div class="college-body">
                 <div class="info-row"><span>Programme</span><strong>PGDM</strong></div>
@@ -794,30 +923,32 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="xlri-jamshedpur.html" class="card-button">View College Details →</a>
+                <a href="xlri-jamshedpur.html" class="card-button">Explore XLRI Jamshedpur →</a>
+                <div class="featured-links"><a href="xlri-jamshedpur.html">Programmes</a><a href="xlri-jamshedpur-placements.html">Placements</a></div>
             </div>
         </article>
 
         <article class="college-card">
             <div class="college-top">
-                <h3>FMS Delhi</h3>
-                <p>Delhi</p>
+                <h3>IIM Kozhikode</h3>
+                <p>Kozhikode, Kerala · NIRF #3</p>
             </div>
             <div class="college-body">
-                <div class="info-row"><span>Programme</span><strong>MBA</strong></div>
+                <div class="info-row"><span>Programme</span><strong>MBA / PGP</strong></div>
                 <div class="info-row"><span>Entrance</span><strong>CAT</strong></div>
                 <div class="card-fee">
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="#" class="card-button">View College Details →</a>
+                <a href="iim-kozhikode.html" class="card-button">Explore IIM Kozhikode →</a>
+                <div class="featured-links"><a href="iim-kozhikode-pgp-bl.html">Programmes</a><a href="iim-kozhikode-placements.html">Placements</a></div>
             </div>
         </article>
 
         <article class="college-card">
             <div class="college-top">
                 <h3>SPJIMR Mumbai</h3>
-                <p>Mumbai, Maharashtra</p>
+                <p>Mumbai, Maharashtra · NIRF #20</p>
             </div>
             <div class="college-body">
                 <div class="info-row"><span>Programme</span><strong>PGDM</strong></div>
@@ -826,15 +957,15 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="s-p-jain-institute-of-management-and-research.html" class="card-button">View College Details →</a>
+                <a href="spjimr.html" class="card-button">Explore SPJIMR Mumbai →</a>
+                <div class="featured-links"><a href="spjimr-pgdm.html">PGDM</a><a href="spjimr-placements.html">Placements</a></div>
             </div>
         </article>
-
 
         <article class="college-card">
             <div class="college-top">
                 <h3>SIBM Pune</h3>
-                <p>Pune, Maharashtra</p>
+                <p>Pune, Maharashtra · NIRF #11</p>
             </div>
             <div class="college-body">
                 <div class="info-row"><span>Programme</span><strong>MBA</strong></div>
@@ -843,35 +974,41 @@ button,input{font:inherit;}
                     <small>Programme Fee</small>
                     <strong>View Details</strong>
                 </div>
-                <a href="sibm-pune.html" class="card-button">View College Details →</a>
+                <a href="sibm-pune.html" class="card-button">Explore SIBM Pune →</a>
+                <div class="featured-links"><a href="sibm-pune-mba.html">MBA</a><a href="sibm-pune-placements.html">Placements</a></div>
             </div>
         </article>
 
+    </div>
+
+    <div class="top100-banner" style="margin-top:16px;">
+        <div>
+            <h3>Want the complete ranking?</h3>
+            <p>Explore all 100 management institutes in the NIRF 2025 Management ranking, with college availability and links to detailed pages where available.</p>
+        </div>
+        <a href="top-mba-colleges-in-india.html" class="top100-button">View Top 100 MBA Colleges →</a>
     </div>
 </section>
 
 <!-- FEES -->
 <section id="fees" class="home-section">
     <div class="section-heading">
-        <h2>MBA Fees: What to Check</h2>
-        <p>
-            Don't compare colleges only by the headline fee. Check the
-            complete programme cost and what is included.
-        </p>
+        <h2>MBA Colleges by Fees</h2>
+        <p>Don't compare colleges only by the headline fee. Check the complete programme cost and what is included.</p>
     </div>
 
     <div class="cutoff-box">
         <div class="cutoff-card">
-            <strong>Tuition Fee</strong>
-            <span>Check the academic or programme fee charged by the institute.</span>
+            <strong>Under ₹5 Lakh</strong>
+            <span>Explore MBA and management programmes in the lower fee range.</span>
         </div>
         <div class="cutoff-card">
-            <strong>Hostel & Living Cost</strong>
-            <span>Consider accommodation, food and other campus expenses.</span>
+            <strong>₹5–10 Lakh</strong>
+            <span>Compare mid-range colleges and understand the total programme cost.</span>
         </div>
         <div class="cutoff-card">
-            <strong>Total Cost</strong>
-            <span>Compare the overall cost before deciding between colleges.</span>
+            <strong>₹10 Lakh+</strong>
+            <span>Explore higher-fee institutes alongside placements and career outcomes.</span>
         </div>
     </div>
 </section>
@@ -887,8 +1024,7 @@ button,input{font:inherit;}
                 placements, location and programme information.
             </p>
         </div>
-
-        <a href="#" class="compare-button">Compare Colleges →</a>
+        <a href="top-mba-colleges-in-india.html" class="compare-button">Explore College Rankings →</a>
     </div>
 </section>
 
@@ -897,8 +1033,7 @@ button,input{font:inherit;}
     <div class="section-heading">
         <h2>Popular MBA Entrance Exams</h2>
         <p>
-            Understand the major MBA entrance exams accepted by leading
-            management institutes across India, including eligibility,
+            Choose colleges based on your entrance exam. Explore eligibility,
             exam pattern, registration, cutoff and admission details.
         </p>
     </div>
@@ -907,55 +1042,37 @@ button,input{font:inherit;}
 
         <article class="exam-card">
             <h3>CAT</h3>
-            <p>
-                Major management entrance examination conducted for admission
-                to the IIMs and accepted by several leading B-schools in India.
-            </p>
+            <p>Major management entrance examination conducted for admission to the IIMs and accepted by several leading B-schools in India.</p>
             <a href="cat.html" class="text-link">Explore CAT →</a>
         </article>
 
         <article class="exam-card">
             <h3>XAT</h3>
-            <p>
-                Management entrance examination conducted by XLRI and accepted
-                by XLRI and other participating management institutes.
-            </p>
+            <p>Management entrance examination conducted by XLRI and accepted by XLRI and other participating management institutes.</p>
             <a href="xat.html" class="text-link">Explore XAT →</a>
         </article>
 
         <article class="exam-card">
             <h3>CMAT</h3>
-            <p>
-                National-level management entrance examination used for
-                admission to participating AICTE-approved management institutes.
-            </p>
+            <p>National-level management entrance examination used for admission to participating AICTE-approved management institutes.</p>
             <a href="cmat.html" class="text-link">Explore CMAT →</a>
         </article>
 
         <article class="exam-card">
             <h3>MAT</h3>
-            <p>
-                Management entrance examination conducted by AIMA and accepted
-                by participating business schools across India.
-            </p>
+            <p>Management entrance examination conducted by AIMA and accepted by participating business schools across India.</p>
             <a href="mat.html" class="text-link">Explore MAT →</a>
         </article>
 
         <article class="exam-card">
             <h3>SNAP</h3>
-            <p>
-                Symbiosis National Aptitude Test used for admission to
-                postgraduate management programmes offered by Symbiosis institutes.
-            </p>
+            <p>Symbiosis National Aptitude Test used for admission to postgraduate management programmes offered by Symbiosis institutes.</p>
             <a href="snap.html" class="text-link">Explore SNAP →</a>
         </article>
 
         <article class="exam-card">
             <h3>NMAT</h3>
-            <p>
-                Management entrance examination used by participating
-                business schools for admission to MBA and management programmes.
-            </p>
+            <p>Management entrance examination used by participating business schools for admission to MBA and management programmes.</p>
             <a href="nmat.html" class="text-link">Explore NMAT →</a>
         </article>
 
@@ -966,10 +1083,7 @@ button,input{font:inherit;}
 <section id="cutoffs" class="home-section">
     <div class="section-heading">
         <h2>MBA Cutoffs</h2>
-        <p>
-            Cutoffs vary by college, entrance exam, category and admission
-            process. Check the individual college page before applying.
-        </p>
+        <p>Cutoffs vary by college, entrance exam, category and admission process. Check the individual college page before applying.</p>
     </div>
 
     <div class="cutoff-box">
@@ -977,19 +1091,19 @@ button,input{font:inherit;}
         <div class="cutoff-card">
             <strong>CAT Cutoffs</strong>
             <span>Explore college-wise CAT cutoff information.</span>
-            <a href="#" class="text-link">View CAT Cutoffs →</a>
+            <a href="cat.html" class="text-link">Explore CAT & Cutoffs →</a>
         </div>
 
         <div class="cutoff-card">
             <strong>XAT Cutoffs</strong>
             <span>Check cutoff information for XAT-accepting institutes.</span>
-            <a href="#" class="text-link">View XAT Cutoffs →</a>
+            <a href="xat.html" class="text-link">Explore XAT & Cutoffs →</a>
         </div>
 
         <div class="cutoff-card">
             <strong>College-wise Cutoffs</strong>
             <span>Compare cutoff requirements before shortlisting colleges.</span>
-            <a href="#" class="text-link">Explore Colleges →</a>
+            <a href="top-mba-colleges-in-india.html" class="text-link">Explore Ranked Colleges →</a>
         </div>
 
     </div>
@@ -999,10 +1113,7 @@ button,input{font:inherit;}
 <section id="admissions" class="home-section">
     <div class="section-heading">
         <h2>MBA Admission Guide</h2>
-        <p>
-            Follow these steps to understand the MBA application and
-            selection process.
-        </p>
+        <p>Use this decision path to move from entrance exam and eligibility checks to college shortlisting and final offer evaluation.</p>
     </div>
 
     <div class="guide-grid">
@@ -1010,55 +1121,37 @@ button,input{font:inherit;}
         <article class="guide-card">
             <span class="guide-number">1</span>
             <h3>Check Eligibility</h3>
-            <p>
-                Understand graduation requirements, minimum marks and
-                programme-specific conditions.
-            </p>
+            <p>Understand graduation requirements, minimum marks and programme-specific conditions.</p>
         </article>
 
         <article class="guide-card">
             <span class="guide-number">2</span>
             <h3>Choose the Entrance Exam</h3>
-            <p>
-                Check whether your target colleges accept CAT, XAT,
-                CMAT, MAT or another examination.
-            </p>
+            <p>Check whether your target colleges accept CAT, XAT, CMAT, MAT or another examination.</p>
         </article>
 
         <article class="guide-card">
             <span class="guide-number">3</span>
             <h3>Shortlist Colleges</h3>
-            <p>
-                Compare fees, cutoffs, placements, location and
-                programme structure.
-            </p>
+            <p>Compare fees, cutoffs, placements, location and programme structure.</p>
         </article>
 
         <article class="guide-card">
             <span class="guide-number">4</span>
             <h3>Apply on Time</h3>
-            <p>
-                Track application windows, deadlines, documents and
-                programme-specific requirements.
-            </p>
+            <p>Track application windows, deadlines, documents and programme-specific requirements.</p>
         </article>
 
         <article class="guide-card">
             <span class="guide-number">5</span>
             <h3>Prepare for Selection</h3>
-            <p>
-                Understand interviews, written assessments and other
-                selection components where applicable.
-            </p>
+            <p>Understand interviews, written assessments and other selection components where applicable.</p>
         </article>
 
         <article class="guide-card">
             <span class="guide-number">6</span>
             <h3>Evaluate the Final Offer</h3>
-            <p>
-                Consider fees, career outcomes, location and programme
-                fit before accepting an offer.
-            </p>
+            <p>Consider fees, career outcomes, location and programme fit before accepting an offer.</p>
         </article>
 
     </div>
@@ -1067,37 +1160,28 @@ button,input{font:inherit;}
 <!-- PLACEMENTS -->
 <section id="placements" class="home-section">
     <div class="section-heading">
-        <h2>MBA Placements</h2>
-        <p>
-            Placement information should be evaluated along with fees,
-            programme structure, roles and recruiter profiles.
-        </p>
+        <h2>MBA Colleges by Placements</h2>
+        <p>Placement information should be evaluated along with fees, programme structure, roles and recruiter profiles.</p>
     </div>
 
     <div class="placement-grid">
 
         <article class="placement-card">
             <h3>Average / Median Salary</h3>
-            <p>
-                Look at reported salary figures and understand whether
-                the college reports average, median or both.
-            </p>
+            <p>Look at reported salary figures and understand whether the college reports average, median or both.</p>
+            <a href="top-mba-colleges-in-india.html" class="text-link">Explore colleges →</a>
         </article>
 
         <article class="placement-card">
             <h3>Recruiters & Roles</h3>
-            <p>
-                Check the companies visiting campus and the roles offered
-                across different MBA specialisations.
-            </p>
+            <p>Check the companies visiting campus and the roles offered across different MBA specialisations.</p>
+            <a href="top-mba-colleges-in-india.html" class="text-link">Explore college profiles →</a>
         </article>
 
         <article class="placement-card">
-            <h3>Placement Report</h3>
-            <p>
-                Prefer official placement reports when comparing placement
-                outcomes between institutes.
-            </p>
+            <h3>Placement Reports</h3>
+            <p>Prefer official placement reports when comparing placement outcomes between institutes.</p>
+            <a href="top-mba-colleges-in-india.html" class="text-link">Find college placement pages →</a>
         </article>
 
     </div>
@@ -1111,14 +1195,11 @@ button,input{font:inherit;}
 
         <div class="footer-brand">
             <h3>MBA<span>Portal</span></h3>
-            <p>
-                A student-focused platform for researching MBA colleges,
-                entrance exams, admissions, fees, cutoffs and placements.
-            </p>
+            <p>A student-focused platform for researching MBA colleges, entrance exams, admissions, fees, cutoffs and placements.</p>
         </div>
 
         <div class="footer-links">
-            <a href="#colleges">MBA Colleges</a>
+            <a href="top-mba-colleges-in-india.html">Top 100 MBA Colleges</a>
             <a href="#exams">Entrance Exams</a>
             <a href="#admissions">Admissions</a>
             <a href="#cutoffs">Cutoffs</a>
@@ -1130,157 +1211,37 @@ button,input{font:inherit;}
 
 <script>
 const collegeDirectory = [
-    {
-        name:"IIM Ahmedabad",
-        aliases:["iim ahmedabad","indian institute of management ahmedabad","iima"],
-        city:"Ahmedabad, Gujarat",
-        programme:"MBA / PGP",
-        entrance:"CAT",
-        rank:"NIRF #1",
-        href:"iim-ahmedabad.html"
-    },
-    {
-        name:"IIM Bangalore",
-        aliases:["iim bangalore","indian institute of management bangalore","iimb"],
-        city:"Bengaluru, Karnataka",
-        programme:"MBA / PGP",
-        entrance:"CAT",
-        rank:"NIRF #2",
-        href:"iim-bangalore.html"
-    },
-    {
-        name:"IIM Kozhikode",
-        aliases:["iim kozhikode","indian institute of management kozhikode","iimk"],
-        city:"Kozhikode, Kerala",
-        programme:"MBA / PGP",
-        entrance:"CAT",
-        rank:"NIRF #3",
-        href:"iim-kozhikode.html"
-    },
-    {
-        name:"IIT Delhi DMS",
-        aliases:["iit delhi","iit delhi dms","department of management studies iit delhi"],
-        city:"New Delhi, Delhi",
-        programme:"MBA",
-        entrance:"CAT",
-        rank:"NIRF #4",
-        href:"iit-delhi-dms.html"
-    },
-    {
-        name:"IIM Lucknow",
-        aliases:["iim lucknow","indian institute of management lucknow","iiml"],
-        city:"Lucknow, Uttar Pradesh",
-        programme:"PGP / MBA",
-        entrance:"CAT",
-        rank:"NIRF #5",
-        href:"iim-lucknow.html"
-    },
-    {
-        name:"IIM Mumbai",
-        aliases:["iim mumbai","indian institute of management mumbai","iimm"],
-        city:"Mumbai, Maharashtra",
-        programme:"MBA",
-        entrance:"CAT",
-        rank:"NIRF #6",
-        href:"iim-mumbai.html"
-    },
-    {
-        name:"IIM Calcutta",
-        aliases:["iim calcutta","indian institute of management calcutta","iimc"],
-        city:"Kolkata, West Bengal",
-        programme:"MBA",
-        entrance:"CAT",
-        rank:"NIRF #7",
-        href:"iim-calcutta.html"
-    },
-    {
-        name:"IIM Indore",
-        aliases:["iim indore","indian institute of management indore","iimi"],
-        city:"Indore, Madhya Pradesh",
-        programme:"PGP / MBA",
-        entrance:"CAT",
-        rank:"NIRF #8",
-        href:"iim-indore.html"
-    },
-    {
-        name:"MDI Gurugram",
-        aliases:["mdi gurugram","mdi gurgaon","management development institute","mdi"],
-        city:"Gurugram, Haryana",
-        programme:"PGDM",
-        entrance:"CAT / GMAT",
-        rank:"NIRF #9",
-        href:"mdi-gurugram.html"
-    },
-    {
-        name:"XLRI Jamshedpur",
-        aliases:["xlri","xlri jamshedpur","xlri xavier school of management"],
-        city:"Jamshedpur, Jharkhand",
-        programme:"PGDM",
-        entrance:"XAT",
-        rank:"NIRF #10",
-        href:"xlri-jamshedpur.html"
-    },
-    {
-        name:"SIBM Pune",
-        aliases:["sibm pune","symbiosis institute of business management pune","sibm"],
-        city:"Pune, Maharashtra",
-        programme:"MBA",
-        entrance:"SNAP",
-        rank:"NIRF #11",
-        href:"sibm-pune.html"
-    }
+    {name:"IIM Ahmedabad",aliases:["iim ahmedabad","indian institute of management ahmedabad","iima"],city:"Ahmedabad, Gujarat",programme:"MBA / PGP",entrance:"CAT",rank:"NIRF #1",href:"iim-ahmedabad.html"},
+    {name:"IIM Bangalore",aliases:["iim bangalore","indian institute of management bangalore","iimb"],city:"Bengaluru, Karnataka",programme:"MBA / PGP",entrance:"CAT",rank:"NIRF #2",href:"iim-bangalore.html"},
+    {name:"IIM Kozhikode",aliases:["iim kozhikode","indian institute of management kozhikode","iimk"],city:"Kozhikode, Kerala",programme:"MBA / PGP",entrance:"CAT",rank:"NIRF #3",href:"iim-kozhikode.html"},
+    {name:"IIT Delhi DMS",aliases:["iit delhi","iit delhi dms","department of management studies iit delhi"],city:"New Delhi, Delhi",programme:"MBA",entrance:"CAT",rank:"NIRF #4",href:"iit-delhi-dms.html"},
+    {name:"IIM Lucknow",aliases:["iim lucknow","indian institute of management lucknow","iiml"],city:"Lucknow, Uttar Pradesh",programme:"PGP / MBA",entrance:"CAT",rank:"NIRF #5",href:"iim-lucknow.html"},
+    {name:"IIM Mumbai",aliases:["iim mumbai","indian institute of management mumbai","iimm"],city:"Mumbai, Maharashtra",programme:"MBA",entrance:"CAT",rank:"NIRF #6",href:"iim-mumbai.html"},
+    {name:"IIM Calcutta",aliases:["iim calcutta","indian institute of management calcutta","iimc"],city:"Kolkata, West Bengal",programme:"MBA",entrance:"CAT",rank:"NIRF #7",href:"iim-calcutta.html"},
+    {name:"IIM Indore",aliases:["iim indore","indian institute of management indore","iimi"],city:"Indore, Madhya Pradesh",programme:"PGP / MBA",entrance:"CAT",rank:"NIRF #8",href:"iim-indore.html"},
+    {name:"MDI Gurugram",aliases:["mdi gurugram","mdi gurgaon","management development institute","mdi"],city:"Gurugram, Haryana",programme:"PGDM",entrance:"CAT / GMAT",rank:"NIRF #9",href:"mdi-gurugram.html"},
+    {name:"XLRI Jamshedpur",aliases:["xlri","xlri jamshedpur","xlri xavier school of management"],city:"Jamshedpur, Jharkhand",programme:"PGDM",entrance:"XAT",rank:"NIRF #10",href:"xlri-jamshedpur.html"},
+    {name:"SIBM Pune",aliases:["sibm pune","symbiosis institute of business management pune","sibm"],city:"Pune, Maharashtra",programme:"MBA",entrance:"SNAP",rank:"NIRF #11",href:"sibm-pune.html"}
 ];
 
 const examDirectory = [
-    {
-        name:"CAT",
-        aliases:["cat","common admission test"],
-        href:"cat.html"
-    },
-    {
-        name:"XAT",
-        aliases:["xat","xavier aptitude test"],
-        href:"xat.html"
-    },
-    {
-        name:"CMAT",
-        aliases:["cmat","common management admission test"],
-        href:"cmat.html"
-    },
-    {
-        name:"MAT",
-        aliases:["mat","management aptitude test"],
-        href:"mat.html"
-    },
-    {
-        name:"SNAP",
-        aliases:["snap","symbiosis national aptitude test"],
-        href:"snap.html"
-    },
-    {
-        name:"NMAT",
-        aliases:["nmat","nmat by gmac","nmat by gmac exam"],
-        href:"nmat.html"
-    }
+    {name:"CAT",aliases:["cat","common admission test"],href:"cat.html"},
+    {name:"XAT",aliases:["xat","xavier aptitude test"],href:"xat.html"},
+    {name:"CMAT",aliases:["cmat","common management admission test"],href:"cmat.html"},
+    {name:"MAT",aliases:["mat","management aptitude test"],href:"mat.html"},
+    {name:"SNAP",aliases:["snap","symbiosis national aptitude test"],href:"snap.html"},
+    {name:"NMAT",aliases:["nmat","nmat by gmac","nmat by gmac exam"],href:"nmat.html"}
 ];
 
 function normalizeSearch(value){
-    return String(value || "")
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g," ")
-        .replace(/\s+/g," ");
+    return String(value || "").toLowerCase().trim().replace(/[^a-z0-9]+/g," ").replace(/\s+/g," ");
 }
 
 function findDirectoryMatch(directory, query){
-    return directory.find(item =>
-        item.aliases.some(alias => {
-            const normalizedAlias = normalizeSearch(alias);
-            return normalizedAlias === query ||
-                   normalizedAlias.includes(query) ||
-                   query.includes(normalizedAlias);
-        })
-    );
+    return directory.find(item => item.aliases.some(alias => {
+        const normalizedAlias = normalizeSearch(alias);
+        return normalizedAlias === query || normalizedAlias.includes(query) || query.includes(normalizedAlias);
+    }));
 }
 
 function showSearchResult(html){
@@ -1297,18 +1258,10 @@ function searchContent(){
     if(!query){
         result.style.display = "none";
         result.innerHTML = "";
-        document.getElementById("colleges").scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
+        document.getElementById("colleges").scrollIntoView({behavior:"smooth",block:"start"});
         return;
     }
 
-    /*
-       1. Search the central college directory first.
-       This makes colleges searchable even when they are not visible
-       as cards on the homepage.
-    */
     const college = findDirectoryMatch(collegeDirectory, query);
 
     if(college){
@@ -1316,91 +1269,55 @@ function searchContent(){
             <div class="search-result-inner">
                 <h3>${college.name}</h3>
                 <div class="search-location">${college.city}</div>
-
                 <div class="search-result-meta">
                     <span>Programme: <strong>${college.programme}</strong></span>
                     <span>Entrance: <strong>${college.entrance}</strong></span>
                     <span>Rank: <strong>${college.rank}</strong></span>
                 </div>
-
-                <a class="search-result-button" href="${college.href}">
-                    View College Overview →
-                </a>
-            </div>
-        `;
+                <a class="search-result-button" href="${college.href}">View College Overview →</a>
+            </div>`;
         result.style.display = "block";
         return;
     }
 
-    /*
-       2. Search the exam directory.
-       CAT, XAT, CMAT, MAT, SNAP and NMAT therefore use the same
-       search box and open their dedicated pages directly.
-    */
     const exam = findDirectoryMatch(examDirectory, query);
 
     if(exam){
         result.innerHTML = `
             <div class="search-result-inner">
                 <h3>${exam.name}</h3>
-                <div class="search-location">
-                    MBA entrance exam information
-                </div>
-
-                <div class="search-result-meta">
-                    <span>Type: <strong>Management Entrance Exam</strong></span>
-                </div>
-
-                <a class="search-result-button" href="${exam.href}">
-                    Explore ${exam.name} →
-                </a>
-            </div>
-        `;
+                <div class="search-location">MBA entrance exam information</div>
+                <div class="search-result-meta"><span>Type: <strong>Management Entrance Exam</strong></span></div>
+                <a class="search-result-button" href="${exam.href}">Explore ${exam.name} →</a>
+            </div>`;
         result.style.display = "block";
         return;
     }
 
-    /*
-       3. Fall back to visible homepage cards for partial text searches.
-    */
     const cards = document.querySelectorAll(".college-card,.exam-card");
     let matchedCard = null;
-
     cards.forEach(card => {
         const cardText = normalizeSearch(card.innerText);
-        if(!matchedCard && cardText.includes(query)){
-            matchedCard = card;
-        }
+        if(!matchedCard && cardText.includes(query)) matchedCard = card;
     });
 
     if(matchedCard){
         result.style.display = "none";
         result.innerHTML = "";
-        matchedCard.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
+        matchedCard.scrollIntoView({behavior:"smooth",block:"center"});
         return;
     }
 
     showSearchResult(`
         <div class="search-result-inner">
             <h3>No matching college or exam found</h3>
-            <div class="search-location">
-                Try a college such as IIM Ahmedabad, IIM Bangalore,
-                IIM Mumbai, XLRI Jamshedpur or SIBM Pune, or search
-                for CAT, XAT, CMAT, MAT, SNAP or NMAT.
-            </div>
-        </div>
-    `);
+            <div class="search-location">Try IIM Ahmedabad, IIM Bangalore, IIM Kozhikode, IIM Mumbai, XLRI Jamshedpur or SIBM Pune, or search for CAT, XAT, CMAT, MAT, SNAP or NMAT.</div>
+        </div>`);
 }
 
 document.getElementById("collegeSearch").addEventListener("keydown", function(event){
-    if(event.key === "Enter"){
-        searchContent();
-    }
+    if(event.key === "Enter") searchContent();
 });
-
 </script>
 
 </body>
