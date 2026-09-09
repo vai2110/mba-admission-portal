@@ -29,4 +29,13 @@ document.querySelectorAll('.faq-item.accordion').forEach(item => {
   question.addEventListener('click',toggle);
   question.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
 });
+</script><script>
+/* Mobile "On this page" menu: close automatically after selecting a section. */
+document.querySelectorAll('.mobile-on-page details').forEach(function(details){
+  details.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(){
+      details.open = false;
+    });
+  });
+});
 </script></body></html>
