@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-09T11:40:10.069406+00:00",
+  "generated_at": "2026-09-09T16:02:20.048517+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 359,
-    "pages_with_internal_links": 359,
-    "broken_local_links": 4,
+    "pages_checked": 361,
+    "pages_with_internal_links": 361,
+    "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 59,
+    "college_clusters_detected": 60,
     "cluster_reciprocal_gaps": 0,
     "zero_incoming_pages": 0,
     "role_counts": {
-      "programme": 177,
-      "placement": 62,
+      "programme": 178,
+      "placement": 63,
       "overview_or_hub": 120
     }
   },
@@ -107,6 +107,15 @@
         "fore-school-management-pgdm-fm.html",
         "fore-school-management-pgdm-ib.html",
         "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "overview": "glim-chennai.html",
+      "placement": "glim-chennai-placements.html",
+      "programme_count": 2,
+      "programmes": [
+        "glim-chennai-pgdm.html",
+        "glim-chennai-pgpm.html"
       ]
     },
     {
@@ -600,21 +609,6 @@
   "reciprocal_link_gaps": [],
   "broken_local_links": [
     {
-      "source": "glim-chennai-pgpm.html",
-      "href": "glim-chennai-placements.html",
-      "target": "glim-chennai-placements.html"
-    },
-    {
-      "source": "glim-chennai.html",
-      "href": "glim-chennai-pgdm.html",
-      "target": "glim-chennai-pgdm.html"
-    },
-    {
-      "source": "glim-chennai.html",
-      "href": "glim-chennai-placements.html",
-      "target": "glim-chennai-placements.html"
-    },
-    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -696,8 +690,10 @@
     "fore-school-management-pgdm.html": 6,
     "fore-school-management-placements.html": 16,
     "fore-school-management.html": 11,
-    "glim-chennai-pgpm.html": 1,
-    "glim-chennai.html": 1,
+    "glim-chennai-pgdm.html": 6,
+    "glim-chennai-pgpm.html": 6,
+    "glim-chennai-placements.html": 6,
+    "glim-chennai.html": 7,
     "gmat.html": 1,
     "graphic-era-university-bba.html": 17,
     "graphic-era-university-bca.html": 17,
@@ -837,7 +833,7 @@
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 754,
+    "index.html": 756,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -1054,8 +1050,10 @@
     "fore-school-management-pgdm.html": 9,
     "fore-school-management-placements.html": 9,
     "fore-school-management.html": 14,
-    "glim-chennai-pgpm.html": 3,
-    "glim-chennai.html": 5,
+    "glim-chennai-pgdm.html": 6,
+    "glim-chennai-pgpm.html": 6,
+    "glim-chennai-placements.html": 10,
+    "glim-chennai.html": 8,
     "gmat.html": 8,
     "graphic-era-university-bba.html": 23,
     "graphic-era-university-bca.html": 23,
