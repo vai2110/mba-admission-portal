@@ -139,6 +139,7 @@ jobs:
       - name: Commit automatic HTML improvements
         if: ${{ github.event_name == 'push' || inputs.apply_changes == true }}
         run: |
+          set -e
           git config user.name "MBA Portal Content Auditor"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- '*.html'
@@ -146,7 +147,9 @@ jobs:
             echo "No automatic HTML changes required."
           else
             git commit -m "SEO AEO GEO and locked benchmark UI improvements"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
 
       - name: Generate live Excel and HTML audit dashboard
@@ -160,6 +163,7 @@ jobs:
 
       - name: Commit live audit dashboards and production tracker
         run: |
+          set -e
           git config user.name "MBA Portal Audit Dashboard"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add college-page-audit-dashboard.xlsx college-page-audit-dashboard.html college-production-tracker.xlsx
@@ -167,7 +171,9 @@ jobs:
             echo "Dashboards are already current."
           else
             git commit -m "Update live college audit and production trackers"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
 
       - name: Upload audit artifacts
