@@ -1,0 +1,92 @@
+name: Make TAPMI tables mobile friendly
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  update-tapmi-tables:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Make all TAPMI tables responsive
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          files = [
+              'tapmi-manipal.html',
+              'tapmi-manipal-mba.html',
+              'tapmi-manipal-mba-bkfs.html',
+              'tapmi-manipal-mba-hrm.html',
+              'tapmi-manipal-placements.html',
+          ]
+
+          responsive_css = '''<style id="tapmi-mobile-table-fix">
+          /* TAPMI tables: compact on desktop and fully readable on mobile without horizontal scrolling */
+          .table-wrapper{overflow-x:visible!important;width:100%}
+          .table-wrapper table{width:100%;max-width:100%;table-layout:fixed}
+          .table-wrapper th,.table-wrapper td{overflow-wrap:anywhere;word-break:normal}
+          @media(max-width:700px){
+            .table-wrapper{overflow:visible!important}
+            .table-wrapper table,.table-wrapper tbody{display:block;width:100%}
+            .table-wrapper table tr:first-child{display:none}
+            .table-wrapper table tr{display:block;width:100%;margin:0 0 10px;padding:0;border:1px solid #dfe5ee;border-radius:8px;background:#fff;overflow:hidden}
+            .table-wrapper table td{display:grid;grid-template-columns:38% 62%;gap:8px;width:100%;padding:9px 10px;border:0;border-bottom:1px solid #edf0f5;line-height:1.45;font-size:13px;overflow-wrap:anywhere}
+            .table-wrapper table td:last-child{border-bottom:0}
+            .table-wrapper table td::before{content:attr(data-label);font-weight:700;color:#172033;min-width:0}
+            .table-wrapper table td>*{min-width:0}
+          }
+          </style>'''
+
+          for name in files:
+              p = Path(name)
+              html = p.read_text(encoding='utf-8')
+
+              # Add data labels to every TAPMI table from its first header row.
+              def fix_table(m):
+                  table = m.group(0)
+                  first = re.search(r'<tr>(.*?)</tr>', table, flags=re.S)
+                  if not first:
+                      return table
+                  labels = re.findall(r'<th[^>]*>(.*?)</th>', first.group(1), flags=re.S)
+                  labels = [re.sub(r'<[^>]+>', '', x).strip() for x in labels]
+                  rows = list(re.finditer(r'<tr>(.*?)</tr>', table, flags=re.S))
+                  if not labels or len(rows) < 2:
+                      return table
+                  def fix_row(rm):
+                      row = rm.group(0)
+                      if '<th' in row.lower():
+                          return row
+                      idx = 0
+                      def add_label(td):
+                          nonlocal idx
+                          label = labels[idx] if idx < len(labels) else ''
+                          idx += 1
+                          if 'data-label=' in td:
+                              return td
+                          return re.sub(r'<td(\s*)', lambda x: '<td data-label="' + label.replace('"','&quot;') + '"' + x.group(1), td, count=1)
+                      return re.sub(r'<td[^>]*>.*?</td>', add_label, row, flags=re.S)
+                  return re.sub(r'<tr>.*?</tr>', fix_row, table, flags=re.S)
+
+              html = re.sub(r'<div class="table-wrapper">\s*<table.*?</table>\s*</div>', fix_table, html, flags=re.S)
+
+              # Keep the locked reference stylesheet intact; scope only this mobile table behavior to TAPMI pages.
+              if 'id="tapmi-mobile-table-fix"' not in html:
+                  html = html.replace('</head>', responsive_css + '</head>', 1)
+
+              p.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit TAPMI table improvements
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tapmi-manipal.html tapmi-manipal-mba.html tapmi-manipal-mba-bkfs.html tapmi-manipal-mba-hrm.html tapmi-manipal-placements.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Improve TAPMI mobile table readability"
+          git push
