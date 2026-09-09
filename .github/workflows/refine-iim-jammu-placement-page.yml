@@ -1,0 +1,45 @@
+name: Refine IIM Jammu placement page
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine placement content
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('iim-jammu-placements.html'); t=p.read_text()
+          # Insert a deeper latest recruiter/sector section after latest section.
+          marker='<hr><section class="main-section" id="history">'
+          if '<section class="main-section" id="latest-recruiters">' not in t:
+              sec='''<hr><section class="main-section" id="latest-recruiters"><h2>IIM Jammu Placements 2025: Recruiters, Sectors & Role Mix</h2><p>The 2023-25 report lists 200 recruiters, including 50 new recruiters. Named employers include Accenture, Aditya Birla Capital, Allegis, American Express, Atomberg, Axis Bank, BNP Paribas, BNY Mellon, Capgemini, Cognizant, Deloitte, EY, HDFC Bank, ICICI Bank, Infosys, Kotak, Kyndryl, L&T, Maruti Suzuki, Myntra, Nestle, SBI Capital Markets and Siemens.</p><div class="table-wrapper"><table><tr><th>Sector / area</th><th>Reported share / context</th><th>Student interpretation</th></tr><tr><td>BFSI</td><td>31% of offers in the reproduced 2025 report data</td><td>Large opportunity pool, but role titles can range from finance to relationship/sales-oriented banking jobs.</td></tr><tr><td>IT & Analytics</td><td>17%</td><td>Relevant for analytics/technology aspirants; verify the exact role and required skills.</td></tr><tr><td>Logistics</td><td>12%</td><td>Can lead to operations, supply-chain, category or business roles.</td></tr><tr><td>Consulting</td><td>6%</td><td>Smaller share than BFSI, so consulting should not be assumed as the default outcome.</td></tr><tr><td>FMCG</td><td>6%</td><td>Useful for students targeting consumer/marketing careers.</td></tr><tr><td>Others</td><td>28%</td><td>Shows the recruiter base is not limited to one industry.</td></tr></table></div><div class="answer-box"><strong>Important caveat:</strong><p>The sector percentages above are reproduced from secondary analysis of the institute's 2023-25 final placement report. Use the official IIM Jammu report as the primary source when interpreting recruiter-level details.</p></div></section>'''
+              t=t.replace(marker,sec+marker,1)
+          # Replace the generic summer section with the official 2023-25 summer data.
+          s=t.find('<section class="main-section" id="summer">'); e=t.find('<hr><section class="main-section" id="interpretation">')
+          if s!=-1 and e!=-1:
+              summer='''<section class="main-section" id="summer"><h2>IIM Jammu Summer Placements: MBA 2023-25</h2><p>IIM Jammu's official summer-placement report for the 2023-25 MBA batch recorded <strong>100% summer placements for 257 students</strong>. More than 100 companies participated and 70+ were new recruiters.</p><div class="highlight-grid"><div class="highlight"><strong>₹2.00 Lakh</strong><span>Highest stipend</span></div><div class="highlight"><strong>₹70,826</strong><span>Average stipend</span></div><div class="highlight"><strong>₹54,000</strong><span>Median stipend</span></div></div><div class="table-wrapper"><table><tr><th>Summer placement metric</th><th>2023-25 MBA</th></tr><tr><td>Students</td><td>257</td></tr><tr><td>Placement coverage</td><td>100%</td></tr><tr><td>Highest stipend</td><td>₹2,00,000</td></tr><tr><td>Average stipend</td><td>₹70,826</td></tr><tr><td>Median stipend</td><td>₹54,000</td></tr><tr><td>Sales & Marketing</td><td>38%</td></tr><tr><td>IT & Analytics</td><td>38% by sector</td></tr><tr><td>BFSI</td><td>21.1% by sector</td></tr><tr><td>Consulting</td><td>9.9% by sector</td></tr><tr><td>Manufacturing & Energy</td><td>14.1% by sector</td></tr></table></div><p><strong>Student takeaway:</strong> Summer placements matter because the internship can become a PPO pathway and also gives students a chance to test a function before final placements. IIM Jammu's MBA handbook describes the summer placement as an eight-to-ten-week compulsory credit requirement and notes that students are encouraged to pursue PPOs.</p></section><hr><section class="main-section" id="interpretation">'''
+              t=t[:s]+summer+t[e+len('<hr><section class="main-section" id="interpretation">'):]
+          # Add recruiter/role and student-decision FAQs if absent.
+          faq='''<div class="faq-item accordion"><h3>What is the IIM Jammu MBA average package in 2025?</h3><p>The latest completed 2023-25 report records an average CTC of ₹16.04 LPA and median CTC of ₹15.80 LPA.</p></div><div class="faq-item accordion"><h3>How many recruiters visited IIM Jammu for MBA placements?</h3><p>The 2023-25 final placement report lists 200 recruiters, including 50 new recruiters.</p></div><div class="faq-item accordion"><h3>How many PPOs were offered at IIM Jammu?</h3><p>The 2023-25 report lists 24 PPOs.</p></div><div class="faq-item accordion"><h3>Are IIM Jammu placements suitable for students who do not want sales?</h3><p>There are finance, consulting, analytics, product, IT and general-management opportunities, but student discussions also raise concerns about sales/relationship-oriented roles. Candidates who want to avoid sales completely should inspect role descriptions and recruiter openings rather than rely on sector labels.</p></div>'''
+          faqpos=t.find('</section></main></div></div><script>')
+          # Place new FAQs before the existing FAQ section's closing only if not already present.
+          if 'How many recruiters visited IIM Jammu for MBA placements?' not in t:
+              anchor='<div class="faq-item accordion"><h3>Does IIM Jammu have healthcare placements?</h3>'
+              t=t.replace(anchor,faq+anchor,1)
+          p.write_text(t)
+
+          o=Path('iim-jammu.html'); x=o.read_text(); x=x.replace('<strong>₹15.48 LPA</strong><span>2022-24 MBA average CTC</span>','<strong>₹16.04 LPA</strong><span>2023-25 MBA average CTC</span>'); o.write_text(x)
+          print('Refined IIM Jammu placement page')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iim-jammu-placements.html iim-jammu.html
+          git diff --cached --quiet || git commit -m "Refine IIM Jammu placement analysis"
+          git push
