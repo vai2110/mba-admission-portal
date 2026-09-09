@@ -1,0 +1,30 @@
+name: LPU navigation guard
+on:
+  push:
+    paths:
+      - 'lovely-professional-university.html'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove forbidden college cluster navigation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('lovely-professional-university.html')
+          s=p.read_text(encoding='utf-8')
+          import re
+          s=re.sub(r'<[^>]*class=["\'][^"\']*college-cluster-nav[^"\']*["\'][^>]*>.*?</[^>]+>\s*', '', s, flags=re.S|re.I)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit guard result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lovely-professional-university.html
+          git diff --cached --quiet || git commit -m 'Guard LPU page against college cluster nav'
+          git push
