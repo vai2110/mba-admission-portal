@@ -1,0 +1,34 @@
+name: Internal Link Audit
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install parser
+        run: python -m pip install beautifulsoup4
+
+      - name: Run internal link audit
+        run: python scripts/internal_link_audit.py
+
+      - name: Commit refreshed audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add internal-link-audit.json
+          if git diff --cached --quiet; then
+            echo "Audit report unchanged."
+          else
+            git commit -m "Phase 3: refresh internal link audit"
+            git push
+          fi
