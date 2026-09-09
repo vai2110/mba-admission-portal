@@ -1,0 +1,42 @@
+name: Remove IIM Bodh Gaya Explore Nav
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  remove-nav:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove Explore this college bars
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          files = [
+            'iim-bodhgaya.html',
+            'iim-bodhgaya-placements.html',
+            'iim-bodhgaya-mba.html',
+            'iim-bodhgaya-dbai.html',
+            'iim-bodhgaya-hhm.html',
+            'iim-bodhgaya-ipm.html',
+          ]
+          pattern = re.compile(r'<nav class="college-cluster-nav"[^>]*>.*?</nav>', re.S)
+          for name in files:
+              p = Path(name)
+              html = p.read_text(encoding='utf-8')
+              new, n = pattern.subn('', html, count=1)
+              if n != 1:
+                  raise SystemExit(f'Expected one college cluster nav in {name}, found {n}')
+              p.write_text(new, encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iim-bodhgaya.html iim-bodhgaya-placements.html iim-bodhgaya-mba.html iim-bodhgaya-dbai.html iim-bodhgaya-hhm.html iim-bodhgaya-ipm.html
+          git commit -m "Remove Explore this college bars from IIM Bodh Gaya pages"
+          git push
