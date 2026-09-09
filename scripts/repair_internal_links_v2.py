@@ -1,0 +1,108 @@
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+EXCLUDED = {"iim-ahmedabad.html", "sibm-pune.html", "404.html", "content-audit.html", "college-page-audit-dashboard.html", "github-direct-edit-test.html", "irma-deploy-trigger.html"}
+NAV_CSS = ".college-cluster-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:10px 12px;background:#f8fbff;border:1px solid #dbe7f5;border-radius:8px;font-size:11px;line-height:1.4}.college-cluster-nav strong{color:#173f82;font-size:11px;margin-right:2px}.college-cluster-nav a{color:#2563eb!important;font-weight:700;text-decoration:none}.college-cluster-nav a:hover{text-decoration:underline}.college-cluster-nav .sep{color:#94a3b8}"
+
+
+def build_clusters(pages):
+    names = set(pages)
+    clusters = {}
+    for placement in sorted(n for n in pages if n.endswith("-placements.html")):
+        base = placement[:-len("-placements.html")] + ".html"
+        if base not in names:
+            continue
+        prefix = base[:-5]
+        programmes = sorted(n for n in pages if n not in {base, placement} and n.startswith(prefix + "-"))
+        clusters[base] = [base, *programmes, placement]
+    return clusters
+
+
+def label(name):
+    stem = Path(name).stem
+    if stem.endswith("-placements"):
+        return "Placements"
+    known = {
+        "-mba-business-analytics-ai": "Business Analytics & AI",
+        "-mba-business-analytics": "MBA Business Analytics",
+        "-mba-financial-services-nse": "MBA Financial Services",
+        "-mba-fabm": "MBA-FABM",
+        "-mba-oscm": "MBA OSCM",
+        "-mba-sm": "MBA SM",
+        "-mba-finance": "MBA Finance",
+        "-mba-marketing": "MBA Marketing",
+        "-mba-hr": "MBA HR",
+        "-pgp-finance": "PGP Finance",
+        "-pgp-lsm": "PGP LSM",
+        "-pgp-bl": "PGP Business Leadership",
+        "-pgpba": "PGP Business Analytics",
+        "-pgpem": "PGP Enterprise Management",
+        "-epgp": "EPGP",
+        "-pgpx": "PGPX",
+        "-pgdm-financial-management": "PGDM Financial Management",
+        "-pgdm-marketing": "PGDM Marketing",
+        "-pgdm-retail-management": "PGDM Retail Management",
+        "-pgdm-bda": "PGDM Business Analytics",
+        "-pgdm-fm": "PGDM Finance",
+        "-pgdm-ibm": "PGDM IBM",
+        "-pgdm-ib": "PGDM International Business",
+        "-btech-ai-data-science": "BTech AI & Data Science",
+        "-btech-cse": "BTech CSE",
+        "-bba-llb": "BBA LL.B.",
+        "-bba": "BBA",
+        "-bca": "BCA",
+        "-bcom-hons": "BCom (Hons.)",
+        "-bcom": "BCom",
+        "-mms": "MMS",
+        "-mba": "MBA",
+    }
+    for suffix, text in known.items():
+        if stem.endswith(suffix):
+            return text
+    return stem.split("-")[-1].replace("_", " ").title()
+
+
+def nav_html(current, members):
+    links = []
+    for member in members:
+        if member == current:
+            continue
+        text = "Overview" if member == members[0] else label(member)
+        links.append(f'<a href="{member}">{text}</a>')
+    return '<nav class="college-cluster-nav" aria-label="College page navigation"><strong>Explore this college</strong><span class="sep">|</span>' + '<span class="sep">|</span>'.join(links) + '</nav>'
+
+
+def repair(path, members):
+    if path.name in EXCLUDED:
+        return False
+    text = path.read_text(encoding="utf-8")
+    replacement = nav_html(path.name, members)
+    pattern = r'<nav\b[^>]*class=["\'][^"\']*\bcollege-cluster-nav\b[^"\']*["\'][^>]*>.*?</nav>'
+    if re.search(pattern, text, flags=re.I | re.S):
+        updated = re.sub(pattern, replacement, text, count=1, flags=re.I | re.S)
+    else:
+        main_pattern = r'(<main\b[^>]*>)'
+        updated = re.sub(main_pattern, r'\1' + replacement, text, count=1, flags=re.I)
+    if ".college-cluster-nav" not in updated:
+        updated = re.sub(r'</style>', NAV_CSS + '</style>', updated, count=1, flags=re.I)
+    if updated != text:
+        path.write_text(updated, encoding="utf-8")
+        return True
+    return False
+
+
+def main():
+    pages = sorted(p.name for p in ROOT.glob("*.html"))
+    changed = []
+    for members in build_clusters(pages).values():
+        for member in members:
+            if repair(ROOT / member, members):
+                changed.append(member)
+    print(f"Phase 3 v2: repaired {len(changed)} college pages.")
+    for name in changed:
+        print(name)
+
+
+if __name__ == "__main__":
+    main()
