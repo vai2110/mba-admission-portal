@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T16:23:06.092518+00:00",
+  "generated_at": "2026-09-09T16:46:24.366790+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 370,
-    "pages_with_internal_links": 370,
-    "broken_local_links": 1,
+    "pages_checked": 372,
+    "pages_with_internal_links": 372,
+    "broken_local_links": 5,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 62,
     "cluster_reciprocal_gaps": 0,
-    "zero_incoming_pages": 0,
+    "zero_incoming_pages": 1,
     "role_counts": {
-      "programme": 182,
+      "programme": 183,
       "placement": 65,
-      "overview_or_hub": 123
+      "overview_or_hub": 124
     }
   },
   "college_clusters": [
@@ -631,6 +631,26 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "imi-delhi-pgdm.html",
+      "href": "imi-delhi-placements.html",
+      "target": "imi-delhi-placements.html"
+    },
+    {
+      "source": "imi-delhi.html",
+      "href": "imi-delhi-pgdm-hrm.html",
+      "target": "imi-delhi-pgdm-hrm.html"
+    },
+    {
+      "source": "imi-delhi.html",
+      "href": "imi-delhi-pgdm-bfs.html",
+      "target": "imi-delhi-pgdm-bfs.html"
+    },
+    {
+      "source": "imi-delhi.html",
+      "href": "imi-delhi-placements.html",
+      "target": "imi-delhi-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -640,7 +660,13 @@
       "target": "iim-ahmedabad-bpgp.html"
     }
   ],
-  "zero_incoming_pages": [],
+  "zero_incoming_pages": [
+    {
+      "page": "imi-delhi.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    }
+  ],
   "incoming_link_counts": {
     "alliance-university-bba-llb.html": 12,
     "alliance-university-bba.html": 16,
@@ -851,12 +877,13 @@
     "iit-roorkee-mba.html": 7,
     "iit-roorkee-placements.html": 8,
     "iit-roorkee.html": 6,
+    "imi-delhi-pgdm.html": 1,
     "imt-nagpur-pgdm-financial-management.html": 11,
     "imt-nagpur-pgdm-marketing.html": 11,
     "imt-nagpur-pgdm.html": 12,
     "imt-nagpur-placements.html": 15,
     "imt-nagpur.html": 13,
-    "index.html": 774,
+    "index.html": 778,
     "indian-institute-of-management-kashipur-executive-mba.html": 5,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
@@ -1220,6 +1247,8 @@
     "iit-roorkee-mba.html": 8,
     "iit-roorkee-placements.html": 8,
     "iit-roorkee.html": 13,
+    "imi-delhi-pgdm.html": 3,
+    "imi-delhi.html": 6,
     "imt-nagpur-pgdm-financial-management.html": 13,
     "imt-nagpur-pgdm-marketing.html": 13,
     "imt-nagpur-pgdm.html": 13,
