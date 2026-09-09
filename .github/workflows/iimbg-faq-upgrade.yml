@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   upgrade-faq:
     runs-on: ubuntu-latest
@@ -18,73 +21,29 @@ jobs:
           html = path.read_text(encoding='utf-8')
           start = html.index('<section class="main-section" id="faq">')
           end = html.index('</section></main>', start) + len('</section>')
-
           faqs = [
-            (
-              'Is IIM Bodh Gaya worth joining at its current MBA fee?',
-              'For the current decision, do not judge the programme from the IIM tag or highest package alone. The institute reports a ₹17.96 lakh MBA course fee and a current consolidated average CTC of ₹14.80 LPA, while the top 50% average is ₹17.95 LPA. That makes the decision more sensible for a student who is comfortable with the fee, targets roles covered by the placement process and compares IIM Bodh Gaya with the other calls available—not for someone expecting the average package to be a guaranteed individual salary.'
-            ),
-            (
-              'What CAT percentile is required for IIM Bodh Gaya MBA 2026?',
-              'For the 2026 CAP reference cutoff, the MBA policy lists a 95 overall CAT percentile for General candidates, with 75 in each of VARC, DILR and QA. The published reference cutoffs are lower for reserved categories, but the institute explicitly says the CAP cutoff is for reference and is finalised after the CAT result. Meeting the qualifying cutoff should therefore be treated as a route to consideration for PI, not as a guaranteed admission score.'
-            ),
-            (
-              'Does clearing the CAT cutoff guarantee an IIM Bodh Gaya admission offer?',
-              'No. The 2026 MBA admission policy describes a multi-stage process: CAT, shortlisting for the Personal Interview, the PI itself and a final merit list based on CAT, PI and profile components. In other words, a CAT percentile can make you eligible for the next stage, but the final offer depends on the complete selection process and your position in the merit list.'
-            ),
-            (
-              'What is the actual MBA fee at IIM Bodh Gaya and what does it include?',
-              'The latest visible two-year MBA fee on this guide is ₹17.96 lakh. The published structure includes ₹1.60 lakh tuition per term, ₹41,000 hostel rent per term, ₹80,000 academic charges per term and other admission, registration, student activity, career-development, alumni and convocation charges; a ₹25,000 caution deposit is separate. Students should also budget for mess and other living expenses rather than treating ₹17.96 lakh as their complete out-of-pocket cost.'
-            ),
-            (
-              'Is IIM Bodh Gaya MBA or MBA-DBAI better for a career in analytics and AI?',
-              'The answer depends on the role you want. The flagship MBA gives broader management positioning across functions, whereas MBA-DBAI is specifically positioned around Digital Business and AI and is a more natural fit for students targeting digital transformation, analytics, AI-enabled business decisions and business-technology roles. If you are still undecided about your function, the general MBA preserves broader positioning; if digital and AI are already central to your career plan, DBAI deserves a closer curriculum-to-role comparison.'
-            ),
-            (
-              'Who is eligible for MBA-HHM at IIM Bodh Gaya?',
-              'MBA-HHM is not open to every graduate simply because they hold a bachelor’s degree. The 2026-28 policy requires at least 50% in graduation (45% for SC/ST/PwD) and specifically lists backgrounds such as healthcare, medical, pharmacy, paramedical, nursing, engineering, science, law/legal studies and BBA with a healthcare specialisation. BA, BCom and BBA candidates without the healthcare specialisation are listed as ineligible, so this programme needs a careful eligibility check before applying.'
-            ),
-            (
-              'What placement package can an MBA student realistically expect at IIM Bodh Gaya?',
-              'The current official placement page reports 100% placement, 200+ recruiting companies, ₹14.80 LPA average CTC and ₹45.63 lakh highest CTC. More useful for expectation-setting, it reports ₹21.00 LPA for the top 25%, ₹17.95 LPA for the top 50% and ₹16.24 LPA for the top 75%. These are batch-level outcomes, not a promise that every student will receive the average package; role, profile, interview performance and recruiter demand still matter.'
-            ),
-            (
-              'Are IIM Bodh Gaya MBA, MBA-DBAI and MBA-HHM placements the same?',
-              'Do not assume that the consolidated ₹14.80 LPA figure represents an identical outcome for every programme. The current official placement page presents consolidated placement metrics, while an earlier institute communication reported separate programme-level averages for MBA, DBM and HHM. When comparing these programmes, check the latest programme-wise placement report and recruiter/role mix rather than applying one consolidated average to every course.'
-            ),
-            (
-              'Can I exit IIM Bodh Gaya IPM after three years with a degree?',
-              'Yes. IIM Bodh Gaya states that the five-year IPM leads to a BBA after completing the first three years, while students completing the full programme receive both BBA and MBA. The institute also states that students who exit after three years and later want to return for the MBA would need to go through the applicable fresh admission process rather than automatically re-entering the MBA stage.'
-            ),
-            (
-              'How much does IIM Bodh Gaya IPM cost for the first three years?',
-              'The published IPM structure used on this guide is ₹4.75 lakh per year for Years 1–3, or ₹14.25 lakh for the first three years. The remaining two years follow the applicable MBA fee structure when the student reaches the MBA stage, so the five-year total should not be presented as a permanently fixed ₹14.25 lakh figure. This distinction is important when comparing IPM with a conventional three-year undergraduate degree followed by a separate MBA.'
-            ),
-            (
-              'Does IIM Bodh Gaya provide scholarships for MBA students?',
-              'The institute lists Government of India scholarship schemes for eligible MBA students, including Top Class Education schemes for SC and ST students, merit-cum-means support for eligible minority students and the Top Class Education scholarship for students with disabilities. Scholarship eligibility is scheme-specific, so students should verify the current government and institute requirements instead of assuming that every MBA student receives a fee waiver.'
-            ),
-            (
-              'What should I compare before accepting an IIM Bodh Gaya offer?',
-              'Compare five things before paying: your total two-year cost including living expenses, the role and sector mix behind the placement numbers, the programme curriculum, your realistic career fit and the alternative offers you hold. For MBA-DBAI and MBA-HHM especially, do not choose only because the programme is offered by an IIM—check whether the specialisation matches the roles you actually want. The strongest decision is the one where the fee, career target, placement evidence and opportunity cost make sense together.'
-            )
+            ('Is IIM Bodh Gaya worth joining at its current MBA fee?','For the current decision, do not judge the programme from the IIM tag or highest package alone. The institute reports a ₹17.96 lakh MBA course fee and a current consolidated average CTC of ₹14.80 LPA, while the top 50% average is ₹17.95 LPA. That makes the decision more sensible for a student who is comfortable with the fee, targets roles covered by the placement process and compares IIM Bodh Gaya with the other calls available—not for someone expecting the average package to be a guaranteed individual salary.'),
+            ('What CAT percentile is required for IIM Bodh Gaya MBA 2026?','For the 2026 CAP reference cutoff, the MBA policy lists a 95 overall CAT percentile for General candidates, with 75 in each of VARC, DILR and QA. The published reference cutoffs are lower for reserved categories, but the institute explicitly says the CAP cutoff is for reference and is finalised after the CAT result. Meeting the qualifying cutoff should therefore be treated as a route to consideration for PI, not as a guaranteed admission score.'),
+            ('Does clearing the CAT cutoff guarantee an IIM Bodh Gaya admission offer?','No. The 2026 MBA admission policy describes a multi-stage process: CAT, shortlisting for the Personal Interview, the PI itself and a final merit list based on CAT, PI and profile components. In other words, a CAT percentile can make you eligible for the next stage, but the final offer depends on the complete selection process and your position in the merit list.'),
+            ('What is the actual MBA fee at IIM Bodh Gaya and what does it include?','The latest visible two-year MBA fee on this guide is ₹17.96 lakh. The published structure includes ₹1.60 lakh tuition per term, ₹41,000 hostel rent per term, ₹80,000 academic charges per term and other admission, registration, student activity, career-development, alumni and convocation charges; a ₹25,000 caution deposit is separate. Students should also budget for mess and other living expenses rather than treating ₹17.96 lakh as their complete out-of-pocket cost.'),
+            ('Is IIM Bodh Gaya MBA or MBA-DBAI better for a career in analytics and AI?','The answer depends on the role you want. The flagship MBA gives broader management positioning across functions, whereas MBA-DBAI is specifically positioned around Digital Business and AI and is a more natural fit for students targeting digital transformation, analytics, AI-enabled business decisions and business-technology roles. If you are still undecided about your function, the general MBA preserves broader positioning; if digital and AI are already central to your career plan, DBAI deserves a closer curriculum-to-role comparison.'),
+            ('Who is eligible for MBA-HHM at IIM Bodh Gaya?','MBA-HHM is not open to every graduate simply because they hold a bachelor’s degree. The 2026-28 policy requires at least 50% in graduation (45% for SC/ST/PwD) and specifically lists backgrounds such as healthcare, medical, pharmacy, paramedical, nursing, engineering, science, law/legal studies and BBA with a healthcare specialisation. BA, BCom and BBA candidates without the healthcare specialisation are listed as ineligible, so this programme needs a careful eligibility check before applying.'),
+            ('What placement package can an MBA student realistically expect at IIM Bodh Gaya?','The current official placement page reports 100% placement, 200+ recruiting companies, ₹14.80 LPA average CTC and ₹45.63 lakh highest CTC. More useful for expectation-setting, it reports ₹21.00 LPA for the top 25%, ₹17.95 LPA for the top 50% and ₹16.24 LPA for the top 75%. These are batch-level outcomes, not a promise that every student will receive the average package; role, profile, interview performance and recruiter demand still matter.'),
+            ('Are IIM Bodh Gaya MBA, MBA-DBAI and MBA-HHM placements the same?','Do not assume that the consolidated ₹14.80 LPA figure represents an identical outcome for every programme. The current official placement page presents consolidated placement metrics, while an earlier institute communication reported separate programme-level averages for MBA, DBM and HHM. When comparing these programmes, check the latest programme-wise placement report and recruiter/role mix rather than applying one consolidated average to every course.'),
+            ('Can I exit IIM Bodh Gaya IPM after three years with a degree?','Yes. IIM Bodh Gaya states that the five-year IPM leads to a BBA after completing the first three years, while students completing the full programme receive both BBA and MBA. The institute also states that students who exit after three years and later want to return for the MBA would need to go through the applicable fresh admission process rather than automatically re-entering the MBA stage.'),
+            ('How much does IIM Bodh Gaya IPM cost for the first three years?','The published IPM structure used on this guide is ₹4.75 lakh per year for Years 1–3, or ₹14.25 lakh for the first three years. The remaining two years follow the applicable MBA fee structure when the student reaches the MBA stage, so the five-year total should not be presented as a permanently fixed ₹14.25 lakh figure. This distinction is important when comparing IPM with a conventional three-year undergraduate degree followed by a separate MBA.'),
+            ('Does IIM Bodh Gaya provide scholarships for MBA students?','The institute lists Government of India scholarship schemes for eligible MBA students, including Top Class Education schemes for SC and ST students, merit-cum-means support for eligible minority students and the Top Class Education scholarship for students with disabilities. Scholarship eligibility is scheme-specific, so students should verify the current government and institute requirements instead of assuming that every MBA student receives a fee waiver.'),
+            ('What should I compare before accepting an IIM Bodh Gaya offer?','Compare five things before paying: your total two-year cost including living expenses, the role and sector mix behind the placement numbers, the programme curriculum, your realistic career fit and the alternative offers you hold. For MBA-DBAI and MBA-HHM especially, do not choose only because the programme is offered by an IIM—check whether the specialisation matches the roles you actually want. The strongest decision is the one where the fee, career target, placement evidence and opportunity cost make sense together.')
           ]
-
           items=[]
           for q,a in faqs:
               items.append(f'<div class="accordion-item"><details class="accordion"><summary>{q}</summary><p>{a}</p></details></div>')
-          faq_html = '<section class="main-section" id="faq"><h2>IIM Bodh Gaya FAQs: Fees, CAT, Placements, Programmes &amp; IPM</h2><p class="faq-intro">These are the questions students are more likely to ask before applying or accepting an offer—especially around fees, CAT cutoffs, placement expectations, programme fit and IPM progression.</p><div class="accordion-list">' + ''.join(items) + '</div></section>'
-          html = html[:start] + faq_html + html[end:]
-
-          schema = {
-            '@context':'https://schema.org',
-            '@type':'FAQPage',
-            'mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in faqs]
-          }
-          marker='</head>'
+          faq_html='<section class="main-section" id="faq"><h2>IIM Bodh Gaya FAQs: Fees, CAT, Placements, Programmes &amp; IPM</h2><p class="faq-intro">These are the questions students are more likely to ask before applying or accepting an offer—especially around fees, CAT cutoffs, placement expectations, programme fit and IPM progression.</p><div class="accordion-list">'+''.join(items)+'</div></section>'
+          html=html[:start]+faq_html+html[end:]
+          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in faqs]}
           if '"@type":"FAQPage"' not in html:
-              html=html.replace(marker, '<script type="application/ld+json">'+json.dumps(schema, ensure_ascii=False, separators=(',',':'))+'</script>'+marker, 1)
-          path.write_text(html, encoding='utf-8')
+              html=html.replace('</head>','<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False,separators=(',',':'))+'</script></head>',1)
+          path.write_text(html,encoding='utf-8')
           PY
       - name: Commit FAQ updates
         run: |
