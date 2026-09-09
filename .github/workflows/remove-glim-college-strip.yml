@@ -1,0 +1,59 @@
+name: Remove GLIM College Strip
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-glim-college-strip.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  remove-strip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove top college navigation strip from all GLIM pages
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          pages = [
+              'glim-chennai.html',
+              'glim-chennai-pgpm.html',
+              'glim-chennai-pgdm.html',
+              'glim-chennai-placements.html',
+          ]
+
+          pattern = re.compile(r'<nav class="college-cluster-nav"[^>]*>.*?</nav>', re.S)
+          changed = []
+
+          for filename in pages:
+              path = Path(filename)
+              if not path.exists():
+                  continue
+              html = path.read_text(encoding='utf-8')
+              updated = pattern.sub('', html, count=1)
+              if updated != html:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(filename)
+
+          if changed:
+              print('Removed college-cluster-nav from:', ', '.join(changed))
+          else:
+              print('No GLIM college-cluster-nav strip found; nothing to change.')
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add glim-chennai.html glim-chennai-pgpm.html glim-chennai-pgdm.html glim-chennai-placements.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Remove GLIM top college navigation strip"
+            git push
+          fi
