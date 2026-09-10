@@ -1,0 +1,22 @@
+name: Kick off CUSAT Keyword Refresh
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  kickoff:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trigger refresh workflow
+        run: |
+          echo "CUSAT keyword refresh trigger $(date -u +%FT%TZ)" > cusat-keyword-refresh-trigger.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cusat-keyword-refresh-trigger.txt
+          git commit -m 'Trigger CUSAT keyword architecture refresh'
+          git push
