@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T06:49:51.735657+00:00",
+  "generated_at": "2026-09-10T06:56:02.261838+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 439,
-    "pages_with_internal_links": 421,
-    "broken_local_links": 15,
+    "pages_checked": 449,
+    "pages_with_internal_links": 431,
+    "broken_local_links": 33,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 68,
-    "cluster_reciprocal_gaps": 149,
+    "college_clusters_detected": 69,
+    "cluster_reciprocal_gaps": 154,
     "zero_incoming_pages": 44,
     "role_counts": {
-      "programme": 211,
-      "placement": 72,
-      "overview_or_hub": 156
+      "programme": 215,
+      "placement": 73,
+      "overview_or_hub": 161
     }
   },
   "college_clusters": [
@@ -381,6 +381,22 @@
         "iit-delhi-dms-executive-mba.html",
         "iit-delhi-dms-mba-telecom.html",
         "iit-delhi-dms-mba.html"
+      ]
+    },
+    {
+      "overview": "iit-ism-dhanbad.html",
+      "placement": "iit-ism-dhanbad-placements.html",
+      "programme_count": 9,
+      "programmes": [
+        "iit-ism-dhanbad-admission.html",
+        "iit-ism-dhanbad-btech.html",
+        "iit-ism-dhanbad-fees.html",
+        "iit-ism-dhanbad-hostel.html",
+        "iit-ism-dhanbad-mba-business-analytics.html",
+        "iit-ism-dhanbad-mba.html",
+        "iit-ism-dhanbad-mca.html",
+        "iit-ism-dhanbad-msc.html",
+        "iit-ism-dhanbad-mtech.html"
       ]
     },
     {
@@ -1356,6 +1372,42 @@
       ]
     },
     {
+      "source": "iit-ism-dhanbad-placements.html",
+      "missing": [
+        "iit-ism-dhanbad-admission.html",
+        "iit-ism-dhanbad-fees.html",
+        "iit-ism-dhanbad-hostel.html",
+        "iit-ism-dhanbad-mba-business-analytics.html",
+        "iit-ism-dhanbad-mca.html",
+        "iit-ism-dhanbad-msc.html",
+        "iit-ism-dhanbad-mtech.html"
+      ]
+    },
+    {
+      "source": "iit-ism-dhanbad-fees.html",
+      "missing": [
+        "iit-ism-dhanbad-placements.html"
+      ]
+    },
+    {
+      "source": "iit-ism-dhanbad-hostel.html",
+      "missing": [
+        "iit-ism-dhanbad-placements.html"
+      ]
+    },
+    {
+      "source": "iit-ism-dhanbad-msc.html",
+      "missing": [
+        "iit-ism-dhanbad-placements.html"
+      ]
+    },
+    {
+      "source": "iit-ism-dhanbad-mtech.html",
+      "missing": [
+        "iit-ism-dhanbad-placements.html"
+      ]
+    },
+    {
       "source": "iit-kanpur.html",
       "missing": [
         "iit-kanpur-placements.html",
@@ -1755,79 +1807,169 @@
   ],
   "broken_local_links": [
     {
+      "source": "amity-university-noida-bba.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-bba.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-bba.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-bba.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida-bca.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-bca.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-bca.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-bca.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida-btech.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-btech.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-btech.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-btech.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida-btech.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-law.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-law.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-law.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-law.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida-mba.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-mba.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-mba.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-mba.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida-mba.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-mtech.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-mtech.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida-mtech.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida-mtech.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida.html",
+      "href": "amity-university-noida-admission.html",
+      "target": "amity-university-noida-admission.html"
+    },
+    {
+      "source": "amity-university-noida.html",
+      "href": "amity-university-noida-fees.html",
+      "target": "amity-university-noida-fees.html"
+    },
+    {
+      "source": "amity-university-noida.html",
+      "href": "amity-university-noida-placements.html",
+      "target": "amity-university-noida-placements.html"
+    },
+    {
+      "source": "amity-university-noida.html",
+      "href": "amity-university-noida-hostel.html",
+      "target": "amity-university-noida-hostel.html"
+    },
+    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-admission.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-btech.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-btech.html",
-      "href": "iit-ism-dhanbad-hostel.html",
-      "target": "iit-ism-dhanbad-hostel.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-fees.html",
-      "href": "iit-ism-dhanbad-hostel.html",
-      "target": "iit-ism-dhanbad-hostel.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-mba-business-analytics.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-mba.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-mba.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-mca.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-mca.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad-msc.html",
-      "href": "iit-ism-dhanbad-hostel.html",
-      "target": "iit-ism-dhanbad-hostel.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-mtech.html",
-      "target": "iit-ism-dhanbad-mtech.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-placements.html",
-      "target": "iit-ism-dhanbad-placements.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-hostel.html",
-      "target": "iit-ism-dhanbad-hostel.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -2069,6 +2211,13 @@
     "alliance-university-mba.html": 12,
     "alliance-university-placements.html": 10,
     "alliance-university.html": 13,
+    "amity-university-noida-bba.html": 1,
+    "amity-university-noida-bca.html": 1,
+    "amity-university-noida-btech.html": 1,
+    "amity-university-noida-law.html": 1,
+    "amity-university-noida-mba.html": 1,
+    "amity-university-noida-mtech.html": 1,
+    "amity-university-noida.html": 6,
     "amu-aligarh-placements.html": 7,
     "amu-aligarh.html": 5,
     "amu-barch.html": 6,
@@ -2249,14 +2398,17 @@
     "iit-delhi-dms-mba.html": 1,
     "iit-delhi-dms-placements.html": 1,
     "iit-delhi-dms.html": 3,
-    "iit-ism-dhanbad-admission.html": 9,
-    "iit-ism-dhanbad-btech.html": 1,
-    "iit-ism-dhanbad-fees.html": 4,
+    "iit-ism-dhanbad-admission.html": 11,
+    "iit-ism-dhanbad-btech.html": 2,
+    "iit-ism-dhanbad-fees.html": 8,
+    "iit-ism-dhanbad-hostel.html": 4,
     "iit-ism-dhanbad-mba-business-analytics.html": 2,
-    "iit-ism-dhanbad-mba.html": 2,
+    "iit-ism-dhanbad-mba.html": 4,
     "iit-ism-dhanbad-mca.html": 1,
     "iit-ism-dhanbad-msc.html": 1,
-    "iit-ism-dhanbad.html": 7,
+    "iit-ism-dhanbad-mtech.html": 1,
+    "iit-ism-dhanbad-placements.html": 9,
+    "iit-ism-dhanbad.html": 10,
     "iit-kanpur-management-sciences-m-tech.html": 1,
     "iit-kanpur-management-sciences-phd.html": 1,
     "iit-kanpur-placements.html": 2,
@@ -2283,7 +2435,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 908,
+    "index.html": 919,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2463,6 +2615,13 @@
     "alliance-university-mba.html": 8,
     "alliance-university-placements.html": 7,
     "alliance-university.html": 22,
+    "amity-university-noida-bba.html": 6,
+    "amity-university-noida-bca.html": 6,
+    "amity-university-noida-btech.html": 7,
+    "amity-university-noida-law.html": 6,
+    "amity-university-noida-mba.html": 7,
+    "amity-university-noida-mtech.html": 6,
+    "amity-university-noida.html": 14,
     "amu-aligarh-placements.html": 6,
     "amu-aligarh.html": 7,
     "amu-barch.html": 6,
@@ -2658,10 +2817,13 @@
     "iit-ism-dhanbad-admission.html": 4,
     "iit-ism-dhanbad-btech.html": 5,
     "iit-ism-dhanbad-fees.html": 4,
+    "iit-ism-dhanbad-hostel.html": 5,
     "iit-ism-dhanbad-mba-business-analytics.html": 5,
     "iit-ism-dhanbad-mba.html": 4,
     "iit-ism-dhanbad-mca.html": 7,
     "iit-ism-dhanbad-msc.html": 6,
+    "iit-ism-dhanbad-mtech.html": 5,
+    "iit-ism-dhanbad-placements.html": 5,
     "iit-ism-dhanbad.html": 14,
     "iit-kanpur-management-sciences-m-tech.html": 3,
     "iit-kanpur-management-sciences-phd.html": 3,
