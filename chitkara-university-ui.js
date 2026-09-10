@@ -1,5 +1,40 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Build the left sidebar from sections that actually exist on THIS page.
+  // Use short, student-friendly labels instead of copying full H2 headings.
+  var shortLabels = {
+    overview: 'Overview',
+    courses: 'Courses',
+    admission: 'Admission',
+    fees: 'Fees',
+    placements: 'Placements',
+    campus: 'Campus & Hostel',
+    hostel: 'Hostel & Campus',
+    fit: 'Who Should Apply',
+    faq: 'FAQs',
+    process: 'Admission Process',
+    eligibility: 'Eligibility',
+    engineering: 'Engineering Admission',
+    documents: 'Documents',
+    btech: 'B.Tech / B.E.',
+    bba: 'BBA & B.Com',
+    bcom: 'BBA & B.Com',
+    mba: 'MBA',
+    bca: 'BCA',
+    scholarships: 'Scholarships',
+    rankings: 'Rankings',
+    reviews: 'Reviews',
+    careers: 'Placements & Careers',
+    recruiters: 'Top Recruiters',
+    selection: 'Selection Process',
+    curriculum: 'Curriculum',
+    specializations: 'Specializations',
+    eligibilitycriteria: 'Eligibility',
+    fee: 'Fees',
+    hostel: 'Hostel',
+    facilities: 'Facilities',
+    studentlife: 'Student Life'
+  };
+
   document.querySelectorAll('.sidebar-card').forEach(function (card) {
     var main = document.querySelector('main.content');
     if (!main) return;
@@ -13,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!heading) return;
       var link = document.createElement('a');
       link.href = '#' + section.id;
-      link.textContent = heading.textContent.trim();
+      var key = section.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+      link.textContent = shortLabels[key] || heading.textContent.trim().replace(/\s+/g, ' ').replace(/\s+2026\b/gi, '').replace(/:\s*.+$/, '');
       link.className = 'sidebar-section-link';
       card.appendChild(link);
     });
