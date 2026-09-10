@@ -1,0 +1,43 @@
+name: CUSAT Primary Keyword Direct Update
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply primary keyword titles and H1s
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          data={
+          'cusat-kochi.html':('CUSAT Courses, Admission, Fees & Placements 2026','CUSAT Courses, Admission, Fees & Placements 2026'),
+          'cusat-admission-2026.html':('CUSAT Admission 2026: CAT, Eligibility, Cutoff, Fees & Dates','CUSAT Admission 2026: CAT, Eligibility, Cutoff & Process'),
+          'cusat-btech-2026.html':('CUSAT B.Tech 2026: Courses, Fees, Cutoff, Seats & Admission','CUSAT B.Tech 2026: Courses, Fees, Cutoff & Admission'),
+          'cusat-mba-2026.html':('CUSAT MBA 2026: Admission, Fees, Eligibility, Cutoff & Placements','CUSAT MBA 2026: Admission, Fees, Eligibility & Selection'),
+          'cusat-mca-2026.html':('CUSAT MCA 2026: Admission, Fees, Eligibility, CAT & Cutoff','CUSAT MCA 2026: Admission, Fees, CAT & Eligibility'),
+          'cusat-mtech-pg-2026.html':('CUSAT M.Tech 2026: Courses, Admission, Fees, GATE & Cutoff','CUSAT M.Tech 2026: Courses, Fees, Admission & GATE'),
+          'cusat-fees-scholarships-2026.html':('CUSAT Fees 2026: B.Tech, MBA, MCA, M.Tech & Scholarships','CUSAT Fees 2026: Course-Wise Fees, Scholarships & Total Cost'),
+          'cusat-placements-2026.html':('CUSAT Placements 2026: Salary, Recruiters, Internships & ROI','CUSAT Placements 2026: Salary, Recruiters & Career Outcomes'),
+          'cusat-campus-hostel.html':('CUSAT Hostel 2026: Fees, Facilities, Campus & Student Life','CUSAT Hostel 2026: Fees, Facilities & Campus Life'),
+          'cusat-law-2026.html':('CUSAT Law 2026: Courses, Admission, Fees, Eligibility & Cutoff','CUSAT Law 2026: Courses, Admission, Fees & Eligibility'),
+          'cusat-science-marine-2026.html':('CUSAT Courses 2026: Science, Marine, MSc & Integrated Programmes','CUSAT Science & Marine Courses 2026: Admission, Fees & Careers')}
+          for fn,(title,h1) in data.items():
+            p=Path(fn)
+            if not p.exists(): continue
+            s=p.read_text()
+            s=re.sub(r'<title>.*?</title>',f'<title>{title}</title>',s,1,flags=re.S)
+            s=re.sub(r'<h1>.*?</h1>',f'<h1>{h1}</h1>',s,1,flags=re.S)
+            p.write_text(s)
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add cusat-*.html
+          git diff --cached --quiet || (git commit -m 'Apply CUSAT primary keywords to titles and H1s' && git push)
