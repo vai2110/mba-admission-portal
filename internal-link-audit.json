@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T04:37:10.107812+00:00",
+  "generated_at": "2026-09-10T04:38:18.073594+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 394,
-    "pages_with_internal_links": 376,
-    "broken_local_links": 3,
+    "pages_checked": 397,
+    "pages_with_internal_links": 379,
+    "broken_local_links": 6,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 67,
     "cluster_reciprocal_gaps": 138,
-    "zero_incoming_pages": 41,
+    "zero_incoming_pages": 44,
     "role_counts": {
       "programme": 195,
       "placement": 69,
-      "overview_or_hub": 130
+      "overview_or_hub": 133
     }
   },
   "college_clusters": [
@@ -528,15 +528,18 @@
     {
       "overview": "lovely-professional-university.html",
       "placement": "lovely-professional-university-placements.html",
-      "programme_count": 7,
+      "programme_count": 10,
       "programmes": [
         "lovely-professional-university-bba.html",
         "lovely-professional-university-bca.html",
         "lovely-professional-university-btech-cse.html",
         "lovely-professional-university-btech.html",
+        "lovely-professional-university-design.html",
         "lovely-professional-university-law.html",
         "lovely-professional-university-mba.html",
-        "lovely-professional-university-mca.html"
+        "lovely-professional-university-mca.html",
+        "lovely-professional-university-mtech.html",
+        "lovely-professional-university-pharmacy.html"
       ]
     },
     {
@@ -1466,9 +1469,12 @@
         "lovely-professional-university-bca.html",
         "lovely-professional-university-btech-cse.html",
         "lovely-professional-university-btech.html",
+        "lovely-professional-university-design.html",
         "lovely-professional-university-law.html",
         "lovely-professional-university-mba.html",
-        "lovely-professional-university-mca.html"
+        "lovely-professional-university-mca.html",
+        "lovely-professional-university-mtech.html",
+        "lovely-professional-university-pharmacy.html"
       ]
     },
     {
@@ -1478,9 +1484,12 @@
         "lovely-professional-university-bca.html",
         "lovely-professional-university-btech-cse.html",
         "lovely-professional-university-btech.html",
+        "lovely-professional-university-design.html",
         "lovely-professional-university-law.html",
         "lovely-professional-university-mba.html",
-        "lovely-professional-university-mca.html"
+        "lovely-professional-university-mca.html",
+        "lovely-professional-university-mtech.html",
+        "lovely-professional-university-pharmacy.html"
       ]
     },
     {
@@ -1673,7 +1682,22 @@
       "target": "lovely-professional-university-hostel.html"
     },
     {
+      "source": "lovely-professional-university-design.html",
+      "href": "lovely-professional-university-hostel.html",
+      "target": "lovely-professional-university-hostel.html"
+    },
+    {
       "source": "lovely-professional-university-law.html",
+      "href": "lovely-professional-university-hostel.html",
+      "target": "lovely-professional-university-hostel.html"
+    },
+    {
+      "source": "lovely-professional-university-mtech.html",
+      "href": "lovely-professional-university-hostel.html",
+      "target": "lovely-professional-university-hostel.html"
+    },
+    {
+      "source": "lovely-professional-university-pharmacy.html",
       "href": "lovely-professional-university-hostel.html",
       "target": "lovely-professional-university-hostel.html"
     }
@@ -1872,6 +1896,11 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "lovely-professional-university-design.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "lovely-professional-university-law.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -1883,6 +1912,16 @@
     },
     {
       "page": "lovely-professional-university-mca.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "lovely-professional-university-mtech.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "lovely-professional-university-pharmacy.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2099,7 +2138,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 826,
+    "index.html": 832,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2148,8 +2187,8 @@
     "kl-university-mba.html": 7,
     "kl-university-placements.html": 9,
     "kl-university.html": 9,
-    "lovely-professional-university-placements.html": 7,
-    "lovely-professional-university.html": 9,
+    "lovely-professional-university-placements.html": 10,
+    "lovely-professional-university.html": 12,
     "loyola-institute-business-administration-executive-diploma.html": 1,
     "loyola-institute-business-administration-fpm.html": 1,
     "loyola-institute-business-administration-online-pgdm.html": 1,
@@ -2519,9 +2558,12 @@
     "lovely-professional-university-bca.html": 4,
     "lovely-professional-university-btech-cse.html": 4,
     "lovely-professional-university-btech.html": 5,
+    "lovely-professional-university-design.html": 5,
     "lovely-professional-university-law.html": 5,
     "lovely-professional-university-mba.html": 4,
     "lovely-professional-university-mca.html": 4,
+    "lovely-professional-university-mtech.html": 5,
+    "lovely-professional-university-pharmacy.html": 5,
     "lovely-professional-university-placements.html": 3,
     "lovely-professional-university.html": 3,
     "loyola-institute-business-administration-executive-diploma.html": 5,
