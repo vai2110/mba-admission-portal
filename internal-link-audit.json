@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T07:19:54.920263+00:00",
+  "generated_at": "2026-09-10T07:21:15.232110+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 471,
-    "pages_with_internal_links": 453,
+    "pages_checked": 476,
+    "pages_with_internal_links": 458,
     "broken_local_links": 13,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 71,
     "cluster_reciprocal_gaps": 170,
-    "zero_incoming_pages": 51,
+    "zero_incoming_pages": 50,
     "role_counts": {
-      "programme": 222,
+      "programme": 224,
       "placement": 75,
-      "overview_or_hub": 174
+      "overview_or_hub": 177
     }
   },
   "college_clusters": [
@@ -1964,9 +1964,34 @@
   ],
   "broken_local_links": [
     {
-      "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-admission.html",
-      "target": "bml-munjal-university-admission.html"
+      "source": "bml-munjal-university-admission.html",
+      "href": "bml-munjal-university-fees.html",
+      "target": "bml-munjal-university-fees.html"
+    },
+    {
+      "source": "bml-munjal-university-admission.html",
+      "href": "bml-munjal-university-placements.html",
+      "target": "bml-munjal-university-placements.html"
+    },
+    {
+      "source": "bml-munjal-university-bba-bcom.html",
+      "href": "bml-munjal-university-fees.html",
+      "target": "bml-munjal-university-fees.html"
+    },
+    {
+      "source": "bml-munjal-university-btech.html",
+      "href": "bml-munjal-university-placements.html",
+      "target": "bml-munjal-university-placements.html"
+    },
+    {
+      "source": "bml-munjal-university-law.html",
+      "href": "bml-munjal-university-fees.html",
+      "target": "bml-munjal-university-fees.html"
+    },
+    {
+      "source": "bml-munjal-university-liberal-arts.html",
+      "href": "bml-munjal-university-fees.html",
+      "target": "bml-munjal-university-fees.html"
     },
     {
       "source": "bml-munjal-university.html",
@@ -1985,33 +2010,8 @@
     },
     {
       "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-btech.html",
-      "target": "bml-munjal-university-btech.html"
-    },
-    {
-      "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-bba-bcom.html",
-      "target": "bml-munjal-university-bba-bcom.html"
-    },
-    {
-      "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-law.html",
-      "target": "bml-munjal-university-law.html"
-    },
-    {
-      "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-liberal-arts.html",
-      "target": "bml-munjal-university-liberal-arts.html"
-    },
-    {
-      "source": "bml-munjal-university.html",
       "href": "bml-munjal-university-ma-public-policy.html",
       "target": "bml-munjal-university-ma-public-policy.html"
-    },
-    {
-      "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-admission.html",
-      "target": "bml-munjal-university-admission.html"
     },
     {
       "source": "bml-munjal-university.html",
@@ -2064,11 +2064,6 @@
     },
     {
       "page": "birla-institute-management-technology-pgdm-online.html",
-      "role": "programme",
-      "incoming_internal_links": 0
-    },
-    {
-      "page": "bml-munjal-university.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2335,6 +2330,12 @@
     "birla-institute-management-technology-pgdm.html": 8,
     "birla-institute-management-technology-placements.html": 11,
     "birla-institute-management-technology.html": 6,
+    "bml-munjal-university-admission.html": 6,
+    "bml-munjal-university-bba-bcom.html": 1,
+    "bml-munjal-university-btech.html": 1,
+    "bml-munjal-university-law.html": 1,
+    "bml-munjal-university-liberal-arts.html": 1,
+    "bml-munjal-university.html": 5,
     "cat.html": 3,
     "chandigarh-university-bba.html": 4,
     "chandigarh-university-bca.html": 7,
@@ -2756,6 +2757,11 @@
     "birla-institute-management-technology-pgdm.html": 7,
     "birla-institute-management-technology-placements.html": 10,
     "birla-institute-management-technology.html": 11,
+    "bml-munjal-university-admission.html": 3,
+    "bml-munjal-university-bba-bcom.html": 3,
+    "bml-munjal-university-btech.html": 3,
+    "bml-munjal-university-law.html": 3,
+    "bml-munjal-university-liberal-arts.html": 3,
     "bml-munjal-university.html": 12,
     "cat.html": 9,
     "chandigarh-university-bba.html": 17,
