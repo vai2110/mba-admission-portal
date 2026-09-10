@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-10T10:47:59.659591+00:00",
+  "generated_at": "2026-09-10T10:49:24.859064+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 512,
-  "pages_with_issues": 382,
+  "pages_checked": 516,
+  "pages_with_issues": 385,
   "issue_counts": {
-    "broken_local_links": 9,
-    "canonical": 18,
+    "broken_local_links": 4,
+    "canonical": 22,
     "description_count": 4,
     "description_length": 173,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 18,
+    "jsonld": 22,
     "lang": 1,
-    "og_description": 18,
-    "og_title": 18,
-    "og_url": 18,
+    "og_description": 22,
+    "og_title": 22,
+    "og_url": 22,
     "title_length": 308,
-    "twitter_card": 23,
+    "twitter_card": 27,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -1111,9 +1111,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bbau-placements-2026.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -1122,8 +1120,7 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -1187,9 +1184,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bbau-placements-2026.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -1199,8 +1194,7 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -1227,10 +1221,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bbau-mca-2026.html",
-        "bbau-placements-2026.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -1239,8 +1230,43 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
+      ]
+    },
+    {
+      "file": "bbau-hostel-campus.html",
+      "benchmark": false,
+      "title": "BBAU Hostel & Campus 2026: Facilities, Allotment & Student Life",
+      "title_length": 63,
+      "description": "BBAU Lucknow hostel and campus guide covering location, hostel admission, allotment, rules, student life and practical FAQs.",
+      "description_length": 124,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "BBAU Hostel & Campus 2026",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
@@ -1269,17 +1295,10 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bbau-hostel-campus.html",
-        "bbau-mca-2026.html",
-        "bbau-placements-2026.html",
-        "bbau-scholarships-rankings-reviews.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "broken_local_links"
-      ]
+      "issues": []
     },
     {
       "file": "bbau-mba-2026.html",
@@ -1305,9 +1324,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bbau-placements-2026.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -1317,8 +1334,115 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
+      ]
+    },
+    {
+      "file": "bbau-mca-2026.html",
+      "benchmark": false,
+      "title": "BBAU MCA 2026: Admission, Fees, Eligibility & Placements",
+      "title_length": 56,
+      "description": "BBAU MCA 2026 guide with eligibility, regular and paid-seat fees, admission route, curriculum context and placement data.",
+      "description_length": 121,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "BBAU MCA Admission 2026",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
+    },
+    {
+      "file": "bbau-placements-2026.html",
+      "benchmark": false,
+      "title": "BBAU Placements 2026: Salary, Placement Rate & NIRF Data",
+      "title_length": 56,
+      "description": "BBAU Lucknow placements 2026 guide using official NIRF data, including programme-level placed students and median salaries for UG and PG courses.",
+      "description_length": 145,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "BBAU Placements 2026",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
+    },
+    {
+      "file": "bbau-scholarships-rankings-reviews.html",
+      "benchmark": false,
+      "title": "BBAU Scholarships, Rankings & Reviews 2026",
+      "title_length": 42,
+      "description": "BBAU Lucknow scholarships, NIRF 2025 rankings, accreditation, student review framework and practical pros and cons for 2026 applicants.",
+      "description_length": 135,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "BBAU Scholarships, Rankings & Reviews 2026",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
