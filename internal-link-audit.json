@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T06:40:32.243278+00:00",
+  "generated_at": "2026-09-10T06:40:47.992188+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 427,
-    "pages_with_internal_links": 409,
-    "broken_local_links": 5,
+    "pages_checked": 428,
+    "pages_with_internal_links": 410,
+    "broken_local_links": 3,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 68,
     "cluster_reciprocal_gaps": 149,
@@ -12,7 +12,7 @@
     "role_counts": {
       "programme": 208,
       "placement": 72,
-      "overview_or_hub": 147
+      "overview_or_hub": 148
     }
   },
   "college_clusters": [
@@ -1760,11 +1760,6 @@
       "target": "iim-ahmedabad-admission.html"
     },
     {
-      "source": "thapar-institute-fees.html",
-      "href": "thapar-institute-hostel.html",
-      "target": "thapar-institute-hostel.html"
-    },
-    {
       "source": "thapar-institute-of-engineering-technology.html",
       "href": "thapar-institute-mtech.html",
       "target": "thapar-institute-mtech.html"
@@ -1773,11 +1768,6 @@
       "source": "thapar-institute-of-engineering-technology.html",
       "href": "thapar-institute-mca.html",
       "target": "thapar-institute-mca.html"
-    },
-    {
-      "source": "thapar-institute-of-engineering-technology.html",
-      "href": "thapar-institute-hostel.html",
-      "target": "thapar-institute-hostel.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -2220,7 +2210,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 892,
+    "index.html": 894,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2352,9 +2342,10 @@
     "tapmi-manipal.html": 1,
     "thapar-institute-admission.html": 1,
     "thapar-institute-btech.html": 1,
-    "thapar-institute-fees.html": 2,
+    "thapar-institute-fees.html": 3,
+    "thapar-institute-hostel.html": 2,
     "thapar-institute-mba.html": 3,
-    "thapar-institute-of-engineering-technology.html": 6,
+    "thapar-institute-of-engineering-technology.html": 7,
     "thapar-institute-placements.html": 2,
     "top-mba-colleges-in-india.html": 10,
     "upes-dehradun-bba.html": 2,
@@ -2756,6 +2747,7 @@
     "thapar-institute-admission.html": 4,
     "thapar-institute-btech.html": 5,
     "thapar-institute-fees.html": 4,
+    "thapar-institute-hostel.html": 4,
     "thapar-institute-mba.html": 3,
     "thapar-institute-of-engineering-technology.html": 12,
     "thapar-institute-placements.html": 3,
