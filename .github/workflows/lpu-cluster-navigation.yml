@@ -59,6 +59,8 @@ jobs:
           hero_logo_re = re.compile(r'<div\b[^>]*class=["\'][^"\']*hero-logo-box[^"\']*["\'][^>]*>.*?</div>\s*', re.I|re.S)
           hero_label_re = re.compile(r'<(?:div|span|p)\b[^>]*class=["\'][^"\']*(?:hero-(?:kicker|eyebrow|label|small-title|program-label)|hero-kicker|hero-eyebrow)[^"\']*["\'][^>]*>.*?</(?:div|span|p)>\s*', re.I|re.S)
           p_re = re.compile(r'<p\b[^>]*>.*?</p>', re.I|re.S)
+          bad_mba_link_re = re.compile(r'<a class=\\*"programme-link\\*" href=\\*"lovely-professional-university-admission\.html\\*">LPU MBA admission process</a>')
+          escaped_mba_link_re = re.compile(r'<a class=\\*"programme-link\\*" href=\\*"lovely-professional-university-admission\.html\\*">MBA admission ecosystem</a>')
 
           for path in map(Path, pages):
             if not path.exists(): continue
@@ -68,8 +70,8 @@ jobs:
             text = cluster_css_re.sub('', text)
             text = hero_logo_re.sub('', text)
             text = hero_label_re.sub('', text)
-            text = text.replace(r'<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', '<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>')
-            text = text.replace(r'<a class="programme-link" href="lovely-professional-university-admission.html">LPU MBA admission process</a>', '<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>')
+            text = bad_mba_link_re.sub('<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
+            text = escaped_mba_link_re.sub('<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
             text = re.sub(r'(<a class="programme-link" href="lovely-professional-university-admission\.html">)admission(</a>)s', r'\1admissions\2', text)
             path.write_text(text, encoding='utf-8')
 
@@ -87,7 +89,6 @@ jobs:
                 return text[:m.start()] + para2 + text[m.end():], True
             return text, False
 
-          changed=[]
           for filename in pages:
             path=Path(filename)
             if not path.exists(): continue
@@ -95,8 +96,7 @@ jobs:
             for phrase,href in plans.get(filename,[]):
               text,_=add_link(text,phrase,href)
             if text != original:
-              path.write_text(text,encoding='utf-8'); changed.append(filename)
-          print('Updated:', ', '.join(changed) if changed else 'No LPU pages changed.')
+              path.write_text(text,encoding='utf-8')
 
       - name: Commit LPU internal-link cleanup
         run: |
