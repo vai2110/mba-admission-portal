@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T07:22:22.334005+00:00",
+  "generated_at": "2026-09-10T08:15:05.737772+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 481,
-    "pages_with_internal_links": 463,
+    "pages_checked": 492,
+    "pages_with_internal_links": 474,
     "broken_local_links": 3,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 72,
-    "cluster_reciprocal_gaps": 177,
-    "zero_incoming_pages": 52,
+    "college_clusters_detected": 73,
+    "cluster_reciprocal_gaps": 182,
+    "zero_incoming_pages": 53,
     "role_counts": {
-      "programme": 225,
-      "placement": 76,
-      "overview_or_hub": 180
+      "programme": 228,
+      "placement": 77,
+      "overview_or_hub": 187
     }
   },
   "college_clusters": [
@@ -100,6 +100,22 @@
         "chandigarh-university-btech-cse.html",
         "chandigarh-university-btech.html",
         "chandigarh-university-mba.html"
+      ]
+    },
+    {
+      "overview": "chitkara-university.html",
+      "placement": "chitkara-university-placements.html",
+      "programme_count": 9,
+      "programmes": [
+        "chitkara-university-admission.html",
+        "chitkara-university-bba-bcom.html",
+        "chitkara-university-btech.html",
+        "chitkara-university-design-media.html",
+        "chitkara-university-fees.html",
+        "chitkara-university-healthcare.html",
+        "chitkara-university-hostel.html",
+        "chitkara-university-law.html",
+        "chitkara-university-mba.html"
       ]
     },
     {
@@ -946,6 +962,42 @@
       "source": "chandigarh-university-btech-cse.html",
       "missing": [
         "chandigarh-university-placements.html"
+      ]
+    },
+    {
+      "source": "chitkara-university.html",
+      "missing": [
+        "chitkara-university-hostel.html"
+      ]
+    },
+    {
+      "source": "chitkara-university-placements.html",
+      "missing": [
+        "chitkara-university-bba-bcom.html",
+        "chitkara-university-btech.html",
+        "chitkara-university-design-media.html",
+        "chitkara-university-healthcare.html",
+        "chitkara-university-hostel.html",
+        "chitkara-university-law.html",
+        "chitkara-university-mba.html"
+      ]
+    },
+    {
+      "source": "chitkara-university-design-media.html",
+      "missing": [
+        "chitkara-university-placements.html"
+      ]
+    },
+    {
+      "source": "chitkara-university-healthcare.html",
+      "missing": [
+        "chitkara-university-placements.html"
+      ]
+    },
+    {
+      "source": "chitkara-university-hostel.html",
+      "missing": [
+        "chitkara-university-placements.html"
       ]
     },
     {
@@ -2094,6 +2146,11 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "chitkara-university-hostel.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "ggsipu-bba.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -2373,6 +2430,16 @@
     "chandigarh-university-mba.html": 7,
     "chandigarh-university-placements.html": 9,
     "chandigarh-university.html": 12,
+    "chitkara-university-admission.html": 11,
+    "chitkara-university-bba-bcom.html": 1,
+    "chitkara-university-btech.html": 1,
+    "chitkara-university-design-media.html": 1,
+    "chitkara-university-fees.html": 7,
+    "chitkara-university-healthcare.html": 1,
+    "chitkara-university-law.html": 1,
+    "chitkara-university-mba.html": 1,
+    "chitkara-university-placements.html": 8,
+    "chitkara-university.html": 10,
     "christ-university-ba-llb.html": 4,
     "christ-university-bba.html": 4,
     "christ-university-bca.html": 4,
@@ -2805,6 +2872,17 @@
     "chandigarh-university-mba.html": 3,
     "chandigarh-university-placements.html": 2,
     "chandigarh-university.html": 6,
+    "chitkara-university-admission.html": 3,
+    "chitkara-university-bba-bcom.html": 3,
+    "chitkara-university-btech.html": 3,
+    "chitkara-university-design-media.html": 3,
+    "chitkara-university-fees.html": 3,
+    "chitkara-university-healthcare.html": 3,
+    "chitkara-university-hostel.html": 3,
+    "chitkara-university-law.html": 3,
+    "chitkara-university-mba.html": 3,
+    "chitkara-university-placements.html": 3,
+    "chitkara-university.html": 12,
     "christ-university-ba-llb.html": 4,
     "christ-university-bba.html": 4,
     "christ-university-bca.html": 4,
