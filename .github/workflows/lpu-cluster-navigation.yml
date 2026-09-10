@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Clean forced navigation and keep natural contextual links
+      - name: Remove forced navigation and keep natural contextual links
         shell: python
         run: |
           from pathlib import Path
@@ -55,6 +55,8 @@ jobs:
           }
 
           section_re = re.compile(r'<section\b[^>]*\bid=["\']lpu-pages["\'][^>]*>.*?</section>\s*(?:<hr\s*/?>)?', re.I|re.S)
+          cluster_nav_re = re.compile(r'<nav\b[^>]*class=["\'][^"\']*college-cluster-nav[^"\']*["\'][^>]*>.*?</nav>\s*', re.I|re.S)
+          cluster_css_re = re.compile(r'\.college-cluster-nav[^\{]*\{[^}]*\}', re.I|re.S)
           hero_logo_re = re.compile(r'<div\b[^>]*class=["\'][^"\']*hero-logo-box[^"\']*["\'][^>]*>.*?</div>\s*', re.I|re.S)
           hero_label_re = re.compile(r'<(?:div|span|p)\b[^>]*class=["\'][^"\']*(?:hero-(?:kicker|eyebrow|label|small-title|program-label)|hero-kicker|hero-eyebrow)[^"\']*["\'][^>]*>.*?</(?:div|span|p)>\s*', re.I|re.S)
           p_re = re.compile(r'<p\b[^>]*>.*?</p>', re.I|re.S)
@@ -63,10 +65,13 @@ jobs:
             if not path.exists(): continue
             text = path.read_text(encoding='utf-8')
             text = section_re.sub('', text)
+            text = cluster_nav_re.sub('', text)
+            text = cluster_css_re.sub('', text)
             text = hero_logo_re.sub('', text)
             text = hero_label_re.sub('', text)
             text = re.sub(r'(<a class="programme-link" href="lovely-professional-university-admission\.html">)admission(</a>)s', r'\1admissions\2', text)
-            text = re.sub(r"LPU's MBA <a class=\\\"programme-link\\\" href=\\\"lovely-professional-university-admission\.html\\\">LPU MBA admission process</a> ecosystem", 'LPU\'s <a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
+            # Fix the earlier MBA admission anchor without leaving escaped quotes in HTML.
+            text = re.sub(r"LPU's MBA <a class=\\+\"programme-link\\+\" href=\\+\"lovely-professional-university-admission\.html\\+\">LPU MBA admission process</a> ecosystem", 'LPU\'s <a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
             text = re.sub(r"LPU's MBA <a class=\"programme-link\" href=\"lovely-professional-university-admission\.html\">LPU MBA admission process</a> ecosystem", 'LPU\'s <a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
             path.write_text(text, encoding='utf-8')
 
@@ -100,4 +105,4 @@ jobs:
           git config user.name 'LPU Content Architecture Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add lovely-professional-university*.html
-          if git diff --cached --quiet; then echo 'No LPU content changes to commit.'; else git commit -m 'Refine LPU contextual anchor text'; git push; fi
+          if git diff --cached --quiet; then echo 'No LPU pages changed.'; else git commit -m 'Remove LPU cluster navigation and refine links'; git push; fi
