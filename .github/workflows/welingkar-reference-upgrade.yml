@@ -1,0 +1,83 @@
+name: Welingkar Reference Upgrade
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'welingkar-mumbai*.html'
+      - 'welingkar-mumbai.css'
+      - '.github/workflows/welingkar-reference-upgrade.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply locked SIBM reference CSS and page architecture
+        run: |
+          cp sibm-bengaluru.css welingkar-mumbai.css
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          files = sorted(Path('.').glob('welingkar-mumbai*.html'))
+          for path in files:
+              s = path.read_text(encoding='utf-8')
+              original = s
+
+              # Remove the programme/college logo box from every Welingkar hero.
+              s = re.sub(r'<div class="hero-logo-box">.*?</div>', '', s, flags=re.S)
+              s = s.replace('hero-container hero-inner', 'hero-container')
+
+              # Convert the existing FAQ details into the locked accessible accordion structure.
+              faq_pat = re.compile(r'<details>\s*<summary>(.*?)</summary>\s*<div class="faq-answer">\s*<p>(.*?)</p>\s*</div>\s*</details>', re.S)
+              def faq_repl(m):
+                  q = m.group(1).strip()
+                  a = m.group(2).strip()
+                  return f'<div class="faq-item accordion"><h3 tabindex="0" role="button" aria-expanded="false">{q}</h3><p hidden>{a}</p></div>'
+              s = faq_pat.sub(faq_repl, s)
+
+              # Ensure the FAQ container remains valid after the conversion.
+              s = s.replace('<div class="faq-accordion">', '<div class="faq-accordion">')
+
+              # Add accessible FAQ keyboard/click behavior once per page.
+              if 'faq-item accordion h3' not in s:
+                  js = '''<script>document.querySelectorAll('.faq-item.accordion h3').forEach(h=>{const p=h.nextElementSibling;const toggle=()=>{const open=h.getAttribute('aria-expanded')==='true';h.setAttribute('aria-expanded',String(!open));p.hidden=open};h.addEventListener('click',toggle);h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});document.querySelectorAll('.mobile-on-page a').forEach(a=>a.addEventListener('click',()=>a.closest('details')?.removeAttribute('open')));</script>'''
+                  s = re.sub(r'<script>document\.querySelectorAll\(\'\.mobile-on-page a\'\).*?</script>', js, s, count=1, flags=re.S)
+                  if 'faq-item.accordion h3' not in s:
+                      s = s.replace('</body>', js + '</body>')
+
+              # Hard guards: no forbidden cluster navigation or citation/debug artifacts.
+              s = re.sub(r'<nav[^>]*class="[^"]*college-cluster-nav[^"]*"[^>]*>.*?</nav>', '', s, flags=re.S|re.I)
+              s = re.sub(r'<section[^>]*id="[^"]*lpu-pages[^"]*"[^>]*>.*?</section>', '', s, flags=re.S|re.I)
+              for bad in ('cite', 'turn0search', 'Explore this college'):
+                  s = s.replace(bad, '')
+
+              if s != original:
+                  path.write_text(s, encoding='utf-8')
+
+          # Fail the run if any Welingkar page still violates the locked contract.
+          for path in files:
+              s = path.read_text(encoding='utf-8')
+              assert 'welingkar-mumbai.css' in s, path
+              assert 'hero-logo-box' not in s, path
+              assert 'college-cluster-nav' not in s, path
+              assert 'Explore this college' not in s, path
+              assert 'cite' not in s and 'turn0search' not in s, path
+              assert 'class="faq-item accordion"' in s, path
+              assert 'faq-item.accordion h3' in s, path
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add welingkar-mumbai*.html welingkar-mumbai.css
+          git diff --cached --quiet || git commit -m 'Apply locked reference UI to Welingkar pages'
+          git push
