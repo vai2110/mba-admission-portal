@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T10:19:06.807520+00:00",
+  "generated_at": "2026-09-10T10:19:36.443581+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 492,
-    "pages_with_internal_links": 474,
-    "broken_local_links": 3,
+    "pages_checked": 494,
+    "pages_with_internal_links": 476,
+    "broken_local_links": 31,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 73,
-    "cluster_reciprocal_gaps": 182,
+    "cluster_reciprocal_gaps": 184,
     "zero_incoming_pages": 53,
     "role_counts": {
       "programme": 228,
       "placement": 77,
-      "overview_or_hub": 187
+      "overview_or_hub": 189
     }
   },
   "college_clusters": [
@@ -105,8 +105,9 @@
     {
       "overview": "chitkara-university.html",
       "placement": "chitkara-university-placements.html",
-      "programme_count": 9,
+      "programme_count": 11,
       "programmes": [
+        "chitkara-university-admission-2026.html",
         "chitkara-university-admission.html",
         "chitkara-university-bba-bcom.html",
         "chitkara-university-btech.html",
@@ -115,7 +116,8 @@
         "chitkara-university-healthcare.html",
         "chitkara-university-hostel.html",
         "chitkara-university-law.html",
-        "chitkara-university-mba.html"
+        "chitkara-university-mba.html",
+        "chitkara-university-punjab.html"
       ]
     },
     {
@@ -967,19 +969,30 @@
     {
       "source": "chitkara-university.html",
       "missing": [
-        "chitkara-university-hostel.html"
+        "chitkara-university-admission-2026.html",
+        "chitkara-university-hostel.html",
+        "chitkara-university-punjab.html"
       ]
     },
     {
       "source": "chitkara-university-placements.html",
       "missing": [
+        "chitkara-university-admission-2026.html",
         "chitkara-university-bba-bcom.html",
         "chitkara-university-btech.html",
         "chitkara-university-design-media.html",
         "chitkara-university-healthcare.html",
         "chitkara-university-hostel.html",
         "chitkara-university-law.html",
-        "chitkara-university-mba.html"
+        "chitkara-university-mba.html",
+        "chitkara-university-punjab.html"
+      ]
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "missing": [
+        "chitkara-university.html",
+        "chitkara-university-placements.html"
       ]
     },
     {
@@ -997,6 +1010,13 @@
     {
       "source": "chitkara-university-hostel.html",
       "missing": [
+        "chitkara-university-placements.html"
+      ]
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "missing": [
+        "chitkara-university.html",
         "chitkara-university-placements.html"
       ]
     },
@@ -2092,6 +2112,146 @@
       "target": "bml-munjal-university-mba.html"
     },
     {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-placements-2026.html",
+      "target": "chitkara-university-placements-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-btech-2026.html",
+      "target": "chitkara-university-btech-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-bba-bcom-2026.html",
+      "target": "chitkara-university-bba-bcom-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-mba-2026.html",
+      "target": "chitkara-university-mba-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-bca-2026.html",
+      "target": "chitkara-university-bca-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-placements-2026.html",
+      "target": "chitkara-university-placements-2026.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-hostel-campus.html",
+      "target": "chitkara-university-hostel-campus.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-scholarships-rankings-reviews.html",
+      "target": "chitkara-university-scholarships-rankings-reviews.html"
+    },
+    {
+      "source": "chitkara-university-admission-2026.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-placements-2026.html",
+      "target": "chitkara-university-placements-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-btech-2026.html",
+      "target": "chitkara-university-btech-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-bba-bcom-2026.html",
+      "target": "chitkara-university-bba-bcom-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-mba-2026.html",
+      "target": "chitkara-university-mba-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-bca-2026.html",
+      "target": "chitkara-university-bca-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-placements-2026.html",
+      "target": "chitkara-university-placements-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-hostel-campus.html",
+      "target": "chitkara-university-hostel-campus.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-scholarships-rankings-reviews.html",
+      "target": "chitkara-university-scholarships-rankings-reviews.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-btech-2026.html",
+      "target": "chitkara-university-btech-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-mba-2026.html",
+      "target": "chitkara-university-mba-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-bca-2026.html",
+      "target": "chitkara-university-bca-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-courses-fees-2026.html",
+      "target": "chitkara-university-courses-fees-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-placements-2026.html",
+      "target": "chitkara-university-placements-2026.html"
+    },
+    {
+      "source": "chitkara-university-punjab.html",
+      "href": "chitkara-university-hostel-campus.html",
+      "target": "chitkara-university-hostel-campus.html"
+    },
+    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -2430,6 +2590,7 @@
     "chandigarh-university-mba.html": 7,
     "chandigarh-university-placements.html": 9,
     "chandigarh-university.html": 12,
+    "chitkara-university-admission-2026.html": 4,
     "chitkara-university-admission.html": 11,
     "chitkara-university-bba-bcom.html": 1,
     "chitkara-university-btech.html": 1,
@@ -2439,6 +2600,7 @@
     "chitkara-university-law.html": 1,
     "chitkara-university-mba.html": 1,
     "chitkara-university-placements.html": 8,
+    "chitkara-university-punjab.html": 5,
     "chitkara-university.html": 10,
     "christ-university-ba-llb.html": 4,
     "christ-university-bba.html": 4,
@@ -2639,7 +2801,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 924,
+    "index.html": 925,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2872,6 +3034,7 @@
     "chandigarh-university-mba.html": 3,
     "chandigarh-university-placements.html": 2,
     "chandigarh-university.html": 6,
+    "chitkara-university-admission-2026.html": 16,
     "chitkara-university-admission.html": 3,
     "chitkara-university-bba-bcom.html": 3,
     "chitkara-university-btech.html": 3,
@@ -2882,6 +3045,7 @@
     "chitkara-university-law.html": 3,
     "chitkara-university-mba.html": 3,
     "chitkara-university-placements.html": 3,
+    "chitkara-university-punjab.html": 22,
     "chitkara-university.html": 12,
     "christ-university-ba-llb.html": 4,
     "christ-university-bba.html": 4,
