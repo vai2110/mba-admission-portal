@@ -1,0 +1,42 @@
+name: UX Mobile Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '40 3 * * *'
+  push:
+    paths:
+      - '**.html'
+      - '**.css'
+      - 'scripts/ux_mobile_audit.py'
+      - '.github/workflows/ux-mobile-audit.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ux-mobile-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: ${{ github.actor != 'github-actions[bot]' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+      - name: Run UX and mobile audit
+        run: python scripts/ux_mobile_audit.py
+      - name: Upload UX audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: ux-mobile-audit
+          path: ux-mobile-audit.json
