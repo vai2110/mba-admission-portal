@@ -1,80 +1,75 @@
-name: LPU Cluster Navigation
+name: LPU Content Architecture Cleanup
+
 on:
   push:
     branches: [main]
     paths:
-      - '*.html'
+      - 'lovely-professional-university*.html'
       - '.github/workflows/lpu-cluster-navigation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
-  navigation:
+  cleanup-and-link:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Add LPU navigation and reverse links
+      - name: Remove forced LPU navigation blocks and add natural contextual links
         shell: python
         run: |
           from pathlib import Path
-          pages = {
-            'lovely-professional-university.html':'LPU Overview',
-            'lovely-professional-university-btech.html':'LPU B.Tech',
-            'lovely-professional-university-mba.html':'LPU MBA',
-            'lovely-professional-university-bba.html':'LPU BBA',
-            'lovely-professional-university-bca.html':'LPU BCA',
-            'lovely-professional-university-mca.html':'LPU MCA',
-            'lovely-professional-university-law.html':'LPU Law',
-            'lovely-professional-university-pharmacy.html':'LPU Pharmacy',
-            'lovely-professional-university-design.html':'LPU Design',
-            'lovely-professional-university-mtech.html':'LPU M.Tech',
-            'lovely-professional-university-admission.html':'LPU Admission',
-            'lovely-professional-university-fees-scholarships.html':'LPU Fees & Scholarships',
-            'lovely-professional-university-placements.html':'LPU Placements',
-            'lovely-professional-university-hostel.html':'LPU Hostel',
-          }
-          groups = [
-            ('University', [('lovely-professional-university.html','LPU Overview')]),
-            ('Popular Course Pages', [(k,v) for k,v in pages.items() if k in {
-              'lovely-professional-university-btech.html','lovely-professional-university-mba.html','lovely-professional-university-bba.html','lovely-professional-university-bca.html','lovely-professional-university-mca.html','lovely-professional-university-law.html','lovely-professional-university-pharmacy.html','lovely-professional-university-design.html','lovely-professional-university-mtech.html'}]),
-            ('Dedicated Decision / Intent Pages', [(k,v) for k,v in pages.items() if k in {
-              'lovely-professional-university-admission.html','lovely-professional-university-fees-scholarships.html','lovely-professional-university-placements.html','lovely-professional-university-hostel.html'}]),
+          import re
+          pages = [
+            'lovely-professional-university.html','lovely-professional-university-btech.html','lovely-professional-university-mba.html','lovely-professional-university-bba.html','lovely-professional-university-bca.html','lovely-professional-university-mca.html','lovely-professional-university-law.html','lovely-professional-university-pharmacy.html','lovely-professional-university-design.html','lovely-professional-university-mtech.html','lovely-professional-university-admission.html','lovely-professional-university-fees-scholarships.html','lovely-professional-university-placements.html','lovely-professional-university-hostel.html'
           ]
-          nav = ['<section class="main-section" id="lpu-pages"><h2>Explore LPU: Related Student Guides</h2><p>Use these related pages to compare LPU programmes, admission, fees, placements and hostel costs. Each page links back to the relevant LPU guides.</p>']
-          for heading, items in groups:
-              nav.append(f'<h3>{heading}</h3><div class="programme-grid">')
-              for filename, label in items:
-                  nav.append(f'<div class="programme-card"><h3><a class="programme-link" href="{filename}">{label}</a></h3><p>Detailed student guide with admission, fees, career, placements and decision-focused information.</p></div>')
-              nav.append('</div>')
-          nav.append('</section><hr>')
-          nav_html=''.join(nav)
+          links = {
+            'overview':'lovely-professional-university.html','btech':'lovely-professional-university-btech.html','mba':'lovely-professional-university-mba.html','bba':'lovely-professional-university-bba.html','bca':'lovely-professional-university-bca.html','mca':'lovely-professional-university-mca.html','law':'lovely-professional-university-law.html','pharmacy':'lovely-professional-university-pharmacy.html','design':'lovely-professional-university-design.html','mtech':'lovely-professional-university-mtech.html','admission':'lovely-professional-university-admission.html','fees':'lovely-professional-university-fees-scholarships.html','placements':'lovely-professional-university-placements.html','hostel':'lovely-professional-university-hostel.html'
+          }
+          plans = {
+            'lovely-professional-university.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('BCA',links['bca']),('MCA',links['mca']),('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-btech.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-mba.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-bba.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-bca.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-mca.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-law.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-pharmacy.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-design.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-mtech.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-admission.html': [('B.Tech',links['btech']),('MBA',links['mba']),('fees',links['fees']),('placements',links['placements'])],
+            'lovely-professional-university-fees-scholarships.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('BCA',links['bca']),('hostel',links['hostel']),('admission',links['admission'])],
+            'lovely-professional-university-placements.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('BCA',links['bca']),('fees',links['fees']),('hostel',links['hostel'])],
+            'lovely-professional-university-hostel.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('fees',links['fees']),('admission',links['admission'])],
+          }
+          section_re = re.compile(r'<section\b[^>]*\bid=["\']lpu-pages["\'][^>]*>.*?</section>\s*(?:<hr\s*/?>)?', re.I|re.S)
+          hero_label_re = re.compile(r'<(?:div|span|p)\b[^>]*class=["\'][^"\']*(?:hero-(?:kicker|eyebrow|label|small-title|program-label)|hero-kicker|hero-eyebrow)[^"\']*["\'][^>]*>.*?</(?:div|span|p)>\s*', re.I|re.S)
+          p_re = re.compile(r'<p\b[^>]*>.*?</p>', re.I|re.S)
           changed=[]
           for filename in pages:
-              p=Path(filename)
-              if not p.exists():
-                  continue
-              text=p.read_text(encoding='utf-8')
-              if 'id="lpu-pages"' in text:
-                  continue
-              marker='<section class="main-section" id="faq">'
-              if marker not in text:
-                  marker='<section class="main-section" id="faq"'
-              if marker not in text:
-                  continue
-              text=text.replace(marker, nav_html+marker, 1)
-              p.write_text(text, encoding='utf-8')
-              changed.append(filename)
-          if changed:
-              print('Updated:', ', '.join(changed))
-          else:
-              print('No LPU pages needed navigation changes.')
-      - name: Commit LPU navigation
+            p=Path(filename)
+            if not p.exists(): continue
+            text=p.read_text(encoding='utf-8'); original=text
+            text=section_re.sub('',text)
+            text=hero_label_re.sub('',text)
+            for phrase,href in plans.get(filename,[]):
+              if f'href="{href}"' in text: continue
+              for m in p_re.finditer(text):
+                para=m.group(0); pm=re.search(re.escape(phrase),para,re.I)
+                if not pm: continue
+                before=para[:pm.start()]
+                if before.lower().rfind('<a ') > before.lower().rfind('</a>'): continue
+                anchor=f'<a class="programme-link" href="{href}">{pm.group(0)}</a>'
+                para2=para[:pm.start()]+anchor+para[pm.end():]
+                text=text[:m.start()]+para2+text[m.end():]
+                break
+            if text!=original:
+              p.write_text(text,encoding='utf-8'); changed.append(filename)
+          print('Updated:',', '.join(changed) if changed else 'No LPU pages changed.')
+      - name: Commit LPU architecture cleanup
         run: |
-          git config user.name 'LPU Cluster Navigation Bot'
+          git config user.name 'LPU Content Architecture Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add lovely-professional-university*.html
-          if git diff --cached --quiet; then
-            echo 'No navigation changes to commit.'
-          else
-            git commit -m 'Add LPU navigation and reverse links'
-            git push
-          fi
+          if git diff --cached --quiet; then echo 'No LPU content changes to commit.'; else git commit -m 'Remove forced LPU navigation and add contextual links'; git push; fi
