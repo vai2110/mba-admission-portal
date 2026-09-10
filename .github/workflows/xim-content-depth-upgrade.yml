@@ -1,0 +1,91 @@
+name: XIM content depth upgrade
+
+on:
+  push:
+    paths:
+      - 'xim-university*.html'
+      - '.github/workflows/xim-content-depth-upgrade.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upgrade XIM pages
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          files = sorted(Path('.').glob('xim-university*.html'))
+          changed = []
+
+          discussion = {
+            'xim-university-bhubaneswar.html': '''<section class="main-section student-discussion" id="student-discussions"><h2>What Students and Applicants Discuss About XIM University</h2><p>Public student discussions around XIM frequently focus on three practical questions: whether the fee is justified by placements, how MBA-BM and MBA-HRM compare with the specialised programmes, and what day-to-day campus life is actually like. These discussions are useful for identifying questions to ask, but they should not be treated as official placement or admission data.</p><div class="two-column"><div class="pro-box"><h3>What comes up positively</h3><ul><li>Strong interest in the XIMB MBA-BM brand and alumni network.</li><li>Students often discuss the value of internships and PPO opportunities.</li><li>Several applicants compare XIMB BM with newer IIMs and other private B-schools.</li></ul></div><div class="warning-box"><h3>What applicants question</h3><ul><li>High total cost including hostel and mess.</li><li>Whether the headline package represents the typical student outcome.</li><li>Differences between BM/HRM and the specialised XIM University programmes.</li></ul></div></div><p><strong>Best way to use these discussions:</strong> treat them as a checklist for your own due diligence. Verify programme-specific placement reports, fees, hostel rules and admission requirements from XIM before making a final decision.</p><p class="discussion-source">Discussion sources: <a class="programme-link" href="https://www.reddit.com/r/CATpreparation/comments/1hjyffj/ximb_bm_reality/" rel="noopener" target="_blank">XIMB BM placement discussion ↗</a> · <a class="programme-link" href="https://www.reddit.com/r/CATpreparation/comments/1ufq9sb/ximb_application_mba_still_open/" rel="noopener" target="_blank">2026 XIM application discussion ↗</a></p></section><hr/>''',
+            'xim-university-placements.html': '''<section class="main-section student-discussion" id="student-discussions"><h2>What Students Discuss About XIM Placements</h2><p>Student and applicant discussions show that placement questions are usually more detailed than “What is the highest package?” People ask about the realistic average, role quality, PPO conversion, recruiter mix, programme differences and whether the total MBA cost makes sense against likely outcomes.</p><div class="decision-list"><div class="decision-item"><strong>ROI concern</strong><span>Applicants frequently compare the total residential cost with median or average compensation rather than the highest CTC alone.</span></div><div class="decision-item"><strong>Role quality</strong><span>Students ask which sectors and functions dominate hiring and whether the role matches their career target.</span></div><div class="decision-item"><strong>Programme difference</strong><span>BM, HRM, RM and other specialised programmes should be evaluated separately because recruiter pools and career paths differ.</span></div><div class="decision-item"><strong>Internship → PPO</strong><span>Summer placement quality and conversion to final offers are recurring student concerns.</span></div></div><p class="discussion-source">Discussion examples: <a class="programme-link" href="https://www.reddit.com/r/CATpreparation/comments/1s972u4/ximb_mba_bm_student_ama/" rel="noopener" target="_blank">current MBA-BM student AMA ↗</a> · <a class="programme-link" href="https://www.reddit.com/r/CATpreparation/comments/1r71shw/fee_realisation_hits_hard/" rel="noopener" target="_blank">fee and ROI discussion ↗</a></p></section><hr/>''',
+          }
+
+          generic = '''<section class="main-section student-discussion" id="student-discussions"><h2>Student Discussion: Questions Worth Checking Before You Decide</h2><p>Student discussions about XIM often go beyond rankings and brochures. Applicants commonly compare the programme's career outcomes, total cost, campus experience and the value of the specific specialisation they are considering. These discussions are useful for spotting questions to investigate, but they are opinions rather than official university data.</p><div class="two-column"><div class="pro-box"><h3>Questions students commonly ask</h3><ul><li>Is this programme a good fit for my target career?</li><li>What roles do students actually pursue after graduation?</li><li>How much should I budget beyond the published tuition fee?</li></ul></div><div class="warning-box"><h3>What to verify independently</h3><ul><li>Latest programme-specific placement outcomes.</li><li>Current fees, hostel and mess charges.</li><li>Entrance tests, eligibility and selection rules.</li></ul></div></div></section><hr/>'''
+
+          placement_depth = '''<section class="main-section" id="placement-depth"><h2>XIM University Placements 2025: Deeper Salary and Recruiter View</h2><p>The latest widely reported final-placement data for the 2023–25 management batch shows substantial differences across XIM programmes. MBA-BM reported a ₹32.80 LPA highest package, ₹18.25 LPA average and ₹17.82 LPA median. MBA-HRM reported ₹30 LPA highest, ₹16.02 LPA average and ₹16 LPA median. MBA-RM reported ₹20.40 LPA highest, ₹11.50 LPA average and ₹11.10 LPA median, while MBA-SM reported ₹21 LPA highest and ₹12.35 LPA average. These figures are programme-specific and should not be combined into one university-wide “average”.</p><div class="highlight-grid"><div class="highlight"><strong>₹32.80 LPA</strong><span>MBA-BM highest package, 2025</span></div><div class="highlight"><strong>₹18.25 LPA</strong><span>MBA-BM average package, 2025</span></div><div class="highlight"><strong>₹17.82 LPA</strong><span>MBA-BM median package, 2025</span></div></div><div class="table-wrapper"><table><tr><th>Programme</th><th>Highest package</th><th>Average package</th><th>Median package</th></tr><tr><td>MBA-BM</td><td>₹32.80 LPA</td><td>₹18.25 LPA</td><td>₹17.82 LPA</td></tr><tr><td>MBA-HRM</td><td>₹30.00 LPA</td><td>₹16.02 LPA</td><td>₹16.00 LPA</td></tr><tr><td>MBA-RM</td><td>₹20.40 LPA</td><td>₹11.50 LPA</td><td>₹11.10 LPA</td></tr><tr><td>MBA-SM</td><td>₹21.00 LPA</td><td>₹12.35 LPA</td><td>₹10.56 LPA</td></tr><tr><td>MBA-UMG</td><td>₹14.00 LPA</td><td>₹10.00 LPA</td><td>Not reported in the cited dataset</td></tr><tr><td>MMS-BF</td><td>₹19.75 LPA</td><td>₹11.30 LPA</td><td>₹10.50 LPA</td></tr></table></div><h3>Which functions and sectors matter for MBA-BM?</h3><p>Reported 2025 MBA-BM data shows hiring across consulting, finance, marketing, systems and operations, with BFSI and consulting among the major sectors. Domain-level compensation also varied: finance averaged about ₹19.03 LPA, operations about ₹19.94 LPA, marketing about ₹18.33 LPA, systems about ₹18.12 LPA and consulting about ₹17.70 LPA. The important takeaway is that your target function can matter almost as much as the headline college average.</p><h3>What is confirmed for the 2026 cycle?</h3><p>XIM's official April 2026 update says MBA-BM and MBA-HRM students of the 2025–27 batch achieved 100% summer placements. XIM also reported 100% summer internship placements for MBA-RM in May 2026, with internships across agribusiness, BFSI, FMCG and rural-development organisations. Summer placement is an internship outcome, so it should not be presented as final-placement salary data.</p><div class="answer-box"><strong>How a student should read XIM placement numbers</strong><p>Use the median to understand the middle of the batch, the average to understand overall compensation, and the recruiter/function mix to judge career fit. Treat the highest package as an exceptional outcome unless the placement report shows how widely such compensation was distributed.</p></div><p class="discussion-source">Primary placement updates: <a class="programme-link" href="https://xim.edu.in/summer-placements-2026/" rel="noopener" target="_blank">XIM Summer Placements 2026 ↗</a> · <a class="programme-link" href="https://xim.edu.in/summer-placements-mba-rm-2026/" rel="noopener" target="_blank">MBA-RM Summer Placements 2026 ↗</a></p></section><hr/>'''
+
+          for p in files:
+              s = p.read_text(encoding='utf-8')
+              original = s
+
+              # Enforce accordion class on every XIM FAQ item.
+              s = re.sub(r'class="faq-item(?! accordion)"', 'class="faq-item accordion"', s)
+              s = re.sub(r'class="faq-item\s+(?![^\"]*accordion)[^\"]*"', lambda m: m.group(0).replace('faq-item', 'faq-item accordion', 1), s)
+
+              # Add the reference FAQ accordion behaviour if missing.
+              if "document.querySelectorAll('.accordion h3')" not in s:
+                  js = "<script>document.querySelectorAll('.accordion h3').forEach(h=>{h.setAttribute('tabindex','0');h.setAttribute('role','button');h.setAttribute('aria-expanded','true');h.addEventListener('click',()=>{const p=h.nextElementSibling;const open=!p.hidden;p.hidden=open;h.setAttribute('aria-expanded',String(!open))});h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();h.click()}})});document.querySelectorAll('.mobile-on-page details a').forEach(a=>a.addEventListener('click',()=>a.closest('details').open=false));</script>"
+                  s = s.replace('</body>', js + '</body>')
+
+              # Add student discussion section before FAQ, once per page.
+              if 'id="student-discussions"' not in s:
+                  block = discussion.get(p.name, generic)
+                  marker = '<section class="main-section" id="faq">'
+                  if marker in s:
+                      s = s.replace(marker, block + marker, 1)
+                  else:
+                      s = s.replace('</main>', block + '</main>', 1)
+
+              # Add deeper placement analysis to both overview and dedicated placement page.
+              if p.name == 'xim-university-placements.html' and 'id="placement-depth"' not in s:
+                  marker = '<section class="main-section" id="faq">'
+                  if marker in s:
+                      s = s.replace(marker, placement_depth + marker, 1)
+                  else:
+                      s = s.replace('</main>', placement_depth + '</main>', 1)
+              elif p.name == 'xim-university-bhubaneswar.html' and 'id="placement-depth"' not in s:
+                  overview_depth = placement_depth.replace('XIM University Placements 2025: Deeper Salary and Recruiter View','XIM University Placements: What the Numbers Mean for Students')
+                  marker = '<section class="main-section" id="faq">'
+                  if marker in s:
+                      s = s.replace(marker, overview_depth + marker, 1)
+
+              # Add placement-depth navigation on the dedicated placement page.
+              if p.name == 'xim-university-placements.html' and 'href="#placement-depth"' not in s:
+                  s = s.replace('<a href="#fit">Programme-wise fit</a>', '<a href="#fit">Programme-wise fit</a><a href="#placement-depth">Placement outcomes</a>')
+
+              if s != original:
+                  p.write_text(s, encoding='utf-8')
+                  changed.append(str(p))
+
+          print('Changed:', ', '.join(changed) if changed else 'none')
+          if not changed:
+              raise SystemExit(0)
+
+      - name: Commit XIM upgrades
+        if: success()
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name 'MBA Portal XIM Content Agent'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add xim-university*.html
+          git commit -m 'Upgrade XIM FAQ, placement depth and student discussions'
+          git push
