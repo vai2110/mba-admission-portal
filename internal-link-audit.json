@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T18:05:32.921618+00:00",
+  "generated_at": "2026-09-10T18:24:11.509658+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 530,
-    "pages_with_internal_links": 512,
+    "pages_checked": 541,
+    "pages_with_internal_links": 523,
     "broken_local_links": 3,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 73,
     "cluster_reciprocal_gaps": 192,
-    "zero_incoming_pages": 55,
+    "zero_incoming_pages": 57,
     "role_counts": {
-      "programme": 241,
+      "programme": 243,
       "placement": 77,
-      "overview_or_hub": 212
+      "overview_or_hub": 221
     }
   },
   "college_clusters": [
@@ -2251,6 +2251,16 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "cusat-pg-mtech-2026.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "cusat-science-marine-2026.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "ggsipu-bba.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -2581,6 +2591,15 @@
     "cmat.html": 2,
     "college.html": 3,
     "colleges.html": 70,
+    "cusat-admission-2026.html": 8,
+    "cusat-btech-2026.html": 7,
+    "cusat-campus-hostel.html": 2,
+    "cusat-fees-scholarships-2026.html": 5,
+    "cusat-kochi.html": 12,
+    "cusat-law-2026.html": 1,
+    "cusat-mba-2026.html": 5,
+    "cusat-mca-2026.html": 3,
+    "cusat-placements-2026.html": 3,
     "department-management-studies-nit-trichy-mba.html": 2,
     "department-management-studies-nit-trichy-placements.html": 4,
     "department-management-studies-nit-trichy.html": 3,
@@ -3060,6 +3079,17 @@
     "cmat.html": 8,
     "college.html": 10,
     "colleges.html": 9,
+    "cusat-admission-2026.html": 4,
+    "cusat-btech-2026.html": 4,
+    "cusat-campus-hostel.html": 4,
+    "cusat-fees-scholarships-2026.html": 5,
+    "cusat-kochi.html": 5,
+    "cusat-law-2026.html": 4,
+    "cusat-mba-2026.html": 4,
+    "cusat-mca-2026.html": 4,
+    "cusat-pg-mtech-2026.html": 4,
+    "cusat-placements-2026.html": 4,
+    "cusat-science-marine-2026.html": 4,
     "department-management-studies-nit-trichy-mba.html": 5,
     "department-management-studies-nit-trichy-placements.html": 4,
     "department-management-studies-nit-trichy.html": 6,
