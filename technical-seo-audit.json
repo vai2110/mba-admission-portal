@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-10T10:55:46.209019+00:00",
+  "generated_at": "2026-09-10T10:59:09.666920+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 516,
-  "pages_with_issues": 381,
+  "pages_with_issues": 385,
   "issue_counts": {
     "broken_local_links": 4,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 174,
+    "description_length": 177,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 14,
+    "jsonld": 16,
     "lang": 1,
-    "og_description": 15,
-    "og_title": 15,
-    "og_url": 15,
-    "title_length": 309,
-    "twitter_card": 20,
+    "og_description": 16,
+    "og_title": 16,
+    "og_url": 16,
+    "title_length": 313,
+    "twitter_card": 21,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -1106,31 +1106,25 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "bbau-bba-bcom-2026.html",
       "benchmark": false,
-      "title": "BBAU BBA & B.Com 2026: Admission, Fees, Eligibility",
-      "title_length": 51,
-      "description": "BBAU BBA and B.Com Hons 2026 guide with fees, duration, eligibility, admission route and student FAQs.",
-      "description_length": 102,
+      "title": "BBAU BBA & B.Com 2026: Fees, Eligibility, Admission & Career Scope",
+      "title_length": 66,
+      "description": "Detailed BBAU BBA and B.Com Hons 2026 guide with fee, seats, eligibility, CUET admission, subjects, career options, higher studies and BBA vs B.Com comparison.",
+      "description_length": 159,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-bba-bcom-2026.html",
       "canonical_count": 1,
@@ -1154,7 +1148,7 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length"
+        "title_length"
       ]
     },
     {
@@ -1176,11 +1170,11 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 1,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -1188,11 +1182,7 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
+        "description_length"
       ]
     },
     {
@@ -1200,8 +1190,8 @@
       "benchmark": false,
       "title": "BBAU Courses & Fees 2026: UG, PG, B.Tech, MBA, MCA",
       "title_length": 50,
-      "description": "BBAU Lucknow courses and fees 2026 with official programme duration, eligibility and semester fee examples for B.Tech, BBA, B.Com, MBA, MCA and more.",
-      "description_length": 149,
+      "description": "Detailed BBAU Lucknow courses and fees 2026 guide with duration, intake, eligibility and published semester tuition for B.Tech, BBA, B.Com Hons, MCA, MBA and other programmes.",
+      "description_length": 175,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-courses-fees-2026.html",
       "canonical_count": 1,
@@ -1224,15 +1214,17 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "description_length"
+      ]
     },
     {
       "file": "bbau-hostel-campus.html",
       "benchmark": false,
-      "title": "BBAU Hostel & Campus 2026: Facilities, Allotment & Student Life",
-      "title_length": 63,
-      "description": "BBAU Lucknow hostel and campus guide covering location, hostel admission, allotment, rules, student life and practical FAQs.",
-      "description_length": 124,
+      "title": "BBAU Hostel & Campus 2026: Fees, Allotment, Facilities, Rules & Student Life",
+      "title_length": 76,
+      "description": "Detailed BBAU Lucknow hostel and campus guide covering location, hostel application, 2026-27 allotment, eligibility, documents, rules, facilities, student life and practical questions.",
+      "description_length": 184,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-hostel-campus.html",
       "canonical_count": 1,
@@ -1245,17 +1237,25 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "title_length",
+        "description_length",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
     },
     {
       "file": "bbau-lucknow.html",
@@ -1293,10 +1293,10 @@
     {
       "file": "bbau-mba-2026.html",
       "benchmark": false,
-      "title": "BBAU MBA 2026: Admission, Fees, Eligibility & Specialisations",
-      "title_length": 61,
-      "description": "BBAU MBA 2026 guide covering specialisations, eligibility, fees, admission route, placement data and student FAQs.",
-      "description_length": 114,
+      "title": "BBAU MBA 2026: Admission, Fees, Eligibility, Specialisations & Placements",
+      "title_length": 73,
+      "description": "Detailed BBAU MBA 2026 guide covering specialisations, eligibility, admission route, fees, intake, curriculum, placement data and who should choose the programme.",
+      "description_length": 162,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-mba-2026.html",
       "canonical_count": 1,
@@ -1320,16 +1320,16 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length"
+        "title_length"
       ]
     },
     {
       "file": "bbau-mca-2026.html",
       "benchmark": false,
-      "title": "BBAU MCA 2026: Admission, Fees, Eligibility & Placements",
-      "title_length": 56,
-      "description": "BBAU MCA 2026 guide with eligibility, regular and paid-seat fees, admission route, curriculum context and placement data.",
-      "description_length": 121,
+      "title": "BBAU MCA 2026: Admission, Fees, Eligibility, Seats & Career Scope",
+      "title_length": 65,
+      "description": "Detailed BBAU MCA 2026 guide covering eligibility for BCA, BSc, BCom and BA graduates, Mathematics requirement, regular and paid-seat fees, admission, curriculum and career scope.",
+      "description_length": 179,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-mca-2026.html",
       "canonical_count": 1,
@@ -1352,15 +1352,17 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "description_length"
+      ]
     },
     {
       "file": "bbau-placements-2026.html",
       "benchmark": false,
-      "title": "BBAU Placements 2026: Salary, Placement Rate & NIRF Data",
-      "title_length": 56,
-      "description": "BBAU Lucknow placements 2026 guide using official NIRF data, including programme-level placed students and median salaries for UG and PG courses.",
-      "description_length": 145,
+      "title": "BBAU Placements 2026: Salary, Median, Placement Rate & NIRF Data",
+      "title_length": 64,
+      "description": "Detailed BBAU placements 2026 analysis using official NIRF disclosures, with management and UG placement trends, median salaries, placed counts and guidance for B.Tech, MBA and MCA students.",
+      "description_length": 190,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-placements-2026.html",
       "canonical_count": 1,
@@ -1373,48 +1375,63 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "description_length",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
     },
     {
       "file": "bbau-scholarships-rankings-reviews.html",
       "benchmark": false,
-      "title": "BBAU Scholarships, Rankings & Reviews 2026",
-      "title_length": 42,
-      "description": "BBAU Lucknow scholarships, NIRF 2025 rankings, accreditation, student review framework and practical pros and cons for 2026 applicants.",
-      "description_length": 135,
+      "title": "BBAU Rankings 2026, Scholarships & Reviews: NIRF, NAAC & Student Guide",
+      "title_length": 70,
+      "description": "Detailed BBAU Lucknow rankings, scholarships and student review guide with NIRF 2025 category-wise ranks, NAAC A++, scholarship sources, pros, limitations and decision framework.",
+      "description_length": 178,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/bbau-scholarships-rankings-reviews.html",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "BBAU Scholarships, Rankings & Reviews 2026",
+      "h1": "BBAU Rankings, Scholarships & Reviews 2026",
       "lang": "en",
       "viewport": true,
       "robots": [
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "title_length",
+        "description_length",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
     },
     {
       "file": "bhu-ba-hons.html",
