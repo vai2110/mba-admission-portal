@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T06:33:19.168716+00:00",
+  "generated_at": "2026-09-10T06:33:51.672975+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 416,
-    "pages_with_internal_links": 398,
-    "broken_local_links": 6,
+    "pages_checked": 418,
+    "pages_with_internal_links": 400,
+    "broken_local_links": 4,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 67,
     "cluster_reciprocal_gaps": 140,
@@ -12,7 +12,7 @@
     "role_counts": {
       "programme": 205,
       "placement": 70,
-      "overview_or_hub": 141
+      "overview_or_hub": 143
     }
   },
   "college_clusters": [
@@ -1685,16 +1685,6 @@
     },
     {
       "source": "icfai-university-hyderabad.html",
-      "href": "icfai-university-hyderabad-admission.html",
-      "target": "icfai-university-hyderabad-admission.html"
-    },
-    {
-      "source": "icfai-university-hyderabad.html",
-      "href": "icfai-university-hyderabad-fees.html",
-      "target": "icfai-university-hyderabad-fees.html"
-    },
-    {
-      "source": "icfai-university-hyderabad.html",
       "href": "icfai-university-hyderabad-placements.html",
       "target": "icfai-university-hyderabad-placements.html"
     },
@@ -2014,11 +2004,13 @@
     "great-lakes-gurgaon-pgpm.html": 4,
     "great-lakes-gurgaon-placements.html": 8,
     "great-lakes-gurgaon.html": 7,
+    "icfai-university-hyderabad-admission.html": 1,
     "icfai-university-hyderabad-bba.html": 1,
     "icfai-university-hyderabad-bca.html": 1,
     "icfai-university-hyderabad-btech.html": 1,
-    "icfai-university-hyderabad-mba.html": 1,
-    "icfai-university-hyderabad.html": 5,
+    "icfai-university-hyderabad-fees.html": 1,
+    "icfai-university-hyderabad-mba.html": 2,
+    "icfai-university-hyderabad.html": 7,
     "iift-mba-business-analytics.html": 1,
     "iift-mba-international-business.html": 1,
     "iift-placements.html": 4,
@@ -2140,7 +2132,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 870,
+    "index.html": 874,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2393,9 +2385,11 @@
     "great-lakes-gurgaon-pgpm.html": 9,
     "great-lakes-gurgaon-placements.html": 8,
     "great-lakes-gurgaon.html": 8,
+    "icfai-university-hyderabad-admission.html": 4,
     "icfai-university-hyderabad-bba.html": 3,
     "icfai-university-hyderabad-bca.html": 3,
     "icfai-university-hyderabad-btech.html": 3,
+    "icfai-university-hyderabad-fees.html": 3,
     "icfai-university-hyderabad-mba.html": 4,
     "icfai-university-hyderabad.html": 11,
     "iift-mba-business-analytics.html": 8,
