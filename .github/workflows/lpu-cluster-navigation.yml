@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+# LPU pages are protected here because the permanent site rule is:
+# never create or retain a college-cluster / "Explore this college" strip.
+# Internal links belong naturally inside existing content paragraphs.
+
 jobs:
   cleanup-and-link:
     runs-on: ubuntu-latest
@@ -59,8 +63,7 @@ jobs:
           hero_logo_re = re.compile(r'<div\b[^>]*class=["\'][^"\']*hero-logo-box[^"\']*["\'][^>]*>.*?</div>\s*', re.I|re.S)
           hero_label_re = re.compile(r'<(?:div|span|p)\b[^>]*class=["\'][^"\']*(?:hero-(?:kicker|eyebrow|label|small-title|program-label)|hero-kicker|hero-eyebrow)[^"\']*["\'][^>]*>.*?</(?:div|span|p)>\s*', re.I|re.S)
           p_re = re.compile(r'<p\b[^>]*>.*?</p>', re.I|re.S)
-          bad_mba_link_re = re.compile(r'<a class=\\*"programme-link\\*" href=\\*"lovely-professional-university-admission\.html\\*">LPU MBA admission process</a>')
-          escaped_mba_link_re = re.compile(r'<a class=\\*"programme-link\\*" href=\\*"lovely-professional-university-admission\.html\\*">MBA admission ecosystem</a>')
+          bad_mba_link_re = re.compile(r'<a class=\\*"programme-link\\*" href=\\*"lovely-professional-university-admission\.html\\*">(?:LPU MBA admission process|MBA admission ecosystem)</a>')
 
           for path in map(Path, pages):
             if not path.exists(): continue
@@ -71,7 +74,6 @@ jobs:
             text = hero_logo_re.sub('', text)
             text = hero_label_re.sub('', text)
             text = bad_mba_link_re.sub('<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
-            text = escaped_mba_link_re.sub('<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
             text = re.sub(r'(<a class="programme-link" href="lovely-professional-university-admission\.html">)admission(</a>)s', r'\1admissions\2', text)
             path.write_text(text, encoding='utf-8')
 
@@ -98,9 +100,25 @@ jobs:
             if text != original:
               path.write_text(text,encoding='utf-8')
 
+      - name: Verify LPU contract before commit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          pages=list(Path('.').glob('lovely-professional-university*.html'))
+          for p in pages:
+              s=p.read_text(encoding='utf-8')
+              if 'college-cluster-nav' in s or 'Explore this college' in s:
+                  raise SystemExit(f'Forbidden LPU cluster navigation remains in {p.name}')
+              if 'hero-logo-box' in s:
+                  raise SystemExit(f'Forbidden LPU hero logo label remains in {p.name}')
+              if 'cite' in s or 'turn0search' in s:
+                  raise SystemExit(f'Citation/debug artifact remains in {p.name}')
+          print(f'LPU contract PASS: {len(pages)} pages')
+          PY
+
       - name: Commit LPU internal-link cleanup
         run: |
           git config user.name 'LPU Content Architecture Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add lovely-professional-university*.html
-          if git diff --cached --quiet; then echo 'No LPU pages changed.'; else git commit -m 'Finalize LPU contextual anchor markup'; git push; fi
+          if git diff --cached --quiet; then echo 'No LPU pages changed.'; else git commit -m 'Finalize LPU contextual internal links'; git push; fi
