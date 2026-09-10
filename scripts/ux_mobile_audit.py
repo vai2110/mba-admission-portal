@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json, re
 from datetime import datetime, timezone
 
+# Fresh baseline trigger: 2026-09-10
 ROOT = Path('.')
 EXCLUDE = {'404.html','content-audit.html','college-page-audit-dashboard.html','irma-deploy-trigger.html'}
 issues=[]
