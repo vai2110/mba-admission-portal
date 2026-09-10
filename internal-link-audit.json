@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T05:15:06.597480+00:00",
+  "generated_at": "2026-09-10T06:13:57.956152+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 399,
-    "pages_with_internal_links": 381,
-    "broken_local_links": 1,
+    "pages_checked": 400,
+    "pages_with_internal_links": 382,
+    "broken_local_links": 12,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 67,
     "cluster_reciprocal_gaps": 140,
@@ -12,7 +12,7 @@
     "role_counts": {
       "programme": 194,
       "placement": 69,
-      "overview_or_hub": 136
+      "overview_or_hub": 137
     }
   },
   "college_clusters": [
@@ -1682,6 +1682,61 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mba-business-management.html",
+      "target": "xim-university-mba-business-management.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mba-hrm.html",
+      "target": "xim-university-mba-hrm.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mba-rural-management.html",
+      "target": "xim-university-mba-rural-management.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mba-sustainability-management.html",
+      "target": "xim-university-mba-sustainability-management.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mba-urban-management-governance.html",
+      "target": "xim-university-mba-urban-management-governance.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mba-public-policy-management.html",
+      "target": "xim-university-mba-public-policy-management.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-mms-business-finance.html",
+      "target": "xim-university-mms-business-finance.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-admission.html",
+      "target": "xim-university-admission.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-fees.html",
+      "target": "xim-university-fees.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-hostel.html",
+      "target": "xim-university-hostel.html"
+    },
+    {
+      "source": "xim-university-bhubaneswar.html",
+      "href": "xim-university-placements.html",
+      "target": "xim-university-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -2085,7 +2140,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 836,
+    "index.html": 838,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2236,6 +2291,7 @@
     "welingkar-mumbai-rural.html": 1,
     "welingkar-mumbai.html": 14,
     "xat.html": 3,
+    "xim-university-bhubaneswar.html": 1,
     "xlri-jamshedpur-placements.html": 2,
     "xlri-jamshedpur.html": 3
   },
@@ -2619,6 +2675,7 @@
     "welingkar-mumbai-rural.html": 8,
     "welingkar-mumbai.html": 12,
     "xat.html": 8,
+    "xim-university-bhubaneswar.html": 14,
     "xlri-jamshedpur-placements.html": 7,
     "xlri-jamshedpur.html": 4
   },
