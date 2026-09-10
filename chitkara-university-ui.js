@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Mobile "On this page" menu: close it after a section link is selected.
   document.querySelectorAll('.mobile-on-page details a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function () {
       var details = link.closest('details');
@@ -7,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // FAQ accordion: one open answer at a time, keyboard accessible.
-  document.querySelectorAll('#faq .faq-item').forEach(function (item, index) {
+  document.querySelectorAll('#faq .faq-item').forEach(function (item) {
     var question = item.querySelector('h3');
     var answer = item.querySelector('p');
     if (!question || !answer) return;
@@ -20,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     question.setAttribute('tabindex', '0');
     question.setAttribute('aria-expanded', 'false');
     answer.setAttribute('aria-hidden', 'true');
+    answer.hidden = true;
 
     function toggle() {
       var isOpen = item.classList.contains('open');
@@ -29,12 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
           var q = other.querySelector('.accordion-question');
           var a = other.querySelector('.accordion-answer');
           if (q) q.setAttribute('aria-expanded', 'false');
-          if (a) a.setAttribute('aria-hidden', 'true');
+          if (a) {
+            a.setAttribute('aria-hidden', 'true');
+            a.hidden = true;
+          }
         }
       });
       item.classList.toggle('open', !isOpen);
       question.setAttribute('aria-expanded', String(!isOpen));
       answer.setAttribute('aria-hidden', String(isOpen));
+      answer.hidden = isOpen;
     }
 
     question.addEventListener('click', toggle);
