@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T06:56:02.261838+00:00",
+  "generated_at": "2026-09-10T07:05:36.844467+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 449,
-    "pages_with_internal_links": 431,
-    "broken_local_links": 33,
+    "pages_checked": 454,
+    "pages_with_internal_links": 436,
+    "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 69,
-    "cluster_reciprocal_gaps": 154,
-    "zero_incoming_pages": 44,
+    "college_clusters_detected": 70,
+    "cluster_reciprocal_gaps": 157,
+    "zero_incoming_pages": 45,
     "role_counts": {
       "programme": 215,
-      "placement": 73,
-      "overview_or_hub": 161
+      "placement": 74,
+      "overview_or_hub": 165
     }
   },
   "college_clusters": [
@@ -28,6 +28,23 @@
         "alliance-university-btech-ai-data-science.html",
         "alliance-university-btech-cse.html",
         "alliance-university-mba.html"
+      ]
+    },
+    {
+      "overview": "amity-university-noida.html",
+      "placement": "amity-university-noida-placements.html",
+      "programme_count": 10,
+      "programmes": [
+        "amity-university-noida-admission.html",
+        "amity-university-noida-bba.html",
+        "amity-university-noida-bca.html",
+        "amity-university-noida-btech.html",
+        "amity-university-noida-fees.html",
+        "amity-university-noida-hostel.html",
+        "amity-university-noida-law.html",
+        "amity-university-noida-mba.html",
+        "amity-university-noida-mca.html",
+        "amity-university-noida-mtech.html"
       ]
     },
     {
@@ -746,6 +763,31 @@
       "source": "alliance-university-bcom.html",
       "missing": [
         "alliance-university-placements.html"
+      ]
+    },
+    {
+      "source": "amity-university-noida.html",
+      "missing": [
+        "amity-university-noida-mca.html"
+      ]
+    },
+    {
+      "source": "amity-university-noida-placements.html",
+      "missing": [
+        "amity-university-noida-admission.html",
+        "amity-university-noida-bba.html",
+        "amity-university-noida-bca.html",
+        "amity-university-noida-fees.html",
+        "amity-university-noida-hostel.html",
+        "amity-university-noida-law.html",
+        "amity-university-noida-mca.html",
+        "amity-university-noida-mtech.html"
+      ]
+    },
+    {
+      "source": "amity-university-noida-hostel.html",
+      "missing": [
+        "amity-university-noida-placements.html"
       ]
     },
     {
@@ -1807,166 +1849,6 @@
   ],
   "broken_local_links": [
     {
-      "source": "amity-university-noida-bba.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-bba.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-bba.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-bba.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida-bca.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-bca.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-bca.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-bca.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida-btech.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-btech.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-btech.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-btech.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida-btech.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-law.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-law.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-law.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-law.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida-mba.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-mba.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-mba.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-mba.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida-mba.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-mtech.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-mtech.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida-mtech.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida-mtech.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida.html",
-      "href": "amity-university-noida-admission.html",
-      "target": "amity-university-noida-admission.html"
-    },
-    {
-      "source": "amity-university-noida.html",
-      "href": "amity-university-noida-fees.html",
-      "target": "amity-university-noida-fees.html"
-    },
-    {
-      "source": "amity-university-noida.html",
-      "href": "amity-university-noida-placements.html",
-      "target": "amity-university-noida-placements.html"
-    },
-    {
-      "source": "amity-university-noida.html",
-      "href": "amity-university-noida-hostel.html",
-      "target": "amity-university-noida-hostel.html"
-    },
-    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -1980,6 +1862,11 @@
     }
   ],
   "zero_incoming_pages": [
+    {
+      "page": "amity-university-noida-mca.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
     {
       "page": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
       "role": "programme",
@@ -2211,13 +2098,17 @@
     "alliance-university-mba.html": 12,
     "alliance-university-placements.html": 10,
     "alliance-university.html": 13,
+    "amity-university-noida-admission.html": 18,
     "amity-university-noida-bba.html": 1,
     "amity-university-noida-bca.html": 1,
-    "amity-university-noida-btech.html": 1,
+    "amity-university-noida-btech.html": 2,
+    "amity-university-noida-fees.html": 11,
+    "amity-university-noida-hostel.html": 2,
     "amity-university-noida-law.html": 1,
-    "amity-university-noida-mba.html": 1,
+    "amity-university-noida-mba.html": 3,
     "amity-university-noida-mtech.html": 1,
-    "amity-university-noida.html": 6,
+    "amity-university-noida-placements.html": 13,
+    "amity-university-noida.html": 11,
     "amu-aligarh-placements.html": 7,
     "amu-aligarh.html": 5,
     "amu-barch.html": 6,
@@ -2435,7 +2326,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 919,
+    "index.html": 924,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2615,12 +2506,17 @@
     "alliance-university-mba.html": 8,
     "alliance-university-placements.html": 7,
     "alliance-university.html": 22,
+    "amity-university-noida-admission.html": 5,
     "amity-university-noida-bba.html": 6,
     "amity-university-noida-bca.html": 6,
     "amity-university-noida-btech.html": 7,
+    "amity-university-noida-fees.html": 5,
+    "amity-university-noida-hostel.html": 4,
     "amity-university-noida-law.html": 6,
     "amity-university-noida-mba.html": 7,
+    "amity-university-noida-mca.html": 6,
     "amity-university-noida-mtech.html": 6,
+    "amity-university-noida-placements.html": 5,
     "amity-university-noida.html": 14,
     "amu-aligarh-placements.html": 6,
     "amu-aligarh.html": 7,
