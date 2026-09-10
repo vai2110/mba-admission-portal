@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T07:14:09.545055+00:00",
+  "generated_at": "2026-09-10T07:16:23.212054+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 463,
-    "pages_with_internal_links": 445,
-    "broken_local_links": 9,
+    "pages_checked": 470,
+    "pages_with_internal_links": 452,
+    "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 70,
-    "cluster_reciprocal_gaps": 157,
-    "zero_incoming_pages": 45,
+    "college_clusters_detected": 71,
+    "cluster_reciprocal_gaps": 170,
+    "zero_incoming_pages": 50,
     "role_counts": {
-      "programme": 218,
-      "placement": 74,
-      "overview_or_hub": 171
+      "programme": 222,
+      "placement": 75,
+      "overview_or_hub": 173
     }
   },
   "college_clusters": [
@@ -124,6 +124,27 @@
         "fore-school-management-pgdm-fm.html",
         "fore-school-management-pgdm-ib.html",
         "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "overview": "ggsipu.html",
+      "placement": "ggsipu-placements.html",
+      "programme_count": 14,
+      "programmes": [
+        "ggsipu-admission.html",
+        "ggsipu-bba-bca.html",
+        "ggsipu-bba.html",
+        "ggsipu-bca.html",
+        "ggsipu-btech.html",
+        "ggsipu-fees.html",
+        "ggsipu-hostel.html",
+        "ggsipu-law.html",
+        "ggsipu-llb-llm.html",
+        "ggsipu-mba-disaster-management.html",
+        "ggsipu-mba-fire-industrial-safety.html",
+        "ggsipu-mba.html",
+        "ggsipu-mca.html",
+        "ggsipu-mtech.html"
       ]
     },
     {
@@ -868,6 +889,100 @@
         "fore-school-management-pgdm-fm.html",
         "fore-school-management-pgdm-ib.html",
         "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "source": "ggsipu.html",
+      "missing": [
+        "ggsipu-bba.html",
+        "ggsipu-bca.html",
+        "ggsipu-hostel.html",
+        "ggsipu-llb-llm.html",
+        "ggsipu-mba-disaster-management.html",
+        "ggsipu-mba-fire-industrial-safety.html"
+      ]
+    },
+    {
+      "source": "ggsipu-placements.html",
+      "missing": [
+        "ggsipu-bba-bca.html",
+        "ggsipu-bba.html",
+        "ggsipu-bca.html",
+        "ggsipu-btech.html",
+        "ggsipu-fees.html",
+        "ggsipu-hostel.html",
+        "ggsipu-law.html",
+        "ggsipu-llb-llm.html",
+        "ggsipu-mba-disaster-management.html",
+        "ggsipu-mba-fire-industrial-safety.html",
+        "ggsipu-mca.html",
+        "ggsipu-mtech.html"
+      ]
+    },
+    {
+      "source": "ggsipu-bba-bca.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-bba.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-bca.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-btech.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-fees.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-hostel.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-law.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-llb-llm.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-mba-disaster-management.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-mba-fire-industrial-safety.html",
+      "missing": [
+        "ggsipu-placements.html"
+      ]
+    },
+    {
+      "source": "ggsipu-mtech.html",
+      "missing": [
+        "ggsipu-placements.html"
       ]
     },
     {
@@ -1849,46 +1964,6 @@
   ],
   "broken_local_links": [
     {
-      "source": "ggsipu-admission.html",
-      "href": "ggsipu-placements.html",
-      "target": "ggsipu-placements.html"
-    },
-    {
-      "source": "ggsipu-fees.html",
-      "href": "ggsipu-hostel.html",
-      "target": "ggsipu-hostel.html"
-    },
-    {
-      "source": "ggsipu-fees.html",
-      "href": "ggsipu-hostel.html",
-      "target": "ggsipu-hostel.html"
-    },
-    {
-      "source": "ggsipu-mba.html",
-      "href": "ggsipu-placements.html",
-      "target": "ggsipu-placements.html"
-    },
-    {
-      "source": "ggsipu-mba.html",
-      "href": "ggsipu-placements.html",
-      "target": "ggsipu-placements.html"
-    },
-    {
-      "source": "ggsipu-mca.html",
-      "href": "ggsipu-placements.html",
-      "target": "ggsipu-placements.html"
-    },
-    {
-      "source": "ggsipu.html",
-      "href": "ggsipu-placements.html",
-      "target": "ggsipu-placements.html"
-    },
-    {
-      "source": "ggsipu.html",
-      "href": "ggsipu-placements.html",
-      "target": "ggsipu-placements.html"
-    },
-    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -1929,6 +2004,31 @@
     },
     {
       "page": "birla-institute-management-technology-pgdm-online.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ggsipu-bba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ggsipu-bca.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ggsipu-llb-llm.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ggsipu-mba-disaster-management.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ggsipu-mba-fire-industrial-safety.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2202,15 +2302,17 @@
     "fore-school-management-pgdm.html": 1,
     "fore-school-management-placements.html": 11,
     "fore-school-management.html": 6,
-    "ggsipu-admission.html": 10,
+    "ggsipu-admission.html": 17,
     "ggsipu-bba-bca.html": 1,
     "ggsipu-btech.html": 1,
-    "ggsipu-fees.html": 13,
-    "ggsipu-law.html": 1,
-    "ggsipu-mba.html": 1,
+    "ggsipu-fees.html": 23,
+    "ggsipu-hostel.html": 2,
+    "ggsipu-law.html": 2,
+    "ggsipu-mba.html": 2,
     "ggsipu-mca.html": 1,
     "ggsipu-mtech.html": 1,
-    "ggsipu.html": 8,
+    "ggsipu-placements.html": 6,
+    "ggsipu.html": 15,
     "glim-chennai-pgdm.html": 3,
     "glim-chennai-pgpm.html": 3,
     "glim-chennai-placements.html": 3,
@@ -2623,12 +2725,19 @@
     "fore-school-management.html": 9,
     "ggsipu-admission.html": 3,
     "ggsipu-bba-bca.html": 4,
+    "ggsipu-bba.html": 4,
+    "ggsipu-bca.html": 4,
     "ggsipu-btech.html": 4,
     "ggsipu-fees.html": 4,
+    "ggsipu-hostel.html": 3,
     "ggsipu-law.html": 4,
+    "ggsipu-llb-llm.html": 4,
+    "ggsipu-mba-disaster-management.html": 4,
+    "ggsipu-mba-fire-industrial-safety.html": 4,
     "ggsipu-mba.html": 6,
     "ggsipu-mca.html": 4,
     "ggsipu-mtech.html": 4,
+    "ggsipu-placements.html": 3,
     "ggsipu.html": 12,
     "glim-chennai-pgdm.html": 3,
     "glim-chennai-pgpm.html": 3,
