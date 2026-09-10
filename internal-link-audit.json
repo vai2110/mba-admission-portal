@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T06:48:40.950002+00:00",
+  "generated_at": "2026-09-10T06:49:51.735657+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 435,
-    "pages_with_internal_links": 417,
-    "broken_local_links": 17,
+    "pages_checked": 439,
+    "pages_with_internal_links": 421,
+    "broken_local_links": 15,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 68,
     "cluster_reciprocal_gaps": 149,
@@ -12,7 +12,7 @@
     "role_counts": {
       "programme": 211,
       "placement": 72,
-      "overview_or_hub": 152
+      "overview_or_hub": 156
     }
   },
   "college_clusters": [
@@ -1760,9 +1760,9 @@
       "target": "iim-ahmedabad-admission.html"
     },
     {
-      "source": "iit-ism-dhanbad-btech.html",
-      "href": "iit-ism-dhanbad-admission.html",
-      "target": "iit-ism-dhanbad-admission.html"
+      "source": "iit-ism-dhanbad-admission.html",
+      "href": "iit-ism-dhanbad-placements.html",
+      "target": "iit-ism-dhanbad-placements.html"
     },
     {
       "source": "iit-ism-dhanbad-btech.html",
@@ -1775,9 +1775,9 @@
       "target": "iit-ism-dhanbad-hostel.html"
     },
     {
-      "source": "iit-ism-dhanbad-mba-business-analytics.html",
-      "href": "iit-ism-dhanbad-admission.html",
-      "target": "iit-ism-dhanbad-admission.html"
+      "source": "iit-ism-dhanbad-fees.html",
+      "href": "iit-ism-dhanbad-hostel.html",
+      "target": "iit-ism-dhanbad-hostel.html"
     },
     {
       "source": "iit-ism-dhanbad-mba-business-analytics.html",
@@ -1795,9 +1795,19 @@
       "target": "iit-ism-dhanbad-placements.html"
     },
     {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-admission.html",
-      "target": "iit-ism-dhanbad-admission.html"
+      "source": "iit-ism-dhanbad-mca.html",
+      "href": "iit-ism-dhanbad-placements.html",
+      "target": "iit-ism-dhanbad-placements.html"
+    },
+    {
+      "source": "iit-ism-dhanbad-mca.html",
+      "href": "iit-ism-dhanbad-placements.html",
+      "target": "iit-ism-dhanbad-placements.html"
+    },
+    {
+      "source": "iit-ism-dhanbad-msc.html",
+      "href": "iit-ism-dhanbad-hostel.html",
+      "target": "iit-ism-dhanbad-hostel.html"
     },
     {
       "source": "iit-ism-dhanbad.html",
@@ -1808,26 +1818,6 @@
       "source": "iit-ism-dhanbad.html",
       "href": "iit-ism-dhanbad-mtech.html",
       "target": "iit-ism-dhanbad-mtech.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-mca.html",
-      "target": "iit-ism-dhanbad-mca.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-msc.html",
-      "target": "iit-ism-dhanbad-msc.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-admission.html",
-      "target": "iit-ism-dhanbad-admission.html"
-    },
-    {
-      "source": "iit-ism-dhanbad.html",
-      "href": "iit-ism-dhanbad-fees.html",
-      "target": "iit-ism-dhanbad-fees.html"
     },
     {
       "source": "iit-ism-dhanbad.html",
@@ -2259,10 +2249,14 @@
     "iit-delhi-dms-mba.html": 1,
     "iit-delhi-dms-placements.html": 1,
     "iit-delhi-dms.html": 3,
+    "iit-ism-dhanbad-admission.html": 9,
     "iit-ism-dhanbad-btech.html": 1,
+    "iit-ism-dhanbad-fees.html": 4,
     "iit-ism-dhanbad-mba-business-analytics.html": 2,
     "iit-ism-dhanbad-mba.html": 2,
-    "iit-ism-dhanbad.html": 3,
+    "iit-ism-dhanbad-mca.html": 1,
+    "iit-ism-dhanbad-msc.html": 1,
+    "iit-ism-dhanbad.html": 7,
     "iit-kanpur-management-sciences-m-tech.html": 1,
     "iit-kanpur-management-sciences-phd.html": 1,
     "iit-kanpur-placements.html": 2,
@@ -2289,7 +2283,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 904,
+    "index.html": 908,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2661,9 +2655,13 @@
     "iit-delhi-dms-mba.html": 1,
     "iit-delhi-dms-placements.html": 5,
     "iit-delhi-dms.html": 7,
+    "iit-ism-dhanbad-admission.html": 4,
     "iit-ism-dhanbad-btech.html": 5,
+    "iit-ism-dhanbad-fees.html": 4,
     "iit-ism-dhanbad-mba-business-analytics.html": 5,
     "iit-ism-dhanbad-mba.html": 4,
+    "iit-ism-dhanbad-mca.html": 7,
+    "iit-ism-dhanbad-msc.html": 6,
     "iit-ism-dhanbad.html": 14,
     "iit-kanpur-management-sciences-m-tech.html": 3,
     "iit-kanpur-management-sciences-phd.html": 3,
