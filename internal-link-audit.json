@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T17:24:41.831100+00:00",
+  "generated_at": "2026-09-10T04:21:09.473927+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 385,
-    "pages_with_internal_links": 367,
-    "broken_local_links": 1,
+    "pages_checked": 387,
+    "pages_with_internal_links": 369,
+    "broken_local_links": 2,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 66,
     "cluster_reciprocal_gaps": 136,
-    "zero_incoming_pages": 34,
+    "zero_incoming_pages": 35,
     "role_counts": {
-      "programme": 190,
+      "programme": 191,
       "placement": 68,
-      "overview_or_hub": 127
+      "overview_or_hub": 128
     }
   },
   "college_clusters": [
@@ -1627,6 +1627,11 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "lovely-professional-university-mba.html",
+      "href": "lovely-professional-university-placements.html",
+      "target": "lovely-professional-university-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -1799,6 +1804,11 @@
     },
     {
       "page": "jaipuria-noida.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "lovely-professional-university-mba.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2015,7 +2025,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 808,
+    "index.html": 812,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2064,6 +2074,7 @@
     "kl-university-mba.html": 7,
     "kl-university-placements.html": 9,
     "kl-university.html": 9,
+    "lovely-professional-university.html": 2,
     "loyola-institute-business-administration-executive-diploma.html": 1,
     "loyola-institute-business-administration-fpm.html": 1,
     "loyola-institute-business-administration-online-pgdm.html": 1,
@@ -2429,6 +2440,8 @@
     "kl-university-mba.html": 7,
     "kl-university-placements.html": 8,
     "kl-university.html": 13,
+    "lovely-professional-university-mba.html": 4,
+    "lovely-professional-university.html": 3,
     "loyola-institute-business-administration-executive-diploma.html": 5,
     "loyola-institute-business-administration-fpm.html": 5,
     "loyola-institute-business-administration-online-pgdm.html": 6,
