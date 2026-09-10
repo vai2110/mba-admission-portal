@@ -1,0 +1,80 @@
+name: LPU Cluster Navigation
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - '.github/workflows/lpu-cluster-navigation.yml'
+jobs:
+  navigation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add LPU navigation and reverse links
+        shell: python
+        run: |
+          from pathlib import Path
+          pages = {
+            'lovely-professional-university.html':'LPU Overview',
+            'lovely-professional-university-btech.html':'LPU B.Tech',
+            'lovely-professional-university-mba.html':'LPU MBA',
+            'lovely-professional-university-bba.html':'LPU BBA',
+            'lovely-professional-university-bca.html':'LPU BCA',
+            'lovely-professional-university-mca.html':'LPU MCA',
+            'lovely-professional-university-law.html':'LPU Law',
+            'lovely-professional-university-pharmacy.html':'LPU Pharmacy',
+            'lovely-professional-university-design.html':'LPU Design',
+            'lovely-professional-university-mtech.html':'LPU M.Tech',
+            'lovely-professional-university-admission.html':'LPU Admission',
+            'lovely-professional-university-fees-scholarships.html':'LPU Fees & Scholarships',
+            'lovely-professional-university-placements.html':'LPU Placements',
+            'lovely-professional-university-hostel.html':'LPU Hostel',
+          }
+          groups = [
+            ('University', [('lovely-professional-university.html','LPU Overview')]),
+            ('Popular Course Pages', [(k,v) for k,v in pages.items() if k in {
+              'lovely-professional-university-btech.html','lovely-professional-university-mba.html','lovely-professional-university-bba.html','lovely-professional-university-bca.html','lovely-professional-university-mca.html','lovely-professional-university-law.html','lovely-professional-university-pharmacy.html','lovely-professional-university-design.html','lovely-professional-university-mtech.html'}]),
+            ('Dedicated Decision / Intent Pages', [(k,v) for k,v in pages.items() if k in {
+              'lovely-professional-university-admission.html','lovely-professional-university-fees-scholarships.html','lovely-professional-university-placements.html','lovely-professional-university-hostel.html'}]),
+          ]
+          nav = ['<section class="main-section" id="lpu-pages"><h2>Explore LPU: Related Student Guides</h2><p>Use these related pages to compare LPU programmes, admission, fees, placements and hostel costs. Each page links back to the relevant LPU guides.</p>']
+          for heading, items in groups:
+              nav.append(f'<h3>{heading}</h3><div class="programme-grid">')
+              for filename, label in items:
+                  nav.append(f'<div class="programme-card"><h3><a class="programme-link" href="{filename}">{label}</a></h3><p>Detailed student guide with admission, fees, career, placements and decision-focused information.</p></div>')
+              nav.append('</div>')
+          nav.append('</section><hr>')
+          nav_html=''.join(nav)
+          changed=[]
+          for filename in pages:
+              p=Path(filename)
+              if not p.exists():
+                  continue
+              text=p.read_text(encoding='utf-8')
+              if 'id="lpu-pages"' in text:
+                  continue
+              marker='<section class="main-section" id="faq">'
+              if marker not in text:
+                  marker='<section class="main-section" id="faq"'
+              if marker not in text:
+                  continue
+              text=text.replace(marker, nav_html+marker, 1)
+              p.write_text(text, encoding='utf-8')
+              changed.append(filename)
+          if changed:
+              print('Updated:', ', '.join(changed))
+          else:
+              print('No LPU pages needed navigation changes.')
+      - name: Commit LPU navigation
+        run: |
+          git config user.name 'LPU Cluster Navigation Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lovely-professional-university*.html
+          if git diff --cached --quiet; then
+            echo 'No navigation changes to commit.'
+          else
+            git commit -m 'Add LPU navigation and reverse links [skip ci]'
+            git push
+          fi
