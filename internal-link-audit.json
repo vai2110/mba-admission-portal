@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T10:45:56.729215+00:00",
+  "generated_at": "2026-09-10T10:46:32.829695+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 502,
-    "pages_with_internal_links": 484,
-    "broken_local_links": 3,
+    "pages_checked": 503,
+    "pages_with_internal_links": 485,
+    "broken_local_links": 23,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 73,
     "cluster_reciprocal_gaps": 192,
@@ -12,7 +12,7 @@
     "role_counts": {
       "programme": 232,
       "placement": 77,
-      "overview_or_hub": 193
+      "overview_or_hub": 194
     }
   },
   "college_clusters": [
@@ -2182,6 +2182,106 @@
   ],
   "broken_local_links": [
     {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-admission-2026.html",
+      "target": "bbau-admission-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-courses-fees-2026.html",
+      "target": "bbau-courses-fees-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-placements-2026.html",
+      "target": "bbau-placements-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-admission-2026.html",
+      "target": "bbau-admission-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-courses-fees-2026.html",
+      "target": "bbau-courses-fees-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-btech-2026.html",
+      "target": "bbau-btech-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-bba-bcom-2026.html",
+      "target": "bbau-bba-bcom-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-mba-2026.html",
+      "target": "bbau-mba-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-mca-2026.html",
+      "target": "bbau-mca-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-placements-2026.html",
+      "target": "bbau-placements-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-hostel-campus.html",
+      "target": "bbau-hostel-campus.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-scholarships-rankings-reviews.html",
+      "target": "bbau-scholarships-rankings-reviews.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-btech-2026.html",
+      "target": "bbau-btech-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-bba-bcom-2026.html",
+      "target": "bbau-bba-bcom-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-mca-2026.html",
+      "target": "bbau-mca-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-admission-2026.html",
+      "target": "bbau-admission-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-courses-fees-2026.html",
+      "target": "bbau-courses-fees-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-placements-2026.html",
+      "target": "bbau-placements-2026.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-hostel-campus.html",
+      "target": "bbau-hostel-campus.html"
+    },
+    {
+      "source": "bbau-lucknow.html",
+      "href": "bbau-admission-2026.html",
+      "target": "bbau-admission-2026.html"
+    },
+    {
       "source": "bml-munjal-university-placements.html",
       "href": "bml-munjal-university-mba.html",
       "target": "bml-munjal-university-mba.html"
@@ -2499,6 +2599,7 @@
     "amu-mba.html": 8,
     "amu-mbbs.html": 6,
     "banaras-hindu-university.html": 15,
+    "bbau-lucknow.html": 2,
     "bhu-ba-hons.html": 6,
     "bhu-ba-llb.html": 7,
     "bhu-bcom-hons.html": 8,
@@ -2948,6 +3049,7 @@
     "amu-mba.html": 7,
     "amu-mbbs.html": 6,
     "banaras-hindu-university.html": 11,
+    "bbau-lucknow.html": 22,
     "bhu-ba-hons.html": 10,
     "bhu-ba-llb.html": 9,
     "bhu-bcom-hons.html": 9,
