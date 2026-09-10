@@ -75,6 +75,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No navigation changes to commit.'
           else
-            git commit -m 'Add LPU navigation and reverse links [skip ci]'
+            git commit -m 'Add LPU navigation and reverse links'
             git push
           fi
