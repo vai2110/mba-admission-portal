@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T07:05:36.844467+00:00",
+  "generated_at": "2026-09-10T07:12:40.031115+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 454,
-    "pages_with_internal_links": 436,
-    "broken_local_links": 1,
+    "pages_checked": 456,
+    "pages_with_internal_links": 438,
+    "broken_local_links": 13,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 70,
     "cluster_reciprocal_gaps": 157,
@@ -12,7 +12,7 @@
     "role_counts": {
       "programme": 215,
       "placement": 74,
-      "overview_or_hub": 165
+      "overview_or_hub": 167
     }
   },
   "college_clusters": [
@@ -1849,6 +1849,66 @@
   ],
   "broken_local_links": [
     {
+      "source": "ggsipu-admission.html",
+      "href": "ggsipu-fees.html",
+      "target": "ggsipu-fees.html"
+    },
+    {
+      "source": "ggsipu-admission.html",
+      "href": "ggsipu-placements.html",
+      "target": "ggsipu-placements.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-fees.html",
+      "target": "ggsipu-fees.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-placements.html",
+      "target": "ggsipu-placements.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-btech.html",
+      "target": "ggsipu-btech.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-mba.html",
+      "target": "ggsipu-mba.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-mca.html",
+      "target": "ggsipu-mca.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-bba-bca.html",
+      "target": "ggsipu-bba-bca.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-law.html",
+      "target": "ggsipu-law.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-mtech.html",
+      "target": "ggsipu-mtech.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-fees.html",
+      "target": "ggsipu-fees.html"
+    },
+    {
+      "source": "ggsipu.html",
+      "href": "ggsipu-placements.html",
+      "target": "ggsipu-placements.html"
+    },
+    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
@@ -2162,6 +2222,8 @@
     "fore-school-management-pgdm.html": 1,
     "fore-school-management-placements.html": 11,
     "fore-school-management.html": 6,
+    "ggsipu-admission.html": 2,
+    "ggsipu.html": 1,
     "glim-chennai-pgdm.html": 3,
     "glim-chennai-pgpm.html": 3,
     "glim-chennai-placements.html": 3,
@@ -2572,6 +2634,8 @@
     "fore-school-management-pgdm.html": 4,
     "fore-school-management-placements.html": 4,
     "fore-school-management.html": 9,
+    "ggsipu-admission.html": 3,
+    "ggsipu.html": 12,
     "glim-chennai-pgdm.html": 3,
     "glim-chennai-pgpm.html": 3,
     "glim-chennai-placements.html": 7,
