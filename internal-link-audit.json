@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T04:41:28.743060+00:00",
+  "generated_at": "2026-09-10T05:15:06.597480+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
     "pages_checked": 399,
@@ -7,8 +7,8 @@
     "broken_local_links": 1,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 67,
-    "cluster_reciprocal_gaps": 136,
-    "zero_incoming_pages": 34,
+    "cluster_reciprocal_gaps": 140,
+    "zero_incoming_pages": 37,
     "role_counts": {
       "programme": 194,
       "placement": 69,
@@ -1464,6 +1464,42 @@
       ]
     },
     {
+      "source": "lovely-professional-university.html",
+      "missing": [
+        "lovely-professional-university-placements.html",
+        "lovely-professional-university-design.html",
+        "lovely-professional-university-mtech.html",
+        "lovely-professional-university-pharmacy.html"
+      ]
+    },
+    {
+      "source": "lovely-professional-university-placements.html",
+      "missing": [
+        "lovely-professional-university-admission.html",
+        "lovely-professional-university-bba.html",
+        "lovely-professional-university-bca.html",
+        "lovely-professional-university-design.html",
+        "lovely-professional-university-fees-scholarships.html",
+        "lovely-professional-university-hostel.html",
+        "lovely-professional-university-law.html",
+        "lovely-professional-university-mca.html",
+        "lovely-professional-university-mtech.html",
+        "lovely-professional-university-pharmacy.html"
+      ]
+    },
+    {
+      "source": "lovely-professional-university-admission.html",
+      "missing": [
+        "lovely-professional-university-placements.html"
+      ]
+    },
+    {
+      "source": "lovely-professional-university-hostel.html",
+      "missing": [
+        "lovely-professional-university-placements.html"
+      ]
+    },
+    {
       "source": "loyola-institute-business-administration-placements.html",
       "missing": [
         "loyola-institute-business-administration-executive-diploma.html",
@@ -1822,6 +1858,21 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "lovely-professional-university-design.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "lovely-professional-university-mtech.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "lovely-professional-university-pharmacy.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "nmims-mba-tech.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -2083,20 +2134,17 @@
     "kl-university-mba.html": 7,
     "kl-university-placements.html": 9,
     "kl-university.html": 9,
-    "lovely-professional-university-admission.html": 14,
-    "lovely-professional-university-bba.html": 14,
-    "lovely-professional-university-bca.html": 14,
-    "lovely-professional-university-btech.html": 14,
-    "lovely-professional-university-design.html": 14,
-    "lovely-professional-university-fees-scholarships.html": 15,
-    "lovely-professional-university-hostel.html": 20,
-    "lovely-professional-university-law.html": 14,
-    "lovely-professional-university-mba.html": 14,
-    "lovely-professional-university-mca.html": 14,
-    "lovely-professional-university-mtech.html": 14,
-    "lovely-professional-university-pharmacy.html": 14,
-    "lovely-professional-university-placements.html": 24,
-    "lovely-professional-university.html": 28,
+    "lovely-professional-university-admission.html": 16,
+    "lovely-professional-university-bba.html": 2,
+    "lovely-professional-university-bca.html": 2,
+    "lovely-professional-university-btech.html": 6,
+    "lovely-professional-university-fees-scholarships.html": 7,
+    "lovely-professional-university-hostel.html": 19,
+    "lovely-professional-university-law.html": 1,
+    "lovely-professional-university-mba.html": 6,
+    "lovely-professional-university-mca.html": 1,
+    "lovely-professional-university-placements.html": 11,
+    "lovely-professional-university.html": 27,
     "loyola-institute-business-administration-executive-diploma.html": 1,
     "loyola-institute-business-administration-fpm.html": 1,
     "loyola-institute-business-administration-online-pgdm.html": 1,
@@ -2462,19 +2510,19 @@
     "kl-university-mba.html": 7,
     "kl-university-placements.html": 8,
     "kl-university.html": 13,
-    "lovely-professional-university-admission.html": 18,
-    "lovely-professional-university-bba.html": 18,
-    "lovely-professional-university-bca.html": 18,
-    "lovely-professional-university-btech.html": 19,
-    "lovely-professional-university-design.html": 19,
-    "lovely-professional-university-fees-scholarships.html": 19,
-    "lovely-professional-university-hostel.html": 17,
-    "lovely-professional-university-law.html": 19,
-    "lovely-professional-university-mba.html": 18,
-    "lovely-professional-university-mca.html": 18,
-    "lovely-professional-university-mtech.html": 19,
-    "lovely-professional-university-pharmacy.html": 19,
-    "lovely-professional-university-placements.html": 17,
+    "lovely-professional-university-admission.html": 5,
+    "lovely-professional-university-bba.html": 8,
+    "lovely-professional-university-bca.html": 6,
+    "lovely-professional-university-btech.html": 9,
+    "lovely-professional-university-design.html": 9,
+    "lovely-professional-university-fees-scholarships.html": 13,
+    "lovely-professional-university-hostel.html": 5,
+    "lovely-professional-university-law.html": 8,
+    "lovely-professional-university-mba.html": 11,
+    "lovely-professional-university-mca.html": 8,
+    "lovely-professional-university-mtech.html": 10,
+    "lovely-professional-university-pharmacy.html": 9,
+    "lovely-professional-university-placements.html": 8,
     "lovely-professional-university.html": 17,
     "loyola-institute-business-administration-executive-diploma.html": 5,
     "loyola-institute-business-administration-fpm.html": 5,
