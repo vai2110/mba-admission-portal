@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove forced LPU navigation blocks and add natural contextual links
+      - name: Remove forced LPU navigation and simplify hero labels
         shell: python
         run: |
           from pathlib import Path
@@ -29,21 +29,22 @@ jobs:
           }
           plans = {
             'lovely-professional-university.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('BCA',links['bca']),('MCA',links['mca']),('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
-            'lovely-professional-university-btech.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-mba.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-bba.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-bca.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-mca.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-law.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-pharmacy.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-design.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
-            'lovely-professional-university-mtech.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel']),('LPU offers',links['overview'])],
+            'lovely-professional-university-btech.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-mba.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-bba.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-bca.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-mca.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-law.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-pharmacy.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-design.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
+            'lovely-professional-university-mtech.html': [('admission',links['admission']),('fees',links['fees']),('placements',links['placements']),('hostel',links['hostel'])],
             'lovely-professional-university-admission.html': [('B.Tech',links['btech']),('MBA',links['mba']),('fees',links['fees']),('placements',links['placements'])],
             'lovely-professional-university-fees-scholarships.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('BCA',links['bca']),('hostel',links['hostel']),('admission',links['admission'])],
             'lovely-professional-university-placements.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('BCA',links['bca']),('fees',links['fees']),('hostel',links['hostel'])],
             'lovely-professional-university-hostel.html': [('B.Tech',links['btech']),('MBA',links['mba']),('BBA',links['bba']),('fees',links['fees']),('admission',links['admission'])],
           }
           section_re = re.compile(r'<section\b[^>]*\bid=["\']lpu-pages["\'][^>]*>.*?</section>\s*(?:<hr\s*/?>)?', re.I|re.S)
+          hero_logo_re = re.compile(r'<div\b[^>]*class=["\'][^"\']*hero-logo-box[^"\']*["\'][^>]*>.*?</div>\s*', re.I|re.S)
           hero_label_re = re.compile(r'<(?:div|span|p)\b[^>]*class=["\'][^"\']*(?:hero-(?:kicker|eyebrow|label|small-title|program-label)|hero-kicker|hero-eyebrow)[^"\']*["\'][^>]*>.*?</(?:div|span|p)>\s*', re.I|re.S)
           p_re = re.compile(r'<p\b[^>]*>.*?</p>', re.I|re.S)
           changed=[]
@@ -52,6 +53,7 @@ jobs:
             if not p.exists(): continue
             text=p.read_text(encoding='utf-8'); original=text
             text=section_re.sub('',text)
+            text=hero_logo_re.sub('',text)
             text=hero_label_re.sub('',text)
             for phrase,href in plans.get(filename,[]):
               if f'href="{href}"' in text: continue
@@ -72,4 +74,4 @@ jobs:
           git config user.name 'LPU Content Architecture Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add lovely-professional-university*.html
-          if git diff --cached --quiet; then echo 'No LPU content changes to commit.'; else git commit -m 'Remove forced LPU navigation and add contextual links'; git push; fi
+          if git diff --cached --quiet; then echo 'No LPU content changes to commit.'; else git commit -m 'Remove forced LPU navigation and hero labels'; git push; fi
