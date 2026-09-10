@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-10T04:38:56.527509+00:00",
+  "generated_at": "2026-09-10T06:13:59.082188+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 403,
-  "pages_with_issues": 310,
+  "pages_checked": 404,
+  "pages_with_issues": 308,
   "issue_counts": {
-    "broken_local_links": 8,
+    "broken_local_links": 3,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 131,
+    "description_length": 130,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 19,
+    "jsonld": 14,
     "lang": 1,
-    "og_description": 19,
-    "og_title": 19,
-    "og_url": 19,
+    "og_description": 14,
+    "og_title": 14,
+    "og_url": 14,
     "title_length": 268,
-    "twitter_card": 24,
+    "twitter_card": 19,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -9684,25 +9684,22 @@
       "h1": "LPU Admission 2026-27: Dates, Eligibility, LPUNEST, Application & Fees",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -9768,40 +9765,6 @@
       "issues": []
     },
     {
-      "file": "lovely-professional-university-btech-cse.html",
-      "benchmark": false,
-      "title": "LPU B.Tech CSE 2026: Fees, Admission, Eligibility, Syllabus & Placements",
-      "title_length": 72,
-      "description": "Detailed LPU B.Tech CSE 2026 guide covering eligibility, admission, LPUNEST and JEE Main, fees, scholarships, syllabus, specialisations, internships, placements, hostel and career scope.",
-      "description_length": 186,
-      "description_count": 1,
-      "canonical": "https://vai2110.github.io/mba-admission-portal/lovely-professional-university-btech-cse.html",
-      "canonical_count": 1,
-      "canonical_self": true,
-      "h1_count": 1,
-      "h1": "LPU B.Tech CSE 2026: Fees, Admission, Eligibility, Syllabus & Placements",
-      "lang": "en",
-      "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
-      "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
-      "images": 0,
-      "images_missing_alt": 0,
-      "broken_local_links": [],
-      "duplicate_title": false,
-      "duplicate_canonical": false,
-      "issues": [
-        "title_length",
-        "description_length"
-      ]
-    },
-    {
       "file": "lovely-professional-university-btech.html",
       "benchmark": false,
       "title": "LPU B.Tech 2026: Fees, Admission, Eligibility, Specialisations & Placements",
@@ -9827,15 +9790,12 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "lovely-professional-university-hostel.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "broken_local_links"
+        "description_length"
       ]
     },
     {
@@ -9853,28 +9813,22 @@
       "h1": "LPU Design 2026: B.Des Fees, Admission, Specialisations & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "lovely-professional-university-hostel.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "title_length"
       ]
     },
     {
@@ -9892,28 +9846,52 @@
       "h1": "LPU Fees 2026: Course Fees, Hostel, Scholarships & Total Cost",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "lovely-professional-university-hostel.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld",
-        "broken_local_links"
-      ]
+      "issues": []
+    },
+    {
+      "file": "lovely-professional-university-hostel.html",
+      "benchmark": false,
+      "title": "LPU Hostel 2026-27: Fees, Rooms, Mess, Facilities & Rules",
+      "title_length": 57,
+      "description": "Complete LPU hostel guide covering 2026-27 room fees, AC and air-cooled options, mess charges, facilities, laundry, gym, safety and student living.",
+      "description_length": 147,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/lovely-professional-university-hostel.html",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "LPU Hostel 2026-27: Fees, Rooms, Mess, Facilities & Student Life",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": []
     },
     {
       "file": "lovely-professional-university-law.html",
@@ -9930,28 +9908,21 @@
       "h1": "LPU Law 2026: BA LLB, BBA LLB & LLB Fees, Admission & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "lovely-professional-university-hostel.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld",
-        "broken_local_links"
-      ]
+      "issues": []
     },
     {
       "file": "lovely-professional-university-mba.html",
@@ -10033,28 +10004,22 @@
       "h1": "LPU M.Tech 2026: Fees, Admission, Eligibility, Specialisations & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "lovely-professional-university-hostel.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "title_length"
       ]
     },
     {
@@ -10072,28 +10037,22 @@
       "h1": "LPU Pharmacy 2026: B.Pharm Fees, Admission, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "lovely-professional-university-hostel.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "title_length"
       ]
     },
     {
@@ -13275,6 +13234,57 @@
         "og_url",
         "twitter_card",
         "jsonld"
+      ]
+    },
+    {
+      "file": "xim-university-bhubaneswar.html",
+      "benchmark": false,
+      "title": "XIM University Bhubaneswar: Admission 2026, Courses, Fees & Placements",
+      "title_length": 70,
+      "description": "XIM University Bhubaneswar student guide covering 2026 admissions, MBA programmes, fees, scholarships, placements, hostel, campus and career options.",
+      "description_length": 149,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/xim-university-bhubaneswar.html",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "XIM University Bhubaneswar: Admission 2026, Courses, Fees, Placements & Campus",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large"
+      ],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [
+        "xim-university-admission.html",
+        "xim-university-fees.html",
+        "xim-university-hostel.html",
+        "xim-university-mba-business-management.html",
+        "xim-university-mba-hrm.html",
+        "xim-university-mba-public-policy-management.html",
+        "xim-university-mba-rural-management.html",
+        "xim-university-mba-sustainability-management.html",
+        "xim-university-mba-urban-management-governance.html",
+        "xim-university-mms-business-finance.html",
+        "xim-university-placements.html"
+      ],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld",
+        "broken_local_links"
       ]
     },
     {
