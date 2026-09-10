@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T06:33:51.672975+00:00",
+  "generated_at": "2026-09-10T06:38:13.487772+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 418,
-    "pages_with_internal_links": 400,
-    "broken_local_links": 4,
+    "pages_checked": 422,
+    "pages_with_internal_links": 404,
+    "broken_local_links": 10,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 67,
-    "cluster_reciprocal_gaps": 140,
-    "zero_incoming_pages": 42,
+    "college_clusters_detected": 68,
+    "cluster_reciprocal_gaps": 149,
+    "zero_incoming_pages": 43,
     "role_counts": {
-      "programme": 205,
-      "placement": 70,
-      "overview_or_hub": 143
+      "programme": 206,
+      "placement": 71,
+      "overview_or_hub": 145
     }
   },
   "college_clusters": [
@@ -154,6 +154,21 @@
       "programmes": [
         "great-lakes-gurgaon-pgdm.html",
         "great-lakes-gurgaon-pgpm.html"
+      ]
+    },
+    {
+      "overview": "icfai-university-hyderabad.html",
+      "placement": "icfai-university-hyderabad-placements.html",
+      "programme_count": 8,
+      "programmes": [
+        "icfai-university-hyderabad-admission.html",
+        "icfai-university-hyderabad-bba.html",
+        "icfai-university-hyderabad-bca.html",
+        "icfai-university-hyderabad-btech.html",
+        "icfai-university-hyderabad-executive-mba.html",
+        "icfai-university-hyderabad-fees.html",
+        "icfai-university-hyderabad-hostel.html",
+        "icfai-university-hyderabad-mba.html"
       ]
     },
     {
@@ -829,6 +844,67 @@
         "graphic-era-university-mba-impact.html",
         "graphic-era-university-mba-marketing.html",
         "graphic-era-university-mba.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad.html",
+      "missing": [
+        "icfai-university-hyderabad-executive-mba.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-placements.html",
+      "missing": [
+        "icfai-university-hyderabad-admission.html",
+        "icfai-university-hyderabad-bba.html",
+        "icfai-university-hyderabad-bca.html",
+        "icfai-university-hyderabad-btech.html",
+        "icfai-university-hyderabad-executive-mba.html",
+        "icfai-university-hyderabad-fees.html",
+        "icfai-university-hyderabad-hostel.html",
+        "icfai-university-hyderabad-mba.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-admission.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-bba.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-bca.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-btech.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-executive-mba.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-fees.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "icfai-university-hyderabad-hostel.html",
+      "missing": [
+        "icfai-university-hyderabad-placements.html"
       ]
     },
     {
@@ -1679,24 +1755,54 @@
   ],
   "broken_local_links": [
     {
-      "source": "icfai-university-hyderabad-mba.html",
-      "href": "icfai-university-hyderabad-placements.html",
-      "target": "icfai-university-hyderabad-placements.html"
-    },
-    {
-      "source": "icfai-university-hyderabad.html",
-      "href": "icfai-university-hyderabad-placements.html",
-      "target": "icfai-university-hyderabad-placements.html"
-    },
-    {
-      "source": "icfai-university-hyderabad.html",
-      "href": "icfai-university-hyderabad-hostel.html",
-      "target": "icfai-university-hyderabad-hostel.html"
-    },
-    {
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-btech.html",
+      "target": "thapar-institute-btech.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-mtech.html",
+      "target": "thapar-institute-mtech.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-mba.html",
+      "target": "thapar-institute-mba.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-mca.html",
+      "target": "thapar-institute-mca.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-mba.html",
+      "target": "thapar-institute-mba.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-admission.html",
+      "target": "thapar-institute-admission.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-fees.html",
+      "target": "thapar-institute-fees.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-placements.html",
+      "target": "thapar-institute-placements.html"
+    },
+    {
+      "source": "thapar-institute-of-engineering-technology.html",
+      "href": "thapar-institute-hostel.html",
+      "target": "thapar-institute-hostel.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -1754,6 +1860,11 @@
     },
     {
       "page": "graphic-era-university-mba-marketing.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "icfai-university-hyderabad-executive-mba.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2009,8 +2120,10 @@
     "icfai-university-hyderabad-bca.html": 1,
     "icfai-university-hyderabad-btech.html": 1,
     "icfai-university-hyderabad-fees.html": 1,
+    "icfai-university-hyderabad-hostel.html": 1,
     "icfai-university-hyderabad-mba.html": 2,
-    "icfai-university-hyderabad.html": 7,
+    "icfai-university-hyderabad-placements.html": 2,
+    "icfai-university-hyderabad.html": 10,
     "iift-mba-business-analytics.html": 1,
     "iift-mba-international-business.html": 1,
     "iift-placements.html": 4,
@@ -2132,7 +2245,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 874,
+    "index.html": 882,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2262,6 +2375,7 @@
     "tapmi-manipal-mba.html": 1,
     "tapmi-manipal-placements.html": 4,
     "tapmi-manipal.html": 1,
+    "thapar-institute-of-engineering-technology.html": 1,
     "top-mba-colleges-in-india.html": 10,
     "upes-dehradun-bba.html": 2,
     "upes-dehradun-bca.html": 2,
@@ -2389,8 +2503,11 @@
     "icfai-university-hyderabad-bba.html": 3,
     "icfai-university-hyderabad-bca.html": 3,
     "icfai-university-hyderabad-btech.html": 3,
+    "icfai-university-hyderabad-executive-mba.html": 3,
     "icfai-university-hyderabad-fees.html": 3,
+    "icfai-university-hyderabad-hostel.html": 3,
     "icfai-university-hyderabad-mba.html": 4,
+    "icfai-university-hyderabad-placements.html": 3,
     "icfai-university-hyderabad.html": 11,
     "iift-mba-business-analytics.html": 8,
     "iift-mba-international-business.html": 8,
@@ -2656,6 +2773,7 @@
     "tapmi-manipal-mba.html": 3,
     "tapmi-manipal-placements.html": 3,
     "tapmi-manipal.html": 6,
+    "thapar-institute-of-engineering-technology.html": 12,
     "top-mba-colleges-in-india.html": 2,
     "upes-dehradun-bba.html": 2,
     "upes-dehradun-bca.html": 2,
