@@ -1,0 +1,49 @@
+name: Fix Chitkara navigation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'chitkara-university*.html'
+      - 'chitkara-university-ui.js'
+      - '.github/workflows/fix-chitkara-navigation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-navigation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add shared UI script to all Chitkara pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          pages = sorted(Path('.').glob('chitkara-university*.html'))
+          marker = '<script src="chitkara-university-ui.js" defer></script>'
+          changed = []
+          for path in pages:
+              text = path.read_text(encoding='utf-8')
+              if marker not in text:
+                  if '</head>' not in text:
+                      raise SystemExit(f'Missing </head> in {path}')
+                  text = text.replace('</head>', marker + '</head>', 1)
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+          print('Updated:', ', '.join(changed) if changed else 'none')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'chitkara-university*.html'
+          if git diff --cached --quiet; then
+            echo 'No HTML changes needed.'
+            exit 0
+          fi
+          git commit -m 'Fix Chitkara On This Page and FAQ accordion behavior'
+          git push
