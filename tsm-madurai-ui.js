@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     routes:'Admission Routes',documents:'Documents',selection:'Selection',fees:'Fee Check',eligibility:'Eligibility',admission:'Admission Routes',
     curriculum:'Curriculum',dual:'Dual Degree',career:'Career',comparison:'Programme Comparison',general:'General MBA',analytics:'Business Analytics',scholarship:'Scholarships',
     hons:'BBA Hons',imba:'Integrated MBA',choice:'Programme Choice',tracks:'BCA Tracks',mca:'MCA',bca:'BCA',numbers:'Placement Numbers',recruiters:'Recruiters',internships:'Internships',programme:'By Programme',roi:'ROI',
-    hostel:'Hostel Setup',rooms:'Rooms & Food',facilities:'Facilities',rules:'Hostel Rules',decision:'Hostel Decision',mba:'MBA',mba-scholarship:'MBA Scholarships',ug-scholarship:'UG Scholarships'
+    hostel:'Hostel Setup',rooms:'Rooms & Food',facilities:'Facilities',rules:'Hostel Rules',decision:'Hostel Decision',mba:'MBA','mba-scholarship':'MBA Scholarships','ug-scholarship':'UG Scholarships'
   };
   if(side){
     const title=side.querySelector('.sidebar-title');side.innerHTML='';if(title)side.appendChild(title);
