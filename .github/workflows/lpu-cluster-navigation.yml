@@ -27,8 +27,7 @@ jobs:
             'lovely-professional-university-bba.html','lovely-professional-university-bca.html','lovely-professional-university-mca.html',
             'lovely-professional-university-law.html','lovely-professional-university-pharmacy.html','lovely-professional-university-design.html',
             'lovely-professional-university-mtech.html','lovely-professional-university-admission.html',
-            'lovely-professional-university-fees-scholarships.html','lovely-professional-university-placements.html',
-            'lovely-professional-university-hostel.html'
+            'lovely-professional-university-fees-scholarships.html','lovely-professional-university-placements.html','lovely-professional-university-hostel.html'
           ]
           H = {
             'overview':'lovely-professional-university.html','btech':'lovely-professional-university-btech.html','mba':'lovely-professional-university-mba.html',
@@ -69,10 +68,9 @@ jobs:
             text = cluster_css_re.sub('', text)
             text = hero_logo_re.sub('', text)
             text = hero_label_re.sub('', text)
+            text = text.replace(r'<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', '<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>')
+            text = text.replace(r'<a class="programme-link" href="lovely-professional-university-admission.html">LPU MBA admission process</a>', '<a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>')
             text = re.sub(r'(<a class="programme-link" href="lovely-professional-university-admission\.html">)admission(</a>)s', r'\1admissions\2', text)
-            # Fix the earlier MBA admission anchor without leaving escaped quotes in HTML.
-            text = re.sub(r"LPU's MBA <a class=\\+\"programme-link\\+\" href=\\+\"lovely-professional-university-admission\.html\\+\">LPU MBA admission process</a> ecosystem", 'LPU\'s <a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
-            text = re.sub(r"LPU's MBA <a class=\"programme-link\" href=\"lovely-professional-university-admission\.html\">LPU MBA admission process</a> ecosystem", 'LPU\'s <a class="programme-link" href="lovely-professional-university-admission.html">MBA admission ecosystem</a>', text)
             path.write_text(text, encoding='utf-8')
 
           def add_link(text, phrase, href):
@@ -105,4 +103,4 @@ jobs:
           git config user.name 'LPU Content Architecture Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add lovely-professional-university*.html
-          if git diff --cached --quiet; then echo 'No LPU pages changed.'; else git commit -m 'Remove LPU cluster navigation and refine links'; git push; fi
+          if git diff --cached --quiet; then echo 'No LPU pages changed.'; else git commit -m 'Finalize LPU contextual anchor markup'; git push; fi
