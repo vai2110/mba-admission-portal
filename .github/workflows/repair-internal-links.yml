@@ -1,14 +1,13 @@
 name: Repair Internal Links
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
 
-# Keep this writer in the same queue as the SEO/content audit writers.
+# Internal-link repair is intentionally manual. It can touch hundreds of pages,
+# so it must never race with SEO, UX, or content workflows on main.
 concurrency:
   group: portal-main-writer
   cancel-in-progress: false
