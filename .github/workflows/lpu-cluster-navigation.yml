@@ -16,121 +16,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove forced navigation and add natural contextual links
+      - name: Clean forced navigation and keep natural contextual links
         shell: python
         run: |
           from pathlib import Path
           import re
 
           pages = [
-            'lovely-professional-university.html',
-            'lovely-professional-university-btech.html',
-            'lovely-professional-university-mba.html',
-            'lovely-professional-university-bba.html',
-            'lovely-professional-university-bca.html',
-            'lovely-professional-university-mca.html',
-            'lovely-professional-university-law.html',
-            'lovely-professional-university-pharmacy.html',
-            'lovely-professional-university-design.html',
-            'lovely-professional-university-mtech.html',
-            'lovely-professional-university-admission.html',
-            'lovely-professional-university-fees-scholarships.html',
-            'lovely-professional-university-placements.html',
+            'lovely-professional-university.html','lovely-professional-university-btech.html','lovely-professional-university-mba.html',
+            'lovely-professional-university-bba.html','lovely-professional-university-bca.html','lovely-professional-university-mca.html',
+            'lovely-professional-university-law.html','lovely-professional-university-pharmacy.html','lovely-professional-university-design.html',
+            'lovely-professional-university-mtech.html','lovely-professional-university-admission.html',
+            'lovely-professional-university-fees-scholarships.html','lovely-professional-university-placements.html',
             'lovely-professional-university-hostel.html'
           ]
-
           H = {
-            'overview':'lovely-professional-university.html',
-            'btech':'lovely-professional-university-btech.html',
-            'mba':'lovely-professional-university-mba.html',
-            'bba':'lovely-professional-university-bba.html',
-            'bca':'lovely-professional-university-bca.html',
-            'mca':'lovely-professional-university-mca.html',
-            'law':'lovely-professional-university-law.html',
-            'pharmacy':'lovely-professional-university-pharmacy.html',
-            'design':'lovely-professional-university-design.html',
-            'mtech':'lovely-professional-university-mtech.html',
-            'admission':'lovely-professional-university-admission.html',
-            'fees':'lovely-professional-university-fees-scholarships.html',
-            'placements':'lovely-professional-university-placements.html',
-            'hostel':'lovely-professional-university-hostel.html'
+            'overview':'lovely-professional-university.html','btech':'lovely-professional-university-btech.html','mba':'lovely-professional-university-mba.html',
+            'bba':'lovely-professional-university-bba.html','bca':'lovely-professional-university-bca.html','mca':'lovely-professional-university-mca.html',
+            'law':'lovely-professional-university-law.html','pharmacy':'lovely-professional-university-pharmacy.html','design':'lovely-professional-university-design.html',
+            'mtech':'lovely-professional-university-mtech.html','admission':'lovely-professional-university-admission.html',
+            'fees':'lovely-professional-university-fees-scholarships.html','placements':'lovely-professional-university-placements.html','hostel':'lovely-professional-university-hostel.html'
           }
 
-          # Links are inserted only into existing paragraph copy. No new linking-only section/card/list is created.
           plans = {
-            'lovely-professional-university.html': [
-              ('B.Tech',H['btech'],'B.Tech programmes'),('MBA',H['mba'],'LPU MBA'),
-              ('BBA',H['bba'],'BBA programmes'),('BCA',H['bca'],'BCA programme'),('MCA',H['mca'],'MCA programme'),
-              ('law',H['law'],'law programmes'),('pharmacy',H['pharmacy'],'pharmacy programmes'),
-              ('design',H['design'],'design programmes'),('M.Tech',H['mtech'],'M.Tech programmes'),
-              ('admission',H['admission'],'LPU admission process'),('fees',H['fees'],'LPU fees and scholarships'),
-              ('placements',H['placements'],'LPU placements'),('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-btech.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU admission process'),
-              ('fees',H['fees'],'B.Tech fees and scholarships'),('placements',H['placements'],'B.Tech placement outcomes'),
-              ('hostel',H['hostel'],'hostel options at LPU')
-            ],
-            'lovely-professional-university-mba.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU MBA admission process'),
-              ('fees',H['fees'],'MBA fees and scholarships'),('placements',H['placements'],'MBA placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-bba.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU BBA admission process'),
-              ('fees',H['fees'],'BBA fees and scholarships'),('placements',H['placements'],'BBA placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-bca.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU BCA admission process'),
-              ('fees',H['fees'],'BCA fees and scholarships'),('placements',H['placements'],'BCA placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-mca.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU MCA admission process'),
-              ('fees',H['fees'],'MCA fees and scholarships'),('placements',H['placements'],'MCA placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-law.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU Law admission process'),
-              ('fees',H['fees'],'Law fees and scholarships'),('placements',H['placements'],'Law placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-pharmacy.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU Pharmacy admission process'),
-              ('fees',H['fees'],'Pharmacy fees and scholarships'),('placements',H['placements'],'Pharmacy placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-design.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU Design admission process'),
-              ('fees',H['fees'],'Design fees and scholarships'),('placements',H['placements'],'Design placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-mtech.html': [
-              ('LPU',H['overview'],'LPU'),('admission',H['admission'],'LPU M.Tech admission process'),
-              ('fees',H['fees'],'M.Tech fees and scholarships'),('placements',H['placements'],'M.Tech placement outcomes'),
-              ('hostel',H['hostel'],'LPU hostel options')
-            ],
-            'lovely-professional-university-admission.html': [
-              ('LPU',H['overview'],'LPU'),('B.Tech',H['btech'],'B.Tech admission'),('MBA',H['mba'],'MBA admission'),
-              ('BBA',H['bba'],'BBA admission'),('BCA',H['bca'],'BCA admission'),('MCA',H['mca'],'MCA admission'),
-              ('fees',H['fees'],'fees and scholarships'),('placements',H['placements'],'placement outcomes')
-            ],
-            'lovely-professional-university-fees-scholarships.html': [
-              ('LPU',H['overview'],'LPU'),('B.Tech',H['btech'],'B.Tech fees'),('MBA',H['mba'],'MBA fees'),
-              ('BBA',H['bba'],'BBA fees'),('BCA',H['bca'],'BCA fees'),('MCA',H['mca'],'MCA fees'),
-              ('hostel',H['hostel'],'hostel and mess costs'),('admission',H['admission'],'admission process')
-            ],
-            'lovely-professional-university-placements.html': [
-              ('LPU',H['overview'],'LPU'),('B.Tech',H['btech'],'B.Tech placements'),('MBA',H['mba'],'MBA placements'),
-              ('BBA',H['bba'],'BBA placements'),('BCA',H['bca'],'BCA placements'),('MCA',H['mca'],'MCA placements'),
-              ('fees',H['fees'],'fees and scholarships'),('admission',H['admission'],'admission process')
-            ],
-            'lovely-professional-university-hostel.html': [
-              ('LPU',H['overview'],'LPU'),('B.Tech',H['btech'],'B.Tech students'),('MBA',H['mba'],'MBA students'),
-              ('BBA',H['bba'],'BBA students'),('BCA',H['bca'],'BCA students'),('MCA',H['mca'],'MCA students'),
-              ('fees',H['fees'],'hostel fees and scholarships'),('admission',H['admission'],'admission process')
-            ]
+            'lovely-professional-university.html': [('B.Tech',H['btech']),('MBA',H['mba']),('BBA',H['bba']),('BCA',H['bca']),('MCA',H['mca']),('law programmes',H['law']),('pharmacy programmes',H['pharmacy']),('design programmes',H['design']),('M.Tech',H['mtech']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-btech.html': [('LPU',H['overview']),('admission process',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-mba.html': [('LPU',H['overview']),('admission route',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-bba.html': [('LPU',H['overview']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-bca.html': [('LPU',H['overview']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-mca.html': [('LPU',H['overview']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-law.html': [('LPU',H['overview']),('admissions',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-pharmacy.html': [('LPU',H['overview']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-design.html': [('LPU',H['overview']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-mtech.html': [('LPU',H['overview']),('admission',H['admission']),('fees',H['fees']),('placements',H['placements']),('hostel',H['hostel'])],
+            'lovely-professional-university-admission.html': [('LPU',H['overview']),('B.Tech',H['btech']),('MBA',H['mba']),('BBA',H['bba']),('BCA',H['bca']),('MCA',H['mca']),('fees',H['fees']),('placements',H['placements'])],
+            'lovely-professional-university-fees-scholarships.html': [('LPU',H['overview']),('B.Tech',H['btech']),('MBA',H['mba']),('BBA',H['bba']),('BCA',H['bca']),('MCA',H['mca']),('hostel',H['hostel']),('admission',H['admission'])],
+            'lovely-professional-university-placements.html': [('LPU',H['overview']),('B.Tech',H['btech']),('MBA',H['mba']),('BBA',H['bba']),('BCA',H['bca']),('MCA',H['mca']),('fees',H['fees']),('admission',H['admission'])],
+            'lovely-professional-university-hostel.html': [('LPU',H['overview']),('B.Tech',H['btech']),('MBA',H['mba']),('BBA',H['bba']),('BCA',H['bca']),('MCA',H['mca']),('fees',H['fees']),('admission',H['admission'])]
           }
 
           section_re = re.compile(r'<section\b[^>]*\bid=["\']lpu-pages["\'][^>]*>.*?</section>\s*(?:<hr\s*/?>)?', re.I|re.S)
@@ -138,16 +60,26 @@ jobs:
           hero_label_re = re.compile(r'<(?:div|span|p)\b[^>]*class=["\'][^"\']*(?:hero-(?:kicker|eyebrow|label|small-title|program-label)|hero-kicker|hero-eyebrow)[^"\']*["\'][^>]*>.*?</(?:div|span|p)>\s*', re.I|re.S)
           p_re = re.compile(r'<p\b[^>]*>.*?</p>', re.I|re.S)
 
-          def add_link(text, phrase, href, anchor):
-            for m in list(p_re.finditer(text)):
+          for path in map(Path, pages):
+            if not path.exists(): continue
+            text = path.read_text(encoding='utf-8')
+            text = section_re.sub('', text)
+            text = hero_logo_re.sub('', text)
+            text = hero_label_re.sub('', text)
+            text = re.sub(r'(<a class="programme-link" href="lovely-professional-university-admission\.html">)admission(</a>)s', r'\1admissions\2', text)
+            text = re.sub(r"LPU's MBA <a class=\"programme-link\" href=\"lovely-professional-university-admission\.html\">LPU MBA admission process</a> ecosystem", r"LPU's <a class=\"programme-link\" href=\"lovely-professional-university-admission.html\">MBA admission ecosystem</a>", text)
+            path.write_text(text, encoding='utf-8')
+
+          def add_link(text, phrase, href):
+            if f'href="{href}"' in text:
+              return text, False
+            for m in p_re.finditer(text):
               para = m.group(0)
-              if href in para:
-                continue
               for pm in re.finditer(re.escape(phrase), para, re.I):
                 before = para[:pm.start()].lower()
                 if before.rfind('<a ') > before.rfind('</a>'):
                   continue
-                replacement = f'<a class="programme-link" href="{href}">{anchor}</a>'
+                replacement = f'<a class="programme-link" href="{href}">{pm.group(0)}</a>'
                 para2 = para[:pm.start()] + replacement + para[pm.end():]
                 return text[:m.start()] + para2 + text[m.end():], True
             return text, False
@@ -155,23 +87,17 @@ jobs:
           changed=[]
           for filename in pages:
             path=Path(filename)
-            if not path.exists():
-              continue
-            text=path.read_text(encoding='utf-8')
-            original=text
-            text=section_re.sub('',text)
-            text=hero_logo_re.sub('',text)
-            text=hero_label_re.sub('',text)
-            for phrase,href,anchor in plans.get(filename,[]):
-              text,_=add_link(text,phrase,href,anchor)
+            if not path.exists(): continue
+            text=path.read_text(encoding='utf-8'); original=text
+            for phrase,href in plans.get(filename,[]):
+              text,_=add_link(text,phrase,href)
             if text != original:
-              path.write_text(text,encoding='utf-8')
-              changed.append(filename)
+              path.write_text(text,encoding='utf-8'); changed.append(filename)
           print('Updated:', ', '.join(changed) if changed else 'No LPU pages changed.')
 
-      - name: Commit LPU architecture cleanup
+      - name: Commit LPU internal-link cleanup
         run: |
           git config user.name 'LPU Content Architecture Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add lovely-professional-university*.html
-          if git diff --cached --quiet; then echo 'No LPU content changes to commit.'; else git commit -m 'Improve natural LPU internal linking'; git push; fi
+          if git diff --cached --quiet; then echo 'No LPU content changes to commit.'; else git commit -m 'Refine LPU contextual anchor text'; git push; fi
