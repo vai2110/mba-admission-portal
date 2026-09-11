@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-11T09:22:41.851673+00:00",
+  "generated_at": "2026-09-11T09:39:16.127208+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 568,
-  "pages_with_issues": 415,
+  "pages_checked": 570,
+  "pages_with_issues": 411,
   "issue_counts": {
-    "broken_local_links": 5,
+    "broken_local_links": 4,
     "canonical": 13,
     "description_count": 4,
     "description_length": 190,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 19,
+    "jsonld": 14,
     "lang": 1,
-    "og_description": 20,
-    "og_title": 20,
-    "og_url": 20,
+    "og_description": 14,
+    "og_title": 14,
+    "og_url": 14,
     "title_length": 333,
-    "twitter_card": 25,
+    "twitter_card": 19,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -12760,6 +12760,37 @@
       ]
     },
     {
+      "file": "jims-rohini-admission-2026.html",
+      "benchmark": false,
+      "title": "JIMS Rohini Admission 2026: PGDM Eligibility, Cutoff & GDPI",
+      "title_length": 59,
+      "description": "JIMS Rohini admission 2026 guide: PGDM, PGDM-IB and PGDM-RM eligibility, accepted exams, cutoff benchmarks, selection process, GDPI and application steps.",
+      "description_length": 154,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jims-rohini-admission-2026.html",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "JIMS Rohini Admission 2026: PGDM Eligibility, Cutoff, Exams & GDPI",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": []
+    },
+    {
       "file": "jims-rohini-fees-placements.html",
       "benchmark": false,
       "title": "JIMS Rohini Fees & Placements 2026: PGDM Fee, Salary & ROI",
@@ -12772,6 +12803,37 @@
       "canonical_self": true,
       "h1_count": 1,
       "h1": "JIMS Rohini Fees & Placements 2026: PGDM Fee, Salary & ROI",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": []
+    },
+    {
+      "file": "jims-rohini-fees.html",
+      "benchmark": false,
+      "title": "JIMS Rohini Fees 2026-28: PGDM Fee, Scholarships & Total Cost",
+      "title_length": 61,
+      "description": "JIMS Rohini fees 2026-28: official PGDM, PGDM-IB and PGDM-RM fee structure, instalments, scholarships, deposits and practical total cost guide.",
+      "description_length": 143,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jims-rohini-fees.html",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "JIMS Rohini Fees 2026-28: PGDM Fee, Scholarships & Total Cost",
       "lang": "en",
       "viewport": true,
       "robots": [],
@@ -12809,25 +12871,21 @@
       "h1": "JIMS Rohini PGDM-IB 2026: Fees, Admission, Cutoff & Career Scope",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "jims-rohini-pgdm.html",
@@ -12844,25 +12902,21 @@
       "h1": "JIMS Rohini PGDM 2026: Fees, Cutoff, Admission & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "jims-rohini.html",
@@ -12879,27 +12933,22 @@
       "h1": "Jagan Institute of Management Studies (JIMS Rohini), Delhi: Courses, Admission, Fees & Placements 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 1,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "jims-rohini-admission-2026.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "broken_local_links"
+        "title_length"
       ]
     },
     {
@@ -15253,25 +15302,21 @@
       "h1": "PDEU B.Tech CSE 2026: Fees, Admission, Cutoff & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "pdeu-fees-placements.html",
@@ -15288,25 +15333,21 @@
       "h1": "PDEU Fees & Placements 2026: B.Tech, MBA, Hostel & Salary",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "pdeu-mba.html",
@@ -15323,25 +15364,22 @@
       "h1": "PDEU MBA 2026: Fees, Admission, CAT/XAT/NMAT & Placements",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "description_length"
       ]
     },
     {
