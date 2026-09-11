@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-11T12:24:22.952990+00:00",
+  "generated_at": "2026-09-11T12:26:15.730243+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 611,
-  "pages_with_issues": 445,
+  "pages_checked": 609,
+  "pages_with_issues": 443,
   "issue_counts": {
     "broken_local_links": 4,
     "canonical": 13,
@@ -15,7 +15,7 @@
     "og_description": 16,
     "og_title": 16,
     "og_url": 16,
-    "title_length": 361,
+    "title_length": 359,
     "twitter_card": 21,
     "viewport": 1
   },
@@ -11806,72 +11806,6 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": []
-    },
-    {
-      "file": "imt-nagpur-pgdm-financial-management.html",
-      "benchmark": false,
-      "title": "IMT Nagpur PGDM Financial Management 2026: Fees, Admission & Placements",
-      "title_length": 71,
-      "description": "IMT Nagpur PGDM Financial Management 2026 guide covering admission, CAT/XAT/CMAT/GMAT, fees, finance curriculum, electives, placements and career scope.",
-      "description_length": 152,
-      "description_count": 1,
-      "canonical": "https://vai2110.github.io/mba-admission-portal/imt-nagpur-pgdm-financial-management.html",
-      "canonical_count": 1,
-      "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IMT Nagpur PGDM Financial Management 2026: Fees, Admission & Placements",
-      "lang": "en",
-      "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
-      "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 2,
-      "images": 0,
-      "images_missing_alt": 0,
-      "broken_local_links": [],
-      "duplicate_title": false,
-      "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
-    },
-    {
-      "file": "imt-nagpur-pgdm-marketing.html",
-      "benchmark": false,
-      "title": "IMT Nagpur PGDM Marketing 2026: Fees, Admission, Curriculum & Placements",
-      "title_length": 72,
-      "description": "IMT Nagpur PGDM Marketing 2026 guide covering fees, admission, cutoff, curriculum, marketing electives, placements and career opportunities.",
-      "description_length": 140,
-      "description_count": 1,
-      "canonical": "https://vai2110.github.io/mba-admission-portal/imt-nagpur-pgdm-marketing.html",
-      "canonical_count": 1,
-      "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IMT Nagpur PGDM Marketing 2026: Fees, Admission, Curriculum & Placements",
-      "lang": "en",
-      "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
-      "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 2,
-      "images": 0,
-      "images_missing_alt": 0,
-      "broken_local_links": [],
-      "duplicate_title": false,
-      "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
     },
     {
       "file": "imt-nagpur-pgdm.html",
