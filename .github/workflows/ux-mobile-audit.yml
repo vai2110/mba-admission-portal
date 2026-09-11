@@ -14,9 +14,11 @@ on:
 permissions:
   contents: write
 
+# Never cancel an audit already running when another audit is queued.
+# Manual runs must be allowed to finish so we get a reliable baseline.
 concurrency:
   group: ux-mobile-audit
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   audit:
