@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T10:13:34.435149+00:00",
+  "generated_at": "2026-09-11T10:19:14.375199+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 581,
   "pages_with_issues": 420,
@@ -10,13 +10,13 @@
     "description_length": 192,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 15,
+    "jsonld": 16,
     "lang": 1,
-    "og_description": 15,
-    "og_title": 15,
-    "og_url": 15,
+    "og_description": 16,
+    "og_title": 16,
+    "og_url": 16,
     "title_length": 343,
-    "twitter_card": 20,
+    "twitter_card": 21,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -15352,10 +15352,10 @@
     {
       "file": "panjab-university-fees.html",
       "benchmark": false,
-      "title": "Panjab University Fees 2026: UG, PG, Professional Courses & Hostel",
-      "title_length": 66,
-      "description": "Panjab University fees 2026 guide explaining course-wise fee variation, tuition, university charges, hostel and examples from official programme fee notices.",
-      "description_length": 157,
+      "title": "Panjab University Fees 2026: UG, PG, MBA, Engineering, Law & Hostel",
+      "title_length": 67,
+      "description": "Panjab University fees 2026 with official course-wise fee figures, tuition, university charges, programme charges and hostel guidance.",
+      "description_length": 134,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/panjab-university-fees.html",
       "canonical_count": 1,
@@ -15364,22 +15364,25 @@
       "h1": "Panjab University Fees 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
+      "robots": [],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length"
+        "title_length",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
