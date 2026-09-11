@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-11T10:02:36.094850+00:00",
+  "generated_at": "2026-09-11T10:05:53.018961+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 580,
-  "pages_with_issues": 420,
+  "pages_checked": 581,
+  "pages_with_issues": 421,
   "issue_counts": {
     "broken_local_links": 5,
     "canonical": 13,
@@ -10,13 +10,13 @@
     "description_length": 192,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 22,
+    "jsonld": 14,
     "lang": 1,
-    "og_description": 22,
-    "og_title": 22,
-    "og_url": 22,
-    "title_length": 343,
-    "twitter_card": 27,
+    "og_description": 14,
+    "og_title": 14,
+    "og_url": 14,
+    "title_length": 344,
+    "twitter_card": 19,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -15300,25 +15300,22 @@
       "h1": "Panjab University MBA Admission 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -15336,25 +15333,22 @@
       "h1": "Panjab University MBA Fees 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -15372,13 +15366,15 @@
       "h1": "Panjab University MBA Courses 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -15386,27 +15382,55 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "description_length"
+      ]
+    },
+    {
+      "file": "panjab-university-placements.html",
+      "benchmark": false,
+      "title": "Panjab University UBS Placements 2026: Packages, Recruiters & Year-wise Data",
+      "title_length": 76,
+      "description": "Detailed Panjab University UBS Chandigarh placements analysis with 2024-25 package data, year-wise comparison, recruiters, roles, sectors and ROI context.",
+      "description_length": 154,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/panjab-university-placements.html",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "Panjab University UBS Placements 2026",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length"
       ]
     },
     {
       "file": "panjab-university.html",
       "benchmark": false,
-      "title": "Panjab University Chandigarh MBA: Courses, Admission, Fees & Placements 2026",
-      "title_length": 76,
-      "description": "Panjab University Chandigarh MBA guide covering UBS, MBA programmes, CAT admission, 2026 fees, scholarships, year-wise placements and career outcomes.",
-      "description_length": 150,
+      "title": "Panjab University Chandigarh: Courses, Admission, Fees, Rankings & Placements 2026",
+      "title_length": 82,
+      "description": "Panjab University Chandigarh 2026 guide covering UG and PG courses, admissions, fees, rankings, departments, campus, placements and student FAQs.",
+      "description_length": 145,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/panjab-university.html",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Panjab University Chandigarh MBA: Courses, Admission, Fees & Placements 2026",
+      "h1": "Panjab University Chandigarh: Courses, Admission, Fees, Rankings & Placements 2026",
       "lang": "en",
       "viewport": true,
       "robots": [],
@@ -15419,7 +15443,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "panjab-university-placements.html"
+        "panjab-university-courses.html"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
@@ -15605,25 +15629,22 @@
       "h1": "Rajagiri Business School Admission 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -15641,25 +15662,22 @@
       "h1": "Rajagiri Business School Fees 2026: PGDM Fee Structure, Hostel & Scholarships",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -15677,25 +15695,22 @@
       "h1": "Rajagiri Business School PGDM 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -15713,13 +15728,15 @@
       "h1": "Rajagiri Business School Placements 2026: Year-wise Salary, Recruiters & Sector Data",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -15727,12 +15744,7 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "description_length"
       ]
     },
     {
@@ -15750,25 +15762,22 @@
       "h1": "Rajagiri Business School, Kochi: Courses, Admission, Fees & Placements 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "title_length"
       ]
     },
     {
