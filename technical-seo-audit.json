@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-11T07:00:28.627178+00:00",
+  "generated_at": "2026-09-11T07:01:33.498819+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 554,
-  "pages_with_issues": 407,
+  "pages_with_issues": 408,
   "issue_counts": {
     "broken_local_links": 4,
     "canonical": 13,
@@ -10,13 +10,13 @@
     "description_length": 189,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 17,
+    "jsonld": 18,
     "lang": 1,
-    "og_description": 16,
-    "og_title": 16,
-    "og_url": 16,
+    "og_description": 17,
+    "og_title": 17,
+    "og_url": 17,
     "title_length": 329,
-    "twitter_card": 21,
+    "twitter_card": 22,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -12412,8 +12412,8 @@
       "benchmark": false,
       "title": "Jamia Hamdard Fees & Placements 2026: Course Cost, Salary & ROI",
       "title_length": 63,
-      "description": "Jamia Hamdard fees and placements guide covering programme-wise cost planning, MBA placement data, engineering placement data, pharmacy ranking and ROI questions.",
-      "description_length": 162,
+      "description": "Jamia Hamdard fees and placements guide covering programme-wise fees, additional charges, MBA placement data, engineering placement data, pharmacy ranking and ROI.",
+      "description_length": 163,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/jamia-hamdard-fees-placements.html",
       "canonical_count": 1,
@@ -12426,17 +12426,23 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
     },
     {
       "file": "jamia-hamdard-mba.html",
