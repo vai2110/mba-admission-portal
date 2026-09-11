@@ -37,7 +37,10 @@ jobs:
             s=re.sub(r'<meta name="description" content=".*?">',f'<meta name="description" content="{desc}">',s,count=1,flags=re.S)
             s=re.sub(r'<h1>.*?</h1>',f'<h1>{h1}</h1>',s,count=1,flags=re.S)
             it=iter(h2s)
-            s=re.sub(r'<h2>.*?</h2>',lambda m: f'<h2>{next(it,m.group(0)[4:-5])}</h2>',s,flags=re.S)
+            def section_h2(m):
+              block=m.group(0)
+              return re.sub(r'<h2>.*?</h2>',lambda x: f'<h2>{next(it,x.group(0)[4:-5])}</h2>',block,count=1,flags=re.S)
+            s=re.sub(r'<section class="main-section"[^>]*>.*?</section>',section_h2,s,flags=re.S)
             p.write_text(s,encoding='utf-8')
           PY
       - name: Commit keyword architecture changes
