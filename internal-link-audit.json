@@ -1,21 +1,31 @@
 {
-  "generated_at": "2026-09-11T07:42:50.912238+00:00",
+  "generated_at": "2026-09-11T10:42:04.428038+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 556,
-    "pages_with_internal_links": 538,
-    "broken_local_links": 7,
+    "pages_checked": 592,
+    "pages_with_internal_links": 574,
+    "broken_local_links": 3,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 73,
-    "cluster_reciprocal_gaps": 192,
-    "zero_incoming_pages": 60,
+    "college_clusters_detected": 80,
+    "cluster_reciprocal_gaps": 220,
+    "zero_incoming_pages": 67,
     "role_counts": {
-      "programme": 247,
-      "placement": 80,
-      "overview_or_hub": 229
+      "overview_or_hub": 251,
+      "programme": 253,
+      "placement": 88
     }
   },
   "college_clusters": [
+    {
+      "overview": "abv-iiitm-gwalior.html",
+      "placement": "abv-iiitm-gwalior-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "abv-iiitm-gwalior-admission-2026.html",
+        "abv-iiitm-gwalior-btech-cse.html",
+        "abv-iiitm-gwalior-fees.html"
+      ]
+    },
     {
       "overview": "alliance-university.html",
       "placement": "alliance-university-placements.html",
@@ -516,6 +526,16 @@
       ]
     },
     {
+      "overview": "imi-bhubaneswar.html",
+      "placement": "imi-bhubaneswar-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "imi-bhubaneswar-admission-2026.html",
+        "imi-bhubaneswar-courses.html",
+        "imi-bhubaneswar-fees.html"
+      ]
+    },
+    {
       "overview": "imi-delhi.html",
       "placement": "imi-delhi-placements.html",
       "programme_count": 3,
@@ -610,6 +630,24 @@
       ]
     },
     {
+      "overview": "jims-rohini-fees.html",
+      "placement": "jims-rohini-fees-placements.html",
+      "programme_count": 0,
+      "programmes": []
+    },
+    {
+      "overview": "jims-rohini.html",
+      "placement": "jims-rohini-placements.html",
+      "programme_count": 5,
+      "programmes": [
+        "jims-rohini-admission-2026.html",
+        "jims-rohini-fees-placements.html",
+        "jims-rohini-fees.html",
+        "jims-rohini-pgdm-ib.html",
+        "jims-rohini-pgdm.html"
+      ]
+    },
+    {
       "overview": "kiit-bhubaneswar.html",
       "placement": "kiit-bhubaneswar-placements.html",
       "programme_count": 0,
@@ -667,6 +705,16 @@
       ]
     },
     {
+      "overview": "manage-hyderabad.html",
+      "placement": "manage-hyderabad-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "manage-hyderabad-admission-2026.html",
+        "manage-hyderabad-courses.html",
+        "manage-hyderabad-fees.html"
+      ]
+    },
+    {
       "overview": "mdi-gurugram.html",
       "placement": "mdi-gurugram-placements.html",
       "programme_count": 0,
@@ -702,6 +750,26 @@
         "nmims-mba-pharma-tech.html",
         "nmims-mba-tech.html",
         "nmims-mba.html"
+      ]
+    },
+    {
+      "overview": "panjab-university.html",
+      "placement": "panjab-university-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "panjab-university-admission-2026.html",
+        "panjab-university-courses.html",
+        "panjab-university-fees.html"
+      ]
+    },
+    {
+      "overview": "rajagiri-business-school.html",
+      "placement": "rajagiri-business-school-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "rajagiri-business-school-admission-2026.html",
+        "rajagiri-business-school-fees.html",
+        "rajagiri-business-school-pgdm.html"
       ]
     },
     {
@@ -795,6 +863,42 @@
     }
   ],
   "reciprocal_link_gaps": [
+    {
+      "source": "abv-iiitm-gwalior.html",
+      "missing": [
+        "abv-iiitm-gwalior-btech-cse.html"
+      ]
+    },
+    {
+      "source": "abv-iiitm-gwalior-placements.html",
+      "missing": [
+        "abv-iiitm-gwalior.html",
+        "abv-iiitm-gwalior-admission-2026.html",
+        "abv-iiitm-gwalior-btech-cse.html",
+        "abv-iiitm-gwalior-fees.html"
+      ]
+    },
+    {
+      "source": "abv-iiitm-gwalior-admission-2026.html",
+      "missing": [
+        "abv-iiitm-gwalior.html",
+        "abv-iiitm-gwalior-placements.html"
+      ]
+    },
+    {
+      "source": "abv-iiitm-gwalior-btech-cse.html",
+      "missing": [
+        "abv-iiitm-gwalior.html",
+        "abv-iiitm-gwalior-placements.html"
+      ]
+    },
+    {
+      "source": "abv-iiitm-gwalior-fees.html",
+      "missing": [
+        "abv-iiitm-gwalior.html",
+        "abv-iiitm-gwalior-placements.html"
+      ]
+    },
     {
       "source": "alliance-university-placements.html",
       "missing": [
@@ -1839,6 +1943,36 @@
       ]
     },
     {
+      "source": "imi-bhubaneswar-placements.html",
+      "missing": [
+        "imi-bhubaneswar.html",
+        "imi-bhubaneswar-admission-2026.html",
+        "imi-bhubaneswar-courses.html",
+        "imi-bhubaneswar-fees.html"
+      ]
+    },
+    {
+      "source": "imi-bhubaneswar-admission-2026.html",
+      "missing": [
+        "imi-bhubaneswar.html",
+        "imi-bhubaneswar-placements.html"
+      ]
+    },
+    {
+      "source": "imi-bhubaneswar-courses.html",
+      "missing": [
+        "imi-bhubaneswar.html",
+        "imi-bhubaneswar-placements.html"
+      ]
+    },
+    {
+      "source": "imi-bhubaneswar-fees.html",
+      "missing": [
+        "imi-bhubaneswar.html",
+        "imi-bhubaneswar-placements.html"
+      ]
+    },
+    {
       "source": "imi-delhi-placements.html",
       "missing": [
         "imi-delhi.html",
@@ -1940,6 +2074,65 @@
       ]
     },
     {
+      "source": "jims-rohini-fees.html",
+      "missing": [
+        "jims-rohini-fees-placements.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-fees-placements.html",
+      "missing": [
+        "jims-rohini-fees.html"
+      ]
+    },
+    {
+      "source": "jims-rohini.html",
+      "missing": [
+        "jims-rohini-placements.html",
+        "jims-rohini-fees-placements.html",
+        "jims-rohini-fees.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-placements.html",
+      "missing": [
+        "jims-rohini-admission-2026.html",
+        "jims-rohini-fees-placements.html",
+        "jims-rohini-pgdm-ib.html",
+        "jims-rohini-pgdm.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-admission-2026.html",
+      "missing": [
+        "jims-rohini-placements.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-fees-placements.html",
+      "missing": [
+        "jims-rohini-placements.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-fees.html",
+      "missing": [
+        "jims-rohini-placements.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-pgdm-ib.html",
+      "missing": [
+        "jims-rohini-placements.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-pgdm.html",
+      "missing": [
+        "jims-rohini-placements.html"
+      ]
+    },
+    {
       "source": "kj-somaiya-institute-of-management-placements.html",
       "missing": [
         "kj-somaiya-institute-of-management-mba-healthcare-management.html",
@@ -2012,6 +2205,36 @@
       ]
     },
     {
+      "source": "manage-hyderabad-placements.html",
+      "missing": [
+        "manage-hyderabad.html",
+        "manage-hyderabad-admission-2026.html",
+        "manage-hyderabad-courses.html",
+        "manage-hyderabad-fees.html"
+      ]
+    },
+    {
+      "source": "manage-hyderabad-admission-2026.html",
+      "missing": [
+        "manage-hyderabad.html",
+        "manage-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "manage-hyderabad-courses.html",
+      "missing": [
+        "manage-hyderabad.html",
+        "manage-hyderabad-placements.html"
+      ]
+    },
+    {
+      "source": "manage-hyderabad-fees.html",
+      "missing": [
+        "manage-hyderabad.html",
+        "manage-hyderabad-placements.html"
+      ]
+    },
+    {
       "source": "nirma-university-placements.html",
       "missing": [
         "nirma-university-ba-llb.html",
@@ -2034,6 +2257,50 @@
         "nmims-mba-pharma-tech.html",
         "nmims-mba-tech.html",
         "nmims-mba.html"
+      ]
+    },
+    {
+      "source": "panjab-university-placements.html",
+      "missing": [
+        "panjab-university.html",
+        "panjab-university-admission-2026.html",
+        "panjab-university-courses.html",
+        "panjab-university-fees.html"
+      ]
+    },
+    {
+      "source": "panjab-university-admission-2026.html",
+      "missing": [
+        "panjab-university.html",
+        "panjab-university-placements.html"
+      ]
+    },
+    {
+      "source": "panjab-university-courses.html",
+      "missing": [
+        "panjab-university.html",
+        "panjab-university-placements.html"
+      ]
+    },
+    {
+      "source": "panjab-university-fees.html",
+      "missing": [
+        "panjab-university.html",
+        "panjab-university-placements.html"
+      ]
+    },
+    {
+      "source": "rajagiri-business-school-placements.html",
+      "missing": [
+        "rajagiri-business-school-admission-2026.html",
+        "rajagiri-business-school-fees.html",
+        "rajagiri-business-school-pgdm.html"
+      ]
+    },
+    {
+      "source": "rajagiri-business-school-admission-2026.html",
+      "missing": [
+        "rajagiri-business-school-placements.html"
       ]
     },
     {
@@ -2195,26 +2462,6 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
-    },
-    {
-      "source": "pdeu.html",
-      "href": "pdeu-btech-cse.html",
-      "target": "pdeu-btech-cse.html"
-    },
-    {
-      "source": "pdeu.html",
-      "href": "pdeu-mba.html",
-      "target": "pdeu-mba.html"
-    },
-    {
-      "source": "pdeu.html",
-      "href": "pdeu-admission-2026.html",
-      "target": "pdeu-admission-2026.html"
-    },
-    {
-      "source": "pdeu.html",
-      "href": "pdeu-fees-placements.html",
-      "target": "pdeu-fees-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -2225,6 +2472,16 @@
     }
   ],
   "zero_incoming_pages": [
+    {
+      "page": "abv-iiitm-gwalior-btech-cse.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "abv-iiitm-gwalior.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
     {
       "page": "amity-university-noida-mca.html",
       "role": "programme",
@@ -2396,6 +2653,11 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "imi-bhubaneswar.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "imi-delhi.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -2461,6 +2723,16 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "jims-rohini-fees-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "jims-rohini-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "lovely-professional-university-design.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -2476,7 +2748,17 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "manage-hyderabad.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "nmims-mba-tech.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "panjab-university.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2527,6 +2809,9 @@
     }
   ],
   "incoming_link_counts": {
+    "abv-iiitm-gwalior-admission-2026.html": 1,
+    "abv-iiitm-gwalior-fees.html": 2,
+    "abv-iiitm-gwalior-placements.html": 1,
     "alliance-university-bba-llb.html": 4,
     "alliance-university-bba.html": 8,
     "alliance-university-bca.html": 6,
@@ -2815,6 +3100,10 @@
     "iit-roorkee-mba.html": 4,
     "iit-roorkee-placements.html": 5,
     "iit-roorkee.html": 3,
+    "imi-bhubaneswar-admission-2026.html": 1,
+    "imi-bhubaneswar-courses.html": 1,
+    "imi-bhubaneswar-fees.html": 1,
+    "imi-bhubaneswar-placements.html": 1,
     "imi-delhi-pgdm-bfs.html": 1,
     "imi-delhi-pgdm-hrm.html": 1,
     "imi-delhi-pgdm.html": 1,
@@ -2827,7 +3116,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 937,
+    "index.html": 973,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2863,6 +3152,11 @@
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 6,
     "jamia-millia-islamia.html": 4,
+    "jims-rohini-admission-2026.html": 1,
+    "jims-rohini-fees.html": 1,
+    "jims-rohini-pgdm-ib.html": 1,
+    "jims-rohini-pgdm.html": 1,
+    "jims-rohini.html": 6,
     "kiit-bba.html": 8,
     "kiit-bca.html": 7,
     "kiit-bhubaneswar-placements.html": 12,
@@ -2897,6 +3191,10 @@
     "loyola-institute-business-administration-pgdm.html": 1,
     "loyola-institute-business-administration-placements.html": 8,
     "loyola-institute-business-administration.html": 8,
+    "manage-hyderabad-admission-2026.html": 1,
+    "manage-hyderabad-courses.html": 1,
+    "manage-hyderabad-fees.html": 1,
+    "manage-hyderabad-placements.html": 1,
     "mat.html": 2,
     "mdi-gurugram-placements.html": 1,
     "mdi-gurugram.html": 1,
@@ -2930,6 +3228,19 @@
     "nmims-mba.html": 5,
     "nmims-placements.html": 5,
     "nmims.html": 4,
+    "panjab-university-admission-2026.html": 2,
+    "panjab-university-courses.html": 1,
+    "panjab-university-fees.html": 1,
+    "panjab-university-placements.html": 1,
+    "pdeu-admission-2026.html": 1,
+    "pdeu-btech-cse.html": 1,
+    "pdeu-fees-placements.html": 1,
+    "pdeu-mba.html": 1,
+    "rajagiri-business-school-admission-2026.html": 1,
+    "rajagiri-business-school-fees.html": 2,
+    "rajagiri-business-school-pgdm.html": 1,
+    "rajagiri-business-school-placements.html": 3,
+    "rajagiri-business-school.html": 4,
     "school-management-studies-mnnit-allahabad-executive-mba.html": 3,
     "school-management-studies-mnnit-allahabad-mba.html": 4,
     "school-management-studies-mnnit-allahabad-placements.html": 5,
@@ -3022,6 +3333,11 @@
     "xlri-jamshedpur.html": 3
   },
   "outgoing_internal_link_counts": {
+    "abv-iiitm-gwalior-admission-2026.html": 1,
+    "abv-iiitm-gwalior-btech-cse.html": 2,
+    "abv-iiitm-gwalior-fees.html": 1,
+    "abv-iiitm-gwalior-placements.html": 1,
+    "abv-iiitm-gwalior.html": 4,
     "alliance-university-bba-llb.html": 8,
     "alliance-university-bba.html": 8,
     "alliance-university-bca.html": 9,
@@ -3334,6 +3650,11 @@
     "iit-roorkee-mba.html": 5,
     "iit-roorkee-placements.html": 5,
     "iit-roorkee.html": 10,
+    "imi-bhubaneswar-admission-2026.html": 1,
+    "imi-bhubaneswar-courses.html": 1,
+    "imi-bhubaneswar-fees.html": 1,
+    "imi-bhubaneswar-placements.html": 1,
+    "imi-bhubaneswar.html": 5,
     "imi-delhi-pgdm-bfs.html": 3,
     "imi-delhi-pgdm-hrm.html": 3,
     "imi-delhi-pgdm.html": 3,
@@ -3387,6 +3708,13 @@
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 7,
     "jamia-millia-islamia.html": 12,
+    "jims-rohini-admission-2026.html": 2,
+    "jims-rohini-fees-placements.html": 2,
+    "jims-rohini-fees.html": 2,
+    "jims-rohini-pgdm-ib.html": 2,
+    "jims-rohini-pgdm.html": 2,
+    "jims-rohini-placements.html": 3,
+    "jims-rohini.html": 4,
     "kiit-bba.html": 12,
     "kiit-bca.html": 11,
     "kiit-bhubaneswar-placements.html": 7,
@@ -3424,6 +3752,11 @@
     "loyola-institute-business-administration-pgdm.html": 6,
     "loyola-institute-business-administration-placements.html": 6,
     "loyola-institute-business-administration.html": 10,
+    "manage-hyderabad-admission-2026.html": 1,
+    "manage-hyderabad-courses.html": 1,
+    "manage-hyderabad-fees.html": 1,
+    "manage-hyderabad-placements.html": 1,
+    "manage-hyderabad.html": 5,
     "mat.html": 8,
     "mdi-gurugram-placements.html": 7,
     "mdi-gurugram.html": 4,
@@ -3458,7 +3791,21 @@
     "nmims-mba.html": 5,
     "nmims-placements.html": 3,
     "nmims.html": 13,
+    "panjab-university-admission-2026.html": 1,
+    "panjab-university-courses.html": 2,
+    "panjab-university-fees.html": 1,
+    "panjab-university-placements.html": 1,
+    "panjab-university.html": 5,
+    "pdeu-admission-2026.html": 1,
+    "pdeu-btech-cse.html": 1,
+    "pdeu-fees-placements.html": 1,
+    "pdeu-mba.html": 1,
     "pdeu.html": 5,
+    "rajagiri-business-school-admission-2026.html": 2,
+    "rajagiri-business-school-fees.html": 3,
+    "rajagiri-business-school-pgdm.html": 4,
+    "rajagiri-business-school-placements.html": 2,
+    "rajagiri-business-school.html": 5,
     "school-management-studies-mnnit-allahabad-executive-mba.html": 4,
     "school-management-studies-mnnit-allahabad-mba.html": 5,
     "school-management-studies-mnnit-allahabad-placements.html": 3,
