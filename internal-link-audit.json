@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-10T18:24:11.509658+00:00",
+  "generated_at": "2026-09-11T07:42:50.912238+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 541,
-    "pages_with_internal_links": 523,
-    "broken_local_links": 3,
+    "pages_checked": 556,
+    "pages_with_internal_links": 538,
+    "broken_local_links": 7,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 73,
     "cluster_reciprocal_gaps": 192,
-    "zero_incoming_pages": 57,
+    "zero_incoming_pages": 60,
     "role_counts": {
-      "programme": 243,
-      "placement": 77,
-      "overview_or_hub": 221
+      "programme": 247,
+      "placement": 80,
+      "overview_or_hub": 229
     }
   },
   "college_clusters": [
@@ -2195,6 +2195,26 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "pdeu.html",
+      "href": "pdeu-btech-cse.html",
+      "target": "pdeu-btech-cse.html"
+    },
+    {
+      "source": "pdeu.html",
+      "href": "pdeu-mba.html",
+      "target": "pdeu-mba.html"
+    },
+    {
+      "source": "pdeu.html",
+      "href": "pdeu-admission-2026.html",
+      "target": "pdeu-admission-2026.html"
+    },
+    {
+      "source": "pdeu.html",
+      "href": "pdeu-fees-placements.html",
+      "target": "pdeu-fees-placements.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -2227,6 +2247,11 @@
     },
     {
       "page": "amrita-vishwa-vidyapeetham.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "anna-university.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2431,6 +2456,11 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "jamia-hamdard.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "lovely-professional-university-design.html",
       "role": "programme",
       "incoming_internal_links": 0
@@ -2447,6 +2477,11 @@
     },
     {
       "page": "nmims-mba-tech.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "pdeu.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2518,6 +2553,10 @@
     "amu-btech.html": 7,
     "amu-mba.html": 8,
     "amu-mbbs.html": 6,
+    "anna-university-admission-2026.html": 1,
+    "anna-university-btech-cse.html": 1,
+    "anna-university-fees-placements.html": 1,
+    "anna-university-mba.html": 1,
     "banaras-hindu-university.html": 15,
     "bbau-admission-2026.html": 16,
     "bbau-bba-bcom-2026.html": 3,
@@ -2788,7 +2827,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 11,
     "imt-nagpur.html": 9,
-    "index.html": 925,
+    "index.html": 937,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -2817,6 +2856,10 @@
     "jaipuria-noida-pgdm-service-management.html": 2,
     "jaipuria-noida-pgdm.html": 2,
     "jaipuria-noida-placements.html": 5,
+    "jamia-hamdard-admission-2026.html": 3,
+    "jamia-hamdard-bpharm.html": 1,
+    "jamia-hamdard-fees-placements.html": 3,
+    "jamia-hamdard-mba.html": 2,
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 6,
     "jamia-millia-islamia.html": 4,
@@ -2870,6 +2913,10 @@
     "muj-jaipur.html": 11,
     "muj-mba-2026.html": 7,
     "muj-placements-2026.html": 8,
+    "ndim-delhi.html": 7,
+    "ndim-fees-2026.html": 4,
+    "ndim-pgdm-2026.html": 3,
+    "ndim-placements.html": 3,
     "nirma-university-ba-llb.html": 1,
     "nirma-university-bba-hons.html": 1,
     "nirma-university-bcom-hons.html": 1,
@@ -3002,6 +3049,11 @@
     "amu-btech.html": 7,
     "amu-mba.html": 7,
     "amu-mbbs.html": 6,
+    "anna-university-admission-2026.html": 1,
+    "anna-university-btech-cse.html": 1,
+    "anna-university-fees-placements.html": 1,
+    "anna-university-mba.html": 1,
+    "anna-university.html": 5,
     "banaras-hindu-university.html": 11,
     "bbau-admission-2026.html": 11,
     "bbau-bba-bcom-2026.html": 9,
@@ -3327,6 +3379,11 @@
     "jaipuria-noida-pgdm.html": 3,
     "jaipuria-noida-placements.html": 2,
     "jaipuria-noida.html": 6,
+    "jamia-hamdard-admission-2026.html": 2,
+    "jamia-hamdard-bpharm.html": 2,
+    "jamia-hamdard-fees-placements.html": 1,
+    "jamia-hamdard-mba.html": 2,
+    "jamia-hamdard.html": 7,
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 7,
     "jamia-millia-islamia.html": 12,
@@ -3383,6 +3440,10 @@
     "muj-jaipur.html": 10,
     "muj-mba-2026.html": 4,
     "muj-placements-2026.html": 5,
+    "ndim-delhi.html": 4,
+    "ndim-fees-2026.html": 4,
+    "ndim-pgdm-2026.html": 6,
+    "ndim-placements.html": 4,
     "nirma-university-ba-llb.html": 4,
     "nirma-university-bba-hons.html": 4,
     "nirma-university-bcom-hons.html": 4,
@@ -3397,6 +3458,7 @@
     "nmims-mba.html": 5,
     "nmims-placements.html": 3,
     "nmims.html": 13,
+    "pdeu.html": 5,
     "school-management-studies-mnnit-allahabad-executive-mba.html": 4,
     "school-management-studies-mnnit-allahabad-mba.html": 5,
     "school-management-studies-mnnit-allahabad-placements.html": 3,
