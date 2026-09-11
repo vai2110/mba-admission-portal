@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T07:01:33.498819+00:00",
+  "generated_at": "2026-09-11T07:08:11.184026+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 554,
   "pages_with_issues": 408,
@@ -10,13 +10,13 @@
     "description_length": 189,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 18,
+    "jsonld": 16,
     "lang": 1,
-    "og_description": 17,
-    "og_title": 17,
-    "og_url": 17,
+    "og_description": 16,
+    "og_title": 16,
+    "og_url": 16,
     "title_length": 329,
-    "twitter_card": 22,
+    "twitter_card": 21,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -12395,17 +12395,23 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
     },
     {
       "file": "jamia-hamdard-fees-placements.html",
@@ -12463,17 +12469,23 @@
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
+      ]
     },
     {
       "file": "jamia-hamdard.html",
@@ -12498,15 +12510,14 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 0,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "jsonld"
+        "title_length"
       ]
     },
     {
@@ -14374,25 +14385,22 @@
       "h1": "NDIM Fees 2026: PGDM Fee Structure, Hostel & Scholarships",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
+        "description_length"
       ]
     },
     {
@@ -14410,25 +14418,21 @@
       "h1": "NDIM PGDM 2026: Fees, Specialisations, Eligibility & Career Scope",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "ndim-placements.html",
@@ -14445,25 +14449,21 @@
       "h1": "NDIM Placements: Salary, Recruiters & Career Outcomes",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "nirma-university-ba-llb.html",
