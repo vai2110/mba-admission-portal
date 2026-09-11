@@ -2,8 +2,6 @@ name: CUSAT Keyword Architecture Refresh
 
 on:
   push:
-    paths-ignore:
-      - '.github/workflows/cusat-keyword-refresh.yml'
   workflow_dispatch:
 
 jobs:
@@ -19,94 +17,32 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-
           pages = {
-            'cusat-kochi.html': {
-              'title':'CUSAT Courses, Admission, Fees & Placements 2026',
-              'desc':'CUSAT courses, admission 2026, CAT, B.Tech, MBA, MCA, fees, placements, hostel and programme-wise student guidance.',
-              'h1':'CUSAT Courses, Admission, Fees & Placements 2026',
-              'h2':['CUSAT Courses: Engineering, MBA, MCA, Law, Science & Marine Programmes','CUSAT Admission 2026: CAT, CUET, GATE & Programme Routes','CUSAT B.Tech Courses: Branches, Seats & Career Direction','CUSAT MBA: Programmes, Selection, Fees & Career Scope','CUSAT MCA: Admission, Fees & Computing Options','CUSAT Courses & Fees: What Students Should Compare','Is CUSAT Good? Who Should Choose CUSAT in 2026','CUSAT FAQs: Courses, Admission, Fees & Cutoff']
-            },
-            'cusat-admission-2026.html': {
-              'title':'CUSAT Admission 2026: CAT, Eligibility, Cutoff, Fees & Dates',
-              'desc':'CUSAT admission 2026 guide covering CAT, eligibility, application process, cutoff and last ranks, fees, documents and programme-wise admission routes.',
-              'h1':'CUSAT Admission 2026: CAT, Eligibility, Cutoff & Process',
-              'h2':['CUSAT Admission 2026: Programme-Wise Entrance Routes','CUSAT CAT 2026: Admission Test, Ranks & Real-Time Admissions','CUSAT Admission Eligibility 2026: Course-Wise Requirements','CUSAT Admission Process 2026: Application to Allotment','CUSAT Admission Documents 2026: What to Keep Ready','CUSAT Cutoff 2026: Last Rank and Programme-Wise Interpretation','CUSAT Admission FAQs: CAT, Eligibility, Dates & Selection']
-            },
-            'cusat-btech-2026.html': {
-              'title':'CUSAT B.Tech 2026: Courses, Fees, Cutoff, Seats & Admission',
-              'desc':'CUSAT B.Tech 2026 guide covering CSE, AI & Data Science, IT, ECE, EEE, Marine Engineering, fees, seats, admission and career choices.',
-              'h1':'CUSAT B.Tech 2026: Courses, Fees, Cutoff & Admission',
-              'h2':['CUSAT B.Tech Courses: Branches, Seats & Career Options','CUSAT B.Tech Eligibility 2026: Subject and Qualification Rules','CUSAT B.Tech Admission 2026: CAT Rank, Options & Allotment','CUSAT B.Tech Curriculum: How to Choose the Right Branch','CUSAT B.Tech Fees 2026: Tuition by Category','CUSAT B.Tech Placements & Career Scope: What to Compare','CUSAT B.Tech FAQs: Branches, Fees, Cutoff & Admission']
-            },
-            'cusat-mba-2026.html': {
-              'title':'CUSAT MBA 2026: Admission, Fees, Eligibility, Cutoff & Placements',
-              'desc':'CUSAT MBA 2026 guide covering MBA admission, CAT/CMAT/KMAT, eligibility, 70-20-10 selection, fees, programmes and career scope.',
-              'h1':'CUSAT MBA 2026: Admission, Fees, Eligibility & Selection',
-              'h2':['CUSAT MBA Courses: Full-Time, Evening, Executive & Dual Masters','CUSAT MBA Eligibility 2026: Qualification and Entrance Tests','CUSAT MBA Selection Process: 70% Test + 20% PI + 10% Class XII','CUSAT MBA Full-Time: Course Structure & Student Fit','CUSAT MBA International Dual Masters: Eligibility & Cost Considerations','CUSAT MBA Fees 2026: Tuition and Other Charges','CUSAT MBA Placements & Career Scope: How to Evaluate ROI','CUSAT MBA FAQs: Fees, Entrance Exams, Seats & Selection']
-            },
-            'cusat-mca-2026.html': {
-              'title':'CUSAT MCA 2026: Admission, Fees, Eligibility, CAT & Cutoff',
-              'desc':'CUSAT MCA 2026 guide covering admission, CAT MCA test, eligibility, Regular vs Cost Sharing fees, campuses and career scope.',
-              'h1':'CUSAT MCA 2026: Admission, Fees, CAT & Eligibility',
-              'h2':['CUSAT MCA 2026: Regular vs Cost Sharing Options','CUSAT MCA Eligibility 2026: Mathematics & Qualification Rules','CUSAT MCA CAT 2026: Test Pattern and Preparation','CUSAT MCA Fees 2026: Regular, Cost Sharing & NRI','CUSAT MCA Campus Choice: Thrikkakara vs Kuttanad','CUSAT MCA Placements & Career Scope','CUSAT MCA FAQs: CAT, Fees, Eligibility & Admission']
-            },
-            'cusat-mtech-pg-2026.html': {
-              'title':'CUSAT M.Tech 2026: Courses, Admission, Fees, GATE & Cutoff',
-              'desc':'CUSAT M.Tech 2026 guide covering specialisations, GATE/DAT/CUET routes, eligibility, fees, admission and career options.',
-              'h1':'CUSAT M.Tech 2026: Courses, Fees, Admission & GATE',
-              'h2':['CUSAT M.Tech Courses: Specialisations & Programme Choices','CUSAT M.Tech Eligibility 2026: Qualification Requirements','CUSAT M.Tech Admission 2026: GATE, DAT & CUET Routes','CUSAT M.Tech Curriculum: Specialisation-Wise Academic Focus','CUSAT M.Tech Fees 2026: Tuition and Additional Charges','CUSAT M.Tech Career Scope: Research, Industry & Higher Studies','CUSAT M.Tech FAQs: GATE, Admission, Fees & Eligibility']
-            },
-            'cusat-fees-scholarships-2026.html': {
-              'title':'CUSAT Fees 2026: B.Tech, MBA, MCA, M.Tech & Scholarships',
-              'desc':'CUSAT fees 2026 guide covering B.Tech, MBA, MCA, M.Tech tuition, category-wise charges, scholarships and total-cost planning.',
-              'h1':'CUSAT Fees 2026: Course-Wise Fees, Scholarships & Total Cost',
-              'h2':['CUSAT Fees 2026: Course-Wise Tuition & Charges','CUSAT B.Tech Fees 2026: State Merit, All India & NRI','CUSAT MBA Fees 2026: Regular, Evening & Executive','CUSAT MCA Fees 2026: Regular vs Cost Sharing','CUSAT M.Tech Fees 2026: Programme-Wise Cost','CUSAT Scholarships 2026: Eligibility & Financial Support','CUSAT Fees FAQs: Tuition, Scholarships & Total Cost']
-            },
-            'cusat-placements-2026.html': {
-              'title':'CUSAT Placements 2026: Salary, Recruiters, Internships & ROI',
-              'desc':'CUSAT placements 2026 guide covering placement data, recruiters, internships, programme-wise career outcomes and ROI.',
-              'h1':'CUSAT Placements 2026: Salary, Recruiters & Career Outcomes',
-              'h2':['CUSAT Placements 2026: What the Available Data Shows','CUSAT Placement Recruiters: Companies and Role Types','CUSAT Internships: Opportunities Before Final Placements','CUSAT Placements by Programme: B.Tech, MBA, MCA & PG','CUSAT Placement ROI: Fees vs Career Outcomes','CUSAT Placements FAQs: Salary, Recruiters & Internships']
-            },
-            'cusat-campus-hostel.html': {
-              'title':'CUSAT Hostel 2026: Fees, Facilities, Campus & Student Life',
-              'desc':'CUSAT hostel and campus guide covering accommodation, hostel fees, facilities, student life, location and total living-cost considerations.',
-              'h1':'CUSAT Hostel 2026: Fees, Facilities & Campus Life',
-              'h2':['CUSAT Hostel 2026: Accommodation Options & Eligibility','CUSAT Hostel Fees 2026: Cost Components & Budget Planning','CUSAT Campus Facilities: Library, Labs, Sports & Student Services','CUSAT Hostel Facilities: Rooms, Mess, Wi-Fi & Security','CUSAT Student Life: Clubs, Activities & Campus Experience','CUSAT Hostel Decision Guide: Who Should Choose Campus Housing?','CUSAT Hostel FAQs: Fees, Rooms, Facilities & Rules']
-            },
-            'cusat-law-2026.html': {
-              'title':'CUSAT Law 2026: Courses, Admission, Fees, Eligibility & Cutoff',
-              'desc':'CUSAT law 2026 guide covering BBA LLB, BCom LLB, BSc LLB Computer Science, LLM, CAT/CUET routes, fees and career scope.',
-              'h1':'CUSAT Law 2026: Courses, Admission, Fees & Eligibility',
-              'h2':['CUSAT Law Courses 2026: BBA LLB, BCom LLB, BSc LLB & LLM','CUSAT Law Eligibility 2026: Qualification Requirements','CUSAT Law Admission 2026: CAT, CUET & Selection','CUSAT Law Fees 2026: Course-Wise Cost','CUSAT Law Career Scope: Specialisations & Career Paths','CUSAT Law FAQs: Admission, Fees, Eligibility & Cutoff']
-            },
-            'cusat-science-marine-2026.html': {
-              'title':'CUSAT Courses 2026: Science, Marine, MSc & Integrated Programmes',
-              'desc':'CUSAT science and marine courses 2026 guide covering integrated MSc, MSc, marine science, fisheries, oceanography and specialist programmes.',
-              'h1':'CUSAT Science & Marine Courses 2026: Admission, Fees & Careers',
-              'h2':['CUSAT Science Courses 2026: MSc & Integrated Programmes','CUSAT Marine Courses 2026: Oceanography, Marine Science & Fisheries','CUSAT Science & Marine Admission 2026: CAT and Programme Routes','CUSAT Science & Marine Eligibility 2026','CUSAT Science & Marine Fees 2026','CUSAT Science & Marine Career Scope','CUSAT Science & Marine FAQs: Courses, Admission & Fees']
-            }
-          }
-
-          for fn, cfg in pages.items():
+            'cusat-kochi.html':('CUSAT Courses, Admission, Fees & Placements 2026','CUSAT courses, admission 2026, CAT, B.Tech, MBA, MCA, fees, placements, hostel and programme-wise student guidance.','CUSAT Courses, Admission, Fees & Placements 2026',['CUSAT Courses: Engineering, MBA, MCA, Law, Science & Marine Programmes','CUSAT Admission 2026: CAT, CUET, GATE & Programme Routes','CUSAT B.Tech Courses: Branches, Seats & Career Direction','CUSAT MBA: Programmes, Selection, Fees & Career Scope','CUSAT MCA: Admission, Fees & Computing Options','CUSAT Courses & Fees: What Students Should Compare','Is CUSAT Good? Who Should Choose CUSAT in 2026','CUSAT FAQs: Courses, Admission, Fees & Cutoff']),
+            'cusat-admission-2026.html':('CUSAT Admission 2026: CAT, Eligibility, Cutoff, Fees & Dates','CUSAT admission 2026 guide covering CAT, eligibility, application process, cutoff and last ranks, fees, documents and programme-wise admission routes.','CUSAT Admission 2026: CAT, Eligibility, Cutoff & Process',['CUSAT Admission 2026: Programme-Wise Entrance Routes','CUSAT CAT 2026: Admission Test, Ranks & Real-Time Admissions','CUSAT Admission Eligibility 2026: Course-Wise Requirements','CUSAT Admission Process 2026: Application to Allotment','CUSAT Admission Documents 2026: What to Keep Ready','CUSAT Cutoff 2026: Last Rank and Programme-Wise Interpretation','CUSAT Admission FAQs: CAT, Eligibility, Dates & Selection']),
+            'cusat-btech-2026.html':('CUSAT B.Tech 2026: Courses, Fees, Cutoff, Seats & Admission','CUSAT B.Tech 2026 guide covering CSE, AI & Data Science, IT, ECE, EEE, Marine Engineering, fees, seats, admission and career choices.','CUSAT B.Tech 2026: Courses, Fees, Cutoff & Admission',['CUSAT B.Tech Courses: Branches, Seats & Career Options','CUSAT B.Tech Eligibility 2026: Subject and Qualification Rules','CUSAT B.Tech Admission 2026: CAT Rank, Options & Allotment','CUSAT B.Tech Curriculum: How to Choose the Right Branch','CUSAT B.Tech Fees 2026: Tuition by Category','CUSAT B.Tech Placements & Career Scope: What to Compare','CUSAT B.Tech FAQs: Branches, Fees, Cutoff & Admission']),
+            'cusat-mba-2026.html':('CUSAT MBA 2026: Admission, Fees, Eligibility, Cutoff & Placements','CUSAT MBA 2026 guide covering MBA admission, CAT/CMAT/KMAT, eligibility, 70-20-10 selection, fees, programmes and career scope.','CUSAT MBA 2026: Admission, Fees, Eligibility & Selection',['CUSAT MBA Courses: Full-Time, Evening, Executive & Dual Masters','CUSAT MBA Eligibility 2026: Qualification and Entrance Tests','CUSAT MBA Selection Process: 70% Test + 20% PI + 10% Class XII','CUSAT MBA Full-Time: Course Structure & Student Fit','CUSAT MBA International Dual Masters: Eligibility & Cost Considerations','CUSAT MBA Fees 2026: Tuition and Other Charges','CUSAT MBA Placements & Career Scope: How to Evaluate ROI','CUSAT MBA FAQs: Fees, Entrance Exams, Seats & Selection']),
+            'cusat-mca-2026.html':('CUSAT MCA 2026: Admission, Fees, Eligibility, CAT & Cutoff','CUSAT MCA 2026 guide covering admission, CAT MCA test, eligibility, Regular vs Cost Sharing fees, campuses and career scope.','CUSAT MCA 2026: Admission, Fees, CAT & Eligibility',['CUSAT MCA 2026: Regular vs Cost Sharing Options','CUSAT MCA Eligibility 2026: Mathematics & Qualification Rules','CUSAT MCA CAT 2026: Test Pattern and Preparation','CUSAT MCA Fees 2026: Regular, Cost Sharing & NRI','CUSAT MCA Campus Choice: Thrikkakara vs Kuttanad','CUSAT MCA Placements & Career Scope','CUSAT MCA FAQs: CAT, Fees, Eligibility & Admission']),
+            'cusat-mtech-pg-2026.html':('CUSAT M.Tech 2026: Courses, Admission, Fees, GATE & Cutoff','CUSAT M.Tech 2026 guide covering specialisations, GATE/DAT/CUET routes, eligibility, fees, admission and career options.','CUSAT M.Tech 2026: Courses, Fees, Admission & GATE',['CUSAT M.Tech Courses: Specialisations & Programme Choices','CUSAT M.Tech Eligibility 2026: Qualification Requirements','CUSAT M.Tech Admission 2026: GATE, DAT & CUET Routes','CUSAT M.Tech Curriculum: Specialisation-Wise Academic Focus','CUSAT M.Tech Fees 2026: Tuition and Additional Charges','CUSAT M.Tech Career Scope: Research, Industry & Higher Studies','CUSAT M.Tech FAQs: GATE, Admission, Fees & Eligibility']),
+            'cusat-fees-scholarships-2026.html':('CUSAT Fees 2026: B.Tech, MBA, MCA, M.Tech & Scholarships','CUSAT fees 2026 guide covering B.Tech, MBA, MCA, M.Tech tuition, category-wise charges, scholarships and total-cost planning.','CUSAT Fees 2026: Course-Wise Fees, Scholarships & Total Cost',['CUSAT Fees 2026: Course-Wise Tuition & Charges','CUSAT B.Tech Fees 2026: State Merit, All India & NRI','CUSAT MBA Fees 2026: Regular, Evening & Executive','CUSAT MCA Fees 2026: Regular vs Cost Sharing','CUSAT M.Tech Fees 2026: Programme-Wise Cost','CUSAT Scholarships 2026: Eligibility & Financial Support','CUSAT Fees FAQs: Tuition, Scholarships & Total Cost']),
+            'cusat-placements-2026.html':('CUSAT Placements 2026: Salary, Recruiters, Internships & ROI','CUSAT placements 2026 guide covering placement data, recruiters, internships, programme-wise career outcomes and ROI.','CUSAT Placements 2026: Salary, Recruiters & Career Outcomes',['CUSAT Placements 2026: What the Available Data Shows','CUSAT Placement Recruiters: Companies and Role Types','CUSAT Internships: Opportunities Before Final Placements','CUSAT Placements by Programme: B.Tech, MBA, MCA & PG','CUSAT Placement ROI: Fees vs Career Outcomes','CUSAT Placements FAQs: Salary, Recruiters & Internships']),
+            'cusat-campus-hostel.html':('CUSAT Hostel 2026: Fees, Facilities, Campus & Student Life','CUSAT hostel and campus guide covering accommodation, hostel fees, facilities, student life, location and total living-cost considerations.','CUSAT Hostel 2026: Fees, Facilities & Campus Life',['CUSAT Hostel 2026: Accommodation Options & Eligibility','CUSAT Hostel Fees 2026: Cost Components & Budget Planning','CUSAT Campus Facilities: Library, Labs, Sports & Student Services','CUSAT Hostel Facilities: Rooms, Mess, Wi-Fi & Security','CUSAT Student Life: Clubs, Activities & Campus Experience','CUSAT Hostel Decision Guide: Who Should Choose Campus Housing?','CUSAT Hostel FAQs: Fees, Rooms, Facilities & Rules']),
+            'cusat-law-2026.html':('CUSAT Law 2026: Courses, Admission, Fees, Eligibility & Cutoff','CUSAT law 2026 guide covering BBA LLB, BCom LLB, BSc LLB Computer Science, LLM, CAT/CUET routes, fees and career scope.','CUSAT Law 2026: Courses, Admission, Fees & Eligibility',['CUSAT Law Courses 2026: BBA LLB, BCom LLB, BSc LLB & LLM','CUSAT Law Eligibility 2026: Qualification Requirements','CUSAT Law Admission 2026: CAT, CUET & Selection','CUSAT Law Fees 2026: Course-Wise Cost','CUSAT Law Career Scope: Specialisations & Career Paths','CUSAT Law FAQs: Admission, Fees, Eligibility & Cutoff']),
+            'cusat-science-marine-2026.html':('CUSAT Courses 2026: Science, Marine, MSc & Integrated Programmes','CUSAT science and marine courses 2026 guide covering integrated MSc, MSc, marine science, fisheries, oceanography and specialist programmes.','CUSAT Science & Marine Courses 2026: Admission, Fees & Careers',['CUSAT Science Courses 2026: MSc & Integrated Programmes','CUSAT Marine Courses 2026: Oceanography, Marine Science & Fisheries','CUSAT Science & Marine Admission 2026: CAT and Programme Routes','CUSAT Science & Marine Eligibility 2026','CUSAT Science & Marine Fees 2026','CUSAT Science & Marine Career Scope','CUSAT Science & Marine FAQs: Courses, Admission & Fees'])}
+          for fn,(title,desc,h1,h2s) in pages.items():
             p=Path(fn)
-            if not p.exists():
-              continue
+            if not p.exists(): continue
             s=p.read_text(encoding='utf-8')
-            s=re.sub(r'<title>.*?</title>', f'<title>{cfg["title"]}</title>', s, count=1, flags=re.S)
-            s=re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{cfg["desc"]}">', s, count=1, flags=re.S)
-            s=re.sub(r'<h1>.*?</h1>', f'<h1>{cfg["h1"]}</h1>', s, count=1, flags=re.S)
+            s=re.sub(r'<title>.*?</title>',f'<title>{title}</title>',s,count=1,flags=re.S)
+            s=re.sub(r'<meta name="description" content=".*?">',f'<meta name="description" content="{desc}">',s,count=1,flags=re.S)
+            s=re.sub(r'<h1>.*?</h1>',f'<h1>{h1}</h1>',s,count=1,flags=re.S)
             i=0
-            def h2(m):
+            def repl(m):
               nonlocal i
-              if i < len(cfg['h2']):
-                out=f'<h2>{cfg["h2"][i]}</h2>'
-                i+=1
-                return out
-              i+=1
+              if i<len(h2s):
+                out=f'<h2>{h2s[i]}</h2>'; i+=1; return out
               return m.group(0)
-            s=re.sub(r'<h2>.*?</h2>', h2, s, flags=re.S)
+            s=re.sub(r'<h2>.*?</h2>',repl,s,flags=re.S)
             p.write_text(s,encoding='utf-8')
           PY
       - name: Commit keyword architecture changes
