@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-11T11:58:19.814107+00:00",
+  "generated_at": "2026-09-11T12:23:53.598235+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 604,
-    "pages_with_internal_links": 586,
-    "broken_local_links": 6,
+    "pages_checked": 607,
+    "pages_with_internal_links": 589,
+    "broken_local_links": 3,
     "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 82,
-    "cluster_reciprocal_gaps": 232,
+    "cluster_reciprocal_gaps": 233,
     "zero_incoming_pages": 70,
     "role_counts": {
-      "overview_or_hub": 260,
+      "overview_or_hub": 263,
       "programme": 254,
       "placement": 90
     }
@@ -578,8 +578,11 @@
     {
       "overview": "imt-nagpur.html",
       "placement": "imt-nagpur-placements.html",
-      "programme_count": 3,
+      "programme_count": 6,
       "programmes": [
+        "imt-nagpur-admission-2027.html",
+        "imt-nagpur-cutoff.html",
+        "imt-nagpur-fees.html",
         "imt-nagpur-pgdm-financial-management.html",
         "imt-nagpur-pgdm-marketing.html",
         "imt-nagpur-pgdm.html"
@@ -2110,6 +2113,14 @@
       ]
     },
     {
+      "source": "imt-nagpur-placements.html",
+      "missing": [
+        "imt-nagpur-admission-2027.html",
+        "imt-nagpur-pgdm-financial-management.html",
+        "imt-nagpur-pgdm-marketing.html"
+      ]
+    },
+    {
       "source": "indian-institute-of-management-kashipur-placements.html",
       "missing": [
         "indian-institute-of-management-kashipur-executive-mba.html",
@@ -2572,21 +2583,6 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
-    },
-    {
-      "source": "imt-nagpur.html",
-      "href": "imt-nagpur-admission-2027.html",
-      "target": "imt-nagpur-admission-2027.html"
-    },
-    {
-      "source": "imt-nagpur.html",
-      "href": "imt-nagpur-fees.html",
-      "target": "imt-nagpur-fees.html"
-    },
-    {
-      "source": "imt-nagpur.html",
-      "href": "imt-nagpur-cutoff.html",
-      "target": "imt-nagpur-cutoff.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -3260,12 +3256,15 @@
     "imi-kolkata-pgdm.html": 3,
     "imi-kolkata-placements.html": 5,
     "imi-kolkata.html": 3,
-    "imt-nagpur-pgdm-financial-management.html": 5,
-    "imt-nagpur-pgdm-marketing.html": 5,
-    "imt-nagpur-pgdm.html": 7,
-    "imt-nagpur-placements.html": 10,
-    "imt-nagpur.html": 8,
-    "index.html": 985,
+    "imt-nagpur-admission-2027.html": 1,
+    "imt-nagpur-cutoff.html": 6,
+    "imt-nagpur-fees.html": 7,
+    "imt-nagpur-pgdm-financial-management.html": 2,
+    "imt-nagpur-pgdm-marketing.html": 2,
+    "imt-nagpur-pgdm.html": 9,
+    "imt-nagpur-placements.html": 12,
+    "imt-nagpur.html": 9,
+    "index.html": 988,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -3824,10 +3823,13 @@
     "imi-kolkata-pgdm.html": 6,
     "imi-kolkata-placements.html": 5,
     "imi-kolkata.html": 6,
+    "imt-nagpur-admission-2027.html": 6,
+    "imt-nagpur-cutoff.html": 6,
+    "imt-nagpur-fees.html": 6,
     "imt-nagpur-pgdm-financial-management.html": 9,
     "imt-nagpur-pgdm-marketing.html": 9,
-    "imt-nagpur-pgdm.html": 9,
-    "imt-nagpur-placements.html": 10,
+    "imt-nagpur-pgdm.html": 8,
+    "imt-nagpur-placements.html": 6,
     "imt-nagpur.html": 7,
     "index.html": 41,
     "indian-institute-of-management-kashipur-executive-mba.html": 4,
