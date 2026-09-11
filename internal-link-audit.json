@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-11T10:42:04.428038+00:00",
+  "generated_at": "2026-09-11T11:58:19.814107+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 592,
-    "pages_with_internal_links": 574,
-    "broken_local_links": 3,
+    "pages_checked": 604,
+    "pages_with_internal_links": 586,
+    "broken_local_links": 6,
     "benchmark_legacy_broken_links": 1,
-    "college_clusters_detected": 80,
-    "cluster_reciprocal_gaps": 220,
-    "zero_incoming_pages": 67,
+    "college_clusters_detected": 82,
+    "cluster_reciprocal_gaps": 232,
+    "zero_incoming_pages": 70,
     "role_counts": {
-      "overview_or_hub": 251,
-      "programme": 253,
-      "placement": 88
+      "overview_or_hub": 260,
+      "programme": 254,
+      "placement": 90
     }
   },
   "college_clusters": [
@@ -73,6 +73,16 @@
       "programmes": []
     },
     {
+      "overview": "bim-trichy.html",
+      "placement": "bim-trichy-placements.html",
+      "programme_count": 3,
+      "programmes": [
+        "bim-trichy-admission-2027.html",
+        "bim-trichy-courses.html",
+        "bim-trichy-fees.html"
+      ]
+    },
+    {
       "overview": "birla-institute-management-technology.html",
       "placement": "birla-institute-management-technology-placements.html",
       "programme_count": 5,
@@ -82,6 +92,18 @@
         "birla-institute-management-technology-pgdm-online.html",
         "birla-institute-management-technology-pgdm-retail-management.html",
         "birla-institute-management-technology-pgdm.html"
+      ]
+    },
+    {
+      "overview": "bit-mesra.html",
+      "placement": "bit-mesra-placements.html",
+      "programme_count": 5,
+      "programmes": [
+        "bit-mesra-admission-2026.html",
+        "bit-mesra-btech.html",
+        "bit-mesra-courses.html",
+        "bit-mesra-cutoff.html",
+        "bit-mesra-fees.html"
       ]
     },
     {
@@ -988,6 +1010,36 @@
       ]
     },
     {
+      "source": "bim-trichy-placements.html",
+      "missing": [
+        "bim-trichy.html",
+        "bim-trichy-admission-2027.html",
+        "bim-trichy-courses.html",
+        "bim-trichy-fees.html"
+      ]
+    },
+    {
+      "source": "bim-trichy-admission-2027.html",
+      "missing": [
+        "bim-trichy.html",
+        "bim-trichy-placements.html"
+      ]
+    },
+    {
+      "source": "bim-trichy-courses.html",
+      "missing": [
+        "bim-trichy.html",
+        "bim-trichy-placements.html"
+      ]
+    },
+    {
+      "source": "bim-trichy-fees.html",
+      "missing": [
+        "bim-trichy.html",
+        "bim-trichy-placements.html"
+      ]
+    },
+    {
       "source": "birla-institute-management-technology.html",
       "missing": [
         "birla-institute-management-technology-pgdm-online.html"
@@ -997,6 +1049,57 @@
       "source": "birla-institute-management-technology-placements.html",
       "missing": [
         "birla-institute-management-technology-pgdm-online.html"
+      ]
+    },
+    {
+      "source": "bit-mesra.html",
+      "missing": [
+        "bit-mesra-courses.html"
+      ]
+    },
+    {
+      "source": "bit-mesra-placements.html",
+      "missing": [
+        "bit-mesra.html",
+        "bit-mesra-admission-2026.html",
+        "bit-mesra-btech.html",
+        "bit-mesra-courses.html",
+        "bit-mesra-cutoff.html",
+        "bit-mesra-fees.html"
+      ]
+    },
+    {
+      "source": "bit-mesra-admission-2026.html",
+      "missing": [
+        "bit-mesra.html",
+        "bit-mesra-placements.html"
+      ]
+    },
+    {
+      "source": "bit-mesra-btech.html",
+      "missing": [
+        "bit-mesra.html"
+      ]
+    },
+    {
+      "source": "bit-mesra-courses.html",
+      "missing": [
+        "bit-mesra.html",
+        "bit-mesra-placements.html"
+      ]
+    },
+    {
+      "source": "bit-mesra-cutoff.html",
+      "missing": [
+        "bit-mesra.html",
+        "bit-mesra-placements.html"
+      ]
+    },
+    {
+      "source": "bit-mesra-fees.html",
+      "missing": [
+        "bit-mesra.html",
+        "bit-mesra-placements.html"
       ]
     },
     {
@@ -2000,6 +2103,13 @@
       ]
     },
     {
+      "source": "imt-nagpur.html",
+      "missing": [
+        "imt-nagpur-pgdm-financial-management.html",
+        "imt-nagpur-pgdm-marketing.html"
+      ]
+    },
+    {
       "source": "indian-institute-of-management-kashipur-placements.html",
       "missing": [
         "indian-institute-of-management-kashipur-executive-mba.html",
@@ -2462,6 +2572,21 @@
       "source": "iim-ahmedabad-placements.html",
       "href": "iim-ahmedabad-admission.html",
       "target": "iim-ahmedabad-admission.html"
+    },
+    {
+      "source": "imt-nagpur.html",
+      "href": "imt-nagpur-admission-2027.html",
+      "target": "imt-nagpur-admission-2027.html"
+    },
+    {
+      "source": "imt-nagpur.html",
+      "href": "imt-nagpur-fees.html",
+      "target": "imt-nagpur-fees.html"
+    },
+    {
+      "source": "imt-nagpur.html",
+      "href": "imt-nagpur-cutoff.html",
+      "target": "imt-nagpur-cutoff.html"
     }
   ],
   "benchmark_legacy_broken_links": [
@@ -2513,7 +2638,22 @@
       "incoming_internal_links": 0
     },
     {
+      "page": "bim-trichy.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
       "page": "birla-institute-management-technology-pgdm-online.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "bit-mesra-courses.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "bit-mesra.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -2861,12 +3001,21 @@
     "bhu-btech-dairy-technology.html": 2,
     "bhu-mba.html": 8,
     "bhu-placements.html": 16,
+    "bim-trichy-admission-2027.html": 1,
+    "bim-trichy-courses.html": 1,
+    "bim-trichy-fees.html": 1,
+    "bim-trichy-placements.html": 1,
     "birla-institute-management-technology-pgdm-ib.html": 7,
     "birla-institute-management-technology-pgdm-ibm.html": 7,
     "birla-institute-management-technology-pgdm-retail-management.html": 7,
     "birla-institute-management-technology-pgdm.html": 8,
     "birla-institute-management-technology-placements.html": 11,
     "birla-institute-management-technology.html": 6,
+    "bit-mesra-admission-2026.html": 1,
+    "bit-mesra-btech.html": 2,
+    "bit-mesra-cutoff.html": 3,
+    "bit-mesra-fees.html": 2,
+    "bit-mesra-placements.html": 2,
     "bml-munjal-university-admission.html": 9,
     "bml-munjal-university-bba-bcom.html": 1,
     "bml-munjal-university-btech.html": 2,
@@ -3111,12 +3260,12 @@
     "imi-kolkata-pgdm.html": 3,
     "imi-kolkata-placements.html": 5,
     "imi-kolkata.html": 3,
-    "imt-nagpur-pgdm-financial-management.html": 7,
-    "imt-nagpur-pgdm-marketing.html": 7,
-    "imt-nagpur-pgdm.html": 8,
-    "imt-nagpur-placements.html": 11,
-    "imt-nagpur.html": 9,
-    "index.html": 973,
+    "imt-nagpur-pgdm-financial-management.html": 5,
+    "imt-nagpur-pgdm-marketing.html": 5,
+    "imt-nagpur-pgdm.html": 7,
+    "imt-nagpur-placements.html": 10,
+    "imt-nagpur.html": 8,
+    "index.html": 985,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -3389,6 +3538,11 @@
     "bhu-btech-dairy-technology.html": 9,
     "bhu-mba.html": 10,
     "bhu-placements.html": 9,
+    "bim-trichy-admission-2027.html": 1,
+    "bim-trichy-courses.html": 1,
+    "bim-trichy-fees.html": 1,
+    "bim-trichy-placements.html": 1,
+    "bim-trichy.html": 5,
     "birla-institute-management-technology-pgdm-ib.html": 7,
     "birla-institute-management-technology-pgdm-ibm.html": 7,
     "birla-institute-management-technology-pgdm-online.html": 4,
@@ -3396,6 +3550,13 @@
     "birla-institute-management-technology-pgdm.html": 7,
     "birla-institute-management-technology-placements.html": 10,
     "birla-institute-management-technology.html": 11,
+    "bit-mesra-admission-2026.html": 1,
+    "bit-mesra-btech.html": 4,
+    "bit-mesra-courses.html": 3,
+    "bit-mesra-cutoff.html": 1,
+    "bit-mesra-fees.html": 1,
+    "bit-mesra-placements.html": 1,
+    "bit-mesra.html": 6,
     "bml-munjal-university-admission.html": 3,
     "bml-munjal-university-bba-bcom.html": 3,
     "bml-munjal-university-btech.html": 3,
@@ -3667,7 +3828,7 @@
     "imt-nagpur-pgdm-marketing.html": 9,
     "imt-nagpur-pgdm.html": 9,
     "imt-nagpur-placements.html": 10,
-    "imt-nagpur.html": 11,
+    "imt-nagpur.html": 7,
     "index.html": 41,
     "indian-institute-of-management-kashipur-executive-mba.html": 4,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
