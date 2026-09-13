@@ -1,0 +1,36 @@
+name: Apply Homepage V2
+
+on:
+  push:
+    paths:
+      - 'scripts/modify_homepage_v2.py'
+      - '.github/workflows/apply-homepage-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply homepage redesign
+        run: python scripts/modify_homepage_v2.py
+
+      - name: Commit homepage
+        run: |
+          if git diff --quiet -- index.html; then
+            echo 'No homepage changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Redesign homepage around student decision journeys'
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
