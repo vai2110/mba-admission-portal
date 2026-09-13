@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-13T07:46:29.439097+00:00",
+  "generated_at": "2026-09-13T07:47:04.395425+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 611,
-  "pages_with_issues": 442,
+  "pages_checked": 614,
+  "pages_with_issues": 445,
   "issue_counts": {
-    "broken_local_links": 6,
-    "canonical": 15,
+    "broken_local_links": 5,
+    "canonical": 18,
     "description_count": 4,
-    "description_length": 199,
+    "description_length": 202,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 15,
+    "jsonld": 18,
     "lang": 1,
-    "og_description": 15,
-    "og_title": 15,
-    "og_url": 15,
+    "og_description": 18,
+    "og_title": 18,
+    "og_url": 18,
     "title_length": 359,
-    "twitter_card": 20,
+    "twitter_card": 23,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -15123,6 +15123,46 @@
       ]
     },
     {
+      "file": "mba-admission-guide.html",
+      "benchmark": false,
+      "title": "MBA Admission Guide 2026 | Eligibility, Application & Selection",
+      "title_length": 63,
+      "description": "Student-focused MBA admission guide covering eligibility, entrance exams, shortlisting, applications and selection.",
+      "description_length": 115,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "MBA Admission Guide: From Eligibility to Final Offer",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [
+        "mba-college-comparison.html"
+      ],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "description_length",
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld",
+        "broken_local_links"
+      ]
+    },
+    {
       "file": "mba-college-fees.html",
       "benchmark": false,
       "title": "MBA College Fees in India | Fee Range Guide",
@@ -15146,11 +15186,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "mba-admission-guide.html",
-        "mba-college-placements.html",
-        "mba-cutoff.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -15160,8 +15196,44 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
+      ]
+    },
+    {
+      "file": "mba-college-placements.html",
+      "benchmark": false,
+      "title": "MBA College Placements | Salary, Recruiters & Reports",
+      "title_length": 53,
+      "description": "Explore MBA college placement information, salary outcomes, recruiters and dedicated placement pages.",
+      "description_length": 101,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "MBA College Placements: Explore Career Outcomes",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "description_length",
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
@@ -15188,11 +15260,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "mba-admission-guide.html",
-        "mba-college-placements.html",
-        "mba-cutoff.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -15202,8 +15270,44 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
+      ]
+    },
+    {
+      "file": "mba-cutoff.html",
+      "benchmark": false,
+      "title": "MBA Cutoffs 2026 | CAT, XAT & College Cutoff Guide",
+      "title_length": 50,
+      "description": "Explore MBA cutoff information by entrance exam and college, with links to detailed admission pages.",
+      "description_length": 100,
+      "description_count": 1,
+      "canonical": null,
+      "canonical_count": 0,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "MBA Cutoffs: Check What You Can Target",
+      "lang": "en",
+      "viewport": true,
+      "robots": [],
+      "indexable": true,
+      "og_title": false,
+      "og_description": false,
+      "og_url": false,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "description_length",
+        "canonical",
+        "og_title",
+        "og_description",
+        "og_url",
+        "twitter_card",
+        "jsonld"
       ]
     },
     {
