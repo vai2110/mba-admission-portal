@@ -95,7 +95,7 @@ jobs:
           </script>'''
 
           if marker in html:
-              html = re.sub(r'<script id="homepage-search-exact-fix">.*?</script>', js[:-9], html, count=1, flags=re.S)
+              html = re.sub(r'<script id="homepage-search-exact-fix">.*?</script>', lambda m: js, html, count=1, flags=re.S)
           else:
               html = html.replace('</body>', js + '\n</body>', 1)
           p.write_text(html, encoding='utf-8')
