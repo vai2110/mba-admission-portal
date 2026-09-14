@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-14T16:42:22.835612+00:00",
+  "generated_at": "2026-09-14T16:49:18.140966+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 618,
   "pages_with_issues": 448,
   "issue_counts": {
-    "broken_local_links": 6,
+    "broken_local_links": 7,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 203,
+    "description_length": 202,
     "duplicate_title": 4,
     "h1_count": 2,
     "jsonld": 13,
@@ -15137,16 +15137,16 @@
     {
       "file": "mba-college-fees.html",
       "benchmark": false,
-      "title": "MBA College Fees in India | Fee Range Guide",
-      "title_length": 43,
-      "description": "Explore MBA colleges by programme fee range and continue to detailed college pages for current fee structures.",
-      "description_length": 110,
+      "title": "MBA College Fees in India | Colleges by Fee Range",
+      "title_length": 49,
+      "description": "Explore created MBA college pages by fee range: under ₹5 lakh, ₹5–10 lakh, ₹10–20 lakh and ₹20 lakh+. Compare fees and open detailed college profiles.",
+      "description_length": 150,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/mba-college-fees.html",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "MBA College Fees: Find Colleges by Budget",
+      "h1": "Find MBA Colleges by Budget",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -15160,11 +15160,13 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "iit-kanpur.html"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length"
+        "broken_local_links"
       ]
     },
     {
