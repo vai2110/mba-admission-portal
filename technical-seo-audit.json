@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T16:50:22.982911+00:00",
+  "generated_at": "2026-09-14T16:54:17.239779+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 618,
   "pages_with_issues": 447,
@@ -15139,8 +15139,8 @@
       "benchmark": false,
       "title": "MBA College Fees in India | Colleges by Fee Range",
       "title_length": 49,
-      "description": "Explore created MBA college pages by fee range: under ₹5 lakh, ₹5–10 lakh, ₹10–20 lakh and ₹20 lakh+. Compare fees and open detailed college profiles.",
-      "description_length": 150,
+      "description": "Explore created MBA college pages by fee range: under ₹5 lakh, ₹5–10 lakh, ₹10–20 lakh and ₹20 lakh+. Select a budget range to see matching colleges.",
+      "description_length": 149,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/mba-college-fees.html",
       "canonical_count": 1,
