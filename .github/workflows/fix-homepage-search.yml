@@ -23,7 +23,6 @@ jobs:
           p = Path('index.html')
           html = p.read_text(encoding='utf-8')
           marker = '<script id="homepage-search-exact-fix">'
-          end = '</script>'
 
           js = r'''<script id="homepage-search-exact-fix">
           (function(){
@@ -104,4 +103,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           git commit -m "Add exact homepage college search"
-          git push
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
