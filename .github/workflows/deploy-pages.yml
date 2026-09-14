@@ -28,13 +28,40 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import json
-          src = Path('data/management-live-colleges.json')
-          data = json.loads(src.read_text(encoding='utf-8'))
-          colleges = [c for c in data.get('colleges', []) if c.get('live') and c.get('url')]
-          if not colleges:
-              raise SystemExit('No live colleges found in Management search source')
-          Path('homepage-search-index.json').write_text(json.dumps({'source':'Management sheet attached live links only','count':len(colleges),'colleges':colleges}, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          import json,re
+          data=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
+          city_map={'bangalore':'Bengaluru','bengaluru':'Bengaluru','mysore':'Mysore','mysuru':'Mysore','hyderabad':'Hyderabad','ghaziabad':'Ghaziabad','navi mumbai':'Navi Mumbai','new delhi':'New Delhi','delhi':'Delhi','calcutta':'Kolkata','kolkata':'Kolkata','gurgaon':'Gurgaon','gurugram':'Gurugram','mumbai':'Mumbai','bombay':'Mumbai','pune':'Pune','nagpur':'Nagpur','chennai':'Chennai','dehradun':'Dehradun','noida':'Noida','lucknow':'Lucknow','ahmedabad':'Ahmedabad','indore':'Indore','raipur':'Raipur','ranchi':'Ranchi','rohtak':'Rohtak','udaipur':'Udaipur','kashipur':'Kashipur','jamshedpur':'Jamshedpur','roorkee':'Roorkee','kanpur':'Kanpur','dhanbad':'Dhanbad','bodh gaya':'Bodh Gaya','sambalpur':'Sambalpur','jammu':'Jammu','shillong':'Shillong','sirmaur':'Sirmaur','amritsar':'Amritsar','tiruchirappalli':'Tiruchirappalli','trichy':'Tiruchirappalli','manipal':'Manipal','goa':'Goa','jalandhar':'Jalandhar','bhubaneswar':'Bhubaneswar','patiala':'Patiala','anand':'Anand','varanasi':'Varanasi','aligarh':'Aligarh','vijayawada':'Vijayawada','patiala':'Patiala','jaipur':'Jaipur','madurai':'Madurai','kochi':'Kochi','gandhinagar':'Gandhinagar'}
+          manual={'indian institute of management':'iim','indian institute of technology':'iit','indian institute of foreign trade':'iift','management development institute':'mdi','xlri - xavier school of management':'xlri','s. p. jain institute of management and research':'spjimr','symbiosis institute of business management':'sibm','svkm`s narsee monjee institute of management studies':'nmims','institute of management technology':'imt','great lakes institute of management':'great lakes','t. a. pai management institute manipal':'tapmi','goa institute of management':'gim','birla institute of management technology':'bimtech','jagan institute of management studies':'jims','lovely professional university':'lpu','chandigarh university':'cu','mica':'mica','chitkara university':'chitkara','upes':'upes','xime bangalore':'xime','vjim hyderabad':'vjim','ipe hyderabad':'ipe','ibs hyderabad':'ibs','sdmimd mysore':'sdmimd','pumba':'pumba','asia pacific institute of management new delhi':'apim'}
+          def norm(s): return re.sub(r'\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
+          colleges=[]
+          for pair in data.get('colleges',[]):
+              name,url=pair[0],pair[1]
+              n=norm(name); slug=url.rstrip('/').split('/')[-1].replace('.html','')
+              loc=''
+              for key,val in city_map.items():
+                  if key in n or key.replace(' ','-') in slug: loc=val; break
+              aliases={n,norm(slug),slug.replace('-',' ')}
+              if n in manual: aliases.add(manual[n])
+              if n.startswith('indian institute of management'):
+                  tail=n.replace('indian institute of management','').strip(' ,')
+                  if tail: aliases.update(['iim '+tail]);
+                  if tail=='calcutta': aliases.add('iim kolkata')
+                  if tail=='kolkata': aliases.add('iim calcutta')
+              if n.startswith('indian institute of technology'):
+                  tail=n.replace('indian institute of technology','').strip(' ,')
+                  if tail: aliases.add('iit '+tail)
+              if n.startswith('symbiosis institute of business management'): aliases.add('sibm')
+              if 'great lakes institute of management' in n: aliases.add('great lakes')
+              if 'narsee monjee' in n: aliases.update(['nmims','narsee monjee'])
+              if 'welingkar' in n: aliases.update(['welingkar','weschool'])
+              if loc:
+                  aliases.add(norm(name+' '+loc))
+                  base=manual.get(n,'')
+                  if base: aliases.add(norm(base+' '+loc))
+              aliases={a for a in aliases if len(a.replace(' ',''))>=3}
+              colleges.append({'name':name,'location':loc,'aliases':sorted(aliases),'url':url,'live':True})
+          if len(colleges)!=data.get('count'): raise SystemExit(f'Expected {data.get("count")} Management links, built {len(colleges)}')
+          Path('homepage-search-index.json').write_text(json.dumps({'source':'Management sheet attached live links only','count':len(colleges),'colleges':colleges},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
           print(f'Built homepage search index with {len(colleges)} Management live colleges')
           PY
 
@@ -42,55 +69,38 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p = Path('index.html')
-          html = p.read_text(encoding='utf-8')
-          marker = '<script id="management-homepage-search">'
-          js = r'''<script id="management-homepage-search">
+          p=Path('index.html')
+          html=p.read_text(encoding='utf-8')
+          marker='<script id="management-homepage-search">'
+          js=r'''<script id="management-homepage-search">
           (function(){
-            const input=document.getElementById('collegeSearch'), result=document.getElementById('collegeSearchResult');
-            if(!input||!result)return;
+            const input=document.getElementById('collegeSearch'),result=document.getElementById('collegeSearchResult');if(!input||!result)return;
             const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
             const CITY={bangalore:['bengaluru','blr'],bengaluru:['bangalore','blr'],mysore:['mysuru'],mysuru:['mysore'],hyderabad:['hyd'],hyd:['hyderabad'],ghaziabad:['gzb','gaziabad'],gzb:['ghaziabad'],'navi mumbai':['nerul'],nerul:['navi mumbai'],'new delhi':['delhi'],delhi:['new delhi'],calcutta:['kolkata'],kolkata:['calcutta'],gurugram:['gurgaon'],gurgaon:['gurugram'],mumbai:['bombay'],bombay:['mumbai']};
             const FAMILY=['sibm','siib','siom','sitm','sicsr','sims','scit','ssmc','xime','vjim','sdmimd','siescoms','pumba','ibs','iim','iift','xlri','spjimr','imt','nmims','tapmi','gim','jims','bimtech','soa','kiit','upes'];
             const tokens=s=>norm(s).split(' ').filter(Boolean);
-            const cityOf=q=>{const t=tokens(q);for(const [c,vs] of Object.entries(CITY)){if(t.includes(c)||vs.some(v=>t.includes(v)))return c}return ''};
+            const cityOf=q=>{const t=tokens(q);for(const[c,vs]of Object.entries(CITY))if(t.includes(c)||vs.some(v=>t.includes(v)))return c;return ''};
             const cityOK=(q,c)=>{const qc=cityOf(q);if(!qc)return true;const loc=norm(c.location);return loc===qc||(CITY[qc]||[]).some(v=>loc===v)};
             const familyOf=q=>{const n=norm(q);return FAMILY.find(f=>n===f||n.startsWith(f+' '))||''};
             const aliases=c=>[norm(c.name),...(c.aliases||[]).map(norm)];
             const esc=s=>String(s).replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));
-            const score=(q,c)=>{if(!cityOK(q,c))return -1;const n=norm(q),fam=familyOf(n),al=aliases(c);if(fam&&!al.some(a=>a===n||a.startsWith(fam+' ')))return -1;let best=0;for(const a of al){if(a===n)best=Math.max(best,10000);else if(a.replace(/ /g,'')===n.replace(/ /g,''))best=Math.max(best,9500);else if(a.startsWith(n+' ')||n.startsWith(a+' '))best=Math.max(best,7000)}const hay=norm([c.name,c.location,...(c.aliases||[])].join(' ')),qt=tokens(n);const covered=qt.filter(t=>hay.split(' ').includes(t)).length;if(covered===qt.length)best=Math.max(best,5000+covered*100);return best};
-            function search(){
-              const q=norm(input.value); if(!q){result.style.display='none';return}
-              fetch('./homepage-search-index.json?management-search=1',{cache:'no-store'}).then(r=>r.json()).then(data=>{
-                const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
-                if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No created college page matches that search. Try the college name, abbreviation and city.</div></div>';result.style.display='block';return}
-                const top=ranked[0], second=ranked[1], exact=top.s>=9500&&(!second||top.s-second.s>=500);
-                if(exact&&top.c.url){window.location.href=top.c.url;return}
-                const items=ranked.slice(0,7).map(x=>x.c).filter(c=>c.url);
-                result.innerHTML='<div class="search-result-inner"><h3>Matching colleges</h3>'+items.map(c=>'<a class="search-result-button" href="'+esc(c.url)+'">'+esc(c.name)+' →</a>').join('')+'</div>';result.style.display='block';
-              }).catch(()=>{result.innerHTML='<div class="search-result-inner"><h3>Search is temporarily unavailable</h3></div>';result.style.display='block'});
-            }
-            window.searchContent=search;
-            input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();search()}},true);
+            const score=(q,c)=>{if(!cityOK(q,c))return -1;const n=norm(q),fam=familyOf(n),al=aliases(c);if(fam&&!al.some(a=>a===n||a.startsWith(fam+' ')))return -1;let best=0;for(const a of al){if(a===n)best=Math.max(best,10000);else if(a.replace(/ /g,'')===n.replace(/ /g,''))best=Math.max(best,9500);else if(a.startsWith(n+' ')||n.startsWith(a+' '))best=Math.max(best,7000)}const hay=norm([c.name,c.location,...(c.aliases||[])].join(' ')),qt=tokens(n),ht=hay.split(' '),covered=qt.filter(t=>ht.includes(t)).length;if(covered===qt.length)best=Math.max(best,5000+covered*100);return best};
+            function search(){const q=norm(input.value);if(!q){result.style.display='none';return}fetch('./homepage-search-index.json?management-search=1',{cache:'no-store'}).then(r=>r.json()).then(data=>{const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No created college page matches that search. Try the college name, abbreviation and city.</div></div>';result.style.display='block';return}const top=ranked[0],second=ranked[1],exact=top.s>=9500&&(!second||top.s-second.s>=500);if(exact&&top.c.url){window.location.href=top.c.url;return}const items=ranked.slice(0,7).map(x=>x.c).filter(c=>c.url);result.innerHTML='<div class="search-result-inner"><h3>Matching colleges</h3>'+items.map(c=>'<a class="search-result-button" href="'+esc(c.url)+'">'+esc(c.name)+' →</a>').join('')+'</div>';result.style.display='block'}).catch(()=>{result.innerHTML='<div class="search-result-inner"><h3>Search is temporarily unavailable</h3></div>';result.style.display='block'})}
+            window.searchContent=search;input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();search()}},true);
           })();
           </script>'''
           if marker in html:
-              start = html.index(marker)
-              end = html.index('</script>', start) + len('</script>')
-              html = html[:start] + js + html[end:]
-          else:
-              html = html.replace('</body>', js + '\n</body>', 1)
-          p.write_text(html, encoding='utf-8')
+              start=html.index(marker);end=html.index('</script>',start)+len('</script>');html=html[:start]+js+html[end:]
+          else: html=html.replace('</body>',js+'\n</body>',1)
+          p.write_text(html,encoding='utf-8')
           PY
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
