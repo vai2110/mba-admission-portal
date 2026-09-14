@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-14T16:49:18.140966+00:00",
+  "generated_at": "2026-09-14T16:50:22.982911+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 618,
-  "pages_with_issues": 448,
+  "pages_with_issues": 447,
   "issue_counts": {
-    "broken_local_links": 7,
+    "broken_local_links": 6,
     "canonical": 13,
     "description_count": 4,
     "description_length": 202,
@@ -15160,14 +15160,10 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "iit-kanpur.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "broken_local_links"
-      ]
+      "issues": []
     },
     {
       "file": "mba-college-placements.html",
