@@ -29,24 +29,64 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import json
+          import re
           import urllib.request
 
-          source = 'https://raw.githubusercontent.com/vai2110/college-cms/main/search-index.json'
-          data = json.load(urllib.request.urlopen(source, timeout=30))
+          def get_json(url):
+              with urllib.request.urlopen(url, timeout=30) as r:
+                  return json.load(r)
+
+          master = get_json('https://raw.githubusercontent.com/vai2110/college-cms/main/data/college-search-master.json')
+          registry = get_json('https://raw.githubusercontent.com/vai2110/college-cms/main/data/registry.json')
+          stop = {'of','the','and','for','in','at','to','a','an','deemed','university','school','college'}
+
+          def aliases_for(name, slug=''):
+              words = re.findall(r'[a-z0-9]+', name.lower())
+              core = [w for w in words if w not in stop]
+              aliases = {name.lower()}
+              if core:
+                  ac = ''.join(w[0] for w in core)
+                  aliases.add(ac)
+                  if ac.startswith('iim'): aliases.add('iim')
+                  if ac.startswith('iit'): aliases.add('iit')
+                  if ac.startswith('sibm'): aliases.add('sibm')
+                  if ac.startswith('spjimr'): aliases.add('spjimr')
+              if slug:
+                  aliases.add(slug.replace('-', ' '))
+                  aliases.add(slug.split('-')[0])
+              return sorted(aliases)
+
           colleges = []
-          for c in data.get('colleges', []):
-              u = c.get('url', '') or ''
-              if u.startswith('./content/'):
-                  u = 'https://vai2110.github.io/college-cms/' + u[2:]
+          for c in master.get('colleges', []):
               colleges.append({
                   'name': c.get('name', ''),
                   'location': c.get('location', ''),
-                  'aliases': c.get('aliases', []),
-                  'url': u,
-                  'live': bool(c.get('live'))
+                  'aliases': aliases_for(c.get('name','')),
+                  'url': c.get('live_url', '') or '',
+                  'live': bool(c.get('live_url'))
               })
+          for c in registry.get('colleges', []):
+              pages = c.get('pages', [])
+              overview = next((p for p in pages if p.get('id') == 'overview' and p.get('status') == 'live'), None)
+              if not overview:
+                  continue
+              url = 'https://vai2110.github.io/college-cms/' + overview['source'].replace('content/','')
+              colleges.append({
+                  'name': c.get('name', ''),
+                  'location': c.get('name','').split(',')[-1].strip(),
+                  'aliases': aliases_for(c.get('name',''), c.get('slug','')),
+                  'url': url,
+                  'live': True
+              })
+
+          # Keep the strongest/most specific entry for each name+location pair.
+          dedup = {}
+          for c in colleges:
+              key = (c['name'].lower(), c['location'].lower())
+              dedup[key] = c
+          colleges = list(dedup.values())
           Path('homepage-search-index.json').write_text(
-              json.dumps({'master_list_count': data.get('master_list_count', 100), 'colleges': colleges}, ensure_ascii=False, separators=(',', ':')),
+              json.dumps({'master_list_count': master.get('count',100), 'colleges': colleges}, ensure_ascii=False, separators=(',', ':')),
               encoding='utf-8'
           )
 
@@ -66,14 +106,14 @@ jobs:
             const cityCompatible=(q,c)=>{const qc=cityOf(q);if(!qc)return true;const loc=norm(c.location);if(loc===qc)return true;return (CITY[qc]||[]).some(v=>loc===v)};
             const familyOf=q=>{const n=norm(q);return families.find(f=>n===f||n.startsWith(f+' ')||n.includes(' '+f+' '))||''};
             const hay=c=>norm([c.name,c.location,...(c.aliases||[])].join(' '));
-            const score=(q,c)=>{const n=norm(q), qt=tokens(n), h=hay(c);if(!cityCompatible(n,c))return -1;const f=familyOf(n);if(f&&!h.includes(f))return -1;let s=0;for(const a of [c.name,...(c.aliases||[])]){const x=norm(a);if(x===n)s=Math.max(s,1000);else if(x.replace(/ /g,'')===n.replace(/ /g,''))s=Math.max(s,950);else if(x.includes(n)||n.includes(x))s=Math.max(s,800)}const covered=qt.filter(t=>h.split(' ').includes(t)).length;if(covered===qt.length)s=Math.max(s,750+covered*10);else if(covered>=Math.max(1,qt.length-1))s=Math.max(s,500);return s};
+            const score=(q,c)=>{const n=norm(q),qt=tokens(n),h=hay(c);if(!cityCompatible(n,c))return -1;const f=familyOf(n);if(f&&!h.includes(f))return -1;let s=0;for(const a of [c.name,...(c.aliases||[])]){const x=norm(a);if(x===n)s=Math.max(s,1000);else if(x.replace(/ /g,'')===n.replace(/ /g,''))s=Math.max(s,950);else if(x.includes(n)||n.includes(x))s=Math.max(s,800)}const covered=qt.filter(t=>h.split(' ').includes(t)).length;if(covered===qt.length)s=Math.max(s,750+covered*10);else if(covered>=Math.max(1,qt.length-1))s=Math.max(s,500);return s};
             function searchFixed(){
               const q=norm(input.value);
               if(!q){result.style.display='none';return}
               fetch('./homepage-search-index.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
                 const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
-                if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college in the master search list matches that college and city combination. Try the official college name, abbreviation and city.</div></div>';result.style.display='block';return}
-                const top=ranked[0], second=ranked[1];
+                if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college in the master list matches that college and city combination. Try the official college name, abbreviation and city.</div></div>';result.style.display='block';return}
+                const top=ranked[0],second=ranked[1];
                 const unique=top.s>=950 && (!second || top.s-second.s>=120);
                 const items=ranked.slice(0,5).map(x=>x.c).filter(c=>c.live&&c.url);
                 if(unique&&top.c.live&&top.c.url){window.location.href=top.c.url;return}
