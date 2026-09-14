@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-14T14:58:18.083017+00:00",
+  "generated_at": "2026-09-14T15:08:47.515319+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 620,
-  "pages_with_issues": 450,
+  "pages_checked": 619,
+  "pages_with_issues": 449,
   "issue_counts": {
-    "broken_local_links": 4,
+    "broken_local_links": 6,
     "canonical": 13,
     "description_count": 4,
     "description_length": 204,
@@ -12,11 +12,11 @@
     "h1_count": 2,
     "jsonld": 13,
     "lang": 1,
-    "og_description": 15,
-    "og_title": 15,
-    "og_url": 15,
+    "og_description": 13,
+    "og_title": 13,
+    "og_url": 13,
     "title_length": 363,
-    "twitter_card": 20,
+    "twitter_card": 18,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -10783,12 +10783,15 @@
       "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "iit-kanpur.html"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length"
+        "description_length",
+        "broken_local_links"
       ]
     },
     {
@@ -10817,12 +10820,15 @@
       "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "iit-kanpur.html"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length"
+        "description_length",
+        "broken_local_links"
       ]
     },
     {
@@ -10838,37 +10844,6 @@
       "canonical_self": true,
       "h1_count": 1,
       "h1": "Management Sciences at IIT Kanpur",
-      "lang": "en",
-      "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
-      "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
-      "images": 0,
-      "images_missing_alt": 0,
-      "broken_local_links": [],
-      "duplicate_title": false,
-      "duplicate_canonical": false,
-      "issues": []
-    },
-    {
-      "file": "iit-kanpur.html",
-      "benchmark": false,
-      "title": "IIT Kanpur DoMS MBA 2026: Admission, Fees, Cutoff & Placements",
-      "title_length": 62,
-      "description": "IIT Kanpur DoMS MBA 2026-28: admission dates, CAT cutoff, eligibility, selection process, fees, curriculum, placements, campus life and FAQs.",
-      "description_length": 141,
-      "description_count": 1,
-      "canonical": "https://vai2110.github.io/mba-admission-portal/iit-kanpur.html",
-      "canonical_count": 1,
-      "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIT Kanpur DoMS MBA",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -17451,13 +17426,15 @@
       "h1": "SIOM Nashik: MBA Admission 2027, Fees, Cutoff & Placements",
       "lang": "en-IN",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 1,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -17465,11 +17442,7 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
+        "description_length"
       ]
     },
     {
@@ -17488,25 +17461,20 @@
       "lang": "en-IN",
       "viewport": true,
       "robots": [
-        "index,follow,max-image-preview:large"
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 1,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "snap.html",
