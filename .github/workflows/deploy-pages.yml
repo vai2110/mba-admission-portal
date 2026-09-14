@@ -24,6 +24,70 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Fix homepage college search
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import urllib.request
+
+          source = 'https://raw.githubusercontent.com/vai2110/college-cms/main/search-index.json'
+          data = json.load(urllib.request.urlopen(source, timeout=30))
+          colleges = []
+          for c in data.get('colleges', []):
+              u = c.get('url', '') or ''
+              if u.startswith('./content/'):
+                  u = 'https://vai2110.github.io/college-cms/' + u[2:]
+              colleges.append({
+                  'name': c.get('name', ''),
+                  'location': c.get('location', ''),
+                  'aliases': c.get('aliases', []),
+                  'url': u,
+                  'live': bool(c.get('live'))
+              })
+          Path('homepage-search-index.json').write_text(
+              json.dumps({'master_list_count': data.get('master_list_count', 100), 'colleges': colleges}, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8'
+          )
+
+          p = Path('index.html')
+          html = p.read_text(encoding='utf-8')
+          marker = '</body>'
+          if 'id="homepage-search-fix"' not in html:
+              js = r'''<script id="homepage-search-fix">
+          (function(){
+            const input=document.getElementById('collegeSearch');
+            const result=document.getElementById('collegeSearchResult');
+            const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').replace(/\\s+/g,' ').trim();
+            const CITY={bangalore:['bengaluru','blr'],bengaluru:['bangalore','blr'],mysore:['mysuru'],mysuru:['mysore'],hyderabad:['hyd'],hyd:['hyderabad'],ghaziabad:['gzb','gaziabad'],gzb:['ghaziabad'],'navi mumbai':['nerul'],nerul:['navi mumbai'],'new delhi':['delhi'],delhi:['new delhi'],calcutta:['kolkata'],kolkata:['calcutta'],gurugram:['gurgaon'],gurgaon:['gurugram'],mumbai:['bombay'],bombay:['mumbai']};
+            const families=['sibm','siib','siom','sitm','sicsr','sims','scit','ssmc','xime','vjim','sdmimd','siescoms','pumba','ibs','iim','iift','xlri','spjimr','imt','nmims','tapmi','gim','jims','bimtech','soa','kiit','upes'];
+            const tokens=s=>norm(s).split(' ').filter(Boolean);
+            const cityOf=q=>{const t=tokens(q);for(const [c,vs] of Object.entries(CITY)){if(t.includes(c)||vs.some(v=>t.includes(v)))return c}return ''};
+            const cityCompatible=(q,c)=>{const qc=cityOf(q);if(!qc)return true;const loc=norm(c.location);if(loc===qc)return true;return (CITY[qc]||[]).some(v=>loc===v)};
+            const familyOf=q=>{const n=norm(q);return families.find(f=>n===f||n.startsWith(f+' ')||n.includes(' '+f+' '))||''};
+            const hay=c=>norm([c.name,c.location,...(c.aliases||[])].join(' '));
+            const score=(q,c)=>{const n=norm(q), qt=tokens(n), h=hay(c);if(!cityCompatible(n,c))return -1;const f=familyOf(n);if(f&&!h.includes(f))return -1;let s=0;for(const a of [c.name,...(c.aliases||[])]){const x=norm(a);if(x===n)s=Math.max(s,1000);else if(x.replace(/ /g,'')===n.replace(/ /g,''))s=Math.max(s,950);else if(x.includes(n)||n.includes(x))s=Math.max(s,800)}const covered=qt.filter(t=>h.split(' ').includes(t)).length;if(covered===qt.length)s=Math.max(s,750+covered*10);else if(covered>=Math.max(1,qt.length-1))s=Math.max(s,500);return s};
+            function searchFixed(){
+              const q=norm(input.value);
+              if(!q){result.style.display='none';return}
+              fetch('./homepage-search-index.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+                const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+                if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college in the master search list matches that college and city combination. Try the official college name, abbreviation and city.</div></div>';result.style.display='block';return}
+                const top=ranked[0], second=ranked[1];
+                const unique=top.s>=950 && (!second || top.s-second.s>=120);
+                const items=ranked.slice(0,5).map(x=>x.c).filter(c=>c.live&&c.url);
+                if(unique&&top.c.live&&top.c.url){window.location.href=top.c.url;return}
+                result.innerHTML='<div class="search-result-inner"><h3>Matching colleges</h3>'+items.map(c=>'<a class="search-result-button" href="'+c.url+'">'+String(c.name).replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]))+' →</a>').join('')+(items.length?'':'<div class="search-location">College found in the master list, but its overview page is not live yet.</div>')+'</div>';result.style.display='block';
+              }).catch(()=>{result.innerHTML='<div class="search-result-inner"><h3>Search is temporarily unavailable</h3></div>';result.style.display='block'});
+            }
+            window.searchContent=searchFixed;
+            input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();searchFixed()}},true);
+          })();
+          </script>'''
+              html = html.replace(marker, js + marker, 1)
+              p.write_text(html, encoding='utf-8')
+          PY
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
