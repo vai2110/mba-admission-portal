@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T08:56:47.990794+00:00",
+  "generated_at": "2026-09-14T14:58:18.083017+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 620,
   "pages_with_issues": 450,
@@ -10859,16 +10859,16 @@
     {
       "file": "iit-kanpur.html",
       "benchmark": false,
-      "title": "Management Sciences Admissions | IIT Kanpur",
-      "title_length": 43,
-      "description": "Comprehensive guide to Management Sciences at IIT Kanpur, including PhD admissions, research areas, and placement statistics for the 2026-27 academic session.",
-      "description_length": 158,
+      "title": "IIT Kanpur DoMS MBA 2026: Admission, Fees, Cutoff & Placements",
+      "title_length": 62,
+      "description": "IIT Kanpur DoMS MBA 2026-28: admission dates, CAT cutoff, eligibility, selection process, fees, curriculum, placements, campus life and FAQs.",
+      "description_length": 141,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/iit-kanpur.html",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Management Sciences at IIT Kanpur",
+      "h1": "IIT Kanpur DoMS MBA",
       "lang": "en",
       "viewport": true,
       "robots": [
