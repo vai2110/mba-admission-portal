@@ -1,0 +1,43 @@
+name: Remove location source note
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove location source note
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('mba-colleges-by-location.html')
+          html = p.read_text(encoding='utf-8')
+          updated = re.sub(r'<p\s+class=["\']location-note["\'][^>]*>.*?</p>\s*', '', html, flags=re.I | re.S)
+          if updated == html:
+              print('No location-note paragraph found; nothing to change.')
+          else:
+              p.write_text(updated, encoding='utf-8')
+              print('Removed location-note paragraph.')
+          PY
+
+      - name: Commit patch if needed
+        run: |
+          if git diff --quiet -- mba-colleges-by-location.html; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mba-colleges-by-location.html
+          git commit -m "Remove location source note from destinations page"
+          git push
