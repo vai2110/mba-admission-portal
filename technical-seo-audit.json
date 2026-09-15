@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-15T17:29:14.065244+00:00",
+  "generated_at": "2026-09-15T17:44:18.472041+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 626,
-  "pages_with_issues": 453,
+  "pages_with_issues": 452,
   "issue_counts": {
     "broken_local_links": 6,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 208,
+    "description_length": 207,
     "duplicate_title": 4,
     "h1_count": 2,
     "jsonld": 13,
@@ -15106,8 +15106,8 @@
       "benchmark": false,
       "title": "MBA College Comparison | Compare Top MBA Colleges",
       "title_length": 49,
-      "description": "Compare selected MBA colleges by ranking, programme and entrance route, then open detailed college pages.",
-      "description_length": 105,
+      "description": "Compare MBA colleges side by side by ranking, location, entrance exam, programme and profile details. Shortlist MBA colleges smarter before you apply.",
+      "description_length": 150,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/mba-college-comparison.html",
       "canonical_count": 1,
@@ -15130,9 +15130,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "description_length"
-      ]
+      "issues": []
     },
     {
       "file": "mba-college-fees.html",
