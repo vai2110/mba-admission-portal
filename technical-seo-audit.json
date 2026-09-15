@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T17:44:18.472041+00:00",
+  "generated_at": "2026-09-15T17:47:40.549160+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 626,
   "pages_with_issues": 452,
@@ -15104,16 +15104,16 @@
     {
       "file": "mba-college-comparison.html",
       "benchmark": false,
-      "title": "MBA College Comparison | Compare Top MBA Colleges",
-      "title_length": 49,
-      "description": "Compare MBA colleges side by side by ranking, location, entrance exam, programme and profile details. Shortlist MBA colleges smarter before you apply.",
-      "description_length": 150,
+      "title": "MBA College Comparison | Compare Colleges Before You Apply",
+      "title_length": 58,
+      "description": "Compare MBA colleges side by side and understand what the differences mean for your MBA decision. Compare rank, location, entrance exam and programme details.",
+      "description_length": 158,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/mba-college-comparison.html",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Compare MBA Colleges Before You Shortlist",
+      "h1": "Which MBA College Is Better for You?",
       "lang": "en",
       "viewport": true,
       "robots": [
