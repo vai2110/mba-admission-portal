@@ -1,0 +1,38 @@
+{
+  "version": "2026-09-15",
+  "method": "structured_verified_sources",
+  "records": {
+    "Indian Institute of Management Ahmedabad": {
+      "fee": {"display": "₹22 lakh", "year": "2026-28", "programme": "MBA/PGP", "sourceType": "official", "source": "https://www.iima.ac.in/the-institute/announcement?field_published_month_value=All&field_published_year_value=All&field_select_pages_for_display_target_id=&page=72&title="},
+      "placement": {"average": "₹35.50 LPA", "median": "₹34.59 LPA", "year": "2025", "programme": "MBA-PGP", "sourceType": "official audited IPRS", "source": "https://www.iima.ac.in/inmediaiprs-report-2025-iima-mba-pgp-reaffirms-continued-trust-recruiters-institutes-talent-pool"}
+    },
+    "Indian Institute of Management Bangalore": {
+      "fee": {"display": "₹26 lakh", "year": "2026-28", "programme": "PGP/MBA", "sourceType": "official", "source": "https://www.iimb.ac.in/programmes/pgp/financial-aid-scholarships"},
+      "placement": {"average": "₹35.35 LPA", "median": "₹34.75 LPA", "year": "2026", "programme": "PGP + PGPBA", "sourceType": "official placement report", "source": "https://www.iimb.ac.in/sites/default/files/inline-files/Placement-Report-2026.pdf"}
+    },
+    "Indian Institute of Management Indore": {
+      "fee": {"display": "₹25.16 lakh*", "year": "2026-28", "programme": "PGP/MBA", "sourceType": "official", "source": "https://iimidr.ac.in/programmes/academic-programmes/post-graduate-programme-in-management-pgp/feestructure/", "note": "Calculated from the institute's listed two-year PGP installments; includes listed caution/mess/alumni charges. *Not a tuition-only figure."},
+      "placement": {"average": "₹29.57 LPA", "median": "₹27 LPA", "year": "2025", "programme": "PGP + IPM", "sourceType": "official placement report", "source": "https://iimidr.ac.in/wp-content/uploads/2025/07/Final-Placement-Report-2025.pdf"}
+    },
+    "Management Development Institute": {
+      "fee": {"display": "₹26.55 lakh", "year": "2026-28", "programme": "PGDM/PGDM-HRM/PGDM-Business Analytics", "sourceType": "official", "source": "https://www.mdi.ac.in/admissions/post-graduate-diploma-in-management-pgdm"},
+      "placement": {"average": "₹29.50 LPA", "median": "₹29 LPA", "year": "2026", "programme": "PGDM", "sourceType": "secondary; reported from official placement data", "source": "https://www.careers360.com/colleges/management-development-institute-gurgaon/placement"}
+    },
+    "S. P. Jain Institute of Management and Research": {
+      "fee": {"display": "₹24.86 lakh", "year": "current listed", "programme": "PGDM", "sourceType": "official", "source": "https://www.spjimr.org/course/post-graduate-diploma-in-management-pgdm/fees-scholarships/"},
+      "placement": {"average": "₹33.75 LPA", "median": "₹32.85 LPA", "year": "2026", "programme": "PGDM + PGDM(BM)", "sourceType": "official", "source": "https://www.spjimr.org/newsroom/press-release/spjimr-announces-100-final-placements-for-the-pgdm-and-pgdm-bm-class-of-2026/"}
+    },
+    "Symbiosis Institute of Business Management": {
+      "fee": {"display": "₹26.20 lakh academic fee + hostel/mess", "year": "2026-28", "programme": "MBA", "sourceType": "official", "source": "https://sibm.edu/mba_fees_structure", "note": "Hostel and mess charges for the subsequent year are communicated later and can increase; therefore the comparison does not invent a two-year all-in total."},
+      "placement": {"average": "₹28.18 LPA", "median": "₹27.00 LPA", "year": "2025", "programme": "MBA", "sourceType": "official placement report", "source": "https://sibm.edu/assets/pdf/placement-report/CRPReport2025.pdf"}
+    },
+    "SVKM's Narsee Monjee Institute of Management Studies": {
+      "fee": {"display": null, "year": null, "programme": "MBA Core", "sourceType": null, "source": null},
+      "placement": {"average": "₹24.60 LPA", "median": null, "year": "2025-26", "programme": "MBA Core", "sourceType": "official", "source": "https://sbm.nmims.edu/placements", "note": "NMIMS publicly reports the MBA Core average CTC here; median is not populated because a comparable official median was not found."}
+    },
+    "XLRI - Xavier School of Management": {
+      "fee": {"display": null, "year": null, "programme": "PGDM-BM/HRM", "sourceType": null, "source": null},
+      "placement": {"average": null, "median": "₹29 LPA", "year": "2025", "programme": "PGDM-BM + PGDM-HRM", "sourceType": "official", "source": "https://xlri.ac.in/newsroom/press-releases/xlri-achieves-record-placements-for-pgdm-bm-and-pgdm-hrm-2023-25-batch/", "note": "The official release reports median salary but does not provide a directly comparable overall average; no average has been invented."}
+    }
+  }
+}
