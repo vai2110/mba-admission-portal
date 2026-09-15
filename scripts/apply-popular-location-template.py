@@ -70,14 +70,12 @@ if MARKER not in html:
 section_re = re.compile(r'<section>\s*<div class="section-heading">\s*<h2>Where do students commonly look for an MBA\?</h2>.*?</section>\s*<hr>', re.S)
 html, n = section_re.subn(SECTION + '\n<hr>', html, count=1)
 if n == 0:
-    # Also support an already partially templated version.
     html, n = re.subn(r'<section class="location-template".*?</section>', SECTION, html, count=1, flags=re.S)
 
-func_re = re.compile(r'function renderPopular\(\)\{.*?\n\}', re.S)
-html, nfunc = func_re.subn(FUNCTION, html, count=1)
+func_re = re.compile(r'function renderPopular\(\)\{.*?\}\s*function rankLabel', re.S)
+html, nfunc = func_re.subn(FUNCTION + '\nfunction rankLabel', html, count=1)
 if nfunc == 0:
     raise SystemExit('Could not locate renderPopular() in mba-colleges-by-location.html')
 
-html = html.replace('id="popularGrid" aria-label="Popular MBA destinations"', 'id="popularGrid" aria-label="Popular MBA destinations"', 1)
 PAGE.write_text(html, encoding='utf-8')
 print(f'updated page: section={n}, renderPopular={nfunc}')
