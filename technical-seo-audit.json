@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T16:10:28.839493+00:00",
+  "generated_at": "2026-09-16T16:34:40.289254+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 626,
   "pages_with_issues": 453,
@@ -15104,10 +15104,10 @@
     {
       "file": "mba-college-comparison.html",
       "benchmark": false,
-      "title": "MBA College Comparison | Fees, Placements, Intake & Cutoff",
-      "title_length": 58,
-      "description": "Compare all 109 MBA colleges in the portal by fees, average and median placement outcomes, intake, entrance exam, programme, location and cutoff where verified.",
-      "description_length": 160,
+      "title": "MBA College Comparison | Fees, Placements & Cutoff",
+      "title_length": 50,
+      "description": "Compare all 109 MBA colleges by fees, average and median placement outcomes, intake, exams, programme, location and cutoff where verified.",
+      "description_length": 138,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/mba-college-comparison.html",
       "canonical_count": 1,
