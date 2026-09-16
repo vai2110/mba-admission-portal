@@ -11,7 +11,7 @@ RESPONSIVE_PATCH = """
 html{overflow-x:hidden}
 body{overflow-x:hidden}
 img{max-width:100%;height:auto}
-.table-wrapper{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-wrapper,.table-wrap,.table-responsive{max-width:100%;overflow:visible}
 @media(max-width:720px){
   .hero-container,.page-container,.navbar{width:calc(100% - 20px)}
   .hero h1{font-size:26px;line-height:1.2}
@@ -22,7 +22,9 @@ img{max-width:100%;height:auto}
   .main-section{padding:20px 15px}
   .main-section>h2{font-size:21px}
   .highlight-grid,.programme-grid,.two-column,.official-links,.decision-list{grid-template-columns:1fr}
-  table{min-width:620px}
+  .table-wrapper,.table-wrap,.table-responsive{width:100%!important;max-width:100%!important;overflow:visible!important}
+  .table-wrapper table,.table-wrap table,.table-responsive table,.main-section table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+  .table-wrapper th,.table-wrapper td,.table-wrap th,.table-wrap td,.table-responsive th,.table-responsive td,.main-section table th,.main-section table td{white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
 }
 """
 
