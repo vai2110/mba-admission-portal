@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T05:38:53.894091+00:00",
+  "generated_at": "2026-09-16T06:26:31.614701+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 626,
   "pages_with_issues": 453,
@@ -12,9 +12,9 @@
     "h1_count": 2,
     "jsonld": 14,
     "lang": 1,
-    "og_description": 14,
-    "og_title": 14,
-    "og_url": 14,
+    "og_description": 13,
+    "og_title": 13,
+    "og_url": 13,
     "title_length": 363,
     "twitter_card": 19,
     "viewport": 1
@@ -15106,8 +15106,8 @@
       "benchmark": false,
       "title": "MBA College Comparison | Compare Fees, Cutoff, Placements & Intake",
       "title_length": 66,
-      "description": "Compare MBA colleges using verified fee, placement average and median, approved intake, NIRF rank, entrance exam and programme data. Competitive cutoff is estimated only when official competitive data is unavailable.",
-      "description_length": 216,
+      "description": "Compare all created MBA college profiles on fees, competitive cutoff, placements, intake, NIRF rank, entrance exam and programme. Missing cutoff data is left blank rather than excluding the college.",
+      "description_length": 198,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/mba-college-comparison.html",
       "canonical_count": 1,
@@ -15116,11 +15116,13 @@
       "h1": "Compare MBA Colleges Before You Apply",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
       "twitter_card": false,
       "jsonld_blocks": 0,
       "images": 0,
@@ -15131,9 +15133,6 @@
       "issues": [
         "title_length",
         "description_length",
-        "og_title",
-        "og_description",
-        "og_url",
         "twitter_card",
         "jsonld"
       ]
