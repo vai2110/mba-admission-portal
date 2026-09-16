@@ -1,0 +1,186 @@
+{
+  "version": "2026-09-16-official-overrides-v1",
+  "source_policy": "Primary institute websites/reports only; missing values remain blank until verified.",
+  "records": [
+    {
+      "name": "Indian Institute of Management Bodh Gaya",
+      "rank": 31,
+      "fees": "₹17.96 lakh course fee",
+      "average_package": "₹14.80 LPA",
+      "median_package": "₹14.00 LPA",
+      "placement_year": "2026",
+      "intake": "",
+      "source_note": "MBA 2026-28 course fee and current flagship MBA placement figures"
+    },
+    {
+      "name": "Indian Institute of Management Rohtak",
+      "rank": 19,
+      "fees": "₹17.90 lakh programme fee*",
+      "average_package": "₹18.73 LPA",
+      "median_package": "₹17.00 LPA",
+      "placement_year": "2023-25",
+      "intake": "",
+      "source_note": "2025-27 PGP fee structure; latest official final placement report available"
+    },
+    {
+      "name": "Indian Institute of Technology Roorkee",
+      "rank": 22,
+      "fees": "",
+      "average_package": "₹17.91 LPA",
+      "median_package": "₹17.64 LPA",
+      "placement_year": "2025",
+      "intake": "95",
+      "source_note": "DoMS official MBA placement report 2025 and current department batch size"
+    },
+    {
+      "name": "MICA",
+      "rank": 33,
+      "fees": "",
+      "average_package": "₹19.23 LPA",
+      "median_package": "₹18.00 LPA",
+      "placement_year": "2024-25",
+      "intake": "195 students appeared",
+      "source_note": "Official MICA final placement report 2024-25"
+    },
+    {
+      "name": "Goa Institute of Management",
+      "rank": 43,
+      "fees": "₹21.45 lakh academic fee",
+      "average_package": "₹16.27 LPA",
+      "median_package": "₹15.00 LPA",
+      "placement_year": "2026",
+      "intake": "284",
+      "source_note": "Official GIM 2025-26 placement update and 2026-28 fee page; flagship PGDM batch"
+    },
+    {
+      "name": "K.J.Somaiya Institute of Management",
+      "rank": 65,
+      "fees": "₹23.88 lakh total programme fee",
+      "average_package": "",
+      "median_package": "₹12.00 LPA",
+      "placement_year": "2024-26",
+      "intake": "",
+      "source_note": "Official MBA 2026-28 fee structure and MBA 2024-26 placement highlights"
+    },
+    {
+      "name": "Great Lakes Institute of Management",
+      "rank": 37,
+      "fees": "₹22.50 lakh total programme fee",
+      "average_package": "₹15.00 LPA",
+      "median_package": "",
+      "placement_year": "2025",
+      "intake": "348",
+      "source_note": "Official Chennai PGDM 2026-28 fee page, 2025 placement highlight and official batch profile"
+    },
+    {
+      "name": "Indian Institute of Technology Kanpur",
+      "rank": 27,
+      "fees": "",
+      "average_package": "₹17.20 LPA",
+      "median_package": "₹16.50 LPA",
+      "placement_year": "2023-25",
+      "intake": "",
+      "source_note": "Official IIT Kanpur MBA 2026-28 information brochure"
+    },
+    {
+      "name": "Indian Institute of Technology Madras",
+      "rank": 13,
+      "fees": "",
+      "average_package": "₹17.90 LPA",
+      "median_package": "₹18.00 LPA",
+      "placement_year": "2025",
+      "intake": "93",
+      "source_note": "Official DoMS IIT Madras placement brochure 2025"
+    },
+    {
+      "name": "Indian Institute of Technology (Indian School of Mines)",
+      "rank": 48,
+      "fees": "",
+      "average_package": "₹10.30 LPA",
+      "median_package": "₹10.00 LPA",
+      "placement_year": "2025",
+      "intake": "37 placed",
+      "source_note": "Official IIT (ISM) placement report 2025; MBA course-wise compensation summary"
+    },
+    {
+      "name": "Indian Institute of Management Shillong",
+      "rank": 38,
+      "fees": "",
+      "average_package": "₹27.03 LPA",
+      "median_package": "₹26.00 LPA",
+      "placement_year": "2024-26",
+      "intake": "",
+      "source_note": "Current official IIM Shillong website placement statistics"
+    },
+    {
+      "name": "Indian Institute of Management Ranchi",
+      "rank": 18,
+      "fees": "",
+      "average_package": "₹19.29 LPA",
+      "median_package": "₹17.64 LPA",
+      "placement_year": "2024-25",
+      "intake": "220 opted in",
+      "source_note": "Official IIM Ranchi placement page/final placement reporting"
+    },
+    {
+      "name": "Indian Institute of Management Kashipur",
+      "rank": 23,
+      "fees": "₹20.80 lakh",
+      "average_package": "₹14.95 LPA",
+      "median_package": "₹14.46 LPA",
+      "placement_year": "2025",
+      "intake": "",
+      "source_note": "Official audited final placement report 2025 and current MBA fee information"
+    },
+    {
+      "name": "Indian Institute of Management Sambalpur",
+      "rank": 34,
+      "fees": "",
+      "average_package": "₹15.65 LPA",
+      "median_package": "₹15.02 LPA",
+      "placement_year": "2023-25",
+      "intake": "314",
+      "source_note": "Official IIM Sambalpur final placement page; 2023-25 batch"
+    },
+    {
+      "name": "Indian Institute of Management Udaipur",
+      "rank": 21,
+      "fees": "₹21.99 lakh approx. programme + living components",
+      "average_package": "₹17.58 LPA",
+      "median_package": "₹17.00 LPA",
+      "placement_year": "2025",
+      "intake": "",
+      "source_note": "Official IIM Udaipur MBA fee structure and placement cycle data"
+    },
+    {
+      "name": "National Institute of Technology Tiruchirappalli",
+      "rank": 57,
+      "fees": "",
+      "average_package": "",
+      "median_package": "",
+      "placement_year": "",
+      "intake": "",
+      "source_note": "Official 2026 admissions page confirms current MBA admission/fee/placement documents; figures pending direct extraction"
+    },
+    {
+      "name": "Christ University",
+      "rank": 57,
+      "fees": "",
+      "average_package": "₹7.88 LPA",
+      "median_package": "₹7.00 LPA",
+      "placement_year": "2025",
+      "intake": "",
+      "source_note": "Official MBA 2025 placement report; scope as reported by the relevant School of Business and Management report"
+    },
+    {
+      "name": "Amrita Vishwa Vidyapeetham",
+      "rank": 26,
+      "fees": "Campus-specific",
+      "average_package": "₹8.33 LPA all-campus",
+      "median_package": "₹7.60 LPA all-campus",
+      "placement_year": "2025",
+      "intake": "819 all-campus enrollment 2024",
+      "source_note": "Official Amrita MBA admissions/placement material; all-campus scope retained"
+    }
+  ]
+}
