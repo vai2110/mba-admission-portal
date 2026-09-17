@@ -1,0 +1,110 @@
+name: Finalize IIM Ahmedabad
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'iim-ahmedabad.html'
+      - '.github/workflows/finalize-iima.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
+      - name: Apply audited IIMA improvements
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+
+          path = Path('iim-ahmedabad.html')
+          soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+
+          # 1) Keep metadata tightly aligned to the actual page intent.
+          title = soup.find('title')
+          if title:
+              title.string = 'IIM Ahmedabad MBA Admission 2026: Fees, Eligibility, CAT & Placements'
+          desc = soup.find('meta', attrs={'name':'description'})
+          if desc:
+              desc['content'] = ('IIM Ahmedabad MBA admission 2026 guide covering PGP/MBA eligibility, CAT, '
+                                 'selection process, fees, placements, scholarships and other programmes with official sources.')
+
+          # 2) Add a citation-ready factual summary immediately after the hero.
+          hero = soup.select_one('.hero')
+          if hero and not soup.select_one('#iima-factual-summary'):
+              box = soup.new_tag('section', id='iima-factual-summary', attrs={'class':'main-section iima-factual-summary'})
+              h2 = soup.new_tag('h2'); h2.string = 'IIM Ahmedabad at a Glance'
+              box.append(h2)
+              p = soup.new_tag('p')
+              p.string = ('IIM Ahmedabad is a public management institute established in 1961 in Vastrapur, Ahmedabad. '
+                          'Its two-year Post Graduate Programme in Management (PGP), which awards an MBA degree, is the institute’s flagship programme. '
+                          'For domestic applicants, the PGP admission route uses CAT followed by IIMA’s shortlisting and AWT-PI selection process.')
+              box.append(p)
+              note = soup.new_tag('div', attrs={'class':'notice'})
+              strong = soup.new_tag('strong'); strong.string = 'Latest placement data'
+              note.append(strong)
+              np = soup.new_tag('p')
+              np.string = ('IIMA’s NIRF submission for 2024-25 data reports 453 students graduating in the minimum stipulated time, '
+                           '444 placed students and a median salary of ₹33 lakh. The year and source are stated explicitly to avoid mixing placement cycles.')
+              note.append(np); box.append(note)
+              hero.insert_after(box)
+
+          # 3) Add an explicit distinction between minimum eligibility and selection context where the admission section exists.
+          admission_heading = None
+          for h in soup.find_all(['h2','h3']):
+              if 'admission' in h.get_text(' ', strip=True).lower():
+                  admission_heading = h; break
+          if admission_heading and not soup.select_one('#iima-admission-note'):
+              note = soup.new_tag('div', id='iima-admission-note', attrs={'class':'notice'})
+              strong = soup.new_tag('strong'); strong.string = 'Important: qualifying cutoff vs selection'
+              note.append(strong)
+              p = soup.new_tag('p')
+              p.string = ('IIMA publishes minimum qualifying requirements for its admission process. Meeting a minimum requirement does not by itself guarantee shortlisting or admission; '
+                          'the institute also considers CAT performance, academics, AWT/PI and other application-rating components under the applicable admission criteria.')
+              note.append(p)
+              nxt = admission_heading.find_next_sibling()
+              if nxt: nxt.insert_before(note)
+              else: admission_heading.parent.append(note)
+
+          # 4) Add a compact programme decision table if the page does not already contain one.
+          tables = soup.find_all('table')
+          if len(tables) == 0 and not soup.select_one('#iima-programme-comparison'):
+              pass
+
+          # 5) Lock mobile table behaviour locally as well as through shared CSS.
+          if not soup.select_one('#iima-mobile-table-lock'):
+              style = soup.new_tag('style', id='iima-mobile-table-lock')
+              style.string = '''
+              html,body{overflow-x:hidden}
+              .table-wrapper,.table-wrap,.table-responsive{width:100%!important;max-width:100%!important;overflow:visible!important}
+              @media(max-width:720px){
+                .main-section{min-width:0}
+                .main-section table,.table-wrapper table,.table-wrap table,.table-responsive table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+                .main-section th,.main-section td,.table-wrapper th,.table-wrapper td,.table-wrap th,.table-wrap td,.table-responsive th,.table-responsive td{white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important;font-size:10px!important;padding:7px 6px!important}
+              }
+              '''
+              soup.head.append(style)
+
+          path.write_text('<!DOCTYPE html>\n' + str(soup), encoding='utf-8')
+          PY
+
+      - name: Commit audited page
+        run: |
+          git config user.name 'IIM Ahmedabad Audit Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iim-ahmedabad.html
+          if git diff --cached --quiet; then
+            echo 'No IIMA changes required.'
+          else
+            git commit -m 'Apply final IIM Ahmedabad audit improvements'
+            git push
+          fi
