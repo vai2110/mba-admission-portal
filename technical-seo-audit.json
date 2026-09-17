@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-16T16:38:31.700835+00:00",
+  "generated_at": "2026-09-17T06:42:54.039204+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 626,
-  "pages_with_issues": 453,
+  "pages_with_issues": 452,
   "issue_counts": {
     "broken_local_links": 6,
     "canonical": 13,
@@ -10,11 +10,11 @@
     "description_length": 207,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 14,
+    "jsonld": 13,
     "lang": 1,
-    "og_description": 14,
-    "og_title": 14,
-    "og_url": 14,
+    "og_description": 13,
+    "og_title": 13,
+    "og_url": 13,
     "title_length": 362,
     "twitter_card": 19,
     "viewport": 1
@@ -7770,7 +7770,7 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": true,
+      "twitter_card": false,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
@@ -7778,7 +7778,8 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length"
+        "title_length",
+        "twitter_card"
       ]
     },
     {
@@ -15116,25 +15117,21 @@
       "h1": "Compare MBA Colleges Before You Apply",
       "lang": "en",
       "viewport": true,
-      "robots": [],
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-college-fees.html",
