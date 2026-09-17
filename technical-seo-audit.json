@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-17T12:15:13.733450+00:00",
+  "generated_at": "2026-09-17T16:07:06.504050+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 626,
   "pages_with_issues": 452,
   "issue_counts": {
-    "broken_local_links": 6,
+    "broken_local_links": 7,
     "canonical": 13,
     "description_count": 4,
     "description_length": 207,
@@ -15,7 +15,7 @@
     "og_description": 13,
     "og_title": 13,
     "og_url": 13,
-    "title_length": 362,
+    "title_length": 361,
     "twitter_card": 18,
     "viewport": 1
   },
@@ -8604,10 +8604,10 @@
     {
       "file": "iim-kozhikode.html",
       "benchmark": false,
-      "title": "IIM Kozhikode MBA Admission 2026: Fees, Cutoff, Eligibility & Placements",
-      "title_length": 72,
-      "description": "IIM Kozhikode MBA 2026: fees, CAT cutoff, eligibility, admission process, placements, batch profile and programme options in one student-focused guide.",
-      "description_length": 151,
+      "title": "IIM Kozhikode MBA 2026: Fees, CAT Cutoff, Admission & Placements",
+      "title_length": 64,
+      "description": "IIM Kozhikode MBA 2026-28 guide covering official CAT eligibility, fees, selection process, 2025 placements, three-year median trends, tentative 2027-29 dates and FAQs.",
+      "description_length": 168,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/iim-kozhikode.html",
       "canonical_count": 1,
@@ -8624,14 +8624,16 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "iim-kozhikode-mba.html"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length"
+        "broken_local_links"
       ]
     },
     {
