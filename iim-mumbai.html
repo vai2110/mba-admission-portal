@@ -452,13 +452,47 @@ tr:nth-child(even) td{background:#fafcff}
 .verdict h3{margin-top:15px}
 .verdict h3:first-child{margin-top:0}
 
+
+/* =========================================================
+   FAQ ACCORDION
+========================================================= */
+.faq-accordion{
+    border-bottom:1px solid #e5e7eb;
+}
+.faq-accordion summary{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    cursor:pointer;
+    list-style:none;
+    padding:15px 2px;
+    color:var(--blue);
+    font-size:15px;
+    font-weight:700;
+    line-height:1.45;
+}
+.faq-accordion summary::-webkit-details-marker{display:none}
+.faq-accordion summary::after{
+    content:'+';
+    flex:0 0 auto;
+    color:#2563eb;
+    font-size:20px;
+    font-weight:400;
+    line-height:1;
+}
+.faq-accordion[open] summary::after{content:'−'}
+.faq-accordion summary:focus-visible{
+    outline:2px solid #2563eb;
+    outline-offset:3px;
+    border-radius:4px;
+}
+.faq-answer{padding:0 2px 15px}
+.faq-answer p{margin:0;font-size:13px;line-height:1.7;color:#334155}
+
 /* =========================================================
    FAQ
 ========================================================= */
-.faq-item{padding:14px 0;border-bottom:1px solid #e5e7eb}
-.faq-item:last-child{border-bottom:none}
-.faq-item h3{margin:0 0 6px;font-size:15px;color:var(--blue)}
-.faq-item p{margin-bottom:0;font-size:13px}
 
 /* =========================================================
    OFFICIAL LINKS
@@ -921,14 +955,14 @@ font-weight:800;
 <hr/><section class="main-section" id="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-intent">
-<div class="faq-item"><h3>What is the IIM Mumbai MBA fee for the 2026–28 batch?</h3><p>The gross programme fee is ₹25 lakh for two years, plus a refundable ₹50,000 caution money deposit. Mess charges and the mess deposit are separate.</p></div>
-<div class="faq-item"><h3>What is the CAT cutoff for IIM Mumbai MBA?</h3><p>For 2026–28, the Stage-I minimum for Open candidates was 85 overall, with 80 VARC, 80 DILR and 75 QA. IIM Mumbai states that actual cutoffs may be higher depending on the number of candidates called for PI.</p></div>
-<div class="faq-item"><h3>What is the eligibility for IIM Mumbai MBA?</h3><p>A bachelor's degree of at least three years after 10+2 with 50% marks or equivalent CGPA is required; the threshold is 45% for SC/ST/PwD candidates. Final-year candidates can apply subject to the institute's conditions.</p></div>
-<div class="faq-item"><h3>What is the average package at IIM Mumbai?</h3><p>For Batch 2026, the institute's final placement report gives an average CTC of ₹31.4 lakh. It also reports top-10%, top-20% and top-50% averages of ₹47.5 lakh, ₹41.4 lakh and ₹34.5 lakh respectively.</p></div>
-<div class="faq-item"><h3>What should students compare before evaluating the ₹25 lakh fee?</h3><p>Compare the total programme cost including separate mess and living expenses with the placement outcomes for the relevant cohort, the functions represented in recruitment and your own target career path.</p></div>
-<div class="faq-item"><h3>IIM Mumbai vs IIM Indore: what should students compare?</h3><p>Compare programme structure, admission criteria, total cost, campus location, batch profile, recruiter mix, placement statistics and the functions you intend to target. These factors can differ across programmes and cohorts.</p></div>
-<div class="faq-item"><h3>MBA vs MBA-OSCM: what is the difference at IIM Mumbai?</h3><p>MBA is the general-management programme, while MBA-OSCM is specifically focused on operations and supply chain management and has a more restricted eligibility route. Both are two-year residential programmes.</p></div>
-<div class="faq-item"><h3>Is IIM Mumbai suitable for freshers?</h3><p>Freshers are eligible for the MBA if they meet the academic and CAT requirements. The Batch 2026 placement report shows 14% freshers in the combined MBA, MBA-OSCM and MBA-SM cohort.</p></div>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>What is the IIM Mumbai MBA fee for the 2026–28 batch?</summary><div class="faq-answer"><p>The gross programme fee is ₹25 lakh for two years, plus a refundable ₹50,000 caution money deposit. Mess charges and the mess deposit are separate.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>What is the CAT cutoff for IIM Mumbai MBA?</summary><div class="faq-answer"><p>For 2026–28, the Stage-I minimum for Open candidates was 85 overall, with 80 VARC, 80 DILR and 75 QA. IIM Mumbai states that actual cutoffs may be higher depending on the number of candidates called for PI.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>What is the eligibility for IIM Mumbai MBA?</summary><div class="faq-answer"><p>A bachelor's degree of at least three years after 10+2 with 50% marks or equivalent CGPA is required; the threshold is 45% for SC/ST/PwD candidates. Final-year candidates can apply subject to the institute's conditions.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>What is the average package at IIM Mumbai?</summary><div class="faq-answer"><p>For Batch 2026, the institute's final placement report gives an average CTC of ₹31.4 lakh. It also reports top-10%, top-20% and top-50% averages of ₹47.5 lakh, ₹41.4 lakh and ₹34.5 lakh respectively.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>What should students compare before evaluating the ₹25 lakh fee?</summary><div class="faq-answer"><p>Compare the total programme cost including separate mess and living expenses with the placement outcomes for the relevant cohort, the functions represented in recruitment and your own target career path.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>IIM Mumbai vs IIM Indore: what should students compare?</summary><div class="faq-answer"><p>Compare programme structure, admission criteria, total cost, campus location, batch profile, recruiter mix, placement statistics and the functions you intend to target. These factors can differ across programmes and cohorts.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>MBA vs MBA-OSCM: what is the difference at IIM Mumbai?</summary><div class="faq-answer"><p>MBA is the general-management programme, while MBA-OSCM is specifically focused on operations and supply chain management and has a more restricted eligibility route. Both are two-year residential programmes.</p></div></details>
+<details class="faq-accordion" name="iim-mumbai-faq"><summary>Is IIM Mumbai suitable for freshers?</summary><div class="faq-answer"><p>Freshers are eligible for the MBA if they meet the academic and CAT requirements. The Batch 2026 placement report shows 14% freshers in the combined MBA, MBA-OSCM and MBA-SM cohort.</p></div></details>
 </div>
 </section>
 </main></div></div>
