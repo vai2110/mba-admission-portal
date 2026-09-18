@@ -1,0 +1,102 @@
+name: College Existing Page Audit Queue
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 * * * *"
+permissions:
+  contents: write
+  actions: write
+env:
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: gemini-3.1-flash-lite
+  GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEET_WEBAPP_URL }}
+  GOOGLE_SHEETS_API_SECRET: ${{ secrets.GOOGLE_SHEETS_API_SECRET }}
+concurrency:
+  group: college-existing-page-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install beautifulsoup4
+      - name: Validate secrets
+        run: |
+          test -n "$GEMINI_API_KEY" || exit 1
+          test -n "$GOOGLE_SHEET_WEBAPP_URL" || exit 1
+          test -n "$GOOGLE_SHEETS_API_SECRET" || exit 1
+      - name: Audit next pending college
+        run: python scripts/college_audit_queue_agent.py
+      - name: SEO AEO GEO audit
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/seo_geo_aeo_audit.py
+      - name: Content audit
+        run: |
+          export TARGET_PAGES="$(cat changed-html.txt)"
+          python scripts/free_content_auditor.py
+      - name: Technical SEO audit
+        run: python scripts/technical_seo_audit.py
+      - name: Validate HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          for name in Path("changed-html.txt").read_text().splitlines():
+              name=name.strip()
+              if not name: continue
+              soup=BeautifulSoup(Path(name).read_text(encoding="utf-8"),"html.parser")
+              if len(soup.find_all("h1")) != 1: raise SystemExit("H1 check failed: "+name)
+              if not soup.title: raise SystemExit("Title missing: "+name)
+              if not soup.find("meta",attrs={"name":"description"}): raise SystemExit("Meta missing: "+name)
+          PY
+      - name: Commit audited pages
+        run: |
+          git config user.name "CollegeDecoded Existing Page Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' changed-html.txt college-audit-result.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit and improve existing college page"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
+      - name: Verify live pages
+        run: |
+          for i in $(seq 1 18); do
+            sleep 20
+            ok=true
+            while IFS= read -r file; do
+              [ -z "$file" ] && continue
+              code=$(curl -L -s -o /tmp/page.html -w "%{http_code}" "https://vai2110.github.io/mba-admission-portal/$file" || true)
+              if [ "$code" != "200" ] || ! grep -qi "<html" /tmp/page.html; then ok=false; break; fi
+            done < changed-html.txt
+            if [ "$ok" = true ]; then exit 0; fi
+          done
+          exit 1
+      - name: Mark Sheet complete
+        run: |
+          python - <<'PY'
+          import json,os
+          from urllib.request import Request,urlopen
+          r=json.load(open("college-audit-result.json",encoding="utf-8"))
+          p={"secret":os.environ["GOOGLE_SHEETS_API_SECRET"],"action":"updateStatus","rank":int(r["rank"]),"overviewStatus":"Done","placementStatus":"Done","popularCourseStatus":"Done","researchStatus":"Completed","qaStatus":"Passed","deploymentStatus":"Live","liveVerification":"Verified","updatesRequired":r.get("updates_required","")}
+          q=Request(os.environ["GOOGLE_SHEET_WEBAPP_URL"],data=json.dumps(p).encode(),headers={"Content-Type":"application/json"},method="POST")
+          o=json.loads(urlopen(q,timeout=60).read().decode())
+          if not o.get("success"): raise SystemExit(o.get("error","Sheet update failed"))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: college-audit-result
+          path: |
+            college-audit-result.json
+            changed-html.txt
+            seo-geo-aeo-report.json
+            content-audit-report.json
+            technical-seo-audit.json
+          if-no-files-found: ignore
