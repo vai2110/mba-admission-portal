@@ -1,0 +1,19 @@
+{
+  "college": "IIM Ahmedabad",
+  "rank": "1",
+  "files": [
+    "iim-ahmedabad.html"
+  ],
+  "score": 95,
+  "updates_required": "None",
+  "summary": "The page was audited and updated to ensure all dynamic facts (like batch years and placement data) are clearly labeled with their respective years. The FAQ section was converted to the required accordion format. The content remains focused on student intent, providing clear eligibility, admission, and fee information while maintaining the existing visual identity.",
+  "live_urls": [
+    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-mba.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-pgpx.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-mba-fabm.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-placements.html",
+    "https://vai2110.github.io/mba-admission-portal/mba-colleges-in-ahmedabad.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-business-analytics-ai.html"
+  ]
+}
