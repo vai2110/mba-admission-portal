@@ -28,7 +28,6 @@ MASTER = ROOT / "data" / "college-content-master.csv"
 GOOGLE_SHEET_WEBAPP_URL = os.getenv("GOOGLE_SHEET_WEBAPP_URL", "").strip()
 GOOGLE_SHEETS_API_SECRET = os.getenv("GOOGLE_SHEETS_API_SECRET", "").strip()
 BATCH_SIZE = int(os.getenv("COLLEGE_BATCH_SIZE", "10"))
-COMPLETED_UPTO_RANK = 26
 
 BASE_MISSING_TYPES = agent.missing_types
 BASE_AUDIT = agent.audit
@@ -87,8 +86,6 @@ def get_sheet_batch():
         try:
             rank = int(str(_field(college, "rank", "Rank")).strip())
         except (TypeError, ValueError):
-            continue
-        if rank <= COMPLETED_UPTO_RANK:
             continue
         selected.append({
             "rank": str(rank),
