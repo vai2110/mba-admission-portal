@@ -3,7 +3,7 @@
 2,Indian Institute of Management Bangalore,2,Done,Done,Done,https://www.iimb.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 3,Indian Institute of Management Kozhikode,3,Done,Done,Done,https://www.iimk.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 4,Indian Institute of Technology Delhi,4,Done,Done,Done,https://home.iitd.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
-5,Indian Institute of Management Lucknow,5,Done,Done,Done,https://www.iiml.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
+5,Indian Institute of Management Lucknow,5,Done,Done,Done,https://www.iiml.ac.in/,37,Research Complete,Failed,Blocked - QA <= 70 or critical failure,Not Started
 6,"Indian Institute of Management, Mumbai",6,Done,Done,Done,https://www.iimmumbai.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 7,Indian Institute of Management Calcutta,7,Done,Done,Done,https://www.iimcal.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 8,Indian Institute of Management Indore,8,Done,Done,Done,https://www.iimidr.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
@@ -27,7 +27,7 @@
 26,Amrita Vishwa Vidyapeetham,26,,,,https://www.amrita.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 27,Indian Institute of Technology Kanpur,27,,,,https://www.iitk.ac.in,Pending Audit,Not Started,Skipped - existing pages protected,Already Exists,Checked
 28,Jamia Millia Islamia,28,Done,Done,Done,https://www.jmi.ac.in,51,Research Complete,Failed,Blocked - QA <= 70 or critical failure,Not Started
-29,Indian Institute of Management Visakhapatnam,29,,,Done,https://www.iimv.ac.in/,93,Research Complete,Passed,Pushed - Awaiting Pages,Verified
+29,Indian Institute of Management Visakhapatnam,29,,,Done,https://www.iimv.ac.in,93,Research Complete,Passed,Pushed - Awaiting Pages,Verified
 30,Institute of Management Technology,30,,,,https://www.imt.edu,Pending Audit,Not Started,Not Started,Not Started,Not Started
 31,Indian Institute of Management Bodh Gaya,31,,,,https://www.iimbg.ac.in,Pending Audit,Not Started,Not Started,Not Started,Not Started
 32,Chandigarh University,32,,,,https://www.cuchd.in,Pending Audit,Not Started,Not Started,Not Started,Not Started

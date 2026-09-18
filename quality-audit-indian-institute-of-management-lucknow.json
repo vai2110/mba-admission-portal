@@ -1,0 +1,30 @@
+{
+  "college": "Indian Institute of Management Lucknow",
+  "rank": "5",
+  "score": 37,
+  "threshold": 70,
+  "page_scores": [
+    37
+  ],
+  "critical_failures": [
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: hero section missing",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: quick-facts strip missing",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: fewer than 3 quick-fact cards",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: mobile On This Page navigation missing",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: fewer than 5 reference main-section cards",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: fewer than 5 useful H2 sections",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: fewer than 3 structured FAQ questions",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: fewer than 2 internal links",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: complete OG title/description missing",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: programme page missing eligibility content",
+    "indian-institute-of-management-lucknow-mba-programme.html: reference architecture: programme page missing fees content"
+  ],
+  "notes": [
+    "indian-institute-of-management-lucknow-mba-programme.html: incomplete OG metadata"
+  ],
+  "source_count": 28,
+  "generated_pages": [
+    "indian-institute-of-management-lucknow-mba-programme.html"
+  ],
+  "revision_passes": 2
+}
