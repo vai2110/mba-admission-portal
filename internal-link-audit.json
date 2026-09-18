@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-16T06:25:30.599901+00:00",
+  "generated_at": "2026-09-18T15:43:21.635938+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 622,
-    "pages_with_internal_links": 606,
+    "pages_checked": 623,
+    "pages_with_internal_links": 607,
     "broken_local_links": 7,
-    "benchmark_legacy_broken_links": 1,
+    "benchmark_legacy_broken_links": 0,
     "college_clusters_detected": 81,
     "cluster_reciprocal_gaps": 230,
-    "zero_incoming_pages": 74,
+    "zero_incoming_pages": 77,
     "role_counts": {
       "overview_or_hub": 280,
-      "programme": 252,
+      "programme": 253,
       "placement": 90
     }
   },
@@ -372,8 +372,9 @@
     {
       "overview": "iim-kozhikode.html",
       "placement": "iim-kozhikode-placements.html",
-      "programme_count": 3,
+      "programme_count": 4,
       "programmes": [
+        "iim-kozhikode-mba.html",
         "iim-kozhikode-pgp-bl.html",
         "iim-kozhikode-pgp-finance.html",
         "iim-kozhikode-pgp-lsm.html"
@@ -1518,6 +1519,16 @@
       ]
     },
     {
+      "source": "iim-ahmedabad.html",
+      "missing": [
+        "iim-ahmedabad-placements.html",
+        "iim-ahmedabad-business-analytics-ai.html",
+        "iim-ahmedabad-mba-fabm.html",
+        "iim-ahmedabad-mba.html",
+        "iim-ahmedabad-pgpx.html"
+      ]
+    },
+    {
       "source": "iim-ahmedabad-placements.html",
       "missing": [
         "iim-ahmedabad.html",
@@ -1597,7 +1608,7 @@
     {
       "source": "iim-bangalore.html",
       "missing": [
-        "iim-bangalore-pgpba.html"
+        "iim-bangalore-mba-business-analytics.html"
       ]
     },
     {
@@ -1703,11 +1714,27 @@
       ]
     },
     {
-      "source": "iim-kozhikode-placements.html",
+      "source": "iim-kozhikode.html",
       "missing": [
+        "iim-kozhikode-mba.html",
         "iim-kozhikode-pgp-bl.html",
         "iim-kozhikode-pgp-finance.html",
         "iim-kozhikode-pgp-lsm.html"
+      ]
+    },
+    {
+      "source": "iim-kozhikode-placements.html",
+      "missing": [
+        "iim-kozhikode-mba.html",
+        "iim-kozhikode-pgp-bl.html",
+        "iim-kozhikode-pgp-finance.html",
+        "iim-kozhikode-pgp-lsm.html"
+      ]
+    },
+    {
+      "source": "iim-kozhikode-mba.html",
+      "missing": [
+        "iim-kozhikode-placements.html"
       ]
     },
     {
@@ -1921,28 +1948,8 @@
     {
       "source": "iit-delhi-dms-placements.html",
       "missing": [
-        "iit-delhi-dms.html",
         "iit-delhi-dms-executive-mba.html",
-        "iit-delhi-dms-mba-telecom.html",
-        "iit-delhi-dms-mba.html"
-      ]
-    },
-    {
-      "source": "iit-delhi-dms-executive-mba.html",
-      "missing": [
-        "iit-delhi-dms-placements.html"
-      ]
-    },
-    {
-      "source": "iit-delhi-dms-mba-telecom.html",
-      "missing": [
-        "iit-delhi-dms-placements.html"
-      ]
-    },
-    {
-      "source": "iit-delhi-dms-mba.html",
-      "missing": [
-        "iit-delhi-dms-placements.html"
+        "iit-delhi-dms-mba-telecom.html"
       ]
     },
     {
@@ -2569,13 +2576,7 @@
       "target": "iit-kanpur-placements.html"
     }
   ],
-  "benchmark_legacy_broken_links": [
-    {
-      "source": "iim-ahmedabad.html",
-      "href": "iim-ahmedabad-bpgp.html",
-      "target": "iim-ahmedabad-bpgp.html"
-    }
-  ],
+  "benchmark_legacy_broken_links": [],
   "zero_incoming_pages": [
     {
       "page": "abv-iiitm-gwalior-btech-cse.html",
@@ -2718,7 +2719,22 @@
       "incoming_internal_links": 0
     },
     {
-      "page": "iim-bangalore-pgpba.html",
+      "page": "iim-bangalore-mba-business-analytics.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-kozhikode-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-kozhikode-pgp-finance.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-kozhikode-pgp-lsm.html",
       "role": "programme",
       "incoming_internal_links": 0
     },
@@ -3063,7 +3079,7 @@
     "christ-university.html": 9,
     "cmat.html": 3,
     "college.html": 3,
-    "colleges.html": 74,
+    "colleges.html": 72,
     "cusat-admission-2026.html": 8,
     "cusat-btech-2026.html": 7,
     "cusat-campus-hostel.html": 2,
@@ -3079,7 +3095,7 @@
     "dms-nit-trichy-mba.html": 3,
     "dms-nit-trichy-placements.html": 4,
     "dms-nit-trichy.html": 4,
-    "exams.html": 13,
+    "exams.html": 12,
     "fore-school-management-pgdm-bda.html": 1,
     "fore-school-management-pgdm-fm.html": 1,
     "fore-school-management-pgdm-ib.html": 1,
@@ -3133,11 +3149,11 @@
     "iift-mba-international-business.html": 1,
     "iift-placements.html": 4,
     "iift.html": 1,
-    "iim-ahmedabad-business-analytics-ai.html": 2,
-    "iim-ahmedabad-mba-fabm.html": 2,
-    "iim-ahmedabad-mba.html": 6,
-    "iim-ahmedabad-pgpx.html": 2,
-    "iim-ahmedabad-placements.html": 5,
+    "iim-ahmedabad-business-analytics-ai.html": 1,
+    "iim-ahmedabad-mba-fabm.html": 1,
+    "iim-ahmedabad-mba.html": 3,
+    "iim-ahmedabad-pgpx.html": 1,
+    "iim-ahmedabad-placements.html": 4,
     "iim-ahmedabad.html": 3,
     "iim-amritsar-executive-mba.html": 2,
     "iim-amritsar-ipm.html": 2,
@@ -3148,8 +3164,8 @@
     "iim-amritsar-placements.html": 6,
     "iim-amritsar.html": 3,
     "iim-bangalore-epgp.html": 1,
-    "iim-bangalore-mba-business-analytics.html": 1,
     "iim-bangalore-mba.html": 3,
+    "iim-bangalore-pgpba.html": 1,
     "iim-bangalore-pgpem.html": 1,
     "iim-bangalore-placements.html": 9,
     "iim-bangalore.html": 7,
@@ -3174,11 +3190,9 @@
     "iim-jammu-mba.html": 2,
     "iim-jammu-placements.html": 1,
     "iim-jammu.html": 4,
-    "iim-kozhikode-pgp-bl.html": 2,
-    "iim-kozhikode-pgp-finance.html": 1,
-    "iim-kozhikode-pgp-lsm.html": 1,
+    "iim-kozhikode-pgp-bl.html": 1,
     "iim-kozhikode-placements.html": 3,
-    "iim-kozhikode.html": 6,
+    "iim-kozhikode.html": 7,
     "iim-lucknow-placements.html": 1,
     "iim-lucknow.html": 3,
     "iim-mumbai-mba-oscm.html": 1,
@@ -3225,11 +3239,11 @@
     "iit-bombay-mba.html": 1,
     "iit-bombay-placements.html": 4,
     "iit-bombay.html": 1,
-    "iit-delhi-dms-executive-mba.html": 1,
-    "iit-delhi-dms-mba-telecom.html": 1,
-    "iit-delhi-dms-mba.html": 1,
-    "iit-delhi-dms-placements.html": 1,
-    "iit-delhi-dms.html": 5,
+    "iit-delhi-dms-executive-mba.html": 2,
+    "iit-delhi-dms-mba-telecom.html": 5,
+    "iit-delhi-dms-mba.html": 6,
+    "iit-delhi-dms-placements.html": 7,
+    "iit-delhi-dms.html": 7,
     "iit-ism-dhanbad-admission.html": 11,
     "iit-ism-dhanbad-btech.html": 2,
     "iit-ism-dhanbad-fees.html": 8,
@@ -3272,7 +3286,7 @@
     "imt-nagpur-pgdm.html": 6,
     "imt-nagpur-placements.html": 7,
     "imt-nagpur.html": 5,
-    "index.html": 1035,
+    "index.html": 1030,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -3709,7 +3723,7 @@
     "iim-ahmedabad-mba.html": 1,
     "iim-ahmedabad-pgpx.html": 1,
     "iim-ahmedabad-placements.html": 6,
-    "iim-ahmedabad.html": 12,
+    "iim-ahmedabad.html": 3,
     "iim-amritsar-ipm.html": 1,
     "iim-amritsar-mba-business-analytics.html": 2,
     "iim-amritsar-mba-hr.html": 2,
@@ -3743,11 +3757,12 @@
     "iim-jammu-mba.html": 3,
     "iim-jammu-placements.html": 5,
     "iim-jammu.html": 6,
+    "iim-kozhikode-mba.html": 2,
     "iim-kozhikode-pgp-bl.html": 1,
     "iim-kozhikode-pgp-finance.html": 1,
     "iim-kozhikode-pgp-lsm.html": 1,
-    "iim-kozhikode-placements.html": 7,
-    "iim-kozhikode.html": 10,
+    "iim-kozhikode-placements.html": 4,
+    "iim-kozhikode.html": 7,
     "iim-lucknow-placements.html": 7,
     "iim-lucknow.html": 4,
     "iim-mumbai-mba-oscm.html": 1,
@@ -3790,16 +3805,16 @@
     "iim-udaipur-mba-gscm.html": 5,
     "iim-udaipur-mba.html": 8,
     "iim-udaipur-placements.html": 6,
-    "iim-udaipur.html": 12,
+    "iim-udaipur.html": 10,
     "iit-bombay-emba.html": 8,
     "iit-bombay-mba.html": 8,
     "iit-bombay-placements.html": 8,
     "iit-bombay.html": 10,
-    "iit-delhi-dms-executive-mba.html": 1,
-    "iit-delhi-dms-mba-telecom.html": 1,
-    "iit-delhi-dms-mba.html": 1,
-    "iit-delhi-dms-placements.html": 5,
-    "iit-delhi-dms.html": 7,
+    "iit-delhi-dms-executive-mba.html": 5,
+    "iit-delhi-dms-mba-telecom.html": 5,
+    "iit-delhi-dms-mba.html": 6,
+    "iit-delhi-dms-placements.html": 4,
+    "iit-delhi-dms.html": 10,
     "iit-ism-dhanbad-admission.html": 4,
     "iit-ism-dhanbad-btech.html": 5,
     "iit-ism-dhanbad-fees.html": 4,
