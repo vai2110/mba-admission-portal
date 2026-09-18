@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-18T13:53:50.403083+00:00",
+  "generated_at": "2026-09-18T15:28:54.213145+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 627,
-  "pages_with_issues": 448,
+  "pages_with_issues": 447,
   "issue_counts": {
     "broken_local_links": 5,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 203,
+    "description_length": 202,
     "duplicate_title": 4,
     "h1_count": 2,
     "jsonld": 12,
@@ -8861,10 +8861,10 @@
     {
       "file": "iim-mumbai.html",
       "benchmark": false,
-      "title": "IIM Mumbai MBA 2026: Fees, Admission, Courses & Placements",
-      "title_length": 58,
-      "description": "IIM Mumbai MBA 2026 overview with NIRF ranking, programmes, fees, admission, placements, ROI and who should apply.",
-      "description_length": 114,
+      "title": "IIM Mumbai MBA 2026: Fees, Admission, CAT Cutoff & Placements",
+      "title_length": 61,
+      "description": "IIM Mumbai MBA 2026 guide covering 2027 admission timeline, eligibility, CAT cutoffs, fees, programmes, placements, batch profile, scholarships and campus life.",
+      "description_length": 160,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/iim-mumbai.html",
       "canonical_count": 1,
@@ -8887,9 +8887,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "description_length"
-      ]
+      "issues": []
     },
     {
       "file": "iim-nagpur-placements.html",
