@@ -314,13 +314,15 @@ tr:nth-child(even) td{background:#fafcff}
     gap:12px;margin-top:14px;
 }
 .programme-nav-card{
-    border:1px solid #dce4ef;border-radius:10px;
-    padding:15px;background:#fff;
+    border:1px solid #cfdbea;border-radius:10px;
+    padding:18px;background:#fff;
     display:flex;flex-direction:column;
+    min-height:300px;
+    box-shadow:0 3px 12px rgba(15,23,42,.04);
 }
-.programme-nav-card h3{margin:0 0 6px;color:#173b63;font-size:14px}
-.programme-nav-card p{margin:0 0 10px;color:#526277;font-size:11px;line-height:1.55}
-.programme-meta{font-size:10px;color:#718096;margin-bottom:9px}
+.programme-nav-card h3{margin:0 0 7px;color:#173b63;font-size:16px;line-height:1.3}
+.programme-nav-card p{margin:0 0 12px;color:#526277;font-size:13px;line-height:1.6}
+.programme-meta{font-size:11px;color:#64748b;margin-bottom:10px;line-height:1.45}
 .programme-nav-card a{font-size:11px;font-weight:800;color:#2563eb;margin-top:auto}
 .programme-context{
     padding:12px 14px;border-left:3px solid #2563eb;
@@ -335,30 +337,38 @@ tr:nth-child(even) td{background:#fafcff}
 .programme-card-details{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:6px;
-    margin:10px 0 12px;
+    gap:7px;
+    margin:12px 0 14px;
 }
 .programme-card-details>div{
     background:#f7faff;
-    border:1px solid #e2e8f0;
-    border-radius:5px;
-    padding:7px 8px;
+    border:1px solid #d8e2ef;
+    border-radius:6px;
+    padding:9px 9px;
     min-width:0;
+}
+.programme-card-details>div:first-child{
+    background:#eef5ff;
+    border-color:#c8d9ef;
 }
 .programme-card-details strong{
     display:block;
     color:#64748b;
-    font-size:8px;
+    font-size:9px;
     text-transform:uppercase;
     letter-spacing:.04em;
-    margin-bottom:2px;
+    margin-bottom:3px;
 }
 .programme-card-details span{
     display:block;
     color:#173f82;
-    font-size:10px;
+    font-size:12px;
     font-weight:800;
-    line-height:1.3;
+    line-height:1.35;
+}
+.programme-card-details>div:first-child span{
+    font-size:15px;
+    line-height:1.25;
 }
 .programme-fit{
     border-top:1px solid #e5eaf0;
@@ -369,12 +379,12 @@ tr:nth-child(even) td{background:#fafcff}
 .programme-fit strong{
     display:block;
     color:#173f82;
-    font-size:11px;
-    margin-bottom:3px;
+    font-size:12px;
+    margin-bottom:4px;
 }
 .programme-fit p{
-    font-size:11px;
-    line-height:1.5;
+    font-size:12px;
+    line-height:1.55;
     margin:0 0 5px;
     color:#526277;
 }
@@ -827,8 +837,8 @@ font-weight:800;
 <p class="">IIM Lucknow offers the two-year PGP/MBA, PGP-ABM and PGP-SM, along with executive management programmes. The flagship PGP/MBA and PGP-ABM are full-time residential programmes at the Lucknow campus.</p>
 <div class="programme-nav-grid">
 <div class="programme-nav-card"><span class="programme-meta">2 years · Full-time residential · CAT</span><h3 class="">PGP / MBA</h3><p class="">The flagship general management programme leading to the Master of Business Administration degree.</p><div class="programme-card-details"><div><strong>2026–28 fee</strong><span>₹20.75 lakh</span></div><div><strong>Route</strong><span>CAT 2025</span></div><div><strong>Focus</strong><span>General management</span></div></div><div class="programme-fit"><strong>Relevant for</strong><p>Consulting, finance, marketing, operations, product and general management roles.</p></div></div>
-<div class="programme-nav-card"><span class="programme-meta">2 years · Full-time residential · CAT</span><h3 class="">PGP-ABM</h3><p class="">A management programme with agriculture, food, rural markets and agribusiness applications.</p><div class="programme-card-details"><div><strong>Fee</strong><span>See 2026–28 programme fee schedule</span></div><div><strong>Route</strong><span>CAT 2025</span></div><div><strong>Focus</strong><span>Agribusiness</span></div></div><div class="programme-fit"><strong>Relevant for</strong><p>Students interested in agribusiness, food, rural markets and related corporate roles.</p></div></div>
-<div class="programme-nav-card"><span class="programme-meta">2 years · Full-time residential · CAT + 24 months work experience</span><h3 class="">PGP-SM</h3><p class="">A specialised programme focused on sustainability and responsible management.</p><div class="programme-card-details"><div><strong>Fee</strong><span>See 2026–28 programme fee schedule</span></div><div><strong>Route</strong><span>CAT 2025</span></div><div><strong>Eligibility note</strong><span>24 months work experience</span></div></div><div class="programme-fit"><strong>Relevant for</strong><p>Candidates targeting sustainability, ESG, policy and responsible-business roles.</p></div></div>
+<div class="programme-nav-card"><span class="programme-meta">2 years · Full-time residential · CAT</span><h3 class="">PGP-ABM</h3><p class="">A management programme with agriculture, food, rural markets and agribusiness applications.</p><div class="programme-card-details"><div><strong>Fee</strong><span>₹20.75 lakh</span></div><div><strong>Route</strong><span>CAT 2025</span></div><div><strong>Focus</strong><span>Agribusiness</span></div></div><div class="programme-fit"><strong>Relevant for</strong><p>Students interested in agribusiness, food, rural markets and related corporate roles.</p></div></div>
+<div class="programme-nav-card"><span class="programme-meta">2 years · Full-time residential · CAT + 24 months work experience</span><h3 class="">PGP-SM</h3><p class="">A specialised programme focused on sustainability and responsible management.</p><div class="programme-card-details"><div><strong>Fee</strong><span>₹20.75 lakh</span></div><div><strong>Route</strong><span>CAT 2025</span></div><div><strong>Eligibility</strong><span>24 months work experience</span></div></div><div class="programme-fit"><strong>Relevant for</strong><p>Candidates targeting sustainability, ESG, policy and responsible-business roles.</p></div></div>
 <div class="programme-nav-card"><span class="programme-meta">1 year · Full-time residential · GMAT/GRE</span><h3 class="">IPMX</h3><p class="">A one-year management programme for experienced professionals at IIM Lucknow's Noida campus.</p><div class="programme-card-details"><div><strong>Fee</strong><span>₹26 lakh + applicable deposits/fees</span></div><div><strong>Route</strong><span>GMAT/GRE</span></div><div><strong>Experience</strong><span>5 years post-qualification</span></div></div><div class="programme-fit"><strong>Relevant for</strong><p>Professionals seeking a one-year residential management programme.</p></div></div>
 </div>
 </section>
