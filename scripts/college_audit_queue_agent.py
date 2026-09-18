@@ -33,10 +33,20 @@ Preserve the existing site's visual identity and useful existing content unless 
 """
 
 def http(url, data=None, headers=None, method="GET", timeout=30):
-    req = Request(url, data=data, headers=headers or {"User-Agent":"CollegeDecoded-Audit/1.0"}, method=method)
-    with urlopen(req, timeout=timeout) as r:
-        return r.read().decode("utf-8", "ignore")
-
+    last=None
+    for attempt in range(6):
+        try:
+            req = Request(url, data=data, headers=headers or {"User-Agent":"CollegeDecoded-Audit/1.0"}, method=method)
+            with urlopen(req, timeout=timeout) as r:
+                return r.read().decode("utf-8", "ignore")
+        except Exception as e:
+            last=e
+            code=getattr(e,"code",None)
+            if code not in (429,500,502,503,504):
+                raise
+            if attempt<5:
+                time.sleep(5*(attempt+1))
+    raise last
 def sheet(action, post=False, **fields):
     if not SHEET_URL:
         raise RuntimeError("GOOGLE_SHEET_WEBAPP_URL missing")
