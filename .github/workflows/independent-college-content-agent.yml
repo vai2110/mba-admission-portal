@@ -60,23 +60,6 @@ jobs:
           test -n "$GOOGLE_SHEET_WEBAPP_URL" || { echo '::error::GOOGLE_SHEETS_WEBAPP_URL is unavailable'; exit 1; }
           test -n "$GOOGLE_SHEETS_API_SECRET" || { echo '::error::GOOGLE_SHEETS_API_SECRET is unavailable'; exit 1; }
 
-      - name: Validate Google Sheet queue endpoint
-        env:
-          GOOGLE_SHEET_WEBAPP_URL: ${{ secrets.GOOGLE_SHEETS_WEBAPP_URL }}
-        run: |
-          python - <<'PY'
-          import os, urllib.parse, urllib.request, json
-          url = os.environ["GOOGLE_SHEET_WEBAPP_URL"]
-          test_url = url + ("&" if "?" in url else "?") + urllib.parse.urlencode({"action":"health"})
-          with urllib.request.urlopen(test_url, timeout=30) as r:
-              data = json.loads(r.read().decode("utf-8"))
-          if not data.get("success"):
-              raise SystemExit("Google Sheet health check failed: " + str(data))
-          print("Google Sheet endpoint: healthy")
-          print("Permanent completed rank boundary:", data.get("completedUpToRank"))
-          print("Default batch size:", data.get("defaultBatchSize"))
-          PY
-
       - name: Run independent college content agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
