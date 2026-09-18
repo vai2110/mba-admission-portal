@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-18T15:32:34.924431+00:00",
+  "generated_at": "2026-09-18T15:40:42.468312+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 627,
-  "pages_with_issues": 447,
+  "pages_with_issues": 446,
   "issue_counts": {
     "broken_local_links": 5,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 202,
+    "description_length": 201,
     "duplicate_title": 4,
     "h1_count": 2,
     "jsonld": 12,
@@ -8108,10 +8108,10 @@
     {
       "file": "iim-calcutta.html",
       "benchmark": false,
-      "title": "IIM Calcutta MBA 2026: Fees, Admission, Courses & Placements",
-      "title_length": 60,
-      "description": "IIM Calcutta MBA 2026 overview with NIRF ranking, programmes, fees, admission, placements, ROI and who should apply.",
-      "description_length": 116,
+      "title": "IIM Calcutta MBA 2026: Fees, Admission, CAT Cutoff & Placements",
+      "title_length": 63,
+      "description": "IIM Calcutta MBA 2026 guide covering 2027 admission dates, CAT cutoff, eligibility, fees, curriculum, placements, scholarships, campus and batch profile.",
+      "description_length": 153,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/iim-calcutta.html",
       "canonical_count": 1,
@@ -8134,9 +8134,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "description_length"
-      ]
+      "issues": []
     },
     {
       "file": "iim-indore-ipm.html",
