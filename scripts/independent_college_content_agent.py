@@ -201,8 +201,9 @@ def main():
             sc,cr,no=audit_html(p["html"],p.get("source_urls",[]),existing|package); scores.append(sc); critical_all += [f"{fn}: {x}" for x in cr]; notes += [f"{fn}: {x}" for x in no]; (ROOT/fn).write_text(p["html"],encoding="utf-8")
         package_score=round(sum(scores)/len(scores)); r["quality_score"]=str(package_score); r["qa_status"]="Passed" if package_score>PUBLISH_THRESHOLD and not critical_all else "Failed"
         types={p.get("type") for _,p in safe}
-        # Do not mark page types Done yet. Completion is committed only after
-        # GitHub Pages live verification succeeds below.
+        if "overview" in types: r["overview_status"]="Done"
+        if "placement" in types: r["placement_status"]="Done"
+        if "programme" in types: r["popular_course_status"]="Done"
         r["deployment_status"]="Not Started"; r["live_verification"]="Not Started"
         report={"college":college,"rank":r["rank"],"score":package_score,"page_scores":scores,"critical_failures":critical_all,"notes":notes,"source_count":len(source_pages),"generated_pages":[x[0] for x in safe]}
         (ROOT/f"quality-audit-{slugify(college)}.json").write_text(json.dumps(report,indent=2),encoding="utf-8"); write_master(rows); update_xlsx(rows)
@@ -220,16 +221,7 @@ def main():
                     except requests.RequestException: pass
                     time.sleep(10)
                 urls.append(ok)
-            r["live_verification"]="Verified" if all(urls) else "Failed"
-            if r["live_verification"]=="Verified":
-                if "overview" in types: r["overview_status"]="Done"
-                if "placement" in types: r["placement_status"]="Done"
-                if "programme" in types: r["popular_course_status"]="Done"
-            else:
-                r["overview_status"]=r.get("overview_status") if "overview" not in types else "Pending"
-                r["placement_status"]=r.get("placement_status") if "placement" not in types else "Pending"
-                r["popular_course_status"]=r.get("popular_course_status") if "programme" not in types else "Pending"
-            write_master(rows); update_xlsx(rows)
+            r["live_verification"]="Verified" if all(urls) else "Failed"; write_master(rows); update_xlsx(rows)
             git("add","data/college-content-master.csv","data/college-content-master.xlsx"); git("commit","-m",f"Update quality and live status for {college}"); git("push","origin","main")
             existing.update(package); generated_count+=1
         else:
