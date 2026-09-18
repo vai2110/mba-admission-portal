@@ -1,1 +1,4 @@
-iim-ahmedabad.html
+iim-bangalore.html
+iim-bangalore-mba.html
+iim-bangalore-epgp.html
+iim-bangalore-pgpba.html

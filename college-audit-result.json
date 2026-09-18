@@ -1,19 +1,22 @@
 {
-  "college": "IIM Ahmedabad",
-  "rank": "1",
+  "college": "IIM Bangalore",
+  "rank": "2",
   "files": [
-    "iim-ahmedabad.html"
+    "iim-bangalore.html",
+    "iim-bangalore-mba.html",
+    "iim-bangalore-epgp.html",
+    "iim-bangalore-pgpba.html"
   ],
   "score": 95,
-  "updates_required": "None",
-  "summary": "The page was audited and updated to ensure all dynamic facts (like batch years and placement data) are clearly labeled with their respective years. The FAQ section was converted to the required accordion format. The content remains focused on student intent, providing clear eligibility, admission, and fee information while maintaining the existing visual identity.",
+  "updates_required": "None. Pages are fully updated with 2027-29 cycle information and verified placement data.",
+  "summary": "The pages have been audited and updated to reflect the latest 2027-29 admission cycle information. All dynamic facts are contextually dated, and placement data is clearly attributed to the 2026 report. The structure is optimized for student intent, with clear eligibility, fee bifurcation, and FAQ sections.",
   "live_urls": [
-    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad.html",
-    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-mba.html",
-    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-pgpx.html",
-    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-mba-fabm.html",
-    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-placements.html",
-    "https://vai2110.github.io/mba-admission-portal/mba-colleges-in-ahmedabad.html",
-    "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad-business-analytics-ai.html"
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore-mba.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore-epgp.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore-pgpba.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore-pgpem.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore-placements.html",
+    "https://vai2110.github.io/mba-admission-portal/iim-bangalore-mba-business-analytics.html"
   ]
 }
