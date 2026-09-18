@@ -84,6 +84,17 @@ jobs:
             if [ "$ok" = true ]; then exit 0; fi
           done
           exit 1
+      - name: Mark Sheet complete
+        run: |
+          python - <<'PY'
+          import json,os
+          from urllib.request import Request,urlopen
+          r=json.load(open("college-audit-result.json",encoding="utf-8"))
+          p={"secret":os.environ["GOOGLE_SHEETS_API_SECRET"],"action":"updateStatus","rank":int(r["rank"]),"overviewStatus":"Done","placementStatus":"Done","popularCourseStatus":"Done","researchStatus":"Completed","qaStatus":"Passed","deploymentStatus":"Live","liveVerification":"Verified","updatesRequired":r.get("updates_required","")}
+          q=Request(os.environ["GOOGLE_SHEET_WEBAPP_URL"],data=json.dumps(p).encode(),headers={"Content-Type":"application/json"},method="POST")
+          o=json.loads(urlopen(q,timeout=60).read().decode())
+          if not o.get("success"): raise SystemExit(o.get("error","Sheet update failed"))
+          PY
       - name: Trigger next pending college
         if: success()
         env:
@@ -97,17 +108,6 @@ jobs:
           git commit -m "Queue next college audit" || exit 0
           git push origin HEAD:main
 
-      - name: Mark Sheet complete
-        run: |
-          python - <<'PY'
-          import json,os
-          from urllib.request import Request,urlopen
-          r=json.load(open("college-audit-result.json",encoding="utf-8"))
-          p={"secret":os.environ["GOOGLE_SHEETS_API_SECRET"],"action":"updateStatus","rank":int(r["rank"]),"overviewStatus":"Done","placementStatus":"Done","popularCourseStatus":"Done","researchStatus":"Completed","qaStatus":"Passed","deploymentStatus":"Live","liveVerification":"Verified","updatesRequired":r.get("updates_required","")}
-          q=Request(os.environ["GOOGLE_SHEET_WEBAPP_URL"],data=json.dumps(p).encode(),headers={"Content-Type":"application/json"},method="POST")
-          o=json.loads(urlopen(q,timeout=60).read().decode())
-          if not o.get("success"): raise SystemExit(o.get("error","Sheet update failed"))
-          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
