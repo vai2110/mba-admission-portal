@@ -74,36 +74,6 @@ jobs:
           print(f'Built homepage search index with {len(colleges)} Management live colleges')
           PY
 
-      - name: Install robust homepage college search
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('index.html')
-          html=p.read_text(encoding='utf-8')
-          marker='<script id="management-homepage-search">'
-          js=r'''<script id="management-homepage-search">
-          (function(){
-            const input=document.getElementById('collegeSearch'),result=document.getElementById('collegeSearchResult');if(!input||!result)return;
-            const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
-            const CITY={bangalore:['bengaluru','blr'],bengaluru:['bangalore','blr'],mysore:['mysuru'],mysuru:['mysore'],hyderabad:['hyd'],hyd:['hyderabad'],ghaziabad:['gzb','gaziabad'],gzb:['ghaziabad'],'navi mumbai':['nerul'],nerul:['navi mumbai'],'new delhi':['delhi'],delhi:['new delhi'],calcutta:['kolkata'],kolkata:['calcutta'],gurugram:['gurgaon'],gurgaon:['gurugram'],mumbai:['bombay'],bombay:['mumbai']};
-            const FAMILY=['sibm','siib','siom','sitm','sicsr','sims','scit','ssmc','xime','vjim','sdmimd','siescoms','pumba','ibs','iim','iift','xlri','spjimr','imt','nmims','tapmi','gim','jims','bimtech','soa','kiit','upes'];
-            const tokens=s=>norm(s).split(' ').filter(Boolean);
-            const cityOf=q=>{const t=tokens(q);for(const[c,vs]of Object.entries(CITY))if(t.includes(c)||vs.some(v=>t.includes(v)))return c;return ''};
-            const cityOK=(q,c)=>{const qc=cityOf(q);if(!qc)return true;const loc=norm(c.location);return loc===qc||(CITY[qc]||[]).some(v=>loc===v)};
-            const familyOf=q=>{const n=norm(q);return FAMILY.find(f=>n===f||n.startsWith(f+' '))||''};
-            const aliases=c=>[norm(c.name),...(c.aliases||[]).map(norm)];
-            const esc=s=>String(s).replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));
-            const score=(q,c)=>{if(!cityOK(q,c))return -1;const n=norm(q),fam=familyOf(n),al=aliases(c);if(fam&&!al.some(a=>a===n||a.startsWith(fam+' ')))return -1;let best=0;for(const a of al){if(a===n)best=Math.max(best,10000);else if(a.replace(/ /g,'')===n.replace(/ /g,''))best=Math.max(best,9500);else if(a.startsWith(n+' ')||n.startsWith(a+' '))best=Math.max(best,7000)}const hay=norm([c.name,c.location,...(c.aliases||[])].join(' ')),qt=tokens(n),ht=hay.split(' '),covered=qt.filter(t=>ht.includes(t)).length;if(covered===qt.length)best=Math.max(best,5000+covered*100);return best};
-            function search(){const q=norm(input.value);if(!q){result.style.display='none';return}fetch('./homepage-search-index.json?management-search=1',{cache:'no-store'}).then(r=>r.json()).then(data=>{const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No created college page matches that search. Try the college name, abbreviation and city.</div></div>';result.style.display='block';return}const top=ranked[0],second=ranked[1],exact=top.s>=9500&&(!second||top.s-second.s>=500);if(exact&&top.c.url){window.location.href=top.c.url;return}const items=ranked.slice(0,7).map(x=>x.c).filter(c=>c.url);result.innerHTML='<div class="search-result-inner"><h3>Matching colleges</h3>'+items.map(c=>'<a class="search-result-button" href="'+esc(c.url)+'">'+esc(c.name)+' →</a>').join('')+'</div>';result.style.display='block'}).catch(()=>{result.innerHTML='<div class="search-result-inner"><h3>Search is temporarily unavailable</h3></div>';result.style.display='block'})}
-            window.searchContent=search;input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();search()}},true);
-          })();
-          </script>'''
-          if marker in html:
-              start=html.index(marker);end=html.index('</script>',start)+len('</script>');html=html[:start]+js+html[end:]
-          else: html=html.replace('</body>',js+'\n</body>',1)
-          p.write_text(html,encoding='utf-8')
-          PY
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload site
