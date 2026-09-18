@@ -512,9 +512,8 @@ def main():
         r["quality_score"] = str(package_score)
         passed = package_score > PUBLISH_THRESHOLD and not critical_all
         r["qa_status"] = "Passed" if passed else "Failed"
-        for k, t in (("overview_status", "overview"), ("placement_status", "placement"), ("popular_course_status", "programme")):
-            if any(p.get("type") == t for _, p in safe):
-                r[k] = "Done"
+        # Do not mark page types Done at QA time. Completion is only valid after
+        # the generated pages are live and successfully verified below.
         report = {
             "college": college,
             "rank": r["rank"],
@@ -557,6 +556,14 @@ def main():
                     time.sleep(10)
                 urls.append(ok)
             r["live_verification"] = "Verified" if all(urls) else "Failed"
+            if r["live_verification"] == "Verified":
+                for k, t in (("overview_status", "overview"), ("placement_status", "placement"), ("popular_course_status", "programme")):
+                    if any(p.get("type") == t for _, p in safe):
+                        r[k] = "Done"
+            else:
+                for k, t in (("overview_status", "overview"), ("placement_status", "placement"), ("popular_course_status", "programme")):
+                    if any(p.get("type") == t for _, p in safe):
+                        r[k] = "Pending"
             write_master(rows); update_xlsx(rows)
             git("add", "data/college-content-master.csv", "data/college-content-master.xlsx")
             git("commit", "-m", f"Update quality and live status for {college}")
