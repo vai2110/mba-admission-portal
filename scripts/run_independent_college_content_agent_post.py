@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
-"""POST-authenticated launcher for the independent college content agent.
+"""POST-authenticated production launcher for the independent college content agent.
 
-The deployed Apps Script currently exposes the batch-assignment operation as
-``assignBatch``. The standalone agent asks for ``nextBatch``; this launcher
-translates only that queue-read action to the authenticated ``assignBatch``
-POST route. It also enforces the current CollegeDecoded markup standard:
+The deployed Apps Script exposes the batch-assignment operation as
+``assignBatch``. The production runner asks for ``nextBatch``; this launcher
+translates that queue-read action to the authenticated ``assignBatch`` POST
+route while preserving the runner's Google Sheet status synchronization.
+
+It also enforces the current CollegeDecoded markup standard:
 student-centric accordion FAQs and <hr> separators between consecutive H2
-sections. The standalone agent itself remains unchanged.
+sections.
 
 No AGENTS.md or repository agent configuration is imported or executed.
 """
 import re
 
-import independent_college_content_agent as runner
+# IMPORTANT: run the Google-Sheet-aware production runner, not the standalone
+# content agent. The standalone agent does not call sync_master_to_sheet().
+import run_independent_college_content_agent as runner
 
 _original_google_get = runner.google_get
 _original_strict_audit = runner.strict_audit
@@ -22,8 +26,7 @@ _original_revision = runner.BASE_REVISION_PROMPT
 
 def google_get_via_post(action, **params):
     # The deployed Web App rejects the legacy nextBatch action. assignBatch
-    # returns the selected colleges and is an authenticated POST action in the
-    # finalized Apps Script. Keep all other actions unchanged.
+    # returns the selected colleges and is an authenticated POST action.
     if action == "nextBatch":
         action = "assignBatch"
     return runner.google_post(action, **params)
@@ -67,8 +70,6 @@ def strict_audit_with_markup_rules(html, source_urls, official_url, files, page_
     sections = re.findall(r'<section[^>]+class=["\'][^"\']*main-section[^"\']*["\'][^>]*>[\s\S]*?</section>', html or "", re.I)
     if len(sections) >= 2:
         for a, b in zip(sections, sections[1:]):
-            # This deterministic check is intentionally conservative: the
-            # separator must appear in the source between the two sections.
             pos_a = html.find(a)
             pos_b = html.find(b, pos_a + len(a))
             between = html[pos_a + len(a):pos_b]
@@ -79,6 +80,8 @@ def strict_audit_with_markup_rules(html, source_urls, official_url, files, page_
     return score, list(dict.fromkeys(critical)), list(dict.fromkeys(notes))
 
 
+# Keep the existing queue translation and markup rules, but execute them through
+# the Google-Sheet-aware production runner so final statuses are synchronized.
 runner.google_get = google_get_via_post
 runner.BASE_GENERATION_PROMPT = generation_prompt_with_markup_rules
 runner.BASE_REVISION_PROMPT = revision_prompt_with_markup_rules
