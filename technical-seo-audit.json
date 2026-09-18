@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T13:41:49.285149+00:00",
+  "generated_at": "2026-09-18T13:51:53.266887+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 627,
   "pages_with_issues": 448,
@@ -10,7 +10,7 @@
     "description_length": 203,
     "duplicate_title": 4,
     "h1_count": 2,
-    "jsonld": 13,
+    "jsonld": 12,
     "lang": 1,
     "og_description": 13,
     "og_title": 13,
@@ -8708,7 +8708,7 @@
       "og_description": false,
       "og_url": false,
       "twitter_card": false,
-      "jsonld_blocks": 0,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -8719,8 +8719,7 @@
         "og_title",
         "og_description",
         "og_url",
-        "twitter_card",
-        "jsonld"
+        "twitter_card"
       ]
     },
     {
