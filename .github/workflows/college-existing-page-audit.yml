@@ -1,6 +1,11 @@
 name: College Existing Page Audit Queue
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "college-audit-queue.trigger"
+      - "scripts/college_audit_queue_agent.py"
+      - ".github/workflows/college-existing-page-audit.yml"
   schedule:
     - cron: "7 * * * *"
 permissions:
