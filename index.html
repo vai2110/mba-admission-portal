@@ -60,7 +60,7 @@
     if(covered===qt.length&&qt.length)best=Math.max(best,4000+covered*100);
     return best;
   };
-  const esc=s=>String(s||'').replace(/[&<>\\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\\"':'&quot;',"'":'&#39;'}[m]));
+  const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
   const normaliseIndex=data=>{
     if(data&&Array.isArray(data.colleges))return data.colleges.map(c=>{
