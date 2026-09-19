@@ -36,6 +36,9 @@ jobs:
                   continue
 
               t = s.replace(old, new)
+              # Migrate the legacy site brand to CollegeDecoded.
+              t = t.replace("MBA<span>Portal</span>", "College<span>Decoded</span>")
+              t = t.replace("MBA Portal", "CollegeDecoded")
               # Only strip .html from absolute CollegeDecoded URLs.
               t = re.sub(
                   r"""https://collegedecoded\.in/([^"'<>\s#?]+)\.html(?=([#"'< >\s?]|$))""",
