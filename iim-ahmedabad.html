@@ -69,30 +69,22 @@ td strong{color:var(--navy)}
 .faq p{margin:0;font-size:13px}
 .badge{display:inline-block;padding:3px 7px;border-radius:4px;background:#edf4ff;color:#174ea6;font-size:10px;font-weight:800}
 .footer{padding:25px 18px 50px;color:#64748b;font-size:11px;text-align:center}
-.ontop{position:fixed;right:14px;top:78px;z-index:1200;width:min(170px,22vw);min-width:120px}
-.onbtn{width:100%;border:1px solid #cbd8ea;background:#fff;color:var(--navy);border-radius:8px;padding:9px 10px;font-size:11px;font-weight:800;box-shadow:0 5px 18px rgba(15,40,80,.12);cursor:pointer}
-.onmenu{display:none;margin-top:5px;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 8px 25px rgba(15,40,80,.14);overflow:hidden}
+/* IIMA shared clipped On this page control */
+.ontop{position:sticky;top:0;z-index:1200;width:150px;height:0;margin:0 0 0 auto;transform:translateX(45px);pointer-events:none}
+.onbtn{position:relative;display:block;width:150px;border:1px solid #cbd8ea;border-top:0;background:#fff;color:#092653;border-radius:0 0 0 8px;padding:9px 10px;font-size:11px;font-weight:800;line-height:1.2;box-shadow:0 5px 18px rgba(15,40,80,.12);cursor:pointer;pointer-events:auto;white-space:nowrap}
+.onbtn span{font-size:10px;margin-left:2px}
+.onmenu{display:none;position:absolute;right:45px;top:39px;width:min(240px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:#fff;border:1px solid #dce4ee;border-radius:8px;box-shadow:0 8px 25px rgba(15,40,80,.14);pointer-events:auto}
 .onmenu.open{display:block}
-.onmenu a{display:block;padding:9px 10px;font-size:10px;font-weight:700;color:#334155;border-bottom:1px solid #edf1f5}
+.onmenu a{display:block;padding:9px 11px;font-size:11px;font-weight:700;line-height:1.35;color:#334155;border-bottom:1px solid #edf1f5;background:#fff}
 .onmenu a:last-child{border-bottom:0}
-@media(max-width:850px){
-.navlinks{display:none}.facts{grid-template-columns:repeat(2,1fr)}.layout{display:block}.sidebar{display:none}.section{padding:21px 18px}.callout-grid{grid-template-columns:1fr}
-}
+.onmenu a:hover{background:#f4f8ff;color:#174ea6}
 @media(max-width:640px){
-.hero-inner{padding:26px 14px}.hero h1{font-size:28px}.wrap{padding:0 12px}.facts{gap:8px}.fact{padding:11px}.fact b{font-size:12px}
-.section{border-radius:8px;margin-bottom:12px}.section h2{font-size:20px}.section h3{font-size:16px}
-.ontop{right:8px;top:68px;width:22vw;min-width:112px}.onbtn{padding:8px 6px;font-size:9px}
-.table-wrap{width:100%;overflow:visible}
-table{display:table;width:100%;table-layout:fixed;font-size:9.5px}
-thead{display:table-header-group}
-tbody{display:table-row-group}
-tr{display:table-row;border:0;margin:0;background:transparent}
-th,td{display:table-cell;width:auto;padding:6px 5px;vertical-align:top;overflow-wrap:anywhere;word-break:normal;line-height:1.4}
-th{font-size:9px}
-td{border:1px solid var(--border);font-size:9.5px}
-td:before{display:none}
-.table-wrap.compact table{font-size:8.8px}.table-wrap.compact th,.table-wrap.compact td{font-size:8.8px;padding:5px 4px}
+.ontop{width:128px;transform:translateX(36px)}
+.onbtn{width:128px;padding:8px 7px;font-size:9.5px}
+.onmenu{right:36px;top:36px;width:min(230px,calc(100vw - 18px));max-height:65vh}
+.onmenu a{padding:9px 10px;font-size:10px}
 }
+
 .answer-first{background:#eef6ff;border:1px solid #cfe0f5;border-radius:8px;padding:13px 15px;margin:0 0 14px;color:#173f82}.answer-first strong{display:block;margin-bottom:4px}.answer-first p{margin:0;font-size:13px;color:#334155}
 /* FAQ accordion */
 .faq-accordion{margin-top:8px}.faq-item{border:1px solid var(--border,#dce4ee);border-radius:8px;margin:9px 0;background:#fff;overflow:hidden}.faq-item summary{list-style:none;cursor:pointer;padding:13px 15px;font-weight:800;color:var(--navy,#092653);font-size:13px;position:relative;padding-right:38px}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';position:absolute;right:14px;top:9px;font-size:20px;color:#2563eb;font-weight:500}.faq-item[open] summary:after{content:'−'}.faq-answer{padding:0 15px 14px;color:#334155;font-size:13px}.faq-answer p{margin:0}.faq-answer a{color:#174ea6;font-weight:700}
@@ -137,11 +129,18 @@ td:before{display:none}
 </nav>
 </header>
 
+
+
+<section class="hero">
+<div class="hero-inner">
+<h1>IIM Ahmedabad MBA Admission 2027: Fees, CAT Cutoff, Placements & Admission Process</h1>
+</div>
+</section>
 <div class="ontop" id="ontop">
-<button class="onbtn" id="onbtn" type="button" aria-expanded="false">On this page ▾</button>
+<button class="onbtn" id="onbtn" type="button" aria-expanded="false">On this page <span aria-hidden="true">▾</span></button>
 <div class="onmenu" id="onmenu">
 <a href="#overview">Overview</a>
-<a href="#dates">Upcoming admission dates</a>
+<a href="#dates">Admission dates</a>
 <a href="#courses">Courses & fees</a>
 <a href="#admission">Admission process</a>
 <a href="#scholarships">Scholarships</a>
@@ -153,15 +152,8 @@ td:before{display:none}
 </div>
 </div>
 
-<section class="hero">
-<div class="hero-inner">
-<h1>IIM Ahmedabad MBA Admission 2027: Fees, CAT Cutoff, Placements & Admission Process</h1>
-<p>Current guide for the two-year full-time Post Graduate Programme in Management (PGP), which leads to an MBA degree.</p>
-<div class="hero-meta">Ahmedabad, Gujarat · Established 1961 · NIRF Management Rank #1 in 2025</div>
-</div>
-</section>
 
-<main class="wrap"><div class="answer-first" aria-label="Quick answer"><strong>Quick answer</strong><p>Current guide for the two-year full-time Post Graduate Programme in Management (PGP), which leads to an MBA degree.</p></div>
+<main class="wrap">
 <div class="facts">
 <div class="fact"><small>College Type</small><b>Public management institute</b></div>
 <div class="fact"><small>Established</small><b>1961</b></div>
@@ -191,122 +183,6 @@ td:before{display:none}
 </aside>
 
 <div class="content">
-<div class="answer">
-<b>Quick answer</b>
-<p><strong>IIM Ahmedabad</strong> was established in 1961 in Ahmedabad, Gujarat. Its flagship two-year full-time PGP is the institute's MBA programme. IIMA ranked <strong>#1 in the NIRF Management category in 2025</strong>, and its latest audited PGP placement report for 2025 recorded a <strong>₹35.50 lakh mean salary and ₹34.59 lakh median salary</strong>. For the upcoming 2027–29 domestic PGP, the published policy requires a bachelor's degree and CAT 2026, followed by IIMA's shortlisting process, AWT and PI.</p>
-</div>
-
-<section class="section" id="overview">
-<h2>IIM Ahmedabad MBA Overview</h2>
-<p><strong>IIM Ahmedabad (IIMA)</strong> is a management education institute located in Vastrapur, Ahmedabad, Gujarat, and was founded in <strong>1961</strong>. The institute describes its two-year full-time Post Graduate Programme in Management (PGP) as its flagship MBA programme. The programme is residential and accepts graduates from different academic backgrounds. The PGP awards the <strong>Master of Business Administration (MBA)</strong> degree.</p>
-<p>For students comparing MBA colleges, the two numbers that should be separated are the <strong>qualifying CAT cutoff</strong> and the <strong>actual competitiveness of the profile</strong>. For the 2027–29 PGP, the minimum CAT 2026 cutoff is 95 overall with 85 in each section for General/EWS candidates, but IIMA also uses Class 10, Class 12, undergraduate marks, work experience, gender-diversity points and CAT performance in its shortlisting composite. Meeting the minimum percentile therefore does not itself create an admission guarantee.</p>
-
-</section>
-
-<section class="section" id="dates">
-<h2>IIM Ahmedabad MBA 2027–29 Tentative Admission Dates</h2>
-
-<div class="table-wrap">
-<table>
-<thead><tr><th>Admission Event</th><th>2026–27 / 2027 Timeline</th><th>Status</th></tr></thead>
-<tbody>
-<tr><td data-label="Admission Event"><strong>CAT 2026 registration</strong></td><td data-label="Timeline">August–September 2026</td><td data-label="Status">CAT 2026 cycle; verify the live CAT portal for the final deadline</td></tr>
-<tr><td data-label="Admission Event"><strong>CAT 2026 examination</strong></td><td data-label="Timeline">November 2026</td><td data-label="Status">Upcoming cycle</td></tr>
-<tr><td data-label="Admission Event"><strong>IIMA AWT & PI shortlist</strong></td><td data-label="Timeline">Second week of January 2027</td><td data-label="Status">Published by IIMA as tentative</td></tr>
-<tr><td data-label="Admission Event"><strong>AWT & PI</strong></td><td data-label="Timeline">Early 2027</td><td data-label="Status">Exact dates to be communicated to shortlisted candidates</td></tr>
-<tr><td data-label="Admission Event"><strong>Final admission status</strong></td><td data-label="Timeline">Second week of April 2027</td><td data-label="Status">Published by IIMA as tentative</td></tr>
-<tr><td data-label="Admission Event"><strong>Acceptance formalities</strong></td><td data-label="Timeline">First week of May 2027</td><td data-label="Status">Published by IIMA as tentative</td></tr>
-<tr><td data-label="Admission Event"><strong>Degree completion for final-year candidates</strong></td><td data-label="Timeline">All degree requirements by June 30, 2027</td><td data-label="Status">Mandatory for joining provisionally</td></tr>
-<tr><td data-label="Admission Event"><strong>PGP 2027–29 commencement</strong></td><td data-label="Timeline">2027</td><td data-label="Status">Exact programme start date to be confirmed</td></tr>
-</tbody>
-</table>
-</div>
-<div class="note"><strong>Planning note:</strong> The dates above should not be treated as a substitute for the official admission notice. IIMA explicitly describes its January and April/May 2027 dates as tentative in the 2027–29 policy.</div>
-</section>
-
-<section class="section" id="courses">
-<h2>IIM Ahmedabad Popular Courses and Fees</h2>
-<p>IIM Ahmedabad offers several academic and executive programmes. This overview highlights four high-demand programmes instead of listing the full portfolio: the flagship two-year MBA/PGP, sector-focused MBA-FABM, one-year MBA-PGPX for experienced professionals, and blended MBA-BPGP.</p>
-<div class="table-wrap"><table><thead><tr><th>Programme</th><th>Duration</th><th>Best suited for</th><th>Latest fee reference</th></tr></thead><tbody>
-<tr><td data-label="Programme"><a href="iim-ahmedabad-mba-pgp.html" style="color:#174ea6;font-weight:800">MBA / PGP</a></td><td data-label="Duration">2 years, full-time</td><td data-label="Best suited for">Graduates seeking the flagship residential MBA</td><td data-label="Latest fee reference">₹27.50 lakh, 2025–27</td></tr>
-<tr><td data-label="Programme"><a href="iim-ahmedabad-mba-fabm.html" style="color:#174ea6;font-weight:800">MBA-FABM</a></td><td data-label="Duration">2 years, full-time</td><td data-label="Best suited for">Food and agri-business careers</td><td data-label="Latest fee reference">[To be updated: source from official website]</td></tr>
-<tr><td data-label="Programme"><a href="iim-ahmedabad-mba-pgpx.html" style="color:#174ea6;font-weight:800">MBA-PGPX</a></td><td data-label="Duration">1 year, full-time</td><td data-label="Best suited for">Experienced professionals</td><td data-label="Latest fee reference">₹35 lakh, single accommodation, 2026–27</td></tr>
-<tr><td data-label="Programme"><a href="iim-ahmedabad-mba-bpgp.html" style="color:#174ea6;font-weight:800">MBA-BPGP</a></td><td data-label="Duration">2 years, blended</td><td data-label="Best suited for">Working professionals seeking a blended format</td><td data-label="Latest fee reference">₹20 lakh, 2026–28</td></tr>
-</tbody></table></div>
-<div class="info"><strong>Need a different programme?</strong> Use this overview for institute-level information, but use the dedicated programme pages before applying because eligibility, entrance tests, fees and timelines differ by course.</div>
-</section>
-
-<section class="section" id="admission">
-<h2>IIM Ahmedabad MBA Admission Process 2027–29</h2>
-<p>The domestic PGP process combines <strong>CAT 2026, academic profile, work experience, gender-diversity points, AWT and PI</strong>; a qualifying CAT score alone does not guarantee admission.</p>
-<ol class="timeline">
-<li><strong>Check bachelor's eligibility:</strong> You need a recognised bachelor's degree with at least <strong>50% marks or equivalent CGPA</strong>. The minimum is relaxed to <strong>45%</strong> for SC/ST/PwD candidates under the 2027–29 policy.</li>
-<li><strong>Check final-year eligibility:</strong> Final-year bachelor's students can apply. If selected provisionally, they must complete the degree requirements by <strong>June 30, 2027</strong> and submit the required marksheet/certificate within the deadlines specified by IIMA.</li>
-<li><strong>Meet the age condition:</strong> For PGP 2027–29, selected candidates must be at least <strong>19 years old by June 30, 2027</strong>.</li>
-<li><strong>Register for CAT 2026:</strong> Domestic applicants apply through CAT 2026 and must select IIM Ahmedabad's PGP in the CAT application where required.</li>
-<li><strong>Enter accurate academic details:</strong> IIMA uses Class 10, Class 12 and bachelor's marks in the application rating. Enter marks exactly as required and keep marksheets ready.</li>
-<li><strong>Enter work-experience details correctly:</strong> The 2027–29 application rating gives points for full-time work experience. Less than 12 months receives zero work-experience points; 12–36 months is scored progressively; more than 36 months receives the maximum work-experience rating of 5 points.</li>
-<li><strong>Clear the CAT 2026 minimum cutoff:</strong> For General/EWS candidates, the minimum is <strong>95 overall and 85 in each section</strong>. NC-OBC requires 90 overall/80 sectional; SC 85/75; ST 75/65. PwD candidates have separate lower thresholds in the policy.</li>
-<li><strong>Understand that cutoff is only a screening threshold:</strong> IIMA calculates a normalised application rating and combines it with CAT performance. For 2027–29, the raw composite uses <strong>35% normalised application rating and 65% CAT total percentile</strong> before discipline-level normalisation.</li>
-<li><strong>Wait for the AWT & PI shortlist:</strong> IIMA states that the shortlist will be available tentatively in the <strong>second week of January 2027</strong>.</li>
-<li><strong>Attend AWT and PI:</strong> Shortlisted candidates take the Analytical Writing Test and Personal Interview. IIMA lists Ahmedabad, Bengaluru, Hyderabad, Kolkata, Mumbai and New Delhi as interview locations for the 2027–29 process.</li>
-<li><strong>Final selection:</strong> The final composite score for candidates appearing in AWT & PI is calculated using <strong>50% PI, 10% AWT and 40% normalised composite score</strong>.</li>
-<li><strong>Check the admission offer:</strong> IIMA states that final admission status will be available tentatively in the <strong>second week of April 2027</strong>.</li>
-<li><strong>Accept the offer:</strong> Successful candidates must complete acceptance formalities tentatively by the <strong>first week of May 2027</strong>.</li>
-<li><strong>Pay the applicable fee:</strong> Once the offer is accepted, follow IIMA's fee-payment schedule for the relevant batch. Do not use the 2025–27 fee as the final 2027–29 payable amount.</li>
-</ol>
-
-<h3>IIM Ahmedabad CAT 2026 cutoff for 2027–29</h3>
-<div class="table-wrap">
-<table>
-<thead><tr><th>Category</th><th>Overall CAT 2026 percentile</th><th>Sectional percentile</th><th>PwD overall</th><th>PwD sectional</th></tr></thead>
-<tbody>
-<tr><td data-label="Category"><strong>General / EWS</strong></td><td data-label="Overall">95</td><td data-label="Sectional">85 in VARC, DILR and QA</td><td data-label="PwD overall">85</td><td data-label="PwD sectional">75</td></tr>
-<tr><td data-label="Category"><strong>NC-OBC</strong></td><td data-label="Overall">90</td><td data-label="Sectional">80 in each section</td><td data-label="PwD overall">80</td><td data-label="PwD sectional">70</td></tr>
-<tr><td data-label="Category"><strong>SC</strong></td><td data-label="Overall">85</td><td data-label="Sectional">75 in each section</td><td data-label="PwD overall">75</td><td data-label="PwD sectional">65</td></tr>
-<tr><td data-label="Category"><strong>ST</strong></td><td data-label="Overall">75</td><td data-label="Sectional">65 in each section</td><td data-label="PwD overall">65</td><td data-label="PwD sectional">55</td></tr>
-</tbody>
-</table>
-</div>
-<div class="note"><strong>Important:</strong> These are IIMA's published minimum CAT 2026 screening cutoffs for the 2027–29 PGP. They are <strong>not the same as a guaranteed interview-call or admission percentile</strong>.</div>
-
-<h3>Reservation and seat information</h3>
-<p>For the 2027–29 PGP, IIMA states that reservations follow Government of India requirements: <strong>27% NC-OBC, 15% SC, 7.5% ST, 5% PwD and up to 10% EWS</strong>. IIMA's published policy does not provide a simple public category-wise seat matrix in the format used by state counselling portals. The institute should therefore be treated as an institute-specific admission process rather than a state-level counselling system.</p>
-
-
-
-<div class="info"><strong>Admission contact:</strong> IIM Ahmedabad Admissions Office, Vastrapur, Ahmedabad, Gujarat 380015 · Phone: +91-79-7152 4631 / 4633 / 4634 / 4636 · Email: admission@iima.ac.in.</div>
-</section>
-
-<section class="section" id="scholarships">
-<h2>IIM Ahmedabad Scholarships and Financial Assistance</h2>
-<p>IIMA provides financial assistance through need-based, industry-funded, donor-funded and government-linked scholarships. The exact award depends on the scheme and eligibility; students should not assume that admission automatically results in a fee waiver.</p>
-<div class="table-wrap compact">
-<table>
-<thead><tr><th>Scholarship / Aid</th><th>Eligibility / basis</th><th>Amount / benefit</th><th>How to apply</th></tr></thead>
-<tbody>
-<tr><td data-label="Scholarship / Aid"><strong>Need-Based Scholarship / Special Need-Based Scholarship</strong></td><td data-label="Eligibility / basis">Financial need; IIMA considers family income, assets and number of dependants</td><td data-label="Amount / benefit">Award varies by assessment</td><td data-label="How to apply">Apply through IIMA's scholarship/financial-aid process after admission</td></tr>
-<tr><td data-label="Scholarship / Aid"><strong>Mirae Asset Foundation Scholarship</strong></td><td data-label="Eligibility / basis">Merit-cum-means; PGP/PGP-FABM students under the scheme</td><td data-label="Amount / benefit">₹5 lakh each for three first-year PGP/PGP-FABM students under the published scheme rules</td><td data-label="How to apply">Through the institute scholarship process</td></tr>
-<tr><td data-label="Scholarship / Aid"><strong>Aditya Birla Group Scholarship</strong></td><td data-label="Eligibility / basis">Merit; selected PGP students</td><td data-label="Amount / benefit">₹3 lakh per year under the published scholarship rules</td><td data-label="How to apply">Institute/selection process as specified by the donor</td></tr>
-<tr><td data-label="Scholarship / Aid"><strong>OP Jindal Engineering & Management Scholarship</strong></td><td data-label="Eligibility / basis">Academic performance plus online test and interview</td><td data-label="Amount / benefit">₹1.5 lakh under the published scheme</td><td data-label="How to apply">Selection process specified by the scholarship</td></tr>
-<tr><td data-label="Scholarship / Aid"><strong>T. Thomas Scholarship</strong></td><td data-label="Eligibility / basis">Merit-cum-means; second-year student</td><td data-label="Amount / benefit">[To be updated: source from official website]</td><td data-label="How to apply">Through the institute/donor process</td></tr>
-<tr><td data-label="Scholarship / Aid"><strong>Government / state scholarships</strong></td><td data-label="Eligibility / basis">Applicable category, state and government scheme conditions</td><td data-label="Amount / benefit">Scheme-specific</td><td data-label="How to apply">Institute guidance and/or relevant government portal</td></tr>
-</tbody>
-</table>
-</div>
-
-</section>
-
-<section class="section" id="placements">
-<h2>IIM Ahmedabad MBA Placements: Latest Stats and Year-wise Comparison</h2><p><strong>Looking specifically for salary, recruiters, roles and year-wise placement data?</strong> Read the <a href="iim-ahmedabad-placements.html" style="color:#174ea6;font-weight:800">IIM Ahmedabad Placements 2026 detailed guide →</a></p>
-<p>The latest <strong>audited PGP placement figures are for 2025</strong>. IIMA's 2026 release confirms all students were placed across 26 cohorts, while detailed audited salary figures were pending.</p>
-
-<div class="callout-grid">
-<div class="callout"><b>2025 Mean MEP</b><span>₹35.50 lakh per year</span></div>
-<div class="callout"><b>2025 Median MEP</b><span>₹34.59 lakh per year</span></div>
-<div class="callout"><b>2025 Placement participation</b><span>395 accepted offers from 406 eligible students</span></div>
-</div>
-
 <div class="table-wrap">
 <table>
 <thead><tr><th>Placement year</th><th>Mean / average</th><th>Median</th><th>Highest reported package</th><th>Placement / offers</th></tr></thead>
@@ -416,6 +292,36 @@ IIM Ahmedabad MBA/PGP information updated for the 2027–29 admission cycle wher
      menu.classList.remove('open');
      btn.setAttribute('aria-expanded','false');
      btn.textContent='On this page ▾';
+   }
+ });
+})();
+</script>
+<script>
+(function(){
+ const btn=document.getElementById('onbtn');
+ const menu=document.getElementById('onmenu');
+ if(!btn||!menu)return;
+ btn.addEventListener('click',function(){
+   const open=menu.classList.toggle('open');
+   btn.setAttribute('aria-expanded',open?'true':'false');
+   const arrow=btn.querySelector('span');
+   if(arrow)arrow.textContent=open?'▴':'▾';
+ });
+ menu.querySelectorAll('a').forEach(function(link){
+   link.addEventListener('click',function(){
+     menu.classList.remove('open');
+     btn.setAttribute('aria-expanded','false');
+     const arrow=btn.querySelector('span');
+     if(arrow)arrow.textContent='▾';
+   });
+ });
+ document.addEventListener('click',function(e){
+   const holder=document.getElementById('ontop');
+   if(holder&&!holder.contains(e.target)){
+     menu.classList.remove('open');
+     btn.setAttribute('aria-expanded','false');
+     const arrow=btn.querySelector('span');
+     if(arrow)arrow.textContent='▾';
    }
  });
 })();
