@@ -2,7 +2,7 @@ name: Migrate URLs to CollegeDecoded
 
 on:
   push:
-    branches: [clean-url-migration]
+    branches: [main, clean-url-migration]
 
 permissions:
   contents: write
