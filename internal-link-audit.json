@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-18T15:43:21.635938+00:00",
+  "generated_at": "2026-09-19T05:44:20.248372+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
-    "pages_checked": 623,
-    "pages_with_internal_links": 607,
-    "broken_local_links": 7,
+    "pages_checked": 626,
+    "pages_with_internal_links": 610,
+    "broken_local_links": 6,
     "benchmark_legacy_broken_links": 0,
     "college_clusters_detected": 81,
     "cluster_reciprocal_gaps": 230,
     "zero_incoming_pages": 77,
     "role_counts": {
       "overview_or_hub": 280,
-      "programme": 253,
+      "programme": 256,
       "placement": 90
     }
   },
@@ -295,10 +295,13 @@
     {
       "overview": "iim-ahmedabad.html",
       "placement": "iim-ahmedabad-placements.html",
-      "programme_count": 4,
+      "programme_count": 7,
       "programmes": [
         "iim-ahmedabad-business-analytics-ai.html",
+        "iim-ahmedabad-mba-bpgp.html",
         "iim-ahmedabad-mba-fabm.html",
+        "iim-ahmedabad-mba-pgp.html",
+        "iim-ahmedabad-mba-pgpx.html",
         "iim-ahmedabad-mba.html",
         "iim-ahmedabad-pgpx.html"
       ]
@@ -1521,9 +1524,7 @@
     {
       "source": "iim-ahmedabad.html",
       "missing": [
-        "iim-ahmedabad-placements.html",
         "iim-ahmedabad-business-analytics-ai.html",
-        "iim-ahmedabad-mba-fabm.html",
         "iim-ahmedabad-mba.html",
         "iim-ahmedabad-pgpx.html"
       ]
@@ -1531,9 +1532,11 @@
     {
       "source": "iim-ahmedabad-placements.html",
       "missing": [
-        "iim-ahmedabad.html",
         "iim-ahmedabad-business-analytics-ai.html",
+        "iim-ahmedabad-mba-bpgp.html",
         "iim-ahmedabad-mba-fabm.html",
+        "iim-ahmedabad-mba-pgp.html",
+        "iim-ahmedabad-mba-pgpx.html",
         "iim-ahmedabad-mba.html",
         "iim-ahmedabad-pgpx.html"
       ]
@@ -1548,8 +1551,7 @@
     {
       "source": "iim-ahmedabad-mba-fabm.html",
       "missing": [
-        "iim-ahmedabad.html",
-        "iim-ahmedabad-placements.html"
+        "iim-ahmedabad.html"
       ]
     },
     {
@@ -2551,11 +2553,6 @@
       "target": "bml-munjal-university-mba.html"
     },
     {
-      "source": "iim-ahmedabad-placements.html",
-      "href": "iim-ahmedabad-admission.html",
-      "target": "iim-ahmedabad-admission.html"
-    },
-    {
       "source": "iit-kanpur-management-sciences-m-tech.html",
       "href": "iit-kanpur.html",
       "target": "iit-kanpur.html"
@@ -3150,11 +3147,14 @@
     "iift-placements.html": 4,
     "iift.html": 1,
     "iim-ahmedabad-business-analytics-ai.html": 1,
-    "iim-ahmedabad-mba-fabm.html": 1,
+    "iim-ahmedabad-mba-bpgp.html": 1,
+    "iim-ahmedabad-mba-fabm.html": 3,
+    "iim-ahmedabad-mba-pgp.html": 3,
+    "iim-ahmedabad-mba-pgpx.html": 2,
     "iim-ahmedabad-mba.html": 3,
     "iim-ahmedabad-pgpx.html": 1,
-    "iim-ahmedabad-placements.html": 4,
-    "iim-ahmedabad.html": 3,
+    "iim-ahmedabad-placements.html": 9,
+    "iim-ahmedabad.html": 11,
     "iim-amritsar-executive-mba.html": 2,
     "iim-amritsar-ipm.html": 2,
     "iim-amritsar-mba-business-analytics.html": 4,
@@ -3286,7 +3286,7 @@
     "imt-nagpur-pgdm.html": 6,
     "imt-nagpur-placements.html": 7,
     "imt-nagpur.html": 5,
-    "index.html": 1030,
+    "index.html": 1031,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -3719,11 +3719,14 @@
     "iift-placements.html": 8,
     "iift.html": 10,
     "iim-ahmedabad-business-analytics-ai.html": 1,
-    "iim-ahmedabad-mba-fabm.html": 1,
+    "iim-ahmedabad-mba-bpgp.html": 3,
+    "iim-ahmedabad-mba-fabm.html": 2,
+    "iim-ahmedabad-mba-pgp.html": 9,
+    "iim-ahmedabad-mba-pgpx.html": 3,
     "iim-ahmedabad-mba.html": 1,
     "iim-ahmedabad-pgpx.html": 1,
     "iim-ahmedabad-placements.html": 6,
-    "iim-ahmedabad.html": 3,
+    "iim-ahmedabad.html": 8,
     "iim-amritsar-ipm.html": 1,
     "iim-amritsar-mba-business-analytics.html": 2,
     "iim-amritsar-mba-hr.html": 2,
