@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T06:52:18.284390+00:00",
+  "generated_at": "2026-09-19T06:55:38.818411+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 630,
   "pages_with_issues": 449,
@@ -7,7 +7,7 @@
     "broken_local_links": 4,
     "canonical": 13,
     "description_count": 4,
-    "description_length": 202,
+    "description_length": 201,
     "duplicate_title": 4,
     "h1_count": 2,
     "jsonld": 12,
@@ -7353,10 +7353,10 @@
     {
       "file": "iim-ahmedabad.html",
       "benchmark": true,
-      "title": "IIM Ahmedabad MBA Admission 2027: Fees, CAT Cutoff, Placements & Admission Process",
-      "title_length": 82,
-      "description": "IIM Ahmedabad MBA admission 2027-29 guide covering eligibility, CAT 2026 cutoff, tentative admission dates, fees, fee breakup, scholarships, latest placements, campus facilities and student-intent FAQs.",
-      "description_length": 202,
+      "title": "IIM Ahmedabad MBA Admission 2026: Fees, Eligibility, CAT & Placements",
+      "title_length": 69,
+      "description": "IIM Ahmedabad MBA admission 2026 guide covering PGP/MBA eligibility, CAT, selection process, fees, placements, scholarships and other programmes with official sources.",
+      "description_length": 167,
       "description_count": 1,
       "canonical": "https://vai2110.github.io/mba-admission-portal/iim-ahmedabad.html",
       "canonical_count": 1,
@@ -7380,8 +7380,7 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "description_length"
+        "title_length"
       ]
     },
     {
