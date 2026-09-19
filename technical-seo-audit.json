@@ -4495,7 +4495,7 @@
     {
       "file": "content-audit.html",
       "benchmark": false,
-      "title": "Content Quality Audit | MBA Portal",
+      "title": "Content Quality Audit | CollegeDecoded",
       "title_length": 34,
       "description": null,
       "description_length": 0,
@@ -5883,9 +5883,9 @@
     {
       "file": "github-direct-edit-test.html",
       "benchmark": false,
-      "title": "GitHub Direct Edit Test | MBA Portal",
+      "title": "GitHub Direct Edit Test | CollegeDecoded",
       "title_length": 36,
-      "description": "Temporary deployment test page for the MBA Portal GitHub workflow.",
+      "description": "Temporary deployment test page for the CollegeDecoded GitHub workflow.",
       "description_length": 66,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/github-direct-edit-test",
@@ -12398,7 +12398,7 @@
     {
       "file": "index.html",
       "benchmark": false,
-      "title": "MBA Portal | MBA Colleges, Admissions, Fees, Cutoffs & Placements",
+      "title": "CollegeDecoded | MBA Colleges, Admissions, Fees, Cutoffs & Placements",
       "title_length": 65,
       "description": "Student-friendly MBA college, entrance exam, admission, fee, cutoff and placement information.",
       "description_length": 94,
@@ -15956,7 +15956,7 @@
     {
       "file": "mba-colleges-in-ahmedabad.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Ahmedabad | MBA Portal",
+      "title": "Popular MBA Colleges in Ahmedabad | CollegeDecoded",
       "title_length": 46,
       "description": "Explore popular MBA colleges in Ahmedabad including IIM Ahmedabad, MICA and Nirma University.",
       "description_length": 93,
@@ -15990,7 +15990,7 @@
     {
       "file": "mba-colleges-in-bengaluru.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Bengaluru | MBA Portal",
+      "title": "Popular MBA Colleges in Bengaluru | CollegeDecoded",
       "title_length": 46,
       "description": "Explore popular MBA colleges in Bengaluru including IIM Bangalore, Christ University, Alliance University, Jain University and XIME Bangalore.",
       "description_length": 142,
@@ -16023,7 +16023,7 @@
     {
       "file": "mba-colleges-in-chennai.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Chennai | MBA Portal",
+      "title": "Popular MBA Colleges in Chennai | CollegeDecoded",
       "title_length": 44,
       "description": "Explore popular MBA colleges in Chennai including IIT Madras, Great Lakes, LIBA and SRM.",
       "description_length": 88,
@@ -16057,7 +16057,7 @@
     {
       "file": "mba-colleges-in-delhi-ncr.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Delhi NCR | MBA Portal",
+      "title": "Popular MBA Colleges in Delhi NCR | CollegeDecoded",
       "title_length": 46,
       "description": "Explore popular MBA colleges in Delhi NCR, including IIT Delhi DMS, MDI Gurugram, IIFT Delhi and IMI Delhi.",
       "description_length": 107,
@@ -16091,7 +16091,7 @@
     {
       "file": "mba-colleges-in-hyderabad.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Hyderabad | MBA Portal",
+      "title": "Popular MBA Colleges in Hyderabad | CollegeDecoded",
       "title_length": 46,
       "description": "Explore popular MBA colleges in Hyderabad including ICFAI Hyderabad, IPE Hyderabad and IBS Hyderabad.",
       "description_length": 101,
@@ -16125,7 +16125,7 @@
     {
       "file": "mba-colleges-in-kolkata.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Kolkata | MBA Portal",
+      "title": "Popular MBA Colleges in Kolkata | CollegeDecoded",
       "title_length": 44,
       "description": "Explore popular MBA colleges in Kolkata including IIM Calcutta and IMI Kolkata.",
       "description_length": 79,
@@ -16159,7 +16159,7 @@
     {
       "file": "mba-colleges-in-mumbai.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Mumbai | MBA Portal",
+      "title": "Popular MBA Colleges in Mumbai | CollegeDecoded",
       "title_length": 43,
       "description": "Explore popular MBA colleges in Mumbai including IIM Mumbai, IIT Bombay, SPJIMR, NMIMS and KJ Somaiya.",
       "description_length": 102,
@@ -16193,7 +16193,7 @@
     {
       "file": "mba-colleges-in-pune.html",
       "benchmark": false,
-      "title": "Popular MBA Colleges in Pune | MBA Portal",
+      "title": "Popular MBA Colleges in Pune | CollegeDecoded",
       "title_length": 41,
       "description": "Explore popular MBA colleges in Pune including SIBM Pune, SIIB, SITM, SCMHRD and SICSR.",
       "description_length": 87,
@@ -19850,7 +19850,7 @@
       "benchmark": false,
       "title": "Top 100 MBA Colleges in India 2025: NIRF Ranking, Fees, Placements & Admissions",
       "title_length": 79,
-      "description": "Check the Top 100 MBA and management colleges in India as per NIRF 2025. Compare ranks, locations and MBA Portal page availability, with guidance on fees, placements, admissions and programme fit.",
+      "description": "Check the Top 100 MBA and management colleges in India as per NIRF 2025. Compare ranks, locations and CollegeDecoded page availability, with guidance on fees, placements, admissions and programme fit.",
       "description_length": 196,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/top-mba-colleges-in-india",
