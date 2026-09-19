@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T03:40:59.869118+00:00",
+  "generated_at": "2026-09-19T03:59:52.400683+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 630,
   "pages_with_issues": 449,
@@ -7340,7 +7340,7 @@
       "og_url": true,
       "twitter_card": true,
       "jsonld_blocks": 1,
-      "images": 2,
+      "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
         "iim-ahmedabad-admission.html"
@@ -7365,7 +7365,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA Admission 2027: Fees, CAT Cutoff, Placements & Admission Process",
+      "h1": "IIM Ahmedabad: MBA Admission 2027, Fees, CAT Cutoff, Courses & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
