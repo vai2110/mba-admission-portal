@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-19T03:21:36.942905+00:00",
+  "generated_at": "2026-09-19T03:26:19.731698+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 627,
   "pages_with_issues": 446,
   "issue_counts": {
-    "broken_local_links": 5,
+    "broken_local_links": 6,
     "canonical": 13,
     "description_count": 4,
     "description_length": 201,
@@ -7279,12 +7279,17 @@
       "jsonld_blocks": 3,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "iim-ahmedabad-mba-bpgp.html",
+        "iim-ahmedabad-mba-pgp.html",
+        "iim-ahmedabad-mba-pgpx.html"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length"
+        "description_length",
+        "broken_local_links"
       ]
     },
     {
