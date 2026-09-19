@@ -2,20 +2,21 @@
 /* FAQ accordion */
 .faq-accordion{margin-top:8px}.faq-item{border:1px solid var(--border,#dce4ee);border-radius:8px;margin:9px 0;background:#fff;overflow:hidden}.faq-item summary{list-style:none;cursor:pointer;padding:13px 15px;font-weight:800;color:var(--navy,#092653);font-size:13px;position:relative;padding-right:38px}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';position:absolute;right:14px;top:9px;font-size:20px;color:#2563eb;font-weight:500}.faq-item[open] summary:after{content:'−'}.faq-answer{padding:0 15px 14px;color:#334155;font-size:13px}.faq-answer p{margin:0}.faq-answer a{color:#174ea6;font-weight:700}
 
-/* IIMA shared clipped On this page control */
-.ontop{position:sticky;top:0;z-index:1200;width:150px;height:0;margin:0 0 0 auto;transform:translateX(45px);pointer-events:none}
-.onbtn{position:relative;display:block;width:150px;border:1px solid #cbd8ea;border-top:0;background:#fff;color:#092653;border-radius:0 0 0 8px;padding:9px 10px;font-size:11px;font-weight:800;line-height:1.2;box-shadow:0 5px 18px rgba(15,40,80,.12);cursor:pointer;pointer-events:auto;white-space:nowrap}
-.onbtn span{font-size:10px;margin-left:2px}
-.onmenu{display:none;position:absolute;right:45px;top:39px;width:min(240px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:#fff;border:1px solid #dce4ee;border-radius:8px;box-shadow:0 8px 25px rgba(15,40,80,.14);pointer-events:auto}
+/* IIMA shared mobile-only On this page control */
+/* Hidden on desktop by design. */
+.ontop{display:none;position:sticky;top:0;z-index:1200;width:128px;height:0;margin:0 0 0 auto;transform:translateX(28px);pointer-events:none}
+.onbtn{position:relative;display:block;width:128px;border:1px solid #cbd8ea;border-top:0;background:#fff;color:#092653;border-radius:0 0 0 8px;padding:8px 7px;font-size:9.5px;font-weight:800;line-height:1.2;box-shadow:0 5px 18px rgba(15,40,80,.12);cursor:pointer;pointer-events:auto;white-space:nowrap}
+.onbtn span{font-size:9px;margin-left:2px}
+.onmenu{display:none;position:absolute;right:28px;top:36px;width:min(225px,calc(100vw - 18px));max-height:65vh;overflow:auto;background:#fff;border:1px solid #dce4ee;border-radius:8px;box-shadow:0 8px 25px rgba(15,40,80,.14);pointer-events:auto}
 .onmenu.open{display:block}
-.onmenu a{display:block;padding:9px 11px;font-size:11px;font-weight:700;line-height:1.35;color:#334155;border-bottom:1px solid #edf1f5;background:#fff}
+.onmenu a{display:block;padding:9px 10px;font-size:10px;font-weight:700;line-height:1.35;color:#334155;border-bottom:1px solid #edf1f5;background:#fff}
 .onmenu a:last-child{border-bottom:0}
 .onmenu a:hover{background:#f4f8ff;color:#174ea6}
-@media(max-width:640px){
-.ontop{width:128px;transform:translateX(36px)}
-.onbtn{width:128px;padding:8px 7px;font-size:9.5px}
-.onmenu{right:36px;top:36px;width:min(230px,calc(100vw - 18px));max-height:65vh}
-.onmenu a{padding:9px 10px;font-size:10px}
+@media(max-width:640px){.ontop{display:block}}
+@media(max-width:380px){
+  .ontop{width:122px;transform:translateX(24px)}
+  .onbtn{width:122px;font-size:9px;padding:8px 6px}
+  .onmenu{right:24px;width:min(215px,calc(100vw - 14px))}
 }
 
 
