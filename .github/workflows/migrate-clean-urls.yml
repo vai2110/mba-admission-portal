@@ -1,0 +1,63 @@
+name: Migrate URLs to CollegeDecoded
+
+on:
+  push:
+    branches: [clean-url-migration]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update absolute canonical and social URLs
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          old = "https://vai2110.github.io/mba-admission-portal/"
+          new = "https://collegedecoded.in/"
+
+          changed = 0
+          for p in Path(".").rglob("*"):
+              if not p.is_file() or ".git" in p.parts:
+                  continue
+              if p.suffix.lower() not in {".html", ".json"}:
+                  continue
+              try:
+                  s = p.read_text(encoding="utf-8")
+              except UnicodeDecodeError:
+                  continue
+
+              t = s.replace(old, new)
+              # Only strip .html from absolute CollegeDecoded URLs.
+              t = re.sub(
+                  r"""https://collegedecoded\.in/([^"'<>\s#?]+)\.html(?=([#"'< >\s?]|$))""",
+                  r"https://collegedecoded.in/\1",
+                  t
+              )
+
+              if t != s:
+                  p.write_text(t, encoding="utf-8")
+                  changed += 1
+
+          print(f"Updated {changed} HTML/JSON files.")
+          PY
+
+      - name: Commit migrated URLs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' '*.json'
+          if git diff --cached --quiet; then
+            echo "No URL changes required."
+          else
+            git commit -m "[skip ci] Complete CollegeDecoded URL migration"
+            git push
+          fi
