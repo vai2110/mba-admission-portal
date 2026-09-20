@@ -272,21 +272,27 @@ html,body{max-width:100%;overflow-x:hidden}
  const modal=document.getElementById('guidanceModal'),open=document.getElementById('guidanceOpen'),form=document.getElementById('guidanceForm'),success=document.getElementById('guidanceSuccess');
  if(!modal||!open||!form)return;
  let shown=false,lastY=window.scrollY,scrollDistance=0;
- const storageKey='collegeDecodedGuidanceShownV2:iim-ahmedabad-mba-pgp';
+ const storageKey='collegeDecodedGuidanceShownV3:iim-ahmedabad-mba-pgp';
  function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');modal.style.display='none';document.body.style.overflow='';sessionStorage.setItem(storageKey,'1');}
- function show(force){if(!force&&(shown||sessionStorage.getItem(storageKey)==='1'))return;shown=true;sessionStorage.setItem(storageKey,'1');modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
+ function show(force){if(!force&&(shown||sessionStorage.getItem(storageKey)==='1'))return;shown=true;sessionStorage.setItem(storageKey,'1');modal.classList.add('open');modal.setAttribute('aria-hidden','false');modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
  open.addEventListener('click',function(){show(true);});
  modal.querySelectorAll('[data-guidance-close]').forEach(function(x){x.addEventListener('click',close);});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
  form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}success.style.display='block';sessionStorage.setItem(storageKey,'1');form.querySelectorAll('input,select,button').forEach(function(x){x.disabled=true;});});
- window.addEventListener('scroll',function(){
+ function checkAutoPopup(){
    if(shown||sessionStorage.getItem(storageKey)==='1')return;
-   const y=window.scrollY,delta=Math.abs(y-lastY);lastY=y;scrollDistance+=delta;
-   const doc=document.documentElement,scrollable=Math.max(1,doc.scrollHeight-window.innerHeight),depth=y/scrollable;
+   const y=window.scrollY||document.documentElement.scrollTop||0;
+   const doc=document.documentElement;
+   const scrollable=Math.max(1,doc.scrollHeight-window.innerHeight);
    const isMobile=window.innerWidth<=640;
-   const depthLimit=isMobile?0.45:0.35;
-   const distanceLimit=isMobile?450:600;
-   if(scrollDistance>=distanceLimit||depth>=depthLimit)show(false);
- },{passive:true});
-})();
+   const threshold=isMobile?380:520;
+   const depthLimit=isMobile?0.38:0.30;
+   if(y>=threshold || y/scrollable>=depthLimit)show(false);
+ }
+ window.addEventListener('scroll',checkAutoPopup,{passive:true});
+ window.addEventListener('touchend',checkAutoPopup,{passive:true});
+ const popupWatcher=setInterval(function(){
+   if(shown||sessionStorage.getItem(storageKey)==='1'){clearInterval(popupWatcher);return;}
+   checkAutoPopup();
+ },250);})();
 </script>\n</body></html>
