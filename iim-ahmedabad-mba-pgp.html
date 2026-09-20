@@ -271,21 +271,22 @@ html,body{max-width:100%;overflow-x:hidden}
 (function(){
  const modal=document.getElementById('guidanceModal'),open=document.getElementById('guidanceOpen'),form=document.getElementById('guidanceForm'),success=document.getElementById('guidanceSuccess');
  if(!modal||!open||!form)return;
- let shown=false,scrollHits=0,lastY=window.scrollY;
- const storageKey='collegeDecodedGuidanceShown:iim-ahmedabad-mba-pgp';
+ let shown=false,lastY=window.scrollY,scrollDistance=0;
+ const storageKey='collegeDecodedGuidanceShownV2:iim-ahmedabad-mba-pgp';
  function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');modal.style.display='none';document.body.style.overflow='';sessionStorage.setItem(storageKey,'1');}
  function show(force){if(!force&&(shown||sessionStorage.getItem(storageKey)==='1'))return;shown=true;sessionStorage.setItem(storageKey,'1');modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
  open.addEventListener('click',function(){show(true);});
  modal.querySelectorAll('[data-guidance-close]').forEach(function(x){x.addEventListener('click',close);});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
- form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}success.style.display='block';form.querySelectorAll('input,select,button').forEach(function(x){x.disabled=true;});});
+ form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}success.style.display='block';sessionStorage.setItem(storageKey,'1');form.querySelectorAll('input,select,button').forEach(function(x){x.disabled=true;});});
  window.addEventListener('scroll',function(){
    if(shown||sessionStorage.getItem(storageKey)==='1')return;
-   const y=window.scrollY,delta=Math.abs(y-lastY);lastY=y;
-   if(delta>=180){scrollHits++;}
+   const y=window.scrollY,delta=Math.abs(y-lastY);lastY=y;scrollDistance+=delta;
    const doc=document.documentElement,scrollable=Math.max(1,doc.scrollHeight-window.innerHeight),depth=y/scrollable;
-   const depthLimit=window.innerWidth<=640?0.45:0.35;
-   if(scrollHits>=3||depth>=depthLimit)show();
+   const isMobile=window.innerWidth<=640;
+   const depthLimit=isMobile?0.45:0.35;
+   const distanceLimit=isMobile?450:600;
+   if(scrollDistance>=distanceLimit||depth>=depthLimit)show(false);
  },{passive:true});
 })();
 </script>\n</body></html>
