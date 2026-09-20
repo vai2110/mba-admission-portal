@@ -51,7 +51,7 @@
     if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college matches that name and city. Try the official college name, abbreviation and city.</div></div>';result.style.display='block';return}
     const exact=ranked[0].s>=9500;
     const isFamilyQuery=!!fam&&n===fam; const items=isFamilyQuery?ranked:ranked.slice(0,1);
-    result.innerHTML='<div class="search-result-inner"><h3>Matching colleges ("+items.length+")</h3>'+items.map(x=>'<div class="homepage-college-result"><div class="homepage-college-thumb" aria-hidden="true">'+escape((x.c.name||'College').replace(/^.*?XLRI/i,'XLRI').slice(0,12))+'</div><div class="homepage-college-info"><div class="homepage-college-name">'+escape(x.c.name)+'</div><div class="homepage-college-location">'+escape(x.c.location||'')+'</div><a class="homepage-college-cta" href="'+escape(x.c.url)+'">View College Page <span aria-hidden="true">→</span></a></div></div>').join('')+'</div>';
+    result.innerHTML='<div class="search-result-inner"><h3>Matching colleges ('+items.length+')</h3>'+items.map(x=>'<div class="homepage-college-result"><div class="homepage-college-thumb" aria-hidden="true">'+escape((x.c.name||'College').replace(/^.*?XLRI/i,'XLRI').slice(0,12))+'</div><div class="homepage-college-info"><div class="homepage-college-name">'+escape(x.c.name)+'</div><div class="homepage-college-location">'+escape(x.c.location||'')+'</div><a class="homepage-college-cta" href="'+escape(x.c.url)+'">View College Page <span aria-hidden="true">→</span></a></div></div>').join('')+'</div>';
     result.style.display='block';
   };
   function run(){
