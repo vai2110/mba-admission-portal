@@ -12,9 +12,9 @@ function init(){
   var sections=Array.prototype.slice.call(main.querySelectorAll(':scope > section'));
   if(sections.length<6)return;
 
-  var meaningfulScrolls=0,lastY=window.pageYOffset||document.documentElement.scrollTop||0;
+  var meaningfulScrolls=0,scrollDistance=0,lastY=window.pageYOffset||document.documentElement.scrollTop||0;
   var gated=false;
-  var key='CD_GUIDANCE_GATE:'+window.location.pathname;
+  var key='CD_GUIDANCE_GATE_V2:'+window.location.pathname;
 
   function wasHandled(){
     try{return sessionStorage.getItem(key)==='1';}catch(e){return false;}
@@ -143,7 +143,7 @@ function init(){
     var y=window.pageYOffset||document.documentElement.scrollTop||0;
     var delta=Math.abs(y-lastY);
     lastY=y;
-    if(delta>=140)meaningfulScrolls++;
+    if(delta>0){scrollDistance+=delta; meaningfulScrolls=Math.floor(scrollDistance/500);}
     if(meaningfulScrolls>=5)createGate();
   }
 
