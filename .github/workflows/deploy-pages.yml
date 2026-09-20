@@ -38,41 +38,41 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import json,re
-          data=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
-          city_map={'bangalore':'Bengaluru','bengaluru':'Bengaluru','mysore':'Mysore','mysuru':'Mysore','hyderabad':'Hyderabad','ghaziabad':'Ghaziabad','navi mumbai':'Navi Mumbai','new delhi':'New Delhi','delhi':'Delhi','calcutta':'Kolkata','kolkata':'Kolkata','gurgaon':'Gurgaon','gurugram':'Gurugram','mumbai':'Mumbai','bombay':'Mumbai','pune':'Pune','nagpur':'Nagpur','chennai':'Chennai','dehradun':'Dehradun','noida':'Noida','lucknow':'Lucknow','ahmedabad':'Ahmedabad','indore':'Indore','raipur':'Raipur','ranchi':'Ranchi','rohtak':'Rohtak','udaipur':'Udaipur','kashipur':'Kashipur','jamshedpur':'Jamshedpur','roorkee':'Roorkee','kanpur':'Kanpur','dhanbad':'Dhanbad','bodh gaya':'Bodh Gaya','sambalpur':'Sambalpur','jammu':'Jammu','shillong':'Shillong','sirmaur':'Sirmaur','amritsar':'Amritsar','tiruchirappalli':'Tiruchirappalli','trichy':'Tiruchirappalli','manipal':'Manipal','goa':'Goa','jalandhar':'Jalandhar','bhubaneswar':'Bhubaneswar','patiala':'Patiala','anand':'Anand','varanasi':'Varanasi','aligarh':'Aligarh','vijayawada':'Vijayawada','jaipur':'Jaipur','madurai':'Madurai','kochi':'Kochi','gandhinagar':'Gandhinagar'}
-          manual={'indian institute of management':'iim','indian institute of technology':'iit','indian institute of foreign trade':'iift','management development institute':'mdi','xlri - xavier school of management':'xlri','s. p. jain institute of management and research':'spjimr','symbiosis institute of business management':'sibm','svkm`s narsee monjee institute of management studies':'nmims','institute of management technology':'imt','great lakes institute of management':'great lakes','t. a. pai management institute manipal':'tapmi','goa institute of management':'gim','birla institute of management technology':'bimtech','jagan institute of management studies':'jims','lovely professional university':'lpu','chandigarh university':'cu','mica':'mica','chitkara university':'chitkara','upes':'upes','xime bangalore':'xime','vjim hyderabad':'vjim','ipe hyderabad':'ipe','ibs hyderabad':'ibs','sdmimd mysore':'sdmimd','pumba':'pumba','asia pacific institute of management new delhi':'apim'}
-          def norm(s): return re.sub(r'\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
-          colleges=[]
-          for pair in data.get('colleges',[]):
-              name,url=pair[0],pair[1]
-              n=norm(name); slug=url.rstrip('/').split('/')[-1].replace('.html','')
-              loc=''
-              for key,val in city_map.items():
-                  if key in n or key.replace(' ','-') in slug: loc=val; break
-              aliases={n,norm(slug),slug.replace('-',' ')}
+          management=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
+          mba=json.loads(Path('mba-colleges-data.json').read_text(encoding='utf-8'))
+          city_map={'bangalore':'Bengaluru','bengaluru':'Bengaluru','mysore':'Mysore','mysuru':'Mysore','hyderabad':'Hyderabad','ghaziabad':'Ghaziabad','new delhi':'New Delhi','delhi':'Delhi','calcutta':'Kolkata','kolkata':'Kolkata','gurgaon':'Gurgaon','gurugram':'Gurugram','mumbai':'Mumbai','bombay':'Mumbai','pune':'Pune','nagpur':'Nagpur','chennai':'Chennai','dehradun':'Dehradun','noida':'Noida','lucknow':'Lucknow','ahmedabad':'Ahmedabad','indore':'Indore','raipur':'Raipur','ranchi':'Ranchi','rohtak':'Rohtak','udaipur':'Udaipur','kashipur':'Kashipur','jamshedpur':'Jamshedpur','roorkee':'Roorkee','kanpur':'Kanpur','dhanbad':'Dhanbad','bodh gaya':'Bodh Gaya','sambalpur':'Sambalpur','jammu':'Jammu','shillong':'Shillong','sirmaur':'Sirmaur','amritsar':'Amritsar','tiruchirappalli':'Tiruchirappalli','trichy':'Tiruchirappalli','manipal':'Manipal','goa':'Goa','bhubaneswar':'Bhubaneswar','patiala':'Patiala','anand':'Anand','varanasi':'Varanasi','aligarh':'Aligarh','jaipur':'Jaipur','madurai':'Madurai','kochi':'Kochi','gandhinagar':'Gandhinagar','coimbatore':'Coimbatore','gwalior':'Gwalior','jodhpur':'Jodhpur'}
+          manual={'indian institute of management':'iim','indian institute of technology':'iit','indian institute of foreign trade':'iift','management development institute':'mdi','xlri - xavier school of management':'xlri','s. p. jain institute of management and research':'spjimr','symbiosis institute of business management':'sibm','svkm s narsee monjee institute of management studies':'nmims','institute of management technology':'imt','great lakes institute of management':'great lakes','t. a. pai management institute manipal':'tapmi','goa institute of management':'gim','birla institute of management technology':'bimtech','jagan institute of management studies':'jims','lovely professional university':'lpu','chandigarh university':'cu','mica':'mica','chitkara university':'chitkara','upes':'upes','xime bangalore':'xime','vjim hyderabad':'vjim','ipe hyderabad':'ipe','ibs hyderabad':'ibs','sdmimd mysore':'sdmimd','pumba':'pumba','asia pacific institute of management new delhi':'apim'}
+          def norm(s): return re.sub(r'\\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
+          colleges={}
+          def add(name,url,loc=''):
+              if not url:return
+              n=norm(name); absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
+              key=absurl.rstrip('/').split('/')[-1].replace('.html','')
+              if not loc:
+                  for k,v in city_map.items():
+                      if k in n or k.replace(' ','-') in key: loc=v; break
+              aliases={n,norm(key),key.replace('-',' ')}
               if n in manual: aliases.add(manual[n])
               if n.startswith('indian institute of management'):
                   tail=n.replace('indian institute of management','').strip(' ,')
-                  if tail: aliases.update(['iim '+tail])
+                  if tail: aliases.add('iim '+tail)
                   if tail=='calcutta': aliases.add('iim kolkata')
                   if tail=='kolkata': aliases.add('iim calcutta')
               if n.startswith('indian institute of technology'):
                   tail=n.replace('indian institute of technology','').strip(' ,')
                   if tail: aliases.add('iit '+tail)
-              if n.startswith('symbiosis institute of business management'): aliases.add('sibm')
-              if 'great lakes institute of management' in n: aliases.add('great lakes')
               if 'narsee monjee' in n: aliases.update(['nmims','narsee monjee'])
               if 'welingkar' in n: aliases.update(['welingkar','weschool'])
               if loc:
                   aliases.add(norm(name+' '+loc))
-                  base=manual.get(n,'')
-                  if base: aliases.add(norm(base+' '+loc))
-              aliases={a for a in aliases if len(a.replace(' ',''))>=3}
-              colleges.append({'name':name,'location':loc,'aliases':sorted(aliases),'url':url,'live':True})
-          if len(colleges)!=data.get('count'): raise SystemExit(f'Expected {data.get("count")} Management links, built {len(colleges)}')
-          Path('homepage-search-index.json').write_text(json.dumps({'source':'Management sheet attached live links only','count':len(colleges),'colleges':colleges},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-          print(f'Built homepage search index with {len(colleges)} Management live colleges')
-          PY
+                  if n in manual: aliases.add(norm(manual[n]+' '+loc))
+              colleges[absurl]={'name':name,'location':loc,'aliases':sorted(a for a in aliases if len(a.replace(' ',''))>=3),'url':absurl,'live':True}
+          for p in management.get('colleges',[]): add(p[0],p[1])
+          for c in mba:
+              if c.get('status')=='ready' and c.get('url'): add(c.get('name',''),c.get('url',''),c.get('location',''))
+          result=sorted(colleges.values(),key=lambda x:x['name'].lower())
+          Path('homepage-search-index.json').write_text(json.dumps({'source':'Union of all live management links and all ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+          print(f'Built homepage search index with {len(result)} live college pages')
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
