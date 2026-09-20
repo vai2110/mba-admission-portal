@@ -285,8 +285,8 @@ html,body{max-width:100%;overflow-x:hidden}
    const doc=document.documentElement;
    const scrollable=Math.max(1,doc.scrollHeight-window.innerHeight);
    const isMobile=window.innerWidth<=640;
-   const threshold=isMobile?380:520;
-   const depthLimit=isMobile?0.38:0.30;
+   const threshold=isMobile?750:1000;
+   const depthLimit=isMobile?0.45:0.40;
    if(y>=threshold || y/scrollable>=depthLimit)show(false);
  }
  window.addEventListener('scroll',checkAutoPopup,{passive:true});
