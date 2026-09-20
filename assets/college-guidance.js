@@ -6,8 +6,7 @@ window.__CD_GUIDANCE_GATE_READY=true;
 function init(){
   if(document.getElementById('cdGuidanceGate'))return;
 
-  var main=document.querySelector('main .content, main, .content, .page-layout main, .layout main, .wrap, .page-wrap');
-  if(!main)return;
+  var main=document.querySelector('main .content, main, .content, .page-layout main, .layout main, .wrap, .page-wrap') || document.body;
 
   var sections=Array.prototype.slice.call(document.querySelectorAll('.section, .section-card'))
     .filter(function(el){
