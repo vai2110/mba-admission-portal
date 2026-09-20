@@ -92,7 +92,7 @@ jobs:
           data=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
           parents=[]
           for name,url in data.get('colleges',[]):
-              if not url or 'collegedecoded.in/' not in url: continue
+              if not url: continue
               slug=url.rstrip('/').split('/')[-1]
               if slug.endswith('.html'): slug=slug[:-5]
               parents.append((name.strip(),slug))
