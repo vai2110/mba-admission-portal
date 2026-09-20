@@ -90,8 +90,18 @@ function init(){
   }
   function openGuidanceModal(){var m=ensureGuidanceModal();if(m&&m.__open)m.__open();}
   function addGuidanceBeforeFaq(){
+    if(document.getElementById('cdGuidanceBeforeFaq'))return;
     var faq=document.getElementById('faq');
-    if(!faq||document.getElementById('cdGuidanceBeforeFaq'))return;
+    if(!faq){
+      var fallback=document.createElement('section');
+      fallback.id='cdGuidanceBeforeFaq';
+      fallback.className='cd-guidance-cta cd-guidance-mid-cta';
+      fallback.innerHTML='<div><strong>🎓 Need help choosing the right college?</strong><p>Get personalised guidance based on your course, exam score and goals.</p></div><button type="button" class="cd-guidance-open">Get Free College Guidance →</button>';
+      var host=main.querySelector('main, .content, .page-layout, .wrap, .page-wrap')||main;
+      host.insertBefore(fallback,host.firstChild);
+      fallback.querySelector('.cd-guidance-open').addEventListener('click',openGuidanceModal);
+      return;
+    }
     var wrap=document.createElement('section');wrap.id='cdGuidanceBeforeFaq';wrap.className='cd-guidance-cta cd-guidance-mid-cta';
     wrap.innerHTML='<div><strong>🎓 Not sure which college is right for you?</strong><p>Tell us what you\'re looking for. We\'ll help you explore your options.</p></div><button type="button" class="cd-guidance-open">Get Free College Guidance →</button>';
     faq.parentNode.insertBefore(wrap,faq);
