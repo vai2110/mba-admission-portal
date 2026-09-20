@@ -47,7 +47,11 @@ jobs:
           def add(name,url,loc=''):
               if not url:return
               n=norm(name); absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
-              key=absurl.rstrip('/').split('/')[-1].replace('.html','')
+              # Canonicalize migrated CollegeDecoded URLs so clean and legacy .html links
+              # produce one search result instead of duplicate entries.
+              if absurl.startswith('https://collegedecoded.in/') and absurl.endswith('.html'):
+                  absurl=absurl[:-5]
+              key=absurl.rstrip('/').split('/')[-1]
               if not loc:
                   for k,v in city_map.items():
                       if k in n or k.replace(' ','-') in key: loc=v; break
