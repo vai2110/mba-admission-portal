@@ -2,7 +2,7 @@
   if(window.__collegeDecodedGuidanceLoaded)return;
   window.__collegeDecodedGuidanceLoaded=true;
 
-  var KEY='collegeDecodedGuidanceShownV1';
+  var KEY='collegeDecodedGuidanceShownV2:'+location.pathname;
   var pageTitle=document.title||'CollegeDecoded';
   var pageUrl=window.location.href;
 
@@ -57,13 +57,13 @@
       if(!force && (shown||sessionStorage.getItem(KEY)==='1'))return;
       shown=true;
       sessionStorage.setItem(KEY,'1');
-      modal.classList.add('cd-open');
+      modal.classList.add('cd-open');\n      modal.style.display='flex';
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
       setTimeout(function(){var first=form.querySelector('input:not([type=hidden])');if(first)first.focus();},50);
     }
     function close(){
-      modal.classList.remove('cd-open');
+      modal.classList.remove('cd-open');\n      modal.style.display='none';
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow='';
       sessionStorage.setItem(KEY,'1');
@@ -85,8 +85,8 @@
       var y=window.scrollY||document.documentElement.scrollTop||0;
       var scrollable=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
       var mobile=window.innerWidth<=640;
-      var px=mobile?750:1000;
-      var depth=mobile?0.45:0.40;
+      var px=mobile?600:1000;
+      var depth=mobile?0.40:0.40;
       if(y>=px || y/scrollable>=depth)show(false);
     }
     window.addEventListener('scroll',autoCheck,{passive:true});
