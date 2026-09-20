@@ -142,10 +142,7 @@ html,body{max-width:100%;overflow-x:hidden}
 </section>
 
 
-<section class="guidance-cta" id="college-guidance">
-  <div><strong>🎓 Confused about your college options?</strong><p>Get personalised guidance based on what you're looking for.</p></div>
-  <button type="button" class="guidance-open" id="guidanceOpen">Get Free Guidance →</button>
-</section>
+
 
 <div class="guidance-modal" id="guidanceModal" aria-hidden="true">
   <div class="guidance-backdrop" data-guidance-close></div>
@@ -264,35 +261,5 @@ html,body{max-width:100%;overflow-x:hidden}
 })();
 </script>
 
-<script>
-(function(){const f=document.getElementById('guidanceForm'),s=document.getElementById('guidanceSuccess');if(!f||!s)return;f.addEventListener('submit',function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}s.style.display='block';f.querySelectorAll('input,select,button').forEach(function(x){x.disabled=true;});s.scrollIntoView({behavior:'smooth',block:'center'});});})();
-</script>
-\n<script>
-(function(){
- const modal=document.getElementById('guidanceModal'),open=document.getElementById('guidanceOpen'),form=document.getElementById('guidanceForm'),success=document.getElementById('guidanceSuccess');
- if(!modal||!open||!form)return;
- let shown=false,lastY=window.scrollY,scrollDistance=0;
- const storageKey='collegeDecodedGuidanceShownV3:iim-ahmedabad-mba-pgp';
- function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');modal.style.display='none';document.body.style.overflow='';sessionStorage.setItem(storageKey,'1');}
- function show(force){if(!force&&(shown||sessionStorage.getItem(storageKey)==='1'))return;shown=true;sessionStorage.setItem(storageKey,'1');modal.classList.add('open');modal.setAttribute('aria-hidden','false');modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
- open.addEventListener('click',function(){show(true);});
- modal.querySelectorAll('[data-guidance-close]').forEach(function(x){x.addEventListener('click',close);});
- document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
- form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}success.style.display='block';sessionStorage.setItem(storageKey,'1');form.querySelectorAll('input,select,button').forEach(function(x){x.disabled=true;});});
- function checkAutoPopup(){
-   if(shown||sessionStorage.getItem(storageKey)==='1')return;
-   const y=window.scrollY||document.documentElement.scrollTop||0;
-   const doc=document.documentElement;
-   const scrollable=Math.max(1,doc.scrollHeight-window.innerHeight);
-   const isMobile=window.innerWidth<=640;
-   const threshold=isMobile?750:1000;
-   const depthLimit=isMobile?0.45:0.40;
-   if(y>=threshold || y/scrollable>=depthLimit)show(false);
- }
- window.addEventListener('scroll',checkAutoPopup,{passive:true});
- window.addEventListener('touchend',checkAutoPopup,{passive:true});
- const popupWatcher=setInterval(function(){
-   if(shown||sessionStorage.getItem(storageKey)==='1'){clearInterval(popupWatcher);return;}
-   checkAutoPopup();
- },250);})();
-</script>\n</body></html>
+<link rel="stylesheet" href="/assets/college-guidance.css"><script src="/assets/college-guidance.js"></script>
+</body></html>
