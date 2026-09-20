@@ -6,7 +6,7 @@
   if(!input||!result)return;
   const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
   const CITY={bangalore:['bengaluru','blr'],bengaluru:['bangalore','blr'],mysore:['mysuru'],mysuru:['mysore'],hyderabad:['hyd'],hyd:['hyderabad'],ghaziabad:['gzb','gaziabad'],gzb:['ghaziabad'],'navi mumbai':['nerul'],nerul:['navi mumbai'],'new delhi':['delhi'],delhi:['new delhi'],calcutta:['kolkata'],kolkata:['calcutta'],gurugram:['gurgaon'],gurgaon:['gurugram'],mumbai:['bombay'],bombay:['mumbai']};
-  const FAMILY=['sibm','siib','siom','sitm','sicsr','sims','scit','ssmc','xime','vjim','sdmimd','siescoms','pumba','ibs','iim','iift','xlri','spjimr','imt','nmims','tapmi','gim','jims','bimtech','soa','kiit','upes'];
+  const GENERIC_QUERIES=new Set(['iim','iit','sib','sibm','siib','siom','sitm','sicsr','sims','scit','ssmc']);
   const tokens=s=>norm(s).split(' ').filter(Boolean);
   const cityOf=q=>{const t=tokens(q);for(const [c,vs] of Object.entries(CITY)){if(t.includes(c)||vs.some(v=>t.includes(v)))return c}return ''};
   const cityOK=(q,c)=>{const qc=cityOf(q);if(!qc)return true;const loc=norm(c.location);return loc.includes(qc)||(CITY[qc]||[]).some(v=>loc.includes(v))};
@@ -21,7 +21,6 @@
     }
     if(n.startsWith('symbiosis institute of business management')){
       if(loc)a.push('sibm '+loc);
-      a.push('sibm pune','sibm nagpur');
     }
     if(n==='institute of management technology'&&loc)a.push('imt '+loc);
     if(n==='great lakes institute of management'&&loc)a.push('great lakes '+loc);
@@ -30,8 +29,8 @@
   const familyOf=q=>{const n=norm(q);if(n==='sib')return 'sibm';return FAMILY.find(f=>n===f||n.startsWith(f+' '))||''};
   const score=(q,c)=>{
     if(!cityOK(q,c))return -1;
-    const n=norm(q),qt=tokens(n),al=aliases(c),fam=familyOf(n);
-    if(fam&&!al.some(a=>a===n||a.startsWith(fam+' ')))return -1;
+    const n=norm(q),qt=tokens(n),al=aliases(c);
+    if(GENERIC_QUERIES.has(n))return -1;
     let best=0;
     for(const a of al){
       if(a===n)best=Math.max(best,10000);
@@ -50,7 +49,7 @@
     const isCollegeOverview=c=>{const u=String(c.url||'').toLowerCase().replace(/\.html(?:$|[?#])/,'');return !!u&&!/(?:-mba(?:-|$)|-pgp(?:-|$)|-pgpx(?:-|$)|-bpgp(?:-|$)|-fabm(?:-|$)|-placements?(?:-|$)|-cutoff(?:-|$)|-admission(?:-|$)|-fees?(?:-|$)|-courses?(?:-|$)|-programme(?:-|$)|-program(?:-|$))/.test(u)}; const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0&&x.c.live&&x.c.url&&isCollegeOverview(x.c)).sort((a,b)=>b.s-a.s);
     if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college matches that name and city. Try the official college name, abbreviation and city.</div></div>';result.style.display='block';return}
     const exact=ranked[0].s>=9500;
-    const isFamilyQuery=!!fam&&n===fam; const items=isFamilyQuery?ranked:ranked.slice(0,1);
+    const items=ranked.slice(0,1);
     result.innerHTML='<div class="search-result-inner"><h3>Matching colleges ('+items.length+')</h3>'+items.map(x=>'<div class="homepage-college-result"><div class="homepage-college-thumb" aria-hidden="true">'+escape((x.c.name||'College').replace(/^.*?XLRI/i,'XLRI').slice(0,12))+'</div><div class="homepage-college-info"><div class="homepage-college-name">'+escape(x.c.name)+'</div><div class="homepage-college-location">'+escape(x.c.location||'')+'</div><a class="homepage-college-cta" href="'+escape(x.c.url)+'">View College Page <span aria-hidden="true">→</span></a></div></div>').join('')+'</div>';
     result.style.display='block';
   };
