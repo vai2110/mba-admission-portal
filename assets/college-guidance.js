@@ -47,7 +47,8 @@ function init(){
   var form=document.getElementById('cdGuidanceForm');
   form.elements.source_page.value=window.location.href;
   var shown=false;
-  var key='CD_GUIDANCE_SHOWN:'+window.location.pathname;
+  var scrollHits=0;
+  var key='CD_GUIDANCE_SHOWN_V2:'+window.location.pathname;
 
   function wasShown(){try{return sessionStorage.getItem(key)==='1';}catch(e){return false;}}
   function markShown(){try{sessionStorage.setItem(key,'1');}catch(e){}}
@@ -79,17 +80,20 @@ function init(){
     modal.querySelector('.cd-guidance-success').style.display='block';
   });
 
+  var lastY=window.pageYOffset||document.documentElement.scrollTop||0;
   function check(){
     if(shown||wasShown())return;
     var y=window.pageYOffset||document.documentElement.scrollTop||0;
+    var delta=Math.abs(y-lastY);
+    lastY=y;
+    if(delta>=140)scrollHits++;
     var max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
     var mobile=window.innerWidth<=640;
-    if(y>=(mobile?750:1000)||(y/max)>=(mobile?0.45:0.40))show(false);
+    var depth=mobile?0.45:0.40;
+    if(scrollHits>=3 || (y/max)>=depth)show(false);
   }
   window.addEventListener('scroll',check,{passive:true});
-  window.addEventListener('touchmove',check,{passive:true});
   window.addEventListener('touchend',check,{passive:true});
-  setTimeout(check,1000);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
