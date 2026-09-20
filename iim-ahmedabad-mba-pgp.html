@@ -274,8 +274,8 @@ html,body{max-width:100%;overflow-x:hidden}
  let shown=false,scrollHits=0,lastY=window.scrollY;
  const storageKey='collegeDecodedGuidanceShown:iim-ahmedabad-mba-pgp';
  function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');modal.style.display='none';document.body.style.overflow='';sessionStorage.setItem(storageKey,'1');}
- function show(){if(shown||sessionStorage.getItem(storageKey)==='1')return;shown=true;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
- open.addEventListener('click',show);
+ function show(force){if(!force&&(shown||sessionStorage.getItem(storageKey)==='1'))return;shown=true;sessionStorage.setItem(storageKey,'1');modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
+ open.addEventListener('click',function(){show(true);});
  modal.querySelectorAll('[data-guidance-close]').forEach(function(x){x.addEventListener('click',close);});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
  form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}success.style.display='block';form.querySelectorAll('input,select,button').forEach(function(x){x.disabled=true;});});
