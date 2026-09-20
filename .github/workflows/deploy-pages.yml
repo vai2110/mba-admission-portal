@@ -33,7 +33,7 @@ jobs:
       - name: Audit cutoff page links
         run: python3 scripts/audit_cutoff_page_links.py
 
-      - name: Build homepage search index from Management live links only
+      - name: Build homepage search index
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -41,22 +41,15 @@ jobs:
           management=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
           mba=json.loads(Path('mba-colleges-data.json').read_text(encoding='utf-8'))
           city_map={'bangalore':'Bengaluru','bengaluru':'Bengaluru','mysore':'Mysore','mysuru':'Mysore','hyderabad':'Hyderabad','ghaziabad':'Ghaziabad','new delhi':'New Delhi','delhi':'Delhi','calcutta':'Kolkata','kolkata':'Kolkata','gurgaon':'Gurgaon','gurugram':'Gurugram','mumbai':'Mumbai','bombay':'Mumbai','pune':'Pune','nagpur':'Nagpur','chennai':'Chennai','dehradun':'Dehradun','noida':'Noida','lucknow':'Lucknow','ahmedabad':'Ahmedabad','indore':'Indore','raipur':'Raipur','ranchi':'Ranchi','rohtak':'Rohtak','udaipur':'Udaipur','kashipur':'Kashipur','jamshedpur':'Jamshedpur','roorkee':'Roorkee','kanpur':'Kanpur','dhanbad':'Dhanbad','bodh gaya':'Bodh Gaya','sambalpur':'Sambalpur','jammu':'Jammu','shillong':'Shillong','sirmaur':'Sirmaur','amritsar':'Amritsar','tiruchirappalli':'Tiruchirappalli','trichy':'Tiruchirappalli','manipal':'Manipal','goa':'Goa','bhubaneswar':'Bhubaneswar','patiala':'Patiala','anand':'Anand','varanasi':'Varanasi','aligarh':'Aligarh','jaipur':'Jaipur','madurai':'Madurai','kochi':'Kochi','gandhinagar':'Gandhinagar','coimbatore':'Coimbatore','gwalior':'Gwalior','jodhpur':'Jodhpur'}
-          manual={'indian institute of management':'iim','indian institute of technology':'iit','indian institute of foreign trade':'iift','management development institute':'mdi','xlri - xavier school of management':'xlri','s. p. jain institute of management and research':'spjimr','symbiosis institute of business management':'sibm','svkm s narsee monjee institute of management studies':'nmims','institute of management technology':'imt','great lakes institute of management':'great lakes','t. a. pai management institute manipal':'tapmi','goa institute of management':'gim','birla institute of management technology':'bimtech','jagan institute of management studies':'jims','lovely professional university':'lpu','chandigarh university':'cu','mica':'mica','chitkara university':'chitkara','upes':'upes','xime bangalore':'xime','vjim hyderabad':'vjim','ipe hyderabad':'ipe','ibs hyderabad':'ibs','sdmimd mysore':'sdmimd','pumba':'pumba','asia pacific institute of management new delhi':'apim'}
+          manual={'indian institute of management':'iim','indian institute of technology':'iit','indian institute of foreign trade':'iift','management development institute':'mdi','xlri - xavier school of management':'xlri','s. p. jain institute of management and research':'spjimr','symbiosis institute of business management':'sibm','svkm s narsee monjee institute of management studies':'nmims','institute of management technology':'imt','great lakes institute of management':'great lakes','t. a. pai management institute manipal':'tapmi','goa institute of management':'gim','birla institute of management technology':'bimtech','jagan institute of management studies':'jims','lovely professional university':'lpu','chandigarh university':'cu','mica':'mica','chitkara university':'chitkara','upes':'upes'}
           def norm(s): return re.sub(r'\\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
           colleges={}
           def add(name,url,loc=''):
               if not url:return
-              # Homepage search must point only to the live CollegeDecoded site.
-              # Legacy GitHub Pages/CMS URLs are intentionally excluded until their
-              # college page is migrated and added to the current site.
-              if url.startswith('http') and not url.startswith('https://collegedecoded.in/'):
-                  return
-              n=norm(name); absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
-              # Canonicalize migrated CollegeDecoded URLs so clean and legacy .html links
-              # produce one search result instead of duplicate entries.
-              if absurl.startswith('https://collegedecoded.in/') and absurl.endswith('.html'):
-                  absurl=absurl[:-5]
-              key=absurl.rstrip('/').split('/')[-1]
+              if url.startswith('http') and not url.startswith('https://collegedecoded.in/'): return
+              absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
+              if absurl.startswith('https://collegedecoded.in/') and absurl.endswith('.html'): absurl=absurl[:-5]
+              n=norm(name); key=absurl.rstrip('/').split('/')[-1]
               if not loc:
                   for k,v in city_map.items():
                       if k in n or k.replace(' ','-') in key: loc=v; break
@@ -77,37 +70,48 @@ jobs:
                   if n in manual: aliases.add(norm(manual[n]+' '+loc))
               colleges[absurl]={'name':name,'location':loc,'aliases':sorted(a for a in aliases if len(a.replace(' ',''))>=3),'url':absurl,'live':True}
           for p in management.get('colleges',[]): add(p[0],p[1])
-          # Only index college overview pages. Programme, placement, cutoff,
-          # admission and other child pages must never appear as homepage college results.
           child=re.compile(r'(?:-mba(?:-|$)|-pgp(?:-|$)|-pgpx(?:-|$)|-bpgp(?:-|$)|-fabm(?:-|$)|-placements?(?:-|$)|-cutoff(?:-|$)|-admission(?:-|$)|-fees?(?:-|$)|-courses?(?:-|$)|-programme(?:-|$)|-program(?:-|$))',re.I)
           for c in mba:
               url=c.get('url','')
-              if c.get('status')=='ready' and url and not child.search(re.sub(r'\\.html
-          result=sorted(colleges.values(),key=lambda x:x['name'].lower())
-          Path('homepage-search-index.json').write_text(json.dumps({'source':'Union of all live management links and all ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-          print(f'Built homepage search index with {len(result)} live college pages')
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
-,'',url)):
+              if c.get('status')=='ready' and url and not child.search(re.sub(r'\\.html$','',url,re.I)):
                   add(c.get('name',''),url,c.get('location',''))
           result=sorted(colleges.values(),key=lambda x:x['name'].lower())
+          for item in result: item['aliases']=[a for a in item['aliases'] if a!='overview']
           Path('homepage-search-index.json').write_text(json.dumps({'source':'Union of all live management links and all ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
           print(f'Built homepage search index with {len(result)} live college pages')
+          PY
+
+      - name: Add CollegeDecoded guidance gate and enquiry form to live pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          marker='assets/college-guidance.js'
+          css='assets/college-guidance.css'
+          js='assets/college-guidance.js'
+          for p in Path('.').rglob('*.html'):
+              if p.name.lower() in {'404.html','index.html'}: continue
+              text=p.read_text(encoding='utf-8',errors='ignore')
+              if 'https://collegedecoded.in/' not in text: continue
+              if marker in text: continue
+              block=f'\n<link rel="stylesheet" href="/{css}"><script src="/{js}"></script>\n'
+              if re.search(r'</body>\\s*</html>',text,re.I):
+                  text=re.sub(r'</body>\\s*</html>',block+'</body>\n</html>',text,count=1,flags=re.I)
+              elif re.search(r'</body>',text,re.I):
+                  text=re.sub(r'</body>',block+'</body>',text,count=1,flags=re.I)
+              else:
+                  text+=block
+              p.write_text(text,encoding='utf-8')
+          PY
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
