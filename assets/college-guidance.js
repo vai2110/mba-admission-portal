@@ -69,7 +69,37 @@ function init(){
     document.body.appendChild(mobile);
     routeOnPageLinks(mobile,mobile.querySelector('button'),menu);
   }
-  setupOnPage();
+  function ensureGuidanceModal(){
+    var existing=document.getElementById('cdGuidanceModal');
+    if(existing)return existing;
+    var modal=document.createElement('div');
+    modal.id='cdGuidanceModal';
+    modal.className='cd-guidance-modal';
+    modal.setAttribute('aria-hidden','true');
+    modal.innerHTML='<div class="cd-guidance-backdrop"></div><div class="cd-guidance-dialog" role="dialog" aria-modal="true" aria-labelledby="cdGuidanceTitle"><button type="button" class="cd-guidance-close" aria-label="Close">×</button><div class="cd-guidance-head"><div><h2 id="cdGuidanceTitle">🎓 Confused about your college options?</h2><p>Tell us what you are looking for. We will help you explore your options.</p></div><div class="cd-guidance-badge">FREE GUIDANCE</div></div><form class="cd-guidance-form" id="cdGuidanceForm"><div class="cd-guidance-field cd-full"><label>What are you looking for?</label><div class="cd-choice-row"><label class="cd-choice"><input type="radio" name="interest" value="MBA / PGDM" required><span>MBA / PGDM</span></label><label class="cd-choice"><input type="radio" name="interest" value="Engineering"><span>Engineering</span></label><label class="cd-choice"><input type="radio" name="interest" value="Medical"><span>Medical</span></label><label class="cd-choice"><input type="radio" name="interest" value="Other"><span>Other</span></label></div></div><div class="cd-guidance-field"><label>Exam &amp; Score <em>(optional)</em></label><input name="score" type="text" placeholder="e.g. CAT – 95 percentile"></div><div class="cd-guidance-field"><label>What do you need help with?</label><select name="help" required><option value="">Select one</option><option>Find colleges</option><option>Compare colleges</option><option>Admission guidance</option><option>Fees & placements</option><option>Not sure</option></select></div><div class="cd-guidance-field"><label>WhatsApp Number</label><input name="whatsapp" type="tel" inputmode="numeric" placeholder="+91 98XXXXXXXX" pattern="[0-9+() -]{10,16}" required></div><div class="cd-guidance-field"><label>Your Name</label><input name="name" type="text" placeholder="Your name" required></div><input type="hidden" name="source_page"><button class="cd-guidance-submit" type="submit">Get Free Guidance →</button></form><div class="cd-guidance-note">We only use these details to respond to your guidance request. No spam.</div><div class="cd-guidance-success">Thanks! Your guidance request has been recorded for testing.</div></div>';
+    document.body.appendChild(modal);
+    var form=modal.querySelector('#cdGuidanceForm');
+    form.elements.source_page.value=window.location.href;
+    function openModal(){modal.classList.add('cd-open');modal.style.display='flex';modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+    function closeModal(){modal.classList.remove('cd-open');modal.style.display='none';modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+    modal.querySelector('.cd-guidance-close').addEventListener('click',closeModal);
+    modal.querySelector('.cd-guidance-backdrop').addEventListener('click',closeModal);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('cd-open'))closeModal();});
+    form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}modal.querySelector('.cd-guidance-success').style.display='block';});
+    modal.__open= openModal;
+    return modal;
+  }
+  function openGuidanceModal(){var m=ensureGuidanceModal();if(m&&m.__open)m.__open();}
+  function addGuidanceBeforeFaq(){
+    var faq=document.getElementById('faq');
+    if(!faq||document.getElementById('cdGuidanceBeforeFaq'))return;
+    var wrap=document.createElement('section');wrap.id='cdGuidanceBeforeFaq';wrap.className='cd-guidance-cta cd-guidance-mid-cta';
+    wrap.innerHTML='<div><strong>🎓 Not sure which college is right for you?</strong><p>Tell us what you\'re looking for. We\'ll help you explore your options.</p></div><button type="button" class="cd-guidance-open">Get Free College Guidance →</button>';
+    faq.parentNode.insertBefore(wrap,faq);
+    wrap.querySelector('.cd-guidance-open').addEventListener('click',openGuidanceModal);
+  }
+  ensureGuidanceModal();
+  addGuidanceBeforeFaq();
 
   var meaningfulScrolls=0,scrollDistance=0,lastY=window.pageYOffset||document.documentElement.scrollTop||0;
   var gated=false;
@@ -131,47 +161,9 @@ function init(){
       node=node.nextElementSibling;
     }
 
-    var modal=document.createElement('div');
-    modal.id='cdGuidanceModal';
-    modal.className='cd-guidance-modal';
-    modal.setAttribute('aria-hidden','true');
-    modal.innerHTML=
-      '<div class="cd-guidance-backdrop"></div>'+
-      '<div class="cd-guidance-dialog" role="dialog" aria-modal="true" aria-labelledby="cdGuidanceTitle">'+
-      '<button type="button" class="cd-guidance-close" aria-label="Close">×</button>'+
-      '<div class="cd-guidance-head"><div><h2 id="cdGuidanceTitle">🎓 Confused about your college options?</h2><p>Tell us what you are looking for. We will help you explore your options.</p></div><div class="cd-guidance-badge">FREE GUIDANCE</div></div>'+
-      '<form class="cd-guidance-form" id="cdGuidanceForm">'+
-      '<div class="cd-guidance-field cd-full"><label>What are you looking for?</label><div class="cd-choice-row">'+
-      '<label class="cd-choice"><input type="radio" name="interest" value="MBA / PGDM" required><span>MBA / PGDM</span></label>'+
-      '<label class="cd-choice"><input type="radio" name="interest" value="Engineering"><span>Engineering</span></label>'+
-      '<label class="cd-choice"><input type="radio" name="interest" value="Medical"><span>Medical</span></label>'+
-      '<label class="cd-choice"><input type="radio" name="interest" value="Other"><span>Other</span></label></div></div>'+
-      '<div class="cd-guidance-field"><label>Exam &amp; Score <em>(optional)</em></label><input name="score" type="text" placeholder="e.g. CAT – 95 percentile"></div>'+
-      '<div class="cd-guidance-field"><label>What do you need help with?</label><select name="help" required><option value="">Select one</option><option>Find colleges</option><option>Compare colleges</option><option>Admission guidance</option><option>Fees & placements</option><option>Not sure</option></select></div>'+
-      '<div class="cd-guidance-field"><label>WhatsApp Number</label><input name="whatsapp" type="tel" inputmode="numeric" placeholder="+91 98XXXXXXXX" pattern="[0-9+() -]{10,16}" required></div>'+
-      '<div class="cd-guidance-field"><label>Your Name</label><input name="name" type="text" placeholder="Your name" required></div>'+
-      '<input type="hidden" name="source_page">'+
-      '<button class="cd-guidance-submit" type="submit">Get Free Guidance →</button></form>'+
-      '<div class="cd-guidance-note">We only use these details to respond to your guidance request. No spam.</div>'+
-      '<div class="cd-guidance-success">Thanks! Your guidance request has been recorded for testing.</div></div>';
+    var modal=ensureGuidanceModal();
 
-    document.body.appendChild(modal);
-    var form=document.getElementById('cdGuidanceForm');
-    form.elements.source_page.value=window.location.href;
-
-    function openModal(){
-      modal.classList.add('cd-open');
-      modal.style.display='flex';
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    }
-    function closeModal(){
-      modal.classList.remove('cd-open');
-      modal.style.display='none';
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-    }
-
+    function openModal(){if(modal&&modal.__open)modal.__open();}
     gate.querySelector('.cd-gate-guidance').addEventListener('click',openModal);
     gate.querySelector('.cd-gate-continue').addEventListener('click',function(){
       hidden.forEach(function(el){
@@ -206,17 +198,7 @@ function init(){
       markHandled();
     });
 
-    modal.querySelector('.cd-guidance-close').addEventListener('click',closeModal);
-    modal.querySelector('.cd-guidance-backdrop').addEventListener('click',closeModal);
-    document.addEventListener('keydown',function(e){
-      if(e.key==='Escape'&&modal.classList.contains('cd-open'))closeModal();
-    });
 
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      if(!form.checkValidity()){form.reportValidity();return;}
-      modal.querySelector('.cd-guidance-success').style.display='block';
-    });
     gated=true;
   }
 
