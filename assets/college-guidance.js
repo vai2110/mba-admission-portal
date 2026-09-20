@@ -17,7 +17,7 @@ function init(){
   if(sections.length<6){
     sections=Array.prototype.slice.call(main.querySelectorAll(':scope > section, :scope > .section, :scope > .section-card'));
   }
-  if(sections.length<6)return;
+  var canGate=sections.length>=6;
 
   function closeOnPage(holder,btn,menu){
     if(menu)menu.classList.remove('open');
