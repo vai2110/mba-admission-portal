@@ -273,7 +273,7 @@ html,body{max-width:100%;overflow-x:hidden}
  if(!modal||!open||!form)return;
  let shown=false,scrollHits=0,lastY=window.scrollY;
  const storageKey='collegeDecodedGuidanceShown:iim-ahmedabad-mba-pgp';
- function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';sessionStorage.setItem(storageKey,'1');}
+ function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');modal.style.display='none';document.body.style.overflow='';sessionStorage.setItem(storageKey,'1');}
  function show(){if(shown||sessionStorage.getItem(storageKey)==='1')return;shown=true;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modal.style.display='flex';setTimeout(function(){const first=modal.querySelector('input');if(first)first.focus();},50);}
  open.addEventListener('click',show);
  modal.querySelectorAll('[data-guidance-close]').forEach(function(x){x.addEventListener('click',close);});
