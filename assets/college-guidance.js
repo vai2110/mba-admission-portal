@@ -112,7 +112,7 @@ function init(){
 
   var meaningfulScrolls=0,scrollDistance=0,lastY=window.pageYOffset||document.documentElement.scrollTop||0;
   var gated=false;
-  var key='CD_GUIDANCE_GATE_V2:'+window.location.pathname;
+  var key='CD_GUIDANCE_GATE_V3:'+window.location.pathname;
 
   function wasHandled(){
     try{return sessionStorage.getItem(key)==='1';}catch(e){return false;}
@@ -217,7 +217,7 @@ function init(){
     var delta=Math.abs(y-lastY);
     lastY=y;
     if(delta>0){scrollDistance+=delta; meaningfulScrolls=Math.floor(scrollDistance/500);}
-    if(meaningfulScrolls>=5)createGate();
+    if(meaningfulScrolls>=3)createGate();
   }
 
   window.addEventListener('scroll',checkScroll,{passive:true});
