@@ -92,7 +92,6 @@ jobs:
           for p in Path('.').rglob('*.html'):
               if p.name.lower() in {'404.html','index.html'}: continue
               text=p.read_text(encoding='utf-8',errors='ignore')
-              if 'https://collegedecoded.in/' not in text: continue
               if marker in text: continue
               block=f'\n<link rel="stylesheet" href="/{css}"><script src="/{js}"></script>\n'
               if re.search(r'</body>\\s*</html>',text,re.I):
