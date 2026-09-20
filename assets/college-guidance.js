@@ -10,11 +10,12 @@ function init(){
   cta.className='cd-guidance-cta';
   cta.innerHTML='<div><strong>🎓 Confused about your college options?</strong><p>Get personalised guidance based on what you are looking for.</p></div><button type="button" class="cd-guidance-open">Get Free Guidance →</button>';
 
-  var main=document.querySelector('main');
-  if(main){
-    var firstSection=main.querySelector('section');
-    if(firstSection&&firstSection.nextElementSibling) firstSection.nextElementSibling.insertAdjacentElement('beforebegin',cta);
-    else main.appendChild(cta);
+  var container=document.querySelector('main .content')||document.querySelector('main');
+  if(container){
+    var sections=container.querySelectorAll(':scope > section');
+    if(sections.length>=3) sections[2].insertAdjacentElement('afterend',cta);
+    else if(sections.length>=1) sections[sections.length-1].insertAdjacentElement('afterend',cta);
+    else container.appendChild(cta);
   }else{
     document.body.appendChild(cta);
   }
