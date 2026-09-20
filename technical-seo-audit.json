@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T06:38:41.831105+00:00",
+  "generated_at": "2026-09-20T06:39:38.103893+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 630,
   "pages_with_issues": 630,
@@ -9,8 +9,8 @@
     "description_count": 4,
     "description_length": 201,
     "duplicate_title": 4,
-    "h1_count": 2,
-    "jsonld": 12,
+    "h1_count": 5,
+    "jsonld": 15,
     "lang": 1,
     "og_description": 13,
     "og_title": 13,
@@ -7385,8 +7385,8 @@
       "canonical": "https://collegedecoded.in/iim-ahmedabad-mba-bpgp",
       "canonical_count": 1,
       "canonical_self": false,
-      "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA-BPGP 2027: Eligibility, Fees, Format & Admission",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7397,7 +7397,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 1,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -7406,7 +7406,9 @@
       "issues": [
         "title_length",
         "description_length",
-        "canonical"
+        "canonical",
+        "h1_count",
+        "jsonld"
       ]
     },
     {
@@ -7455,8 +7457,8 @@
       "canonical": "https://collegedecoded.in/iim-ahmedabad-mba-pgp",
       "canonical_count": 1,
       "canonical_self": false,
-      "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA (PGP) 2027–29: Eligibility, CAT Cutoff, Fees & Admission",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7467,7 +7469,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 1,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -7475,7 +7477,9 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical"
+        "canonical",
+        "h1_count",
+        "jsonld"
       ]
     },
     {
@@ -7489,8 +7493,8 @@
       "canonical": "https://collegedecoded.in/iim-ahmedabad-mba-pgpx",
       "canonical_count": 1,
       "canonical_self": false,
-      "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA-PGPX 2027–28: Eligibility, GMAT/GRE, Fees & Admission",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7501,7 +7505,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 1,
+      "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -7509,7 +7513,9 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical"
+        "canonical",
+        "h1_count",
+        "jsonld"
       ]
     },
     {
