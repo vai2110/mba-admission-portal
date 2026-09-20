@@ -121,6 +121,29 @@ function init(){
       });
       gate.remove();
       closeModal();
+
+      /* After the reader unlocks the article, show one softer guidance CTA before FAQs. */
+      var faqTarget=null;
+      var candidates=Array.prototype.slice.call(main.querySelectorAll(':scope > section'));
+      for(var k=0;k<candidates.length;k++){
+        var id=(candidates[k].id||'').toLowerCase();
+        var heading=candidates[k].querySelector('h2,h3');
+        var title=heading?(heading.textContent||'').toLowerCase():'';
+        if(id.indexOf('faq')!==-1 || title.indexOf('faq')!==-1 || title.indexOf('frequently asked')!==-1){
+          faqTarget=candidates[k];
+          break;
+        }
+      }
+
+      if(faqTarget && !document.getElementById('cdGuidanceMidCta')){
+        var cta=document.createElement('section');
+        cta.id='cdGuidanceMidCta';
+        cta.className='cd-guidance-cta cd-guidance-mid-cta';
+        cta.innerHTML='<div><strong>🎓 Still confused about your college options?</strong><p>Get personalised guidance based on your course, exam score and goals.</p></div><button type="button" class="cd-guidance-open">Get Free Guidance →</button>';
+        faqTarget.parentNode.insertBefore(cta,faqTarget);
+        cta.querySelector('.cd-guidance-open').addEventListener('click',openModal);
+      }
+
       markHandled();
     });
 
