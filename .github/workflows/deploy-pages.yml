@@ -46,6 +46,11 @@ jobs:
           colleges={}
           def add(name,url,loc=''):
               if not url:return
+              # Homepage search must point only to the live CollegeDecoded site.
+              # Legacy GitHub Pages/CMS URLs are intentionally excluded until their
+              # college page is migrated and added to the current site.
+              if url.startswith('http') and not url.startswith('https://collegedecoded.in/'):
+                  return
               n=norm(name); absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
               # Canonicalize migrated CollegeDecoded URLs so clean and legacy .html links
               # produce one search result instead of duplicate entries.
