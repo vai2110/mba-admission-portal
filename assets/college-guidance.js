@@ -135,9 +135,7 @@ function init(){
       if(!form.checkValidity()){form.reportValidity();return;}
       modal.querySelector('.cd-guidance-success').style.display='block';
     });
-
     gated=true;
-    markHandled();
   }
 
   function checkScroll(){
