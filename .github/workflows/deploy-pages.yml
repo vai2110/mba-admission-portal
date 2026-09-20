@@ -77,8 +77,27 @@ jobs:
                   if n in manual: aliases.add(norm(manual[n]+' '+loc))
               colleges[absurl]={'name':name,'location':loc,'aliases':sorted(a for a in aliases if len(a.replace(' ',''))>=3),'url':absurl,'live':True}
           for p in management.get('colleges',[]): add(p[0],p[1])
+          # Only index college overview pages. Programme, placement, cutoff,
+          # admission and other child pages must never appear as homepage college results.
+          child=re.compile(r'(?:-mba(?:-|$)|-pgp(?:-|$)|-pgpx(?:-|$)|-bpgp(?:-|$)|-fabm(?:-|$)|-placements?(?:-|$)|-cutoff(?:-|$)|-admission(?:-|$)|-fees?(?:-|$)|-courses?(?:-|$)|-programme(?:-|$)|-program(?:-|$))',re.I)
           for c in mba:
-              if c.get('status')=='ready' and c.get('url'): add(c.get('name',''),c.get('url',''),c.get('location',''))
+              url=c.get('url','')
+              if c.get('status')=='ready' and url and not child.search(re.sub(r'\\.html
+          result=sorted(colleges.values(),key=lambda x:x['name'].lower())
+          Path('homepage-search-index.json').write_text(json.dumps({'source':'Union of all live management links and all ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+          print(f'Built homepage search index with {len(result)} live college pages')
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+,'',url)):
+                  add(c.get('name',''),url,c.get('location',''))
           result=sorted(colleges.values(),key=lambda x:x['name'].lower())
           Path('homepage-search-index.json').write_text(json.dumps({'source':'Union of all live management links and all ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
           print(f'Built homepage search index with {len(result)} live college pages')
