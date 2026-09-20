@@ -179,7 +179,9 @@
     const style=document.createElement('style');style.id='homepage-search-cta-style';style.textContent='.homepage-college-result{padding:14px 0;border-top:1px solid rgba(15,23,42,.08)}.homepage-college-result:first-of-type{border-top:0}.homepage-college-name{font-weight:700;font-size:16px;line-height:1.35}.homepage-college-location{margin-top:3px;font-size:13px;opacity:.72}.homepage-college-cta{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 14px;border-radius:8px;text-decoration:none;font-weight:700;line-height:1;background:#0f62fe;color:#fff}.homepage-college-cta:hover{opacity:.92}';document.head.appendChild(style);
   }
   window.searchContent=run;
-  input.addEventListener('input',run);
+  // This is the authoritative search handler. Stop the older homepage search listener
+  // from rendering a second result set with legacy .html URLs.
+  input.addEventListener('input',e=>{e.stopImmediatePropagation();run()},true);
   input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();run()}},true);
 })();
 </script>
