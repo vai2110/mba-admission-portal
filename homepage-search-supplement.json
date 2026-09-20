@@ -1,0 +1,45 @@
+{
+  "source": "College List sheet · Management rows with Homepage Link · supplemental rows",
+  "colleges": [
+    {
+      "name": "SIIB Pune",
+      "location": "Pune, Maharashtra",
+      "aliases": [
+        "siib pune",
+        "siib"
+      ],
+      "url": "https://collegedecoded.in/siib-pune",
+      "live": true
+    },
+    {
+      "name": "SIOM Nashik",
+      "location": "Nashik, Maharashtra",
+      "aliases": [
+        "siom nashik",
+        "siom"
+      ],
+      "url": "https://collegedecoded.in/siom-nashik",
+      "live": true
+    },
+    {
+      "name": "SITM Pune",
+      "location": "Pune, Maharashtra",
+      "aliases": [
+        "sitm pune",
+        "sitm"
+      ],
+      "url": "https://collegedecoded.in/sitm-pune",
+      "live": true
+    },
+    {
+      "name": "SCMHRD Pune",
+      "location": "Pune, Maharashtra",
+      "aliases": [
+        "scmhrd pune",
+        "scmhrd"
+      ],
+      "url": "https://collegedecoded.in/scmhrd-pune",
+      "live": true
+    }
+  ]
+}
