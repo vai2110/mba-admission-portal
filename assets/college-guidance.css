@@ -10,3 +10,21 @@
 
 /* Sticky On This Page + gate-aware navigation */
 @media(max-width:720px){.cd-onpage-fixed{position:fixed!important;top:56px!important;right:10px!important;left:auto!important;z-index:5900!important;margin:0!important;width:auto!important;transform:none!important}.cd-onpage-fixed .onmenu{right:0!important}.cd-onpage-fixed.mobile-on-page{background:transparent!important;padding:0!important}.cd-onpage-fixed.mobile-on-page details{width:min(150px,calc(100vw - 20px));margin:0 0 0 auto;box-shadow:0 5px 18px rgba(15,40,80,.14)}}
+
+/* Universal mobile On This Page navigation for IIM Ahmedabad pages */
+.cd-mobile-onpage{display:none}
+@media(max-width:640px){
+  #ontop,.ontop{position:fixed!important;top:58px!important;right:10px!important;left:auto!important;width:128px!important;height:auto!important;margin:0!important;transform:none!important;z-index:5900!important;display:block!important;pointer-events:none!important}
+  #ontop .onbtn,.ontop .onbtn{width:128px!important;pointer-events:auto!important}
+  #ontop .onmenu,.ontop .onmenu{right:0!important;top:38px!important;width:min(225px,calc(100vw - 20px))!important;max-height:65vh!important;pointer-events:auto!important}
+  .cd-mobile-onpage{display:block;position:fixed;top:58px;right:10px;width:128px;z-index:5900;pointer-events:none}
+  .cd-mobile-onpage-btn{width:128px;border:1px solid #cbd8ea;border-radius:0 0 0 8px;background:#fff;color:#092653;padding:8px 7px;font-size:9.5px;font-weight:800;line-height:1.2;box-shadow:0 5px 18px rgba(15,40,80,.12);cursor:pointer;pointer-events:auto;white-space:nowrap}
+  .cd-mobile-onpage-menu{display:none;position:absolute;right:0;top:38px;width:min(225px,calc(100vw - 20px));max-height:65vh;overflow:auto;background:#fff;border:1px solid #dce4ee;border-radius:8px;box-shadow:0 8px 25px rgba(15,40,80,.14);pointer-events:auto}
+  .cd-mobile-onpage-menu.open{display:block}
+  .cd-mobile-onpage-menu a{display:block;padding:9px 10px;font-size:10px;font-weight:700;line-height:1.35;color:#334155;border-bottom:1px solid #edf1f5;background:#fff}
+}
+@media(max-width:380px){
+  #ontop,.ontop,.cd-mobile-onpage{right:8px!important;width:122px!important}
+  #ontop .onbtn,.ontop .onbtn,.cd-mobile-onpage-btn{width:122px!important;font-size:9px!important}
+  #ontop .onmenu,.ontop .onmenu,.cd-mobile-onpage-menu{width:min(215px,calc(100vw - 16px))!important}
+}
