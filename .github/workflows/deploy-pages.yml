@@ -87,8 +87,8 @@ jobs:
           from pathlib import Path
           import json,re
           marker='assets/college-guidance.js'
-          css='assets/college-guidance.css'
-          js='assets/college-guidance.js'
+          css='assets/college-guidance.css?v=3'
+          js='assets/college-guidance.js?v=3'
           data=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
           parents=[]
           for name,url in data.get('colleges',[]):
@@ -119,7 +119,11 @@ jobs:
                   skipped+=1
                   continue
               matched+=1
-              if marker in text: continue
+              if marker in text:
+                  text=re.sub(r'href="/assets/college-guidance\.css(?:\?[^" ]*)?"', 'href="/'+css+'"', text)
+                  text=re.sub(r'src="/assets/college-guidance\.js(?:\?[^" ]*)?"', 'src="/'+js+'"', text)
+                  p.write_text(text,encoding='utf-8')
+                  continue
               block=f'\n<link rel="stylesheet" href="/{css}"><script src="/{js}"></script>\n'
               if re.search(r'</body>\s*</html>',text,re.I):
                   text=re.sub(r'</body>\s*</html>',block+'</body>\n</html>',text,count=1,flags=re.I)
