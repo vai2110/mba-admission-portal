@@ -49,13 +49,39 @@ const logoDomain=c=>{try{const s=new URL(c.url).pathname.split('/').filter(Boole
 const logoFallback=c=>{const n=norm(c.name||'College');if(n.startsWith('indian institute of management'))return 'IIM';if(n.startsWith('indian institute of technology'))return 'IIT';if(n.startsWith('symbiosis institute of business management'))return 'SIBM';if(n.includes('xavier labour relations institute')||n.startsWith('xlri'))return 'XLRI';return (c.name||'College').split(' ').filter(Boolean).slice(0,3).map(w=>w[0]).join('').toUpperCase()};
   let indexPromise;
   const getIndex=()=>indexPromise||(indexPromise=fetch('./homepage-search-index.json?exactfix=20260914',{cache:'no-store'}).then(r=>r.json()));
+  const acronymOf=name=>norm(name).split(' ').filter(w=>w&&/^[a-z]/.test(w)).map(w=>w[0]).join('');
+  const slugOf=url=>{try{return tokens(new URL(url).pathname.replace(/\\.html$/,'').replace(/[-_]+/g,' ')).join(' ')}catch(e){return ''}};
+  const searchAliases=c=>[...new Set([
+    ...aliases(c),
+    acronymOf(c.name),
+    acronymOf(String(c.name||'').replace(/\\([^)]*\\)/g,'')),
+    slugOf(c.url),
+    ...String(c.url||'').split('/').pop().replace(/\\.html$/,'').split(/[-_]+/).filter(Boolean)
+  ].map(norm).filter(Boolean))];
   const show=(q,data)=>{
-    const isCollegeOverview=c=>{const u=String(c.url||'').toLowerCase().replace(/\.html(?:$|[?#])/,'');return !!u&&!/(?:-mba(?:-|$)|-pgp(?:-|$)|-pgpx(?:-|$)|-bpgp(?:-|$)|-fabm(?:-|$)|-placements?(?:-|$)|-cutoff(?:-|$)|-admission(?:-|$)|-fees?(?:-|$)|-courses?(?:-|$)|-programme(?:-|$)|-program(?:-|$))/.test(u)}; const ranked=(data.colleges||[]).map(c=>({c,s:score(q,c)})).filter(x=>x.s>0&&x.c.live&&x.c.url&&isCollegeOverview(x.c)).sort((a,b)=>b.s-a.s);
-    if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college matches that name and city. Try the official college name, abbreviation and city.</div></div>';result.style.display='block';return}
-    const exact=ranked[0].s>=9500;
+    const ranked=(data.colleges||[]).map(c=>{
+      if(!c||c.live!==true||!c.url)return null;
+      const n=norm(q), qt=tokens(n), al=searchAliases(c), loc=norm(c.location);
+      if(!cityOK(q,c))return null;
+      let best=0;
+      for(const a of al){
+        if(a===n)best=Math.max(best,10000);
+        else if(a.replace(/ /g,'')===n.replace(/ /g,''))best=Math.max(best,9500);
+        else if(a.startsWith(n+' ')||n.startsWith(a+' '))best=Math.max(best,7000);
+        else {
+          const at=tokens(a); const covered=qt.filter(t=>at.includes(t)).length;
+          if(qt.length&&covered===qt.length)best=Math.max(best,6000+covered*100);
+        }
+      }
+      const hay=norm([c.name,c.location,...(c.aliases||[]),slugOf(c.url),acronymOf(c.name)].join(' '));
+      const covered=qt.filter(t=>hay.split(' ').includes(t)).length;
+      if(qt.length&&covered===qt.length)best=Math.max(best,4000+covered*100);
+      return best>0?{c,s:best}:null;
+    }).filter(Boolean).sort((a,b)=>b.s-a.s);
+    if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college matches that search. Try the college name, abbreviation or city.</div></div>';result.style.display='block';return}
     const items=ranked.slice(0,1);
     const cards=items.map(x=>{const d=logoDomain(x.c);const src=d?'https://www.google.com/s2/favicons?domain='+encodeURIComponent(d)+'&sz=128':'';return `<div class="homepage-college-result"><div class="homepage-college-thumb" aria-hidden="true">${src?`<img src="${src}" alt="${escape(x.c.name)} official logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:''}<span class="homepage-college-fallback" style="display:${src?'none':'flex'}">${escape(logoFallback(x.c))}</span></div><div class="homepage-college-info"><div class="homepage-college-name">${escape(x.c.name)}</div><div class="homepage-college-location">${escape(x.c.location||'')}</div><a class="homepage-college-cta" href="${escape(x.c.url)}">View College Page <span aria-hidden="true">→</span></a></div></div>`}).join('');
-    result.innerHTML=`<div class="search-result-inner"><h3>Matching colleges (${items.length})</h3>${cards}</div>`;
+    result.innerHTML=`<div class="search-result-inner"><h3>College found</h3>${cards}</div>`;
     result.style.display='block';
   };
   function run(){
