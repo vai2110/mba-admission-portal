@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T07:12:03.366437+00:00",
+  "generated_at": "2026-09-20T04:21:32.918446+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
     "pages_checked": 626,
@@ -7,7 +7,7 @@
     "broken_local_links": 6,
     "benchmark_legacy_broken_links": 0,
     "college_clusters_detected": 81,
-    "cluster_reciprocal_gaps": 230,
+    "cluster_reciprocal_gaps": 231,
     "zero_incoming_pages": 77,
     "role_counts": {
       "overview_or_hub": 280,
@@ -1524,6 +1524,7 @@
     {
       "source": "iim-ahmedabad.html",
       "missing": [
+        "iim-ahmedabad-placements.html",
         "iim-ahmedabad-business-analytics-ai.html",
         "iim-ahmedabad-mba.html",
         "iim-ahmedabad-pgpx.html"
@@ -1545,6 +1546,12 @@
       "source": "iim-ahmedabad-business-analytics-ai.html",
       "missing": [
         "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-bpgp.html",
+      "missing": [
         "iim-ahmedabad-placements.html"
       ]
     },
@@ -3147,14 +3154,14 @@
     "iift-placements.html": 4,
     "iift.html": 1,
     "iim-ahmedabad-business-analytics-ai.html": 1,
-    "iim-ahmedabad-mba-bpgp.html": 1,
+    "iim-ahmedabad-mba-bpgp.html": 3,
     "iim-ahmedabad-mba-fabm.html": 3,
     "iim-ahmedabad-mba-pgp.html": 3,
-    "iim-ahmedabad-mba-pgpx.html": 2,
+    "iim-ahmedabad-mba-pgpx.html": 3,
     "iim-ahmedabad-mba.html": 3,
     "iim-ahmedabad-pgpx.html": 1,
-    "iim-ahmedabad-placements.html": 9,
-    "iim-ahmedabad.html": 11,
+    "iim-ahmedabad-placements.html": 8,
+    "iim-ahmedabad.html": 9,
     "iim-amritsar-executive-mba.html": 2,
     "iim-amritsar-ipm.html": 2,
     "iim-amritsar-mba-business-analytics.html": 4,
@@ -3722,11 +3729,11 @@
     "iim-ahmedabad-mba-bpgp.html": 3,
     "iim-ahmedabad-mba-fabm.html": 2,
     "iim-ahmedabad-mba-pgp.html": 9,
-    "iim-ahmedabad-mba-pgpx.html": 3,
+    "iim-ahmedabad-mba-pgpx.html": 4,
     "iim-ahmedabad-mba.html": 1,
     "iim-ahmedabad-pgpx.html": 1,
     "iim-ahmedabad-placements.html": 6,
-    "iim-ahmedabad.html": 8,
+    "iim-ahmedabad.html": 7,
     "iim-amritsar-ipm.html": 1,
     "iim-amritsar-mba-business-analytics.html": 2,
     "iim-amritsar-mba-hr.html": 2,
