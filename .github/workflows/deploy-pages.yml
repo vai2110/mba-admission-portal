@@ -102,6 +102,7 @@ jobs:
                   text+=block
               p.write_text(text,encoding='utf-8')
           PY
+          echo "Guidance assets injected into created HTML pages (homepage and 404 excluded)."
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
