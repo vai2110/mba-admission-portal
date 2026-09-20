@@ -81,17 +81,45 @@ jobs:
           print(f'Built homepage search index with {len(result)} live college pages')
           PY
 
-      - name: Add CollegeDecoded guidance gate and enquiry form to live pages
+      - name: Add CollegeDecoded guidance gate and enquiry form to Management college page families
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
+          import json,re
           marker='assets/college-guidance.js'
           css='assets/college-guidance.css'
           js='assets/college-guidance.js'
+          data=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
+          parents=[]
+          for name,url in data.get('colleges',[]):
+              if not url or 'collegedecoded.in/' not in url: continue
+              slug=url.rstrip('/').split('/')[-1]
+              if slug.endswith('.html'): slug=slug[:-5]
+              parents.append((name.strip(),slug))
+          parents=sorted(set(parents),key=lambda x:len(x[1]),reverse=True)
+          def norm(s):
+              return re.sub(r'\\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
+          def related(p,text):
+              stem=p.stem.lower()
+              title=' '.join(re.findall(r'<title[^>]*>(.*?)</title>|<h1[^>]*>(.*?)</h1>',text,re.I|re.S)[0]) if re.search(r'<title[^>]*>|<h1[^>]*>',text,re.I) else ''
+              hay=norm(stem+' '+title+' '+text[:12000])
+              for name,slug in parents:
+                  # Exact parent/child slug family catches the normal overview, admission, fees,
+                  # placement and course URLs without affecting unrelated colleges.
+                  if stem==slug or stem.startswith(slug+'-'): return True
+                  # Some older child pages use an abbreviated college slug. Confirm them by
+                  # finding a direct reference to the canonical overview slug in the HTML.
+                  if re.search(r'(?<![a-z0-9])'+re.escape(slug)+r'(?![a-z0-9])',hay): return True
+              return False
+          matched=0
+          skipped=0
           for p in Path('.').rglob('*.html'):
               if p.name.lower() in {'404.html','index.html'}: continue
               text=p.read_text(encoding='utf-8',errors='ignore')
+              if not related(p,text):
+                  skipped+=1
+                  continue
+              matched+=1
               if marker in text: continue
               block=f'\n<link rel="stylesheet" href="/{css}"><script src="/{js}"></script>\n'
               if re.search(r'</body>\\s*</html>',text,re.I):
@@ -101,8 +129,8 @@ jobs:
               else:
                   text+=block
               p.write_text(text,encoding='utf-8')
+          print(f'Guidance rollout matched {matched} Management college pages; skipped {skipped} unrelated HTML files.')
           PY
-          echo "Guidance assets injected into created HTML pages (homepage and 404 excluded)."
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
