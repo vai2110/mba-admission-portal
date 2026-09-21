@@ -1,6 +1,6 @@
 {
   "source": "College_List_6_Updated.xlsx · Management rows with Homepage Link",
-  "count": 104,
+  "count": 109,
   "colleges": [
     [
       "Indian Institute of Management Ahmedabad",
@@ -417,6 +417,26 @@
     [
       "SDMIMD Mysore",
       "https://vai2110.github.io/college-cms/content/sdmimd-mysore/overview.html"
+    ],
+    [
+      "MNIT Jaipur",
+      "https://vai2110.github.io/college-cms/content/mnit-jaipur-mba/overview.html"
+    ],
+    [
+      "Jaipuria Institute of Management Jaipur",
+      "https://vai2110.github.io/college-cms/content/jaipuria-jaipur-mba/overview.html"
+    ],
+    [
+      "IISWBM Kolkata",
+      "https://vai2110.github.io/college-cms/content/iiswbm-kolkata/overview.html"
+    ],
+    [
+      "Globsyn Business School",
+      "https://vai2110.github.io/college-cms/content/globsyn-business-school-kolkata/overview.html"
+    ],
+    [
+      "EDII Ahmedabad",
+      "https://vai2110.github.io/college-cms/content/edii-ahmedabad/overview.html"
     ]
   ]
 }
