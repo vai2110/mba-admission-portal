@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-20T04:21:32.918446+00:00",
+  "generated_at": "2026-09-21T11:28:22.548141+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
     "pages_checked": 626,
-    "pages_with_internal_links": 610,
+    "pages_with_internal_links": 607,
     "broken_local_links": 6,
-    "benchmark_legacy_broken_links": 0,
+    "benchmark_legacy_broken_links": 1,
     "college_clusters_detected": 81,
-    "cluster_reciprocal_gaps": 231,
+    "cluster_reciprocal_gaps": 233,
     "zero_incoming_pages": 77,
     "role_counts": {
       "overview_or_hub": 280,
@@ -1552,6 +1552,7 @@
     {
       "source": "iim-ahmedabad-mba-bpgp.html",
       "missing": [
+        "iim-ahmedabad.html",
         "iim-ahmedabad-placements.html"
       ]
     },
@@ -1559,6 +1560,20 @@
       "source": "iim-ahmedabad-mba-fabm.html",
       "missing": [
         "iim-ahmedabad.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-pgp.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-pgpx.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
       ]
     },
     {
@@ -2580,7 +2595,13 @@
       "target": "iit-kanpur-placements.html"
     }
   ],
-  "benchmark_legacy_broken_links": [],
+  "benchmark_legacy_broken_links": [
+    {
+      "source": "iim-ahmedabad.html",
+      "href": "/iim-ahmedabad-placements",
+      "target": "iim-ahmedabad-placements"
+    }
+  ],
   "zero_incoming_pages": [
     {
       "page": "abv-iiitm-gwalior-btech-cse.html",
@@ -3154,14 +3175,14 @@
     "iift-placements.html": 4,
     "iift.html": 1,
     "iim-ahmedabad-business-analytics-ai.html": 1,
-    "iim-ahmedabad-mba-bpgp.html": 3,
-    "iim-ahmedabad-mba-fabm.html": 3,
-    "iim-ahmedabad-mba-pgp.html": 3,
-    "iim-ahmedabad-mba-pgpx.html": 3,
+    "iim-ahmedabad-mba-bpgp.html": 1,
+    "iim-ahmedabad-mba-fabm.html": 2,
+    "iim-ahmedabad-mba-pgp.html": 1,
+    "iim-ahmedabad-mba-pgpx.html": 1,
     "iim-ahmedabad-mba.html": 3,
     "iim-ahmedabad-pgpx.html": 1,
-    "iim-ahmedabad-placements.html": 8,
-    "iim-ahmedabad.html": 9,
+    "iim-ahmedabad-placements.html": 5,
+    "iim-ahmedabad.html": 4,
     "iim-amritsar-executive-mba.html": 2,
     "iim-amritsar-ipm.html": 2,
     "iim-amritsar-mba-business-analytics.html": 4,
@@ -3293,7 +3314,7 @@
     "imt-nagpur-pgdm.html": 6,
     "imt-nagpur-placements.html": 7,
     "imt-nagpur.html": 5,
-    "index.html": 1031,
+    "index.html": 1029,
     "indian-institute-of-management-kashipur-executive-mba.html": 1,
     "indian-institute-of-management-kashipur-mba-analytics.html": 1,
     "indian-institute-of-management-kashipur-mba.html": 1,
@@ -3377,7 +3398,7 @@
     "mba-college-comparison.html": 9,
     "mba-college-fees.html": 11,
     "mba-college-placements.html": 18,
-    "mba-colleges-by-exam.html": 26,
+    "mba-colleges-by-exam.html": 32,
     "mba-colleges-by-location.html": 25,
     "mba-cutoff.html": 35,
     "mdi-gurugram-placements.html": 1,
@@ -3726,14 +3747,11 @@
     "iift-placements.html": 8,
     "iift.html": 10,
     "iim-ahmedabad-business-analytics-ai.html": 1,
-    "iim-ahmedabad-mba-bpgp.html": 3,
     "iim-ahmedabad-mba-fabm.html": 2,
-    "iim-ahmedabad-mba-pgp.html": 9,
-    "iim-ahmedabad-mba-pgpx.html": 4,
     "iim-ahmedabad-mba.html": 1,
     "iim-ahmedabad-pgpx.html": 1,
     "iim-ahmedabad-placements.html": 6,
-    "iim-ahmedabad.html": 7,
+    "iim-ahmedabad.html": 8,
     "iim-amritsar-ipm.html": 1,
     "iim-amritsar-mba-business-analytics.html": 2,
     "iim-amritsar-mba-hr.html": 2,
@@ -3960,7 +3978,7 @@
     "manage-hyderabad.html": 5,
     "mat.html": 8,
     "mba-admission-guide.html": 11,
-    "mba-college-comparison.html": 8,
+    "mba-college-comparison.html": 7,
     "mba-college-fees.html": 51,
     "mba-college-placements.html": 16,
     "mba-colleges-by-exam.html": 17,
@@ -3973,7 +3991,7 @@
     "mba-colleges-in-kolkata.html": 9,
     "mba-colleges-in-mumbai.html": 9,
     "mba-colleges-in-pune.html": 9,
-    "mba-cutoff.html": 8,
+    "mba-cutoff.html": 14,
     "mdi-gurugram-placements.html": 7,
     "mdi-gurugram.html": 4,
     "mica-pgdm-c.html": 3,
