@@ -1,13 +1,226 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Build Your MBA Shortlist | MBA College Finder & Comparison</title>
+<meta name="description" content="Build your MBA shortlist by entrance exam, percentile, budget and preferred location. Explore 10 matching MBA colleges and compare fees, placements, cutoff and rankings."/>
+<link rel="canonical" href="https://collegedecoded.in/mba-college-comparison"/>
+<link href="hub-pages.css" rel="stylesheet"/>
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"/>
+<style>
+:root{--blue:#1457d9;--navy:#12355b;--orange:#ff8a00;--ink:#172b4d;--muted:#64748b;--line:#dfe8f3;--soft:#f5f9ff}
+body{background:#f8fbff;color:var(--ink)}
+.hero{padding:38px 0 34px;background:linear-gradient(135deg,#eef5ff 0%,#fff 58%,#fff7ed 100%);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.kicker{display:inline-flex;padding:7px 11px;border-radius:999px;background:#e3efff;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.08em}
+.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.02;margin:14px 0 14px;letter-spacing:-.04em;color:#12355b}
+.hero p{max-width:650px;font-size:16px;line-height:1.65;color:#526173;margin:0}
+.hero-points{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.hero-points span{background:#fff;border:1px solid var(--line);padding:8px 11px;border-radius:999px;font-size:12px;font-weight:800}
+.hero-art{min-height:300px;position:relative;display:flex;align-items:center;justify-content:center}
+.student{width:min(360px,85%);height:260px;border-radius:34px;background:linear-gradient(145deg,#dcecff,#fff);border:1px solid #d5e4f7;box-shadow:0 22px 55px rgba(35,75,140,.14);position:relative;overflow:hidden}
+.student:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#c7dcfa;right:-35px;top:-40px}
+.student:after{content:"";position:absolute;width:110px;height:110px;border-radius:22px;background:#fff;border:1px solid #e4ebf5;left:28px;bottom:24px;transform:rotate(-8deg)}
+.person-head{position:absolute;width:66px;height:66px;border-radius:50%;background:#f3c6a5;left:144px;top:45px;z-index:2}
+.person-hair{position:absolute;width:76px;height:46px;border-radius:45px 45px 22px 22px;background:#25364f;left:139px;top:34px;z-index:3}
+.person-body{position:absolute;width:128px;height:130px;border-radius:70px 70px 25px 25px;background:#1658b8;left:113px;top:106px;z-index:1}
+.book{position:absolute;right:38px;bottom:35px;width:118px;height:70px;border-radius:9px;background:#fff;border:1px solid #dbe5f2;box-shadow:0 10px 20px rgba(20,50,100,.12);z-index:4;transform:rotate(-7deg);padding:12px;box-sizing:border-box;font-size:11px;font-weight:900;color:var(--blue)}
+.float{position:absolute;z-index:5;background:#fff;border:1px solid #dbe5f2;box-shadow:0 10px 25px rgba(30,64,175,.12);border-radius:12px;padding:10px 12px;font-size:11px;font-weight:900}.float.one{top:34px;left:0}.float.two{right:0;top:105px}.float.three{left:10px;bottom:24px;color:#e06f00}
 
-<html lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CPF48DTRTW"></script>
+.finder{margin-top:-6px;position:relative;z-index:4}.finder-box{background:#fff;border:1px solid #d9e5f2;border-radius:22px;padding:22px;box-shadow:0 18px 55px rgba(29,65,120,.10)}
+.finder-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-end}.finder-head h2{margin:0;font-size:25px}.finder-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.controls{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}.field{min-width:0}.field label{display:block;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin-bottom:7px}.field select,.field input{width:100%;box-sizing:border-box;padding:12px 11px;border:1px solid #cdd9e7;border-radius:11px;background:#fff;color:#17365f;font:inherit;outline:none}.field select:focus,.field input:focus{border-color:#6da0ee;box-shadow:0 0 0 3px #e8f1ff}
+.find-btn{margin-top:14px;display:flex;justify-content:flex-end}.btn{border-radius:10px;padding:11px 17px;font-weight:900;font:inherit;cursor:pointer}.primary{border:1px solid var(--blue);background:var(--blue);color:#fff}.secondary{border:1px solid #cbd5e1;background:#fff;color:#17365f}.small{padding:9px 12px;font-size:12px}
+.helper{margin-top:10px;font-size:11px;color:#64748b}
+
+.results{padding:34px 0 48px}.result-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:17px}.result-head h2{margin:0;font-size:27px}.result-head p{margin:5px 0 0;color:#64748b;font-size:13px}.match-count{background:#eaf2ff;color:var(--blue);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.college-card{background:#fff;border:1px solid #dce6f1;border-radius:17px;padding:17px;box-shadow:0 8px 24px rgba(30,64,120,.05);position:relative}.rank{position:absolute;right:14px;top:14px;font-size:11px;font-weight:900;color:#64748b;background:#f4f7fb;border-radius:999px;padding:6px 8px}.college-card h3{margin:0 70px 5px 0;font-size:18px;color:#12355b}.location{font-size:12px;color:#64748b}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0}.chip{font-size:10px;font-weight:900;padding:6px 8px;border-radius:7px;background:#f4f8ff;color:#36577c;border:1px solid #e2ebf6}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.metric{background:#f8fafc;border-radius:10px;padding:9px}.metric b{display:block;font-size:11px;color:#17365f}.metric span{font-size:10px;color:#64748b}.card-actions{display:flex;gap:8px;margin-top:14px}.card-actions .btn{flex:1}.status{font-size:10px;margin-top:9px;color:#64748b}.empty{background:#fff;border:1px dashed #cbd8e7;border-radius:15px;padding:24px;color:#64748b}.comparebar{display:none;position:sticky;bottom:14px;z-index:10;margin-top:20px}.comparebar.show{display:block}.compare-inner{background:#12355b;color:#fff;border-radius:16px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 15px 35px rgba(18,53,91,.24)}.compare-inner small{display:block;color:#cbdaf0;margin-top:2px}.compare-inner .primary{background:#ff8a00;border-color:#ff8a00;color:#fff}
+
+.comparison{display:none;padding:0 0 55px}.comparison.show{display:block}.tablewrap{overflow:auto;border:1px solid #dbe6f4;border-radius:15px;background:#fff}.table{width:100%;min-width:900px;border-collapse:collapse}.table th,.table td{padding:13px 14px;text-align:left;border-bottom:1px solid #e8eef5;vertical-align:top}.table th{background:#f7faff;color:#17365f;font-size:12px}.table td:first-child{font-weight:900;color:#334155;background:#fbfdff;width:190px}.main{display:block;color:#17365f;font-size:13px;font-weight:800}.note{display:block;color:#64748b;font-size:10px;line-height:1.45;margin-top:4px}.blank{color:#94a3b8;font-weight:700}.profile{color:#2563eb;text-decoration:none;font-weight:900;font-size:11px}.notice{margin-top:13px;padding:13px 15px;border-radius:12px;color:#526173;font-size:12px;line-height:1.55;background:#f7fbff;border:1px solid #dbeafe}
+footer{margin-top:0}
+
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-art{min-height:260px}.controls{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hero{padding-top:28px}.hero h1{font-size:38px}.hero-art{min-height:235px}.student{height:215px}.person-head{left:43%;top:37px}.person-hair{left:41%;top:26px}.person-body{left:32%;top:91px}.book{right:20px;bottom:25px}.float.one{left:0}.float.two{right:0}.finder-box{padding:16px;border-radius:17px}.finder-head{display:block}.controls{grid-template-columns:1fr}.find-btn .btn{width:100%}.grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.card-actions{flex-direction:column}.compare-inner{align-items:stretch;flex-direction:column}.compare-inner .btn{width:100%}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Build Your MBA Shortlist","url":"https://collegedecoded.in/mba-college-comparison","description":"Build an MBA college shortlist by exam, percentile, budget and location, then compare selected colleges."}</script>
+</head>
+<body>
+<header><nav class="nav wrap"><a class="logo" href="index.html">College<span>Decoded</span></a><div><a href="index.html">Home</a><a href="top-mba-colleges-in-india.html">MBA Colleges</a><a href="mba-colleges-by-exam.html">Exams</a><a href="mba-admission-guide.html">Admissions</a><a href="mba-cutoff.html">Cutoffs</a><a href="mba-college-placements.html">Placements</a></div></nav></header>
+
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<span class="kicker">MBA COLLEGE FINDER</span>
+<h1>Build Your MBA Shortlist</h1>
+<p>Tell us your exam, percentile, budget and preferred location. We’ll show you <strong>10 colleges from our MBA database</strong> that match your preferences.</p>
+<div class="hero-points"><span>🎯 Exam & percentile</span><span>💰 Fees</span><span>📍 Location</span><span>📊 Placements</span></div>
+</div>
+<div class="hero-art" aria-hidden="true">
+<div class="student"><div class="person-hair"></div><div class="person-head"></div><div class="person-body"></div><div class="book">MBA<br/>SHORTLIST</div></div>
+<div class="float one">🎓 Find colleges</div><div class="float two">📊 Compare</div><div class="float three">₹ Fees + Placements</div>
+</div>
+</div>
+</section>
+
+<section class="finder">
+<div class="wrap">
+<div class="finder-box">
+<div class="finder-head"><div><h2>Set your preferences</h2><p>These filters shape the colleges shown in your top 10 shortlist.</p></div></div>
+<div class="controls">
+<div class="field"><label>Entrance Exam</label><select id="exam"><option value="">Any exam</option><option>CAT</option><option>XAT</option><option>SNAP</option><option>CMAT</option><option>MAT</option><option>NMAT</option></select></div>
+<div class="field"><label>Your Percentile</label><input id="percentile" type="number" min="0" max="100" step="0.01" placeholder="e.g. 92"/></div>
+<div class="field"><label>Total MBA Fees</label><select id="budget"><option value="">Any budget</option><option value="5">Under ₹5 Lakh</option><option value="10">₹5–10 Lakh</option><option value="15">₹10–15 Lakh</option><option value="20">₹15–20 Lakh</option><option value="21">₹20 Lakh+</option></select></div>
+<div class="field"><label>Preferred Location</label><input id="location" placeholder="e.g. Delhi NCR"/></div>
+<div class="field"><label>Career Interest</label><select id="career"><option value="">Any career area</option><option value="finance">Finance</option><option value="marketing">Marketing</option><option value="hr">HR</option><option value="analytics">Business Analytics</option><option value="operations">Operations</option><option value="general">General MBA / PGDM</option></select></div>
+</div>
+<div class="find-btn"><button class="btn primary" id="find">Find My Top 10 Colleges →</button></div>
+<div class="helper">Tip: Leave a filter blank if you want a broader shortlist. Missing or unverified data is not guessed.</div>
+</div>
+</div>
+</section>
+
+<main class="results">
+<div class="wrap">
+<div class="result-head"><div><h2 id="resultTitle">Top MBA colleges</h2><p id="resultSub">Start with your preferences to build a focused shortlist.</p></div><span class="match-count" id="matchCount">109 colleges in database</span></div>
+<div id="cards" class="grid"></div>
+<div id="empty" class="empty" style="display:none">No college matches all selected filters. Try widening your budget, location or percentile filters.</div>
+<div id="comparebar" class="comparebar"><div class="compare-inner"><div><strong id="compareCount">0 colleges selected</strong><small>Select 2–4 colleges to compare side by side.</small></div><button class="btn primary" id="compareBtn">Compare Selected →</button></div></div>
+</div>
+</main>
+
+<section class="comparison" id="comparison"><div class="wrap"><div class="result-head"><div><h2>Compare your shortlisted colleges</h2><p>Review the same key parameters side by side.</p></div></div><div class="tablewrap" id="table"></div><div class="notice"><strong>Data integrity:</strong> Missing values are shown as not yet verified rather than estimated. Placement figures and cutoffs can vary by year and admission route.</div></div></section>
+
+<footer><div class="wrap">CollegeDecoded · <a href="index.html">Back to homepage</a></div></footer>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+const U='mba-college-comparison-universe.json?v=20260916-1',D='mba-college-comparison-data.json?v=20260916-4',O='mba-college-official-overrides.json?v=20260916-4';
+let universe=[],base=[],overrides=[],all=[],shown=[],selectedKeys=new Set();
 
-  gtag('config', 'G-CPF48DTRTW');
+const $=id=>document.getElementById(id);
+const clean=v=>String(v??'').trim();
+const norm=v=>clean(v).toLowerCase().replace(/[^a-z0-9]+/g,'');
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const core=c=>c.verification_status==='verified_core';
+const researched=c=>!!c.verification_status&&c.verification_status!=='research_pending';
+
+function match(a,u){
+ let x=a.find(c=>clean(c.profile)===clean(u.profile)); if(x)return x;
+ x=a.find(c=>Number(c.rank)===Number(u.rank)&&norm(c.name)===norm(u.name)); if(x)return x;
+ if(Number(u.rank)===25&&norm(u.name)==='indianinstituteofmanagement')return a.find(c=>Number(c.rank)===25&&norm(c.name).includes('nagpur'));
+ return null;
+}
+function merged(){
+ all=universe.map((u,i)=>{
+  const b=match(base,u),o=match(overrides,u);
+  const c={...u,...(b||{}),...(o||{}),_key:i+'|'+u.name+'|'+u.rank+'|'+u.profile};
+  c.verification_status=b?.verification_status||o?.verification_status||((b||o)?'official_partial':'research_pending');
+  return c;
+ });
+ $('matchCount').textContent=all.length+' colleges in database';
+ render(all.slice(0,10));
+}
+function numFrom(v){
+ const m=clean(v).replace(/,/g,'').match(/(\d+(?:\.\d+)?)/);
+ return m?Number(m[1]):null;
+}
+function feeLakh(v){
+ const s=clean(v).toLowerCase().replace(/,/g,'');
+ const m=s.match(/₹?\s*(\d+(?:\.\d+)?)\s*(lakh|lac|crore|cr|k)?/);
+ if(!m)return null;
+ let n=Number(m[1]); const u=m[2]||'';
+ if(u==='crore'||u==='cr')n*=100;
+ if(u==='k')n/=100;
+ return n;
+}
+function examMatch(c,exam){
+ if(!exam)return true;
+ const e=clean(c.exam).toLowerCase();
+ return e.includes(exam.toLowerCase());
+}
+function percentileMatch(c,p){
+ if(p===''||p==null)return true;
+ const cut=numFrom(c.cutoff);
+ if(cut==null)return true;
+ return Number(p)>=cut;
+}
+function budgetMatch(c,b){
+ if(!b)return true;
+ const f=feeLakh(c.fees); if(f==null)return true;
+ const x=Number(b);
+ if(x===21)return f>=20;
+ if(x===5)return f<5;
+ return f>=x-5 && f<=x;
+}
+function locationMatch(c,q){
+ if(!q)return true;
+ return norm((c.location||'')+' '+(c.name||'')).includes(norm(q));
+}
+function careerMatch(c,q){
+ if(!q)return true;
+ const t=norm((c.programme||'')+' '+(c.name||'')+' '+(c.specialisation||''));
+ const map={finance:['finance'],marketing:['marketing'],hr:['humanresource','hr'],analytics:['analytics','businessanalytics','data'],operations:['operations','supplychain'],general:['mba','pgdm','management']};
+ return (map[q]||[]).some(k=>t.includes(k));
+}
+function matches(c){
+ return examMatch(c,$('exam').value)&&percentileMatch(c,$('percentile').value)&&budgetMatch(c,$('budget').value)&&locationMatch(c,$('location').value)&&careerMatch(c,$('career').value);
+}
+function getMatches(){
+ return all.filter(matches).sort((a,b)=>(Number(a.rank)||999)-(Number(b.rank)||999)||a.name.localeCompare(b.name));
+}
+function render(list){
+ shown=list.slice(0,10);
+ $('matchCount').textContent=(getMatches().length||all.length)+' matching college'+((getMatches().length||all.length)===1?'':'s');
+ $('resultTitle').textContent='Top '+Math.min(10,shown.length)+' colleges for you';
+ const active=[['exam',$('exam').value],['percentile',$('percentile').value],['budget',$('budget').value],['location',$('location').value],['career',$('career').value]].filter(x=>x[1]);
+ $('resultSub').textContent=active.length?'Based on your selected preferences. Ranked using the portal’s college order; filters only narrow the list.':'Explore the top 10 colleges in the current database, or set preferences above.';
+ $('cards').innerHTML='';
+ if(!shown.length){$('cards').style.display='none';$('empty').style.display='block';return}
+ $('cards').style.display='grid';$('empty').style.display='none';
+ shown.forEach(c=>{
+  const card=document.createElement('article');card.className='college-card';
+  const checked=selectedKeys.has(c._key);
+  card.innerHTML='<span class="rank">'+(c.rank?'NIRF #'+esc(c.rank):'Rank pending')+'</span>'+
+   '<h3>'+esc(c.name)+'</h3><div class="location">📍 '+esc(c.location||'Location not verified')+'</div>'+
+   '<div class="chips">'+(c.exam?'<span class="chip">🎯 '+esc(c.exam)+'</span>':'')+(c.programme?'<span class="chip">📚 '+esc(c.programme)+'</span>':'')+(c.cutoff?'<span class="chip">Cutoff '+esc(c.cutoff)+'</span>':'')+'</div>'+
+   '<div class="metrics"><div class="metric"><b>'+esc(c.fees||'Not verified')+'</b><span>Total MBA fees</span></div><div class="metric"><b>'+esc(c.average_package||'Not verified')+'</b><span>Avg package</span></div><div class="metric"><b>'+esc(c.median_package||'Not verified')+'</b><span>Median package</span></div></div>'+
+   '<div class="card-actions"><a class="btn secondary small" target="_blank" rel="noopener" href="'+esc(c.profile||'#')+'">View College →</a><button class="btn '+(checked?'primary':'secondary')+' small compare-toggle" data-key="'+esc(c._key)+'">'+(checked?'✓ Added to compare':'+ Add to Compare')+'</button></div>'+
+   '<div class="status">'+(core(c)?'✓ Core comparison data verified':researched(c)?'Official/reliable data loaded':'Research pending')+'</div>';
+  $('cards').appendChild(card);
+ });
+ document.querySelectorAll('.compare-toggle').forEach(btn=>btn.onclick=()=>toggleCompare(btn.dataset.key));
+ updateCompareBar();
+}
+function toggleCompare(key){
+ if(selectedKeys.has(key))selectedKeys.delete(key);
+ else {if(selectedKeys.size>=4){alert('You can compare up to 4 colleges.');return}selectedKeys.add(key)}
+ render(shown);
+}
+function updateCompareBar(){
+ const n=selectedKeys.size;
+ $('comparebar').classList.toggle('show',n>0);
+ $('compareCount').textContent=n+' college'+(n===1?'':'s')+' selected';
+}
+function miss(v){return clean(v)?'<span class="main">'+esc(v)+'</span>':'<span class="blank">Not yet verified</span>'}
+function note(v){return clean(v)?'<span class="note">'+esc(v)+'</span>':''}
+function compareSelected(){
+ const a=all.filter(c=>selectedKeys.has(c._key));
+ if(a.length<2){alert('Select at least 2 colleges to compare.');return}
+ const h=a.map(c=>'<th><span class="main">'+esc(c.name)+'</span>'+note((c.location||'Location not verified')+' · '+(c.rank?'NIRF #'+c.rank:'Rank pending'))+'</th>').join('');
+ const rows=[
+ ['Total MBA Fees',c=>miss(c.fees)],
+ ['Placement Outcome',c=>'<span class="main">Average: '+(clean(c.average_package)?esc(c.average_package):'<span class="blank">Not yet verified</span>')+'</span><span class="main">Median: '+(clean(c.median_package)?esc(c.median_package):'<span class="blank">Not yet verified</span>')+'</span>'+note(c.placement_year)],
+ ['Entrance Exam',c=>miss(c.exam)],['Competitive Cutoff',c=>clean(c.cutoff)?miss(c.cutoff):'<span class="blank">Not available</span>'],
+ ['Intake / Batch Size',c=>miss(c.intake)],['Programme',c=>miss(c.programme)],['Location',c=>miss(c.location)],
+ ['NIRF 2025 Rank',c=>miss(c.rank?'#'+c.rank:'')],
+ ['Data Status',c=>core(c)?'<span class="main" style="color:#15803d">Core verified</span>':researched(c)?'<span class="main" style="color:#b45309">Official data loaded</span>':'<span class="blank main">Research pending</span>'],
+ ['Detailed Profile',c=>c.profile?'<a class="profile" target="_blank" rel="noopener" href="'+esc(c.profile)+'">View profile →</a>':'<span class="blank">Not available</span>']
+ ];
+ $('table').innerHTML='<table class="table"><thead><tr><th>Comparison factor</th>'+h+'</tr></thead><tbody>'+rows.map(r=>'<tr><td>'+r[0]+'</td>'+a.map(c=>'<td>'+r[1](c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+ $('comparison').classList.add('show');$('comparison').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('find').onclick=()=>{selectedKeys=new Set();render(getMatches().slice(0,10));};
+$('compareBtn').onclick=compareSelected;
+Promise.all([fetch(U).then(r=>r.json()),fetch(D).then(r=>r.json()),fetch(O).then(r=>r.json())]).then(([u,d,o])=>{universe=u.colleges||[];base=d.colleges||[];overrides=o.records||[];merged()}).catch(()=>{ $('cards').innerHTML='';$('empty').style.display='block';$('empty').textContent='Comparison data could not be loaded. Please refresh.';});
 </script>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>MBA College Comparison | Fees, Placements &amp; Cutoff</title><meta content="Compare all 109 MBA colleges by fees, average and median placement outcomes, intake, exams, programme, location and cutoff where verified." name="description"/><link href="https://collegedecoded.in/mba-college-comparison" rel="canonical"/><link href="hub-pages.css" rel="stylesheet"/><style>body{background:#fff}.hero{padding:44px 0 30px;background:linear-gradient(180deg,#f5f9ff,#fff)}.hero p{max-width:800px;color:#526173}.box{margin-top:20px;background:#fff;border:1px solid #dbe6f4;border-radius:18px;padding:20px;box-shadow:0 10px 30px rgba(30,64,175,.07)}.toolbar,.selectors{display:grid;grid-template-columns:1.5fr .7fr;gap:13px;margin:15px 0}.selectors{grid-template-columns:repeat(2,1fr)}.field,.card{border:1px solid #e2e8f0;border-radius:13px;padding:13px;background:#fbfdff}.field label,.card label{display:block;font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;margin-bottom:6px}.field input,.field select,.card select{width:100%;box-sizing:border-box;padding:11px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font:inherit;color:#17365f}.stats{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.stat{padding:8px 11px;border:1px solid #dbe6f4;border-radius:10px;background:#f8fbff;color:#526173;font-size:12px}.stat strong{color:#17365f}.meta{font-size:11px;color:#64748b;margin-top:6px;min-height:15px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.btn{border-radius:9px;padding:10px 15px;font-weight:800;font:inherit;cursor:pointer}.primary{border:1px solid #2563eb;background:#2563eb;color:#fff}.secondary{border:1px solid #cbd5e1;background:#fff;color:#17365f}.result{display:none;margin-top:32px}.result.show{display:block}.tablewrap{overflow:auto;border:1px solid #dbe6f4;border-radius:14px}.table{width:100%;min-width:980px;border-collapse:collapse}.table th,.table td{padding:13px 14px;text-align:left;border-bottom:1px solid #e8eef5;vertical-align:top}.table th{background:#f7faff;color:#17365f;font-size:12px}.table td:first-child{font-weight:800;color:#334155;background:#fbfdff;width:210px}.main{display:block;color:#17365f;font-size:13px;font-weight:800}.note{display:block;color:#64748b;font-size:10px;line-height:1.45;margin-top:4px}.blank{color:#94a3b8;font-weight:700}.verified{color:#15803d}.pending{color:#b45309}.profile{color:#2563eb;text-decoration:none;font-weight:800;font-size:11px}.notice{margin-top:13px;padding:13px 15px;border-radius:12px;color:#526173;font-size:12px;line-height:1.55;background:#f7fbff;border:1px solid #dbeafe}@media(max-width:800px){.toolbar,.selectors{grid-template-columns:1fr}}@media(max-width:560px){.actions button{width:100%}}</style><meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/><meta content="MBA College Comparison | Fees, Placements &amp; Cutoff" property="og:title"/><meta content="Compare all 109 MBA colleges by fees, average and median placement outcomes, intake, exams, programme, location and cutoff where verified." property="og:description"/><meta content="https://collegedecoded.in/mba-college-comparison" property="og:url"/><meta content="website" property="og:type"/><meta content="en_IN" property="og:locale"/><meta content="summary" name="twitter:card"/><meta content="MBA College Comparison | Fees, Placements &amp; Cutoff" name="twitter:title"/><meta content="Compare all 109 MBA colleges by fees, average and median placement outcomes, intake, exams, programme, location and cutoff where verified." name="twitter:description"/><script data-mba-schema="seo-geo-aeo" type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://collegedecoded.in/mba-college-comparison#webpage", "url": "https://collegedecoded.in/mba-college-comparison", "name": "MBA College Comparison | Fees, Placements & Cutoff", "description": "Compare all 109 MBA colleges by fees, average and median placement outcomes, intake, exams, programme, location and cutoff where verified.", "inLanguage": "en-IN", "isPartOf": {"@id": "https://collegedecoded.in/#website"}}, {"@type": "BreadcrumbList", "@id": "https://collegedecoded.in/mba-college-comparison#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "CollegeDecoded", "item": "https://collegedecoded.in/"}, {"@type": "ListItem", "position": 2, "name": "MBA College Comparison | Fees, Placements & Cutoff", "item": "https://collegedecoded.in/mba-college-comparison"}]}]}</script></head><body><header><nav class="nav wrap"><a class="logo" href="index.html">College<span>Decoded</span></a><div><a href="index.html">Home</a><a href="top-mba-colleges-in-india.html">MBA Colleges</a><a href="mba-colleges-by-exam.html">Exams</a><a href="mba-admission-guide.html">Admissions</a><a href="mba-cutoff.html">Cutoffs</a><a href="mba-college-placements.html">Placements</a></div></nav></header><section class="hero"><div class="wrap"><small>MBA COLLEGE COMPARISON</small><h1>Compare MBA Colleges Before You Apply</h1><p>Choose from <strong>all 109 colleges in the portal</strong>. Officially established numbers are shown; unverified numbers are never guessed.</p><div class="box"><h2>Choose colleges</h2><div class="stats"><span class="stat"><strong id="uc">109</strong> colleges</span><span class="stat"><strong id="rc">0</strong> researched</span><span class="stat"><strong id="cc">0</strong> core verified</span><span class="stat"><strong>2–4</strong> comparison slots</span></div><div class="toolbar"><div class="field"><label>Search all colleges</label><input id="search" placeholder="IIM, FMS, SIBM, XLRI, MDI..."/></div><div class="field"><label>Data status</label><select id="filter"><option value="all">All 109 colleges</option><option value="researched">Official data researched</option><option value="core">Core fields verified</option><option value="pending">Research pending</option></select></div></div><div class="meta" id="count"></div><div class="selectors" id="slots"></div><div class="actions"><button class="btn primary" id="go">Compare Colleges →</button><button class="btn secondary" id="add">+ Add College</button><button class="btn secondary" id="clear">Clear</button></div><div id="msg"></div></div></div></section><main class="wrap"><section class="result" id="result"><h2>College comparison</h2><p id="intro"></p><div class="tablewrap" id="table"></div><div class="notice"><strong>Data integrity:</strong> Green = mandatory comparison fields verified. Amber = official data loaded but one or more core fields pending. Grey = research pending. Missing values are never guessed. Cutoff is optional.</div></section></main><footer><div class="wrap">CollegeDecoded · <a href="index.html">Back to homepage</a></div></footer><script>const U='mba-college-comparison-universe.json?v=20260916-1',D='mba-college-comparison-data.json?v=20260916-4',O='mba-college-official-overrides.json?v=20260916-4';let universe=[],base=[],overrides=[],all=[],n=2;const $=id=>document.getElementById(id),clean=v=>String(v??'').trim(),norm=v=>clean(v).toLowerCase().replace(/[^a-z0-9]+/g,''),esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));function core(c){return c.verification_status==='verified_core'}function researched(c){return !!c.verification_status&&c.verification_status!=='research_pending'}function match(a,u){let x=a.find(c=>clean(c.profile)===clean(u.profile));if(x)return x;x=a.find(c=>Number(c.rank)===Number(u.rank)&&norm(c.name)===norm(u.name));if(x)return x;if(Number(u.rank)===25&&norm(u.name)==='indianinstituteofmanagement')return a.find(c=>Number(c.rank)===25&&norm(c.name).includes('nagpur'));return null}function merged(){all=universe.map((u,i)=>{let b=match(base,u),o=match(overrides,u),c={...u,...(b||{}),...(o||{}),_key:i+'|'+u.name+'|'+u.rank+'|'+u.profile};c.verification_status=b?.verification_status||o?.verification_status||((b||o)?'official_partial':'research_pending');return c});$('uc').textContent=all.length;$('rc').textContent=all.filter(researched).length;$('cc').textContent=all.filter(core).length;render()}function list(){let q=norm($('search').value),f=$('filter').value;return all.filter(c=>(!q||norm(c.name+' '+(c.location||'')).includes(q))&&(f==='all'||(f==='core'&&core(c))||(f==='researched'&&researched(c))||(f==='pending'&&!researched(c)))).sort((a,b)=>(Number(a.rank)||999)-(Number(b.rank)||999)||a.name.localeCompare(b.name))}function selected(){let l=list();return [...document.querySelectorAll('#slots select')].map(x=>l[+x.value]).filter(Boolean)}function render(keys=[]){let l=list();$('count').textContent=l.length+' college'+(l.length===1?'':'s')+' shown';$('slots').innerHTML='';for(let i=0;i<n;i++){let d=document.createElement('div');d.className='card';d.innerHTML='<label>College '+(i+1)+'</label><select><option value="">Select a college</option>'+l.map((c,j)=>'<option value="'+j+'">'+esc(c.name+' — '+(c.location||'Location not verified')+' · '+(c.rank?'NIRF #'+c.rank:'Rank pending')+(core(c)?' · ✓ Core':researched(c)?' · Official data':' · Research pending'))+'</option>').join('')+'</select><div class="meta"></div>';$('slots').appendChild(d);let s=d.querySelector('select'),idx=keys[i]?l.findIndex(c=>c._key===keys[i]):-1;if(idx>=0)s.value=idx;s.onchange=()=>{let c=l[+s.value];d.querySelector('.meta').textContent=c?(core(c)?'Mandatory comparison fields verified':researched(c)?'Official/reliable data loaded; some fields pending':'Research pending'):''};s.onchange()}}function miss(v){return clean(v)?'<span class="main">'+esc(v)+'</span>':'<span class="blank">Not yet verified</span>'}function note(v){return clean(v)?'<span class="note">'+esc(v)+'</span>':''}function showMsg(t){$('msg').innerHTML='<div class="notice">'+esc(t)+'</div>'}function compare(a){if(a.length<2)return showMsg('Select at least 2 colleges.');if(new Set(a.map(c=>c._key)).size!==a.length)return showMsg('Please select different colleges.');let h=a.map(c=>'<th><span class="main">'+esc(c.name)+'</span>'+note((c.location||'Location not verified')+' · '+(c.rank?'NIRF #'+c.rank:'Rank pending'))+'</th>').join('');let rows=[['Data status',c=>core(c)?'<span class="verified main">Core verified</span>':researched(c)?'<span class="pending main">Official data loaded</span>':'<span class="blank main">Research pending</span>'],['Total MBA Fees',c=>miss(c.fees)],['Placement Outcome',c=>'<span class="main">Average: '+(clean(c.average_package)?esc(c.average_package):'<span class="blank">Not yet verified</span>')+'</span><span class="main">Median: '+(clean(c.median_package)?esc(c.median_package):'<span class="blank">Not yet verified</span>')+'</span>'+note(c.placement_year)],['Intake / Batch Size',c=>miss(c.intake)],['Entrance Exam',c=>miss(c.exam)],['Location',c=>miss(c.location)],['Programme',c=>miss(c.programme)],['Competitive Cutoff',c=>clean(c.cutoff)?miss(c.cutoff):'<span class="blank">Not available</span>'],['NIRF 2025 Rank',c=>miss(c.rank?'#'+c.rank:'')],['Source note',c=>miss(c.source_note)],['Detailed Profile',c=>c.profile?'<a class="profile" target="_blank" rel="noopener" href="'+esc(c.profile)+'">View profile →</a>':'<span class="blank">Not available</span>']];$('table').innerHTML='<table class="table"><thead><tr><th>Comparison factor</th>'+h+'</tr></thead><tbody>'+rows.map(r=>'<tr><td>'+r[0]+'</td>'+a.map(c=>'<td>'+r[1](c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';$('intro').textContent=a.length+' colleges compared. Research completeness does not block comparison.';$('result').classList.add('show');$('result').scrollIntoView({behavior:'smooth',block:'start'})}$('search').oninput=()=>{let k=selected().map(c=>c._key);render(k)};$('filter').onchange=()=>{let k=selected().map(c=>c._key);render(k)};$('go').onclick=()=>compare(selected());$('add').onclick=()=>{if(n>=4)return showMsg('Maximum 4 colleges.');let k=selected().map(c=>c._key);n++;render(k)};$('clear').onclick=()=>{n=2;$('search').value='';$('filter').value='all';render();$('result').classList.remove('show');$('msg').innerHTML=''};Promise.all([fetch(U).then(r=>r.json()),fetch(D).then(r=>r.json()),fetch(O).then(r=>r.json())]).then(([u,d,o])=>{universe=u.colleges||[];base=d.colleges||[];overrides=o.records||[];merged()}).catch(()=>showMsg('Comparison data could not be loaded. Please refresh.'));</script></body></html>
+</body>
+</html>
