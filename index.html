@@ -22,7 +22,7 @@
     result.style.display='block';
     result.innerHTML='<div class="search-result-inner"><h3>Searching…</h3></div>';
     try{
-      const response=await fetch(new URL('/homepage-search-index.json?v='+Date.now(),location.origin),{cache:'no-store'});
+      const response=await fetch(new URL('homepage-search-index.json?v='+Date.now(),location.href),{cache:'no-store'});
       if(!response.ok)throw new Error('HTTP '+response.status);
       const data=await response.json();
       const colleges=Array.isArray(data.colleges)?data.colleges:[];
