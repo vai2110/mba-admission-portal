@@ -46,7 +46,7 @@ jobs:
           colleges={}
           def add(name,url,loc=''):
               if not url:return
-              if url.startswith('http') and not url.startswith('https://collegedecoded.in/'): return
+              if not url: return
               absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
               if absurl.startswith('https://collegedecoded.in/') and absurl.endswith('.html'): absurl=absurl[:-5]
               n=norm(name); key=absurl.rstrip('/').split('/')[-1]
@@ -70,6 +70,8 @@ jobs:
                   if n in manual: aliases.add(norm(manual[n]+' '+loc))
               colleges[absurl]={'name':name,'location':loc,'aliases':sorted(a for a in aliases if len(a.replace(' ',''))>=3),'url':absurl,'live':True}
           for c in management.get('colleges',[]): add(c[0],c[1])
+          # Management sheet is the authoritative college search source. Existing links are preserved exactly;
+          # GitHub-hosted MBA URLs are normalized by the homepage runtime to the current CollegeDecoded origin.
           child=re.compile(r'(?:-mba(?:-|$)|-pgp(?:-|$)|-pgpx(?:-|$)|-bpgp(?:-|$)|-fabm(?:-|$)|-placements?(?:-|$)|-cutoff(?:-|$)|-admission(?:-|$)|-fees?(?:-|$)|-courses?(?:-|$)|-programme(?:-|$)|-program(?:-|$))',re.I)
           for c in mba:
               url=c.get('url','')
@@ -77,7 +79,7 @@ jobs:
                   add(c.get('name',''),url,c.get('location',''))
           result=sorted(colleges.values(),key=lambda x:x['name'].lower())
           for item in result: item['aliases']=[a for a in item['aliases'] if a!='overview']
-          Path('homepage-search-index.json').write_text(json.dumps({'source':'Union of all live management links and all ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+          Path('homepage-search-index.json').write_text(json.dumps({'source':'College List Management links + ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
           print(f'Built homepage search index with {len(result)} live college pages')
           PY
 
