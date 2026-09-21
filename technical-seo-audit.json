@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T09:44:55.399296+00:00",
+  "generated_at": "2026-09-21T09:47:32.569761+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 630,
   "pages_with_issues": 630,
@@ -16244,16 +16244,16 @@
     {
       "file": "mba-cutoff.html",
       "benchmark": false,
-      "title": "MBA Cutoff Predictor 2026 | CAT, XAT, SNAP, CMAT, MAT & NMAT",
-      "title_length": 60,
-      "description": "Enter your MBA entrance exam percentile from 75 to 100 and find researched colleges matching CAT, XAT, SNAP, CMAT, MAT and NMAT cutoff thresholds.",
-      "description_length": 146,
+      "title": "MBA Cutoff 2026: CAT, XAT, SNAP, CMAT, MAT & NMAT Cutoffs",
+      "title_length": 57,
+      "description": "Check MBA cutoffs for CAT, XAT, SNAP, CMAT, MAT and NMAT 2026. Enter your percentile and find MBA colleges you can target based on researched cutoff thresholds.",
+      "description_length": 160,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/mba-cutoff",
       "canonical_count": 1,
       "canonical_self": false,
       "h1_count": 1,
-      "h1": "Find MBA Colleges You Can Target at Your Percentile",
+      "h1": "Your MBA Percentile. Your College Shortlist.",
       "lang": "en",
       "viewport": true,
       "robots": [
