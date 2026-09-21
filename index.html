@@ -48,12 +48,7 @@
 const logoDomain=c=>{try{const s=new URL(c.url).pathname.split('/').filter(Boolean).pop()||'';return LOGO_DOMAINS[s]||''}catch(e){return ''}};
 const logoFallback=c=>{const n=norm(c.name||'College');if(n.startsWith('indian institute of management'))return 'IIM';if(n.startsWith('indian institute of technology'))return 'IIT';if(n.startsWith('symbiosis institute of business management'))return 'SIBM';if(n.includes('xavier labour relations institute')||n.startsWith('xlri'))return 'XLRI';return (c.name||'College').split(' ').filter(Boolean).slice(0,3).map(w=>w[0]).join('').toUpperCase()};
   let indexPromise;
-  const getIndex=()=>indexPromise||(indexPromise=Promise.all([
-    fetch('./homepage-search-index.json?sheetfix=20260920',{cache:'no-store'}).then(r=>r.json()),
-    fetch('./homepage-search-supplement.json?sheetfix=20260920',{cache:'no-store'}).then(r=>r.json()),
-    fetch('https://raw.githubusercontent.com/vai2110/college-cms/main/data/college-search-master.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({colleges:[]})),
-    fetch('https://raw.githubusercontent.com/vai2110/college-cms/main/data/registry.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({colleges:[]}))
-  ]).then(([base,supp,master,registry])=>{
+  const getIndex=()=>indexPromise||(indexPromise=fetch('./homepage-search-index.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('search index unavailable');return r.json()}).then(base=>{
     const normalizeUrl=u=>{try{
       const x=new URL(String(u||''));
       const p=x.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'');
@@ -74,13 +69,7 @@ const logoFallback=c=>{const n=norm(c.name||'College');if(n.startsWith('indian i
       if(!existing.location&&item.location)existing.location=item.location;
     };
     (base.colleges||[]).forEach(c=>add(c));
-    (supp.colleges||[]).forEach(c=>add(c));
-    (master.colleges||[]).filter(c=>c&&c.live_url).forEach(c=>add({name:c.name,location:c.location,aliases:[c.name],live:true},c.live_url));
-    (registry.colleges||[]).forEach(c=>{
-      const page=(c.pages||[]).find(p=>p&&p.id==='overview'&&p.status==='live')||(c.pages||[]).find(p=>p&&p.status==='live');
-      if(page&&c.slug)add({name:c.name,location:c.location,aliases:[c.name,c.slug],live:true},'https://collegedecoded.in/'+c.slug);
-    });
-    return {source:'CollegeDecoded live college registry + Management sheet',count:merged.size,colleges:[...merged.values()]};
+    return {source:'College List Management links + ready MBA college pages',count:merged.size,colleges:[...merged.values()]};
   }));
   const acronymOf=name=>norm(name).split(' ').filter(w=>w&&/^[a-z]/.test(w)).map(w=>w[0]).join('');
   const slugOf=url=>{try{return tokens(new URL(url).pathname.replace(/\\.html$/,'').replace(/[-_]+/g,' ')).join(' ')}catch(e){return ''}};
