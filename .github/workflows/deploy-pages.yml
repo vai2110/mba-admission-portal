@@ -122,8 +122,8 @@ jobs:
                   continue
               matched+=1
               if marker in text:
-                  text=re.sub(r'href="/assets/college-guidance\.css(?:\?[^" ]*)?"', 'href="/'+css+'"', text)
-                  text=re.sub(r'src="/assets/college-guidance\.js(?:\?[^" ]*)?"', 'src="/'+js+'"', text)
+                  text=re.sub(r'href="(?:/)?assets/college-guidance\.css(?:\?[^" ]*)?"', 'href="'+css+'"', text)
+                  text=re.sub(r'src="(?:/)?assets/college-guidance\.js(?:\?[^" ]*)?"', 'src="'+js+'"', text)
                   p.write_text(text,encoding='utf-8')
                   continue
               block=f'\n<link rel="stylesheet" href="{css}"><script src="{js}"></script>\n'
