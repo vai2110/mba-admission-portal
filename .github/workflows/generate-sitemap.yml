@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: generate-sitemap
+  cancel-in-progress: false
+
 jobs:
   generate-sitemap:
     if: github.actor != 'github-actions[bot]'
@@ -17,23 +21,46 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
-      - name: Generate sitemap
-        run: python scripts/generate_sitemap.py
-      - name: Commit sitemap if changed
+      - name: Generate and push sitemap
+        shell: bash
         run: |
+          set -euo pipefail
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git status --porcelain -- sitemap.xml | grep -q .; then
+          for attempt in 1 2 3 4 5; do
+            echo "Sitemap push attempt $attempt"
+
+            git fetch origin main
+            git reset --hard origin/main
+
+            python scripts/generate_sitemap.py
+
+            if ! git status --porcelain -- sitemap.xml | grep -q .; then
+              echo "No sitemap changes."
+              exit 0
+            fi
+
             git add sitemap.xml
             git commit -m "Update sitemap [skip ci]"
-            git push
-          else
-            echo "No sitemap changes."
-          fi
+
+            if git push origin HEAD:main; then
+              echo "Sitemap pushed successfully."
+              exit 0
+            fi
+
+            echo "Push failed because main changed during the run. Retrying..."
+            sleep 5
+          done
+
+          echo "Failed to push sitemap after 5 attempts."
+          exit 1
