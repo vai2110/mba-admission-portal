@@ -3,122 +3,57 @@
 (function(){
   const input=document.getElementById('collegeSearch');
   const result=document.getElementById('collegeSearchResult');
+  const button=document.querySelector('.search-box button');
   if(!input||!result)return;
   const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
-  const CITY={bangalore:['bengaluru','blr'],bengaluru:['bangalore','blr'],mysore:['mysuru'],mysuru:['mysore'],hyderabad:['hyd'],hyd:['hyderabad'],ghaziabad:['gzb','gaziabad'],gzb:['ghaziabad'],'navi mumbai':['nerul'],nerul:['navi mumbai'],'new delhi':['delhi'],delhi:['new delhi'],calcutta:['kolkata'],kolkata:['calcutta'],gurugram:['gurgaon'],gurgaon:['gurugram'],mumbai:['bombay'],bombay:['mumbai']};
-  const GENERIC_QUERIES=new Set(['iim','iit','sib','sibm','siib','siom','sitm','sicsr','sims','scit','ssmc']);
   const tokens=s=>norm(s).split(' ').filter(Boolean);
-  const cityOf=q=>{const t=tokens(q);for(const [c,vs] of Object.entries(CITY)){if(t.includes(c)||vs.some(v=>t.includes(v)))return c}return ''};
-  const cityOK=(q,c)=>{const qc=cityOf(q);if(!qc)return true;const loc=norm(c.location);return loc.includes(qc)||(CITY[qc]||[]).some(v=>loc.includes(v))};
+  const escapeHtml=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const aliases=c=>{
-    const n=norm(c.name), loc=norm(c.location).split(' ')[0];
-    const a=[n].concat((c.aliases||[]).map(norm));
+    const a=[norm(c.name),...(c.aliases||[]).map(norm)], n=norm(c.name);
     if(n.startsWith('indian institute of management')){
-      const parts=n.split(' '), last=parts[parts.length-1];
-      if(last!=='management')a.push('iim '+last);
-      if(loc&&loc!=='india')a.push('iim '+loc);
-      if(last==='calcutta'||loc==='kolkata')a.push('iim calcutta','iim kolkata');
+      const last=n.split(' ').pop();
+      if(last&&last!=='management')a.push('iim '+last);
     }
-    if(n.startsWith('symbiosis institute of business management')){
-      if(loc)a.push('sibm '+loc);
-    }
-    if(n==='institute of management technology'&&loc)a.push('imt '+loc);
-    if(n==='great lakes institute of management'&&loc)a.push('great lakes '+loc);
-    return [...new Set(a)];
+    return [...new Set(a.filter(Boolean))];
   };
-  const familyOf=q=>{const n=norm(q);if(n==='sib')return 'sibm';return FAMILY.find(f=>n===f||n.startsWith(f+' '))||''};
-  const score=(q,c)=>{
-    if(!cityOK(q,c))return -1;
-    const n=norm(q),qt=tokens(n),al=aliases(c);
-    if(GENERIC_QUERIES.has(n))return -1;
-    let best=0;
-    for(const a of al){
-      if(a===n)best=Math.max(best,10000);
-      else if(a.replace(/ /g,'')===n.replace(/ /g,''))best=Math.max(best,9500);
-      else if(a.startsWith(n+' ')||n.startsWith(a+' '))best=Math.max(best,7000);
-    }
-    const hay=norm([c.name,c.location,...(c.aliases||[])].join(' '));
-    const covered=qt.filter(t=>hay.split(' ').includes(t)).length;
-    if(covered===qt.length)best=Math.max(best,4000+covered*100);
-    return best;
-  };
-  const escape=s=>String(s||'').replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));const LOGO_DOMAINS={
-'amu-aligarh':'amu.ac.in','alliance-university':'alliance.edu.in','amity-university-noida':'amity.edu','amrita-vishwa-vidyapeetham':'amrita.edu','anna-university':'annauniv.edu','bbau-lucknow':'bbau.ac.in','banaras-hindu-university':'bhu.ac.in','birla-institute-management-technology':'bimtech.ac.in','bit-mesra':'bitmesra.ac.in','bml-munjal-university':'bml.edu.in','chandigarh-university':'cuchd.in','chitkara-university':'chitkara.edu.in','christ-university':'christuniversity.in','cusat-kochi':'cusat.ac.in','fore-school-management':'fsm.ac.in','goa-institute-management':'gim.ac.in','graphic-era-university':'geu.ac.in','glim-chennai':'greatlakes.edu.in','great-lakes-gurgaon':'greatlakes.edu.in','ggsipu':'ipu.ac.in','icfai-university-hyderabad':'ifheindia.org','imi-bhubaneswar':'imibh.edu.in','imi-delhi':'imi.edu','imi-kolkata':'imik.edu.in','iift':'iift.ac.in','iim-ahmedabad':'iima.ac.in','iim-bangalore':'iimb.ac.in','iim-bodhgaya':'iimbg.ac.in','iim-calcutta':'iimcal.ac.in','iim-indore':'iimidr.ac.in','iim-jammu':'iimj.ac.in','indian-institute-of-management-kashipur':'iimkashipur.ac.in','iim-kozhikode':'iimk.ac.in','iim-lucknow':'iiml.ac.in','iim-nagpur':'iimnagpur.ac.in','iim-raipur':'iimraipur.ac.in','iim-ranchi':'iimranchi.ac.in','iim-rohtak':'iimrohtak.ac.in','iim-sambalpur':'iimsambalpur.ac.in','iim-shillong':'iimshillong.ac.in','iim-sirmaur':'iimsirmaur.ac.in','iim-trichy':'iimtrichy.ac.in','iim-udaipur':'iimu.ac.in','iim-amritsar':'iimamritsar.ac.in','iim-mumbai':'iimmumbai.ac.in','iit-ism-dhanbad':'iitism.ac.in','iit-bombay':'iitb.ac.in','iit-delhi-dms':'iitd.ac.in','iit-kanpur':'iitk.ac.in','iit-kharagpur':'iitkgp.ac.in','iit-madras':'iitm.ac.in','iit-roorkee':'iitr.ac.in','imt-nagpur':'imtnagpur.ac.in','institute-rural-management-anand':'irma.ac.in','jims-rohini':'jimsindia.org','jain-university':'jainuniversity.ac.in','jaipuria-noida':'jaipuria.ac.in','jaipuria-institute-management-noida':'jaipuria.ac.in','jaipuria-institute-of-management-lucknow':'jaipuria.ac.in','jamia-hamdard':'jamiahamdard.edu','jamia-millia-islamia':'jmi.ac.in','kj-somaiya-institute-of-management':'somaiya.edu','kiit-bhubaneswar':'kiit.ac.in','kl-university':'kluniversity.in','lovely-professional-university':'lpu.in','loyola-institute-business-administration':'liba.edu','mdi-gurugram':'mdi.ac.in','muj-jaipur':'jaipur.manipal.edu','mica':'mica.ac.in','department-management-studies-nit-trichy':'nitt.edu','dms-nit-trichy':'nitt.edu','ndim-delhi':'ndimdelhi.org','nirma-university':'nirmauni.ac.in','pdeu':'pdeu.ac.in','panjab-university':'puchd.ac.in','welingkar-mumbai':'welingkar.org','rajagiri-business-school':'rajagiri.edu','spjimr':'spjimr.org','srm-institute-science-technology':'srmist.edu.in','scmhrd-pune':'scmhrd.edu','siib-pune':'siib.ac.in','soa-university-bhubaneswar':'soa.ac.in','siom-nashik':'siom.in','sitm-pune':'sitm.edu.in','nmims':'nmims.edu','sibm-pune':'sibm.edu','sibm-bengaluru':'sibmbengaluru.edu.in','tapmi-manipal':'tapmi.edu.in','thapar-institute-of-engineering-technology':'thapar.edu','tsm-madurai':'tsm.ac.in','upes-dehradun':'upes.ac.in','xim-university-bhubaneswar':'xim.edu.in','xlri-jamshedpur':'xlri.ac.in'
-};
-const logoDomain=c=>{try{const s=new URL(c.url).pathname.split('/').filter(Boolean).pop()||'';return LOGO_DOMAINS[s]||''}catch(e){return ''}};
-const logoFallback=c=>{const n=norm(c.name||'College');if(n.startsWith('indian institute of management'))return 'IIM';if(n.startsWith('indian institute of technology'))return 'IIT';if(n.startsWith('symbiosis institute of business management'))return 'SIBM';if(n.includes('xavier labour relations institute')||n.startsWith('xlri'))return 'XLRI';return (c.name||'College').split(' ').filter(Boolean).slice(0,3).map(w=>w[0]).join('').toUpperCase()};
-  let indexPromise;
-  const getIndex=()=>indexPromise||(indexPromise=fetch('./homepage-search-index.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('search index unavailable');return r.json()}).then(base=>{
-    const normalizeUrl=u=>{try{
-      const x=new URL(String(u||''));
-      const p=x.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'');
-      if(x.hostname==='vai2110.github.io'&&p.startsWith('/mba-admission-portal/'))return 'https://collegedecoded.in'+p.replace('/mba-admission-portal','');
-      return String(u||'').replace(/\\/+$/,'');
-    }catch(e){return String(u||'').replace(/\\/+$/,'')}};
-    const merged=new Map();
-    const add=(c,urlOverride)=>{
-      if(!c||c.live===false)return;
-      const url=normalizeUrl(urlOverride||c.url||c.live_url);
-      if(!url)return;
-      const key=url.toLowerCase();
-      const item={name:c.name||'',location:c.location||'',aliases:c.aliases||[],url,live:true};
-      if(!item.name)return;
-      const existing=merged.get(key);
-      if(!existing){merged.set(key,item);return}
-      existing.aliases=[...new Set([...(existing.aliases||[]),...(item.aliases||[]),item.name])];
-      if(!existing.location&&item.location)existing.location=item.location;
-    };
-    (base.colleges||[]).forEach(c=>add(c));
-    return {source:'College List Management links + ready MBA college pages',count:merged.size,colleges:[...merged.values()]};
-  }));
-  const acronymOf=name=>norm(name).split(' ').filter(w=>w&&/^[a-z]/.test(w)).map(w=>w[0]).join('');
-  const slugOf=url=>{try{return tokens(new URL(url).pathname.replace(/\\.html$/,'').replace(/[-_]+/g,' ')).join(' ')}catch(e){return ''}};
-  const searchAliases=c=>[...new Set([
-    ...aliases(c),
-    acronymOf(c.name),
-    acronymOf(String(c.name||'').replace(/\\([^)]*\\)/g,'')),
-    slugOf(c.url),
-    ...String(c.url||'').split('/').pop().replace(/\\.html$/,'').split(/[-_]+/).filter(Boolean)
-  ].map(norm).filter(Boolean))];
-  const show=(q,data)=>{
-    const ranked=(data.colleges||[]).map(c=>{
-      if(!c||c.live!==true||!c.url)return null;
-      const n=norm(q), qt=tokens(n), al=searchAliases(c), loc=norm(c.location);
-      if(!cityOK(q,c))return null;
-      let best=0;
-      for(const a of al){
-        if(a===n)best=Math.max(best,10000);
-        else if(a.replace(/ /g,'')===n.replace(/ /g,''))best=Math.max(best,9500);
-        else if(a.startsWith(n+' ')||n.startsWith(a+' '))best=Math.max(best,7000);
-        else {
-          const at=tokens(a); const covered=qt.filter(t=>at.includes(t)).length;
-          if(qt.length&&covered===qt.length)best=Math.max(best,6000+covered*100);
-        }
-      }
-      const hay=norm([c.name,c.location,...(c.aliases||[]),slugOf(c.url),acronymOf(c.name)].join(' '));
-      const covered=qt.filter(t=>hay.split(' ').includes(t)).length;
-      if(qt.length&&covered===qt.length)best=Math.max(best,4000+covered*100);
-      return best>0?{c,s:best}:null;
-    }).filter(Boolean).sort((a,b)=>b.s-a.s);
-    if(!ranked.length){result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">No college matches that search. Try the college name, abbreviation or city.</div></div>';result.style.display='block';return}
-    const items=ranked.slice(0,1);
-    const cards=items.map(x=>{const d=logoDomain(x.c);const src=d?'https://www.google.com/s2/favicons?domain='+encodeURIComponent(d)+'&sz=128':'';return `<div class="homepage-college-result"><div class="homepage-college-thumb" aria-hidden="true">${src?`<img src="${src}" alt="${escape(x.c.name)} official logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:''}<span class="homepage-college-fallback" style="display:${src?'none':'flex'}">${escape(logoFallback(x.c))}</span></div><div class="homepage-college-info"><div class="homepage-college-name">${escape(x.c.name)}</div><div class="homepage-college-location">${escape(x.c.location||'')}</div><a class="homepage-college-cta" href="${escape(x.c.url)}">View College Page <span aria-hidden="true">→</span></a></div></div>`}).join('');
-    result.innerHTML=`<div class="search-result-inner"><h3>College found</h3>${cards}</div>`;
-    result.style.display='block';
-  };
-  function run(){
+  const search=async()=>{
     const q=norm(input.value);
-    if(!q){result.style.display='none';result.innerHTML='';return}
-    getIndex().then(data=>show(q,data)).catch(()=>{result.innerHTML='<div class="search-result-inner"><h3>Search is temporarily unavailable</h3></div>';result.style.display='block'});
-  }
+    if(!q){result.style.display='none';result.innerHTML='';return;}
+    result.style.display='block';
+    result.innerHTML='<div class="search-result-inner"><h3>Searching…</h3></div>';
+    try{
+      const response=await fetch(new URL('/homepage-search-index.json?v='+Date.now(),location.origin),{cache:'no-store'});
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      const data=await response.json();
+      const colleges=Array.isArray(data.colleges)?data.colleges:[];
+      const ranked=colleges.filter(c=>c&&c.live!==false&&c.url).map(c=>{
+        const n=norm(c.name), al=aliases(c), qt=tokens(q);
+        let score=0;
+        if(al.includes(q))score=10000;
+        else if(al.some(a=>a.replace(/ /g,'')===q.replace(/ /g,'')))score=9500;
+        else if(qt.length&&al.some(a=>qt.every(t=>tokens(a).includes(t))))score=7000;
+        return score?{c,score}:null;
+      }).filter(Boolean).sort((a,b)=>b.score-a.score);
+      if(!ranked.length){
+        result.innerHTML='<div class="search-result-inner"><h3>No direct match found</h3><div class="search-location">Try the complete college name or its abbreviation.</div></div>';
+        return;
+      }
+      const c=ranked[0].c;
+      result.innerHTML='<div class="search-result-inner"><h3>College found</h3><div class="homepage-college-result"><div class="homepage-college-info"><div class="homepage-college-name">'+escapeHtml(c.name)+'</div><div class="homepage-college-location">'+escapeHtml(c.location||'')+'</div><a class="homepage-college-cta" href="'+escapeHtml(c.url)+'">View College Page →</a></div></div></div>';
+    }catch(error){
+      console.error('CollegeDecoded search error:',error);
+      result.innerHTML='<div class="search-result-inner"><h3>Search is temporarily unavailable</h3><div class="search-location">Please try again in a moment.</div></div>';
+    }
+  };
   if(!document.getElementById('homepage-search-cta-style')){
-    const style=document.createElement('style');style.id='homepage-search-cta-style';style.textContent='.search-result-inner{margin:14px auto 0;max-width:760px;background:#fff;color:#17324d;border-radius:14px;padding:18px;box-shadow:0 14px 35px rgba(15,23,42,.16);text-align:left}.search-result-inner h3{margin:0 0 10px;color:#173f82;font-size:17px}.homepage-college-result{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}.homepage-college-thumb{width:72px;height:72px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;color:#17336f;font-weight:800;font-size:15px;letter-spacing:.3px;text-align:center;line-height:1.2}.homepage-college-thumb img{display:block;width:100%;height:100%;padding:8px;box-sizing:border-box;object-fit:contain}.homepage-college-fallback{padding:8px}.homepage-college-info{min-width:0}.homepage-college-name{font-weight:800;font-size:17px;line-height:1.3;color:#17324d}.homepage-college-location{margin-top:4px;font-size:12px;color:#64748b}.homepage-college-cta{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:800;font-size:11px;line-height:1;background:#2563eb;color:#fff;white-space:nowrap}.homepage-college-cta:hover{background:#1d4ed8}@media(max-width:600px){.homepage-college-result{grid-template-columns:56px minmax(0,1fr);gap:12px;padding:12px}.homepage-college-thumb{width:56px;height:56px;font-size:12px}.homepage-college-thumb img{padding:6px}.homepage-college-cta{grid-column:1/-1;width:100%;box-sizing:border-box}.homepage-college-name{font-size:15px}}';document.head.appendChild(style);
+    const style=document.createElement('style');
+    style.id='homepage-search-cta-style';
+    style.textContent='.search-result-inner{margin:14px auto 0;max-width:760px;background:#fff;color:#17324d;border-radius:14px;padding:18px;box-shadow:0 14px 35px rgba(15,23,42,.16);text-align:left}.search-result-inner h3{margin:0 0 10px;color:#173f82;font-size:17px}.homepage-college-result{padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}.homepage-college-name{font-weight:800;font-size:17px;color:#17324d}.homepage-college-location{margin-top:4px;font-size:12px;color:#64748b}.homepage-college-cta{display:inline-flex;margin-top:12px;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:800;font-size:11px;background:#2563eb;color:#fff}@media(max-width:600px){.search-result-inner{margin-top:12px;padding:14px}.homepage-college-name{font-size:15px}.homepage-college-cta{width:100%;box-sizing:border-box;justify-content:center}}';
+    document.head.appendChild(style);
   }
-  window.searchContent=run;
-  // This is the authoritative search handler. Stop the older homepage search listener
-  // from rendering a second result set with legacy .html URLs.
-  input.addEventListener('input',e=>{e.stopImmediatePropagation();run()},true);
-  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();run()}},true);
+  window.searchContent=search;
+  if(button)button.addEventListener('click',e=>{e.preventDefault();search();});
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();search();}});
 })();
 </script>
 </body></html>
