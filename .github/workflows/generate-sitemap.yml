@@ -31,10 +31,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet sitemap.xml; then
-            echo "No sitemap changes."
-          else
-            git add sitemap.xml
-            git commit -m "Update sitemap [skip ci]"
-            git push
-          fi
+         if git status --porcelain -- sitemap.xml | grep -q .; then
+  git add sitemap.xml
+  git commit -m "Update sitemap [skip ci]"
+  git push
+else
+  echo "No sitemap changes."
+fi
