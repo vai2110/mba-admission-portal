@@ -49,14 +49,13 @@ for html_file in ROOT.rglob("*.html"):
         continue
 
     # Prevent duplicate Google tags if a page is already configured.
-    if (
-        "googletagmanager.com/gtag/js" in content
-        or re.search(r"gtag\\s*\\(\\s*['\"]config['\"]", content)
+    if "googletagmanager.com/gtag/js" in content or re.search(
+        r"gtag\s*\(\s*['\"]config['\"]", content
     ):
         skipped += 1
         continue
 
-    head_match = re.search(r"<head\\b[^>]*>", content, re.IGNORECASE)
+    head_match = re.search(r"<head\b[^>]*>", content, re.IGNORECASE)
     if not head_match:
         skipped += 1
         continue
