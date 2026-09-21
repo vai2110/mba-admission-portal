@@ -1,4 +1,4 @@
-name: Generate Sitemap
+name: Generate Sitemap and Install Analytics
 
 on:
   push:
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  generate-sitemap:
+  generate-and-install:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Generate and push sitemap
+      - name: Generate sitemap and install Google Analytics
         shell: bash
         run: |
           set -euo pipefail
@@ -38,23 +38,24 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           for attempt in 1 2 3 4 5; do
-            echo "Sitemap push attempt $attempt"
+            echo "Site automation attempt $attempt"
 
             git fetch origin main
             git reset --hard origin/main
 
+            python scripts/inject_google_analytics.py
             python scripts/generate_sitemap.py
 
-            if ! git status --porcelain -- sitemap.xml | grep -q .; then
-              echo "No sitemap changes."
+            if ! git status --porcelain -- '*.html' sitemap.xml | grep -q .; then
+              echo "No site changes."
               exit 0
             fi
 
-            git add sitemap.xml
-            git commit -m "Update sitemap [skip ci]"
+            git add -- '*.html' sitemap.xml
+            git commit -m "Install Google Analytics and update sitemap [skip ci]"
 
             if git push origin HEAD:main; then
-              echo "Sitemap pushed successfully."
+              echo "Site automation changes pushed successfully."
               exit 0
             fi
 
@@ -62,5 +63,5 @@ jobs:
             sleep 5
           done
 
-          echo "Failed to push sitemap after 5 attempts."
+          echo "Failed to push site automation changes after 5 attempts."
           exit 1
