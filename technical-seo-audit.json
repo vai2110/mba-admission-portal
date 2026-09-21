@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T02:58:12.055569+00:00",
+  "generated_at": "2026-09-21T07:58:53.579906+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 630,
   "pages_with_issues": 630,
@@ -12,6 +12,7 @@
     "h1_count": 5,
     "jsonld": 15,
     "lang": 1,
+    "noindex": 4,
     "og_description": 13,
     "og_title": 13,
     "og_url": 13,
@@ -4399,9 +4400,9 @@
       "lang": "en",
       "viewport": true,
       "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+        "noindex,nofollow"
       ],
-      "indexable": true,
+      "indexable": false,
       "og_title": true,
       "og_description": true,
       "og_url": true,
@@ -4415,7 +4416,8 @@
       "issues": [
         "title_length",
         "description_count",
-        "canonical"
+        "canonical",
+        "noindex"
       ]
     },
     {
@@ -4507,8 +4509,10 @@
       "h1": "Content Quality Auditor",
       "lang": "en",
       "viewport": true,
-      "robots": [],
-      "indexable": true,
+      "robots": [
+        "noindex,nofollow"
+      ],
+      "indexable": false,
       "og_title": false,
       "og_description": false,
       "og_url": false,
@@ -4522,6 +4526,7 @@
       "issues": [
         "description_count",
         "canonical",
+        "noindex",
         "og_title",
         "og_description",
         "og_url",
@@ -5896,9 +5901,9 @@
       "lang": "en",
       "viewport": true,
       "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+        "noindex,nofollow"
       ],
-      "indexable": true,
+      "indexable": false,
       "og_title": true,
       "og_description": true,
       "og_url": true,
@@ -5911,7 +5916,8 @@
       "duplicate_canonical": false,
       "issues": [
         "description_length",
-        "canonical"
+        "canonical",
+        "noindex"
       ]
     },
     {
@@ -13129,9 +13135,9 @@
       "lang": "en",
       "viewport": false,
       "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+        "noindex,nofollow"
       ],
-      "indexable": true,
+      "indexable": false,
       "og_title": true,
       "og_description": true,
       "og_url": true,
@@ -13147,7 +13153,8 @@
         "description_count",
         "canonical",
         "h1_count",
-        "viewport"
+        "viewport",
+        "noindex"
       ]
     },
     {
