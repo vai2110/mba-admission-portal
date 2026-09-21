@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T11:02:06.612075+00:00",
+  "generated_at": "2026-09-21T11:03:11.175495+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 630,
   "pages_with_issues": 630,
@@ -16268,7 +16268,7 @@
       "og_url": true,
       "twitter_card": true,
       "jsonld_blocks": 1,
-      "images": 0,
+      "images": 1,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
