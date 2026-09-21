@@ -6,6 +6,14 @@ BASE_URL = "https://collegedecoded.in"
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Internal/test pages that must never be included in the public sitemap.
+EXCLUDED_PATHS = {
+    "college-page-audit-dashboard.html",
+    "content-audit.html",
+    "github-direct-edit-test.html",
+    "irma-deploy-trigger.html",
+}
+
 urls = set()
 
 # Find all HTML pages in the repository
@@ -13,6 +21,10 @@ for html_file in ROOT.rglob("*.html"):
 
     # Ignore technical/system folders
     if any(part in {".git", "node_modules", ".github"} for part in html_file.parts):
+        continue
+
+    # Ignore known internal/test pages
+    if html_file.name.lower() in EXCLUDED_PATHS:
         continue
 
     try:
