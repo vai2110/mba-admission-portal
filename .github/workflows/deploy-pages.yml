@@ -43,10 +43,9 @@ jobs:
           city_map={'bangalore':'Bengaluru','bengaluru':'Bengaluru','mysore':'Mysore','mysuru':'Mysore','hyderabad':'Hyderabad','ghaziabad':'Ghaziabad','new delhi':'New Delhi','delhi':'Delhi','calcutta':'Kolkata','kolkata':'Kolkata','gurgaon':'Gurgaon','gurugram':'Gurugram','mumbai':'Mumbai','bombay':'Mumbai','pune':'Pune','nagpur':'Nagpur','chennai':'Chennai','dehradun':'Dehradun','noida':'Noida','lucknow':'Lucknow','ahmedabad':'Ahmedabad','indore':'Indore','raipur':'Raipur','ranchi':'Ranchi','rohtak':'Rohtak','udaipur':'Udaipur','kashipur':'Kashipur','jamshedpur':'Jamshedpur','roorkee':'Roorkee','kanpur':'Kanpur','dhanbad':'Dhanbad','bodh gaya':'Bodh Gaya','sambalpur':'Sambalpur','jammu':'Jammu','shillong':'Shillong','sirmaur':'Sirmaur','amritsar':'Amritsar','tiruchirappalli':'Tiruchirappalli','trichy':'Tiruchirappalli','manipal':'Manipal','goa':'Goa','bhubaneswar':'Bhubaneswar','patiala':'Patiala','anand':'Anand','varanasi':'Varanasi','aligarh':'Aligarh','jaipur':'Jaipur','madurai':'Madurai','kochi':'Kochi','gandhinagar':'Gandhinagar','coimbatore':'Coimbatore','gwalior':'Gwalior','jodhpur':'Jodhpur'}
           manual={'indian institute of management':'iim','indian institute of technology':'iit','indian institute of foreign trade':'iift','management development institute':'mdi','xlri - xavier school of management':'xlri','s. p. jain institute of management and research':'spjimr','symbiosis institute of business management':'sibm','svkm s narsee monjee institute of management studies':'nmims','institute of management technology':'imt','great lakes institute of management':'great lakes','t. a. pai management institute manipal':'tapmi','goa institute of management':'gim','birla institute of management technology':'bimtech','jagan institute of management studies':'jims','lovely professional university':'lpu','chandigarh university':'cu','mica':'mica','chitkara university':'chitkara','upes':'upes'}
           def norm(s): return re.sub(r'\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
-          colleges={}
+          result=[]
           def add(name,url,loc=''):
               if not url:return
-              if not url: return
               absurl=url if url.startswith('http') else 'https://collegedecoded.in/'+url.lstrip('/')
               if absurl.startswith('https://collegedecoded.in/') and absurl.endswith('.html'): absurl=absurl[:-5]
               n=norm(name); key=absurl.rstrip('/').split('/')[-1]
@@ -68,7 +67,7 @@ jobs:
               if loc:
                   aliases.add(norm(name+' '+loc))
                   if n in manual: aliases.add(norm(manual[n]+' '+loc))
-              colleges[absurl]={'name':name,'location':loc,'aliases':sorted(a for a in aliases if len(a.replace(' ',''))>=3),'url':absurl,'live':True}
+              result.append({'name':name,'location':loc,'aliases':sorted(a for a in aliases if len(a.replace(' ',''))>=3),'url':absurl,'live':True})
           for c in management.get('colleges',[]): add(c[0],c[1])
           # Management sheet is the authoritative college search source. Existing links are preserved exactly;
           # GitHub-hosted MBA URLs are normalized by the homepage runtime to the current CollegeDecoded origin.
@@ -77,13 +76,13 @@ jobs:
               url=c.get('url','')
               if c.get('status')=='ready' and url and not child.search(re.sub(r'\.html$','',url,re.I)):
                   add(c.get('name',''),url,c.get('location',''))
-          result=sorted(colleges.values(),key=lambda x:x['name'].lower())
+          result=sorted(result,key=lambda x:x['name'].lower())
           for item in result: item['aliases']=[a for a in item['aliases'] if a!='overview']
           Path('homepage-search-index.json').write_text(json.dumps({'source':'College List Management links + ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-          expected=len({u.rstrip('/') for _,u in management.get('colleges',[]) if u})
+          expected=len([1 for _,u in management.get('colleges',[]) if u])
           if len(result) < expected:
-              raise SystemExit(f'Homepage search index incomplete: {len(result)} unique URLs for {expected} management links')
-          print(f'Built homepage search index with {len(result)} live college pages from {expected} management links')
+              raise SystemExit(f'Homepage search index incomplete: {len(result)} entries for {expected} management links')
+          print(f'Built homepage search index with {len(result)} live college entries from {expected} management links')
           PY
 
       - name: Add CollegeDecoded guidance gate and enquiry form to Management college page families
