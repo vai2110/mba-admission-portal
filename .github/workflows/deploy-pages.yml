@@ -80,7 +80,10 @@ jobs:
           result=sorted(colleges.values(),key=lambda x:x['name'].lower())
           for item in result: item['aliases']=[a for a in item['aliases'] if a!='overview']
           Path('homepage-search-index.json').write_text(json.dumps({'source':'College List Management links + ready MBA college pages','count':len(result),'colleges':result},ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-          print(f'Built homepage search index with {len(result)} live college pages')
+          expected=len({u.rstrip('/') for _,u in management.get('colleges',[]) if u})
+          if len(result) < expected:
+              raise SystemExit(f'Homepage search index incomplete: {len(result)} unique URLs for {expected} management links')
+          print(f'Built homepage search index with {len(result)} live college pages from {expected} management links')
           PY
 
       - name: Add CollegeDecoded guidance gate and enquiry form to Management college page families
