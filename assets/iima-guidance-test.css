@@ -1,3 +1,8 @@
+/* IIM Ahmedabad guidance CTA — enquiry-form colour treatment only */
+.cd-iima-test-guidance{background:linear-gradient(145deg,#eef6ff,#f8fbff);border-color:#d7e5f7;color:#243447}
+.cd-iima-test-guidance h2{color:#092653}
+.cd-iima-test-guidance p{color:#52637a}
+.cd-iima-test-guidance button{background:#174ea6;border-color:#174ea6;color:#fff}
 /* IIM Ahmedabad — isolated guidance popup test */
 .cd-iima-test-modal{display:none;position:fixed;inset:0;z-index:99999;align-items:center;justify-content:center;padding:20px}
 .cd-iima-test-modal.cd-iima-open{display:flex}
