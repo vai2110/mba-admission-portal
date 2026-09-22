@@ -139,6 +139,83 @@ jobs:
           print(f'Guidance rollout matched {matched} Management college pages; skipped {skipped} unrelated HTML files.')
           PY
 
+      - name: Install legacy CollegeDecoded redirects
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          data = json.loads(Path("data/management-live-colleges.json").read_text(encoding="utf-8"))
+          targets = {}
+          for name, url in data.get("colleges", []):
+              if url.startswith("https://collegedecoded.in/"):
+                  targets[url.rstrip("/").rsplit("/", 1)[-1]] = url
+
+          # Legacy college-cms paths present in the supplied live-college sheet.
+          cms_targets = {
+              "sibm-nagpur": "https://collegedecoded.in/sibm-nagpur",
+              "sicsr-pune": "https://collegedecoded.in/sicsr-pune",
+              "sims-pune": "https://collegedecoded.in/sims-pune",
+              "scit-pune": "https://collegedecoded.in/scit-pune",
+              "ssmc-bangalore": "https://collegedecoded.in/ssmc-bangalore",
+              "asia-pacific-institute-management-new-delhi": "https://collegedecoded.in/asia-pacific-institute-management-new-delhi",
+              "pumba-pune": "https://collegedecoded.in/pumba-pune",
+              "xime-bangalore": "https://collegedecoded.in/xime-bangalore",
+              "ipe-hyderabad": "https://collegedecoded.in/ipe-hyderabad",
+              "ibs-hyderabad": "https://collegedecoded.in/ibs-hyderabad",
+              "sdmimd-mysore": "https://collegedecoded.in/sdmimd-mysore",
+              "mnit-jaipur-mba": "https://collegedecoded.in/mnit-jaipur-mba",
+              "jaipuria-jaipur-mba": "https://collegedecoded.in/jaipuria-jaipur-mba",
+              "iiswbm-kolkata": "https://collegedecoded.in/iiswbm-kolkata",
+              "globsyn-business-school-kolkata": "https://collegedecoded.in/globsyn-business-school-kolkata",
+              "edii-ahmedabad": "https://collegedecoded.in/edii-ahmedabad",
+          }
+
+          redirect = '''<script data-collegedecoded-legacy-redirect>
+          if (location.hostname === "vai2110.github.io") {
+            location.replace("%s" + location.search + location.hash);
+          }
+          </script>
+          '''
+
+          installed = 0
+          for slug, target in targets.items():
+              p = Path(slug + ".html")
+              if not p.exists():
+                  continue
+              s = p.read_text(encoding="utf-8", errors="ignore")
+              if "data-collegedecoded-legacy-redirect" in s:
+                  continue
+              p.write_text(s.replace("<head>", "<head>\n" + redirect % target, 1), encoding="utf-8")
+              installed += 1
+
+          for slug, target in cms_targets.items():
+              p = Path("college-cms/content") / slug / "overview.html"
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_text(
+                  f'''<!doctype html><html><head><meta charset="utf-8">
+          <meta name="robots" content="noindex"><link rel="canonical" href="{target}">
+          <script data-collegedecoded-legacy-redirect>if(location.hostname==="vai2110.github.io"){{location.replace("{target}"+location.search+location.hash);}}else{{location.replace("{target}");}}</script>
+          </head><body>Redirecting to CollegeDecoded…</body></html>''',
+                  encoding="utf-8"
+              )
+
+          # The sheet also contains two relative legacy links.
+          for slug, target in {
+              "kj-somaiya-institute-of-management.html": "https://collegedecoded.in/kj-somaiya-institute-of-management",
+              "kiit-bhubaneswar.html": "https://collegedecoded.in/kiit-bhubaneswar",
+          }.items():
+              p = Path(slug)
+              if not p.exists():
+                  continue
+              s = p.read_text(encoding="utf-8", errors="ignore")
+              if "data-collegedecoded-legacy-redirect" not in s:
+                  p.write_text(s.replace("<head>", "<head>\n" + redirect % target, 1), encoding="utf-8")
+                  installed += 1
+
+          print(f"Installed {installed} top-level legacy redirects plus {len(cms_targets)} CMS redirects.")
+          PY
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
