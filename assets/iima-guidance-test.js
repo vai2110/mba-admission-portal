@@ -149,7 +149,24 @@ function init(){
     }
   }
   window.addEventListener('scroll',checkScroll,{passive:true});
-  modal.querySelector('.cd-iima-test-guidance button').addEventListener('click',open);
+  // CTA must always open the enquiry form modal.
+  var guidanceCta=document.querySelector('#cdIimaTestGuidanceSection .cd-iima-test-guidance button');
+  if(guidanceCta){
+    guidanceCta.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      open();
+    });
+  }
+  // Delegated fallback keeps the CTA working even if the section is re-rendered.
+  document.addEventListener('click',function(e){
+    var target=e.target.closest ? e.target.closest('#cdIimaTestGuidanceSection button') : null;
+    if(target){
+      e.preventDefault();
+      e.stopPropagation();
+      open();
+    }
+  });
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
