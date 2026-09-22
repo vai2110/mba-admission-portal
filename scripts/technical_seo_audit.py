@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "https://vai2110.github.io/mba-admission-portal/"
+BASE_URL = "https://collegedecoded.in/"
 EXCLUDED = {"404.html"}
 BENCHMARKS = {"iim-ahmedabad.html", "sibm-pune.html"}
 
