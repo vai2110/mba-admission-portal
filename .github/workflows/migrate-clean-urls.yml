@@ -34,26 +34,72 @@ jobs:
                   s = p.read_text(encoding="utf-8")
               except UnicodeDecodeError:
                   continue
-
               t = s.replace(old, new)
-              # Migrate the legacy site brand to CollegeDecoded.
               t = t.replace("MBA<span>Portal</span>", "College<span>Decoded</span>")
               t = t.replace("MBA Portal", "CollegeDecoded")
-              # Only strip .html from absolute CollegeDecoded URLs.
-              t = re.sub(
-                  r"""https://collegedecoded\.in/([^"'<>\s#?]+)\.html(?=([#"'< >\s?]|$))""",
-                  r"https://collegedecoded.in/\1",
-                  t
-              )
-
+              t = re.sub(r"https://collegedecoded\\.in/([^"'<>\\s#?]+)\\.html(?=([#"'<>\\s?]|$))", r"https://collegedecoded.in/\\1", t)
               if t != s:
                   p.write_text(t, encoding="utf-8")
                   changed += 1
-
           print(f"Updated {changed} HTML/JSON files.")
           PY
 
-      - name: Commit migrated URLs
+      - name: Install legacy GitHub Pages redirects
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          data = json.loads(Path("data/management-live-colleges.json").read_text(encoding="utf-8"))
+          targets = {}
+          for name, url in data["colleges"]:
+              if url.startswith("https://collegedecoded.in/"):
+                  targets[url.rsplit("/", 1)[-1]] = url
+
+          cms_targets = {
+              "sibm-nagpur": "https://collegedecoded.in/sibm-nagpur",
+              "sicsr-pune": "https://collegedecoded.in/sicsr-pune",
+              "sims-pune": "https://collegedecoded.in/sims-pune",
+              "scit-pune": "https://collegedecoded.in/scit-pune",
+              "ssmc-bangalore": "https://collegedecoded.in/ssmc-bangalore",
+              "asia-pacific-institute-management-new-delhi": "https://collegedecoded.in/asia-pacific-institute-management-new-delhi",
+              "pumba-pune": "https://collegedecoded.in/pumba-pune",
+              "xime-bangalore": "https://collegedecoded.in/xime-bangalore",
+              "ipe-hyderabad": "https://collegedecoded.in/ipe-hyderabad",
+              "ibs-hyderabad": "https://collegedecoded.in/ibs-hyderabad",
+              "sdmimd-mysore": "https://collegedecoded.in/sdmimd-mysore",
+              "mnit-jaipur-mba": "https://collegedecoded.in/mnit-jaipur-mba",
+              "jaipuria-jaipur-mba": "https://collegedecoded.in/jaipuria-jaipur-mba",
+              "iiswbm-kolkata": "https://collegedecoded.in/iiswbm-kolkata",
+              "globsyn-business-school-kolkata": "https://collegedecoded.in/globsyn-business-school-kolkata",
+              "edii-ahmedabad": "https://collegedecoded.in/edii-ahmedabad"
+          }
+
+          redirect_js = '''<script>
+          if (location.hostname === "vai2110.github.io") {
+            location.replace("%s" + location.search + location.hash);
+          }
+          </script>'''
+
+          for slug, target in targets.items():
+              p = Path(slug + ".html")
+              if not p.exists():
+                  continue
+              s = p.read_text(encoding="utf-8")
+              if "data-collegedecoded-legacy-redirect" in s:
+                  continue
+              block = '<script data-collegedecoded-legacy-redirect>\n' + redirect_js % target + '\n</script>\n'
+              p.write_text(s.replace("<head>", "<head>\n" + block, 1), encoding="utf-8")
+
+          for slug, target in cms_targets.items():
+              p = Path("college-cms/content") / slug / "overview.html"
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_text(f'''<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="{target}"><script data-collegedecoded-legacy-redirect>location.replace("{target}" + location.search + location.hash);</script></head><body>Redirecting to CollegeDecoded…</body></html>\n''', encoding="utf-8")
+
+          print("Legacy GitHub Pages redirect layer installed.")
+          PY
+
+      - name: Commit migrated URLs and redirects
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -61,6 +107,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No URL changes required."
           else
-            git commit -m "[skip ci] Complete CollegeDecoded URL migration"
+            git commit -m "[skip ci] Complete CollegeDecoded legacy URL redirects"
             git push
           fi
