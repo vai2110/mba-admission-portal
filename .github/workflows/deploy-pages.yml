@@ -122,6 +122,10 @@ jobs:
               if not related(p,text):
                   skipped+=1
                   continue
+              # IIM Ahmedabad family uses the dedicated enquiry-form flow below.
+              # Do not inject the legacy CollegeDecoded guidance gate into these pages.
+              if p.stem.lower().startswith('iim-ahmedabad'):
+                  continue
               matched+=1
               if marker in text:
                   text=re.sub(r'href="(?:/)?assets/college-guidance\.css(?:\?[^" ]*)?"', 'href="'+css+'"', text)
