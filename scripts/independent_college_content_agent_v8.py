@@ -300,9 +300,9 @@ def render_page(page, college, rank, official_url, internal_links, filename, sou
     related=''.join(f'<a class="programme-link" href="{escape("/"+x)}">{text(Path(x).stem.replace("-"," ").title())}</a>' for x in internal_links[:4] if x!=filename)
     cta_url=page.get("cta_url") or official_url
     cta_label=page.get("cta_label") or "Visit official website"
-    schema={"@context":"https://schema.org","@type":"WebPage","name":title,"description":hero,"url":f"https://vai2110.github.io/mba-admission-portal/{filename}","about":{"@type":"CollegeOrUniversity","name":college}}
+    schema={"@context":"https://schema.org","@type":"WebPage","name":title,"description":hero,"url":f"https://collegedecoded.in/{filename}","about":{"@type":"CollegeOrUniversity","name":college}}
     html='''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">'''
-    html+=f'<title>{text(title)}</title><meta name="description" content="{text(hero)[:158]}"><link rel="canonical" href="https://vai2110.github.io/mba-admission-portal/{escape(filename)}"><meta property="og:title" content="{text(title)}"><meta property="og:description" content="{text(hero)[:158]}"><meta property="og:type" content="website"><link rel="stylesheet" href="college-page.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body>'
+    html+=f'<title>{text(title)}</title><meta name="description" content="{text(hero)[:158]}"><link rel="canonical" href="https://collegedecoded.in/{escape(filename)}"><meta property="og:title" content="{text(title)}"><meta property="og:description" content="{text(hero)[:158]}"><meta property="og:type" content="website"><link rel="stylesheet" href="college-page.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body>'
     html+='<header><div class="navbar"><a class="logo" href="index.html">MBA Admission Portal</a><nav class="nav-links"><a href="index.html">Home</a><a href="pgp.html">PGP</a></nav></div></header>'
     html+=f'<section class="hero"><div class="hero-container"><h1>{text(title)}</h1><h2>{text(hero)}</h2><div class="hero-location">{text(location)}</div></div></section>'
     html+='<div class="page-container"><div class="quick-facts">'+''.join(f'<div class="quick-fact"><span class="quick-fact-label">{text(x.get("label"))}</span><span class="quick-fact-value">{text(x.get("value"))}</span></div>' for x in facts)+'</div>'
@@ -445,7 +445,7 @@ def main():
         if r: r["deployment_status"]="Pushed - Awaiting Pages"; write_master(rows); update_xlsx(rows)
         ok=[]
         for fn,_,_ in final:
-            live=f"https://vai2110.github.io/mba-admission-portal/{fn}"; good=False
+            live=f"https://collegedecoded.in/{fn}"; good=False
             for _ in range(8):
                 try:
                     if session.get(live,timeout=20).status_code==200: good=True; break
