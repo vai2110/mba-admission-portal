@@ -6,8 +6,19 @@ window.__CD_IIMA_GUIDANCE_TEST=true;
 function init(){
   if(document.getElementById('cdIimaTestModal'))return;
   var hero=document.querySelector('.hero');
-  var faq=document.getElementById('faq');
-  if(!hero)return;
+  var faq=document.getElementById('faq')||document.getElementById('faqs');
+  if(!faq){
+    var faqCandidates=[].slice.call(document.querySelectorAll('section, .section, .section-card, main > div'));
+    for(var fi=0;fi<faqCandidates.length;fi++){
+      var fh=faqCandidates[fi].querySelector('h2,h3');
+      var ft=fh?(fh.textContent||'').toLowerCase():'';
+      if(ft.indexOf('frequently asked')!==-1 || /^faqs?$/.test(ft.trim())){faq=faqCandidates[fi];break;}
+    }
+  }
+  if(!faq){
+    faq=document.getElementById('sources')||document.getElementById('official')||document.querySelector('footer');
+  }
+  if(!hero||!faq)return;
 
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]);});}
 
@@ -92,7 +103,7 @@ function init(){
   var progress=modal.querySelector('.cd-iima-test-progress span');
   var selectedColleges=['IIM Ahmedabad'];
   var currentStep=1;
-  var source='IIM Ahmedabad page';
+  var source=document.title||window.location.href;
   try{sessionStorage.setItem('CD_IIMA_GUIDANCE_SOURCE',window.location.href)}catch(e){}
 
   function open(){
