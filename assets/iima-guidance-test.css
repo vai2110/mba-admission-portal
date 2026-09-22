@@ -1,8 +1,122 @@
-/* IIM Ahmedabad guidance CTA — enquiry-form colour treatment only */
-.cd-iima-test-guidance{background:linear-gradient(145deg,#eef6ff,#f8fbff);border-color:#d7e5f7;color:#243447}
-.cd-iima-test-guidance h2{color:#092653}
-.cd-iima-test-guidance p{color:#52637a}
-.cd-iima-test-guidance button{background:#174ea6;border-color:#174ea6;color:#fff}
+/* IIM Ahmedabad guidance CTA — isolated visual treatment only */
+.cd-iima-test-guidance{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  margin:28px 0 26px;
+  padding:28px 30px;
+  border:1px solid #d7e5f7;
+  border-top:4px solid #ff6b16;
+  border-radius:22px;
+  background:linear-gradient(135deg,#eef6ff 0%,#f8fbff 62%,#fff7f0 100%);
+  box-shadow:0 16px 38px rgba(9,38,83,.12);
+  color:#243447;
+}
+.cd-iima-test-guidance:before{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:190px;
+  right:-72px;
+  top:-88px;
+  border-radius:50%;
+  background:rgba(255,107,22,.11);
+  z-index:-1;
+}
+.cd-iima-test-guidance:after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  left:-38px;
+  bottom:-45px;
+  border-radius:50%;
+  background:rgba(37,99,235,.10);
+  z-index:-1;
+}
+.cd-iima-test-guidance>div{
+  position:relative;
+  z-index:1;
+  max-width:720px;
+}
+.cd-iima-test-guidance h2{
+  margin:0 0 8px;
+  color:#092653;
+  font-size:27px;
+  line-height:1.2;
+  letter-spacing:-.35px;
+}
+.cd-iima-test-guidance p{
+  margin:0;
+  color:#52637a;
+  font-size:14px;
+  line-height:1.65;
+  max-width:690px;
+}
+.cd-iima-test-guidance button{
+  position:relative;
+  z-index:1;
+  flex:none;
+  border:1px solid #ff6b16;
+  border-radius:11px;
+  padding:12px 18px;
+  background:#ff6b16;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(255,107,22,.22);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.cd-iima-test-guidance button:hover{
+  background:#f25d0a;
+  box-shadow:0 13px 24px rgba(255,107,22,.28);
+  transform:translateY(-2px);
+}
+.cd-iima-test-guidance button:focus-visible{
+  outline:3px solid rgba(37,99,235,.22);
+  outline-offset:3px;
+}
+@media(max-width:700px){
+  .cd-iima-test-guidance{
+    display:block;
+    margin:18px 12px 20px;
+    padding:22px 18px 20px;
+    border-top-width:4px;
+    border-radius:18px;
+    box-shadow:0 12px 28px rgba(9,38,83,.11);
+  }
+  .cd-iima-test-guidance h2{
+    font-size:22px;
+    line-height:1.25;
+    letter-spacing:-.2px;
+    margin-bottom:8px;
+  }
+  .cd-iima-test-guidance p{
+    font-size:13px;
+    line-height:1.6;
+  }
+  .cd-iima-test-guidance button{
+    width:100%;
+    margin-top:16px;
+    padding:12px 16px;
+    font-size:12px;
+  }
+}
+@media(max-width:380px){
+  .cd-iima-test-guidance{
+    margin-left:9px;
+    margin-right:9px;
+    padding:20px 15px 18px;
+  }
+  .cd-iima-test-guidance h2{font-size:20px}
+  .cd-iima-test-guidance p{font-size:12.5px}
+}
 /* IIM Ahmedabad — isolated guidance popup test */
 .cd-iima-test-modal{display:none;position:fixed;inset:0;z-index:99999;align-items:center;justify-content:center;padding:20px}
 .cd-iima-test-modal.cd-iima-open{display:flex}
