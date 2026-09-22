@@ -79,11 +79,6 @@ function init(){
   '</div>';
   document.body.appendChild(modal);
 
-  var floating=document.createElement('div');
-  floating.className='cd-iima-test-floating';
-  floating.innerHTML='<div><strong>Still exploring your MBA options?</strong></div><button type="button">Get Free Guidance</button>';
-  document.body.appendChild(floating);
-
   if(faq && !document.getElementById('cdIimaTestGuidanceSection')){
     var section=document.createElement('section');
     section.id='cdIimaTestGuidanceSection';
@@ -103,12 +98,10 @@ function init(){
   function open(){
     modal.classList.add('cd-iima-open');modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
-    floating.classList.remove('show');
   }
   function close(){
     modal.classList.remove('cd-iima-open');modal.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
-    if(scrolledEnough) floating.classList.add('show');
   }
   function goStep(n){
     currentStep=n;
@@ -152,12 +145,11 @@ function init(){
     if(meaningful>=3){
       scrolledEnough=true;triggered=true;
       var handled=false;try{handled=sessionStorage.getItem('CD_IIMA_GUIDANCE_HANDLED')==='1'}catch(e){}
-      if(!handled)open();else floating.classList.add('show');
+      if(!handled)open();
     }
   }
   window.addEventListener('scroll',checkScroll,{passive:true});
   modal.querySelector('.cd-iima-test-guidance button').addEventListener('click',open);
-  floating.querySelector('button').addEventListener('click',open);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
