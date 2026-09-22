@@ -37,7 +37,8 @@ jobs:
               t = s.replace(old, new)
               t = t.replace("MBA<span>Portal</span>", "College<span>Decoded</span>")
               t = t.replace("MBA Portal", "CollegeDecoded")
-              t = re.sub(r"https://collegedecoded\\.in/([^"'<>\\s#?]+)\\.html(?=([#"'<>\\s?]|$))", r"https://collegedecoded.in/\\1", t)
+              pattern = r'''https://collegedecoded\\.in/([^"'< >\\s#?]+)\\.html(?=([#"'<>\\s?]|$))'''
+              t = re.sub(pattern, r"https://collegedecoded.in/\\1", t)
               if t != s:
                   p.write_text(t, encoding="utf-8")
                   changed += 1
