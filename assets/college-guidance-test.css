@@ -1,0 +1,146 @@
+/* IIM Ahmedabad guidance CTA — isolated visual treatment only */
+.cd-college-test-guidance{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  margin:28px 0 26px;
+  padding:28px 30px;
+  border:1px solid #d7e5f7;
+  border-top:4px solid #ff6b16;
+  border-radius:22px;
+  background:linear-gradient(135deg,#eef6ff 0%,#f8fbff 62%,#fff7f0 100%);
+  box-shadow:0 16px 38px rgba(9,38,83,.12);
+  color:#243447;
+}
+.cd-college-test-guidance:before{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:190px;
+  right:-72px;
+  top:-88px;
+  border-radius:50%;
+  background:rgba(255,107,22,.11);
+  z-index:-1;
+}
+.cd-college-test-guidance:after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  left:-38px;
+  bottom:-45px;
+  border-radius:50%;
+  background:rgba(37,99,235,.10);
+  z-index:-1;
+}
+.cd-college-test-guidance>div{
+  position:relative;
+  z-index:1;
+  max-width:720px;
+}
+.cd-college-test-guidance h2{
+  margin:0 0 8px;
+  color:#092653;
+  font-size:27px;
+  line-height:1.2;
+  letter-spacing:-.35px;
+}
+.cd-college-test-guidance p{
+  margin:0;
+  color:#52637a;
+  font-size:14px;
+  line-height:1.65;
+  max-width:690px;
+}
+.cd-college-test-guidance button{
+  position:relative;
+  z-index:1;
+  flex:none;
+  border:1px solid #ff6b16;
+  border-radius:11px;
+  padding:12px 18px;
+  background:#ff6b16;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(255,107,22,.22);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.cd-college-test-guidance button:hover{
+  background:#f25d0a;
+  box-shadow:0 13px 24px rgba(255,107,22,.28);
+  transform:translateY(-2px);
+}
+.cd-college-test-guidance button:focus-visible{
+  outline:3px solid rgba(37,99,235,.22);
+  outline-offset:3px;
+}
+@media(max-width:700px){
+  .cd-college-test-guidance{
+    display:block;
+    margin:18px 12px 20px;
+    padding:22px 18px 20px;
+    border-top-width:4px;
+    border-radius:18px;
+    box-shadow:0 12px 28px rgba(9,38,83,.11);
+  }
+  .cd-college-test-guidance h2{
+    font-size:22px;
+    line-height:1.25;
+    letter-spacing:-.2px;
+    margin-bottom:8px;
+  }
+  .cd-college-test-guidance p{
+    font-size:13px;
+    line-height:1.6;
+  }
+  .cd-college-test-guidance button{
+    width:100%;
+    margin-top:16px;
+    padding:12px 16px;
+    font-size:12px;
+  }
+}
+@media(max-width:380px){
+  .cd-college-test-guidance{
+    margin-left:9px;
+    margin-right:9px;
+    padding:20px 15px 18px;
+  }
+  .cd-college-test-guidance h2{font-size:20px}
+  .cd-college-test-guidance p{font-size:12.5px}
+}
+/* IIM Ahmedabad — isolated guidance popup test */
+.cd-college-test-modal{display:none;position:fixed;inset:0;z-index:99999;align-items:center;justify-content:center;padding:20px}
+.cd-college-test-modal.cd-iima-open{display:flex}
+.cd-college-test-backdrop{position:absolute;inset:0;background:rgba(5,18,42,.58);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cd-college-test-dialog{position:relative;z-index:1;width:min(900px,calc(100vw - 40px));max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.32);padding:24px;color:#243447}
+.cd-college-test-close{position:absolute;right:14px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#f1f5f9;color:#0f274d;font-size:25px;line-height:1;cursor:pointer;z-index:3}
+.cd-college-test-grid{display:grid;grid-template-columns:290px minmax(0,1fr);gap:26px}
+.cd-college-test-brand{font-weight:900;font-size:19px;color:#092653;margin-bottom:5px}.cd-college-test-brand span{color:#f97316}
+.cd-college-test-left{background:linear-gradient(145deg,#eef6ff,#f8fbff);border:1px solid #d7e5f7;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;min-height:500px}
+.cd-college-test-left h3{font-size:27px;line-height:1.12;color:#092653;margin:22px 0 10px}
+.cd-college-test-left p{font-size:13px;line-height:1.55;color:#52637a;margin:0}
+.cd-college-test-points{display:grid;gap:10px;margin-top:18px}.cd-college-test-point{display:flex;gap:9px;align-items:flex-start;font-size:11px;font-weight:700;color:#334155}.cd-college-test-point i{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:#174ea6;font-style:normal;box-shadow:0 3px 10px rgba(23,78,166,.12);flex:none}
+.cd-college-test-student{height:170px;display:flex;align-items:flex-end;justify-content:center;animation:cdIimaFloat 3.2s ease-in-out infinite}
+.cd-college-test-student svg{width:190px;height:170px;overflow:visible}
+@keyframes cdIimaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.cd-college-test-right{padding:4px 8px}
+.cd-college-test-progress{height:6px;background:#e5edf7;border-radius:99px;overflow:hidden;margin:7px 0 20px}.cd-college-test-progress span{display:block;height:100%;width:50%;background:#2563eb;border-radius:99px;transition:width .25s}
+.cd-college-test-right h2{font-size:28px;line-height:1.2;color:#092653;margin:0 35px 7px 0}.cd-college-test-sub{font-size:13px;color:#64748b;margin:0 0 18px}
+.cd-college-test-step{display:none}.cd-college-test-step.active{display:block}
+.cd-college-test-label{font-size:11px;font-weight:800;color:#243447;margin:0 0 7px;display:block}
+.cd-college-test-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:17px}.cd-college-test-choice{position:relative}.cd-college-test-choice input{position:absolute;opacity:0}.cd-college-test-choice span{display:block;border:1px solid #ccd9e9;border-radius:9px;padding:10px 11px;font-size:11px;font-weight:700;color:#334155;background:#fff;cursor:pointer}.cd-college-test-choice input:checked+span{border-color:#2563eb;background:#eff6ff;color:#174ea6;box-shadow:0 0 0 1px #2563eb inset}
+.cd-college-test-fields{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:16px}.cd-college-test-field{display:flex;flex-direction:column;gap:5px}.cd-college-test-field input,.cd-college-test-field select{width:100%;padding:11px;border:1px solid #cbd8e8;border-radius:9px;background:#fff;color:#243447;font-size:12px;outline:none}.cd-college-test-field input:focus,.cd-college-test-field select:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+.cd-college-test-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}.cd-college-test-tag{border:1px solid #d5dfeb;background:#f8fafc;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:700;color:#475569;cursor:pointer}.cd-college-test-tag.selected{background:#eaf2ff;border-color:#2563eb;color:#174ea6}
+.cd-college-test-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:5px}.cd-college-test-btn{border:0;border-radius:10px;padding:12px 18px;background:#ff6b16;color:#fff;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(255,107,22,.18)}.cd-college-test-back{border:1px solid #ccd8e8;background:#fff;color:#174ea6;box-shadow:none}.cd-college-test-note{text-align:center;font-size:9.5px;color:#64748b;margin-top:10px}
+@media(max-width:700px){
+ .cd-college-test-modal{padding:0;align-items:flex-end}.cd-college-test-dialog{width:100%;max-height:94vh;border-radius:20px 20px 0 0;padding:18px 14px 16px}.cd-college-test-grid{display:block}.cd-college-test-left{min-height:0;padding:14px 12px 10px;margin-bottom:13px}.cd-college-test-brand{font-size:17px}.cd-college-test-left h3{font-size:20px;margin:8px 0 5px}.cd-college-test-left p{font-size:11px}.cd-college-test-points{display:none}.cd-college-test-student{height:112px}.cd-college-test-student svg{width:125px;height:112px}.cd-college-test-right{padding:0 2px}.cd-college-test-right h2{font-size:22px;margin-top:2px}.cd-college-test-sub{font-size:11px;margin-bottom:14px}.cd-college-test-choices{grid-template-columns:1fr;gap:7px}.cd-college-test-fields{grid-template-columns:1fr 1fr;gap:8px}.cd-college-test-field input,.cd-college-test-field select{font-size:11px;padding:10px}.cd-college-test-actions{position:sticky;bottom:0;background:#fff;padding-top:7px}.cd-college-test-btn{width:100%;padding:12px}.cd-college-test-back{width:90px}}
+@media(max-width:380px){.cd-college-test-fields{grid-template-columns:1fr}.cd-college-test-dialog{max-height:96vh}}
