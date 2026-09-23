@@ -138,13 +138,37 @@ function init(){
       if(idx===-1){selectedColleges.push(college);tag.classList.add('selected')}else{selectedColleges.splice(idx,1);tag.classList.remove('selected')}
     });
   });
+  var ENQUIRY_ENDPOINT='https://script.google.com/macros/s/AKfycbwfyXmhmRd5yB5QJL7ZuCvHhC3PjldwMQlD6f-HmzrOez_gUfzA0vga-UwQHrKPlXvp/exec';
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(!form.reportValidity())return;
-    var data={source_page:source,interest:(form.querySelector('input[name="iima_interest"]:checked')||{}).value||'',colleges:selectedColleges,location:form.location.value,budget:form.budget.value,exam:form.exam.value,percentile:form.percentile.value,name:form.name.value,mobile:form.mobile.value};
-    try{sessionStorage.setItem('CD_IIMA_GUIDANCE_TEST_SUBMISSION',JSON.stringify(data));sessionStorage.setItem('CD_IIMA_GUIDANCE_HANDLED','1')}catch(err){}
-    form.innerHTML='<div style="text-align:center;padding:45px 8px"><div style="font-size:42px">🎓</div><h2 style="color:#092653;margin:10px 0">You’re all set!</h2><p style="color:#64748b;font-size:13px">Your guidance preferences have been recorded for this test flow.</p><button type="button" class="cd-iima-test-btn" data-done>Continue exploring</button></div>';
-    modal.querySelector('[data-done]').addEventListener('click',close);
+    var submitBtn=form.querySelector('button[type="submit"]');
+    if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Submitting…';}
+    var data={
+      source_page:window.location.href,
+      interest:(form.querySelector('input[name="iima_interest"]:checked')||{}).value||'',
+      colleges:selectedColleges.join(', '),
+      location:form.location.value,
+      budget:form.budget.value,
+      exam:form.exam.value,
+      percentile:form.percentile.value,
+      name:form.name.value,
+      mobile:form.mobile.value
+    };
+    var body=new URLSearchParams(data);
+    fetch(ENQUIRY_ENDPOINT,{method:'POST',mode:'no-cors',body:body,keepalive:true})
+      .then(function(){
+        try{
+          sessionStorage.setItem('CD_IIMA_GUIDANCE_TEST_SUBMISSION',JSON.stringify(data));
+          sessionStorage.setItem('CD_IIMA_GUIDANCE_HANDLED','1');
+        }catch(err){}
+        form.innerHTML='<div style="text-align:center;padding:45px 8px"><div style="font-size:42px">🎓</div><h2 style="color:#092653;margin:10px 0">You’re all set!</h2><p style="color:#64748b;font-size:13px">Thanks! Your guidance request has been submitted. Our team can now follow up with you.</p><button type="button" class="cd-iima-test-btn" data-done>Continue exploring</button></div>';
+        modal.querySelector('[data-done]').addEventListener('click',close);
+      })
+      .catch(function(){
+        if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='Get Free Guidance →';}
+        alert('We could not submit your request. Please try again.');
+      });
   });
 
   var scrolledEnough=false,triggered=false,lastY=window.pageYOffset||0;
