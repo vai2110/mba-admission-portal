@@ -84,7 +84,38 @@ function init(){
     modal.querySelector('.cd-guidance-close').addEventListener('click',closeModal);
     modal.querySelector('.cd-guidance-backdrop').addEventListener('click',closeModal);
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('cd-open'))closeModal();});
-    form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}modal.querySelector('.cd-guidance-success').style.display='block';});
+    var ENQUIRY_ENDPOINT='https://script.google.com/macros/s/AKfycbwfyXmhmRd5yB5QJL7ZuCvHhC3PjldwMQlD6f-HmzrOez_gUfzA0vga-UwQHrKPlXvp/exec';
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){form.reportValidity();return;}
+      var submit=form.querySelector('.cd-guidance-submit');
+      if(submit){submit.disabled=true;submit.textContent='Submitting…';}
+      var interest=(form.querySelector('input[name="interest"]:checked')||{}).value||'';
+      var help=form.elements.help?form.elements.help.value:'';
+      var score=form.elements.score?form.elements.score.value:'';
+      var data={
+        name:form.elements.name?form.elements.name.value:'',
+        mobile:form.elements.whatsapp?form.elements.whatsapp.value:'',
+        interest:interest+(help?' | Help: '+help:''),
+        colleges:'',
+        location:'',
+        budget:'',
+        exam:score,
+        percentile:'',
+        source_page:window.location.href
+      };
+      fetch(ENQUIRY_ENDPOINT,{method:'POST',mode:'no-cors',body:new URLSearchParams(data),keepalive:true})
+        .then(function(){
+          modal.querySelector('.cd-guidance-success').textContent='Thanks! Your guidance request has been submitted successfully.';
+          modal.querySelector('.cd-guidance-success').style.display='block';
+          if(submit){submit.textContent='Submitted ✓';}
+          try{sessionStorage.setItem('CD_GUIDANCE_SUBMITTED','1');}catch(err){}
+        })
+        .catch(function(){
+          if(submit){submit.disabled=false;submit.textContent='Get Free Guidance →';}
+          alert('We could not submit your request. Please try again.');
+        });
+    });
     modal.__open= openModal;
     return modal;
   }
