@@ -138,8 +138,9 @@ function init(){
     faq.parentNode.insertBefore(wrap,faq);
     wrap.querySelector('.cd-guidance-open').addEventListener('click',openGuidanceModal);
   }
-  /* Legacy guidance gate/CTA disabled. New conversion flow is being tested separately. */
+  /* Common enquiry-form section: add only the CTA section before FAQ. */
   ensureGuidanceModal();
+  addGuidanceBeforeFaq();
 
 
   var meaningfulScrolls=0,scrollDistance=0,lastY=window.pageYOffset||document.documentElement.scrollTop||0;
