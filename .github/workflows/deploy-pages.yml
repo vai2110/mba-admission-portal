@@ -85,62 +85,47 @@ jobs:
           print(f'Built homepage search index with {len(result)} live college entries from {expected} management links')
           PY
 
-      - name: Add CollegeDecoded guidance gate and enquiry form to Management college page families
+      - name: Add IIMA-style enquiry form to Management college page families and related pages
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import json,re
-          marker='assets/college-guidance.js'
-          css='assets/college-guidance.css?v=4'
-          js='assets/college-guidance.js?v=4'
           data=json.loads(Path('data/management-live-colleges.json').read_text(encoding='utf-8'))
           parents=[]
           for name,url in data.get('colleges',[]):
               if not url: continue
               slug=url.rstrip('/').split('/')[-1]
               if slug.endswith('.html'): slug=slug[:-5]
-              parents.append((name.strip(),slug))
-          # Remaining live college pages explicitly listed in the Management sheet.
-          parents.extend([
-              ('K.J.Somaiya Institute of Management','kj-somaiya-institute-of-management'),
-              ('Kalinga Institute of Industrial Technology','kiit-bhubaneswar'),
-          ])
-          parents=sorted(set(parents),key=lambda x:len(x[1]),reverse=True)
-          def norm(s):
-              return re.sub(r'\s+',' ',re.sub(r'[^a-z0-9]+',' ',str(s).lower())).strip()
+              parents.append(slug)
+          parents.extend(['kj-somaiya-institute-of-management','kiit-bhubaneswar'])
+          parents=sorted(set(parents),key=len,reverse=True)
           def related(p,text):
               stem=p.stem.lower()
-              for name,slug in parents:
+              for slug in parents:
                   if stem==slug or stem.startswith(slug+'-'): return True
-                  if re.search(r'(?<![a-z0-9])'+re.escape(slug)+r'(?![a-z0-9])',norm(text[:12000])): return True
+                  if re.search(r'(?<![a-z0-9])'+re.escape(slug)+r'(?![a-z0-9])',text[:12000].lower()): return True
               return False
+          old_css=re.compile(r'<link[^>]+href=["\']/?assets/college-guidance\\.css(?:\\?[^"\']*)?["\'][^>]*>\\s*',re.I)
+          old_js=re.compile(r'<script[^>]+src=["\']/?assets/college-guidance\\.js(?:\\?[^"\']*)?["\'][^>]*></script>\\s*',re.I)
+          new_css=re.compile(r'<link[^>]+href=["\']/?assets/college-guidance-test\\.css(?:\\?[^"\']*)?["\'][^>]*>\\s*',re.I)
+          new_js=re.compile(r'<script[^>]+src=["\']/?assets/college-guidance-test\\.js(?:\\?[^"\']*)?["\'][^>]*></script>\\s*',re.I)
           matched=0
-          skipped=0
           for p in Path('.').rglob('*.html'):
               if p.name.lower() in {'404.html','index.html'}: continue
               text=p.read_text(encoding='utf-8',errors='ignore')
-              if not related(p,text):
-                  skipped+=1
-                  continue
-              # IIM Ahmedabad family uses the dedicated enquiry-form flow below.
-              # Do not inject the legacy CollegeDecoded guidance gate into these pages.
-              if p.stem.lower().startswith('iim-ahmedabad'):
-                  continue
+              if not related(p,text): continue
+              if p.stem.lower().startswith('iim-ahmedabad'): continue
               matched+=1
-              if marker in text:
-                  text=re.sub(r'href="(?:/)?assets/college-guidance\.css(?:\?[^" ]*)?"', 'href="'+css+'"', text)
-                  text=re.sub(r'src="(?:/)?assets/college-guidance\.js(?:\?[^" ]*)?"', 'src="'+js+'"', text)
-                  p.write_text(text,encoding='utf-8')
-                  continue
-              block=f'\n<link rel="stylesheet" href="{css}"><script src="{js}"></script>\n'
-              if re.search(r'</body>\s*</html>',text,re.I):
-                  text=re.sub(r'</body>\s*</html>',block+'</body>\n</html>',text,count=1,flags=re.I)
+              text=old_css.sub('',text); text=old_js.sub('',text)
+              text=new_css.sub('',text); text=new_js.sub('',text)
+              injection='\n<link rel="stylesheet" href="assets/college-guidance-test.css?v=3"><script src="assets/college-guidance-test.js?v=3"></script>\n'
+              if re.search(r'</body>\\s*</html>',text,re.I):
+                  text=re.sub(r'</body>\\s*</html>',injection+'</body>\n</html>',text,count=1,flags=re.I)
               elif re.search(r'</body>',text,re.I):
-                  text=re.sub(r'</body>',block+'</body>',text,count=1,flags=re.I)
-              else:
-                  text+=block
+                  text=re.sub(r'</body>',injection+'</body>',text,count=1,flags=re.I)
+              else: text+=injection
               p.write_text(text,encoding='utf-8')
-          print(f'Guidance rollout matched {matched} Management college pages; skipped {skipped} unrelated HTML files.')
+          print(f'IIMA-style enquiry flow matched {matched} parent/related college pages; IIM Ahmedabad remains on its dedicated flow.')
           PY
 
       - name: Install legacy CollegeDecoded redirects
