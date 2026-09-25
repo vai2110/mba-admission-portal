@@ -47,9 +47,16 @@ let matched = 0, changed = 0;
 for (const file of walk(root)) {
   const base = path.basename(file).toLowerCase();
   if (base === '404.html' || base === 'index.html') continue;
+  // Roll out the common enquiry flow to every production HTML page.
+  // Only internal/admin/test pages and IIM Ahmedabad's dedicated flow are excluded.
+  const excluded = new Set([
+    'college-page-audit-dashboard.html', 'content-audit.html',
+    'github-direct-edit-test.html', 'college.html', 'colleges.html',
+    'irma-deploy-trigger.html'
+  ]);
+  if (excluded.has(base)) continue;
+  if (base.startsWith('iim-ahmedabad')) continue;
   const text = fs.readFileSync(file, 'utf8');
-  if (!related(file, text)) continue;
-  if (path.basename(file).toLowerCase().startsWith('iim-ahmedabad')) continue;
   matched++;
   const cleaned = text.replace(oldCss, '').replace(oldJs, '').replace(newCss, '').replace(newJs, '');
   let next = cleaned;
