@@ -15,8 +15,18 @@ const uniqueParents = [...new Set(parents)].sort((a,b) => b.length - a.length);
 
 function related(file, text) {
   const stem = path.basename(file, '.html').toLowerCase();
-  const head = text.slice(0, 12000).toLowerCase();
-  return uniqueParents.some(slug => stem === slug || stem.startsWith(slug + '-') || head.includes(slug));
+  const rel = path.relative(root, file).toLowerCase().replace(/\\/g, '/');
+  const segments = rel.split('/');
+  const head = text.slice(0, 20000).toLowerCase();
+  return uniqueParents.some(slug =>
+    stem === slug ||
+    stem.startsWith(slug + '-') ||
+    segments.some(segment => segment === slug) ||
+    rel.includes('/' + slug + '/') ||
+    head.includes('collegedecoded.in/' + slug) ||
+    head.includes('"' + slug + '"') ||
+    head.includes('/' + slug + '/')
+  );
 }
 function walk(dir) {
   const out = [];
