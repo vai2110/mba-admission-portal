@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "buildCommand": "node scripts/inject-guidance-flow.js && echo \"Enquiry rollout production trigger\""
+  "buildCommand": "node scripts/inject-guidance-flow.js && echo \"Enquiry rollout production trigger\"",
+  "outputDirectory": "."
 }
