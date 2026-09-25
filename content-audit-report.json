@@ -1,32 +1,298 @@
 {
-  "generated_at": "2026-09-03T09:55:21.209035+00:00",
+  "generated_at": "2026-09-25T22:02:07.764071+00:00",
   "mode": "free-editorial-audit",
-  "pages_audited": 2,
+  "pages_audited": 5,
   "pages_changed": 0,
   "target_page": null,
   "target_pages": [
-    "iit-kanpur.html",
-    "iit-kanpur-placements.html"
+    "jmi.html",
+    "jmi-placements.html",
+    "jmi-management-studies.html",
+    "jmi-hospital-management-and-hospice-studies.html",
+    "jmi-tourism-and-hospitality-management.html"
   ],
   "results": [
     {
-      "file": "iit-kanpur.html",
-      "overall_score": 87,
+      "file": "jmi.html",
+      "overall_score": 95,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
       "metrics": {
-        "word_count": 492,
+        "word_count": 535,
         "generic_phrase_hits": 0,
         "promotional_hits": 0,
         "duplicate_sentences": 1,
         "numeric_or_date_content_blocks": 5,
         "official_links": 0,
-        "all_external_links": 5,
+        "all_external_links": 8,
+        "missing_intent_sections": [],
+        "thin_sections": 0
+      },
+      "issues": [
+        {
+          "severity": "medium",
+          "type": "repetition",
+          "text": "Found 1 repeated sentences/near-identical statements.",
+          "location": "page text",
+          "examples": [
+            "No unsupported figure or claim has been added."
+          ],
+          "recommendation": "Keep the stronger occurrence and remove the duplicate."
+        },
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 5 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "medium",
+          "action": "remove_repetition",
+          "count": 1
+        },
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 5,
+          "official_source_links": 0
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "The Faculty of Management Studies at Jamia Millia Islamia (JMI) oversees business education through specialized departments.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The university is a central institution with a long-standing history of academic excellence.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Admission processes are managed centrally by the university.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Q: Are there scholarships available?",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "A: Yes, students may check the Scholarships/Fellowships section on the official website.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "jmi-placements.html",
+      "overall_score": 88,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 260,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 0,
+        "numeric_or_date_content_blocks": 2,
+        "official_links": 0,
+        "all_external_links": 2,
+        "missing_intent_sections": [
+          "eligibility",
+          "admission",
+          "fees",
+          "cutoff",
+          "scholarship",
+          "fit"
+        ],
+        "thin_sections": 0
+      },
+      "issues": [
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 2 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "medium",
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: eligibility, admission, fees, cutoff, scholarship, fit",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 2,
+          "official_source_links": 0
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "eligibility",
+            "admission",
+            "fees",
+            "cutoff",
+            "scholarship",
+            "fit"
+          ]
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "Information regarding specific recruiters is not currently available in the public domain on the official Jamia Millia Islamia website.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "If data is marked \"Not Available,\" it indicates that the university has not released specific placement statistics for that period in the public domain.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "jmi-management-studies.html",
+      "overall_score": 83,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 505,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 1,
+        "numeric_or_date_content_blocks": 3,
+        "official_links": 0,
+        "all_external_links": 10,
+        "missing_intent_sections": [
+          "placement",
+          "scholarship"
+        ],
+        "thin_sections": 5
+      },
+      "issues": [
+        {
+          "severity": "medium",
+          "type": "repetition",
+          "text": "Found 1 repeated sentences/near-identical statements.",
+          "location": "page text",
+          "examples": [
+            "No unsupported figure or claim has been added."
+          ],
+          "recommendation": "Keep the stronger occurrence and remove the duplicate."
+        },
+        {
+          "severity": "high",
+          "type": "fact_check",
+          "text": "Found 3 factual content blocks containing dates, figures, percentages or monetary values.",
+          "location": "factual claims",
+          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
+        },
+        {
+          "severity": "medium",
+          "type": "student_intent",
+          "text": "Potentially missing student-decision topics: placement, scholarship",
+          "location": "page structure",
+          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+        },
+        {
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 5 major sections with thin supporting content.",
+          "location": "main content sections",
+          "examples": [
+            "Quick Answer",
+            "On This Page",
+            "Programme Overview",
+            "Academic Departments",
+            "Fee Structure"
+          ],
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "medium",
+          "action": "remove_repetition",
+          "count": 1
+        },
+        {
+          "priority": "high",
+          "action": "manual_verify_high_impact_facts",
+          "count": 3,
+          "official_source_links": 0
+        },
+        {
+          "priority": "medium",
+          "action": "fill_student_intent_gaps",
+          "sections": [
+            "placement",
+            "scholarship"
+          ]
+        },
+        {
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 5
+        }
+      ],
+      "verified_facts": [],
+      "unverified_claims": [
+        {
+          "claim": "The Faculty of Management Studies at Jamia Millia Islamia (JMI) oversees various management-related departments.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "The university offers diverse management specialisations through its constituent departments, including General Management, Hospital Management, Hospice Studies, and Tourism & Hospitality Management.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        },
+        {
+          "claim": "Official cutoff data is currently unavailable in the provided university documentation.",
+          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
+          "action": "manual_review"
+        }
+      ],
+      "replacement_content": [],
+      "keep_content": []
+    },
+    {
+      "file": "jmi-hospital-management-and-hospice-studies.html",
+      "overall_score": 93,
+      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
+      "auto_applied": false,
+      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
+      "metrics": {
+        "word_count": 496,
+        "generic_phrase_hits": 0,
+        "promotional_hits": 0,
+        "duplicate_sentences": 1,
+        "numeric_or_date_content_blocks": 5,
+        "official_links": 0,
+        "all_external_links": 7,
         "missing_intent_sections": [
           "scholarship"
         ],
-        "thin_sections": 3
+        "thin_sections": 0
       },
       "issues": [
         {
@@ -52,18 +318,6 @@
           "text": "Potentially missing student-decision topics: scholarship",
           "location": "page structure",
           "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 3 major sections with thin supporting content.",
-          "location": "main content sections",
-          "examples": [
-            "Identity & Overview",
-            "Research",
-            "Placements"
-          ],
-          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
       ],
       "recommendations": [
@@ -84,37 +338,32 @@
           "sections": [
             "scholarship"
           ]
-        },
-        {
-          "priority": "low",
-          "action": "merge_or_strengthen_thin_sections",
-          "count": 3
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "Admissions are managed by the Office of Academic Affairs.",
+          "claim": "The Department of Hospital Management and Hospice Studies at Jamia Millia Islamia offers specialized academic programs in healthcare administration and palliative care.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The application portal for the July 2026 semester is open from March 19, 2026, to April 15, 2026.",
+          "claim": "It is dedicated to the interdisciplinary study of healthcare administration and palliative care, preparing students for leadership roles in hospital systems and hospice organizations.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Final year students graduating by July 27, 2026, are eligible to apply.",
+          "claim": "The department operates under the university's Academic Council guidelines.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Official data for the 2025-26 season is provided below.",
+          "claim": "Selection is based on merit, typically determined by entrance examinations as specified in the annual university prospectus.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIT Kanpur Sets Record with 672 Job Offers on Day 1 of 2025–26 Placement Season | IIT Kanpur",
+          "claim": "Students may contact the University Placement Cell for general guidance.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
@@ -123,98 +372,79 @@
       "keep_content": []
     },
     {
-      "file": "iit-kanpur-placements.html",
-      "overall_score": 86,
+      "file": "jmi-tourism-and-hospitality-management.html",
+      "overall_score": 93,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
       "metrics": {
-        "word_count": 243,
+        "word_count": 465,
         "generic_phrase_hits": 0,
         "promotional_hits": 0,
-        "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 4,
+        "duplicate_sentences": 1,
+        "numeric_or_date_content_blocks": 2,
         "official_links": 0,
-        "all_external_links": 3,
+        "all_external_links": 11,
         "missing_intent_sections": [
-          "eligibility",
-          "fees",
-          "dates",
-          "cutoff",
-          "fit"
+          "scholarship"
         ],
-        "thin_sections": 2
+        "thin_sections": 0
       },
       "issues": [
         {
+          "severity": "medium",
+          "type": "repetition",
+          "text": "Found 1 repeated sentences/near-identical statements.",
+          "location": "page text",
+          "examples": [
+            "No unsupported figure or claim has been added."
+          ],
+          "recommendation": "Keep the stronger occurrence and remove the duplicate."
+        },
+        {
           "severity": "high",
           "type": "fact_check",
-          "text": "Found 4 factual content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 2 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
         },
         {
           "severity": "medium",
           "type": "student_intent",
-          "text": "Potentially missing student-decision topics: eligibility, fees, dates, cutoff, fit",
+          "text": "Potentially missing student-decision topics: scholarship",
           "location": "page structure",
           "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        },
-        {
-          "severity": "low",
-          "type": "structure",
-          "text": "Found 2 major sections with thin supporting content.",
-          "location": "main content sections",
-          "examples": [
-            "Quick Answer",
-            "Admissions"
-          ],
-          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
       ],
       "recommendations": [
         {
+          "priority": "medium",
+          "action": "remove_repetition",
+          "count": 1
+        },
+        {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 4,
+          "count": 2,
           "official_source_links": 0
         },
         {
           "priority": "medium",
           "action": "fill_student_intent_gaps",
           "sections": [
-            "eligibility",
-            "fees",
-            "dates",
-            "cutoff",
-            "fit"
+            "scholarship"
           ]
-        },
-        {
-          "priority": "low",
-          "action": "merge_or_strengthen_thin_sections",
-          "count": 2
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "The Department of Management Sciences at IIT Kanpur offers a PhD programme.",
+          "claim": "The Department of Tourism and Hospitality Management at Jamia Millia Islamia provides professional education within the university's academic framework.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "The institute's 2025-26 placement season recorded 672 job offers on Day 1.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The 2025-26 season has shown significant growth in industry engagement.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Yes, Institute Assistantships/Scholarships are provided to non-sponsored PhD students.",
+          "claim": "Admission is conducted through the university's centralized process.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }

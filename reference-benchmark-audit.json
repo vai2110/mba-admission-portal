@@ -3,31 +3,28 @@
   "production_threshold": 70,
   "pages": [
     {
-      "page": "iit-kanpur.html",
-      "college_rank": 27,
+      "page": "jmi.html",
+      "college_rank": 28,
       "kind": "overview",
       "passed": true,
       "threshold": 70,
       "before": {
         "kind": "overview",
-        "score": 76,
+        "score": 91,
         "missing_content": [
-          "faqs",
-          "selection_logic",
-          "scholarships",
-          "fee_table"
+          "selection_logic"
         ],
         "architecture_failures": [
-          "internal links"
+          "mandatory latest official fee table/bifurcation"
         ],
         "design_failures": [],
         "architecture": {
           "quick_answer": true,
           "on_this_page": true,
-          "h2_count": 15,
+          "h2_count": 17,
           "tables_or_cards": true,
-          "internal_links": 0,
-          "has_fee_table": true,
+          "internal_links": 2,
+          "has_fee_table": false,
           "has_placement_comparison_table": true,
           "has_cutoff_table": true,
           "hr_between_sections": true
@@ -42,24 +39,21 @@
       },
       "after": {
         "kind": "overview",
-        "score": 76,
+        "score": 91,
         "missing_content": [
-          "faqs",
-          "selection_logic",
-          "scholarships",
-          "fee_table"
+          "selection_logic"
         ],
         "architecture_failures": [
-          "internal links"
+          "mandatory latest official fee table/bifurcation"
         ],
         "design_failures": [],
         "architecture": {
           "quick_answer": true,
           "on_this_page": true,
-          "h2_count": 15,
+          "h2_count": 17,
           "tables_or_cards": true,
-          "internal_links": 0,
-          "has_fee_table": true,
+          "internal_links": 2,
+          "has_fee_table": false,
           "has_placement_comparison_table": true,
           "has_cutoff_table": true,
           "hr_between_sections": true
@@ -74,78 +68,281 @@
       }
     },
     {
-      "page": "iit-kanpur-placements.html",
-      "college_rank": 27,
+      "page": "jmi-placements.html",
+      "college_rank": 28,
       "kind": "placement",
       "passed": true,
       "threshold": 70,
       "before": {
         "kind": "placement",
-        "score": 70,
+        "score": 71,
         "missing_content": [
-          "latest_metrics",
-          "how_to_read"
+          "latest_metrics"
         ],
         "architecture_failures": [
           "Quick Answer",
-          "section hierarchy",
-          "internal links"
+          "internal links",
+          "mandatory latest + prior three-year placement comparison table"
         ],
         "design_failures": [
           "shared_css",
+          "hero",
           "responsive"
         ],
         "architecture": {
           "quick_answer": false,
           "on_this_page": true,
-          "h2_count": 4,
+          "h2_count": 6,
           "tables_or_cards": true,
           "internal_links": 0,
           "has_fee_table": false,
-          "has_placement_comparison_table": true,
+          "has_placement_comparison_table": false,
           "has_cutoff_table": false,
           "hr_between_sections": true
         },
         "design": {
           "viewport": true,
           "shared_css": false,
-          "hero": true,
+          "hero": false,
           "responsive": false,
           "single_h1": true
         }
       },
       "after": {
         "kind": "placement",
-        "score": 70,
+        "score": 71,
         "missing_content": [
-          "latest_metrics",
-          "how_to_read"
+          "latest_metrics"
         ],
         "architecture_failures": [
           "Quick Answer",
-          "section hierarchy",
-          "internal links"
+          "internal links",
+          "mandatory latest + prior three-year placement comparison table"
         ],
         "design_failures": [
           "shared_css",
+          "hero",
           "responsive"
         ],
         "architecture": {
           "quick_answer": false,
           "on_this_page": true,
-          "h2_count": 4,
+          "h2_count": 6,
           "tables_or_cards": true,
           "internal_links": 0,
           "has_fee_table": false,
-          "has_placement_comparison_table": true,
+          "has_placement_comparison_table": false,
           "has_cutoff_table": false,
           "hr_between_sections": true
         },
         "design": {
           "viewport": true,
           "shared_css": false,
-          "hero": true,
+          "hero": false,
           "responsive": false,
+          "single_h1": true
+        }
+      }
+    },
+    {
+      "page": "jmi-management-studies.html",
+      "college_rank": 28,
+      "kind": "course",
+      "passed": true,
+      "threshold": 70,
+      "before": {
+        "kind": "course",
+        "score": 76,
+        "missing_content": [
+          "placements",
+          "faqs",
+          "curriculum",
+          "career_outcomes"
+        ],
+        "architecture_failures": [
+          "mandatory latest official fee table/bifurcation"
+        ],
+        "design_failures": [],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 15,
+          "tables_or_cards": true,
+          "internal_links": 2,
+          "has_fee_table": false,
+          "has_placement_comparison_table": false,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "hero": true,
+          "responsive": true,
+          "single_h1": true
+        }
+      },
+      "after": {
+        "kind": "course",
+        "score": 76,
+        "missing_content": [
+          "placements",
+          "faqs",
+          "curriculum",
+          "career_outcomes"
+        ],
+        "architecture_failures": [
+          "mandatory latest official fee table/bifurcation"
+        ],
+        "design_failures": [],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 15,
+          "tables_or_cards": true,
+          "internal_links": 2,
+          "has_fee_table": false,
+          "has_placement_comparison_table": false,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "hero": true,
+          "responsive": true,
+          "single_h1": true
+        }
+      }
+    },
+    {
+      "page": "jmi-hospital-management-and-hospice-studies.html",
+      "college_rank": 28,
+      "kind": "course",
+      "passed": true,
+      "threshold": 70,
+      "before": {
+        "kind": "course",
+        "score": 85,
+        "missing_content": [
+          "course_overview",
+          "selection_logic",
+          "cutoff_table"
+        ],
+        "architecture_failures": [],
+        "design_failures": [],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 15,
+          "tables_or_cards": true,
+          "internal_links": 2,
+          "has_fee_table": true,
+          "has_placement_comparison_table": false,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "hero": true,
+          "responsive": true,
+          "single_h1": true
+        }
+      },
+      "after": {
+        "kind": "course",
+        "score": 85,
+        "missing_content": [
+          "course_overview",
+          "selection_logic",
+          "cutoff_table"
+        ],
+        "architecture_failures": [],
+        "design_failures": [],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 15,
+          "tables_or_cards": true,
+          "internal_links": 2,
+          "has_fee_table": true,
+          "has_placement_comparison_table": false,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "hero": true,
+          "responsive": true,
+          "single_h1": true
+        }
+      }
+    },
+    {
+      "page": "jmi-tourism-and-hospitality-management.html",
+      "college_rank": 28,
+      "kind": "course",
+      "passed": true,
+      "threshold": 70,
+      "before": {
+        "kind": "course",
+        "score": 80,
+        "missing_content": [
+          "selection_logic",
+          "specialisations",
+          "career_outcomes",
+          "cutoff_table"
+        ],
+        "architecture_failures": [],
+        "design_failures": [],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 15,
+          "tables_or_cards": true,
+          "internal_links": 2,
+          "has_fee_table": true,
+          "has_placement_comparison_table": false,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "hero": true,
+          "responsive": true,
+          "single_h1": true
+        }
+      },
+      "after": {
+        "kind": "course",
+        "score": 80,
+        "missing_content": [
+          "selection_logic",
+          "specialisations",
+          "career_outcomes",
+          "cutoff_table"
+        ],
+        "architecture_failures": [],
+        "design_failures": [],
+        "architecture": {
+          "quick_answer": true,
+          "on_this_page": true,
+          "h2_count": 15,
+          "tables_or_cards": true,
+          "internal_links": 2,
+          "has_fee_table": true,
+          "has_placement_comparison_table": false,
+          "has_cutoff_table": true,
+          "hr_between_sections": true
+        },
+        "design": {
+          "viewport": true,
+          "shared_css": true,
+          "hero": true,
+          "responsive": true,
           "single_h1": true
         }
       }
