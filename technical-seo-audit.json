@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-25T08:50:30.592998+00:00",
+  "generated_at": "2026-09-26T08:36:46.397948+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 630,
-  "pages_with_issues": 630,
+  "pages_checked": 635,
+  "pages_with_issues": 635,
   "issue_counts": {
     "broken_local_links": 5,
-    "canonical": 630,
+    "canonical": 635,
     "description_count": 4,
-    "description_length": 201,
-    "duplicate_title": 4,
+    "description_length": 202,
+    "duplicate_title": 6,
     "h1_count": 5,
     "jsonld": 16,
     "lang": 1,
@@ -16,7 +16,7 @@
     "og_description": 14,
     "og_title": 14,
     "og_url": 14,
-    "title_length": 362,
+    "title_length": 367,
     "twitter_card": 19,
     "viewport": 1
   },
@@ -24,6 +24,10 @@
     "Jaipuria Institute of Management Noida: PGDM, Fees, Cutoff, Placements & Admission 2027": [
       "jaipuria-institute-management-noida.html",
       "jaipuria-noida.html"
+    ],
+    "Management Studies at Jamia Millia Islamia | Admissions & Overview": [
+      "jmi-management-studies.html",
+      "jmi.html"
     ],
     "Welingkar Mumbai PGDM Programmes 2026: Which Specialisation Should You Choose?": [
       "welingkar-mumbai-programmes-note.html",
@@ -14309,6 +14313,179 @@
       "issues": [
         "title_length",
         "canonical"
+      ]
+    },
+    {
+      "file": "jmi-hospital-management-and-hospice-studies.html",
+      "benchmark": false,
+      "title": "Department of Hospital Management and Hospice Studies | Jamia Millia Islamia",
+      "title_length": 76,
+      "description": "Official overview of the Department of Hospital Management and Hospice Studies at Jamia Millia Islamia. Information on academic structure, admissions, and curriculum.",
+      "description_length": 166,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jmi-hospital-management-and-hospice-studies.html",
+      "canonical_count": 1,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "Department of Hospital Management and Hospice Studies",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length",
+        "canonical"
+      ]
+    },
+    {
+      "file": "jmi-management-studies.html",
+      "benchmark": false,
+      "title": "Management Studies at Jamia Millia Islamia | Admissions & Overview",
+      "title_length": 66,
+      "description": "Explore management education at Jamia Millia Islamia. Information on the Faculty of Management Studies, departments, and academic structure at JMI.",
+      "description_length": 147,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jmi-management-studies.html",
+      "canonical_count": 1,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "Management Studies at Jamia Millia Islamia",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": true,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length",
+        "canonical",
+        "duplicate_title"
+      ]
+    },
+    {
+      "file": "jmi-placements.html",
+      "benchmark": false,
+      "title": "Placements at Jamia Millia Islamia (JMI) | Department of Management Studies",
+      "title_length": 75,
+      "description": "Official placement information for the Department of Management Studies at Jamia Millia Islamia.",
+      "description_length": 96,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jmi-placements.html",
+      "canonical_count": 1,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "Placements at Jamia Millia Islamia",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length",
+        "description_length",
+        "canonical"
+      ]
+    },
+    {
+      "file": "jmi-tourism-and-hospitality-management.html",
+      "benchmark": false,
+      "title": "Department of Tourism and Hospitality Management | Jamia Millia Islamia",
+      "title_length": 71,
+      "description": "Official overview of the Department of Tourism and Hospitality Management at Jamia Millia Islamia, including admission and academic information.",
+      "description_length": 144,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jmi-tourism-and-hospitality-management.html",
+      "canonical_count": 1,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "Department of Tourism and Hospitality Management",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length",
+        "canonical"
+      ]
+    },
+    {
+      "file": "jmi.html",
+      "benchmark": false,
+      "title": "Management Studies at Jamia Millia Islamia | Admissions & Overview",
+      "title_length": 66,
+      "description": "Explore management education at Jamia Millia Islamia. Information on departments, academic structure, and official admission resources for management programmes.",
+      "description_length": 161,
+      "description_count": 1,
+      "canonical": "https://vai2110.github.io/mba-admission-portal/jmi.html",
+      "canonical_count": 1,
+      "canonical_self": false,
+      "h1_count": 1,
+      "h1": "Management Studies at Jamia Millia Islamia",
+      "lang": "en",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": true,
+      "duplicate_canonical": false,
+      "issues": [
+        "title_length",
+        "canonical",
+        "duplicate_title"
       ]
     },
     {
