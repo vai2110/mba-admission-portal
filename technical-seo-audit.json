@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-27T09:16:44.802057+00:00",
+  "generated_at": "2026-09-27T09:45:26.552857+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 635,
   "pages_with_issues": 635,
   "issue_counts": {
     "broken_local_links": 5,
-    "canonical": 635,
+    "canonical": 630,
     "description_count": 4,
-    "description_length": 202,
+    "description_length": 203,
     "duplicate_title": 6,
     "h1_count": 5,
     "jsonld": 16,
@@ -8863,16 +8863,16 @@
     {
       "file": "iim-jammu.html",
       "benchmark": false,
-      "title": "IIM Jammu: MBA, Fees, CAT Cutoff & Placements 2026",
-      "title_length": 50,
-      "description": "IIM Jammu guide covering MBA, MBA Healthcare, MBA AI & Business Analytics, fees, CAT cutoff, admission, placements and career outcomes.",
-      "description_length": 135,
+      "title": "IIM Jammu 2026: Fees, CAT Cutoff, Placements & Admission",
+      "title_length": 56,
+      "description": "IIM Jammu MBA 2026 guide covering fees, CAT cutoff, admission process, placements, IPM, courses, campus and rankings.",
+      "description_length": 117,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/iim-jammu",
       "canonical_count": 1,
       "canonical_self": false,
       "h1_count": 1,
-      "h1": "IIM Jammu: MBA, Fees, CAT Cutoff & Placements 2026",
+      "h1": "IIM Jammu: MBA Admission 2026, Fees, CAT Cutoff, Courses & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8890,6 +8890,7 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
+        "description_length",
         "canonical"
       ]
     },
@@ -14325,7 +14326,7 @@
       "description_count": 1,
       "canonical": "https://collegedecoded.in/jmi-hospital-management-and-hospice-studies.html",
       "canonical_count": 1,
-      "canonical_self": false,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "Department of Hospital Management and Hospice Studies",
       "lang": "en",
@@ -14345,8 +14346,7 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "canonical"
+        "title_length"
       ]
     },
     {
@@ -14359,7 +14359,7 @@
       "description_count": 1,
       "canonical": "https://collegedecoded.in/jmi-management-studies.html",
       "canonical_count": 1,
-      "canonical_self": false,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "Management Studies at Jamia Millia Islamia",
       "lang": "en",
@@ -14380,7 +14380,6 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical",
         "duplicate_title"
       ]
     },
@@ -14394,7 +14393,7 @@
       "description_count": 1,
       "canonical": "https://collegedecoded.in/jmi-placements.html",
       "canonical_count": 1,
-      "canonical_self": false,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "Placements at Jamia Millia Islamia",
       "lang": "en",
@@ -14415,8 +14414,7 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "canonical"
+        "description_length"
       ]
     },
     {
@@ -14429,7 +14427,7 @@
       "description_count": 1,
       "canonical": "https://collegedecoded.in/jmi-tourism-and-hospitality-management.html",
       "canonical_count": 1,
-      "canonical_self": false,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "Department of Tourism and Hospitality Management",
       "lang": "en",
@@ -14449,8 +14447,7 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "canonical"
+        "title_length"
       ]
     },
     {
@@ -14463,7 +14460,7 @@
       "description_count": 1,
       "canonical": "https://collegedecoded.in/jmi.html",
       "canonical_count": 1,
-      "canonical_self": false,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "Management Studies at Jamia Millia Islamia",
       "lang": "en",
@@ -14484,7 +14481,6 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical",
         "duplicate_title"
       ]
     },
