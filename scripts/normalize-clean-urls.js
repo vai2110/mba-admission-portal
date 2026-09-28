@@ -43,10 +43,27 @@ function addOrReplaceCanonical(html, sourceName) {
   return html.replace(/<head\\b[^>]*>/i, m => m + "\\n" + tag);
 }
 
+function internalTargetExists(href, sourceName) {
+  if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) return true;
+  if (/^(?:https?:)?\\/\\//i.test(href)) {
+    return !/^(?:https?:)?\\/\\/(?:www\\.)?collegedecoded\\.in\\b/i.test(href) || internalTargetExists(href.replace(/^https?:\\/\\/(?:www\\.)?collegedecoded\\.in/i, ""), sourceName);
+  }
+  const raw = href.split(/[?#]/, 1)[0];
+  if (!raw || raw === "/") return true;
+  let target = raw.startsWith("/") ? raw.slice(1) : path.posix.normalize(path.posix.join(path.posix.dirname(sourceName), raw));
+  target = target.replace(/^\\.\\//, "").replace(/\\/$/, "");
+  if (target.endsWith(".html")) return fs.existsSync(path.join(ROOT, target));
+  return fs.existsSync(path.join(ROOT, target + ".html")) || fs.existsSync(path.join(ROOT, target, "index.html"));
+}
+
 function normalizeFile(html, sourceName) {
   let value = html;
   value = value.replace(/(<a\\b[^>]*\\bhref=[\"'])([^\"']+)([\"'])/gi, (m, pre, href, post) => {
-    return pre + normalizeHref(href, sourceName) + post;
+    const normalized = normalizeHref(href, sourceName);
+    if (!internalTargetExists(normalized, sourceName)) {
+      return m.replace(/\\s*href=[\"'][^\"']+[\"']/i, "");
+    }
+    return pre + normalized + post;
   });
   value = addOrReplaceCanonical(value, sourceName);
   return value;
