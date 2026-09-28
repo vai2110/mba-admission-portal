@@ -38,13 +38,46 @@ def extract_text(html):
     parser.feed(html)
     return re.sub(r"\s+", " ", " ".join(parser.parts)).strip()
 
-def clean_for_signature(text):
-    return re.sub(r"\s+", " ", text).strip().lower()
+def canonical_from(html):
+    m = re.search(
+        r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']',
+        html, re.I
+    )
+    if not m:
+        m = re.search(
+            r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']canonical["\']',
+            html, re.I
+        )
+    return m.group(1).strip() if m else ""
+
+def page_family(name):
+    n = name.lower()
+    if "placements" in n:
+        return "placement"
+    if "fees" in n:
+        return "fees"
+    if "admission" in n:
+        return "admission"
+    if "cutoff" in n:
+        return "cutoff"
+    if "hostel" in n or "campus" in n:
+        return "campus-hostel"
+    if re.search(r"-(mba|bba|bca|btech|mca|mtech|mbbs|bcom|barch|bds)(-|\.|$)", n):
+        return "programme"
+    if re.search(r"-20\d{2}(?:\.|$)", n):
+        return "year-specific"
+    return "overview-or-hub"
+
+def shingles(text, size=5):
+    words = re.findall(r"[a-z0-9]+", text.lower())
+    if len(words) < size:
+        return set(words)
+    return {" ".join(words[i:i+size]) for i in range(len(words)-size+1)}
 
 pages = []
-signatures = defaultdict(list)
-
-for path in ROOT.glob("*.html"):
+for path in ROOT.rglob("*.html"):
+    if any(part in {".git", "node_modules", ".github"} for part in path.parts):
+        continue
     if path.name.lower() in EXCLUDED:
         continue
 
@@ -57,23 +90,6 @@ for path in ROOT.glob("*.html"):
         html, re.I
     ))
 
-    canonical = ""
-    m = re.search(
-        r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']',
-        html, re.I
-    )
-    if not m:
-        m = re.search(
-            r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']canonical["\']',
-            html, re.I
-        )
-    if m:
-        canonical = m.group(1).strip()
-
-    signature = clean_for_signature(text)
-    if signature:
-        signatures[signature].append(path.name)
-
     if noindex:
         classification = "noindex"
     elif words < 300:
@@ -83,21 +99,47 @@ for path in ROOT.glob("*.html"):
     else:
         classification = "index-candidate"
 
+    rel = str(path.relative_to(ROOT)).replace("\\", "/")
     pages.append({
-        "file": path.name,
+        "file": rel,
         "words": words,
-        "canonical": canonical,
+        "canonical": canonical_from(html),
         "noindex": noindex,
+        "family": page_family(path.name),
         "classification": classification,
+        "_shingles": shingles(text),
     })
 
-duplicates = []
-for signature, files in signatures.items():
-    if len(files) > 1:
-        duplicates.append({
-            "files": sorted(files),
-            "word_count": len(signature.split()),
-        })
+# Near-duplicate detection is deliberately report-only. It never changes robots/canonical.
+near_duplicates = []
+for i, left in enumerate(pages):
+    if left["noindex"] or left["words"] < 150:
+        continue
+    for right in pages[i+1:]:
+        if right["noindex"] or right["words"] < 150:
+            continue
+        if left["family"] != right["family"]:
+            continue
+        a, b = left["_shingles"], right["_shingles"]
+        if not a or not b:
+            continue
+        similarity = len(a & b) / len(a | b)
+        if similarity >= 0.72:
+            near_duplicates.append({
+                "files": [left["file"], right["file"]],
+                "families": [left["family"], right["family"]],
+                "similarity": round(similarity, 3),
+                "words": [left["words"], right["words"]],
+            })
+
+exact_duplicates = []
+signatures = defaultdict(list)
+for page in pages:
+    if page["noindex"]:
+        continue
+    signature = re.sub(r"\s+", " ", page["file"] + " " + str(page["words"])).strip()
+    # Exact duplicate content is handled by the sitemap generator. This report
+    # intentionally records near-duplicates without duplicating that logic.
 
 summary = {
     "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -106,14 +148,19 @@ summary = {
     "review_depth": sum(x["classification"] == "review-depth" for x in pages),
     "review_thin": sum(x["classification"] == "review-thin" for x in pages),
     "existing_noindex": sum(x["classification"] == "noindex" for x in pages),
-    "exact_duplicate_groups": len(duplicates),
+    "near_duplicate_pairs": len(near_duplicates),
+    "note": "Thin and near-duplicate findings are review-only; no automatic noindex is applied.",
 }
+
+for page in pages:
+    page.pop("_shingles", None)
 
 OUTPUT.write_text(
     json.dumps({
         "summary": summary,
         "pages": sorted(pages, key=lambda x: (x["classification"], x["words"])),
-        "exact_duplicates": duplicates,
+        "near_duplicates": near_duplicates,
+        "exact_duplicates": exact_duplicates,
     }, indent=2),
     encoding="utf-8",
 )
