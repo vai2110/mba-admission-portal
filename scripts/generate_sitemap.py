@@ -105,33 +105,28 @@ for html_file in ROOT.rglob("*.html"):
 
     lastmod = file_lastmod(html_file)
 
-    # Store a normalized content signature so exact duplicates can be removed
-    # from the sitemap conservatively. Near-duplicates are intentionally kept.
-    signature_source = re.sub(
-        r"<(script|style|noscript)[^>]*>.*?</\1>",
-        " ",
-        content,
-        flags=re.IGNORECASE | re.DOTALL,
-    )
-    signature_source = re.sub(r"<[^>]+>", " ", signature_source)
-    signature_source = re.sub(r"\s+", " ", signature_source).strip().lower()
+    # Keep one clean URL per indexable HTML file. Exact duplicate content is handled
+# by canonical/noindex decisions separately; it must not collapse the public
+# sitemap to a single URL when pages have shared templates.
+relative = html_file.relative_to(ROOT)
+if relative.name.lower() == "index.html":
+    clean_file_url = BASE_URL
+else:
+    clean_file_url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
 
-    url_dates[url] = max(url_dates.get(url, ""), lastmod)
-    if signature_source:
-        existing = url_signatures.get(signature_source)
-        if existing is None or len(url) < len(existing):
-            url_signatures[signature_source] = url
+if canonical_match:
+    canonical_url = canonical_match.group(1).strip().rstrip("/")
+    if canonical_url == BASE_URL:
+        canonical_url = BASE_URL
+    if canonical_url == clean_file_url.rstrip("/"):
+        url = canonical_url
+    else:
+        url = clean_file_url
+else:
+    url = clean_file_url
 
-# Remove URLs whose exact normalized content is duplicated by a shorter URL.
-duplicate_urls = {
-    url
-    for url in url_dates
-    if any(primary != url and primary in url_dates and len(primary) < len(url)
-           for primary in url_signatures.values())
-}
-for duplicate_url in duplicate_urls:
-    url_dates.pop(duplicate_url, None)
-
+lastmod = file_lastmod(html_file)
+url_dates[url] = max(url_dates.get(url, ""), lastmod)
 
 # Sort URLs for a stable sitemap.
 urls = sorted(url_dates)
