@@ -107,13 +107,13 @@ for html_file in ROOT.rglob("*.html"):
     # Store a normalized content signature so exact duplicates can be removed
     # from the sitemap conservatively. Near-duplicates are intentionally kept.
     signature_source = re.sub(
-        r"<(script|style|noscript)[^>]*>.*?</\\1>",
+        r"<(script|style|noscript)[^>]*>.*?</\1>",
         " ",
         content,
         flags=re.IGNORECASE | re.DOTALL,
     )
     signature_source = re.sub(r"<[^>]+>", " ", signature_source)
-    signature_source = re.sub(r"\\s+", " ", signature_source).strip().lower()
+    signature_source = re.sub(r"\s+", " ", signature_source).strip().lower()
 
     url_dates[url] = max(url_dates.get(url, ""), lastmod)
     if signature_source:
