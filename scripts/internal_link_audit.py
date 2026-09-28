@@ -2,10 +2,9 @@ import json
 import re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
-
-from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "internal-link-audit.json"
@@ -19,6 +18,27 @@ HELPER_PAGES = {
     "welingkar-mumbai-programmes-note.html",
     "welingkar-mumbai-programmes.html",
 }
+
+
+class AnchorParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.hrefs = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() != "a":
+            return
+        for key, value in attrs:
+            if key.lower() == "href" and value is not None:
+                self.hrefs.append(value)
+                break
+
+
+def extract_hrefs(html: str):
+    parser = AnchorParser()
+    parser.feed(html)
+    parser.close()
+    return parser.hrefs
 
 
 def local_target(href: str):
@@ -74,9 +94,9 @@ def main():
     href_count = Counter()
 
     for name in pages:
-        soup = BeautifulSoup((ROOT / name).read_text(encoding="utf-8"), "html.parser")
-        for a in soup.find_all("a", href=True):
-            href = a.get("href", "").strip()
+        html = (ROOT / name).read_text(encoding="utf-8")
+        for href in extract_hrefs(html):
+            href = href.strip()
             target = local_target(href)
             if target is None:
                 continue
@@ -84,7 +104,7 @@ def main():
             outgoing[name].append(target)
             if target not in page_set:
                 item = {"source": name, "href": href, "target": target}
-                if name in BENCHMARKS or any(name == b for b in BENCHMARKS):
+                if name in BENCHMARKS:
                     benchmark_broken.append(item)
                 else:
                     broken.append(item)
