@@ -104,6 +104,7 @@ for path in ROOT.rglob("*.html"):
         "file": rel,
         "words": words,
         "canonical": canonical_from(html),
+        "canonical_missing": not bool(canonical_from(html)),
         "noindex": noindex,
         "family": page_family(path.name),
         "classification": classification,
@@ -148,6 +149,7 @@ summary = {
     "review_depth": sum(x["classification"] == "review-depth" for x in pages),
     "review_thin": sum(x["classification"] == "review-thin" for x in pages),
     "existing_noindex": sum(x["classification"] == "noindex" for x in pages),
+    "canonical_missing": sum(x["canonical_missing"] for x in pages),
     "near_duplicate_pairs": len(near_duplicates),
     "note": "Thin and near-duplicate findings are review-only; no automatic noindex is applied.",
 }
