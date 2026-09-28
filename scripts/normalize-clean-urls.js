@@ -64,10 +64,13 @@ function buildCrawlableCollegeDirectory() {
   }).join("\n");
 
   const html = fs.readFileSync(pagePath, "utf8");
-  const marker = "<!-- CRAWLABLE_COLLEGE_DIRECTORY -->";
-  if (!html.includes(marker)) return false;
-  const replacement = marker + "\n" + cards;
-  const updated = html.replace(marker, replacement);
+  const startMarker = "<!-- CRAWLABLE_COLLEGE_DIRECTORY -->";
+  const endMarker = "<!-- /CRAWLABLE_COLLEGE_DIRECTORY -->";
+  const start = html.indexOf(startMarker);
+  const end = html.indexOf(endMarker);
+  if (start === -1 || end === -1 || end < start) return false;
+  const replacement = startMarker + "\n" + cards + "\n" + endMarker;
+  const updated = html.slice(0, start) + replacement + html.slice(end + endMarker.length);
   if (updated === html) return false;
   fs.writeFileSync(pagePath, updated, "utf8");
   return true;
