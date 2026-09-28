@@ -216,13 +216,13 @@ jobs:
                   continue
               s = p.read_text(encoding="utf-8", errors="ignore")
               fixed = re.sub(
-                  r'<script data-collegedecoded-legacy-redirect>\\s*<script>\\s*',
+                  r'<script data-collegedecoded-legacy-redirect>\s*<script>\s*',
                   '<script data-collegedecoded-legacy-redirect>\\n',
                   s,
                   flags=re.I
               )
               fixed = re.sub(
-                  r'</script>\\s*</script>',
+                  r'</script>\s*</script>',
                   '</script>',
                   fixed,
                   flags=re.I
