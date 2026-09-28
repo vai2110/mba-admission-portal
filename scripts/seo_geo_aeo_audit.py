@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "https://vai2110.github.io/mba-admission-portal/"
+BASE_URL = "https://collegedecoded.in/"
 REPORT_PATH = ROOT / "seo-geo-aeo-report.json"
 EXCLUDED = {"index.html", "404.html", "content-audit.html"}
 ANSWER_CSS = ".answer-first{background:#eef6ff;border:1px solid #cfe0f5;border-radius:8px;padding:13px 15px;margin:0 0 14px;color:#173f82}.answer-first strong{display:block;margin-bottom:4px}.answer-first p{margin:0;font-size:13px;color:#334155}"
