@@ -214,7 +214,7 @@ def main():
             r["deployment_status"]="Pushed - Awaiting Pages"; write_master(rows); update_xlsx(rows)
             urls=[]
             for fn,_ in safe:
-                url=f"https://vai2110.github.io/mba-admission-portal/{fn}"; ok=False
+                url=f"https://collegedecoded.in/{fn}"; ok=False
                 for _ in range(6):
                     try:
                         if session.get(url,timeout=20).status_code==200: ok=True; break
