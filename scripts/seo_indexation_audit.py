@@ -147,7 +147,7 @@ def resolve_internal_target(source_path, href):
 
 incoming = defaultdict(int)
 outgoing = {}
-anchor_parser_re = re.compile(r"<a\\b[^>]*href=['\\"]([^'\\"]+)['\\"]", re.I)
+anchor_parser_re = re.compile(r"""<a\b[^>]*href=['"]([^'"]+)['"]""", re.I)
 
 for page in pages:
     source = page["file"]
