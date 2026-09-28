@@ -14,6 +14,7 @@ EXCLUDED_PATHS = {
     "content-audit.html",
     "github-direct-edit-test.html",
     "irma-deploy-trigger.html",
+    "github-direct-edit-test.html",
 }
 
 # URL -> latest source modification date.
