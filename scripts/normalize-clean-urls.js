@@ -76,6 +76,64 @@ function buildCrawlableCollegeDirectory() {
   return true;
 }
 
+
+function buildRelatedCollegeLinks() {
+  const csvPath = path.join(ROOT, "colleges.csv");
+  if (!fs.existsSync(csvPath)) return 0;
+  const lines = fs.readFileSync(csvPath, "utf8").replace(/^\uFEFF/, "").trim().split(/\r?\n/);
+  if (lines.length < 2) return 0;
+  const headers = parseCsvLine(lines[0]).map(x => x.trim());
+  const rows = lines.slice(1).map(parseCsvLine).filter(row => row.some(Boolean));
+  const idx = Object.fromEntries(headers.map((h, i) => [h, i]));
+  const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[ch]));
+
+  let changed = 0;
+  for (const row of rows) {
+    const slug = row[idx.profile_slug] || "";
+    const state = row[idx.state] || "";
+    const name = row[idx.college_name] || "College";
+    if (!slug || !state) continue;
+    const pagePath = path.join(ROOT, slug + ".html");
+    if (!fs.existsSync(pagePath)) continue;
+
+    let html = fs.readFileSync(pagePath, "utf8");
+    const startMarker = "<!-- RELATED_COLLEGES_INTERNAL_LINKS -->";
+    const endMarker = "<!-- /RELATED_COLLEGES_INTERNAL_LINKS -->";
+    if (html.includes(startMarker)) continue;
+
+    const related = rows
+      .filter(other => (other[idx.state] || "") === state && (other[idx.profile_slug] || "") && (other[idx.profile_slug] || "") !== slug)
+      .sort((a,b) => Number(a[idx.nirf_management_rank_2025] || 9999) - Number(b[idx.nirf_management_rank_2025] || 9999))
+      .filter(other => fs.existsSync(path.join(ROOT, (other[idx.profile_slug] || "") + ".html")))
+      .slice(0, 4);
+
+    if (!related.length) continue;
+
+    const links = related.map(other => {
+      const otherSlug = other[idx.profile_slug];
+      return '<li><a href="/' + esc(otherSlug) + '">' + esc(other[idx.college_name] || "College") + '</a></li>';
+    }).join("");
+
+    const block = startMarker +
+      '<section class="related-colleges-internal-links" aria-labelledby="related-colleges-title" style="margin:32px auto;padding:22px;max-width:1100px;border:1px solid #dbe7f5;border-radius:14px;background:#f8fbff">' +
+      '<h2 id="related-colleges-title" style="margin:0 0 8px;color:#123d85;font-size:22px">Related MBA Colleges in ' + esc(state) + '</h2>' +
+      '<p style="margin:0 0 12px;color:#5d718d;font-size:13px">Explore other MBA colleges from the same state.</p>' +
+      '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px 20px;margin:0;padding-left:20px">' + links + '</ul>' +
+      '<p style="margin:14px 0 0"><a href="/colleges" style="font-weight:800;color:#0868f5">View all MBA colleges →</a></p>' +
+      '</section>' +
+      endMarker;
+
+    const bodyIndex = html.toLowerCase().lastIndexOf("</body>");
+    if (bodyIndex === -1) continue;
+    html = html.slice(0, bodyIndex) + block + "\n" + html.slice(bodyIndex);
+    fs.writeFileSync(pagePath, html, "utf8");
+    changed++;
+  }
+  return changed;
+}
+
 let changed = 0;
 
 for (const name of fs.readdirSync(ROOT)) {
@@ -89,4 +147,5 @@ for (const name of fs.readdirSync(ROOT)) {
   }
 }
 const directoryChanged = buildCrawlableCollegeDirectory();
-console.log("Clean URL normalization complete. Pages updated:", changed, "Crawlable college directory:", directoryChanged);
+const relatedLinksChanged = buildRelatedCollegeLinks();
+console.log("Clean URL normalization complete. Pages updated:", changed, "Crawlable college directory:", directoryChanged, "Related college link blocks:", relatedLinksChanged);
