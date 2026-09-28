@@ -102,9 +102,10 @@ for html_file in ROOT.rglob("*.html"):
             path_without_extension = relative.with_suffix("")
             url = BASE_URL + "/" + str(path_without_extension).replace("\\", "/")
 
-    # Detect exact duplicate page bodies. If two URLs publish the same substantive
-    # HTML content, keep only the shorter canonical URL in the sitemap. This is
-    # intentionally conservative: near-duplicates are not removed automatically.
+    lastmod = file_lastmod(html_file)
+
+    # Store a normalized content signature so exact duplicates can be removed
+    # from the sitemap conservatively. Near-duplicates are intentionally kept.
     signature_source = re.sub(
         r"<(script|style|noscript)[^>]*>.*?</\\1>",
         " ",
@@ -113,25 +114,22 @@ for html_file in ROOT.rglob("*.html"):
     )
     signature_source = re.sub(r"<[^>]+>", " ", signature_source)
     signature_source = re.sub(r"\\s+", " ", signature_source).strip().lower()
-    signature = signature_source
 
-    lastmod = file_lastmod(html_file)
+    url_dates[url] = max(url_dates.get(url, ""), lastmod)
+    if signature_source:
+        existing = url_signatures.get(signature_source)
+        if existing is None or len(url) < len(existing):
+            url_signatures[signature_source] = url
 
-    # If multiple source files resolve to the same canonical URL, retain
-    # the newest modification date.
-    previous = url_dates.get(url)
-    if previous is None or lastmod > previous:
-        url_dates[url] = lastmod
-
-    if signature:
-        existing_url = url_signatures.get(signature)
-        if existing_url and existing_url != url:
-            # Keep the shorter URL as the primary sitemap URL when content is
-            # byte-for-byte/substantively identical after HTML stripping.
-            if len(url) < len(existing_url):
-                url_signatures[signature] = url
-            continue
-        url_signatures[signature] = url
+# Remove URLs whose exact normalized content is duplicated by a shorter URL.
+duplicate_urls = {
+    url
+    for url in url_dates
+    if any(primary != url and primary in url_dates and len(primary) < len(url)
+           for primary in url_signatures.values())
+}
+for duplicate_url in duplicate_urls:
+    url_dates.pop(duplicate_url, None)
 
 
 # Sort URLs for a stable sitemap.
