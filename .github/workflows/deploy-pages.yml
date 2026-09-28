@@ -206,7 +206,32 @@ jobs:
                   p.write_text(s.replace("<head>", "<head>\n" + redirect % target, 1), encoding="utf-8")
                   installed += 1
 
-          print(f"Installed {installed} top-level legacy redirects plus {len(cms_targets)} CMS redirects.")
+          # Repair malformed legacy redirect wrappers left by earlier deployments.
+          # A nested <script> makes HTMLParser treat the rest of <head> as script text,
+          # which can hide canonical tags from the final SEO gate.
+          repaired = 0
+          import re
+          for p in Path(".").rglob("*.html"):
+              if any(part in {".git", "node_modules"} for part in p.parts):
+                  continue
+              s = p.read_text(encoding="utf-8", errors="ignore")
+              fixed = re.sub(
+                  r'<script data-collegedecoded-legacy-redirect>\\s*<script>\\s*',
+                  '<script data-collegedecoded-legacy-redirect>\\n',
+                  s,
+                  flags=re.I
+              )
+              fixed = re.sub(
+                  r'</script>\\s*</script>',
+                  '</script>',
+                  fixed,
+                  flags=re.I
+              )
+              if fixed != s:
+                  p.write_text(fixed, encoding="utf-8")
+                  repaired += 1
+
+          print(f"Installed {installed} top-level legacy redirects plus {len(cms_targets)} CMS redirects. Repaired malformed redirect wrappers on {repaired} pages.")
           PY
 
       - name: Generate and validate final SEO package
