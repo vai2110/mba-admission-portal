@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
-  "buildCommand": "python scripts/generate_sitemap.py && node scripts/normalize-clean-urls.js && node scripts/inject-guidance-flow.js && echo \"Enquiry rollout production trigger\"",
+  "buildCommand": "python scripts/seo_indexation_audit.py && python scripts/generate_sitemap.py && node scripts/normalize-clean-urls.js && node scripts/inject-guidance-flow.js && echo \"Enquiry rollout production trigger\"",
   "outputDirectory": "."
 }
