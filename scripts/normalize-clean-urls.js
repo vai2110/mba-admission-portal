@@ -4,10 +4,51 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const EXCLUDED = new Set(["404.html"]);
 
-function normalize(value) {
-  if (!value || EXCLUDED.has(value)) return value;
-  value = value.replace(/(https?:\/\/collegedecoded\.in\/[^"'\s?#<>]+)\.html(?=([?#]|$))/gi, "$1");
-  value = value.replace(/(^|["'\s=(])\/?([A-Za-z0-9][A-Za-z0-9-]*)\.html(?=([?#]|["'\s)<>]))/g, "$1$2");
+function cleanUrlForFile(name) {
+  return name === "index.html" ? "/" : "/" + name.replace(/\\.html$/i, "");
+}
+
+function normalizeHref(href, sourceName) {
+  if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) return href;
+  const external = /^(?:https?:)?\\/\\//i.test(href);
+  if (external) {
+    return href.replace(/(https?:\\/\\/collegedecoded\\.in\\/[^"'\\s?#<>]+)\\.html(?=([?#]|$))/gi, "$1");
+  }
+  const raw = href.trim();
+  const hashIndex = raw.indexOf("#");
+  const queryIndex = raw.indexOf("?");
+  const cut = Math.min(...[hashIndex, queryIndex].filter(x => x >= 0), raw.length);
+  const pathPart = raw.slice(0, cut);
+  const suffix = raw.slice(cut);
+  let target;
+  if (!pathPart) return href;
+  if (pathPart.startsWith("/")) {
+    target = pathPart.replace(/^\\/+/, "");
+  } else {
+    const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(sourceName), pathPart));
+    target = resolved.replace(/^\\.\\//, "");
+  }
+  if (target.endsWith(".html")) target = target.slice(0, -5);
+  if (target === "index") target = "";
+  return "/" + target + suffix;
+}
+
+function addOrReplaceCanonical(html, sourceName) {
+  const canonical = "https://collegedecoded.in" + cleanUrlForFile(sourceName);
+  const tag = '<link rel="canonical" href="' + canonical + '">';
+  const canonicalRe = /<link\\b[^>]*rel=[\"'][^\"']*canonical[^\"']*[\"'][^>]*>/i;
+  const canonicalRe2 = /<link\\b[^>]*href=[\"'][^\"']+[\"'][^>]*rel=[\"'][^\"']*canonical[^\"']*[\"'][^>]*>/i;
+  if (canonicalRe.test(html)) return html.replace(canonicalRe, tag);
+  if (canonicalRe2.test(html)) return html.replace(canonicalRe2, tag);
+  return html.replace(/<head\\b[^>]*>/i, m => m + "\\n" + tag);
+}
+
+function normalizeFile(html, sourceName) {
+  let value = html;
+  value = value.replace(/(<a\\b[^>]*\\bhref=[\"'])([^\"']+)([\"'])/gi, (m, pre, href, post) => {
+    return pre + normalizeHref(href, sourceName) + post;
+  });
+  value = addOrReplaceCanonical(value, sourceName);
   return value;
 }
 
@@ -48,7 +89,10 @@ function buildCrawlableCollegeDirectory() {
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
   }[ch]));
 
-  const cards = rows.map(row => {
+  const cards = rows.filter(row => {
+    const slug = row[idx.profile_slug] || "";
+    return slug && fs.existsSync(path.join(ROOT, slug + ".html"));
+  }).map(row => {
     const name = row[idx.college_name] || "College";
     const city = row[idx.city] || "";
     const state = row[idx.state] || "";
@@ -140,7 +184,7 @@ for (const name of fs.readdirSync(ROOT)) {
   if (!name.endsWith(".html") || EXCLUDED.has(name)) continue;
   const file = path.join(ROOT, name);
   const html = fs.readFileSync(file, "utf8");
-  const normalized = normalize(html);
+  const normalized = normalizeFile(html, name);
   if (normalized !== html) {
     fs.writeFileSync(file, normalized, "utf8");
     changed++;
