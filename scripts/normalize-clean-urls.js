@@ -5,15 +5,23 @@ const ROOT = path.resolve(__dirname, "..");
 const EXCLUDED = new Set(["404.html"]);
 
 function cleanUrlForFile(name) {
-  return name === "index.html" ? "/" : "/" + name.replace(/\\.html$/i, "");
+  return name === "index.html" ? "/" : "/" + name.replace(/\.html$/i, "");
+}
+
+function isExternalUrl(href) {
+  return /^(?:https?:)?\/\//i.test(href);
 }
 
 function normalizeHref(href, sourceName) {
   if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) return href;
-  const external = /^(?:https?:)?\\/\\//i.test(href);
-  if (external) {
-    return href.replace(/(https?:\\/\\/collegedecoded\\.in\\/[^"'\\s?#<>]+)\\.html(?=([?#]|$))/gi, "$1");
+
+  if (isExternalUrl(href)) {
+    return href.replace(
+      /(https?:\/\/collegedecoded\.in\/[^"'\s?#<>]+)\.html(?=([?#]|$))/gi,
+      "$1"
+    );
   }
+
   const raw = href.trim();
   const hashIndex = raw.indexOf("#");
   const queryIndex = raw.indexOf("?");
@@ -21,13 +29,18 @@ function normalizeHref(href, sourceName) {
   const pathPart = raw.slice(0, cut);
   const suffix = raw.slice(cut);
   let target;
+
   if (!pathPart) return href;
+
   if (pathPart.startsWith("/")) {
-    target = pathPart.replace(/^\\/+/, "");
+    target = pathPart.replace(/^\/+/, "");
   } else {
-    const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(sourceName), pathPart));
-    target = resolved.replace(/^\\.\\//, "");
+    const resolved = path.posix.normalize(
+      path.posix.join(path.posix.dirname(sourceName), pathPart)
+    );
+    target = resolved.replace(/^\.\//, "");
   }
+
   if (target.endsWith(".html")) target = target.slice(0, -5);
   if (target === "index") target = "";
   return "/" + target + suffix;
@@ -36,39 +49,54 @@ function normalizeHref(href, sourceName) {
 function addOrReplaceCanonical(html, sourceName) {
   const canonical = "https://collegedecoded.in" + cleanUrlForFile(sourceName);
   const tag = '<link rel="canonical" href="' + canonical + '">';
-  const canonicalRe = /<link\\b[^>]*rel=[\"'][^\"']*canonical[^\"']*[\"'][^>]*>/i;
-  const canonicalRe2 = /<link\\b[^>]*href=[\"'][^\"']+[\"'][^>]*rel=[\"'][^\"']*canonical[^\"']*[\"'][^>]*>/i;
+  const canonicalRe = /<link\b[^>]*rel=["'][^"']*canonical[^"']*["'][^>]*>/i;
+  const canonicalRe2 = /<link\b[^>]*href=["'][^"']+["'][^>]*rel=["'][^"']*canonical[^"']*["'][^>]*>/i;
+
   if (canonicalRe.test(html)) return html.replace(canonicalRe, tag);
   if (canonicalRe2.test(html)) return html.replace(canonicalRe2, tag);
-  return html.replace(/<head\\b[^>]*>/i, m => m + "\\n" + tag);
+  return html.replace(/<head\b[^>]*>/i, m => m + "\n" + tag);
 }
 
 function internalTargetExists(href, sourceName) {
   if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) return true;
-  if (/^(?:https?:)?\/\//i.test(href)) {
-    return !/^(?:https?:)?\/\/(?:www\.)?collegedecoded\.in\b/i.test(href) ||
-      internalTargetExists(href.replace(/^https?:\/\/(?:www\.)?collegedecoded\.in/i, ""), sourceName);
+
+  if (isExternalUrl(href)) {
+    const isOwnDomain = /^(?:https?:)?\/\/(?:www\.)?collegedecoded\.in\b/i.test(href);
+    if (!isOwnDomain) return true;
+    return internalTargetExists(
+      href.replace(/^https?:\/\/(?:www\.)?collegedecoded\.in/i, ""),
+      sourceName
+    );
   }
+
   const raw = href.split(/[?#]/, 1)[0];
   if (!raw || raw === "/") return true;
+
   let target = raw.startsWith("/")
     ? raw.slice(1)
     : path.posix.normalize(path.posix.join(path.posix.dirname(sourceName), raw));
+
   target = target.replace(/^\.\//, "").replace(/\/$/, "");
+
   if (target.endsWith(".html")) return fs.existsSync(path.join(ROOT, target));
+
   return fs.existsSync(path.join(ROOT, target + ".html")) ||
     fs.existsSync(path.join(ROOT, target, "index.html"));
 }
 
 function normalizeFile(html, sourceName) {
   let value = html;
+
   value = value.replace(/(<a\b[^>]*\bhref=["'])([^"']+)(["'])/gi, (m, pre, href, post) => {
     const normalized = normalizeHref(href, sourceName);
+
     if (!internalTargetExists(normalized, sourceName)) {
       return m.replace(/\s*href=["'][^"']+["']/i, "");
     }
+
     return pre + normalized + post;
   });
+
   value = addOrReplaceCanonical(value, sourceName);
   return value;
 }
