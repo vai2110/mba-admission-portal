@@ -544,7 +544,7 @@ def main():
             write_master(rows); update_xlsx(rows)
             urls = []
             for fn, _ in safe:
-                live = f"https://vai2110.github.io/mba-admission-portal/{fn}"
+                live = f"https://collegedecoded.in/{fn}"
                 ok = False
                 for _ in range(8):
                     try:
