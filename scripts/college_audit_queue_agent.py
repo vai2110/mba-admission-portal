@@ -131,7 +131,7 @@ def main():
     pack=official_pack(homepage)
     live_urls=[]
     for p in pages:
-        live_urls.append("https://vai2110.github.io/mba-admission-portal/"+p.name)
+        live_urls.append("https://collegedecoded.in/"+p.name)
     source_text="\n\n".join(f"SOURCE: {x['url']}\n{x['text']}" for x in pack)
     page_text="\n\n".join(f"FILE: {p.name}\n{p.read_text(encoding='utf-8')}" for p in pages[:4])
     prompt=f"""You are an existing-page SEO and student-intent editor.
