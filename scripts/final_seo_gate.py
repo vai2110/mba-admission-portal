@@ -90,6 +90,9 @@ for path in ROOT.rglob("*.html"):
         titles.setdefault(parser.title.strip(), []).append(rel)
     broken = []
     for href in parser.links:
+        # Fragment-only links (e.g. #fees) stay on the same page and are valid anchors.
+        if href.startswith("#"):
+            continue
         target = resolve_local(path, href)
         if href.startswith(("http://","https://")) and "collegedecoded.in" not in href:
             continue
