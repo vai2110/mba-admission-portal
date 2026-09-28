@@ -196,7 +196,7 @@ def main():
         if package_score>PUBLISH_THRESHOLD and not critical_all:
             r["deployment_status"]="Eligible - Auto Publish";write_master(rows);update_xlsx(rows);git("add",*[fn for fn,_ in safe],"data/college-content-master.csv","data/college-content-master.xlsx",f"quality-audit-{slugify(college)}.json");git("commit","-m",f"Publish independently generated pages for {college}");git("push","origin","main");r["deployment_status"]="Pushed - Awaiting Pages";write_master(rows);update_xlsx(rows);urls=[]
             for fn,_ in safe:
-                url=f"https://vai2110.github.io/mba-admission-portal/{fn}";ok=False
+                url=f"https://collegedecoded.in/{fn}";ok=False
                 for _ in range(8):
                     try:
                         if session.get(url,timeout=20).status_code==200:ok=True;break
