@@ -18,6 +18,7 @@ EXCLUDED_PATHS = {
 
 # URL -> latest source modification date.
 url_dates = {}
+url_signatures = {}
 
 
 def file_lastmod(path: Path) -> str:
@@ -101,6 +102,19 @@ for html_file in ROOT.rglob("*.html"):
             path_without_extension = relative.with_suffix("")
             url = BASE_URL + "/" + str(path_without_extension).replace("\\", "/")
 
+    # Detect exact duplicate page bodies. If two URLs publish the same substantive
+    # HTML content, keep only the shorter canonical URL in the sitemap. This is
+    # intentionally conservative: near-duplicates are not removed automatically.
+    signature_source = re.sub(
+        r"<(script|style|noscript)[^>]*>.*?</\\1>",
+        " ",
+        content,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    signature_source = re.sub(r"<[^>]+>", " ", signature_source)
+    signature_source = re.sub(r"\\s+", " ", signature_source).strip().lower()
+    signature = signature_source
+
     lastmod = file_lastmod(html_file)
 
     # If multiple source files resolve to the same canonical URL, retain
@@ -108,6 +122,16 @@ for html_file in ROOT.rglob("*.html"):
     previous = url_dates.get(url)
     if previous is None or lastmod > previous:
         url_dates[url] = lastmod
+
+    if signature:
+        existing_url = url_signatures.get(signature)
+        if existing_url and existing_url != url:
+            # Keep the shorter URL as the primary sitemap URL when content is
+            # byte-for-byte/substantively identical after HTML stripping.
+            if len(url) < len(existing_url):
+                url_signatures[signature] = url
+            continue
+        url_signatures[signature] = url
 
 
 # Sort URLs for a stable sitemap.
