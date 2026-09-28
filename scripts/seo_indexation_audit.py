@@ -1,5 +1,6 @@
 from pathlib import Path
 from collections import defaultdict
+from urllib.parse import urlparse, unquote
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 import json
@@ -75,6 +76,7 @@ def shingles(text, size=5):
     return {" ".join(words[i:i+size]) for i in range(len(words)-size+1)}
 
 pages = []
+html_paths = {str(p.relative_to(ROOT)).replace('\\\\', '/'): p for p in ROOT.rglob('*.html') if not any(part in {'.git', 'node_modules', '.github'} for part in p.parts)}
 for path in ROOT.rglob("*.html"):
     if any(part in {".git", "node_modules", ".github"} for part in path.parts):
         continue
@@ -110,6 +112,62 @@ for path in ROOT.rglob("*.html"):
         "classification": classification,
         "_shingles": shingles(text),
     })
+
+
+# Build a lightweight internal-link graph from static HTML anchors.
+# This is report-only: it never rewrites links or indexation directives.
+def resolve_internal_target(source_path, href):
+    if not href or href.startswith(("#", "mailto:", "tel:", "javascript:")):
+        return None
+    href = unquote(href.strip())
+    parsed = urlparse(href)
+    if parsed.scheme or parsed.netloc:
+        if parsed.netloc and parsed.netloc.lower() not in {"collegedecoded.in", "www.collegedecoded.in"}:
+            return None
+        target = parsed.path
+    else:
+        target = href.split("#", 1)[0].split("?", 1)[0]
+    if not target:
+        target = "/index.html"
+    if target.startswith("/"):
+        rel = target.lstrip("/")
+    else:
+        rel = str((Path(source_path).parent / target).as_posix())
+    rel = re.sub(r"/+", "/", rel).lstrip("./")
+    if rel.endswith("/"):
+        rel += "index.html"
+    if rel in html_paths:
+        return rel
+    if rel.endswith(".html") and rel[:-5] + ".html" in html_paths:
+        return rel
+    clean = rel[:-5] if rel.endswith(".html") else rel
+    if clean + ".html" in html_paths:
+        return clean + ".html"
+    return None
+
+incoming = defaultdict(int)
+outgoing = {}
+anchor_parser_re = re.compile(r'<a\\b[^>]*href=["\\']([^"\\']+)["\\']', re.I)
+
+for page in pages:
+    source = page["file"]
+    html = (ROOT / source).read_text(encoding="utf-8", errors="ignore")
+    targets = []
+    for href in anchor_parser_re.findall(html):
+        target = resolve_internal_target(source, href)
+        if target and target != source:
+            targets.append(target)
+            incoming[target] += 1
+    outgoing[source] = len(set(targets))
+
+for page in pages:
+    page["internal_links_out"] = outgoing.get(page["file"], 0)
+    page["internal_links_in"] = incoming.get(page["file"], 0)
+    page["orphan_candidate"] = (
+        not page["noindex"]
+        and page["internal_links_in"] == 0
+        and page["file"] not in {"index.html", "404.html"}
+    )
 
 # Near-duplicate detection is deliberately report-only. It never changes robots/canonical.
 near_duplicates = []
@@ -151,6 +209,8 @@ summary = {
     "existing_noindex": sum(x["classification"] == "noindex" for x in pages),
     "canonical_missing": sum(x["canonical_missing"] for x in pages),
     "near_duplicate_pairs": len(near_duplicates),
+    "orphan_candidates": sum(x["orphan_candidate"] for x in pages),
+    "low_internal_link_pages": sum((not x["noindex"]) and x["internal_links_in"] <= 1 and x["file"] not in {"index.html", "404.html"} for x in pages),
     "note": "Thin and near-duplicate findings are review-only; no automatic noindex is applied.",
 }
 
