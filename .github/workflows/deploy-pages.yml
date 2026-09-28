@@ -206,6 +206,13 @@ jobs:
           print(f"Installed {installed} top-level legacy redirects plus {len(cms_targets)} CMS redirects.")
           PY
 
+      - name: Generate final SEO sitemap
+        run: |
+          python3 scripts/normalize-clean-urls.js
+          python3 scripts/seo_indexation_audit.py
+          python3 scripts/generate_sitemap.py
+          python3 scripts/final_seo_gate.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
