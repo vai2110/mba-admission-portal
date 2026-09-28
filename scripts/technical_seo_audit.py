@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "https://collegedecoded.in/"
+BASE_URL = "https://collegedecoded.in"
 EXCLUDED = {"404.html"}
 BENCHMARKS = {"iim-ahmedabad.html", "sibm-pune.html"}
 
@@ -59,7 +59,7 @@ def audit_page(path):
     for anchor in soup.find_all("a", href=True):
         target = local_target(anchor.get("href"), path)
         if target and not (ROOT / target).exists(): broken.append(anchor.get("href"))
-    expected = BASE_URL + path.name
+    expected = BASE_URL if path.name == "index.html" else BASE_URL + "/" + path.stem
     return {
         "file": path.name, "benchmark": path.name in BENCHMARKS,
         "title": title, "title_length": len(title or ""),
