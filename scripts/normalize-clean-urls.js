@@ -89,10 +89,13 @@ function normalizeFile(html, sourceName) {
 
   // Repair malformed legacy redirect wrappers before HTML/SEO parsing.
   value = value.replace(
-    /<script data-collegedecoded-legacy-redirect>\s*<script>\s*/gi,
-    '<script data-collegedecoded-legacy-redirect>\\n'
+    new RegExp("<script data-collegedecoded-legacy-redirect>\\s*<script>\\s*", "gi"),
+    "<script data-collegedecoded-legacy-redirect>\\n"
   );
-  value = value.replace(/<\\/script>\s*<\\/script>/gi, '<\\/script>');
+  value = value.replace(
+    new RegExp("</script>\\s*</script>", "gi"),
+    "</script>"
+  );
 
   value = value.replace(/(<a\b[^>]*\bhref=["'])([^"']+)(["'])/gi, (m, pre, href, post) => {
     const normalized = normalizeHref(href, sourceName);
