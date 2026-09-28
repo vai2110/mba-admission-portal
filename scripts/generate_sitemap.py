@@ -103,30 +103,26 @@ for html_file in ROOT.rglob("*.html"):
             path_without_extension = relative.with_suffix("")
             url = BASE_URL + "/" + str(path_without_extension).replace("\\", "/")
 
-    lastmod = file_lastmod(html_file)
+    # Keep one clean URL per indexable HTML file.
+    relative = html_file.relative_to(ROOT)
+    if relative.name.lower() == "index.html":
+        clean_file_url = BASE_URL
+    else:
+        clean_file_url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
 
-    # Keep one clean URL per indexable HTML file. Exact duplicate content is handled
-# by canonical/noindex decisions separately; it must not collapse the public
-# sitemap to a single URL when pages have shared templates.
-relative = html_file.relative_to(ROOT)
-if relative.name.lower() == "index.html":
-    clean_file_url = BASE_URL
-else:
-    clean_file_url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
-
-if canonical_match:
-    canonical_url = canonical_match.group(1).strip().rstrip("/")
-    if canonical_url == BASE_URL:
-        canonical_url = BASE_URL
-    if canonical_url == clean_file_url.rstrip("/"):
-        url = canonical_url
+    if canonical_match:
+        canonical_url = canonical_match.group(1).strip().rstrip("/")
+        if canonical_url == BASE_URL:
+            canonical_url = BASE_URL
+        if canonical_url == clean_file_url.rstrip("/"):
+            url = canonical_url
+        else:
+            url = clean_file_url
     else:
         url = clean_file_url
-else:
-    url = clean_file_url
 
-lastmod = file_lastmod(html_file)
-url_dates[url] = max(url_dates.get(url, ""), lastmod)
+    lastmod = file_lastmod(html_file)
+    url_dates[url] = max(url_dates.get(url, ""), lastmod)
 
 # Sort URLs for a stable sitemap.
 urls = sorted(url_dates)
