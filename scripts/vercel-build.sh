@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-python3 -m pip install --disable-pip-version-check beautifulsoup4
 node scripts/normalize-clean-urls.js
 python3 scripts/repair_internal_links_v2.py
 python3 scripts/internal_link_audit.py
