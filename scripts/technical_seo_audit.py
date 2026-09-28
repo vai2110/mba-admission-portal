@@ -19,16 +19,19 @@ def local_target(href, current):
         return None
     parsed = urlparse(href)
     if parsed.scheme in {"http", "https"}:
-        if parsed.netloc and parsed.netloc != "vai2110.github.io": return None
+        if parsed.netloc and parsed.netloc != "collegedecoded.in": return None
         path = parsed.path
-        prefix = "/mba-admission-portal/"
-        if not path.startswith(prefix): return None
-        path = path[len(prefix):]
     else:
         path = parsed.path
-    if not path: return "index.html"
-    target = Path(path.lstrip("/"))
-    if target.suffix == "": target = target / "index.html"
+    if not path or path == "/": return "index.html"
+    clean_path = path.lstrip("/").rstrip("/")
+    target = Path(clean_path)
+    if target.suffix == "":
+        html_target = ROOT / f"{clean_path}.html"
+        if html_target.exists():
+            target = Path(f"{clean_path}.html")
+        else:
+            target = Path(clean_path) / "index.html"
     try:
         resolved = (current.parent / target).resolve()
         resolved.relative_to(ROOT.resolve())
