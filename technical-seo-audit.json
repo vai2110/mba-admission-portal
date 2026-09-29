@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T12:41:25.110040+00:00",
+  "generated_at": "2026-09-29T12:48:59.149269+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 635,
   "pages_with_issues": 457,
@@ -15437,16 +15437,16 @@
     {
       "file": "mba-college-fees.html",
       "benchmark": false,
-      "title": "MBA College Fees in India | Colleges by Fee Range",
-      "title_length": 49,
-      "description": "Explore created MBA college pages by fee range: under ₹5 lakh, ₹5–10 lakh, ₹10–20 lakh and ₹20 lakh+. Select a budget range to see matching colleges.",
-      "description_length": 149,
+      "title": "MBA Colleges by Fees in India | Find Colleges Within Your Budget",
+      "title_length": 64,
+      "description": "Compare MBA colleges in India by fee range and programme fees. Explore colleges by budget, admission requirements and key costs to find options that fit your budget.",
+      "description_length": 165,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/mba-college-fees",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Find MBA Colleges by Budget",
+      "h1": "MBA Colleges by Fees: Find MBA Colleges Within Your Budget",
       "lang": "en",
       "viewport": true,
       "robots": [
