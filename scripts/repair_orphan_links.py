@@ -22,7 +22,7 @@ def hrefs(html):
     p=Parser(); p.feed(html); p.close(); return p.hrefs
 
 def target(href):
-    href=href.strip()
+    href = href.strip()
     if not href or href.startswith(("#","http://","https://","mailto:","tel:","javascript:","data:")): return None
     path=(urlsplit(href).path or "/").rstrip("/") or "/"
     raw=path.lstrip("/") if path.startswith("/") else path
