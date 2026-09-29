@@ -55,6 +55,9 @@ def remove_mica_nav(path):
     return False
 
 def repair(path, members):
+    # The site-wide college cluster navigation was intentionally removed.
+    # Keep this repair script from reintroducing that UI on future runs.
+    return False
     if path.name in EXCLUDED: return False
     text = path.read_text(encoding="utf-8"); replacement = nav_html(path.name, members)
     pattern = r'<nav\b[^>]*class=["\'][^"\']*\bcollege-cluster-nav\b[^"\']*["\'][^>]*>.*?</nav>'
