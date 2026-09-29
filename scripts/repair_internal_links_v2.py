@@ -55,32 +55,26 @@ def remove_mica_nav(path):
     return False
 
 def repair(path, members):
-    # The site-wide college cluster navigation was intentionally removed.
-    # Keep this repair script from reintroducing that UI on future runs.
-    return False
-    if path.name in EXCLUDED: return False
-    text = path.read_text(encoding="utf-8"); replacement = nav_html(path.name, members)
-    pattern = r'<nav\b[^>]*class=["\'][^"\']*\bcollege-cluster-nav\b[^"\']*["\'][^>]*>.*?</nav>'
-    if re.search(pattern, text, flags=re.I | re.S):
-        without_nav = re.sub(pattern, "", text, count=1, flags=re.I | re.S)
-        updated = re.sub(r'(<body\b[^>]*>)', r'\1' + replacement, without_nav, count=1, flags=re.I)
-        if updated == without_nav: updated = re.sub(r'(<main\b[^>]*>)', r'\1' + replacement, without_nav, count=1, flags=re.I)
-    else:
-        updated = re.sub(r'(<body\b[^>]*>)', r'\1' + replacement, text, count=1, flags=re.I)
-        if updated == text: updated = re.sub(r'(<main\b[^>]*>)', r'\1' + replacement, text, count=1, flags=re.I)
-    if ".college-cluster-nav" not in updated: updated = re.sub(r'</style>', NAV_CSS + '</style>', updated, count=1, flags=re.I)
-    if updated != text: path.write_text(updated, encoding="utf-8"); return True
+    # Remove only the deprecated college cluster navigation.
+    # Do not add, rewrite, or otherwise alter page content.
+    text = path.read_text(encoding="utf-8")
+    pattern = r'<nav\b[^>]*(?:class=["\'][^"\']*\bcollege-cluster-nav\b[^"\']*["\']|aria-label=["\']College page navigation["\'])[^>]*>.*?</nav>\s*'
+    updated = re.sub(pattern, "", text, flags=re.I | re.S)
+    # Remove only the inline CSS belonging to this deprecated navigation.
+    updated = re.sub(r'\.college-cluster-nav\{[^}]*\}(?:\.college-cluster-nav[^}]*\})*', "", updated, flags=re.S)
+    if updated != text:
+        path.write_text(updated, encoding="utf-8")
+        return True
     return False
 
 def main():
     pages = sorted(p.name for p in ROOT.glob("*.html")); changed = []
-    for name in sorted(MICA_PAGES):
+    # Remove the deprecated strip from every root-level HTML page, including
+    # pages that are no longer part of a detected college cluster.
+    for name in pages:
         path = ROOT / name
-        if path.exists() and remove_mica_nav(path): changed.append(name)
-    for members in build_clusters(pages).values():
-        for member in members:
-            if repair(ROOT / member, members): changed.append(member)
-    print(f"Phase 3 v2: repaired {len(changed)} college pages.")
+        if repair(path, []): changed.append(name)
+    print(f"Phase 3 v2: removed deprecated college cluster navigation from {len(changed)} pages.")
     for name in changed: print(name)
 
 if __name__ == "__main__": main()
