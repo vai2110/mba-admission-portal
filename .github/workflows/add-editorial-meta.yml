@@ -1,0 +1,73 @@
+name: Add Editorial Update Metadata
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: editorial-meta
+  cancel-in-progress: true
+
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Inject shared editorial metadata script
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          injection = '<script src="/assets/editorial-meta.js?v=20260929"></script>\n'
+          changed = 0
+
+          for p in Path('.').glob('*.html'):
+              if p.name.lower() in {'404.html', 'index.html', 'collegedecoded-team.html'}:
+                  continue
+
+              text = p.read_text(encoding='utf-8', errors='ignore')
+              cleaned = re.sub(
+                  r'<script[^>]+src=["\']/assets/editorial-meta\.js(?:\?[^"\']*)?["\'][^>]*></script>\s*',
+                  '',
+                  text,
+                  flags=re.I
+              )
+
+              if not re.search(r'</head>', cleaned, flags=re.I):
+                  continue
+
+              updated = re.sub(
+                  r'</head>',
+                  injection + '</head>',
+                  cleaned,
+                  count=1,
+                  flags=re.I
+              )
+
+              if updated != text:
+                  p.write_text(updated, encoding='utf-8')
+                  changed += 1
+
+          print(f'Editorial metadata script injected into {changed} HTML pages.')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "CollegeDecoded Editorial Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No HTML pages needed the editorial metadata script."
+          else
+            git commit -m "Add last updated and editorial team metadata to live pages"
+            git push
+          fi
