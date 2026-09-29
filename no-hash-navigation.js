@@ -8,10 +8,12 @@
   }
 
   function handleAnchorClick(event) {
-    var link = event.target.closest && event.target.closest('a[href^="#"]');
+    var link = event.target.closest && event.target.closest('a[href]');
     if (!link || event.defaultPrevented) return;
 
     var raw = link.getAttribute('href') || '';
+    if (!raw || raw.charAt(0) !== '#') return;
+
     var id = raw.slice(1);
 
     if (!id) {
@@ -31,16 +33,17 @@
 
     event.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    window.setTimeout(cleanUrl, 0);
+
+    // Remove the fragment immediately so it never remains visible in the address/search bar.
+    cleanUrl();
   }
 
+  // Capture phase also covers navigation links handled by nested buttons/dropdowns.
   document.addEventListener('click', handleAnchorClick, true);
 
-  window.addEventListener('hashchange', function () {
-    window.setTimeout(cleanUrl, 0);
-  });
+  // Remove fragments added by browser navigation, redirects or other scripts.
+  window.addEventListener('hashchange', cleanUrl);
 
-  window.addEventListener('load', function () {
-    if (window.location.hash) window.setTimeout(cleanUrl, 0);
-  });
+  // Remove any fragment present on initial page load.
+  cleanUrl();
 })();
