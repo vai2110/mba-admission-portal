@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         details.removeAttribute('open');
         if (!target) return;
         event.preventDefault();
-        history.pushState(null, '', link.getAttribute('href'));
+        
         requestAnimationFrame(function () {
           var top = target.getBoundingClientRect().top + window.pageYOffset - 84;
           window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
