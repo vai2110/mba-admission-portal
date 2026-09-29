@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T12:22:22.064418+00:00",
+  "generated_at": "2026-09-29T12:30:39.003574+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 635,
   "pages_with_issues": 457,
@@ -15514,7 +15514,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Find MBA Colleges by Entrance Exam",
+      "h1": "Find Colleges by Entrance Exam",
       "lang": "en",
       "viewport": true,
       "robots": [
