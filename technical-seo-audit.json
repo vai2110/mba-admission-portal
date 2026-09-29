@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T12:53:42.773935+00:00",
+  "generated_at": "2026-09-29T12:59:04.692058+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 635,
   "pages_with_issues": 457,
@@ -15545,7 +15545,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Explore Popular MBA Destinations",
+      "h1": "MBA Colleges by Location: Find Colleges Near You",
       "lang": "en",
       "viewport": true,
       "robots": [
