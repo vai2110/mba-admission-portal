@@ -170,12 +170,11 @@
     });
     sections.forEach(section=>{section.hidden=section.id!==range;});
     empty.hidden=!!range;
-    if(range&&updateHash){history.replaceState(null,'','#'+range);}
+    
     if(range){document.getElementById(range).scrollIntoView({behavior:'smooth',block:'start'});}
   }
   buttons.forEach(btn=>btn.addEventListener('click',()=>selectRange(btn.dataset.range)));
-  const initial=location.hash.replace('#','');
-  if(['under-5','5-10','10-20','20-plus'].includes(initial)) selectRange(initial,false);
+  
 })();
 </script>
 </body>
