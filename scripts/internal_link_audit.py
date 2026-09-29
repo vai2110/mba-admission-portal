@@ -42,21 +42,33 @@ def extract_hrefs(html: str):
 
 
 def local_target(href: str):
+    """Resolve both legacy .html links and Vercel clean URLs to source HTML files."""
     href = href.strip()
     if not href or href.startswith(("#", "http://", "https://", "mailto:", "tel:", "javascript:", "data:")):
         return None
     parsed = urlsplit(href)
-    path = parsed.path
-    if not path:
-        return None
-    target = (ROOT / path.lstrip("/")) if path.startswith("/") else None
-    if target is None:
-        target = (ROOT / path).resolve()
-    try:
-        target.relative_to(ROOT)
-    except ValueError:
-        return None
-    return target.relative_to(ROOT).as_posix().split("#", 1)[0].split("?", 1)[0]
+    path = parsed.path or "/"
+    if path == "/":
+        return "index.html"
+
+    raw = path.lstrip("/") if path.startswith("/") else path
+    raw = raw.rstrip("/")
+    if not raw:
+        return "index.html"
+
+    candidates = [raw]
+    if raw.endswith(".html"):
+        candidates.append(raw[:-5])
+    else:
+        candidates.append(raw + ".html")
+        candidates.append(raw + "/index.html")
+
+    for candidate in candidates:
+        target = ROOT / candidate
+        if target.is_file():
+            return target.relative_to(ROOT).as_posix()
+
+    return None
 
 
 def page_role(name: str):
