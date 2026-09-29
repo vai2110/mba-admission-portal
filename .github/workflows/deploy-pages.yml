@@ -37,6 +37,9 @@ jobs:
       - name: Audit cutoff page links
         run: python3 scripts/audit_cutoff_page_links.py
 
+      - name: Repair orphan page internal links
+        run: python3 scripts/repair_orphan_links.py
+
       - name: Build homepage search index
         run: |
           python3 - <<'PY'
