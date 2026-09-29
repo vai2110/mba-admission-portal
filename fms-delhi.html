@@ -309,23 +309,5 @@ html,body{max-width:100%;overflow-x:hidden}
  window.addEventListener('scroll',function(){if(menu.classList.contains('open'))closeMenu();},{passive:true});
 })();
 </script>
-<script id="citation-artifact-cleanup">
-(function(){
- function clean(){
-   var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-   var n;
-   while(n=walker.nextNode()){
-     if(/cite|turn\d+(?:search|reddit|file)\d+/i.test(n.nodeValue)){
-       n.nodeValue=n.nodeValue
-         .replace(/\s*\[?cite(?:)?(?:)?[^\s<\]]+(?:[^\s<\]]+)*?\]?/gi,'')
-         .replace(/(?:cite|filecite)[^]*/gi,'')
-         .replace(/\[cite[^\]]*\]?/gi,'')
-         .replace(/\s+/g,' ');
-     }
-   }
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
-})();
-</script>
 </body>
 </html>
