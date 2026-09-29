@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-29T14:43:52.972764+00:00",
+  "generated_at": "2026-09-29T15:33:41.519944+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 637,
-  "pages_with_issues": 459,
+  "pages_checked": 638,
+  "pages_with_issues": 460,
   "issue_counts": {
     "broken_local_links": 6,
     "canonical": 16,
     "description_count": 4,
-    "description_length": 205,
+    "description_length": 206,
     "duplicate_title": 6,
     "h1_count": 5,
     "jsonld": 16,
@@ -4309,6 +4309,39 @@
         "og_url",
         "twitter_card",
         "jsonld"
+      ]
+    },
+    {
+      "file": "collegedecoded-team.html",
+      "benchmark": false,
+      "title": "CollegeDecoded Team: Editorial & Research Team",
+      "title_length": 46,
+      "description": "Meet the CollegeDecoded Editorial Team and learn how CollegeDecoded researches, verifies and updates college admission, fees, eligibility, cutoffs, courses and placement information.",
+      "description_length": 182,
+      "description_count": 1,
+      "canonical": "https://collegedecoded.in/collegedecoded-team",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "CollegeDecoded Team",
+      "lang": "en-IN",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "description_length"
       ]
     },
     {
