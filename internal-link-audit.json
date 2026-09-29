@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-28T13:49:56.844681+00:00",
+  "generated_at": "2026-09-29T06:38:33.098184+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
     "pages_checked": 631,
     "pages_with_internal_links": 611,
-    "broken_local_links": 7,
-    "benchmark_legacy_broken_links": 1,
+    "broken_local_links": 0,
+    "benchmark_legacy_broken_links": 0,
     "college_clusters_detected": 82,
     "cluster_reciprocal_gaps": 239,
     "zero_incoming_pages": 80,
@@ -1534,7 +1534,6 @@
     {
       "source": "iim-ahmedabad.html",
       "missing": [
-        "iim-ahmedabad-placements.html",
         "iim-ahmedabad-business-analytics-ai.html",
         "iim-ahmedabad-mba.html",
         "iim-ahmedabad-pgpx.html"
@@ -2617,50 +2616,8 @@
       ]
     }
   ],
-  "broken_local_links": [
-    {
-      "source": "bml-munjal-university-placements.html",
-      "href": "bml-munjal-university-mba.html",
-      "target": "bml-munjal-university-mba.html"
-    },
-    {
-      "source": "bml-munjal-university.html",
-      "href": "bml-munjal-university-mba.html",
-      "target": "bml-munjal-university-mba.html"
-    },
-    {
-      "source": "iit-kanpur-management-sciences-m-tech.html",
-      "href": "iit-kanpur.html",
-      "target": "iit-kanpur.html"
-    },
-    {
-      "source": "iit-kanpur-management-sciences-m-tech.html",
-      "href": "iit-kanpur-placements.html",
-      "target": "iit-kanpur-placements.html"
-    },
-    {
-      "source": "iit-kanpur-management-sciences-phd.html",
-      "href": "iit-kanpur.html",
-      "target": "iit-kanpur.html"
-    },
-    {
-      "source": "iit-kanpur-management-sciences-phd.html",
-      "href": "iit-kanpur-placements.html",
-      "target": "iit-kanpur-placements.html"
-    },
-    {
-      "source": "index.html",
-      "href": "iift-delhi.html",
-      "target": "iift-delhi.html"
-    }
-  ],
-  "benchmark_legacy_broken_links": [
-    {
-      "source": "iim-ahmedabad.html",
-      "href": "/iim-ahmedabad-placements",
-      "target": "iim-ahmedabad-placements"
-    }
-  ],
+  "broken_local_links": [],
+  "benchmark_legacy_broken_links": [],
   "zero_incoming_pages": [
     {
       "page": "abv-iiitm-gwalior-btech-cse.html",
@@ -3255,7 +3212,7 @@
     "iim-ahmedabad-mba-pgpx.html": 1,
     "iim-ahmedabad-mba.html": 2,
     "iim-ahmedabad-pgpx.html": 1,
-    "iim-ahmedabad-placements.html": 4,
+    "iim-ahmedabad-placements.html": 5,
     "iim-ahmedabad.html": 5,
     "iim-amritsar-executive-mba.html": 2,
     "iim-amritsar-ipm.html": 2,
@@ -3698,8 +3655,8 @@
     "bml-munjal-university-law.html": 3,
     "bml-munjal-university-liberal-arts.html": 3,
     "bml-munjal-university-ma-public-policy.html": 3,
-    "bml-munjal-university-placements.html": 3,
-    "bml-munjal-university.html": 12,
+    "bml-munjal-university-placements.html": 2,
+    "bml-munjal-university.html": 11,
     "cat.html": 9,
     "chandigarh-university-bba.html": 17,
     "chandigarh-university-bca.html": 2,
@@ -3930,8 +3887,8 @@
     "iit-ism-dhanbad-mtech.html": 5,
     "iit-ism-dhanbad-placements.html": 5,
     "iit-ism-dhanbad.html": 14,
-    "iit-kanpur-management-sciences-m-tech.html": 3,
-    "iit-kanpur-management-sciences-phd.html": 3,
+    "iit-kanpur-management-sciences-m-tech.html": 1,
+    "iit-kanpur-management-sciences-phd.html": 1,
     "iit-kharagpur-placements.html": 8,
     "iit-kharagpur-vgsom-mba-ex.html": 8,
     "iit-kharagpur-vgsom-mba.html": 8,
@@ -3963,7 +3920,7 @@
     "imt-nagpur-pgdm.html": 8,
     "imt-nagpur-placements.html": 6,
     "imt-nagpur.html": 7,
-    "index.html": 40,
+    "index.html": 39,
     "indian-institute-of-management-kashipur-executive-mba.html": 4,
     "indian-institute-of-management-kashipur-mba-analytics.html": 5,
     "indian-institute-of-management-kashipur-mba.html": 5,
