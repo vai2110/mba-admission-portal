@@ -70,8 +70,7 @@ header{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blu
 <section class="section"><div class="wrap"><div class="score">
 <div class="score-left"><div class="eyebrow">Score → Shortlist</div><h2>Got a CAT score in mind?</h2><p>Enter your expected percentile to explore a starting shortlist of MBA colleges.</p>
 <div class="score-control"><input id="score" type="number" min="1" max="100" value="92" aria-label="Expected CAT percentile"><button id="findScore">Find Colleges →</button></div><div class="score-note" id="scoreNote">Not sure about your score? Start with the CAT cutoff guide →</div></div>
-<div class="score-list"><h3>Colleges you can explore <span id="scoreRange" style="float:right;color:#64748b;font-size:9px">(90–95 percentile)</span></h3><div class="score-colleges">
-<a class="score-college" href="iim-ahmedabad.html"><b>IIM Ahmedabad</b><span>90–95+ range</span></a><a class="score-college" href="iim-bangalore.html"><b>IIM Bangalore</b><span>90–95+ range</span></a><a class="score-college" href="iim-kozhikode.html"><b>IIM Kozhikode</b><span>90–95+ range</span></a><a class="score-college" href="iim-lucknow.html"><b>IIM Lucknow</b><span>90–95+ range</span></a><a class="score-college" href="iim-indore.html"><b>IIM Indore</b><span>90–95+ range</span></a><a class="score-college" href="iift-delhi.html"><b>IIFT Delhi</b><span>90–95+ range</span></a></div></div>
+<div class="score-list"><h3>Colleges you can explore <span id="scoreRange" style="float:right;color:#64748b;font-size:9px">(90–95 percentile)</span></h3><div id="scoreColleges" class="score-colleges" aria-live="polite"></div></div>
 </div></div></section>
 
 <section class="section soft"><div class="wrap"><div class="head"><div><h2>Explore Popular <span>MBA Colleges</span></h2><p>Check key highlights like rankings, fees, placements and admission routes.</p></div><a class="text-link" href="top-mba-colleges-in-india.html">View All MBA Colleges →</a></div>
@@ -123,8 +122,31 @@ async function search(){
  }catch(e){r.textContent='Search is temporarily unavailable. Please try again.'}
 }
 b.addEventListener('click',search);q.addEventListener('keydown',e=>{if(e.key==='Enter')search()});
-const score=document.getElementById('score'),range=document.getElementById('scoreRange'),find=document.getElementById('findScore');
-find.addEventListener('click',()=>{let n=Math.max(1,Math.min(100,Number(score.value)||0));let txt=n>=95?'95+':n>=90?'90–95':n>=80?'80–90':'Below 80';range.textContent='('+txt+' percentile)';});
+const score=document.getElementById('score'),range=document.getElementById('scoreRange'),find=document.getElementById('findScore'),scoreColleges=document.getElementById('scoreColleges');
+const scoreBuckets=[
+ {min:95,label:'95+ percentile',colleges:[
+  ['IIM Ahmedabad','iim-ahmedabad.html','95+ range'],['IIM Bangalore','iim-bangalore.html','95+ range'],['IIM Calcutta','iim-calcutta.html','95+ range'],['IIM Lucknow','iim-lucknow.html','95+ range'],['IIM Kozhikode','iim-kozhikode.html','95+ range'],['IIM Indore','iim-indore.html','95+ range']
+ ]},
+ {min:90,label:'90–95 percentile',colleges:[
+  ['IIM Indore','iim-indore.html','90–95 range'],['IIM Kozhikode','iim-kozhikode.html','90–95 range'],['IIM Lucknow','iim-lucknow.html','90–95 range'],['IIFT Delhi','iift-delhi.html','90–95 range'],['MDI Gurugram','mdi-gurugram.html','90–95 range'],['IIM Mumbai','iim-mumbai.html','90–95 range']
+ ]},
+ {min:80,label:'80–90 percentile',colleges:[
+  ['IMI Delhi','imi-delhi.html','80–90 range'],['Nirma University','nirma-university.html','80–90 range'],['Welingkar Mumbai','welingkar-mumbai.html','80–90 range'],['K.J. Somaiya Institute of Management','kj-somaiya-institute-of-management.html','80–90 range'],['BIMTECH Greater Noida','birla-institute-management-technology.html','80–90 range'],['IRMA Anand','institute-rural-management-anand.html','80–90 range']
+ ]},
+ {min:1,label:'Below 80 percentile',colleges:[
+  ['KIIT University','kiit-bhubaneswar.html','Below 80 range'],['Welingkar Mumbai','welingkar-mumbai.html','Below 80 range'],['BIMTECH Greater Noida','birla-institute-management-technology.html','Below 80 range'],['IRMA Anand','institute-rural-management-anand.html','Below 80 range'],['K.J. Somaiya Institute of Management','kj-somaiya-institute-of-management.html','Below 80 range'],['Nirma University','nirma-university.html','Below 80 range']
+ ]}
+];
+function renderScoreShortlist(){
+ let n=Math.max(1,Math.min(100,Number(score.value)||0));
+ const bucket=scoreBuckets.find(x=>n>=x.min)||scoreBuckets[scoreBuckets.length-1];
+ range.textContent='('+bucket.label+')';
+ scoreColleges.innerHTML=bucket.colleges.map(c=>'<a class="score-college" href="'+c[1]+'"><b>'+c[0]+'</b><span>'+c[2]+'</span></a>').join('');
+}
+find.addEventListener('click',renderScoreShortlist);
+score.addEventListener('input',renderScoreShortlist);
+score.addEventListener('change',renderScoreShortlist);
+renderScoreShortlist();
 })();
 </script>
 </body></html>
