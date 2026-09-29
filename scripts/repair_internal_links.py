@@ -58,6 +58,9 @@ def label(name):
 
 
 def add_nav(path, members):
+    # The site-wide college cluster navigation was intentionally removed.
+    # Keep this repair script from reintroducing that UI on future runs.
+    return False
     if path.name in EXCLUDED:
         return False
     text = path.read_text(encoding="utf-8")
