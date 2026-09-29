@@ -1,4 +1,4 @@
-name: Remove Inline Citation Artifacts
+name: Remove Citation And Debug Artifacts
 
 on:
   push:
@@ -48,5 +48,24 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add '*.html'
-          git commit -m 'Remove inline citation artifacts from portal pages'
+          git commit -m 'Remove citation and debug artifacts from portal pages'
           git push
+
+      - name: Validate no citation/debug artifacts remain
+        shell: python
+        run: |
+          import os, re
+          bad = []
+          patterns = [re.compile(r'(?:cite|filecite)[^]*'), re.compile(r'\[cite'), re.compile(r'\bcite')]
+          for base, dirs, files in os.walk('.'):
+              dirs[:] = [d for d in dirs if d != '.git']
+              for name in files:
+                  if not name.lower().endswith('.html'):
+                      continue
+                  path = os.path.join(base, name)
+                  text = open(path, encoding='utf-8').read()
+                  if any(p.search(text) for p in patterns):
+                      bad.append(path)
+          if bad:
+              raise SystemExit('Citation/debug artifacts remain in: ' + ', '.join(bad))
+          print('Citation/debug artifact validation PASS')
