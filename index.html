@@ -145,6 +145,10 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 }
 </style>
 <style id="homepage-section-spacing-fix">
+/* Homepage list cards: reduce only excess vertical whitespace */
+.route{min-height:180px}
+@media(max-width:620px){.route{min-height:180px}}
+
 /* Homepage spacing: controlled compact rhythm; no doubled section padding */
 .section{padding:20px 0}
 .section + .section{padding-top:0}
