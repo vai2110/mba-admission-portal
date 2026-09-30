@@ -118,10 +118,12 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .table-wrapper td:first-child:before{display:none}
 }
 @media(max-width:650px){
-.mobile-toc-wrap{display:block;position:sticky;top:110px;z-index:1050;background:#f5f8fc;padding:6px 12px;margin:0}
-.mobile-toc{max-width:105px}
-.navbar{min-height:auto;padding:15px;flex-direction:column;gap:15px}
-.nav-links{flex-wrap:wrap;justify-content:center}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+.navbar{min-height:auto;padding:13px 12px;flex-direction:column;gap:11px}
+.logo{font-size:23px}
+.nav-links{width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 11px;font-size:12px}
+.nav-links a{white-space:nowrap}
+.compare-btn{padding:9px 13px}
 .hero{padding:27px 15px 32px}
 .breadcrumb{font-size:12px;margin-bottom:10px}
 .hero h1{font-size:34px}
@@ -130,6 +132,10 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .hero-pills{gap:6px;margin-bottom:13px}
 .hero-pills span{font-size:11px;padding:6px 9px}
 .hero-official{font-size:13px;padding:10px 14px}
+.mobile-toc-wrap{display:block;position:sticky;top:168px;z-index:1050;width:100%;background:#f5f8fc;padding:6px 12px;margin:0}
+.mobile-toc{width:105px;max-width:105px}
+.mobile-toc-button{min-height:36px;padding:7px 8px;font-size:12px}
+.mobile-toc-menu{width:min(290px,calc(100vw - 24px))}
 .stats-wrapper{padding:0 12px;margin:-18px auto 18px}
 .stats{grid-template-columns:repeat(2,1fr);border-radius:12px}
 .stat{padding:11px 7px}
@@ -137,8 +143,17 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .stat span{font-size:10.5px}
 .stat:nth-child(2n){border-right:none}
 .stat:nth-child(n+5){border-bottom:none}
-.section{padding:20px;margin-bottom:16px}
+.container{width:100%;max-width:100%;padding:12px}
+.content-layout,.main-content{width:100%;max-width:100%}
+.section{width:100%;max-width:100%;padding:18px;margin-bottom:16px}
 .section h2{font-size:23px;line-height:1.3}
+.table-wrapper{width:100%;max-width:100%;overflow:visible}
+.table-wrapper table{min-width:0!important;width:100%!important;max-width:100%;display:block}
+.table-wrapper tbody{width:100%;max-width:100%;display:block}
+.table-wrapper tr{width:100%;max-width:100%;display:block}
+.table-wrapper td{width:100%;max-width:100%;min-width:0;display:flex!important;box-sizing:border-box;align-items:flex-start;justify-content:space-between;gap:10px;overflow-wrap:anywhere;word-break:break-word}
+.table-wrapper td:before{min-width:0;max-width:42%;flex:0 1 42%;overflow-wrap:anywhere}
+.table-wrapper td:not(:first-child){text-align:right;flex:1 1 auto}
 .college-grid{grid-template-columns:1fr}
 }
 
