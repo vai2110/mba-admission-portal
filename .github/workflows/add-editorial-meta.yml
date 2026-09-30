@@ -119,16 +119,16 @@ jobs:
 
           style_id = 'cdEditorialMetaStaticStyles'
           block_re = re.compile(
-              r'\\s*<div id=["\\\']cdEditorialMeta["\\\'][^>]*>.*?</div>\\s*'
-              r'<style id=["\\\']' + style_id + r'["\\\']>.*?</style>\\s*',
+              r'\s*<div id=["\']cdEditorialMeta["\'][^>]*>.*?</div>\s*'
+              r'<style id=["\']' + style_id + r'["\']>.*?</style>\s*',
               re.I | re.S
           )
           standalone_block_re = re.compile(
-              r'\\s*<div id=["\\\']cdEditorialMeta["\\\'][^>]*>.*?</div>\\s*',
+              r'\s*<div id=["\']cdEditorialMeta["\'][^>]*>.*?</div>\s*',
               re.I | re.S
           )
           standalone_style_re = re.compile(
-              r'\\s*<style id=["\\\']' + style_id + r'["\\\']>.*?</style>\\s*',
+              r'\s*<style id=["\']' + style_id + r'["\']>.*?</style>\s*',
               re.I | re.S
           )
 
@@ -168,7 +168,7 @@ jobs:
           )
 
           def find_container_end(text, start):
-              tag_re = re.compile(r'<div\\b[^>]*>|</div\\s*>', re.I)
+              tag_re = re.compile(r'<div\b[^>]*>|</div\s*>', re.I)
               depth = 0
               for m in tag_re.finditer(text, start):
                   token = m.group(0)
@@ -182,7 +182,7 @@ jobs:
 
           def insert_after_fact_cards(text, block):
               opening = re.search(
-                  r'<div\\b[^>]*class=["\\\'][^"\\\']*(?:facts|quick-facts)[^"\\\']*["\\\'][^>]*>',
+                  r'<div\b[^>]*class=["\'][^"\']*(?:facts|quick-facts)[^"\']*["\'][^>]*>',
                   text, re.I
               )
               if not opening:
