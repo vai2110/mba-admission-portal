@@ -56,11 +56,14 @@ jobs:
               )
               if re.search(r'</head>', cleaned, flags=re.I):
                   updated = re.sub(r'</head>', script + '\n</head>', cleaned, count=1, flags=re.I)
+              elif re.search(r'<head\b[^>]*>', cleaned, flags=re.I):
+                  updated = re.sub(r'(<head\b[^>]*>)', r'\1\n' + script, cleaned, count=1, flags=re.I)
               elif re.search(r'<body\b[^>]*>', cleaned, flags=re.I):
                   updated = re.sub(r'(<body\b[^>]*>)', r'\1\n' + script, cleaned, count=1, flags=re.I)
+              elif re.search(r'</html>', cleaned, flags=re.I):
+                  updated = re.sub(r'</html>', script + '\n</html>', cleaned, count=1, flags=re.I)
               else:
-                  missing.append(url + " -> no </head> or <body>")
-                  continue
+                  updated = script + '\n' + cleaned
               if updated != text:
                   file.write_text(updated, encoding="utf-8")
                   changed += 1
