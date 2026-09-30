@@ -145,19 +145,19 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 }
 </style>
 <style id="homepage-section-spacing-fix">
-/* Homepage spacing system: one controlled vertical rhythm across every section */
-.section{padding:28px 0}
+/* Homepage spacing: controlled compact rhythm; no doubled section padding */
+.section{padding:20px 0}
 .section + .section{padding-top:0}
 .section.soft + .section.soft{padding-top:0}
-.head{margin-bottom:18px}
-.decode,.compare,.final,.exam-box,.score{margin:0}
+.head{margin-bottom:16px}
+.faq-section{padding-bottom:20px!important}
 @media(max-width:620px){
-  .section{padding:24px 0}
+  .section{padding:18px 0}
   .section + .section,.section.soft + .section.soft{padding-top:0}
-  .head{margin-bottom:15px}
+  .head{margin-bottom:13px}
+  .faq-section{padding-bottom:18px!important}
 }
 </style>
-<script src="/assets/editorial-meta.js?v=20260930"></script>
 </head>
 <body>
 <header><nav class="nav wrap">
@@ -213,9 +213,7 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 <article class="college"><div class="college-top"><div class="college-mark">FMS</div><span class="rank">Top MBA</span></div><h3>FMS Delhi</h3><p class="location">New Delhi</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="fms-delhi.html">View FMS Delhi MBA Profile →</a><span class="compare-mini">□ Compare</span></div></article>
 <article class="college"><div class="college-top"><div class="college-mark">XLRI</div><span class="rank">Top MBA</span></div><h3>XLRI Jamshedpur</h3><p class="location">Jamshedpur, Jharkhand</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="xlri-jamshedpur.html">View College →</a><span class="compare-mini">□ Compare</span></div></article>
 </div>
-<div id="cdEditorialMeta" class="cd-editorial-meta-static"><span class="cd-editorial-item"><span class="cd-editorial-icon" aria-hidden="true">▣</span><span><small>Last updated on</small><strong>30 September 2026</strong></span></span><span class="cd-editorial-divider" aria-hidden="true"></span><span class="cd-editorial-item"><span class="cd-editorial-icon" aria-hidden="true">●</span><span><small>Updated by</small><a href="/collegedecoded-team">CollegeDecoded Team</a></span></span></div>
-<style id="cdEditorialMetaStaticStyles">.cd-editorial-meta-static{width:min(1180px,calc(100% - 36px));margin:0 auto 18px;padding:14px 22px;background:linear-gradient(90deg,#fff8eb,#fffdf8);border:1px solid #f6d9ad;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:34px;color:#334155;font:13px/1.45 Arial,Helvetica,sans-serif;box-shadow:0 2px 8px rgba(15,23,42,.035)}.cd-editorial-item{display:flex;align-items:center;gap:11px;min-width:260px}.cd-editorial-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#ffedc9;color:#d97706;font-size:18px;font-weight:800;flex:0 0 36px}.cd-editorial-item small{display:block;color:#64748b;font-size:11px;line-height:1.25;margin-bottom:2px}.cd-editorial-item strong,.cd-editorial-item a{display:block;color:#123b78;font-size:14px;font-weight:800;text-decoration:none}.cd-editorial-item a{color:#2563eb}.cd-editorial-divider{width:1px;height:36px;background:#e9b56b;opacity:.85}@media(max-width:640px){.cd-editorial-meta-static{width:calc(100% - 24px);margin:0 auto 12px;padding:11px 14px;gap:12px;justify-content:space-between;border-radius:10px}.cd-editorial-item{min-width:0;gap:7px;flex:1}.cd-editorial-icon{width:30px;height:30px;flex-basis:30px;font-size:14px}.cd-editorial-item small{font-size:9px}.cd-editorial-item strong,.cd-editorial-item a{font-size:10.5px}.cd-editorial-divider{height:28px}}@media(max-width:380px){.cd-editorial-meta-static{padding:10px 10px;gap:8px}.cd-editorial-item{gap:5px}.cd-editorial-icon{width:27px;height:27px;flex-basis:27px;font-size:12px}.cd-editorial-item strong,.cd-editorial-item a{font-size:9.5px}}</style>
-</div></section>
+</section>
 
 <section class="section"><div class="wrap"><div class="decode"><div class="eyebrow" style="background:#1b3d8d;border-color:#3155a0;color:#8fb2ff">The CollegeDecoded approach</div><h2>Don't just choose a college. <span>Decode it.</span></h2><p>One college can look very different when you compare the signals that actually matter during your shortlist.</p><div class="features">
 <div class="feature"><b>Real Data</b><span>Fees, cutoffs and placements together.</span></div><div class="feature"><b>Student Insights</b><span>Research around real student questions.</span></div><div class="feature"><b>Easy Comparison</b><span>Shortlist options side by side.</span></div><div class="feature"><b>Search by Intent</b><span>Ranking, cutoff, fees, location or exam.</span></div><div class="feature"><b>College Profiles</b><span>Move from discovery to detailed research.</span></div>
@@ -398,15 +396,18 @@ score.addEventListener('change',renderScoreShortlist);
 renderScoreShortlist();
 })();
 </script>
-<!-- Remove unintended CUSAT keyword link if injected into homepage -->
+<!-- Remove unintended CUSAT keyword injection from homepage footer -->
 <script>
 (function(){
-  var unwanted='cusat pg mtech 2026';
+  var target=['cusat','pg','mtech','2026'].join(' ');
+  function norm(v){return (v||'').replace(/\s+/g,' ').trim().toLowerCase();}
   function clean(){
-    var nodes=document.querySelectorAll('a');
-    for(var i=0;i<nodes.length;i++){
-      if((nodes[i].textContent||'').trim().toLowerCase()===unwanted){
-        nodes[i].remove();
+    var footer=document.querySelector('footer');
+    if(!footer) return;
+    var els=footer.querySelectorAll('a,span,p,li,div');
+    for(var i=0;i<els.length;i++){
+      if(norm(els[i].textContent)===target){
+        els[i].remove();
       }
     }
   }
