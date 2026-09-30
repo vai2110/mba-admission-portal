@@ -180,6 +180,19 @@ jobs:
                           return m.end()
               return -1
 
+          def find_tag_end(text, start, tag):
+              tag_re = re.compile(r'<'+tag+r'\\b[^>]*>|</'+tag+r'\\s*>', re.I)
+              depth = 0
+              for m in tag_re.finditer(text, start):
+                  token = m.group(0)
+                  if token.lower().startswith('</'):
+                      depth -= 1
+                      if depth == 0:
+                          return m.end()
+                  elif not token.rstrip().endswith('/>'):
+                      depth += 1
+              return -1
+
           def insert_after_fact_cards(text, block):
               opening = re.search(
                   r'<(?:div|section)\b[^>]*class=["\'][^"\']*(?:facts|quick-facts|stats-wrapper|placement-meta-section|placement-meta-grid|snapshot-grid|course-grid|college-grid|card-grid|info-grid|stats\\b)[^"\']*["\'][^>]*>',
@@ -197,13 +210,20 @@ jobs:
                   hero = re.search(r'<section\b[^>]*class=["\'][^"\']*placement-hero[^"\']*["\'][^>]*>', text, re.I)
               search_from = 0
               if hero:
-                  hero_end = find_container_end(text, hero.start())
+                  hero_end = find_tag_end(text, hero.start(), 'section')
                   search_from = hero_end if hero_end >= 0 else hero.end()
 
               fallback = re.search(r'<section\b[^>]*>', text[search_from:], re.I)
               if fallback:
                   start = search_from + fallback.start()
-                  end = find_container_end(text, start)
+                  end = find_tag_end(text, start, 'section')
+                  if end >= 0:
+                      return text[:end] + '\n' + block + '\n' + style + text[end:], True
+
+              fallback = re.search(r'<section\b[^>]*>', text, re.I)
+              if fallback:
+                  start = fallback.start()
+                  end = find_tag_end(text, start, 'section')
                   if end >= 0:
                       return text[:end] + '\n' + block + '\n' + style + text[end:], True
 
