@@ -95,7 +95,17 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
     .section li{margin-bottom:8px}
     .table-wrapper{overflow-x:auto;margin-top:18px}table{width:100%;border-collapse:collapse;min-width:550px}th{background:#eef5ff;color:#102a43;font-weight:700;text-align:left}th,td{border:1px solid #d9e2ec;padding:13px 14px}td{color:#334e68}
     .highlight{background:#eef5ff;border-left:4px solid #2563eb;padding:18px 20px;border-radius:8px;margin:20px 0}.highlight strong{color:#173f82}
-.college-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:18px}.college-card{border:1px solid #dce4ee;border-radius:10px;padding:18px;background:#fbfdff}.college-card strong{display:block;color:#173f82;margin-bottom:5px}.college-card span{color:#64748b;font-size:14px}.faq{border:1px solid #dce4ee;border-radius:10px;margin-bottom:12px;overflow:hidden}.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;background:#f8fbff}.faq p{padding:15px 18px;margin:0}footer{background:#102a43;color:#fff;margin-top:40px;padding:35px 20px}.footer-inner{max-width:1200px;margin:auto}.footer-inner p{color:#cbd5e1;font-size:14px}
+.college-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:18px}.college-card{border:1px solid #dce4ee;border-radius:10px;padding:18px;background:#fbfdff}.college-card strong{display:block;color:#173f82;margin-bottom:5px}.college-card span{color:#64748b;font-size:14px}.faq{border:1px solid #dce4ee;border-radius:10px;margin-bottom:12px;overflow:hidden}.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;background:#f8fbff}.faq p{padding:15px 18px;margin:0}
+.mobile-toc-wrap{display:none}
+.mobile-toc{position:relative;max-width:220px}
+.mobile-toc-button{width:100%;min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:8px 9px;background:#fff;border:1px solid #d9e2ec;border-radius:9px;box-shadow:0 4px 12px rgba(15,45,80,.08);color:#173f82;font-size:13px;font-weight:800;cursor:pointer}
+.mobile-toc-button .toc-chevron{font-size:18px;line-height:1;transition:transform .18s ease}
+.mobile-toc-button[aria-expanded="true"] .toc-chevron{transform:rotate(180deg)}
+.mobile-toc-menu{position:absolute;left:0;top:calc(100% + 6px);width:min(300px,calc(100vw - 30px));max-height:60vh;overflow-y:auto;background:#fff;border:1px solid #d9e2ec;border-radius:9px;box-shadow:0 10px 28px rgba(15,45,80,.16);padding:5px;display:none;z-index:1100}
+.mobile-toc-menu.open{display:block}
+.mobile-toc-menu a{display:block;padding:9px 10px;border-radius:6px;color:#334e68;font-size:12.5px;line-height:1.35}
+.mobile-toc-menu a:hover,.mobile-toc-menu a:focus{background:#eef5ff;color:#1955c9}
+footer{background:#102a43;color:#fff;margin-top:40px;padding:35px 20px}.footer-inner{max-width:1200px;margin:auto}.footer-inner p{color:#cbd5e1;font-size:14px}
 @media(max-width:900px){
 .nav-links{gap:12px;font-size:13px}
 .hero h1{font-size:40px}
@@ -157,15 +167,6 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 .college-grid{grid-template-columns:1fr}
 }
 
-.mobile-toc-wrap{display:none}
-.mobile-toc{position:relative;max-width:220px}
-.mobile-toc-button{width:100%;min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:8px 9px;background:#fff;border:1px solid #d9e2ec;border-radius:9px;box-shadow:0 4px 12px rgba(15,45,80,.08);color:#173f82;font-size:13px;font-weight:800;cursor:pointer}
-.mobile-toc-button .toc-chevron{font-size:18px;line-height:1;transition:transform .18s ease}
-.mobile-toc-button[aria-expanded="true"] .toc-chevron{transform:rotate(180deg)}
-.mobile-toc-menu{position:absolute;left:0;top:calc(100% + 6px);width:min(300px,calc(100vw - 30px));max-height:60vh;overflow-y:auto;background:#fff;border:1px solid #d9e2ec;border-radius:9px;box-shadow:0 10px 28px rgba(15,45,80,.16);padding:5px;display:none;z-index:1100}
-.mobile-toc-menu.open{display:block}
-.mobile-toc-menu a{display:block;padding:9px 10px;border-radius:6px;color:#334e68;font-size:12.5px;line-height:1.35}
-.mobile-toc-menu a:hover,.mobile-toc-menu a:focus{background:#eef5ff;color:#1955c9}
 
 </style>
 <script type="application/ld+json">
