@@ -25,7 +25,57 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import urllib.parse, xml.etree.ElementTree as ET
+          import re
+          import urllib.parse
+          import xml.etree.ElementTree as ET
+
+          root = ET.fromstring(Path("sitemap.xml").read_text(encoding="utf-8"))
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          script = '<script src="/assets/editorial-meta.js?v=20260930"></script>'
+          changed = 0
+          missing = []
+
+          for item in root.findall("sm:url", ns):
+              loc = item.find("sm:loc", ns)
+              if loc is None:
+                  continue
+              url = loc.text.strip()
+              path = urllib.parse.urlparse(url).path.strip("/")
+              candidates = [Path("index.html")] if not path else [Path(path), Path(path + ".html"), Path(path) / "index.html"]
+              file = next((p for p in candidates if p.is_file()), None)
+              if file is None:
+                  missing.append(url + " -> file missing")
+                  continue
+
+              text = file.read_text(encoding="utf-8", errors="ignore")
+              cleaned = re.sub(
+                  r'<script[^>]+src=["\']/assets/editorial-meta\.js(?:\?[^"\']*)?["\'][^>]*></script>\s*',
+                  '',
+                  text,
+                  flags=re.I
+              )
+              if not re.search(r'</head>', cleaned, flags=re.I):
+                  missing.append(url + " -> no </head>")
+                  continue
+
+              updated = re.sub(r'</head>', script + '\n</head>', cleaned, count=1, flags=re.I)
+              if updated != text:
+                  file.write_text(updated, encoding="utf-8")
+                  changed += 1
+
+          print(f"Editorial metadata script injected into {changed} sitemap-backed HTML pages.")
+          if missing:
+              print("WARNING: could not process:")
+              for item in missing:
+                  print(item)
+          PY
+
+      - name: Validate every sitemap page has editorial metadata script
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import urllib.parse
+          import xml.etree.ElementTree as ET
 
           root = ET.fromstring(Path("sitemap.xml").read_text(encoding="utf-8"))
           ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
