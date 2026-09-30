@@ -1,0 +1,35 @@
+name: Deploy CollegeDecoded to Vercel Production
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'assets/**'
+      - 'sitemap.xml'
+      - 'vercel.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  VERCEL_ORG_ID: team_q8KPvpFHJygAnNREYzrxqErV
+  VERCEL_PROJECT_ID: prj_GoXin7E7eJW9PnuX6omlcqzYUTl6
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production source
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Deploy directly to Vercel Production
+        run: vercel deploy --prod --yes --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Confirm deployment
+        run: echo "Production deployment command completed for commit ${GITHUB_SHA}"
