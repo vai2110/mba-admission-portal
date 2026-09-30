@@ -3,12 +3,6 @@ name: Deploy CollegeDecoded to Vercel Production
 on:
   push:
     branches: [main]
-    paths:
-      - '**.html'
-      - 'assets/**'
-      - 'sitemap.xml'
-      - 'vercel.json'
-      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
