@@ -15,6 +15,25 @@
     return document.querySelector('.facts, .quick-facts');
   }
 
+  function cleanUnwantedCusatLink(root) {
+    var scope = root || document;
+    var target = ['cusat', 'pg', 'mtech', '2026'].join(' ');
+    function norm(value) {
+      return (value || '').replace(/\\s+/g, ' ').trim().toLowerCase();
+    }
+    var links = scope.querySelectorAll ? scope.querySelectorAll('a') : [];
+    for (var i = 0; i < links.length; i++) {
+      if (norm(links[i].textContent) === target) links[i].remove();
+    }
+    var footer = document.querySelector('footer');
+    if (footer) {
+      var nodes = footer.querySelectorAll('span,p,li,div');
+      for (var j = 0; j < nodes.length; j++) {
+        if (norm(nodes[j].textContent) === target) nodes[j].remove();
+      }
+    }
+  }
+
   function removeLegacyMeta() {
     var old = document.getElementById('cdEditorialMeta');
     if (old) old.remove();
@@ -24,6 +43,7 @@
 
   function render(dateValue) {
     removeLegacyMeta();
+    cleanUnwantedCusatLink(document);
     if (document.querySelector('.cd-editorial-author')) return;
 
     var facts = findFactContainer();
@@ -78,8 +98,16 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', getSitemapDate);
+    document.addEventListener('DOMContentLoaded', function () {
+      cleanUnwantedCusatLink(document);
+      getSitemapDate();
+    });
   } else {
+    cleanUnwantedCusatLink(document);
     getSitemapDate();
   }
+
+  new MutationObserver(function () {
+    cleanUnwantedCusatLink(document);
+  }).observe(document.documentElement, { childList: true, subtree: true });
 })();
