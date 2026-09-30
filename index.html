@@ -112,7 +112,135 @@ header{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blu
 </div></div></section>
 </main>
 
-<footer class="footer"><div class="wrap"><a class="brand" href="index.html"><span class="brand-mark">CD</span><span style="color:#fff">College<span>Decoded</span></span></a><small>A student-focused platform for researching MBA colleges, entrance exams, admissions, fees, cutoffs and placements.</small></div></footer>
+<footer class="footer cd-footer">
+<style>
+.cd-footer{margin-top:0!important;padding:0!important;background:#09152f!important;color:#fff}
+.cd-footer *{box-sizing:border-box}
+.cd-footer a{color:inherit}
+.cd-footer .cd-footer-wrap{max-width:1180px;width:calc(100% - 36px);margin:0 auto}
+.cd-footer .cd-popular{padding:28px 0 24px;border-bottom:1px solid rgba(255,255,255,.09)}
+.cd-footer .cd-footer-label{margin:0 0 12px;color:#8fb2ff;font-size:10px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+.cd-footer .cd-popular-links{display:flex;flex-wrap:wrap;gap:8px}
+.cd-footer .cd-popular-links a{display:inline-flex;align-items:center;padding:8px 11px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.045);color:#dbe7fb;font-size:10px;font-weight:800;transition:.2s}
+.cd-footer .cd-popular-links a:hover{border-color:#6f9cff;color:#fff;background:rgba(111,156,255,.1)}
+.cd-footer .cd-newsletter{padding:24px 0}
+.cd-footer .cd-newsletter-box{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:18px 20px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:linear-gradient(100deg,rgba(36,88,216,.2),rgba(255,255,255,.045))}
+.cd-footer .cd-newsletter-copy h3{margin:0 0 3px;color:#fff;font-size:15px;letter-spacing:-.2px}
+.cd-footer .cd-newsletter-copy p{margin:0;color:#aebed8;font-size:10px}
+.cd-footer .cd-newsletter-form{display:flex;gap:7px;min-width:360px}
+.cd-footer .cd-newsletter-form input{width:220px;border:1px solid rgba(255,255,255,.14);outline:0;border-radius:8px;background:#fff;color:#102a43;padding:10px 11px;font:10px Inter,system-ui,sans-serif}
+.cd-footer .cd-newsletter-form button{border:0;border-radius:8px;background:#2458d8;color:#fff;padding:0 14px;font-size:10px;font-weight:900;cursor:default}
+.cd-footer .cd-main{padding:30px 0 26px;border-top:1px solid rgba(255,255,255,.06)}
+.cd-footer .cd-main-grid{display:grid;grid-template-columns:1.45fr 1fr 1fr 1fr;gap:34px}
+.cd-footer .cd-brand{display:inline-flex;align-items:center;gap:9px;font-size:21px;font-weight:950;letter-spacing:-.7px;color:#fff;white-space:nowrap}
+.cd-footer .cd-brand-mark{width:33px;height:33px;border-radius:9px;background:#fff;color:#102a72;display:grid;place-items:center;font-size:16px;font-weight:950}
+.cd-footer .cd-brand-name span{color:#6f9cff}
+.cd-footer .cd-about{margin:11px 0 0;max-width:290px;color:#93a6c4;font-size:10px;line-height:1.7}
+.cd-footer .cd-col h4{margin:2px 0 10px;color:#fff;font-size:11px;font-weight:900}
+.cd-footer .cd-col a{display:block;margin:7px 0;color:#93a6c4;font-size:10px;transition:.2s}
+.cd-footer .cd-col a:hover{color:#fff}
+.cd-footer .cd-bottom{border-top:1px solid rgba(255,255,255,.09);padding:13px 0}
+.cd-footer .cd-bottom-inner{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.cd-footer .cd-bottom small{margin:0;color:#7186a5;font-size:9px}
+.cd-footer .cd-bottom-links{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.cd-footer .cd-bottom-links a{color:#93a6c4;font-size:9px;font-weight:700}
+.cd-footer .cd-bottom-links a:hover{color:#fff}
+.cd-footer .cd-backtop{color:#8fb2ff!important}
+@media(max-width:760px){
+ .cd-footer .cd-newsletter-box{display:block;padding:16px}
+ .cd-footer .cd-newsletter-form{min-width:0;margin-top:13px}
+ .cd-footer .cd-newsletter-form input{flex:1;width:auto}
+ .cd-footer .cd-main-grid{grid-template-columns:1fr 1fr;gap:25px 18px}
+ .cd-footer .cd-brand-block{grid-column:1/-1}
+ .cd-footer .cd-about{max-width:100%}
+ .cd-footer .cd-bottom-inner{display:block}
+ .cd-footer .cd-bottom-links{margin-top:8px}
+}
+@media(max-width:430px){
+ .cd-footer .cd-footer-wrap{width:calc(100% - 24px)}
+ .cd-footer .cd-popular{padding:23px 0 20px}
+ .cd-footer .cd-popular-links{gap:6px}
+ .cd-footer .cd-popular-links a{font-size:9px;padding:7px 9px}
+ .cd-footer .cd-newsletter{padding:20px 0}
+ .cd-footer .cd-newsletter-form{display:grid;grid-template-columns:1fr auto}
+ .cd-footer .cd-newsletter-form input{width:100%}
+ .cd-footer .cd-main{padding:25px 0 21px}
+ .cd-footer .cd-main-grid{grid-template-columns:1fr 1fr;gap:22px 15px}
+ .cd-footer .cd-brand{font-size:19px}
+ .cd-footer .cd-col a{font-size:9.5px}
+}
+</style>
+<div class="cd-popular">
+  <div class="cd-footer-wrap">
+    <div class="cd-footer-label">Popular on CollegeDecoded</div>
+    <div class="cd-popular-links">
+      <a href="top-mba-colleges-in-india.html">Top MBA Colleges</a>
+      <a href="mba-colleges-best-roi">Best ROI MBA Colleges</a>
+      <a href="mba-colleges-under-10-lakhs">MBA Colleges Under ₹10L</a>
+      <a href="mba-colleges-accepting-cat">MBA Colleges Accepting CAT</a>
+      <a href="mba-colleges-by-location.html">MBA Colleges by Location</a>
+      <a href="mba-college-comparison.html">Compare MBA Colleges</a>
+    </div>
+  </div>
+</div>
+<div class="cd-newsletter">
+  <div class="cd-footer-wrap">
+    <div class="cd-newsletter-box">
+      <div class="cd-newsletter-copy">
+        <h3>Get MBA updates, admission alerts &amp; college insights</h3>
+        <p>Newsletter signup will be connected once the subscription endpoint is added.</p>
+      </div>
+      <form class="cd-newsletter-form" onsubmit="return false">
+        <input type="email" aria-label="Email address" placeholder="Enter your email address">
+        <button type="submit" aria-label="Newsletter signup">Get Updates</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="cd-main">
+  <div class="cd-footer-wrap cd-main-grid">
+    <div class="cd-brand-block">
+      <a class="cd-brand" href="index.html"><span class="cd-brand-mark">CD</span><span class="cd-brand-name">College<span>Decoded</span></span></a>
+      <p class="cd-about">A student-focused platform for researching MBA colleges, entrance exams, admissions, fees, cutoffs and placements.</p>
+    </div>
+    <div class="cd-col">
+      <h4>Explore Colleges</h4>
+      <a href="top-mba-colleges-in-india.html">Top MBA Colleges</a>
+      <a href="mba-college-fees.html">MBA Colleges by Fees</a>
+      <a href="mba-colleges-by-location.html">MBA Colleges by Location</a>
+      <a href="mba-college-comparison.html">Compare Colleges</a>
+    </div>
+    <div class="cd-col">
+      <h4>MBA Admissions</h4>
+      <a href="mba-admission-guide.html">MBA Admission Guide</a>
+      <a href="mba-cutoff.html">MBA Cutoff</a>
+      <a href="mba-college-placements.html">MBA Placements</a>
+      <a href="mba-colleges-by-exam.html">MBA Colleges by Exam</a>
+    </div>
+    <div class="cd-col">
+      <h4>Entrance Exams</h4>
+      <a href="cat.html">CAT</a>
+      <a href="xat.html">XAT</a>
+      <a href="cmat.html">CMAT</a>
+      <a href="mat.html">MAT</a>
+      <a href="snap.html">SNAP</a>
+      <a href="nmat.html">NMAT</a>
+    </div>
+  </div>
+</div>
+<div class="cd-bottom">
+  <div class="cd-footer-wrap cd-bottom-inner">
+    <small>© 2026 CollegeDecoded. All rights reserved.</small>
+    <div class="cd-bottom-links">
+      <a href="/collegedecoded-team">CollegeDecoded Team</a>
+      <span style="color:#4f6381;font-size:9px">Contact</span>
+      <span style="color:#4f6381;font-size:9px">Privacy</span>
+      <span style="color:#4f6381;font-size:9px">Terms</span>
+      <a class="cd-backtop" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Back to top ↑</a>
+    </div>
+  </div>
+</div>
+</footer>
 
 <script>
 (function(){
