@@ -11,8 +11,36 @@
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
-  function findFactContainer() {
-    return document.querySelector('.facts, .quick-facts');
+  function findInsertionPoint() {
+    var main = document.querySelector('main');
+    if (!main) return null;
+
+    var children = Array.prototype.slice.call(main.children);
+    var lastIntro = null;
+    for (var i = 0; i < children.length; i++) {
+      var el = children[i];
+      if (el.matches && el.matches('.answer, .facts, .quick-facts, .hero-facts, .quick-facts-card')) {
+        lastIntro = el;
+        continue;
+      }
+      if (lastIntro) return { parent: main, before: el };
+      return { parent: main, before: el };
+    }
+    return { parent: main, before: null };
+  }
+
+  function removeVisibleEscapedNewlines() {
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var parent = node.parentElement;
+      if (!parent || /^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/i.test(parent.tagName)) continue;
+      if (/\\\\n/.test(node.nodeValue)) {
+        node.nodeValue = node.nodeValue.replace(/(?:\\\\n\\s*)+/g, '');
+      }
+    }
   }
 
   function cleanUnwantedCusatLink(root) {
@@ -46,8 +74,8 @@
     cleanUnwantedCusatLink(document);
     if (document.querySelector('.cd-editorial-author')) return;
 
-    var facts = findFactContainer();
-    if (!facts) return;
+    var point = findInsertionPoint();
+    if (!point) return;
 
     var meta = document.createElement('div');
     meta.className = 'cd-editorial-author';
@@ -58,7 +86,7 @@
         '<div class="cd-editorial-sub">Content Curator <span aria-hidden="true">|</span> Updated on - ' + formatDate(dateValue) + '</div>' +
       '</div>';
 
-    facts.insertAdjacentElement('afterend', meta);
+    if (point.before) point.parent.insertBefore(meta, point.before); else point.parent.appendChild(meta);
 
     var style = document.createElement('style');
     style.id = 'cdEditorialAuthorStyles';
@@ -100,14 +128,17 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       cleanUnwantedCusatLink(document);
+      removeVisibleEscapedNewlines();
       getSitemapDate();
     });
   } else {
     cleanUnwantedCusatLink(document);
+    removeVisibleEscapedNewlines();
     getSitemapDate();
   }
 
   new MutationObserver(function () {
     cleanUnwantedCusatLink(document);
+    removeVisibleEscapedNewlines();
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
