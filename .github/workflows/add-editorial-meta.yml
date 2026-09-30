@@ -182,7 +182,7 @@ jobs:
 
           def insert_after_fact_cards(text, block):
               opening = re.search(
-                  r'<div\b[^>]*class=["\'][^"\']*(?:facts|quick-facts)[^"\']*["\'][^>]*>',
+                  r'<(?:div|section)\b[^>]*class=["\'][^"\']*(?:facts|quick-facts|stats-wrapper|placement-meta-section|placement-meta-grid|snapshot-grid|course-grid|college-grid|card-grid|info-grid|stats\\b)[^"\']*["\'][^>]*>',
                   text, re.I
               )
               if not opening:
