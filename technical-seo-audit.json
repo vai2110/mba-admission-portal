@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-30T10:03:02.914860+00:00",
+  "generated_at": "2026-09-30T10:03:55.241400+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 646,
-  "pages_with_issues": 468,
+  "pages_checked": 647,
+  "pages_with_issues": 469,
   "issue_counts": {
     "broken_local_links": 14,
     "canonical": 11,
@@ -10,14 +10,14 @@
     "description_length": 211,
     "duplicate_title": 6,
     "h1_count": 5,
-    "jsonld": 19,
+    "jsonld": 20,
     "lang": 1,
     "noindex": 4,
     "og_description": 14,
     "og_title": 14,
     "og_url": 14,
     "title_length": 371,
-    "twitter_card": 29,
+    "twitter_card": 30,
     "viewport": 1
   },
   "duplicate_titles": {
@@ -15741,6 +15741,58 @@
       ]
     },
     {
+      "file": "mba-colleges-accepting-snap.html",
+      "benchmark": false,
+      "title": "MBA Colleges Accepting SNAP 2026: 17 Symbiosis Institutes",
+      "title_length": 57,
+      "description": "Explore the 17 Symbiosis institutes and selected MBA programmes that accept SNAP 2026 scores, with institute-level links and programme context.",
+      "description_length": 143,
+      "description_count": 1,
+      "canonical": "https://collegedecoded.in/mba-colleges-accepting-snap",
+      "canonical_count": 1,
+      "canonical_self": true,
+      "h1_count": 1,
+      "h1": "MBA Colleges Accepting SNAP 2026: 17 Symbiosis Institutes",
+      "lang": "en-IN",
+      "viewport": true,
+      "robots": [
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+      ],
+      "indexable": true,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": false,
+      "jsonld_blocks": 0,
+      "images": 0,
+      "images_missing_alt": 0,
+      "broken_local_links": [
+        "/scit",
+        "/scmhrd",
+        "/sibm-bangalore",
+        "/sibm-hyderabad",
+        "/sibm-nagpur",
+        "/sibm-noida",
+        "/sicsr",
+        "/sidtm",
+        "/sihs",
+        "/simc",
+        "/sims",
+        "/ssbf",
+        "/sscans",
+        "/ssss",
+        "/symbiosis-institute-of-business-management",
+        "/symbiosis-institute-of-international-business"
+      ],
+      "duplicate_title": false,
+      "duplicate_canonical": false,
+      "issues": [
+        "twitter_card",
+        "jsonld",
+        "broken_local_links"
+      ]
+    },
+    {
       "file": "mba-colleges-accepting-xat.html",
       "benchmark": false,
       "title": "MBA Colleges Accepting XAT 2026: Top Colleges & Admission Routes",
@@ -15809,17 +15861,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/jbims",
-        "/pumba",
-        "/tata-institute-of-social-sciences"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
