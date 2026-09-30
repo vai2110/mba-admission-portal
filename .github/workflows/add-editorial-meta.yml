@@ -48,35 +48,30 @@ jobs:
                   continue
 
               text = file.read_text(encoding="utf-8", errors="ignore")
-              # Remove legacy static editorial cards/styles before injecting the shared author-row script.
+              # Remove all legacy static editorial markup and visible escaped-newline artifacts.
               text = re.sub(
-                  r'\s*<div id=["\\\']cdEditorialMeta["\\\'][^>]*>.*?</div>\\s*'
-                  r'<style id=["\\\']cdEditorialMetaStaticStyles["\\\']>.*?</style>\\s*',
-                  '\\n',
+                  r'<div\\s+id=["\\']cdEditorialMeta["\\'][^>]*>.*?</div\\s*>',
+                  '',
                   text,
                   flags=re.I | re.S
               )
               text = re.sub(
-                  r'\s*<div id=["\\\']cdEditorialMeta["\\\'][^>]*>.*?</div>\\s*',
-                  '\\n',
+                  r'<style\\s+id=["\\']cdEditorialMetaStaticStyles["\\'][^>]*>.*?</style\\s*>',
+                  '',
                   text,
                   flags=re.I | re.S
               )
               text = re.sub(
-                  r'\s*<style id=["\\\']cdEditorialMetaStaticStyles["\\\']>.*?</style>\\s*',
-                  '\\n',
+                  r'(</(?:div|section|article|main|footer|header|body|p|ul|ol|li)>)\\s*(?:\\\\n\\s*)+',
+                  r'\\1',
                   text,
-                  flags=re.I | re.S
+                  flags=re.I
               )
-              # Remove legacy static editorial markup and any literal escaped newlines
-              # from visible HTML text. Script/style contents are preserved.
-              def clean_visible_html(value):
-                  parts = re.split(r'(<(?:script|style)\\b[^>]*>.*?</(?:script|style)\\s*>)', value, flags=re.I | re.S)
-                  for i in range(0, len(parts), 2):
-                      parts[i] = re.sub(r'\\\\n+', '', parts[i])
-                  return ''.join(parts)
-
-              text = clean_visible_html(text)
+              text = re.sub(
+                  r'(?<!\\)\\\\n+',
+                  '',
+                  text
+              )
 
               cleaned = re.sub(
                   r'<script[^>]+src=["\']/assets/editorial-meta\.js(?:\?[^"\']*)?["\'][^>]*></script>\s*',
