@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T15:48:07.975891+00:00",
+  "generated_at": "2026-09-30T05:56:49.527663+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 638,
   "pages_with_issues": 460,
@@ -2993,10 +2993,10 @@
     {
       "file": "cat.html",
       "benchmark": false,
-      "title": "CAT 2026: Exam Date, Registration, Syllabus, Pattern, Eligibility & Cutoff",
-      "title_length": 74,
-      "description": "CAT 2026: Check exam date, registration, eligibility, syllabus, exam pattern, marking scheme, IIMs, cutoff and preparation strategy.",
-      "description_length": 132,
+      "title": "CAT 2026: Exam Date, Registration, Syllabus, Pattern, Eligibility, Cutoff & Latest Updates",
+      "title_length": 90,
+      "description": "CAT 2026 latest guide: exam date, correction window, eligibility, pattern, syllabus, registration, fees, cutoff, IIM selection process and preparation strategy.",
+      "description_length": 160,
       "description_count": 1,
       "canonical": null,
       "canonical_count": 0,
