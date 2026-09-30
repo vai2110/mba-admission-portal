@@ -106,6 +106,76 @@ jobs:
           print("Validation passed: every sitemap-backed HTML page contains editorial metadata script.")
           PY
 
+      - name: Add static editorial metadata fallback to every sitemap page
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import urllib.parse
+          import xml.etree.ElementTree as ET
+          import re
+
+          root = ET.fromstring(Path("sitemap.xml").read_text(encoding="utf-8"))
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          changed = 0
+
+          def hero_end(text):
+              matches = list(re.finditer(r'<section\\b[^>]*class=["\\'][^"\\']*\\bhero\\b[^"\\']*["\\'][^>]*>|</section\\s*>', text, re.I))
+              depth = 0
+              started = False
+              for m in matches:
+                  token = m.group(0)
+                  if token.lower().startswith("<section"):
+                      depth += 1
+                      started = True
+                  elif started:
+                      depth -= 1
+                      if depth == 0:
+                          return m.end()
+              return -1
+
+          for item in root.findall("sm:url", ns):
+              loc = item.find("sm:loc", ns)
+              lastmod = item.find("sm:lastmod", ns)
+              if loc is None:
+                  continue
+              url = loc.text.strip()
+              path = urllib.parse.urlparse(url).path.strip("/")
+              candidates = [Path("index.html")] if not path else [Path(path), Path(path + ".html"), Path(path) / "index.html"]
+              file = next((p for p in candidates if p.is_file()), None)
+              if file is None:
+                  continue
+
+              text = file.read_text(encoding="utf-8", errors="ignore")
+              date = lastmod.text.strip() if lastmod is not None and lastmod.text else "2026-09-30"
+              try:
+                  y, m, d = date[:10].split("-")
+                  months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+                  display_date = f"{int(d)} {months[int(m)-1]} {y}"
+              except Exception:
+                  display_date = "30 September 2026"
+
+              block = (
+                  '<div id="cdEditorialMeta" class="cd-editorial-meta-static">'
+                  f'<span>Last updated on: <strong>{display_date}</strong></span>'
+                  '<span aria-hidden="true">·</span>'
+                  '<span>Updated by <a href="/collegedecoded-team">CollegeDecoded Team</a></span>'
+                  '</div>'
+              )
+              style = '<style id="cdEditorialMetaStaticStyles">.cd-editorial-meta-static{width:min(1200px,calc(100% - 32px));margin:0 auto;padding:11px 0 7px;color:#64748b;font:12px/1.5 Arial,Helvetica,sans-serif;display:flex;align-items:center;gap:8px}.cd-editorial-meta-static strong{color:#475569;font-weight:700}.cd-editorial-meta-static a{color:#2563eb;font-weight:700;text-decoration:none}.cd-editorial-meta-static a:hover{text-decoration:underline}@media(max-width:560px){.cd-editorial-meta-static{width:calc(100% - 24px);padding:9px 0 5px;font-size:11px;gap:6px;flex-wrap:wrap}}</style>'
+
+              if 'id="cdEditorialMeta"' in text:
+                  continue
+
+              pos = hero_end(text)
+              if pos < 0:
+                  continue
+              text = text[:pos] + "\n" + block + "\n" + style + text[pos:]
+              file.write_text(text, encoding="utf-8")
+              changed += 1
+
+          print(f"Static editorial metadata fallback added to {changed} sitemap-backed HTML pages.")
+          PY
+
       - name: Commit changes
         run: |
           git config user.name "CollegeDecoded Editorial Bot"
