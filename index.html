@@ -385,4 +385,20 @@ score.addEventListener('change',renderScoreShortlist);
 renderScoreShortlist();
 })();
 </script>
+<!-- Remove unintended CUSAT keyword link if injected into homepage -->
+<script>
+(function(){
+  var unwanted='cusat pg mtech 2026';
+  function clean(){
+    var nodes=document.querySelectorAll('a');
+    for(var i=0;i<nodes.length;i++){
+      if((nodes[i].textContent||'').trim().toLowerCase()===unwanted){
+        nodes[i].remove();
+      }
+    }
+  }
+  clean();
+  new MutationObserver(clean).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
 </body></html>
