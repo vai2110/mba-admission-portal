@@ -20,7 +20,7 @@
 <link rel="canonical" href="https://collegedecoded.in/cat"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:#f5f8fc;color:#102a43;line-height:1.6}a{text-decoration:none;color:inherit}
-header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000}.navbar{max-width:1200px;margin:auto;min-height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}.logo{font-size:25px;font-weight:800;color:#102a43}.logo span{color:#2563eb}.nav-links{display:flex;align-items:center;gap:25px;font-size:15px;font-weight:600}.nav-links a{color:#102a43}.nav-links a:hover{color:#2563eb}.compare-btn{background:#2563eb;color:#fff!important;padding:11px 18px;border-radius:8px}
+header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000}.navbar{max-width:1200px;margin:auto;min-height:58px;display:flex;align-items:center;justify-content:center;padding:0 20px}.logo{font-size:25px;font-weight:800;color:#102a43}.logo span{color:#2563eb}.nav-links{display:flex;align-items:center;gap:25px;font-size:15px;font-weight:600}.nav-links a{color:#102a43}.nav-links a:hover{color:#2563eb}.compare-btn{background:#2563eb;color:#fff!important;padding:11px 18px;border-radius:8px}
 .hero{background:linear-gradient(135deg,#172b68,#2458d8);color:#fff;padding:34px 20px 42px}
 .hero-inner{max-width:1200px;margin:auto}
 .breadcrumb{font-size:13px;margin-bottom:13px;color:#dce8ff}
@@ -131,11 +131,9 @@ footer{background:#102a43;color:#fff;margin-top:40px;padding:35px 20px}.footer-i
 }
 @media(max-width:650px){
 html,body{width:100%;max-width:100%;overflow-x:hidden}
-.navbar{min-height:auto;padding:13px 12px;flex-direction:column;gap:11px}
+.navbar{min-height:58px;padding:9px 12px;display:flex;justify-content:center}
 .logo{font-size:23px}
-.nav-links{width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 11px;font-size:12px}
-.nav-links a{white-space:nowrap}
-.compare-btn{padding:9px 13px}
+.nav-links{display:none}
 .hero{padding:27px 15px 32px}
 .breadcrumb{font-size:12px;margin-bottom:10px}
 .hero h1{font-size:34px}
@@ -160,27 +158,52 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 .section{width:100%;max-width:100%;padding:18px;margin-bottom:16px}
 .section h2{font-size:23px;line-height:1.3}
 .table-wrapper{width:100%;max-width:100%;overflow:visible}
-.table-wrapper table{min-width:0!important;width:100%!important;max-width:100%;display:block}
-.table-wrapper tbody{width:100%;max-width:100%;display:block}
+.table-wrapper table{
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%;
+  display:table!important;
+  table-layout:fixed;
+  border-collapse:collapse;
+}
+.table-wrapper thead{display:table-header-group!important}
+.table-wrapper tbody{display:table-row-group!important;width:100%}
+.table-wrapper tr{
+  width:100%;
+  max-width:100%;
+  display:table-row!important;
+  border:0;
+  border-radius:0;
+  margin:0;
+}
+.table-wrapper th,
+.table-wrapper td{
+  display:table-cell!important;
+  min-width:0;
+  padding:9px 7px;
+  font-size:11px;
+  line-height:1.35;
+  vertical-align:top;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+.table-wrapper td:before{display:none!important}
+.table-wrapper td:first-child{
+  text-align:left;
+  background:transparent;
+  font-weight:400;
+}
+.table-wrapper th{font-size:10.5px;line-height:1.25}
 .dates-table-wrapper{overflow:visible}
-.dates-table-wrapper table.dates-table{display:table!important;table-layout:fixed;border-collapse:collapse;width:100%!important}
-.dates-table-wrapper table.dates-table thead{display:table-header-group!important}
-.dates-table-wrapper table.dates-table tbody{display:table-row-group!important;width:100%}
-.dates-table-wrapper table.dates-table tr{display:table-row!important;width:100%;border:0;border-radius:0;margin:0}
-.dates-table-wrapper table.dates-table th,
-.dates-table-wrapper table.dates-table td{display:table-cell!important;width:auto;min-width:0;padding:9px 7px;font-size:11px;line-height:1.35;vertical-align:top;overflow-wrap:anywhere;word-break:break-word}
+.dates-table-wrapper table.dates-table{display:table!important}
 .dates-table-wrapper table.dates-table th:nth-child(1),
 .dates-table-wrapper table.dates-table td:nth-child(1){width:31%}
 .dates-table-wrapper table.dates-table th:nth-child(2),
 .dates-table-wrapper table.dates-table td:nth-child(2){width:46%}
 .dates-table-wrapper table.dates-table th:nth-child(3),
 .dates-table-wrapper table.dates-table td:nth-child(3){width:23%;text-align:center}
-.dates-table-wrapper table.dates-table td:before{display:none!important}
-.dates-table-wrapper table.dates-table td:first-child{text-align:left;background:transparent;font-weight:400}
-.table-wrapper tr{width:100%;max-width:100%;display:block}
-.table-wrapper td{width:100%;max-width:100%;min-width:0;display:flex!important;box-sizing:border-box;align-items:flex-start;justify-content:space-between;gap:10px;overflow-wrap:anywhere;word-break:break-word}
-.table-wrapper td:before{min-width:0;max-width:42%;flex:0 1 42%;overflow-wrap:anywhere}
-.table-wrapper td:not(:first-child){text-align:right;flex:1 1 auto}
+.table-wrapper table:not(.dates-table) th:first-child,
+.table-wrapper table:not(.dates-table) td:first-child{width:28%}
 .college-grid{grid-template-columns:1fr}
 }
 
@@ -199,7 +222,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 <script src="/assets/editorial-meta.js?v=20260929"></script>
 </head>
 <body>
-<header><div class="navbar"><a class="logo" href="index.html">College<span>Decoded</span></a><nav class="nav-links"><a href="index.html">Home</a><a href="colleges.html">MBA Colleges</a><a href="exams.html">Entrance Exams</a><a href="index.html">Admissions</a><a href="index.html">Cutoffs</a><a href="index.html">Placements</a><a class="compare-btn" href="index.html">Compare Colleges</a></nav></div></header>
+<header><div class="navbar"><a class="logo" href="index.html">College<span>Decoded</span></a></div></header>
 <section class="hero"><div class="hero-inner">
 <div class="breadcrumb">Home › Entrance Exams › CAT</div>
 <div class="hero-compact">
