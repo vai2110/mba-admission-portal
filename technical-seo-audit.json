@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-30T10:03:55.241400+00:00",
+  "generated_at": "2026-09-30T10:05:12.725669+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 647,
   "pages_with_issues": 469,
   "issue_counts": {
-    "broken_local_links": 14,
+    "broken_local_links": 10,
     "canonical": 11,
     "description_count": 4,
     "description_length": 211,
@@ -15629,19 +15629,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "/indian-institute-of-foreign-trade",
-        "/indian-institute-of-management-ahmedabad",
-        "/indian-institute-of-management-bangalore",
-        "/indian-institute-of-management-calcutta",
-        "/indian-institute-of-management-indore",
-        "/indian-institute-of-management-kozhikode",
-        "/indian-institute-of-management-lucknow",
-        "/indian-institute-of-management-mumbai",
-        "/indian-institute-of-technology-delhi",
-        "/indian-institute-of-technology-madras",
-        "/institute-of-management-technology",
-        "/management-development-institute",
-        "/s-p-jain-institute-of-management-and-research",
+        "/imt-ghaziabad",
         "/xim-university"
       ],
       "duplicate_title": false,
@@ -15679,14 +15667,12 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "/birla-institute-of-management-technology",
         "/great-lakes-institute-of-management",
         "/indian-institute-of-management-amritsar",
         "/indian-institute-of-management-bodh-gaya",
         "/indian-institute-of-management-jammu",
         "/indian-institute-of-management-sambalpur",
         "/institute-of-management-technology-nagpur",
-        "/jaipuria-institute-of-management",
         "/kalinga-institute-of-industrial-technology",
         "/loyola-institute-of-business-administration"
       ],
@@ -15725,11 +15711,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "/amity-university",
-        "/birla-institute-of-management-technology",
-        "/jagan-institute-of-management-studies",
-        "/jaipuria-institute-of-management",
-        "/jaipuria-institute-of-management-jaipur",
+        "/lpu",
         "/new-delhi-institute-of-management"
       ],
       "duplicate_title": false,
@@ -15766,30 +15748,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/scit",
-        "/scmhrd",
-        "/sibm-bangalore",
-        "/sibm-hyderabad",
-        "/sibm-nagpur",
-        "/sibm-noida",
-        "/sicsr",
-        "/sidtm",
-        "/sihs",
-        "/simc",
-        "/sims",
-        "/ssbf",
-        "/sscans",
-        "/ssss",
-        "/symbiosis-institute-of-business-management",
-        "/symbiosis-institute-of-international-business"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -15822,10 +15786,9 @@
         "/fore-school-of-management",
         "/goa-institute-of-management",
         "/great-lakes-institute-of-management",
-        "/institute-of-management-technology",
+        "/imt-ghaziabad",
         "/t-a-pai-management-institute-manipal",
-        "/xim-university",
-        "/xlri-xavier-school-of-management"
+        "/xim-university"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
@@ -16222,17 +16185,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/jbims",
-        "/pumba",
-        "/tata-institute-of-social-sciences"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -16261,17 +16219,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/jbims",
-        "/pumba",
-        "/tata-institute-of-social-sciences"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -16300,24 +16253,13 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/jbims",
-        "/nmims-mumbai",
-        "/pumba",
-        "/scmhrd",
-        "/sibm-bangalore",
-        "/symbiosis-institute-of-business-management",
-        "/symbiosis-institute-of-international-business",
-        "/tata-institute-of-social-sciences",
-        "/xlri-xavier-school-of-management"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
