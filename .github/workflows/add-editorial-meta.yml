@@ -50,25 +50,25 @@ jobs:
               text = file.read_text(encoding="utf-8", errors="ignore")
               # Remove all legacy static editorial markup and visible escaped-newline artifacts.
               text = re.sub(
-                  r'<div\\s+id=["\\']cdEditorialMeta["\\'][^>]*>.*?</div\\s*>',
+                  r'<div[^>]*id=["\']cdEditorialMeta["\'][^>]*>.*?</div\s*>',
                   '',
                   text,
                   flags=re.I | re.S
               )
               text = re.sub(
-                  r'<style\\s+id=["\\']cdEditorialMetaStaticStyles["\\'][^>]*>.*?</style\\s*>',
+                  r'<style[^>]*id=["\']cdEditorialMetaStaticStyles["\'][^>]*>.*?</style\s*>',
                   '',
                   text,
                   flags=re.I | re.S
               )
               text = re.sub(
-                  r'(</(?:div|section|article|main|footer|header|body|p|ul|ol|li)>)\\s*(?:\\\\n\\s*)+',
-                  r'\\1',
+                  r'(</(?:div|section|article|main|footer|header|body|p|ul|ol|li)>)\s*(?:\\n\s*)+',
+                  r'\1',
                   text,
                   flags=re.I
               )
               text = re.sub(
-                  r'(?<!\\)\\\\n+',
+                  r'(?<!\\)\\n+',
                   '',
                   text
               )
