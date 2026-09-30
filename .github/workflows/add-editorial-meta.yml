@@ -119,7 +119,7 @@ jobs:
           changed = 0
 
           def hero_end(text):
-              matches = list(re.finditer(r'<section[^>]*class=["\\'][^"\\']*hero[^"\\']*["\\'][^>]*>|</section\\s*>', text, re.I))
+              matches = list(re.finditer(r"""<section[^>]*class=["'][^"']*hero[^"']*["'][^>]*>|</section\s*>""", text, re.I))
               depth = 0
               started = False
               for m in matches:
