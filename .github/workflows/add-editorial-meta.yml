@@ -115,5 +115,7 @@ jobs:
             echo "No HTML pages needed editorial metadata changes."
           else
             git commit -m "Ensure editorial metadata on every live sitemap page"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
