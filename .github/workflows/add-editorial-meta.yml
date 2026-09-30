@@ -48,6 +48,33 @@ jobs:
                   continue
 
               text = file.read_text(encoding="utf-8", errors="ignore")
+              # Remove legacy static editorial cards/styles before injecting the shared author-row script.
+              text = re.sub(
+                  r'\s*<div id=["\\\']cdEditorialMeta["\\\'][^>]*>.*?</div>\\s*'
+                  r'<style id=["\\\']cdEditorialMetaStaticStyles["\\\']>.*?</style>\\s*',
+                  '\\n',
+                  text,
+                  flags=re.I | re.S
+              )
+              text = re.sub(
+                  r'\s*<div id=["\\\']cdEditorialMeta["\\\'][^>]*>.*?</div>\\s*',
+                  '\\n',
+                  text,
+                  flags=re.I | re.S
+              )
+              text = re.sub(
+                  r'\s*<style id=["\\\']cdEditorialMetaStaticStyles["\\\']>.*?</style>\\s*',
+                  '\\n',
+                  text,
+                  flags=re.I | re.S
+              )
+              # Remove visible literal \\n escape sequences left by earlier workflow fallbacks.
+              text = re.sub(
+                  r'(</(?:div|section|style|script|footer|header|main|body|p|ul|ol|li)>)\\s*(?:\\\\n\\s*)+(?=<)',
+                  r'\\1\\n',
+                  text,
+                  flags=re.I
+              )
               cleaned = re.sub(
                   r'<script[^>]+src=["\']/assets/editorial-meta\.js(?:\?[^"\']*)?["\'][^>]*></script>\s*',
                   '',
