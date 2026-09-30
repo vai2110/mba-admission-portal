@@ -227,6 +227,11 @@ jobs:
                   if end >= 0:
                       return text[:end] + '\n' + block + '\n' + style + text[end:], True
 
+              # Final fallback for pages whose content is injected or has no standard wrapper.
+              if re.search(r'</body>', text, re.I):
+                  updated = re.sub(r'</body>', '\\n' + block + '\\n' + style + '\\n</body>', text, count=1, flags=re.I)
+                  return updated, True
+
               return text, False
 
           changed = 0
