@@ -21,43 +21,162 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Inject shared editorial metadata script
+      - name: Add metadata to every sitemap page
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
+          import urllib.parse
+          import xml.etree.ElementTree as ET
 
-          injection = '<script src="/assets/editorial-meta.js?v=20260929"></script>\n'
-          changed = 0
+          SITEMAP = Path("sitemap.xml")
+          SCRIPT = '<script src="/assets/editorial-meta.js?v=20260930"></script>'
+          STYLE = (
+              '<style id="cd-editorial-meta-inline">'
+              '.cd-editorial-meta{width:min(1200px,calc(100% - 32px));margin:0 auto;'
+              'padding:11px 0 7px;color:#64748b;font:12px/1.5 Arial,Helvetica,sans-serif;'
+              'display:flex;align-items:center;gap:8px}'
+              '.cd-editorial-meta strong{color:#475569;font-weight:700}'
+              '.cd-editorial-meta a{color:#2563eb;font-weight:700;text-decoration:none}'
+              '.cd-editorial-meta a:hover{text-decoration:underline}'
+              '@media(max-width:560px){.cd-editorial-meta{width:calc(100% - 24px);'
+              'padding:9px 0 5px;font-size:11px;gap:6px;flex-wrap:wrap}}'
+              '</style>'
+          )
 
-          for p in Path('.').glob('*.html'):
-              if p.name.lower() in {'404.html', 'index.html', 'collegedecoded-team.html'}:
-                  continue
+          def target_file(url):
+              path = urllib.parse.urlparse(url).path.strip("/")
+              if not path:
+                  return Path("index.html")
+              candidates = [
+                  Path(path),
+                  Path(path + ".html"),
+                  Path(path) / "index.html",
+              ]
+              for candidate in candidates:
+                  if candidate.is_file():
+                      return candidate
+              return None
 
-              text = p.read_text(encoding='utf-8', errors='ignore')
-              cleaned = re.sub(
+          def clean_old(text):
+              text = re.sub(
                   r'<script[^>]+src=["\']/assets/editorial-meta\.js(?:\?[^"\']*)?["\'][^>]*></script>\s*',
                   '',
                   text,
                   flags=re.I
               )
+              text = re.sub(
+                  r'<style[^>]+id=["\']cd-editorial-meta-inline["\'][^>]*>.*?</style>\s*',
+                  '',
+                  text,
+                  flags=re.I | re.S
+              )
+              text = re.sub(
+                  r'<div[^>]+id=["\']cdEditorialMeta["\'][^>]*>.*?</div>\s*',
+                  '',
+                  text,
+                  flags=re.I | re.S
+              )
+              return text
 
-              if not re.search(r'</head>', cleaned, flags=re.I):
+          if not SITEMAP.exists():
+              raise SystemExit("sitemap.xml not found")
+
+          root = ET.fromstring(SITEMAP.read_text(encoding="utf-8"))
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          changed = 0
+          missing = []
+
+          for item in root.findall("sm:url", ns):
+              loc = item.find("sm:loc", ns)
+              lastmod = item.find("sm:lastmod", ns)
+              if loc is None:
                   continue
 
-              updated = re.sub(
-                  r'</head>',
-                  injection + '</head>',
-                  cleaned,
-                  count=1,
-                  flags=re.I
+              url = loc.text.strip()
+              path = target_file(url)
+              if path is None:
+                  missing.append(url)
+                  continue
+
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              original = text
+              text = clean_old(text)
+
+              date = lastmod.text.strip() if lastmod is not None and lastmod.text else "2026-09-30"
+              try:
+                  from datetime import datetime
+                  d = datetime.strptime(date[:10], "%Y-%m-%d")
+                  display = f"{d.day} {d.strftime('%B %Y')}"
+              except Exception:
+                  display = "30 September 2026"
+
+              meta = (
+                  '<div id="cdEditorialMeta" class="cd-editorial-meta">'
+                  f'<span>Last updated: <strong>{display}</strong></span>'
+                  '<span aria-hidden="true">·</span>'
+                  '<span>By <a href="/collegedecoded-team" class="cd-editorial-author">'
+                  'CollegeDecoded Editorial Team</a></span>'
+                  '</div>\n'
               )
 
-              if updated != text:
-                  p.write_text(updated, encoding='utf-8')
+              hero = re.search(
+                  r'<section\b[^>]*class=["\'][^"\']*\bhero\b[^"\']*["\'][^>]*>.*?</section>',
+                  text,
+                  flags=re.I | re.S
+              )
+
+              if hero:
+                  insert_at = hero.end()
+                  text = text[:insert_at] + "\n" + meta + text[insert_at:]
+              elif re.search(r'</head>', text, flags=re.I):
+                  text = re.sub(r'</head>', meta + STYLE + SCRIPT + '\n</head>', text, count=1, flags=re.I)
+              else:
+                  missing.append(url + " (no hero/head)")
+                  continue
+
+              if hero and not re.search(r'id=["\']cd-editorial-meta-inline["\']', text, flags=re.I):
+                  text = re.sub(r'</head>', STYLE + SCRIPT + '\n</head>', text, count=1, flags=re.I)
+
+              if text != original:
+                  path.write_text(text, encoding="utf-8")
                   changed += 1
 
-          print(f'Editorial metadata script injected into {changed} HTML pages.')
+          print(f"Editorial metadata applied to {changed} sitemap-backed HTML pages.")
+          if missing:
+              print("WARNING: could not map these sitemap URLs:")
+              for url in missing:
+                  print(url)
+          PY
+
+      - name: Validate every sitemap page has editorial metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, urllib.parse, xml.etree.ElementTree as ET
+
+          root = ET.fromstring(Path("sitemap.xml").read_text(encoding="utf-8"))
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          failures = []
+
+          for item in root.findall("sm:url", ns):
+              loc = item.find("sm:loc", ns)
+              if loc is None:
+                  continue
+              path = urllib.parse.urlparse(loc.text.strip()).path.strip("/")
+              candidates = [Path("index.html")] if not path else [Path(path), Path(path+".html"), Path(path)/"index.html"]
+              file = next((p for p in candidates if p.is_file()), None)
+              if file is None:
+                  failures.append(f"{loc.text.strip()} -> file missing")
+                  continue
+              text = file.read_text(encoding="utf-8", errors="ignore")
+              if 'id="cdEditorialMeta"' not in text:
+                  failures.append(f"{loc.text.strip()} -> metadata missing")
+
+          if failures:
+              print("\n".join(failures))
+              raise SystemExit(f"{len(failures)} sitemap pages failed editorial metadata validation")
+          print("Validation passed: every sitemap-backed HTML page contains editorial metadata.")
           PY
 
       - name: Commit changes
@@ -66,8 +185,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- '*.html'
           if git diff --cached --quiet; then
-            echo "No HTML pages needed the editorial metadata script."
+            echo "No HTML pages needed editorial metadata changes."
           else
-            git commit -m "Add last updated and editorial team metadata to live pages"
+            git commit -m "Ensure editorial metadata on every live sitemap page"
             git push
           fi
