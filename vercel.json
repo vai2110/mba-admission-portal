@@ -3,5 +3,27 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "buildCommand": "bash scripts/vercel-build.sh",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/mba-colleges-best-roi", "destination": "/mba-colleges-best-roi.html" },
+    { "source": "/mba-colleges-under-10-lakhs", "destination": "/mba-colleges-under-10-lakhs.html" },
+    { "source": "/mba-colleges-under-15-lakhs", "destination": "/mba-colleges-under-15-lakhs.html" },
+    { "source": "/mba-colleges-without-cat", "destination": "/mba-colleges-without-cat.html" },
+    { "source": "/mba-colleges-accepting-cat", "destination": "/mba-colleges-accepting-cat.html" },
+    { "source": "/mba-colleges-accepting-xat", "destination": "/mba-colleges-accepting-xat.html" },
+    { "source": "/mba-colleges-accepting-cmat", "destination": "/mba-colleges-accepting-cmat.html" },
+    { "source": "/mba-colleges-accepting-mat", "destination": "/mba-colleges-accepting-mat.html" },
+    { "source": "/mba-colleges-accepting-snap", "destination": "/mba-colleges-accepting-snap.html" }
+  ],
+  "redirects": [
+    { "source": "/mba-colleges-best-roi.html", "destination": "/mba-colleges-best-roi", "permanent": true },
+    { "source": "/mba-colleges-under-10-lakhs.html", "destination": "/mba-colleges-under-10-lakhs", "permanent": true },
+    { "source": "/mba-colleges-under-15-lakhs.html", "destination": "/mba-colleges-under-15-lakhs", "permanent": true },
+    { "source": "/mba-colleges-without-cat.html", "destination": "/mba-colleges-without-cat", "permanent": true },
+    { "source": "/mba-colleges-accepting-cat.html", "destination": "/mba-colleges-accepting-cat", "permanent": true },
+    { "source": "/mba-colleges-accepting-xat.html", "destination": "/mba-colleges-accepting-xat", "permanent": true },
+    { "source": "/mba-colleges-accepting-cmat.html", "destination": "/mba-colleges-accepting-cmat", "permanent": true },
+    { "source": "/mba-colleges-accepting-mat.html", "destination": "/mba-colleges-accepting-mat", "permanent": true },
+    { "source": "/mba-colleges-accepting-snap.html", "destination": "/mba-colleges-accepting-snap", "permanent": true }
+  ]
 }
