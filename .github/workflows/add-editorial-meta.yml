@@ -31,7 +31,7 @@ jobs:
 
           root = ET.fromstring(Path("sitemap.xml").read_text(encoding="utf-8"))
           ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
-          script = '<script src="/assets/editorial-meta.js?v=20260930"></script>'
+          script = '<script src="/assets/editorial-meta.js?v=20260930fix"></script>'
           changed = 0
           missing = []
 
@@ -127,7 +127,7 @@ jobs:
                   failures.append(f"{loc.text.strip()} -> file missing")
                   continue
               text = file.read_text(encoding="utf-8", errors="ignore")
-              if "/assets/editorial-meta.js?v=20260930" not in text:
+              if "/assets/editorial-meta.js?v=20260930fix" not in text:
                   failures.append(f"{loc.text.strip()} -> metadata script missing")
 
           if failures:
