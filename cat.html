@@ -118,6 +118,8 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .table-wrapper td:first-child:before{display:none}
 }
 @media(max-width:650px){
+.mobile-toc-wrap{display:block;position:sticky;top:72px;z-index:1050;background:#f5f8fc;padding:7px 12px 6px;margin:0 0 0}
+.mobile-toc{max-width:210px}
 .navbar{min-height:auto;padding:15px;flex-direction:column;gap:15px}
 .nav-links{flex-wrap:wrap;justify-content:center}
 .hero{padding:27px 15px 32px}
@@ -139,6 +141,17 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .section h2{font-size:23px;line-height:1.3}
 .college-grid{grid-template-columns:1fr}
 }
+
+.mobile-toc-wrap{display:none}
+.mobile-toc{position:relative;max-width:220px}
+.mobile-toc-button{width:100%;min-height:42px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 13px;background:#fff;border:1px solid #d9e2ec;border-radius:9px;box-shadow:0 4px 12px rgba(15,45,80,.08);color:#173f82;font-size:13px;font-weight:800;cursor:pointer}
+.mobile-toc-button .toc-chevron{font-size:18px;line-height:1;transition:transform .18s ease}
+.mobile-toc-button[aria-expanded="true"] .toc-chevron{transform:rotate(180deg)}
+.mobile-toc-menu{position:absolute;left:0;top:calc(100% + 6px);width:min(300px,calc(100vw - 30px));max-height:60vh;overflow-y:auto;background:#fff;border:1px solid #d9e2ec;border-radius:9px;box-shadow:0 10px 28px rgba(15,45,80,.16);padding:5px;display:none;z-index:1100}
+.mobile-toc-menu.open{display:block}
+.mobile-toc-menu a{display:block;padding:9px 10px;border-radius:6px;color:#334e68;font-size:12.5px;line-height:1.35}
+.mobile-toc-menu a:hover,.mobile-toc-menu a:focus{background:#eef5ff;color:#1955c9}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -165,6 +178,28 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 <a class="register-btn hero-official" href="https://iimcat.ac.in/" rel="noopener" target="_blank">Official CAT Website →</a>
 </div>
 </div></div></section>
+<div class="mobile-toc-wrap">
+  <div class="mobile-toc">
+    <button class="mobile-toc-button" type="button" aria-expanded="false" aria-controls="mobile-toc-menu">
+      <span>On this page</span><span class="toc-chevron" aria-hidden="true">⌄</span>
+    </button>
+    <nav id="mobile-toc-menu" class="mobile-toc-menu" aria-label="CAT 2026 section navigation">
+      <a href="#overview">CAT 2026 Overview</a>
+      <a href="#dates">Important Dates</a>
+      <a href="#eligibility">Eligibility</a>
+      <a href="#pattern">Exam Pattern</a>
+      <a href="#marking">Marking Scheme</a>
+      <a href="#syllabus">Syllabus</a>
+      <a href="#registration">Registration &amp; Correction</a>
+      <a href="#colleges">Colleges Accepting CAT</a>
+      <a href="#cutoff">CAT Cutoff</a>
+      <a href="#selection">Selection Process</a>
+      <a href="#preparation">Preparation Strategy</a>
+      <a href="#faqs">CAT 2026 FAQs</a>
+    </nav>
+  </div>
+</div>
+
 <div class="stats-wrapper"><div class="stats compact-stats">
 <div class="stat"><strong>29 Nov 2026</strong><span>Exam Date</span></div>
 <div class="stat"><strong>68</strong><span>Questions</span></div>
@@ -208,5 +243,33 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 </main>
 </div></div>
 <footer><div class="footer-inner"><p><strong>CollegeDecoded</strong> — student-focused MBA colleges, entrance exams, admissions, cutoffs and placement information.</p><p style="margin-top:10px;">This page is updated using official CAT/IIM information where available. Students should verify the latest notice and individual IIM admission policy before applying.</p></div></footer>
+<script>
+(function(){
+  const wrap = document.querySelector('.mobile-toc-wrap');
+  const button = document.querySelector('.mobile-toc-button');
+  const menu = document.querySelector('.mobile-toc-menu');
+  if(!wrap || !button || !menu) return;
+
+  button.addEventListener('click', function(){
+    const open = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('open', !open);
+  });
+
+  menu.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      button.setAttribute('aria-expanded','false');
+      menu.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', function(e){
+    if(!wrap.contains(e.target)){
+      button.setAttribute('aria-expanded','false');
+      menu.classList.remove('open');
+    }
+  });
+})();
+</script>
 </body>
 </html>
