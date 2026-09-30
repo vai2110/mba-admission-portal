@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T06:59:33.620658+00:00",
+  "generated_at": "2026-09-30T09:38:58.043769+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 638,
   "pages_with_issues": 460,
@@ -10,7 +10,7 @@
     "description_length": 209,
     "duplicate_title": 6,
     "h1_count": 5,
-    "jsonld": 14,
+    "jsonld": 13,
     "lang": 1,
     "noindex": 4,
     "og_description": 14,
@@ -15433,10 +15433,10 @@
     {
       "file": "mat.html",
       "benchmark": false,
-      "title": "MAT 2026: Exam Date, Registration, Syllabus, Pattern, Eligibility & Cutoff",
-      "title_length": 74,
-      "description": "MAT 2026: Check September exam dates, registration, eligibility, exam pattern, syllabus, marking scheme, participating B-Schools, cutoff, admission process and preparation strategy.",
-      "description_length": 181,
+      "title": "MAT 2026: December Exam Date, Registration, Syllabus, Pattern, Eligibility & Cutoff",
+      "title_length": 83,
+      "description": "MAT 2026 guide: latest AIMA December schedule, registration, PBT and CBT exam dates, eligibility, exam pattern, syllabus, marking scheme, fees, B-Schools, score validity and admission process.",
+      "description_length": 192,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/mat",
       "canonical_count": 1,
@@ -15451,7 +15451,7 @@
       "og_description": false,
       "og_url": false,
       "twitter_card": false,
-      "jsonld_blocks": 0,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -15463,8 +15463,7 @@
         "og_title",
         "og_description",
         "og_url",
-        "twitter_card",
-        "jsonld"
+        "twitter_card"
       ]
     },
     {
