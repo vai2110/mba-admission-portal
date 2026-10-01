@@ -103,23 +103,23 @@ for html_file in ROOT.rglob("*.html"):
             path_without_extension = relative.with_suffix("")
             url = BASE_URL + "/" + str(path_without_extension).replace("\\", "/")
 
-    # Keep one clean URL per indexable HTML file.
-    relative = html_file.relative_to(ROOT)
-    if relative.name.lower() == "index.html":
-        clean_file_url = BASE_URL
-    else:
-        clean_file_url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
-
+    # Use the page's canonical URL when one is declared.
+    # This prevents legacy /overview and other implementation filenames from
+    # leaking into the sitemap when the page canonicals to a clean URL.
     if canonical_match:
-        canonical_url = canonical_match.group(1).strip().rstrip("/")
+        canonical_url = canonical_match.group(1).strip()
         if canonical_url == BASE_URL:
-            canonical_url = BASE_URL
-        if canonical_url == clean_file_url.rstrip("/"):
-            url = canonical_url
+            url = BASE_URL
+        elif canonical_url.startswith(BASE_URL + "/"):
+            url = canonical_url.rstrip("/")
         else:
-            url = clean_file_url
+            continue
     else:
-        url = clean_file_url
+        relative = html_file.relative_to(ROOT)
+        if relative.name.lower() == "index.html":
+            url = BASE_URL
+        else:
+            url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
 
     lastmod = file_lastmod(html_file)
     url_dates[url] = max(url_dates.get(url, ""), lastmod)
