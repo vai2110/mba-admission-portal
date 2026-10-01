@@ -154,7 +154,9 @@ function buildCrawlableCollegeDirectory() {
     .filter(row => Array.isArray(row) && row[0] && row[1])
     .map(row => {
       const name = row[0];
-      const href = String(row[1]).replace(/^https?:\/\/collegedecoded\.in/i, "");
+      const href = String(row[1])
+        .replace(/^https?:\/\/collegedecoded\.in/i, "https://collegedecoded.in")
+        .replace(/\.html(?=([?#]|$))/i, "");
       return '<article class="college-card">' +
         '<div class="college-name"><a href="' + esc(href) + '">' + esc(name) + '</a></div>' +
         '<a href="' + esc(href) + '" class="college-profile-button">View College →</a>' +
