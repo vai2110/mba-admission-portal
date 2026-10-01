@@ -56,6 +56,16 @@
   ],
   "redirects": [
     {
+      "source": "/iim-bangalore-mba-business-analytics",
+      "destination": "/iim-bangalore-pgpba",
+      "permanent": true
+    },
+    {
+      "source": "/iim-bangalore-mba-business-analytics.html",
+      "destination": "/iim-bangalore-pgpba",
+      "permanent": true
+    },
+    {
       "source": "/mba-colleges-best-roi.html",
       "destination": "/mba-colleges-best-roi",
       "permanent": true
