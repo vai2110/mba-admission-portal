@@ -70,6 +70,12 @@
   }
 
   function render(dateValue) {
+    // The homepage should not show editorial update metadata.
+    var currentPath = window.location.pathname.replace(/\/$/, '');
+    if (currentPath === '') {
+      removeLegacyMeta();
+      return;
+    }
     removeLegacyMeta();
     cleanUnwantedCusatLink(document);
     if (document.querySelector('.cd-editorial-author')) return;
