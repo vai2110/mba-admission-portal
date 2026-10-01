@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-01T15:25:34.850927+00:00",
+  "generated_at": "2026-10-01T15:29:07.300220+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
   "pages_with_issues": 472,
   "issue_counts": {
-    "broken_local_links": 10,
+    "broken_local_links": 11,
     "canonical": 12,
     "description_count": 5,
     "description_length": 212,
@@ -19891,12 +19891,31 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "https://collegedecoded.in/asia-pacific-institute-management-new-delhi/overview.html",
+        "https://collegedecoded.in/edii-ahmedabad/overview.html",
+        "https://collegedecoded.in/globsyn-business-school-kolkata/overview.html",
+        "https://collegedecoded.in/ibs-hyderabad/overview.html",
+        "https://collegedecoded.in/iiswbm-kolkata/overview.html",
+        "https://collegedecoded.in/iit-kanpur",
+        "https://collegedecoded.in/ipe-hyderabad/overview.html",
+        "https://collegedecoded.in/jaipuria-jaipur-mba/overview.html",
+        "https://collegedecoded.in/mnit-jaipur-mba/overview.html",
+        "https://collegedecoded.in/pumba-pune/overview.html",
+        "https://collegedecoded.in/scit-pune/overview.html",
+        "https://collegedecoded.in/sdmimd-mysore/overview.html",
+        "https://collegedecoded.in/sibm-nagpur/overview.html",
+        "https://collegedecoded.in/sicsr-pune/overview.html",
+        "https://collegedecoded.in/sims-pune/overview.html",
+        "https://collegedecoded.in/ssmc-bangalore/overview.html",
+        "https://collegedecoded.in/xime-bangalore/overview.html"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length"
+        "description_length",
+        "broken_local_links"
       ]
     },
     {
