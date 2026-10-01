@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-01T10:09:37.954429+00:00",
+  "generated_at": "2026-10-01T15:04:57.917568+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 650,
-  "pages_with_issues": 472,
+  "pages_checked": 649,
+  "pages_with_issues": 471,
   "issue_counts": {
     "broken_local_links": 10,
     "canonical": 11,
@@ -16,7 +16,7 @@
     "og_description": 17,
     "og_title": 17,
     "og_url": 17,
-    "title_length": 373,
+    "title_length": 372,
     "twitter_card": 33,
     "viewport": 1
   },
@@ -7825,39 +7825,6 @@
       "issues": [
         "title_length",
         "description_length"
-      ]
-    },
-    {
-      "file": "iim-bangalore-mba-business-analytics.html",
-      "benchmark": false,
-      "title": "IIM Bangalore MBA Business Analytics 2027: Fees, Eligibility & Placements",
-      "title_length": 73,
-      "description": "IIM Bangalore PGPBA 2027: MBA Business Analytics eligibility, CAT admission, fees, curriculum, dates and placement information.",
-      "description_length": 127,
-      "description_count": 1,
-      "canonical": "https://collegedecoded.in/iim-bangalore-mba-business-analytics",
-      "canonical_count": 1,
-      "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Bangalore MBA Business Analytics: Admission 2027, Fees & Placements",
-      "lang": "en",
-      "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
-      "indexable": true,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 1,
-      "images": 0,
-      "images_missing_alt": 0,
-      "broken_local_links": [],
-      "duplicate_title": false,
-      "duplicate_canonical": false,
-      "issues": [
-        "title_length"
       ]
     },
     {
