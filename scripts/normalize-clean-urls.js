@@ -90,7 +90,7 @@ function normalizeFile(html, sourceName) {
   // Repair malformed legacy redirect wrappers before HTML/SEO parsing.
   value = value.replace(
     new RegExp("<script data-collegedecoded-legacy-redirect>\\s*<script>\\s*", "gi"),
-    "<script data-collegedecoded-legacy-redirect>\\n"
+    "<script data-collegedecoded-legacy-redirect>\n"
   );
   value = value.replace(
     new RegExp("</script>\\s*</script>", "gi"),
