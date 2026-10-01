@@ -37,8 +37,8 @@
       var node = nodes[i];
       var parent = node.parentElement;
       if (!parent || /^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/i.test(parent.tagName)) continue;
-      if (/\\\\n/.test(node.nodeValue)) {
-        node.nodeValue = node.nodeValue.replace(/(?:\\\\n\\s*)+/g, '');
+      if (/\\n/.test(node.nodeValue)) {
+        node.nodeValue = node.nodeValue.replace(/(?:\\n\\s*)+/g, '');
       }
     }
   }
