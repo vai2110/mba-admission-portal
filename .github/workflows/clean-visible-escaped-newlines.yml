@@ -1,0 +1,64 @@
+name: Clean visible escaped newlines
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  clean-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Remove visible escaped newline artifacts
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          changed = []
+          token = re.compile(r'\\\\n\\s*')
+
+          for path in Path('.').rglob('*.html'):
+              if '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8', errors='ignore')
+
+              # Only clean rendered HTML text. Keep JavaScript/CSS blocks intact.
+              parts = re.split(r'(<(?:script|style)\\b[^>]*>[\\s\\S]*?</(?:script|style)\\s*>)', text, flags=re.I)
+              cleaned = []
+              for i, part in enumerate(parts):
+                  if i % 2:
+                      cleaned.append(part)
+                  else:
+                      cleaned.append(token.sub('', part))
+              new_text = ''.join(cleaned)
+
+              if new_text != text:
+                  path.write_text(new_text, encoding='utf-8')
+                  changed.append(str(path))
+
+          print(f"Cleaned {len(changed)} HTML files")
+          for item in changed:
+              print(item)
+
+      - name: Commit and push cleanup
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No visible escaped-newline artifacts found."
+            exit 0
+          fi
+          git commit -m "Remove visible escaped newline artifacts from HTML pages"
+          git push
