@@ -133,38 +133,33 @@ function parseCsvLine(line) {
 }
 
 function buildCrawlableCollegeDirectory() {
-  const csvPath = path.join(ROOT, "colleges.csv");
   const pagePath = path.join(ROOT, "colleges.html");
-  if (!fs.existsSync(csvPath) || !fs.existsSync(pagePath)) return false;
+  const registryPath = path.join(ROOT, "data", "management-live-colleges.json");
+  if (!fs.existsSync(pagePath) || !fs.existsSync(registryPath)) return false;
 
-  const lines = fs.readFileSync(csvPath, "utf8").replace(/^\uFEFF/, "").trim().split(/\r?\n/);
-  if (lines.length < 2) return false;
+  let registry;
+  try {
+    registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
+  } catch (err) {
+    console.error("Could not read management-live-colleges.json:", err.message);
+    return false;
+  }
 
-  const headers = parseCsvLine(lines[0]).map(x => x.trim());
-  const rows = lines.slice(1).map(parseCsvLine).filter(row => row.some(Boolean));
-  const idx = Object.fromEntries(headers.map((h, i) => [h, i]));
-
+  const colleges = Array.isArray(registry.colleges) ? registry.colleges : [];
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
   }[ch]));
 
-  const cards = rows.filter(row => {
-    const slug = row[idx.profile_slug] || "";
-    return slug && fs.existsSync(path.join(ROOT, slug + ".html"));
-  }).map(row => {
-    const name = row[idx.college_name] || "College";
-    const city = row[idx.city] || "";
-    const state = row[idx.state] || "";
-    const rank = row[idx.nirf_management_rank_2025] || "—";
-    const slug = row[idx.profile_slug] || "";
-    const href = slug ? "/" + slug : "#";
-    return '<article class="college-card">' +
-      '<div class="rank-badge">NIRF 2025 Management: #' + esc(rank) + '</div>' +
-      '<div class="college-name"><a href="' + esc(href) + '">' + esc(name) + '</a></div>' +
-      '<div class="location">📍 ' + esc(city) + ', ' + esc(state) + '</div>' +
-      '<a href="' + esc(href) + '" class="college-profile-button">View College →</a>' +
-      '</article>';
-  }).join("\n");
+  const cards = colleges
+    .filter(row => Array.isArray(row) && row[0] && row[1])
+    .map(row => {
+      const name = row[0];
+      const href = String(row[1]).replace(/^https?:\/\/collegedecoded\.in/i, "");
+      return '<article class="college-card">' +
+        '<div class="college-name"><a href="' + esc(href) + '">' + esc(name) + '</a></div>' +
+        '<a href="' + esc(href) + '" class="college-profile-button">View College →</a>' +
+        '</article>';
+    }).join("\n");
 
   const html = fs.readFileSync(pagePath, "utf8");
   const startMarker = "<!-- CRAWLABLE_COLLEGE_DIRECTORY -->";
@@ -172,6 +167,7 @@ function buildCrawlableCollegeDirectory() {
   const start = html.indexOf(startMarker);
   const end = html.indexOf(endMarker);
   if (start === -1 || end === -1 || end < start) return false;
+
   const replacement = startMarker + "\n" + cards + "\n" + endMarker;
   const updated = html.slice(0, start) + replacement + html.slice(end + endMarker.length);
   if (updated === html) return false;
