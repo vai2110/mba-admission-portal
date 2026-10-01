@@ -1021,7 +1021,10 @@ fetch("./colleges.csv")
 
     populateStates();
 
-    filterColleges();
+    // Keep the server-rendered 106-college directory intact on first load.
+    // The static links are the crawlable SEO layer; filtering/search can
+    // still take over after the user interacts with the controls.
+    initializeCrawlableDirectory();
 
 })
 
@@ -1057,6 +1060,30 @@ fetch("./colleges.csv")
     `;
 
 });
+
+
+function initializeCrawlableDirectory() {
+
+    const grid = document.getElementById("collegeGrid");
+    const count = document.getElementById("collegeCount");
+
+    if (!grid || !count) return;
+
+    const crawlableCards = grid.querySelectorAll(
+        "#CRAWLABLE_COLLEGE_DIRECTORY, .college-card"
+    );
+
+    // The build step injects 106 static cards into this grid. Do not call
+    // renderColleges() here because it clears the grid and removes those
+    // crawlable <a href> links from the initial DOM.
+    const staticLinks = grid.querySelectorAll(
+        "a[href^='https://collegedecoded.in/']"
+    ).length;
+
+    if (staticLinks > 0) {
+        count.textContent = staticLinks / 2 + " colleges";
+    }
+}
 
 
 /* =====================================================
