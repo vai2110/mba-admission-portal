@@ -25,7 +25,7 @@ jobs:
           import re
 
           changed = []
-          token = re.compile(r'\\\\n\\s*')
+          token = re.compile(r'\\n\s*')
 
           for path in Path('.').rglob('*.html'):
               if '.git' in path.parts:
@@ -33,7 +33,7 @@ jobs:
               text = path.read_text(encoding='utf-8', errors='ignore')
 
               # Only clean rendered HTML text. Keep JavaScript/CSS blocks intact.
-              parts = re.split(r'(<(?:script|style)\\b[^>]*>[\\s\\S]*?</(?:script|style)\\s*>)', text, flags=re.I)
+              parts = re.split(r'(<(?:script|style)\b[^>]*>[\s\S]*?</(?:script|style)\s*>)', text, flags=re.I)
               cleaned = []
               for i, part in enumerate(parts):
                   if i % 2:
