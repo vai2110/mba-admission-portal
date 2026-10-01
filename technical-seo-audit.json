@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-01T15:31:47.862380+00:00",
+  "generated_at": "2026-10-01T16:02:36.556155+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
-  "pages_with_issues": 472,
+  "pages_with_issues": 473,
   "issue_counts": {
-    "broken_local_links": 11,
+    "broken_local_links": 12,
     "canonical": 12,
     "description_count": 5,
     "description_length": 212,
@@ -15942,10 +15942,23 @@
       "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [],
+      "broken_local_links": [
+        "https://collegedecoded.in/edii-ahmedabad",
+        "https://collegedecoded.in/globsyn-business-school-kolkata",
+        "https://collegedecoded.in/ibs-hyderabad",
+        "https://collegedecoded.in/iiswbm-kolkata",
+        "https://collegedecoded.in/imt-hyderabad",
+        "https://collegedecoded.in/ipe-hyderabad",
+        "https://collegedecoded.in/jaipuria-jaipur-mba",
+        "https://collegedecoded.in/mnit-jaipur-mba",
+        "https://collegedecoded.in/sicsr-pune",
+        "https://collegedecoded.in/xime-bangalore"
+      ],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "broken_local_links"
+      ]
     },
     {
       "file": "mba-colleges-in-ahmedabad.html",
