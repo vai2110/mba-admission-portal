@@ -42,6 +42,9 @@ jobs:
       - name: Install dependencies
         run: pip install beautifulsoup4
 
+      - name: Normalize SEO metadata
+        run: python scripts/seo_metadata_cleanup.py
+
       - name: Run technical SEO audit
         run: python scripts/technical_seo_audit.py
 
@@ -50,7 +53,7 @@ jobs:
           set -e
           git config user.name "MBA Portal Technical SEO Auditor"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add technical-seo-audit.json
+          git add '*.html' technical-seo-audit.json
           if git diff --cached --quiet; then
             echo "Technical SEO report is already current."
           else
