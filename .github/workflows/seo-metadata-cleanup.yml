@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'scripts/seo_metadata_cleanup.py'
+      - '.github/workflows/seo-metadata-cleanup.yml'
   workflow_dispatch:
 
 permissions:
