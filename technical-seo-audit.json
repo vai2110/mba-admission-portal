@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T11:21:40.879097+00:00",
+  "generated_at": "2026-10-02T11:24:08.229959+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
   "pages_with_issues": 472,
@@ -8,7 +8,6 @@
     "canonical": 2,
     "description_count": 5,
     "description_length": 212,
-    "duplicate_canonical": 1,
     "h1_count": 3,
     "jsonld": 24,
     "lang": 1,
@@ -21,12 +20,7 @@
     "viewport": 2
   },
   "duplicate_titles": {},
-  "duplicate_canonicals": {
-    "https://collegedecoded.in/iim-bangalore-pgpba": [
-      "iim-bangalore-mba-business-analytics.html",
-      "iim-bangalore-pgpba.html"
-    ]
-  },
+  "duplicate_canonicals": {},
   "pages": [
     {
       "file": "abv-iiitm-gwalior-admission-2026.html",
@@ -7932,11 +7926,10 @@
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
-      "duplicate_canonical": true,
+      "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "duplicate_canonical"
+        "description_length"
       ]
     },
     {
