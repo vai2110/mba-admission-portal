@@ -2,9 +2,7 @@ name: SEO Metadata Cleanup
 
 on:
   push:
-    paths:
-      - 'scripts/seo_metadata_cleanup.py'
-      - '.github/workflows/seo-metadata-cleanup.yml'
+    branches: [main]
   workflow_dispatch:
 
 permissions:
