@@ -1036,28 +1036,27 @@ fetch("./colleges.csv")
     );
 
 
-    document.getElementById(
-        "collegeCount"
-    ).textContent =
-        "Database error";
+    // Keep the server-rendered crawlable directory intact if the CSV
+    // fails. The SEO layer must never disappear because client-side data
+    // loading failed.
+    const grid = document.getElementById("collegeGrid");
+    const count = document.getElementById("collegeCount");
+    const staticCards = grid ? grid.querySelectorAll(".college-card").length : 0;
 
+    if (count) {
+        count.textContent = staticCards
+            ? staticCards + " colleges"
+            : "College directory unavailable";
+    }
 
-    document.getElementById(
-        "collegeGrid"
-    ).innerHTML = `
-
-        <div class="database-error">
-
-            <strong>
-                College database could not be loaded.
-            </strong>
-
-            Please make sure colleges.csv is
-            in the same folder as colleges.html.
-
-        </div>
-
-    `;
+    if (grid && staticCards === 0) {
+        grid.innerHTML = `
+            <div class="database-error">
+                <strong>College database could not be loaded.</strong>
+                Please try again shortly.
+            </div>
+        `;
+    }
 
 });
 
