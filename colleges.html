@@ -1422,19 +1422,6 @@ const matchesSearch =
 
         }
     );
-    !search ||
-    searchTerms.some(function(term) {
-
-        return (
-            name.indexOf(term) !== -1 ||
-            city.indexOf(term) !== -1 ||
-            state.indexOf(term) !== -1 ||
-            slug.indexOf(term) !== -1
-        );
-
-    });
-
-
                 const matchesState =
                     !selectedState ||
                     college["state"] === selectedState;
