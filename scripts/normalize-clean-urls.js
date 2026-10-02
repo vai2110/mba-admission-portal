@@ -117,8 +117,14 @@ function internalTargetExists(href, sourceName) {
 
   if (target.endsWith(".html")) return fs.existsSync(path.join(ROOT, target));
 
-  return fs.existsSync(path.join(ROOT, target + ".html")) ||
-    fs.existsSync(path.join(ROOT, target, "index.html"));
+  if (fs.existsSync(path.join(ROOT, target + ".html")) ||
+      fs.existsSync(path.join(ROOT, target, "index.html"))) {
+    return true;
+  }
+
+  // CMS college profiles expose their clean canonical URL at /<slug>.
+  const cleanSlug = target.replace(/^\/+/, "");
+  return fs.existsSync(path.join(ROOT, "college-cms", "content", cleanSlug, "overview.html"));
 }
 
 function normalizeFile(html, sourceName) {
@@ -136,6 +142,10 @@ function normalizeFile(html, sourceName) {
 
   value = value.replace(/(<a\b[^>]*\bhref=["'])([^"']+)(["'])/gi, (m, pre, href, post) => {
     const normalized = normalizeHref(href, sourceName);
+
+    if (!normalized) {
+      return m.replace(/\s*href=["'][^"']+["']/i, "");
+    }
 
     if (!internalTargetExists(normalized, sourceName)) {
       return m.replace(/\s*href=["'][^"']+["']/i, "");
