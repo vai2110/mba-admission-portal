@@ -1,15 +1,14 @@
 {
-  "generated_at": "2026-10-02T10:48:25.341648+00:00",
+  "generated_at": "2026-10-02T11:00:25.000295+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
-  "pages_with_issues": 473,
+  "pages_with_issues": 472,
   "issue_counts": {
     "broken_local_links": 13,
-    "canonical": 12,
+    "canonical": 11,
     "description_count": 5,
     "description_length": 212,
     "duplicate_canonical": 2,
-    "duplicate_title": 6,
     "h1_count": 3,
     "jsonld": 24,
     "lang": 1,
@@ -17,24 +16,11 @@
     "og_description": 18,
     "og_title": 18,
     "og_url": 18,
-    "title_length": 372,
+    "title_length": 371,
     "twitter_card": 34,
     "viewport": 2
   },
-  "duplicate_titles": {
-    "Jaipuria Institute of Management Noida: PGDM, Fees, Cutoff, Placements & Admission 2027": [
-      "jaipuria-institute-management-noida.html",
-      "jaipuria-noida.html"
-    ],
-    "Management Studies at Jamia Millia Islamia | Admissions & Overview": [
-      "jmi-management-studies.html",
-      "jmi.html"
-    ],
-    "Welingkar Mumbai PGDM Programmes 2026: Which Specialisation Should You Choose?": [
-      "welingkar-mumbai-programmes-note.html",
-      "welingkar-mumbai-programmes.html"
-    ]
-  },
+  "duplicate_titles": {},
   "duplicate_canonicals": {
     "https://collegedecoded.in/iim-bangalore-pgpba": [
       "iim-bangalore-mba-business-analytics.html",
@@ -12147,9 +12133,9 @@
       "description": "Explore MBA colleges, cutoffs, fees, entrance exams, admissions and placements with CollegeDecoded.",
       "description_length": 99,
       "description_count": 1,
-      "canonical": null,
-      "canonical_count": 0,
-      "canonical_self": false,
+      "canonical": "https://collegedecoded.in/",
+      "canonical_count": 1,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "Your MBA Search. Finally, Simplified.",
       "lang": "en",
@@ -12169,7 +12155,6 @@
       "issues": [
         "title_length",
         "description_length",
-        "canonical",
         "og_title",
         "og_description",
         "og_url",
@@ -13091,8 +13076,8 @@
     {
       "file": "jaipuria-institute-management-noida.html",
       "benchmark": false,
-      "title": "Jaipuria Institute of Management Noida: PGDM, Fees, Cutoff, Placements & Admission 2027",
-      "title_length": 87,
+      "title": "Jaipuria Noida PGDM: Fees, Cutoff, Admission 2027 & Placements",
+      "title_length": 62,
       "description": "Student guide to Jaipuria Institute of Management Noida covering PGDM, Marketing, Service Management, 2027-29 admission, fees, scholarships, campus and placements.",
       "description_length": 163,
       "description_count": 1,
@@ -13115,12 +13100,9 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length",
-        "duplicate_title"
-      ]
+      "issues": []
     },
     {
       "file": "jaipuria-institute-of-management-lucknow-placements.html",
@@ -13458,8 +13440,8 @@
     {
       "file": "jaipuria-noida.html",
       "benchmark": false,
-      "title": "Jaipuria Institute of Management Noida: PGDM, Fees, Cutoff, Placements & Admission 2027",
-      "title_length": 87,
+      "title": "Jaipuria Noida PGDM College: Admission 2027, Fees, Cutoff & Placements",
+      "title_length": 70,
       "description": "Student guide to Jaipuria Institute of Management Noida covering PGDM, PGDM Marketing, Service Management, fees, admission 2027-29, scholarships, campus, placements and ROI.",
       "description_length": 173,
       "description_count": 1,
@@ -13482,12 +13464,11 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "duplicate_title"
+        "description_length"
       ]
     },
     {
@@ -14003,8 +13984,8 @@
     {
       "file": "jmi-management-studies.html",
       "benchmark": false,
-      "title": "Management Studies at Jamia Millia Islamia | Admissions & Overview",
-      "title_length": 66,
+      "title": "JMI Management Studies: MBA Admissions, Eligibility & Programme Overview",
+      "title_length": 72,
       "description": "Explore management education at Jamia Millia Islamia. Information on the Faculty of Management Studies, departments, and academic structure at JMI.",
       "description_length": 147,
       "description_count": 1,
@@ -14027,12 +14008,11 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical",
-        "duplicate_title"
+        "canonical"
       ]
     },
     {
@@ -14107,8 +14087,8 @@
     {
       "file": "jmi.html",
       "benchmark": false,
-      "title": "Management Studies at Jamia Millia Islamia | Admissions & Overview",
-      "title_length": 66,
+      "title": "Jamia Millia Islamia MBA: Admission, Eligibility, Fees & Management Studies",
+      "title_length": 75,
       "description": "Explore management education at Jamia Millia Islamia. Information on departments, academic structure, and official admission resources for management programmes.",
       "description_length": 161,
       "description_count": 1,
@@ -14131,12 +14111,11 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical",
-        "duplicate_title"
+        "canonical"
       ]
     },
     {
@@ -20776,8 +20755,8 @@
     {
       "file": "welingkar-mumbai-programmes-note.html",
       "benchmark": false,
-      "title": "Welingkar Mumbai PGDM Programmes 2026: Which Specialisation Should You Choose?",
-      "title_length": 78,
+      "title": "Welingkar Mumbai PGDM Specialisations: Fees, Eligibility & Admission 2026",
+      "title_length": 73,
       "description": "Compare Welingkar Mumbai PGDM, E-Business, Business Design, Research and Business Analytics, Retail, Healthcare, Rural and Media & Entertainment programmes for 2026 admissions.",
       "description_length": 176,
       "description_count": 1,
@@ -20800,19 +20779,18 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "duplicate_title"
+        "description_length"
       ]
     },
     {
       "file": "welingkar-mumbai-programmes.html",
       "benchmark": false,
-      "title": "Welingkar Mumbai PGDM Programmes 2026: Which Specialisation Should You Choose?",
-      "title_length": 78,
+      "title": "Welingkar Mumbai PGDM Programmes 2026: Courses, Specialisations & Admission",
+      "title_length": 75,
       "description": "Compare Welingkar Mumbai PGDM, E-Business, Business Design, Research and Business Analytics, Retail, Healthcare, Rural and Media & Entertainment programmes.",
       "description_length": 156,
       "description_count": 1,
@@ -20835,11 +20813,10 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "duplicate_title"
+        "title_length"
       ]
     },
     {
