@@ -163,7 +163,7 @@ def repair(path, members):
     links = []
     for member in missing:
         links.append(
-            f'<a href="{member}">{label(member, members)}</a>'
+            f'<a href="/{member[:-5]}">{label(member, members)}</a>'
         )
 
     block = (
