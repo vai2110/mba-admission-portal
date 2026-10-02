@@ -4,6 +4,35 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const EXCLUDED = new Set(["404.html"]);
 
+// Legacy/alternate slugs that are used by older hub pages but have a
+// canonical CollegeDecoded destination.
+const ROUTE_ALIASES = {
+  "/bml-munjal-university-mba": "/bml-munjal-university",
+  "/imt-ghaziabad": null,
+  "/xim-university": "/xim-university-bhubaneswar",
+  "/great-lakes-institute-of-management": "/glim-chennai",
+  "/indian-institute-of-management-amritsar": "/iim-amritsar",
+  "/indian-institute-of-management-bodh-gaya": "/iim-bodhgaya",
+  "/indian-institute-of-management-jammu": "/iim-jammu",
+  "/indian-institute-of-management-sambalpur": "/iim-sambalpur",
+  "/institute-of-management-technology-nagpur": "/imt-nagpur",
+  "/kalinga-institute-of-industrial-technology": "/kiit-bhubaneswar",
+  "/loyola-institute-of-business-administration": "/loyola-institute-business-administration",
+  "/lpu": "/lovely-professional-university",
+  "/new-delhi-institute-of-management": "/ndim-delhi",
+  "/fore-school-of-management": "/fore-school-management",
+  "/goa-institute-of-management": "/goa-institute-management",
+  "/t-a-pai-management-institute-manipal": "/tapmi-manipal",
+  "/iit-kanpur": null
+};
+
+function applyRouteAlias(target) {
+  if (Object.prototype.hasOwnProperty.call(ROUTE_ALIASES, target)) {
+    return ROUTE_ALIASES[target];
+  }
+  return target;
+}
+
 function cleanUrlForFile(name) {
   return name === "index.html" ? "/" : "/" + name.replace(/\.html$/i, "");
 }
@@ -43,7 +72,15 @@ function normalizeHref(href, sourceName) {
 
   if (target.endsWith(".html")) target = target.slice(0, -5);
   if (target === "index") target = "";
-  return "/" + target + suffix;
+  target = applyRouteAlias("/" + target);
+  if (target === null) return "";
+  // CMS overview files live under college-cms/content/<slug>/overview.html,
+  // but their public canonical URL is /<slug>.
+  const overviewMatch = target.match(/^\/([^/]+)\/overview$/);
+  if (overviewMatch && fs.existsSync(path.join(ROOT, "college-cms", "content", overviewMatch[1], "overview.html"))) {
+    target = "/" + overviewMatch[1];
+  }
+  return target + suffix;
 }
 
 function addOrReplaceCanonical(html, sourceName) {
