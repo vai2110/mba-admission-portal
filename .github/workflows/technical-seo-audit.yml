@@ -17,7 +17,8 @@ on:
 permissions:
   contents: write
 
-# All workflows that write generated audit/report files to main share this
+# All workflows that write generated audit/report files to main share this queue.
+# Audit reruns automatically after source-link fixes.
 # queue so they cannot race each other and lose pushes.
 concurrency:
   group: portal-main-writer
