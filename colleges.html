@@ -1627,6 +1627,22 @@ function renderColleges(list) {
             "collegeCount"
         );
 
+    // If an empty render is triggered before the user applies any filter,
+    // preserve the server-rendered SEO directory instead of showing an
+    // empty state. This also protects the page when CSV data is unavailable.
+    const searchValue = document.getElementById("searchInput")?.value?.trim() || "";
+    const stateValue = document.getElementById("stateFilter")?.value || "";
+    const rankValue = document.getElementById("rankFilter")?.value || "";
+    const hasUserFilter = Boolean(searchValue || stateValue || rankValue);
+
+    if (list.length === 0 && !hasUserFilter) {
+        const staticCards = grid.querySelectorAll(".college-card").length;
+        if (staticCards > 0) {
+            count.textContent = staticCards + " colleges";
+            if (noResults) noResults.style.display = "none";
+            return;
+        }
+    }
 
     grid.innerHTML = "";
 
