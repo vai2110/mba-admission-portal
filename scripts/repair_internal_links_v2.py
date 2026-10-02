@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 EXCLUDED = {
-    "iim-ahmedabad.html", "sibm-pune.html", "404.html", "content-audit.html",
+    "404.html", "content-audit.html",
     "college-page-audit-dashboard.html", "github-direct-edit-test.html",
     "irma-deploy-trigger.html", "welingkar-mumbai-links.html",
     "welingkar-mumbai-programmes-note.html", "welingkar-mumbai-programmes.html",
