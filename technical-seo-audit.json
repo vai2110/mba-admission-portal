@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-02T11:40:55.996451+00:00",
+  "generated_at": "2026-10-02T12:02:24.729781+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
-  "pages_with_issues": 472,
+  "pages_with_issues": 470,
   "issue_counts": {
-    "broken_local_links": 11,
+    "broken_local_links": 3,
     "description_count": 5,
     "description_length": 212,
     "h1_count": 3,
@@ -2930,14 +2930,10 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bml-munjal-university-mba.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "broken_local_links"
-      ]
+      "issues": []
     },
     {
       "file": "bml-munjal-university.html",
@@ -2965,14 +2961,11 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "bml-munjal-university-mba.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "title_length",
-        "broken_local_links"
+        "title_length"
       ]
     },
     {
@@ -4350,9 +4343,7 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "https://collegedecoded.in/iit-kanpur"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
@@ -4360,8 +4351,7 @@
         "og_description",
         "og_url",
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -11035,16 +11025,12 @@
       "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "iit-kanpur-placements.html",
-        "iit-kanpur.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "broken_local_links"
+        "description_length"
       ]
     },
     {
@@ -11073,16 +11059,12 @@
       "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "iit-kanpur-placements.html",
-        "iit-kanpur.html"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "description_length",
-        "broken_local_links"
+        "description_length"
       ]
     },
     {
@@ -15575,14 +15557,10 @@
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "https://collegedecoded.in/iit-kanpur"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "broken_local_links"
-      ]
+      "issues": []
     },
     {
       "file": "mba-college-placements.html",
@@ -15643,15 +15621,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/imt-ghaziabad"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -15782,15 +15757,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/imt-ghaziabad"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -15889,7 +15861,6 @@
         "https://collegedecoded.in/globsyn-business-school-kolkata",
         "https://collegedecoded.in/ibs-hyderabad",
         "https://collegedecoded.in/iiswbm-kolkata",
-        "https://collegedecoded.in/imt-hyderabad",
         "https://collegedecoded.in/ipe-hyderabad",
         "https://collegedecoded.in/jaipuria-jaipur-mba",
         "https://collegedecoded.in/mnit-jaipur-mba",
@@ -19847,23 +19818,22 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "https://collegedecoded.in/asia-pacific-institute-management-new-delhi/overview.html",
-        "https://collegedecoded.in/edii-ahmedabad/overview.html",
-        "https://collegedecoded.in/globsyn-business-school-kolkata/overview.html",
-        "https://collegedecoded.in/ibs-hyderabad/overview.html",
-        "https://collegedecoded.in/iiswbm-kolkata/overview.html",
-        "https://collegedecoded.in/iit-kanpur",
-        "https://collegedecoded.in/ipe-hyderabad/overview.html",
-        "https://collegedecoded.in/jaipuria-jaipur-mba/overview.html",
-        "https://collegedecoded.in/mnit-jaipur-mba/overview.html",
-        "https://collegedecoded.in/pumba-pune/overview.html",
-        "https://collegedecoded.in/scit-pune/overview.html",
-        "https://collegedecoded.in/sdmimd-mysore/overview.html",
-        "https://collegedecoded.in/sibm-nagpur/overview.html",
-        "https://collegedecoded.in/sicsr-pune/overview.html",
-        "https://collegedecoded.in/sims-pune/overview.html",
-        "https://collegedecoded.in/ssmc-bangalore/overview.html",
-        "https://collegedecoded.in/xime-bangalore/overview.html"
+        "https://collegedecoded.in/asia-pacific-institute-management-new-delhi",
+        "https://collegedecoded.in/edii-ahmedabad",
+        "https://collegedecoded.in/globsyn-business-school-kolkata",
+        "https://collegedecoded.in/ibs-hyderabad",
+        "https://collegedecoded.in/iiswbm-kolkata",
+        "https://collegedecoded.in/ipe-hyderabad",
+        "https://collegedecoded.in/jaipuria-jaipur-mba",
+        "https://collegedecoded.in/mnit-jaipur-mba",
+        "https://collegedecoded.in/pumba-pune",
+        "https://collegedecoded.in/scit-pune",
+        "https://collegedecoded.in/sdmimd-mysore",
+        "https://collegedecoded.in/sibm-nagpur",
+        "https://collegedecoded.in/sicsr-pune",
+        "https://collegedecoded.in/sims-pune",
+        "https://collegedecoded.in/ssmc-bangalore",
+        "https://collegedecoded.in/xime-bangalore"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
