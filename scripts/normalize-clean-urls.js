@@ -176,7 +176,7 @@ function buildCrawlableCollegeDirectory() {
   // Keep the server-rendered directory count accurate and avoid a misleading
   // "Loading colleges..." state before client-side CSV code runs.
   updated = updated.replace(
-    /(<div class="college-count" id="collegeCount">)\s*Loading colleges\.\.\.\s*(<\/div>)/i,
+    /(id="collegeCount"[^>]*>)\s*Loading colleges\.\.\.\s*(<\/div>)/i,
     "$1" + colleges.length + " colleges$2"
   );
   if (updated === html) return false;
