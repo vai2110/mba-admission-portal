@@ -45,12 +45,11 @@ def local_target(href, current):
     }
     clean_path = aliases.get(clean_path, clean_path)
 
-    # CMS overview pages are published at /<slug>, while their source lives
-    # under college-cms/content/<slug>/overview.html.
-    if clean_path.endswith("/overview"):
-        slug = clean_path[:-len("/overview")].strip("/")
-        if slug and (ROOT / "college-cms" / "content" / slug / "overview.html").exists():
-            return f"college-cms/content/{slug}/overview.html"
+    # CMS overview pages are published at /<slug> (and legacy /<slug>/overview),
+    # while their source lives under college-cms/content/<slug>/overview.html.
+    cms_slug = clean_path[:-len("/overview")].strip("/") if clean_path.endswith("/overview") else clean_path
+    if cms_slug and (ROOT / "college-cms" / "content" / cms_slug / "overview.html").exists():
+        return f"college-cms/content/{cms_slug}/overview.html"
 
     target = Path(clean_path)
     if target.suffix == "":
