@@ -1611,16 +1611,6 @@ function renderColleges(list) {
             "noResults"
         );
 
-    if (!noResults) {
-        noResults = document.createElement("div");
-        noResults.id = "noResults";
-        noResults.className = "no-results";
-        noResults.innerHTML =
-            "<h3>No colleges found</h3>" +
-            "<p>Try changing your search or filters.</p>";
-        grid.parentNode.insertBefore(noResults, grid.nextSibling);
-    }
-
 
     const count =
         document.getElementById(
@@ -1642,6 +1632,16 @@ function renderColleges(list) {
             if (noResults) noResults.style.display = "none";
             return;
         }
+    }
+
+    if (list.length === 0 && hasUserFilter && !noResults) {
+        noResults = document.createElement("div");
+        noResults.id = "noResults";
+        noResults.className = "no-results";
+        noResults.innerHTML =
+            "<h3>No colleges found</h3>" +
+            "<p>Try changing your search or filters.</p>";
+        grid.parentNode.insertBefore(noResults, grid.nextSibling);
     }
 
     grid.innerHTML = "";
