@@ -84,19 +84,20 @@ def main():
     titles, canonicals = defaultdict(list), defaultdict(list)
     for r in results:
         if r["title"]: titles[r["title"]].append(r["file"])
-        if r["canonical"]: canonicals[r["canonical"]].append(r["file"])
+        if r["canonical"]:
+            # Ignore intentional noindex redirect stubs when building the
+            # duplicate-canonical groups; their destination owns the canonical.
+            redirect_stub = (
+                not r["indexable"]
+                and ("redirect" in (r["title"] or "").lower()
+                     or "noindex" in " ".join(r["robots"]).lower())
+            )
+            if not redirect_stub:
+                canonicals[r["canonical"]].append(r["file"])
     for r in results:
         r["duplicate_title"] = len(titles.get(r["title"], [])) > 1 if r["title"] else False
-        # Legacy noindex redirect stubs may intentionally share the canonical
-        # of their destination page. Do not flag those as duplicate canonicals.
-        redirect_stub = (
-            not r["indexable"]
-            and bool(r["canonical"])
-            and ("redirect" in (r["title"] or "").lower() or "noindex" in " ".join(r["robots"]).lower())
-        )
         r["duplicate_canonical"] = (
             len(canonicals.get(r["canonical"], [])) > 1
-            and not redirect_stub
         ) if r["canonical"] else False
         issues = []
         if not r["title"]: issues.append("missing_title")
