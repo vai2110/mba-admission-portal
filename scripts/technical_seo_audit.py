@@ -87,7 +87,17 @@ def main():
         if r["canonical"]: canonicals[r["canonical"]].append(r["file"])
     for r in results:
         r["duplicate_title"] = len(titles.get(r["title"], [])) > 1 if r["title"] else False
-        r["duplicate_canonical"] = len(canonicals.get(r["canonical"], [])) > 1 if r["canonical"] else False
+        # Legacy noindex redirect stubs may intentionally share the canonical
+        # of their destination page. Do not flag those as duplicate canonicals.
+        redirect_stub = (
+            not r["indexable"]
+            and bool(r["canonical"])
+            and ("redirect" in (r["title"] or "").lower() or "noindex" in " ".join(r["robots"]).lower())
+        )
+        r["duplicate_canonical"] = (
+            len(canonicals.get(r["canonical"], [])) > 1
+            and not redirect_stub
+        ) if r["canonical"] else False
         issues = []
         if not r["title"]: issues.append("missing_title")
         elif not 30 <= r["title_length"] <= 65: issues.append("title_length")
