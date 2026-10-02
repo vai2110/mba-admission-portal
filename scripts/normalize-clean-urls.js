@@ -231,6 +231,10 @@ function buildCrawlableCollegeDirectory() {
   const replacement = startMarker + "\n" + cards + "\n" + endMarker;
   let updated = html.slice(0, start) + replacement + html.slice(end + endMarker.length);
 
+  // colleges.html is regenerated after the main normalization loop, so ensure
+  // its canonical survives the directory rebuild as well.
+  updated = addOrReplaceCanonical(updated, "colleges.html");
+
   // Keep the server-rendered directory count accurate and avoid a misleading
   // "Loading colleges..." state before client-side CSV code runs.
   updated = updated.replace(
