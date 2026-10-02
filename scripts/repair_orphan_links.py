@@ -83,6 +83,27 @@ def best_source(page, page_set):
     if siblings:
         return siblings[0]
 
+    # Safe contextual hub fallback for standalone valid pages.
+    # Never fall back to the homepage: the hub must be topically relevant.
+    if page in {"top-mba-colleges-in-india.html", "mba-colleges-by-location.html", "colleges.html"}:
+        return None
+
+    hub_candidates = []
+    if page.endswith("-placements.html") or any(
+        token in stem for token in (
+            "-mba", "-pgdm", "-pgp", "-bba", "-bca", "-bcom",
+            "-btech", "-mca", "-mtech", "-executive", "-ipm", "-mms"
+        )
+    ):
+        hub_candidates = ["colleges.html", "top-mba-colleges-in-india.html"]
+
+    if not hub_candidates:
+        hub_candidates = ["colleges.html"]
+
+    for hub in hub_candidates:
+        if hub in page_set and hub != page:
+            return hub
+
     return None
 
 def add_grouped_links(source, destinations):
