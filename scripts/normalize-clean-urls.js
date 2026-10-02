@@ -171,7 +171,14 @@ function buildCrawlableCollegeDirectory() {
   if (start === -1 || end === -1 || end < start) return false;
 
   const replacement = startMarker + "\n" + cards + "\n" + endMarker;
-  const updated = html.slice(0, start) + replacement + html.slice(end + endMarker.length);
+  let updated = html.slice(0, start) + replacement + html.slice(end + endMarker.length);
+
+  // Keep the server-rendered directory count accurate and avoid a misleading
+  // "Loading colleges..." state before client-side CSV code runs.
+  updated = updated.replace(
+    /(<div class="college-count" id="collegeCount">)\s*Loading colleges\.\.\.\s*(<\/div>)/i,
+    "$1" + colleges.length + " colleges$2"
+  );
   if (updated === html) return false;
   fs.writeFileSync(pagePath, updated, "utf8");
   return true;
