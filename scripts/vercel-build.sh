@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+python3 scripts/seo_metadata_cleanup.py
 node scripts/normalize-clean-urls.js
 python3 scripts/repair_internal_links_v2.py
 python3 scripts/repair_orphan_links.py
