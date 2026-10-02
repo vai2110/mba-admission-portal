@@ -5,7 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKIP = {"404.html", "iim-ahmedabad.html", "sibm-pune.html"}
 
 def clean(s):
-    return re.sub(r"\\s+", " ", s or "").strip()
+    return re.sub(r"\s+", " ", s or "").strip()
 
 def trim_words(s, n):
     s = clean(s)
@@ -21,8 +21,7 @@ def title_fix(s):
     if 30 <= len(s) <= 65:
         return s
     if len(s) > 65:
-        # Remove lower-priority trailing clauses before word-trimming.
-        candidates = re.split(r"\\s+(?:\\||&|-|–|:)\\s+", s)
+        candidates = re.split(r"\s+(?:\||&|-|–|:)\s+", s)
         while len(candidates) > 1:
             candidate = " & ".join(candidates[:-1]).strip()
             if 30 <= len(candidate) <= 65:
@@ -52,23 +51,23 @@ def description_fix(s, title):
     return trim_words((s or title) + " Check admission, fees, eligibility and placements.", 165)
 
 def meta_tags(raw):
-    return list(re.finditer(r"<meta\\b[^>]*>", raw, flags=re.I))
+    return list(re.finditer(r"<meta\b[^>]*>", raw, flags=re.I))
 
 def attr(tag, name):
-    m = re.search(rf"\\b{name}\\s*=\\s*([\\\"'])(.*?)\\1", tag, flags=re.I)
+    m = re.search(rf"\b{name}\s*=\s*([\"'])(.*?)\1", tag, flags=re.I)
     return m.group(2) if m else ""
 
 def set_attr(tag, name, value):
-    pattern = rf"(\\b{name}\\s*=\\s*)([\\\"'])(.*?)\\2"
+    pattern = rf"(\b{name}\s*=\s*)([\"'])(.*?)\2"
     if re.search(pattern, tag, flags=re.I):
-        return re.sub(pattern, lambda m: f'{m.group(1)}{m.group(2)}{value}{m.group(2)}', tag, count=1, flags=re.I)
+        return re.sub(pattern, lambda m: f"{m.group(1)}{m.group(2)}{value}{m.group(2)}", tag, count=1, flags=re.I)
     return tag[:-2] + f' {name}="{value}">' if tag.endswith("/>") else tag[:-1] + f' {name}="{value}">'
 
 def is_description(tag):
-    return bool(re.search(r'\\bname\\s*=\\s*[\\\"\']description[\\\"\']', tag, flags=re.I))
+    return bool(re.search(r'\bname\s*=\s*[\"\']description[\"\']', tag, flags=re.I))
 
 def has_noindex(raw):
-    return bool(re.search(r'<meta\\b[^>]*\\bname\\s*=\\s*[\\\"\']robots[\\\"\'][^>]*\\bcontent\\s*=\\s*[\\\"\'][^\\\"\']*noindex', raw, flags=re.I))
+    return bool(re.search(r'<meta\b[^>]*\bname\s*=\s*[\"\']robots[\"\'][^>]*\bcontent\s*=\s*[\"\'][^\"\']*noindex', raw, flags=re.I))
 
 changed = []
 for path in sorted(ROOT.glob("*.html")):
@@ -78,13 +77,12 @@ for path in sorted(ROOT.glob("*.html")):
     if has_noindex(raw):
         continue
 
-    title_match = re.search(r"<title\\b[^>]*>(.*?)</title>", raw, flags=re.I | re.S)
+    title_match = re.search(r"<title\b[^>]*>(.*?)</title>", raw, flags=re.I | re.S)
     if not title_match:
         continue
 
     old_title = clean(re.sub(r"<[^>]+>", " ", title_match.group(1)))
     new_title = title_fix(old_title)
-
     updated = raw[:title_match.start()] + f"<title>{new_title}</title>" + raw[title_match.end():]
 
     descriptions = [m for m in meta_tags(updated) if is_description(m.group(0))]
@@ -95,12 +93,11 @@ for path in sorted(ROOT.glob("*.html")):
         first = descriptions[0]
         new_tag = set_attr(first.group(0), "content", new_description.replace('"', "&quot;"))
         updated = updated[:first.start()] + new_tag + updated[first.end():]
-        # Remove duplicate description tags, keeping the first.
         descriptions = [m for m in meta_tags(updated) if is_description(m.group(0))]
         for match in reversed(descriptions[1:]):
             updated = updated[:match.start()] + updated[match.end():]
     else:
-        updated = updated.replace("</title>", f'</title>\\n<meta name="description" content="{new_description.replace(chr(34), "&quot;")}">', 1)
+        updated = updated.replace("</title>", f'</title>\n<meta name="description" content="{new_description.replace(chr(34), "&quot;")}">', 1)
 
     if updated != raw:
         path.write_text(updated, encoding="utf-8")
