@@ -104,7 +104,13 @@ def main():
         elif not 30 <= r["title_length"] <= 65: issues.append("title_length")
         if r["description_count"] != 1: issues.append("description_count")
         elif not 120 <= r["description_length"] <= 170: issues.append("description_length")
-        if not r["canonical_self"]: issues.append("canonical")
+        redirect_stub = (
+            not r["indexable"]
+            and ("redirect" in (r["title"] or "").lower()
+                 or "noindex" in " ".join(r["robots"]).lower())
+        )
+        if not r["canonical_self"] and not redirect_stub:
+            issues.append("canonical")
         if r["h1_count"] != 1: issues.append("h1_count")
         if not r["lang"]: issues.append("lang")
         if not r["viewport"]: issues.append("viewport")
