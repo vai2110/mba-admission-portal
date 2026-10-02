@@ -11,7 +11,7 @@ def trim_words(s, n):
     s = clean(s)
     if len(s) <= n:
         return s
-    x = s[: n + 1]
+    x = s[: max(1, n - 1)]
     if " " in x:
         x = x[: x.rfind(" ")]
     return x.rstrip(" ,:;-|&") + "…"
@@ -98,6 +98,31 @@ for path in sorted(ROOT.glob("*.html")):
             updated = updated[:match.start()] + updated[match.end():]
     else:
         updated = updated.replace("</title>", f'</title>\n<meta name="description" content="{new_description.replace(chr(34), "&quot;")}">', 1)
+
+    # Fill missing social metadata without overwriting existing tags.
+    canon_match = re.search(r"<link\b[^>]*rel\s*=\s*['\"]canonical['\"][^>]*href\s*=\s*['\"]([^'\"]+)", updated, flags=re.I)
+    canonical = canon_match.group(1) if canon_match else f"https://collegedecoded.in/{path.stem}"
+    esc_title = new_title.replace('"', "&quot;")
+    esc_desc = new_description.replace('"', "&quot;")
+    social = []
+    if not re.search(r"<meta\b[^>]*property\s*=\s*['\"]og:title['\"]", updated, flags=re.I):
+        social.append(f'<meta property="og:title" content="{esc_title}">')
+    if not re.search(r"<meta\b[^>]*property\s*=\s*['\"]og:description['\"]", updated, flags=re.I):
+        social.append(f'<meta property="og:description" content="{esc_desc}">')
+    if not re.search(r"<meta\b[^>]*property\s*=\s*['\"]og:url['\"]", updated, flags=re.I):
+        social.append(f'<meta property="og:url" content="{canonical}">')
+    if not re.search(r"<meta\b[^>]*name\s*=\s*['\"]twitter:card['\"]", updated, flags=re.I):
+        social.append('<meta name="twitter:card" content="summary_large_image">')
+    if not re.search(r"<meta\b[^>]*name\s*=\s*['\"]twitter:title['\"]", updated, flags=re.I):
+        social.append(f'<meta name="twitter:title" content="{esc_title}">')
+    if not re.search(r"<meta\b[^>]*name\s*=\s*['\"]twitter:description['\"]", updated, flags=re.I):
+        social.append(f'<meta name="twitter:description" content="{esc_desc}">')
+    if not re.search(r"<script\b[^>]*type\s*=\s*['\"]application/ld\+json['\"]", updated, flags=re.I):
+        import json
+        schema = json.dumps({"@context":"https://schema.org","@type":"WebPage","name":new_title,"description":new_description,"url":canonical}, ensure_ascii=False)
+        social.append(f'<script type="application/ld+json">{schema}</script>')
+    if social:
+        updated = updated.replace("</head>", "\n".join(social) + "\n</head>", 1)
 
     if updated != raw:
         path.write_text(updated, encoding="utf-8")
