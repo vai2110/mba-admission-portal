@@ -201,9 +201,20 @@ function buildCrawlableCollegeDirectory() {
     .filter(row => Array.isArray(row) && row[0] && row[1])
     .map(row => {
       const name = row[0];
-      const href = String(row[1])
+      let href = String(row[1])
         .replace(/^https?:\/\/collegedecoded\.in/i, "https://collegedecoded.in")
         .replace(/\.html(?=([?#]|$))/i, "");
+
+      // Registry may contain CMS overview routes such as /<slug>/overview.
+      // Public CollegeDecoded profile URL is /<slug>.
+      href = href.replace(
+        /^(https:\/\/collegedecoded\.in\/[^/]+)\/overview(?=([?#]|$))/i,
+        "$1"
+      );
+      // Normalize legacy registry aliases to their real public routes.
+      const hrefPath = new URL(href).pathname;
+      const aliasedPath = applyRouteAlias(hrefPath);
+      if (aliasedPath) href = "https://collegedecoded.in" + aliasedPath + href.slice(hrefPath.length);
       return '<article class="college-card">' +
         '<div class="college-name"><a href="' + esc(href) + '">' + esc(name) + '</a></div>' +
         '<a href="' + esc(href) + '" class="college-profile-button">View College →</a>' +
