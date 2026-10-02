@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-02T12:26:13.774815+00:00",
+  "generated_at": "2026-10-02T14:36:18.114106+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
-  "pages_with_issues": 55,
+  "pages_with_issues": 9,
   "issue_counts": {
     "description_count": 2,
-    "description_length": 4,
+    "description_length": 1,
     "h1_count": 3,
-    "jsonld": 24,
+    "jsonld": 2,
     "lang": 1,
     "noindex": 5,
-    "og_description": 18,
-    "og_title": 18,
-    "og_url": 18,
-    "title_length": 15,
-    "twitter_card": 34,
+    "og_description": 3,
+    "og_title": 3,
+    "og_url": 3,
+    "title_length": 1,
+    "twitter_card": 4,
     "viewport": 2
   },
   "duplicate_titles": {},
@@ -302,8 +302,8 @@
     {
       "file": "alliance-university-btech-ai-data-science.html",
       "benchmark": false,
-      "title": "Alliance University B.Tech AI & Data Science: Fees, Admission…",
-      "title_length": 62,
+      "title": "Alliance University B.Tech AI & Data Science: Fees…",
+      "title_length": 51,
       "description": "Alliance University B.Tech AI and Data Science 2026: eligibility, admission, AUEET, fees, scholarships, curriculum, placements, career scope and FAQs.",
       "description_length": 150,
       "description_count": 1,
@@ -798,8 +798,8 @@
     {
       "file": "amity-university-noida.html",
       "benchmark": false,
-      "title": "Amity University Noida: Courses, Admission 2026, Fees, Placements…",
-      "title_length": 66,
+      "title": "Amity University Noida: Admission 2026, Fees & Placements",
+      "title_length": 57,
       "description": "Amity University Noida overview covering popular courses, admission 2026, fees, placements, hostel and student decision factors.",
       "description_length": 128,
       "description_count": 1,
@@ -824,9 +824,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
@@ -1451,8 +1449,8 @@
     {
       "file": "bbau-hostel-campus.html",
       "benchmark": false,
-      "title": "BBAU Hostel & Campus 2026: Fees, Allotment, Facilities, Rules…",
-      "title_length": 62,
+      "title": "BBAU Hostel & Campus 2026: Fees, Allotment, Facilities…",
+      "title_length": 55,
       "description": "Detailed BBAU Lucknow hostel and campus guide covering location, hostel application, 2026-27 allotment, eligibility, documents, rules, facilities, student life and…",
       "description_length": 164,
       "description_count": 1,
@@ -1947,8 +1945,8 @@
     {
       "file": "bim-trichy-fees.html",
       "benchmark": false,
-      "title": "BIM Trichy MBA Fees 2026: Fee Structure, Hostel, Mess & Total…",
-      "title_length": 62,
+      "title": "BIM Trichy MBA Fees 2026: Fee Structure, Hostel, Mess &…",
+      "title_length": 56,
       "description": "BIM Trichy MBA fees 2026-28: complete year-wise fee bifurcation, tuition, accommodation, mess, deposits, optional costs and education loan information.",
       "description_length": 151,
       "description_count": 1,
@@ -2829,22 +2827,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "chandigarh-university-bba.html",
@@ -3841,8 +3834,8 @@
     {
       "file": "christ-university-btech-cse.html",
       "benchmark": false,
-      "title": "Christ University BTech CSE 2026-27: Fees, Eligibility, Admission…",
-      "title_length": 66,
+      "title": "Christ University BTech CSE 2026: Fees & Admission",
+      "title_length": 50,
       "description": "Christ University BTech CSE 2026 guide with eligibility, fees, selection process, curriculum, career options and student FAQs.",
       "description_length": 126,
       "description_count": 1,
@@ -3867,9 +3860,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "christ-university-mba.html",
@@ -3981,30 +3972,25 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "college-page-audit-dashboard.html",
       "benchmark": false,
       "title": "College Page Audit Dashboard | CollegeDecoded",
       "title_length": 45,
-      "description": "College Page Audit Dashboard | CollegeDecoded Check admission, fees, eligibility and placements.",
-      "description_length": 96,
+      "description": "College Page Audit Dashboard | CollegeDecoded Check admission, fees, eligibility and placements. Check admission, fees, eligibility and placements.",
+      "description_length": 147,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/college-page-audit-dashboard",
       "canonical_count": 1,
@@ -4028,7 +4014,6 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length",
         "noindex"
       ]
     },
@@ -4049,23 +4034,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 2,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "collegedecoded-team.html",
@@ -4115,23 +4094,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "contact.html",
@@ -4152,23 +4125,17 @@
         "index,follow"
       ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "content-audit.html",
@@ -4753,23 +4720,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "fms-delhi-placements.html",
@@ -4793,16 +4754,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "fms-delhi.html",
@@ -4826,16 +4785,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "fore-school-management-pgdm-bda.html",
@@ -5648,8 +5605,8 @@
     {
       "file": "glim-chennai.html",
       "benchmark": false,
-      "title": "Great Lakes Chennai: Courses, Fees, Admission, Cutoff, Placements…",
-      "title_length": 66,
+      "title": "Great Lakes Chennai: Courses, Fees, Admission & Placements",
+      "title_length": 58,
       "description": "Complete Great Lakes Chennai student guide covering PGPM, PGDM, fees, eligibility, admission process, entrance exams, class profile, curriculum, scholarships…",
       "description_length": 158,
       "description_count": 1,
@@ -5674,9 +5631,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "gmat.html",
@@ -5695,23 +5650,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "goa-institute-management-pgdm-bda.html",
@@ -6914,15 +6863,13 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 0,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "iim-ahmedabad-mba-fabm.html",
@@ -6978,15 +6925,13 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 0,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "iim-ahmedabad-mba-pgpx.html",
@@ -7011,15 +6956,13 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 0,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "iim-ahmedabad-mba.html",
@@ -7086,8 +7029,8 @@
     {
       "file": "iim-ahmedabad-placements.html",
       "benchmark": false,
-      "title": "IIM Ahmedabad Placements 2026: Salary, Recruiters & Placement…",
-      "title_length": 62,
+      "title": "IIM Ahmedabad Placements 2026: Salary, Recruiters &…",
+      "title_length": 52,
       "description": "IIM Ahmedabad Placements 2026: latest 2025-26 placement highlights, recruiters, salary data, function-wise placements, industry-wise hiring and placement trends…",
       "description_length": 161,
       "description_count": 1,
@@ -7212,8 +7155,8 @@
     {
       "file": "iim-amritsar-mba-business-analytics.html",
       "benchmark": false,
-      "title": "IIM Amritsar MBA Business Analytics 2027: Admission, Fees, Cutoff…",
-      "title_length": 66,
+      "title": "IIM Amritsar MBA Business Analytics 2027: Admission & Fees",
+      "title_length": 58,
       "description": "IIM Amritsar MBA Business Analytics 2027 guide with CAT cutoff, admission process, official fee breakup, placements and student-fit analysis.",
       "description_length": 141,
       "description_count": 1,
@@ -7238,9 +7181,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "iim-amritsar-mba-hr.html",
@@ -7400,8 +7341,8 @@
     {
       "file": "iim-bangalore-epgp.html",
       "benchmark": false,
-      "title": "IIM Bangalore EPGP Admission 2027-28: Eligibility, GMAT/GRE, Fees…",
-      "title_length": 66,
+      "title": "IIM Bangalore EPGP Admission 2027-28: Eligibility & Fees",
+      "title_length": 56,
       "description": "IIM Bangalore EPGP Admission 2027-28: detailed eligibility, 5-year work experience requirement, GMAT/GRE, admission process, fees, curriculum, international…",
       "description_length": 157,
       "description_count": 1,
@@ -7426,9 +7367,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "iim-bangalore-mba-business-analytics.html",
@@ -7505,8 +7444,8 @@
     {
       "file": "iim-bangalore-pgpba.html",
       "benchmark": false,
-      "title": "IIM Bangalore PGPBA Admission 2027: Eligibility, CAT Cutoff, Fees…",
-      "title_length": 66,
+      "title": "IIM Bangalore PGPBA Admission 2027: CAT, Fees & Eligibility",
+      "title_length": 59,
       "description": "IIM Bangalore PGPBA 2027-29: check eligibility, CAT cutoff, detailed admission process, selection criteria, fees, curriculum, internship, placements and career fit…",
       "description_length": 164,
       "description_count": 1,
@@ -7531,9 +7470,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "iim-bangalore-pgpem.html",
@@ -7693,8 +7630,8 @@
     {
       "file": "iim-bodhgaya-ipm.html",
       "benchmark": false,
-      "title": "IIM Bodh Gaya IPM 2026-31: JIPMAT, Eligibility, Fees & Career…",
-      "title_length": 62,
+      "title": "IIM Bodh Gaya IPM 2026-31: JIPMAT, Eligibility, Fees &…",
+      "title_length": 55,
       "description": "IIM Bodh Gaya IPM 2026-31: JIPMAT, Class 10 and 12 eligibility, selection, five-year structure, BBA exit, fees, career path and IPM vs graduation.",
       "description_length": 146,
       "description_count": 1,
@@ -9742,8 +9679,8 @@
     {
       "file": "iim-udaipur-mba.html",
       "benchmark": false,
-      "title": "IIM Udaipur MBA 2026-28: Eligibility, CAT Cutoff, Fees, Admission…",
-      "title_length": 66,
+      "title": "IIM Udaipur MBA 2026-28: Eligibility, Fees & Admission",
+      "title_length": 54,
       "description": "IIM Udaipur Two-Year MBA 2026-28: eligibility, CAT cutoff, admission process, selection criteria, fees, total programme cost, curriculum, internship and placement…",
       "description_length": 163,
       "description_count": 1,
@@ -9768,9 +9705,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "iim-udaipur-placements.html",
@@ -11046,8 +10981,8 @@
     {
       "file": "imi-delhi-pgdm-bfs.html",
       "benchmark": false,
-      "title": "IMI Delhi PGDM B&FS: Fees, Admission, Cutoff & Placements…",
-      "title_length": 58,
+      "title": "IMI Delhi PGDM B&FS: Fees, Admission, Cutoff &…",
+      "title_length": 47,
       "description": "Detailed IMI Delhi PGDM Banking and Financial Services guide covering eligibility, exams, tentative 2027 dates, fees, Bloomberg lab, curriculum and placements.",
       "description_length": 159,
       "description_count": 1,
@@ -11494,23 +11429,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "indian-institute-of-management-kashipur-executive-mba.html",
@@ -12137,8 +12066,8 @@
       "benchmark": false,
       "title": "IRMA deployment trigger | CollegeDecoded",
       "title_length": 40,
-      "description": "IRMA deployment trigger | CollegeDecoded Check admission, fees, eligibility and placements.",
-      "description_length": 91,
+      "description": "IRMA deployment trigger | CollegeDecoded Check admission, fees, eligibility and placements. Check admission, fees, eligibility and placements.",
+      "description_length": 142,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/irma-deploy-trigger",
       "canonical_count": 1,
@@ -12162,7 +12091,6 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length",
         "h1_count",
         "viewport",
         "noindex"
@@ -12419,8 +12347,8 @@
     {
       "file": "jaipuria-institute-of-management-lucknow-placements.html",
       "benchmark": false,
-      "title": "Jaipuria Institute of Management Lucknow Placements 2026: Highest…",
-      "title_length": 66,
+      "title": "Jaipuria Lucknow Placements 2026: Packages & Recruiters",
+      "title_length": 55,
       "description": "Detailed Jaipuria Lucknow placements 2026 guide covering highest CTC, top 10%, 20% and 50% average salary, placement status, recruiters, sectors, roles, internships…",
       "description_length": 165,
       "description_count": 1,
@@ -12445,9 +12373,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "jaipuria-institute-of-management-lucknow.html",
@@ -14698,22 +14624,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "mba-admission-guide.html",
@@ -14763,23 +14684,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-college-fees.html",
@@ -14865,17 +14780,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-accepting-cmat.html",
@@ -14899,17 +14811,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-accepting-mat.html",
@@ -14933,17 +14842,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-accepting-snap.html",
@@ -14967,17 +14873,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-accepting-xat.html",
@@ -15001,17 +14904,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-best-roi.html",
@@ -15035,17 +14935,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-by-exam.html",
@@ -15379,17 +15276,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-under-15-lakhs.html",
@@ -15413,17 +15307,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-colleges-without-cat.html",
@@ -15447,17 +15338,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "mba-cutoff.html",
@@ -16344,22 +16232,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
       "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "nmims-mba-pharma-tech.html",
@@ -16550,8 +16433,8 @@
     {
       "file": "panjab-university-courses.html",
       "benchmark": false,
-      "title": "Panjab University Courses 2026: UG, PG, Engineering, Law, Science…",
-      "title_length": 66,
+      "title": "Panjab University Courses 2026: UG, PG, Fees & Admission",
+      "title_length": 56,
       "description": "Panjab University courses 2026 covering UG, PG, engineering, law, pharmacy, management, science, arts, humanities and distance programmes with admission routes.",
       "description_length": 160,
       "description_count": 1,
@@ -16576,9 +16459,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "panjab-university-fees.html",
@@ -16847,29 +16728,23 @@
         "index,follow"
       ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "rajagiri-business-school-admission-2026.html",
       "benchmark": false,
-      "title": "Rajagiri Business School Admission 2026: Eligibility, Exams, GDPI…",
-      "title_length": 66,
+      "title": "Rajagiri Business School Admission 2026: Eligibility & Exams",
+      "title_length": 60,
       "description": "Rajagiri Business School PGDM admission 2026: eligibility, CAT, CMAT, MAT, KMAT, XAT, GMAT, GDPI, BAT, dates, application fee and selection process.",
       "description_length": 148,
       "description_count": 1,
@@ -16894,9 +16769,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "rajagiri-business-school-fees.html",
@@ -17180,8 +17053,8 @@
     {
       "file": "sibm-bengaluru-mba-business-analytics.html",
       "benchmark": false,
-      "title": "SIBM Bengaluru MBA Business Analytics: Admission 2027, Fees, SNAP…",
-      "title_length": 66,
+      "title": "SIBM Bengaluru MBA Business Analytics 2027: Fees & SNAP",
+      "title_length": 55,
       "description": "SIBM Bengaluru MBA Business Analytics 2027-29: eligibility, 30-seat intake, SNAP and GE-PI selection, fees, dates, curriculum and placement context.",
       "description_length": 148,
       "description_count": 1,
@@ -17206,9 +17079,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "sibm-bengaluru-mba-executive.html",
@@ -17356,16 +17227,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "sibm-pune-mba-innovation-entrepreneurship.html",
@@ -17389,16 +17258,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "sibm-pune-mba.html",
@@ -17422,22 +17289,20 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "sibm-pune-placements.html",
       "benchmark": false,
-      "title": "SIBM Pune Placements: Packages, Recruiters, Roles & Placement…",
-      "title_length": 62,
+      "title": "SIBM Pune Placements: Packages, Recruiters, Roles &…",
+      "title_length": 52,
       "description": "SIBM Pune placement report 2025: latest MBA salary data, average and median CTC, highest package, recruiters, roles and three-year placement comparison using…",
       "description_length": 158,
       "description_count": 1,
@@ -17455,16 +17320,14 @@
       "og_title": true,
       "og_description": true,
       "og_url": true,
-      "twitter_card": false,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "sibm-pune.html",
@@ -17610,22 +17473,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
       "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card"
-      ]
+      "issues": []
     },
     {
       "file": "soa-bba-integrated-mba.html",
@@ -17723,8 +17581,8 @@
     {
       "file": "soa-bsc-agriculture.html",
       "benchmark": false,
-      "title": "SOA B.Sc Agriculture: Admission 2026, Eligibility, Fees, Subjects…",
-      "title_length": 66,
+      "title": "SOA B.Sc Agriculture: Admission 2026, Fees & Eligibility",
+      "title_length": 56,
       "description": "SOA B.Sc Agriculture 2026: eligibility, SAAT admission, fees, subjects, course structure, career options, higher studies and FAQs.",
       "description_length": 130,
       "description_count": 1,
@@ -17749,9 +17607,7 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "soa-bsc-nursing.html",
@@ -18547,23 +18403,17 @@
         "index,follow"
       ],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "thapar-institute-admission.html",
@@ -19498,8 +19348,8 @@
     {
       "file": "welingkar-mumbai-healthcare.html",
       "benchmark": false,
-      "title": "Welingkar Mumbai PGDM Healthcare Management 2026: Fees, Admission…",
-      "title_length": 66,
+      "title": "Welingkar Mumbai PGDM Healthcare 2026: Fees & Admission",
+      "title_length": 55,
       "description": "Welingkar Mumbai PGDM Healthcare Management 2026 guide covering eligibility, fees, admission, curriculum, career scope and placements.",
       "description_length": 134,
       "description_count": 1,
@@ -19524,17 +19374,15 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length"
-      ]
+      "issues": []
     },
     {
       "file": "welingkar-mumbai-links.html",
       "benchmark": false,
       "title": "Welingkar Mumbai Pages | CollegeDecoded",
       "title_length": 39,
-      "description": "Welingkar Mumbai Pages | CollegeDecoded Check admission, fees, eligibility and placements.",
-      "description_length": 90,
+      "description": "Welingkar Mumbai Pages | CollegeDecoded Check admission, fees, eligibility and placements. Check admission, fees, eligibility and placements.",
+      "description_length": 141,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/welingkar-mumbai-links",
       "canonical_count": 1,
@@ -19558,7 +19406,6 @@
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
-        "description_length",
         "h1_count",
         "lang"
       ]
@@ -19876,8 +19723,8 @@
     {
       "file": "xat.html",
       "benchmark": false,
-      "title": "XAT 2027: Exam Date, Registration, Syllabus, Pattern, Eligibility…",
-      "title_length": 66,
+      "title": "XAT 2027: Exam Date, Registration, Syllabus & Eligibility",
+      "title_length": 57,
       "description": "XAT 2027 guide: exam date January 3, registration deadline December 6, eligibility, exam pattern, syllabus, marking scheme, XLRI admission, participating colleges…",
       "description_length": 163,
       "description_count": 1,
@@ -19890,24 +19737,17 @@
       "viewport": true,
       "robots": [],
       "indexable": true,
-      "og_title": false,
-      "og_description": false,
-      "og_url": false,
-      "twitter_card": false,
-      "jsonld_blocks": 0,
+      "og_title": true,
+      "og_description": true,
+      "og_url": true,
+      "twitter_card": true,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "title_length",
-        "og_title",
-        "og_description",
-        "og_url",
-        "twitter_card",
-        "jsonld"
-      ]
+      "issues": []
     },
     {
       "file": "xim-university-admission.html",
