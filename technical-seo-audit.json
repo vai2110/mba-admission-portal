@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-02T11:31:13.915217+00:00",
+  "generated_at": "2026-10-02T11:40:55.996451+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 650,
   "pages_with_issues": 472,
   "issue_counts": {
-    "broken_local_links": 13,
+    "broken_local_links": 11,
     "description_count": 5,
     "description_length": 212,
     "h1_count": 3,
@@ -4351,23 +4351,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "https://collegedecoded.in/asia-pacific-institute-management-new-delhi/overview",
-        "https://collegedecoded.in/edii-ahmedabad/overview",
-        "https://collegedecoded.in/globsyn-business-school-kolkata/overview",
-        "https://collegedecoded.in/ibs-hyderabad/overview",
-        "https://collegedecoded.in/iiswbm-kolkata/overview",
-        "https://collegedecoded.in/iit-kanpur",
-        "https://collegedecoded.in/ipe-hyderabad/overview",
-        "https://collegedecoded.in/jaipuria-jaipur-mba/overview",
-        "https://collegedecoded.in/mnit-jaipur-mba/overview",
-        "https://collegedecoded.in/pumba-pune/overview",
-        "https://collegedecoded.in/scit-pune/overview",
-        "https://collegedecoded.in/sdmimd-mysore/overview",
-        "https://collegedecoded.in/sibm-nagpur/overview",
-        "https://collegedecoded.in/sicsr-pune/overview",
-        "https://collegedecoded.in/sims-pune/overview",
-        "https://collegedecoded.in/ssmc-bangalore/overview",
-        "https://collegedecoded.in/xime-bangalore/overview"
+        "https://collegedecoded.in/iit-kanpur"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
@@ -15660,8 +15644,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "/imt-ghaziabad",
-        "/xim-university"
+        "/imt-ghaziabad"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
@@ -15697,22 +15680,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/great-lakes-institute-of-management",
-        "/indian-institute-of-management-amritsar",
-        "/indian-institute-of-management-bodh-gaya",
-        "/indian-institute-of-management-jammu",
-        "/indian-institute-of-management-sambalpur",
-        "/institute-of-management-technology-nagpur",
-        "/kalinga-institute-of-industrial-technology",
-        "/loyola-institute-of-business-administration"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -15741,16 +15714,12 @@
       "jsonld_blocks": 0,
       "images": 0,
       "images_missing_alt": 0,
-      "broken_local_links": [
-        "/lpu",
-        "/new-delhi-institute-of-management"
-      ],
+      "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
       "issues": [
         "twitter_card",
-        "jsonld",
-        "broken_local_links"
+        "jsonld"
       ]
     },
     {
@@ -15814,12 +15783,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "/fore-school-of-management",
-        "/goa-institute-of-management",
-        "/great-lakes-institute-of-management",
-        "/imt-ghaziabad",
-        "/t-a-pai-management-institute-manipal",
-        "/xim-university"
+        "/imt-ghaziabad"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
