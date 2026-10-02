@@ -24,7 +24,34 @@ def local_target(href, current):
     else:
         path = parsed.path
     if not path or path == "/": return "index.html"
+
     clean_path = path.lstrip("/").rstrip("/")
+    aliases = {
+        "bml-munjal-university-mba": "bml-munjal-university",
+        "xim-university": "xim-university-bhubaneswar",
+        "great-lakes-institute-of-management": "glim-chennai",
+        "indian-institute-of-management-amritsar": "iim-amritsar",
+        "indian-institute-of-management-bodh-gaya": "iim-bodhgaya",
+        "indian-institute-of-management-jammu": "iim-jammu",
+        "indian-institute-of-management-sambalpur": "iim-sambalpur",
+        "institute-of-management-technology-nagpur": "imt-nagpur",
+        "kalinga-institute-of-industrial-technology": "kiit-bhubaneswar",
+        "loyola-institute-of-business-administration": "loyola-institute-business-administration",
+        "lpu": "lovely-professional-university",
+        "new-delhi-institute-of-management": "ndim-delhi",
+        "fore-school-of-management": "fore-school-management",
+        "goa-institute-of-management": "goa-institute-management",
+        "t-a-pai-management-institute-manipal": "tapmi-manipal",
+    }
+    clean_path = aliases.get(clean_path, clean_path)
+
+    # CMS overview pages are published at /<slug>, while their source lives
+    # under college-cms/content/<slug>/overview.html.
+    if clean_path.endswith("/overview"):
+        slug = clean_path[:-len("/overview")].strip("/")
+        if slug and (ROOT / "college-cms" / "content" / slug / "overview.html").exists():
+            return f"college-cms/content/{slug}/overview.html"
+
     target = Path(clean_path)
     if target.suffix == "":
         html_target = ROOT / f"{clean_path}.html"
