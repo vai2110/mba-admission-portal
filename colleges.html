@@ -1043,10 +1043,21 @@ fetch("./colleges.csv")
     const count = document.getElementById("collegeCount");
     const staticCards = grid ? grid.querySelectorAll(".college-card").length : 0;
 
+    // A server-rendered directory is already a valid result set.
+    // Never show the empty-state message while those cards exist.
+    const noResults = document.getElementById("noResults");
+    if (noResults && staticCards > 0) {
+        noResults.style.display = "none";
+    }
+
     if (count) {
         count.textContent = staticCards
             ? staticCards + " colleges"
             : "College directory unavailable";
+    }
+
+    if (noResults && staticCards > 0) {
+        noResults.style.display = "none";
     }
 
     if (grid && staticCards === 0) {
