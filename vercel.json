@@ -109,6 +109,56 @@
       "source": "/mba-colleges-accepting-snap.html",
       "destination": "/mba-colleges-accepting-snap",
       "permanent": true
+    },
+    {
+      "source": "/sibm-nagpur.html",
+      "destination": "/sibm-nagpur",
+      "permanent": true
+    },
+    {
+      "source": "/sicsr-pune.html",
+      "destination": "/sicsr-pune",
+      "permanent": true
+    },
+    {
+      "source": "/sims-pune.html",
+      "destination": "/sims-pune",
+      "permanent": true
+    },
+    {
+      "source": "/scit-pune.html",
+      "destination": "/scit-pune",
+      "permanent": true
+    },
+    {
+      "source": "/ssmc-bangalore.html",
+      "destination": "/ssmc-bangalore",
+      "permanent": true
+    },
+    {
+      "source": "/pumba-pune.html",
+      "destination": "/pumba-pune",
+      "permanent": true
+    },
+    {
+      "source": "/xime-bangalore.html",
+      "destination": "/xime-bangalore",
+      "permanent": true
+    },
+    {
+      "source": "/ipe-hyderabad.html",
+      "destination": "/ipe-hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/ibs-hyderabad.html",
+      "destination": "/ibs-hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/sdmimd-mysore.html",
+      "destination": "/sdmimd-mysore",
+      "permanent": true
     }
   ]
 }
