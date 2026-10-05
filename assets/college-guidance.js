@@ -1,5 +1,11 @@
 (function(){
 'use strict';
+/* CollegeDecoded About/Team page must remain a clean editorial page. Do not inject the common guidance CTA, enquiry modal or content gate here. */
+if(window.location.pathname.replace(/\/$/,'') === '/collegedecoded-team'){
+  return;
+}
+
+
 if(window.__CD_GUIDANCE_GATE_READY)return;
 window.__CD_GUIDANCE_GATE_READY=true;
 
