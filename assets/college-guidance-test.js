@@ -1,213 +1,231 @@
 (function(){
 'use strict';
-/* CollegeDecoded About/Team page: no guidance CTA or enquiry modal. */
-if(window.location.pathname.replace(/\/$/,'') === '/collegedecoded-team'){
-  return;
+
+var PATH = window.location.pathname.replace(/\/$/,'');
+var EXCLUDED = PATH === '' || PATH === '/' || PATH === '/index.html' ||
+               PATH === '/collegedecoded-team' || PATH === '/about-us' ||
+               PATH === '/about-us.html' || PATH === '/about' || PATH === '/about.html';
+if (EXCLUDED) return;
+if (window.__CD_COLLEGE_GUIDANCE_TEST) return;
+window.__CD_COLLEGE_GUIDANCE_TEST = true;
+
+function track(name, params){
+  try{
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  }catch(e){}
 }
 
+function esc(s){
+  return String(s || '').replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
 
-if(window.__CD_COLLEGE_GUIDANCE_TEST)return;
-window.__CD_COLLEGE_GUIDANCE_TEST=true;
+function getCollegeName(){
+  var h1 = document.querySelector('h1');
+  var text = h1 ? (h1.textContent || '').trim() : (document.title || '').split('|')[0].trim();
+  text = text.replace(/^CollegeDecoded\s*[|:-]\s*/i,'').trim();
+  text = text.replace(/\s+(MBA|PGDM|Admission|Fees|Cutoff|Placements|Placement|Eligibility|Courses|Course).*$/i,'').trim();
+  return text || 'this college';
+}
+
+function getPageContext(){
+  var title=(document.title||'').toLowerCase();
+  var body=(document.body.innerText||'').slice(0,5000).toLowerCase();
+  var isMBA = /\bmba\b|\bpgdm\b|cat|xat|cmat|snap|nmat|mat/.test(title+' '+body);
+  return {isMBA:isMBA};
+}
 
 function init(){
-  if(document.getElementById('cdCollegeTestModal'))return;
-  var hero=document.querySelector('.hero');
+  if(document.getElementById('cdCollegeTestModal')) return;
+  var hero=document.querySelector('.hero, .hero-section, .hero-container, header + section');
   var faq=document.getElementById('faq')||document.getElementById('faqs');
   if(!faq){
-    var faqCandidates=[].slice.call(document.querySelectorAll('section, .section, .section-card, main > div'));
-    for(var fi=0;fi<faqCandidates.length;fi++){
-      var fh=faqCandidates[fi].querySelector('h2,h3');
-      var ft=fh?(fh.textContent||'').toLowerCase():'';
-      if(ft.indexOf('frequently asked')!==-1 || /^faqs?$/.test(ft.trim())){faq=faqCandidates[fi];break;}
+    var candidates=[].slice.call(document.querySelectorAll('section, .section, .main-section, .section-card, main > div'));
+    for(var i=0;i<candidates.length;i++){
+      var h=candidates[i].querySelector('h2,h3');
+      var t=h?(h.textContent||'').toLowerCase():'';
+      if(t.indexOf('frequently asked')!==-1 || /^faqs?$/.test(t.trim())){faq=candidates[i];break;}
     }
   }
-  if(!faq){
-    faq=document.getElementById('sources')||document.getElementById('official')||document.querySelector('footer');
-  }
-  if(!hero||!faq)return;
+  if(!faq) faq=document.querySelector('footer');
+  if(!hero) hero=document.querySelector('main')||document.body;
+  if(!faq) return;
 
-  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]);});}
+  var college=getCollegeName();
+  var ctx=getPageContext();
+  var mba=ctx.isMBA;
 
   var modal=document.createElement('div');
   modal.id='cdCollegeTestModal';
   modal.className='cd-college-test-modal';
   modal.setAttribute('aria-hidden','true');
-  modal.innerHTML=
-  '<div class="cd-college-test-backdrop"></div>'+
-  '<div class="cd-college-test-dialog" role="dialog" aria-modal="true" aria-labelledby="cdCollegeTestTitle">'+
-    '<button class="cd-college-test-close" type="button" aria-label="Close">×</button>'+
-    '<div class="cd-college-test-grid">'+
-      '<div class="cd-college-test-left">'+
-        '<div>'+
-          '<div class="cd-college-test-brand">College<span>Decoded</span></div>'+
-          '<h3>Your MBA Journey, Simplified</h3>'+
-          '<p>Not sure which college is right for you? Tell us what you want — not just which page you landed on.</p>'+
-          '<div class="cd-college-test-points">'+
-            '<div class="cd-college-test-point"><i>✓</i>Personalised college recommendations</div>'+
-            '<div class="cd-college-test-point"><i>✓</i>Guidance on eligibility, cutoffs & fees</div>'+
-            '<div class="cd-college-test-point"><i>✓</i>Compare options based on your profile</div>'+
-          '</div>'+
-        '</div>'+
-        '<div class="cd-college-test-student" aria-hidden="true">'+
-          '<svg viewBox="0 0 220 190" xmlns="http://www.w3.org/2000/svg">'+
-            '<circle cx="112" cy="55" r="33" fill="#ffd0b5"/><path d="M78 55c2-29 27-45 56-31 13 6 21 19 19 34-11-7-21-14-29-24-7 13-20 20-46 21z" fill="#1e293b"/><path d="M90 66c8 6 20 7 31 2" fill="none" stroke="#9a4f3b" stroke-width="3" stroke-linecap="round"/><circle cx="99" cy="56" r="3" fill="#092653"/><circle cx="124" cy="56" r="3" fill="#092653"/><path d="M70 105c10-20 34-29 58-27 29 2 44 19 51 49l-7 42H58l-4-39c2-12 7-19 16-25z" fill="#174ea6"/><path d="M91 84l21 23 20-23" fill="#fff"/><path d="M91 84l21 23 20-23" fill="none" stroke="#dbeafe" stroke-width="2"/><path d="M70 122l-24 28" stroke="#ffd0b5" stroke-width="15" stroke-linecap="round"/><path d="M146 119l25 29" stroke="#ffd0b5" stroke-width="15" stroke-linecap="round"/><path d="M52 155l-13 27M164 153l15 29" stroke="#0f172a" stroke-width="13" stroke-linecap="round"/><path d="M33 183h31M165 182h31" stroke="#ff6b16" stroke-width="9" stroke-linecap="round"/><path d="M78 122c15 9 31 9 45 0" fill="none" stroke="#0b3d91" stroke-width="5"/></svg>'+
-        '</div>'+
-      '</div>'+
-      '<div class="cd-college-test-right">'+
-        '<div class="cd-college-test-progress"><span></span></div>'+
-        '<h2 id="cdCollegeTestTitle">Get Free MBA Guidance</h2>'+
-        '<p class="cd-college-test-sub">We’ll help you explore the right options based on your goals and preferences.</p>'+
-        '<form id="cdCollegeTestForm">'+
-          '<div class="cd-college-test-step active" data-step="1">'+
-            '<label class="cd-college-test-label">What are you looking for?</label>'+
-            '<div class="cd-college-test-choices">'+
-              '<label class="cd-college-test-choice"><input type="radio" name="iima_interest" value="Exploring MBA colleges"><span>🔎 I’m exploring MBA colleges</span></label>'+
-              '<label class="cd-college-test-choice"><input type="radio" name="iima_interest" value="Have colleges in mind"><span>🎯 I have some colleges in mind</span></label>'+
-              '<label class="cd-college-test-choice"><input type="radio" name="iima_interest" value="Targeting top MBA colleges"><span>🏆 I’m targeting top MBA colleges</span></label>'+
-              '<label class="cd-college-test-choice"><input type="radio" name="iima_interest" value="Good ROI"><span>💰 I want colleges with good ROI</span></label>'+
-              '<label class="cd-college-test-choice"><input type="radio" name="iima_interest" value="Based on CAT percentile"><span>📊 Based on my CAT percentile</span></label>'+
-              '<label class="cd-college-test-choice"><input type="radio" name="iima_interest" value="Not sure yet"><span>🤔 Not sure yet</span></label>'+
+
+  var headline=mba ? 'Check Your '+college+' Admission Chances' : 'Get Personalised Admission Guidance';
+  var sub=mba
+    ? 'Share a few details and we’ll help you understand your chances, fees and alternatives.'
+    : 'Tell us what you’re looking for and we’ll help you compare suitable college options.';
+  var leftTitle=mba ? 'Your MBA Journey, Simplified' : 'Your College Search, Simplified';
+
+  modal.innerHTML =
+    '<div class="cd-college-test-backdrop"></div>'+
+    '<div class="cd-college-test-dialog" role="dialog" aria-modal="true" aria-labelledby="cdCollegeTestTitle">'+
+      '<button class="cd-college-test-close" type="button" aria-label="Close">×</button>'+
+      '<div class="cd-college-test-grid">'+
+        '<aside class="cd-college-test-left">'+
+          '<div>'+
+            '<div class="cd-college-test-brand">College<span>Decoded</span></div>'+
+            '<h3>'+esc(leftTitle)+'</h3>'+
+            '<p>Tell us what you need. We’ll help you make a more realistic shortlist based on your profile, goals and budget.</p>'+
+            '<div class="cd-college-test-points">'+
+              '<div class="cd-college-test-point"><i>✓</i>Personalised college recommendations</div>'+
+              '<div class="cd-college-test-point"><i>✓</i>Guidance on cutoffs, fees & eligibility</div>'+
+              '<div class="cd-college-test-point"><i>✓</i>Compare suitable alternatives</div>'+
+              '<div class="cd-college-test-point"><i>✓</i>Free and no obligation</div>'+
             '</div>'+
-            '<label class="cd-college-test-label">Which colleges are you considering? <small>(optional — landing here doesn’t mean you’ve chosen This college)</small></label>'+
-            '<div class="cd-college-test-tags" id="cdIimaCollegeTags">'+
-              '<button type="button" class="cd-college-test-tag selected" data-college="This college">This college ×</button>'+
-              '<button type="button" class="cd-college-test-tag" data-college="IIM Bangalore">IIM Bangalore</button>'+
-              '<button type="button" class="cd-college-test-tag" data-college="IIM Calcutta">IIM Calcutta</button>'+
-              '<button type="button" class="cd-college-test-tag" data-college="Not sure">Not sure</button>'+
-            '</div>'+
-            '<div class="cd-college-test-actions"><button class="cd-college-test-btn" type="button" data-next>Next →</button></div>'+
           '</div>'+
-          '<div class="cd-college-test-step" data-step="2">'+
-            '<label class="cd-college-test-label">A few details so we can personalise the guidance</label>'+
+          '<div class="cd-college-test-trust">Free guidance • No obligation</div>'+
+        '</aside>'+
+        '<div class="cd-college-test-right">'+
+          '<div class="cd-college-test-progress"><span></span></div>'+
+          '<h2 id="cdCollegeTestTitle">'+esc(headline)+'</h2>'+
+          '<p class="cd-college-test-sub">'+esc(sub)+'</p>'+
+          '<form id="cdCollegeTestForm">'+
+            '<div class="cd-college-test-section">'+
+              '<label class="cd-college-test-label">What would you like help with?</label>'+
+              '<div class="cd-college-test-choices">'+
+                '<label class="cd-college-test-choice"><input type="radio" name="interest" value="Check admission chances" required><span>🎯 Check my admission chances</span></label>'+
+                '<label class="cd-college-test-choice"><input type="radio" name="interest" value="Build college shortlist"><span>📋 Build my college shortlist</span></label>'+
+                '<label class="cd-college-test-choice"><input type="radio" name="interest" value="Find good ROI colleges"><span>📊 Find colleges with good ROI</span></label>'+
+                '<label class="cd-college-test-choice"><input type="radio" name="interest" value="Not sure"><span>🤔 Not sure yet</span></label>'+
+              '</div>'+
+            '</div>'+
+            '<div class="cd-college-test-section">'+
+              '<label class="cd-college-test-label">College you’re exploring</label>'+
+              '<div class="cd-college-test-current-college"><span>🏛️</span><strong>'+esc(college)+'</strong><em>From this page</em></div>'+
+            '</div>'+
             '<div class="cd-college-test-fields">'+
-              '<div class="cd-college-test-field"><label>Preferred location</label><select name="location"><option value="">Select</option><option>Delhi NCR</option><option>Mumbai</option><option>Bangalore</option><option>Ahmedabad</option><option>Any</option></select></div>'+
-              '<div class="cd-college-test-field"><label>Total fee budget</label><select name="budget"><option value="">Select</option><option>Under ₹5L</option><option>₹5–10L</option><option>₹10–20L</option><option>₹20L+</option><option>Not sure</option></select></div>'+
-              '<div class="cd-college-test-field"><label>Entrance exam</label><select name="exam"><option value="">Select</option><option>CAT</option><option>XAT</option><option>NMAT</option><option>SNAP</option><option>Other</option><option>Not appeared</option></select></div>'+
-              '<div class="cd-college-test-field"><label>CAT percentile (if any)</label><input name="percentile" inputmode="decimal" placeholder="e.g. 95"></div>'+
-              '<div class="cd-college-test-field"><label>Your name</label><input name="name" required placeholder="Enter your name"></div>'+
-              '<div class="cd-college-test-field"><label>Mobile number</label><input name="mobile" required inputmode="numeric" placeholder="+91 98XXXXXXXX" pattern="[0-9+() -]{10,16}"></div>'+
+              '<div class="cd-college-test-field"><label>Entrance exam <em>(optional)</em></label><select name="exam"><option value="">Select</option><option>CAT</option><option>XAT</option><option>CMAT</option><option>MAT</option><option>SNAP</option><option>NMAT</option><option>Other</option><option>Not appeared yet</option></select></div>'+
+              '<div class="cd-college-test-field"><label>Expected score/percentile <em>(optional)</em></label><input name="score" inputmode="decimal" placeholder="e.g. 95 percentile"></div>'+
+              '<div class="cd-college-test-field"><label>Budget <em>(optional)</em></label><select name="budget"><option value="">Select</option><option>Under ₹5L</option><option>₹5–10L</option><option>₹10–20L</option><option>₹20L+</option><option>Not sure</option></select></div>'+
+              '<div class="cd-college-test-field"><label>Category <em>(optional)</em></label><select name="category"><option value="">Select</option><option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option><option>Prefer not to say</option></select></div>'+
             '</div>'+
-            '<div class="cd-college-test-actions"><button class="cd-college-test-btn cd-college-test-back" type="button" data-back>← Back</button><button class="cd-college-test-btn" type="submit">Get Free Guidance →</button></div>'+
-            '<div class="cd-college-test-note">No obligation • Quick response • Your details are used only for your guidance request.</div>'+
-          '</div>'+
-        '</form>'+
+            '<div class="cd-college-test-section">'+
+              '<label class="cd-college-test-label">Where should we send your guidance?</label>'+
+              '<div class="cd-college-test-fields cd-contact-fields">'+
+                '<div class="cd-college-test-field"><label>Name</label><input name="name" autocomplete="name" required placeholder="Your name"></div>'+
+                '<div class="cd-college-test-field"><label>Mobile number</label><input name="mobile" autocomplete="tel" inputmode="numeric" required placeholder="+91 98XXXXXXXX" pattern="[0-9+() -]{10,16}"></div>'+
+                '<div class="cd-college-test-field cd-email-field"><label>Email <em>(optional)</em></label><input name="email" autocomplete="email" type="email" placeholder="you@example.com"></div>'+
+              '</div>'+
+            '</div>'+
+            '<label class="cd-college-test-consent"><input type="checkbox" name="consent" required><span>I agree to be contacted by CollegeDecoded for admission guidance. We won’t share your details with third parties.</span></label>'+
+            '<button class="cd-college-test-submit" type="submit">Get My Free Guidance <span>→</span></button>'+
+            '<div class="cd-college-test-note">Your details are used only to respond to this guidance request.</div>'+
+          '</form>'+
+        '</div>'+
       '</div>'+
-    '</div>'+
-  '</div>';
+    '</div>';
+
   document.body.appendChild(modal);
 
-  if(faq && !document.getElementById('cdCollegeTestGuidanceSection')){
-    var section=document.createElement('section');
-    section.id='cdCollegeTestGuidanceSection';
-    section.className='cd-college-test-guidance';
-    section.innerHTML='<div><h2>Not sure which MBA college is right for you?</h2><p>Tell us your exam, budget, location and goals. We’ll help you explore colleges — including alternatives to the college you’re currently viewing.</p></div><button type="button">Get Free Guidance →</button>';
-    faq.parentNode.insertBefore(section,faq);
-  }
+  var section=document.createElement('section');
+  section.id='cdCollegeTestGuidanceSection';
+  section.className='cd-college-test-guidance';
+  section.innerHTML='<div><h2>Not sure which college is right for you?</h2><p>Tell us your exam, score and budget. We’ll help you explore suitable options and alternatives.</p></div><button type="button">Get Free Guidance →</button>';
+  faq.parentNode.insertBefore(section,faq);
 
-  var form=document.getElementById('cdCollegeTestForm');
-  var steps=[].slice.call(modal.querySelectorAll('.cd-college-test-step'));
-  var progress=modal.querySelector('.cd-college-test-progress span');
-  var selectedColleges=['This college'];
-  var currentStep=1;
-  var source=document.title||window.location.href;
-  try{sessionStorage.setItem('CD_CollegeDecoded_GUIDANCE_SOURCE',window.location.href)}catch(e){}
+  var form=modal.querySelector('#cdCollegeTestForm');
+  var endpoint='https://script.google.com/macros/s/AKfycbwfyXmhmRd5yB5QJL7ZuCvHhC3PjldwMQlD6f-HmzrOez_gUfzA0vga-UwQHrKPlXvp/exec';
 
-  function open(){
-    modal.classList.add('cd-iima-open');modal.setAttribute('aria-hidden','false');
+  function open(reason){
+    modal.classList.add('cd-iima-open');
+    modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
+    track('guidance_form_open',{page_path:location.pathname, college:college, trigger:reason||'cta'});
   }
   function close(){
-    modal.classList.remove('cd-iima-open');modal.setAttribute('aria-hidden','true');
+    modal.classList.remove('cd-iima-open');
+    modal.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
-  }
-  function goStep(n){
-    currentStep=n;
-    steps.forEach(function(s){s.classList.toggle('active',Number(s.getAttribute('data-step'))===n)});
-    progress.style.width=n===1?'50%':'100%';
-    modal.querySelector('.cd-college-test-dialog').scrollTop=0;
   }
 
   modal.querySelector('.cd-college-test-close').addEventListener('click',close);
   modal.querySelector('.cd-college-test-backdrop').addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('cd-iima-open'))close()});
-  modal.querySelector('[data-next]').addEventListener('click',function(){
-    if(!form.querySelector('input[name="iima_interest"]:checked')){alert('Please select what you are looking for.');return}
-    goStep(2);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && modal.classList.contains('cd-iima-open')) close();
   });
-  modal.querySelector('[data-back]').addEventListener('click',function(){goStep(1)});
-  modal.querySelectorAll('.cd-college-test-tag').forEach(function(tag){
-    tag.addEventListener('click',function(){
-      var college=tag.getAttribute('data-college');
-      if(college==='Not sure'){selectedColleges=['Not sure'];modal.querySelectorAll('.cd-college-test-tag').forEach(function(x){x.classList.remove('selected')});tag.classList.add('selected');return}
-      if(selectedColleges.indexOf('Not sure')!==-1)selectedColleges=[];
-      var idx=selectedColleges.indexOf(college);
-      if(idx===-1){selectedColleges.push(college);tag.classList.add('selected')}else{selectedColleges.splice(idx,1);tag.classList.remove('selected')}
-    });
-  });
-  var ENQUIRY_ENDPOINT='https://script.google.com/macros/s/AKfycbwfyXmhmRd5yB5QJL7ZuCvHhC3PjldwMQlD6f-HmzrOez_gUfzA0vga-UwQHrKPlXvp/exec';
+
+  var started=false;
+  function markStart(){
+    if(started)return;
+    started=true;
+    track('form_start',{page_path:location.pathname,college:college});
+  }
+  form.addEventListener('focusin',markStart);
+
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(!form.reportValidity())return;
-    var submitBtn=form.querySelector('button[type="submit"]');
-    if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Submitting…';}
+    markStart();
+    var btn=form.querySelector('.cd-college-test-submit');
+    btn.disabled=true;
+    btn.innerHTML='Submitting…';
+
     var data={
       source_page:window.location.href,
-      interest:(form.querySelector('input[name="iima_interest"]:checked')||{}).value||'',
-      colleges:selectedColleges.join(', '),
-      location:form.location.value,
-      budget:form.budget.value,
+      page_title:document.title,
+      college:college,
+      interest:(form.querySelector('input[name="interest"]:checked')||{}).value||'',
       exam:form.exam.value,
-      percentile:form.percentile.value,
+      score:form.score.value,
+      budget:form.budget.value,
+      category:form.category.value,
       name:form.name.value,
-      mobile:form.mobile.value
+      mobile:form.mobile.value,
+      email:form.email.value,
+      consent:form.consent.checked ? 'Yes' : 'No'
     };
+
     var body=new URLSearchParams(data);
-    fetch(ENQUIRY_ENDPOINT,{method:'POST',mode:'no-cors',body:body,keepalive:true})
+    fetch(endpoint,{method:'POST',mode:'no-cors',body:body,keepalive:true})
       .then(function(){
-        try{
-          sessionStorage.setItem('CD_CollegeDecoded_GUIDANCE_TEST_SUBMISSION',JSON.stringify(data));
-          sessionStorage.setItem('CD_CollegeDecoded_GUIDANCE_HANDLED','1');
-        }catch(err){}
-        form.innerHTML='<div style="text-align:center;padding:45px 8px"><div style="font-size:42px">🎓</div><h2 style="color:#092653;margin:10px 0">You’re all set!</h2><p style="color:#64748b;font-size:13px">Thanks! Your guidance request has been submitted. Our team can now follow up with you.</p><button type="button" class="cd-college-test-btn" data-done>Continue exploring</button></div>';
-        modal.querySelector('[data-done]').addEventListener('click',close);
+        track('generate_lead',{page_path:location.pathname,college:college,lead_source:'guidance_form'});
+        try{sessionStorage.setItem('CD_CollegeDecoded_GUIDANCE_HANDLED','1')}catch(err){}
+        form.innerHTML='<div class="cd-college-test-success"><div class="cd-success-icon">✓</div><h2>You’re all set!</h2><p>Your guidance request has been submitted successfully. We’ll use the details you shared to help you explore your options.</p><button type="button" class="cd-college-test-continue">Continue exploring</button></div>';
+        form.querySelector('.cd-college-test-continue').addEventListener('click',close);
       })
       .catch(function(){
-        if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='Get Free Guidance →';}
+        btn.disabled=false;
+        btn.innerHTML='Get My Free Guidance <span>→</span>';
         alert('We could not submit your request. Please try again.');
       });
   });
 
-  var scrolledEnough=false,triggered=false,lastY=window.pageYOffset||0;
+  var triggered=false;
   function checkScroll(){
     if(triggered)return;
     var heroBottom=hero.getBoundingClientRect().bottom+window.pageYOffset;
     var past=Math.max(0,(window.pageYOffset||0)-heroBottom);
-    var meaningful=Math.floor(past/500);
-    if(meaningful>=3){
-      scrolledEnough=true;triggered=true;
-      var handled=false;try{handled=sessionStorage.getItem('CD_CollegeDecoded_GUIDANCE_HANDLED')==='1'}catch(e){}
-      if(!handled)open();
+    if(Math.floor(past/500)>=3){
+      triggered=true;
+      var handled=false;
+      try{handled=sessionStorage.getItem('CD_CollegeDecoded_GUIDANCE_HANDLED')==='1'}catch(e){}
+      if(!handled) open('scroll');
     }
   }
   window.addEventListener('scroll',checkScroll,{passive:true});
-  // CTA must always open the enquiry form modal.
-  var guidanceCta=document.querySelector('#cdCollegeTestGuidanceSection .cd-college-test-guidance button');
-  if(guidanceCta){
-    guidanceCta.addEventListener('click',function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      open();
-    });
-  }
-  // Delegated fallback keeps the CTA working even if the section is re-rendered.
+
+  section.querySelector('button').addEventListener('click',function(e){
+    e.preventDefault();
+    open('cta');
+  });
+
   document.addEventListener('click',function(e){
     var target=e.target.closest ? e.target.closest('#cdCollegeTestGuidanceSection button') : null;
-    if(target){
-      e.preventDefault();
-      e.stopPropagation();
-      open();
-    }
+    if(target){e.preventDefault();open('cta');}
   });
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
+else init();
 })();
