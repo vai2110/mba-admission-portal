@@ -1,5 +1,11 @@
 (function(){
 'use strict';
+/* CollegeDecoded About/Team page: no guidance CTA or enquiry modal. */
+if(window.location.pathname.replace(/\/$/,'') === '/collegedecoded-team'){
+  return;
+}
+
+
 if(window.__CD_COLLEGE_GUIDANCE_TEST)return;
 window.__CD_COLLEGE_GUIDANCE_TEST=true;
 
