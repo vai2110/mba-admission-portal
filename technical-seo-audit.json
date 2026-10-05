@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T08:47:57.738526+00:00",
+  "generated_at": "2026-10-05T08:59:44.837236+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 661,
   "pages_with_issues": 9,
@@ -4080,16 +4080,16 @@
     {
       "file": "collegedecoded-team.html",
       "benchmark": false,
-      "title": "CollegeDecoded Editorial Team | Research & Verification",
-      "title_length": 55,
-      "description": "Meet the CollegeDecoded editorial team and founder, and learn how we research, verify and update college admission, fees, cutoffs, courses and placement information.",
-      "description_length": 165,
+      "title": "About CollegeDecoded | Inside CollegeDecoded",
+      "title_length": 44,
+      "description": "Inside CollegeDecoded: why we started, what we believe, how we research higher-education information and who is building the platform.",
+      "description_length": 134,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/collegedecoded-team",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Meet the CollegeDecoded Editorial & Research Team",
+      "h1": "We're building the research layer for college decisions.",
       "lang": "en-IN",
       "viewport": true,
       "robots": [
