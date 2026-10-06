@@ -120,8 +120,8 @@ else:
         if not ok:
             continue
         raw = (ROOT / rel).read_text(encoding="utf-8", errors="ignore")
-        parser_text = re.sub(r"<(script|style|noscript|svg)\\b[^>]*>.*?</\\1>", " ", raw, flags=re.I | re.S)
-        words = len(re.sub(r"\\s+", " ", re.sub(r"<[^>]+>", " ", parser_text)).strip().split())
+        parser_text = re.sub(r"<(script|style|noscript|svg)\b[^>]*>.*?</\\1>", " ", raw, flags=re.I | re.S)
+        words = len(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", parser_text)).strip().split())
         clean = BASE if rel == "index.html" else BASE + "/" + Path(rel).stem
         if words < 300 and clean in locs:
             sitemap_thin.append(f"{rel} ({words} words)")
