@@ -169,6 +169,121 @@
       "source": "/sdmimd-mysore.html",
       "destination": "/sdmimd-mysore",
       "permanent": true
+    },
+    {
+      "source": "/iit-ism-dhanbad-fees.html",
+      "destination": "/iit-ism-dhanbad-fees",
+      "permanent": true
+    },
+    {
+      "source": "/alliance-university.html",
+      "destination": "/alliance-university",
+      "permanent": true
+    },
+    {
+      "source": "/iit-ism-dhanbad.html",
+      "destination": "/iit-ism-dhanbad",
+      "permanent": true
+    },
+    {
+      "source": "/iim-kozhikode-pgp-bl.html",
+      "destination": "/iim-kozhikode-pgp-bl",
+      "permanent": true
+    },
+    {
+      "source": "/mdi-gurugram.html",
+      "destination": "/mdi-gurugram",
+      "permanent": true
+    },
+    {
+      "source": "/colleges.html",
+      "destination": "/colleges",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-mba.html",
+      "destination": "/iim-ahmedabad-mba",
+      "permanent": true
+    },
+    {
+      "source": "/graphic-era-university-mba.html",
+      "destination": "/graphic-era-university-mba",
+      "permanent": true
+    },
+    {
+      "source": "/jain-university-bca.html",
+      "destination": "/jain-university-bca",
+      "permanent": true
+    },
+    {
+      "source": "/dms-nit-trichy.html",
+      "destination": "/dms-nit-trichy",
+      "permanent": true
+    },
+    {
+      "source": "/iim-kozhikode.html",
+      "destination": "/iim-kozhikode",
+      "permanent": true
+    },
+    {
+      "source": "/mba-colleges-by-exam.html",
+      "destination": "/mba-colleges-by-exam",
+      "permanent": true
+    },
+    {
+      "source": "/amu-barch.html",
+      "destination": "/amu-barch",
+      "permanent": true
+    },
+    {
+      "source": "/bbau-lucknow.html",
+      "destination": "/bbau-lucknow",
+      "permanent": true
+    },
+    {
+      "source": "/graphic-era-university-bcom-hons.html",
+      "destination": "/graphic-era-university-bcom-hons",
+      "permanent": true
+    },
+    {
+      "source": "/xlri-jamshedpur-placements.html",
+      "destination": "/xlri-jamshedpur-placements",
+      "permanent": true
+    },
+    {
+      "source": "/mba-colleges-by-location.html",
+      "destination": "/mba-colleges-by-location",
+      "permanent": true
+    },
+    {
+      "source": "/chitkara-university-mba-2026.html",
+      "destination": "/chitkara-university-mba-2026",
+      "permanent": true
+    },
+    {
+      "source": "/bbau-mca-2026.html",
+      "destination": "/bbau-mca-2026",
+      "permanent": true
+    },
+    {
+      "source": "/jims-rohini-pgdm-ib.html",
+      "destination": "/jims-rohini-pgdm-ib",
+      "permanent": true
+    },
+    {
+      "source": "/kiit-bhubaneswar-placements.html",
+      "destination": "/kiit-bhubaneswar-placements",
+      "permanent": true
+    },
+    {
+      "source": "/amu-btech.html",
+      "destination": "/amu-btech",
+      "permanent": true
+    },
+    {
+      "source": "/bbau-placements-2026.html",
+      "destination": "/bbau-placements-2026",
+      "permanent": true
     }
   ]
 }
