@@ -1,3 +1,4 @@
+# Sitewide SEO gate: internal links must resolve and important pages must remain discoverable.
 import json
 import re
 from collections import Counter, defaultdict
