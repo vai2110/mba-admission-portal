@@ -56,6 +56,16 @@
   ],
   "redirects": [
     {
+      "source": "/college",
+      "destination": "/iim-ahmedabad",
+      "permanent": true
+    },
+    {
+      "source": "/college.html",
+      "destination": "/iim-ahmedabad",
+      "permanent": true
+    },
+    {
       "source": "/iim-bangalore-mba-business-analytics",
       "destination": "/iim-bangalore-pgpba",
       "permanent": true
