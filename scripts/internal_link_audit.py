@@ -105,6 +105,7 @@ def main():
     broken = []
     benchmark_broken = []
     href_count = Counter()
+    redirecting_internal_links = []
 
     for name in pages:
         html = (ROOT / name).read_text(encoding="utf-8")
@@ -115,6 +116,19 @@ def main():
                 continue
             href_count[name] += 1
             outgoing[name].append(target)
+            parsed = urlsplit(href)
+            raw_path = parsed.path or ""
+            is_own_domain = (
+                parsed.scheme in {"http", "https"}
+                and (parsed.netloc or "").lower() in {"collegedecoded.in", "www.collegedecoded.in"}
+            )
+            if (raw_path.lower().endswith(".html") and not parsed.query and
+                    (not parsed.scheme or is_own_domain)):
+                clean_path = raw_path[:-5] or "/"
+                if (ROOT / raw_path.lstrip("/")).is_file():
+                    redirecting_internal_links.append({
+                        "source": name, "href": href, "target": clean_path
+                    })
             if target not in page_set:
                 item = {"source": name, "href": href, "target": target}
                 if name in BENCHMARKS:
@@ -171,6 +185,7 @@ def main():
             "pages_checked": len(pages),
             "pages_with_internal_links": sum(1 for p in pages if outgoing.get(p)),
             "broken_local_links": len(broken),
+            "redirecting_internal_links": len(redirecting_internal_links),
             "benchmark_legacy_broken_links": len(benchmark_broken),
             "college_clusters_detected": len(clusters),
             "cluster_reciprocal_gaps": len(missing_reciprocal),
@@ -180,6 +195,7 @@ def main():
         "college_clusters": cluster_results,
         "reciprocal_link_gaps": missing_reciprocal,
         "broken_local_links": broken,
+        "redirecting_internal_links": redirecting_internal_links,
         "benchmark_legacy_broken_links": benchmark_broken,
         "zero_incoming_pages": orphan_candidates,
         "incoming_link_counts": dict(sorted(incoming.items())),
