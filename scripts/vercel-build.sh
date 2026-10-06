@@ -10,8 +10,8 @@ import json
 from pathlib import Path
 report = json.loads(Path("internal-link-audit.json").read_text(encoding="utf-8"))
 summary = report["summary"]
-print(f"INTERNAL LINK GATE: {summary['cluster_reciprocal_gaps']} reciprocal gaps; {summary['broken_local_links']} broken local links.")
-if summary["broken_local_links"] or summary["cluster_reciprocal_gaps"]:
+print(f"INTERNAL LINK GATE: {summary['cluster_reciprocal_gaps']} reciprocal gaps; {summary['broken_local_links']} broken local links; {summary.get('redirecting_internal_links', 0)} redirecting internal links.")
+if summary["broken_local_links"] or summary["cluster_reciprocal_gaps"] or summary.get("redirecting_internal_links", 0):
     raise SystemExit("INTERNAL LINK GATE FAILED")
 print("INTERNAL LINK GATE PASSED")
 PY
