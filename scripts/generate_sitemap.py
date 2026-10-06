@@ -15,6 +15,8 @@ EXCLUDED_PATHS = {
     "github-direct-edit-test.html",
     "irma-deploy-trigger.html",
     "github-direct-edit-test.html",
+    # Legacy dynamic IIM Ahmedabad route; canonical entity URL is /iim-ahmedabad.
+    "college.html",
 }
 
 # URL -> latest source modification date.
