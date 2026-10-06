@@ -48,7 +48,7 @@ class _TextParser(HTMLParser):
 def visible_word_count(html):
     parser = _TextParser()
     parser.feed(html)
-    return len(re.sub(r"\\s+", " ", " ".join(parser.parts)).strip().split())
+    return len(re.sub(r"\s+", " ", " ".join(parser.parts)).strip().split())
 
 
 def file_lastmod(path: Path) -> str:
