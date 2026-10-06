@@ -3,6 +3,7 @@ import re
 import subprocess
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
+from html.parser import HTMLParser
 
 BASE_URL = "https://collegedecoded.in"
 
@@ -22,6 +23,32 @@ EXCLUDED_PATHS = {
 # URL -> latest source modification date.
 url_dates = {}
 url_signatures = {}
+
+# Sitemap inclusion is deliberately stricter than indexability. Pages that are
+# technically crawlable but contain very little main content should be improved
+# before being advertised as priority URLs in the sitemap. This is not a
+# Google-required word-count rule; it is an editorial quality safeguard.
+MIN_SITEMAP_WORDS = 300
+
+class _TextParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+        self.skip = 0
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() in {"script", "style", "noscript", "svg"}:
+            self.skip += 1
+    def handle_endtag(self, tag):
+        if tag.lower() in {"script", "style", "noscript", "svg"} and self.skip:
+            self.skip -= 1
+    def handle_data(self, data):
+        if not self.skip:
+            self.parts.append(data)
+
+def visible_word_count(html):
+    parser = _TextParser()
+    parser.feed(html)
+    return len(re.sub(r"\\s+", " ", " ".join(parser.parts)).strip().split())
 
 
 def file_lastmod(path: Path) -> str:
@@ -70,6 +97,12 @@ for html_file in ROOT.rglob("*.html"):
         content,
         re.IGNORECASE,
     ):
+        continue
+
+    # Do not put extremely thin pages in the sitemap. They remain live and
+    # indexable so they can be improved, but the sitemap should represent the
+    # site's strongest, most useful URLs rather than every HTML file.
+    if visible_word_count(content) < MIN_SITEMAP_WORDS:
         continue
 
     # Look for canonical URL.
@@ -154,4 +187,4 @@ sitemap_path.write_text(
     encoding="utf-8",
 )
 
-print(f"Sitemap generated successfully with {len(urls)} URLs and lastmod dates.")
+print(f"Sitemap generated successfully with {len(urls)} URLs (excluding noindex and pages under {MIN_SITEMAP_WORDS} visible words) and lastmod dates.")
