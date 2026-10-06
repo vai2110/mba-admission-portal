@@ -1,35 +1,30 @@
 {
-  "generated_at": "2026-10-06T02:09:52.753058+00:00",
+  "generated_at": "2026-10-06T02:36:14.864754+00:00",
   "mode": "free-editorial-audit",
-  "pages_audited": 5,
+  "pages_audited": 2,
   "pages_changed": 0,
   "target_page": null,
   "target_pages": [
-    "iim-visakhapatnam.html",
-    "iim-visakhapatnam-placements.html",
-    "iim-visakhapatnam-executive-master-of-business-administration-emba.html",
-    "iim-visakhapatnam-post-graduate-program-in-management-for-the-centrally-funded-technical-institutions-institutions-of-national-importance-pgpmci.html",
-    "iim-visakhapatnam-executive-post-graduate-diploma-program-in-management-epgdpm.html"
+    "imt-ghaziabad.html",
+    "imt-ghaziabad-placements.html"
   ],
   "results": [
     {
-      "file": "iim-visakhapatnam.html",
-      "overall_score": 93,
+      "file": "imt-ghaziabad.html",
+      "overall_score": 89,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
       "metrics": {
-        "word_count": 652,
+        "word_count": 469,
         "generic_phrase_hits": 0,
         "promotional_hits": 0,
         "duplicate_sentences": 1,
-        "numeric_or_date_content_blocks": 6,
+        "numeric_or_date_content_blocks": 3,
         "official_links": 0,
-        "all_external_links": 8,
-        "missing_intent_sections": [
-          "scholarship"
-        ],
-        "thin_sections": 0
+        "all_external_links": 2,
+        "missing_intent_sections": [],
+        "thin_sections": 3
       },
       "issues": [
         {
@@ -45,180 +40,21 @@
         {
           "severity": "high",
           "type": "fact_check",
-          "text": "Found 6 factual content blocks containing dates, figures, percentages or monetary values.",
+          "text": "Found 3 factual content blocks containing dates, figures, percentages or monetary values.",
           "location": "factual claims",
           "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
         },
         {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        }
-      ],
-      "recommendations": [
-        {
-          "priority": "medium",
-          "action": "remove_repetition",
-          "count": 1
-        },
-        {
-          "priority": "high",
-          "action": "manual_verify_high_impact_facts",
-          "count": 6,
-          "official_source_links": 0
-        },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "scholarship"
-          ]
-        }
-      ],
-      "verified_facts": [],
-      "unverified_claims": [
-        {
-          "claim": "Admissions are based on a composite score of entrance exam scores, work experience, and personal interviews.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The admission process evaluates candidates using multiple parameters to ensure a comprehensive assessment.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Selection is based on a composite score derived from entrance examination scores, work experience, and personal interview (PI) performance.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "IIM Visakhapatnam offers a diverse portfolio of programmes:",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Official placement statistics for the last three years are not available in the provided public documentation.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The EMBA programme is a two-year course comprising 740+ hours of interactive executive learning.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        }
-      ],
-      "replacement_content": [],
-      "keep_content": []
-    },
-    {
-      "file": "iim-visakhapatnam-placements.html",
-      "overall_score": 87,
-      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
-      "auto_applied": false,
-      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
-      "metrics": {
-        "word_count": 447,
-        "generic_phrase_hits": 0,
-        "promotional_hits": 0,
-        "duplicate_sentences": 1,
-        "numeric_or_date_content_blocks": 0,
-        "official_links": 0,
-        "all_external_links": 8,
-        "missing_intent_sections": [
-          "fees",
-          "dates",
-          "cutoff",
-          "scholarship"
-        ],
-        "thin_sections": 0
-      },
-      "issues": [
-        {
-          "severity": "medium",
-          "type": "repetition",
-          "text": "Found 1 repeated sentences/near-identical statements.",
-          "location": "page text",
+          "severity": "low",
+          "type": "structure",
+          "text": "Found 3 major sections with thin supporting content.",
+          "location": "main content sections",
           "examples": [
-            "No unsupported figure or claim has been added."
+            "College Overview",
+            "Fee Structure & Scholarships",
+            "Frequently Asked Questions"
           ],
-          "recommendation": "Keep the stronger occurrence and remove the duplicate."
-        },
-        {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: fees, dates, cutoff, scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        }
-      ],
-      "recommendations": [
-        {
-          "priority": "medium",
-          "action": "remove_repetition",
-          "count": 1
-        },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "fees",
-            "dates",
-            "cutoff",
-            "scholarship"
-          ]
-        }
-      ],
-      "verified_facts": [],
-      "unverified_claims": [],
-      "replacement_content": [],
-      "keep_content": []
-    },
-    {
-      "file": "iim-visakhapatnam-executive-master-of-business-administration-emba.html",
-      "overall_score": 93,
-      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
-      "auto_applied": false,
-      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
-      "metrics": {
-        "word_count": 526,
-        "generic_phrase_hits": 0,
-        "promotional_hits": 0,
-        "duplicate_sentences": 1,
-        "numeric_or_date_content_blocks": 7,
-        "official_links": 0,
-        "all_external_links": 8,
-        "missing_intent_sections": [
-          "placement"
-        ],
-        "thin_sections": 0
-      },
-      "issues": [
-        {
-          "severity": "medium",
-          "type": "repetition",
-          "text": "Found 1 repeated sentences/near-identical statements.",
-          "location": "page text",
-          "examples": [
-            "No unsupported figure or claim has been added."
-          ],
-          "recommendation": "Keep the stronger occurrence and remove the duplicate."
-        },
-        {
-          "severity": "high",
-          "type": "fact_check",
-          "text": "Found 7 factual content blocks containing dates, figures, percentages or monetary values.",
-          "location": "factual claims",
-          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
-        },
-        {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: placement",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
+          "recommendation": "Merge thin sections or add specific student-useful information; never add filler just to increase length."
         }
       ],
       "recommendations": [
@@ -230,51 +66,29 @@
         {
           "priority": "high",
           "action": "manual_verify_high_impact_facts",
-          "count": 7,
+          "count": 3,
           "official_source_links": 0
         },
         {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "placement"
-          ]
+          "priority": "low",
+          "action": "merge_or_strengthen_thin_sections",
+          "count": 3
         }
       ],
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "A two-year, blended-mode programme for working professionals focused on strategic leadership and AI-integrated management.",
+          "claim": "Critical Thinking, Group Exercise, Personal Interview",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Eligibility: Bachelor's degree with 50% marks (relaxations apply).",
+          "claim": "Bachelor’s degree with minimum 50% marks or equivalent CGPA",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Selection: Composite score (Work experience, entrance exam, personal interview).",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The EMBA programme at IIM Visakhapatnam comprises 740+ hours of interactive executive learning.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "It is designed to build managerial depth, digital fluency, and leadership resilience in an AI-native ecosystem.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "The selection process is based on a composite score derived from work experience, entrance examination scores, and personal interview performance.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Selection is based on a composite score of multiple parameters rather than a single entrance exam cutoff.",
+          "claim": "Official scholarship details are currently unavailable on the official website.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
@@ -283,86 +97,22 @@
       "keep_content": []
     },
     {
-      "file": "iim-visakhapatnam-post-graduate-program-in-management-for-the-centrally-funded-technical-institutions-institutions-of-national-importance-pgpmci.html",
-      "overall_score": 98,
+      "file": "imt-ghaziabad-placements.html",
+      "overall_score": 94,
       "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
       "auto_applied": false,
       "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
       "metrics": {
-        "word_count": 205,
-        "generic_phrase_hits": 0,
-        "promotional_hits": 0,
-        "duplicate_sentences": 0,
-        "numeric_or_date_content_blocks": 2,
-        "official_links": 0,
-        "all_external_links": 1,
-        "missing_intent_sections": [
-          "scholarship"
-        ],
-        "thin_sections": 0
-      },
-      "issues": [
-        {
-          "severity": "high",
-          "type": "fact_check",
-          "text": "Found 2 factual content blocks containing dates, figures, percentages or monetary values.",
-          "location": "factual claims",
-          "recommendation": "Verify high-impact claims against the current authoritative source. Guidance, cautionary wording and source-note text are excluded from this count."
-        },
-        {
-          "severity": "medium",
-          "type": "student_intent",
-          "text": "Potentially missing student-decision topics: scholarship",
-          "location": "page structure",
-          "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
-        }
-      ],
-      "recommendations": [
-        {
-          "priority": "high",
-          "action": "manual_verify_high_impact_facts",
-          "count": 2,
-          "official_source_links": 0
-        },
-        {
-          "priority": "medium",
-          "action": "fill_student_intent_gaps",
-          "sections": [
-            "scholarship"
-          ]
-        }
-      ],
-      "verified_facts": [],
-      "unverified_claims": [
-        {
-          "claim": "The PGPMCI is a specialized degree-granting programme offered by IIM Visakhapatnam, an Institution of National Importance under the IIM Act 2017.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        },
-        {
-          "claim": "Admission processes at IIM Visakhapatnam typically utilize multiple parameters including academic background, work experience, and personal interviews.",
-          "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
-          "action": "manual_review"
-        }
-      ],
-      "replacement_content": [],
-      "keep_content": []
-    },
-    {
-      "file": "iim-visakhapatnam-executive-post-graduate-diploma-program-in-management-epgdpm.html",
-      "overall_score": 98,
-      "summary": "Free editorial audit completed. It identifies generic/repetitive/promotional patterns and factual-risk areas; it does not prove a factual claim true or false.",
-      "auto_applied": false,
-      "auto_apply_reason": "Automatic mode only removes safe generic/promotional/repeated content. It never rewrites factual figures without verification.",
-      "metrics": {
-        "word_count": 353,
+        "word_count": 263,
         "generic_phrase_hits": 0,
         "promotional_hits": 0,
         "duplicate_sentences": 0,
         "numeric_or_date_content_blocks": 3,
         "official_links": 0,
-        "all_external_links": 1,
+        "all_external_links": 3,
         "missing_intent_sections": [
+          "eligibility",
+          "fees",
           "scholarship"
         ],
         "thin_sections": 0
@@ -378,7 +128,7 @@
         {
           "severity": "medium",
           "type": "student_intent",
-          "text": "Potentially missing student-decision topics: scholarship",
+          "text": "Potentially missing student-decision topics: eligibility, fees, scholarship",
           "location": "page structure",
           "recommendation": "Add only relevant sections and use verified information; do not add generic filler."
         }
@@ -394,6 +144,8 @@
           "priority": "medium",
           "action": "fill_student_intent_gaps",
           "sections": [
+            "eligibility",
+            "fees",
             "scholarship"
           ]
         }
@@ -401,17 +153,17 @@
       "verified_facts": [],
       "unverified_claims": [
         {
-          "claim": "While the institute offers various executive programmes, specific current intake, fee structures, and cutoff data for the EPGDPM are not explicitly published in the current official domain.",
+          "claim": "Detailed statistics for the current and prior three years are provided below based on available institutional reporting.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "Generally, IIMV executive programmes require a Bachelor's degree with a minimum percentage (typically 50% or equivalent CGPA) and relevant professional work experience.",
+          "claim": "Information regarding summer internship placements, including stipend details and industry partners, is managed by the placement cell.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         },
         {
-          "claim": "IIM Visakhapatnam utilizes a multi-parameter selection process for its executive programmes, including entrance examination scores, work experience evaluation, and personal interviews.",
+          "claim": "Admission to IMT Ghaziabad is based on entrance examination scores, academic profile, and personal interview performance.",
           "reason": "Contains a high-impact number/date/figure; free audit does not verify external truth.",
           "action": "manual_review"
         }
