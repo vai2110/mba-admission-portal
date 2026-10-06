@@ -8,6 +8,7 @@ on:
       - "scripts/**"
       - "data/**"
       - "vercel.json"
+      - ".github/workflows/repair-internal-links.yml"
   workflow_dispatch:
 
 permissions:
