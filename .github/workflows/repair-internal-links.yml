@@ -48,12 +48,14 @@ jobs:
           report = json.loads(Path("internal-link-audit.json").read_text(encoding="utf-8"))
           summary = report["summary"]
           print(json.dumps(summary, indent=2))
-          if summary["broken_local_links"] or summary["cluster_reciprocal_gaps"] or summary["zero_incoming_pages"]:
+          if (summary["broken_local_links"] or summary["cluster_reciprocal_gaps"] or
+              summary["zero_incoming_pages"] or summary.get("redirecting_internal_links", 0)):
               raise SystemExit(
                   "Internal-link gate failed: "
                   f"{summary['broken_local_links']} broken, "
                   f"{summary['cluster_reciprocal_gaps']} reciprocal gaps, "
-                  f"{summary['zero_incoming_pages']} orphan candidates."
+                  f"{summary['zero_incoming_pages']} orphan candidates, "
+                  f"{summary.get('redirecting_internal_links', 0)} redirecting internal links."
               )
           print("Internal-link gate passed.")
 
