@@ -36,11 +36,11 @@ ALIAS_CLUSTERS = {
     ],
 }
 
-STYLE = """<style id="college-cluster-links-style">
-.college-cluster-links{margin:24px 0;padding:14px 16px;border:1px solid #dbe7f5;border-radius:10px;background:#f8fbff;font-size:13px;line-height:1.6}
-.college-cluster-links strong{display:block;margin-bottom:6px;color:#173f82}
-.college-cluster-links a{color:#2563eb!important;font-weight:600;text-decoration:none}
-.college-cluster-links a:hover{text-decoration:underline}
+STYLE = """<style id="seo-cluster-links-style">
+.seo-cluster-links{margin:24px 0;padding:14px 16px;border:1px solid #dbe7f5;border-radius:10px;background:#f8fbff;font-size:13px;line-height:1.6}
+.seo-cluster-links strong{display:block;margin-bottom:6px;color:#173f82}
+.seo-cluster-links a{color:#2563eb!important;font-weight:600;text-decoration:none}
+.seo-cluster-links a:hover{text-decoration:underline}
 </style>"""
 
 def build_clusters(pages):
@@ -137,13 +137,13 @@ def href_targets(html):
 
 def remove_generated_block(html):
     html = re.sub(
-        r'<style\b[^>]*id=["\']college-cluster-links-style["\'][^>]*>.*?</style>',
+        r'<style\b[^>]*id=["\']seo-cluster-links-style["\'][^>]*>.*?</style>',
         "",
         html,
         flags=re.I | re.S,
     )
     html = re.sub(
-        r'<nav\b[^>]*class=["\'][^"\']*\bcollege-cluster-links\b[^"\']*["\'][^>]*>.*?</nav>',
+        r'<nav\b[^>]*class=["\'][^"\']*\bseo-cluster-links\b[^"\']*["\'][^>]*>.*?</nav>',
         "",
         html,
         flags=re.I | re.S,
@@ -167,7 +167,7 @@ def repair(path, members):
         )
 
     block = (
-        '<nav class="college-cluster-links" aria-label="Related college pages">'
+        '<nav class="seo-cluster-links" aria-label="Related college pages">'
         '<strong>Explore related pages</strong>'
         + " · ".join(links)
         + "</nav>"
@@ -179,7 +179,7 @@ def repair(path, members):
 
     html = html[:body_match.start()] + block + "\n" + html[body_match.start():]
 
-    if "college-cluster-links-style" not in html:
+    if "seo-cluster-links-style" not in html:
         head_match = re.search(r"</head>", html, flags=re.I)
         if head_match:
             html = html[:head_match.start()] + STYLE + "\n" + html[head_match.start():]
