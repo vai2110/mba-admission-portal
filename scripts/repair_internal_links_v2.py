@@ -67,6 +67,34 @@ def build_clusters(pages):
         if len(valid) >= 2:
             clusters[overview] = valid
 
+    # Fallback college clusters for entities that do not yet have a dedicated
+    # placements page. This is deliberately capped to small clusters so broad
+    # hubs such as /mba-colleges do not become giant link farms.
+    assigned = {member for members in clusters.values() for member in members}
+    for page in sorted(names):
+        if page in EXCLUDED or page in assigned or page.endswith("-placements.html"):
+            continue
+        stem = page[:-5] if page.endswith(".html") else page
+        parts = stem.split("-")
+        candidates = []
+        for cut in range(len(parts) - 1, 1, -1):
+            candidate = "-".join(parts[:cut]) + ".html"
+            if candidate in names and candidate not in EXCLUDED:
+                candidates.append(candidate)
+                break
+        if not candidates:
+            continue
+        base = candidates[0]
+        members = [base]
+        prefix = base[:-5] + "-"
+        siblings = sorted(
+            n for n in names
+            if n not in EXCLUDED and n.startswith(prefix) and n != base
+        )
+        members.extend(siblings)
+        if 2 <= len(members) <= 20:
+            clusters.setdefault(base, members)
+
     return clusters
 
 def label(name, members):
