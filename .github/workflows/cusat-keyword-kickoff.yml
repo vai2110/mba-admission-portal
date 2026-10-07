@@ -1,12 +1,10 @@
 name: Kick off CUSAT Keyword Refresh
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
   kickoff:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
