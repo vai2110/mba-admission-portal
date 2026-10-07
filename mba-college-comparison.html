@@ -120,9 +120,9 @@ function applyQueryFilters(){
   return true;
  });
  sortMatches();shown=15;render();
+ const labelExam=exam?exam.toUpperCase():'MBA';
  const ctx=$('queryContext');
  if(ctx){
-  const labelExam=exam?exam.toUpperCase():'MBA';
   ctx.textContent=percentile?('Your search: '+labelExam+' · '+percentile+' percentile'):('Your search: '+labelExam);
   ctx.style.display='inline-flex';
  }
