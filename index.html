@@ -257,7 +257,7 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 <div class="steps"><div class="step"><span class="num">01</span><h3>Choose Your Exam</h3><p>Identify the right entrance route.</p></div><div class="step"><span class="num">02</span><h3>Check Cutoff</h3><p>Understand your target range.</p></div><div class="step"><span class="num">03</span><h3>Shortlist Colleges</h3><p>Build a realistic college list.</p></div><div class="step"><span class="num">04</span><h3>Compare Fees & Placements</h3><p>Evaluate the key numbers.</p></div><div class="step"><span class="num">05</span><h3>Apply</h3><p>Track forms and deadlines.</p></div><div class="step"><span class="num">06</span><h3>Track Admission</h3><p>Follow the selection process.</p></div></div>
 </div></section>
 
-<section class="section" id="find"><div class="wrap"><div class="final"><div><h2>Still confused about where to apply?</h2><p>Tell us your exam, score and budget. Start with the MBA colleges that match your search.</p></div><div class="finder"><select aria-label="Select exam"><option>Select Exam</option><option>CAT</option><option>XAT</option><option>CMAT</option><option>MAT</option><option>SNAP</option><option>NMAT</option></select><select aria-label="Expected score"><option>Expected Score</option><option>95+ percentile</option><option>90–95 percentile</option><option>80–90 percentile</option><option>Below 80 percentile</option></select><select aria-label="Select budget"><option>Select Budget</option><option>Under ₹5 Lakh</option><option>₹5–10 Lakh</option><option>₹10–20 Lakh</option><option>₹20 Lakh+</option></select><button onclick="location.href='/mba-college-comparison'">Find My Colleges →</button></div></div></div></section>
+<section class="section" id="find"><div class="wrap"><div class="final"><div><h2>Still confused about where to apply?</h2><p>Tell us your exam, score and budget. Start with the MBA colleges that match your search.</p></div><div class="finder"><select id="finderExam" aria-label="Select exam"><option value="">Select Exam</option><option value="cat">CAT</option><option value="xat">XAT</option><option value="cmat">CMAT</option><option value="mat">MAT</option><option value="snap">SNAP</option><option value="nmat">NMAT</option></select><select id="finderPercentile" aria-label="Expected score"><option value="">Expected Score</option><option value="95">95+ percentile</option><option value="90">90–95 percentile</option><option value="80">80–90 percentile</option><option value="79">Below 80 percentile</option></select><select id="finderBudget" aria-label="Select budget"><option value="">Select Budget</option><option value="5">Under ₹5 Lakh</option><option value="10">₹5–10 Lakh</option><option value="20">₹10–20 Lakh</option><option value="21">₹20 Lakh+</option></select><button id="finderSubmit" type="button">Find My Colleges →</button></div></div></div></section>
 
 <section class="section faq-section" style="padding-top:10px;padding-bottom:28px"><div class="wrap"><div class="head"><div><h2>Frequently Asked <span>Questions</span></h2><p>Quick answers before you start researching MBA colleges.</p></div></div><div class="faq">
 <details><summary>How do I choose an MBA college?</summary><p>Start with your exam and score, shortlist colleges, then compare programme fit, fees, cutoff, location and placement information.</p></details>
@@ -424,6 +424,16 @@ find.addEventListener('click',renderScoreShortlist);
 score.addEventListener('input',renderScoreShortlist);
 score.addEventListener('change',renderScoreShortlist);
 renderScoreShortlist();
+
+const finderExam=document.getElementById('finderExam'),finderPercentile=document.getElementById('finderPercentile'),finderSubmit=document.getElementById('finderSubmit');
+if(finderSubmit){
+ finderSubmit.addEventListener('click',function(){
+  const params=new URLSearchParams();
+  if(finderExam.value)params.set('exam',finderExam.value);
+  if(finderPercentile.value)params.set('percentile',finderPercentile.value);
+  window.location.href='/mba-college-comparison'+(params.toString()?'?'+params.toString():'');
+ });
+}
 })();
 </script>
 <!-- Remove unintended CUSAT keyword injection from homepage footer -->
