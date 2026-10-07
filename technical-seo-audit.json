@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T11:43:50.559957+00:00",
+  "generated_at": "2026-10-07T12:37:32.327531+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 10,
@@ -7926,7 +7926,7 @@
     {
       "file": "iim-calcutta-mba.html",
       "benchmark": false,
-      "title": "IIM Calcutta MBA 2026: Fees, Eligibility, Admission, Placements…",
+      "title": "IIM Calcutta MBA 2027: Fees, Eligibility, Admission, Placements…",
       "title_length": 64,
       "description": "IIM Calcutta MBA 2026 course guide covering fees, eligibility, CAT admission, curriculum, placements, career outcomes, who should choose the programme and FAQs.",
       "description_length": 160,
@@ -7935,7 +7935,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Calcutta MBA 2026",
+      "h1": "IIM Calcutta MBA 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
