@@ -665,6 +665,20 @@
       "intake": "180",
       "cutoff": "CAT/XAT ~80+ percentile, CMAT ~90+",
       "verification_status": "excel_provided"
+    },
+    {
+      "rank": null,
+      "name": "FMS Delhi",
+      "programme": "MBA Full-Time",
+      "fees": "₹60,818/semester",
+      "fee_cycle": "2026-28",
+      "median_package": "₹29.59 LPA",
+      "average_package": "₹32.27 LPA",
+      "placement_year": "2024-26",
+      "intake": "251",
+      "cutoff": "CAT-based composite shortlist",
+      "verification_status": "official_source",
+      "source_note": "Official FMS MBA 2026-28 bulletin and 2024-26 final placement report."
     }
   ]
 }
