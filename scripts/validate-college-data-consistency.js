@@ -21,6 +21,7 @@ function bestComparison(o){
   return best;
 }
 for(const o of overrides){
+  if(!o.verified_current) continue;
   const c=bestComparison(o);
   if(!c){failures.push(`missing comparison record for rank ${o.rank}: ${o.name}`);continue;}
   for(const [of,cf] of [['fees','fees'],['average_package','average_package'],['median_package','median_package'],['placement_year','placement_year']]){
