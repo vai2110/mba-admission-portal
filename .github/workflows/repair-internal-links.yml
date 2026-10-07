@@ -1,74 +1,42 @@
 name: Repair Internal Links
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "*.html"
-      - "scripts/**"
-      - "data/**"
-      - "vercel.json"
-      - ".github/workflows/repair-internal-links.yml"
   workflow_dispatch:
 
 permissions:
   contents: write
 
-concurrency:
-  group: portal-main-writer
-  cancel-in-progress: false
-
 jobs:
   repair:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Normalize canonical internal URLs
         run: node scripts/normalize-clean-urls.js
-
       - name: Repair reciprocal college links
         run: python3 scripts/repair_internal_links_v2.py
-
       - name: Repair orphan-page discovery links
         run: python3 scripts/repair_orphan_links.py
-
       - name: Audit internal links
         run: python3 scripts/internal_link_audit.py
-
       - name: Enforce zero broken/orphan/reciprocal gaps
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          report = json.loads(Path("internal-link-audit.json").read_text(encoding="utf-8"))
-          summary = report["summary"]
-          print(json.dumps(summary, indent=2))
-          if (summary["broken_local_links"] or summary["cluster_reciprocal_gaps"] or
-              summary["zero_incoming_pages"] or summary.get("redirecting_internal_links", 0)):
-              raise SystemExit(
-                  "Internal-link gate failed: "
-                  f"{summary['broken_local_links']} broken, "
-                  f"{summary['cluster_reciprocal_gaps']} reciprocal gaps, "
-                  f"{summary['zero_incoming_pages']} orphan candidates, "
-                  f"{summary.get('redirecting_internal_links', 0)} redirecting internal links."
-              )
+          report=json.loads(Path("internal-link-audit.json").read_text(encoding="utf-8"))
+          summary=report["summary"]
+          print(json.dumps(summary,indent=2))
+          if summary["broken_local_links"] or summary["cluster_reciprocal_gaps"] or summary["zero_incoming_pages"] or summary.get("redirecting_internal_links",0):
+              raise SystemExit("Internal-link gate failed")
           print("Internal-link gate passed.")
-
+          PY
       - name: Commit repaired pages and audit
         run: |
-          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html' internal-link-audit.json
-          if git diff --cached --quiet; then
-            echo "No internal-link changes required."
-          else
-            git commit -m "SEO: repair internal links and orphan discovery"
-            git pull --rebase --autostash origin main
-            git push origin HEAD:main
-          fi
+          if git diff --cached --quiet; then echo "No internal-link changes required."; else git commit -m "SEO: repair internal links and orphan discovery"; git push; fi
