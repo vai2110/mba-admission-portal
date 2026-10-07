@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-07",
+  "records": [
+    {
+      "id": "iim-ahmedabad",
+      "name": "IIM Ahmedabad",
+      "url": "/iim-ahmedabad",
+      "location": "Ahmedabad, Gujarat",
+      "shortLabel": "IIMA",
+      "rankLabel": "#1 NIRF",
+      "feeLabel": "₹27.50 lakh",
+      "feeNote": "Latest published PGP fee benchmark for 2025–27.",
+      "avgPackageLabel": "₹37.97 LPA",
+      "packageNote": "Mean MEP in IIMA's audited 2026 PGP placement report.",
+      "sourceUrl": "https://www.iima.ac.in/academics/mba/admissions",
+      "asOf": "2026-10-07"
+    },
+    {
+      "id": "iim-bangalore",
+      "name": "IIM Bangalore",
+      "url": "/iim-bangalore",
+      "location": "Bengaluru, Karnataka",
+      "shortLabel": "IIMB",
+      "rankLabel": "#2 NIRF",
+      "feeLabel": "₹26 lakh",
+      "feeNote": "Published PGP fee for 2026–28.",
+      "avgPackageLabel": "₹35.35 LPA",
+      "packageNote": "Average salary reported in IIMB's 2026 placement report.",
+      "sourceUrl": "https://www.iimb.ac.in/admissions/pgp-admissions",
+      "asOf": "2026-10-07"
+    },
+    {
+      "id": "iim-kozhikode",
+      "name": "IIM Kozhikode",
+      "url": "/iim-kozhikode",
+      "location": "Kozhikode, Kerala",
+      "shortLabel": "IIMK",
+      "rankLabel": "#3 NIRF",
+      "feeLabel": "₹23.50 lakh",
+      "feeNote": "Published PGP programme fee for 2026–28.",
+      "avgPackageLabel": "₹28.18 LPA",
+      "packageNote": "Mean CTC reported for the 2025 placement cycle.",
+      "sourceUrl": "https://www.iimk.ac.in/academic-programmes/pgp/pgp-fee-payment",
+      "asOf": "2026-10-07"
+    },
+    {
+      "id": "iim-calcutta",
+      "name": "IIM Calcutta",
+      "url": "/iim-calcutta",
+      "location": "Kolkata, West Bengal",
+      "shortLabel": "IIMC",
+      "rankLabel": "#7 NIRF",
+      "feeLabel": "Not published",
+      "feeNote": "The current domestic 2026–28 admission policy does not state the programme fee figure.",
+      "avgPackageLabel": "₹36 LPA",
+      "packageNote": "Average salary reported for the Batch 2026 final placements.",
+      "sourceUrl": "https://www.iimcal.ac.in/programs/mba",
+      "asOf": "2026-10-07"
+    },
+    {
+      "id": "fms-delhi",
+      "name": "FMS Delhi",
+      "url": "/fms-delhi",
+      "location": "New Delhi",
+      "shortLabel": "FMS",
+      "rankLabel": "Top MBA",
+      "feeLabel": "₹60,818/semester",
+      "feeNote": "Approximate semester fee stated in the FMS MBA 2026 bulletin.",
+      "avgPackageLabel": "₹32.27 LPA",
+      "packageNote": "Average CTC reported for the 2024–26 final placement batch.",
+      "sourceUrl": "https://www.fms.edu/static/programmes/MBA_2026.pdf",
+      "asOf": "2026-10-07"
+    },
+    {
+      "id": "xlri-jamshedpur",
+      "name": "XLRI Jamshedpur",
+      "url": "/xlri-jamshedpur",
+      "location": "Jamshedpur, Jharkhand",
+      "shortLabel": "XLRI",
+      "rankLabel": "Top MBA",
+      "feeLabel": "₹30.5 lakh",
+      "feeNote": "Published programme fee benchmark shown on the XLRI profile.",
+      "avgPackageLabel": "₹31.40 LPA",
+      "packageNote": "Average salary reported for 2024–26 final placements.",
+      "sourceUrl": "https://www.xlri.ac.in/academic-programmes/school-of-business/pgdm-bm",
+      "asOf": "2026-10-07"
+    }
+  ]
+}
