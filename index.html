@@ -450,7 +450,7 @@ if(finderSubmit){
 </script>
 <script>
 (function(){
-  const DATA_URL='/mba-college-card-data.json?v=20261007';
+  const DATA_URL='/mba-college-card-data.json?v=20261007-2';
   const STORAGE_KEY='cd_compare_ids';
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   function getSelected(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]').filter(Boolean).slice(0,4)}catch(e){return[]}}
