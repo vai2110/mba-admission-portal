@@ -56,6 +56,16 @@
   ],
   "redirects": [
     {
+      "source": "/favicon.ico",
+      "destination": "/assets/collegedecoded-favicon.svg",
+      "permanent": true
+    },
+    {
+      "source": "/apple-touch-icon.png",
+      "destination": "/assets/collegedecoded-favicon.svg",
+      "permanent": true
+    },
+    {
       "source": "/iift-delhi.html",
       "destination": "/iift",
       "permanent": true
