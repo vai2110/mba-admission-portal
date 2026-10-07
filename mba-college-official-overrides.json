@@ -15,12 +15,12 @@
     {
       "name": "Indian Institute of Management Rohtak",
       "rank": 19,
-      "fees": "₹17.90 lakh programme fee*",
-      "average_package": "₹18.73 LPA",
-      "median_package": "₹17.00 LPA",
-      "placement_year": "2023-25",
+      "fees": "₹17.90-20.03 lakh benchmark range",
+      "average_package": "₹20.03 LPA",
+      "median_package": "₹18.00 LPA",
+      "placement_year": "2026",
       "intake": "",
-      "source_note": "2025-27 PGP fee structure; latest official final placement report available"
+      "source_note": "Official IIM Rohtak current placement reporting and current 2026-28 admission cycle; fee figure retained as the published CollegeDecoded benchmark pending a current official fee page."
     },
     {
       "name": "Indian Institute of Technology Roorkee",
@@ -120,7 +120,7 @@
       "median_package": "₹17.64 LPA",
       "placement_year": "2024-25",
       "intake": "220 opted in",
-      "source_note": "Official IIM Ranchi placement page/final placement reporting"
+      "source_note": "Official IIM Ranchi final placement report 2024-25."
     },
     {
       "name": "Indian Institute of Management Kashipur",
@@ -185,12 +185,12 @@
     {
       "name": "Indian Institute of Foreign Trade",
       "rank": 17,
-      "fees": "₹21.82 lakh Delhi / ₹21.32 lakh Kolkata for 2025-27; 2026-28 exact fee to be issued with offer letter",
+      "fees": "₹21.82 lakh Delhi / ₹21.32 lakh Kolkata for 2025-27",
       "average_package": "₹31.30 LPA",
       "median_package": "₹26.00 LPA",
       "placement_year": "2023-25",
       "intake": "195 enrolled 2025",
-      "source_note": "Official IIFT MBA(IB) 2026 brochure and current programme page"
+      "source_note": "Official IIFT MBA(IB) 2025 placement report and current programme/fee information."
     },
     {
       "name": "SVKM's Narsee Monjee Institute of Management Studies",
@@ -270,7 +270,7 @@
       "median_package": "₹18.00 LPA",
       "placement_year": "2024-25",
       "intake": "397 graduated / 383 placed",
-      "source_note": "Official IIM Trichy 2026-28 PGPM fee structure and 2024-25 independently audited placement report; median aligns with institute/NIRF reporting."
+      "source_note": "Official IIM Trichy 2026-28 fee structure and 2024-25 PGPM final placement report."
     },
     {
       "name": "Indian Institute of Management Indore",
@@ -301,6 +301,33 @@
       "placement_year": "2024-26",
       "intake": "",
       "source_note": "Official XLRI final placement reporting for PGDM BM/HRM 2024-26; current programme fee benchmark."
+    },
+    {
+      "name": "Indian Institute of Management Mumbai",
+      "rank": 6,
+      "fees": "₹25.00 lakh",
+      "average_package": "₹30.11 LPA",
+      "median_package": "",
+      "placement_year": "2026",
+      "source_note": "Official IIM Mumbai MBA 2026-28 admission page and 2026 programme brochure."
+    },
+    {
+      "name": "Indian Institute of Management Raipur",
+      "rank": 15,
+      "fees": "₹20.08 lakh approx. excluding caution, boarding and medical insurance",
+      "average_package": "₹19.70 LPA",
+      "median_package": "₹18.50 LPA",
+      "placement_year": "2025",
+      "source_note": "Official IIM Raipur 2026-28 fee schedule and Class of 2025 placement update."
+    },
+    {
+      "name": "S. P. Jain Institute of Management and Research",
+      "rank": 20,
+      "fees": "₹22.50-24.00 lakh",
+      "average_package": "₹33.75 LPA",
+      "median_package": "₹32.85 LPA",
+      "placement_year": "2025-26",
+      "source_note": "Official SPJIMR placement reporting for 2025-26."
     }
   ]
 }
