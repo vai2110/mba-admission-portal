@@ -3,6 +3,7 @@ set -e
 python3 scripts/seo_metadata_cleanup.py
 node scripts/normalize-clean-urls.js
 node scripts/validate-college-data-consistency.js
+test -f 404.html && test -f assets/collegedecoded-favicon.svg
 python3 scripts/repair_internal_links_v2.py
 python3 scripts/repair_orphan_links.py
 python3 scripts/internal_link_audit.py
