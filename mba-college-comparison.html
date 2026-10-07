@@ -81,7 +81,7 @@
   </div>
 </div></div></div></section>
 <section class="finder" id="finder"><div class="wrap"><div class="smart-finder">
-  <div class="smart-head"><div><h2>Search & Add Colleges</h2><p>Find any college from our 109-college database and add it to your comparison.</p></div><span class="smart-tip">💡 Compare fees, placements, cutoffs & more</span></div>
+  <div class="smart-head"><div><h2>Search & Add Colleges</h2><p>Find any college from our 109-college database and add it to your comparison.</p></div><span class="smart-tip">💡 Compare fees, placements, cutoffs & more</span><span id="queryContext" class="smart-tip" style="display:none"></span></div>
   <div class="search-row"><div class="search-box"><span>⌕</span><input id="collegeSearch" autocomplete="off" placeholder="Search any college to add to comparison..." aria-label="Search college name"><div id="searchResults" class="search-results"></div></div><button class="btn primary" id="searchAdd">＋ Add to Compare</button></div>
   <div class="search-hint">Try: IIM Ahmedabad · XLRI · FMS Delhi · SPJIMR · NMIMS · IIFT</div>
   <div class="quick-grid">
@@ -103,11 +103,31 @@ const U='mba-college-comparison-universe.json?v=20260922-1',D='mba-college-compa
 const $=id=>document.getElementById(id),clean=v=>String(v??'').trim(),norm=v=>clean(v).toLowerCase().replace(/[^a-z0-9]+/g,''),esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const core=c=>c.verification_status==='verified_core',researched=c=>!!c.verification_status&&c.verification_status!=='research_pending';
 function match(a,u){let x=a.find(c=>clean(c.profile)===clean(u.profile));if(x)return x;x=a.find(c=>Number(c.rank)===Number(u.rank)&&norm(c.name)===norm(u.name));if(x)return x;let ranked=a.filter(c=>Number(c.rank)===Number(u.rank));if(ranked.length===1)return ranked[0];if(ranked.length>1){let tokens=s=>new Set(norm(s).match(/.{1,}/g)||[]),uN=norm(u.name),best=null,bestScore=0;ranked.forEach(c=>{let n=norm(c.name),score=0;['iim','indian','institute','management','school','business','technology','university','of','the','and'].forEach(()=>{});if(uN.includes('iift')&&n.includes('foreigntrade'))score+=10;if(uN.includes('thapar')&&n.includes('thapar'))score+=10;if(uN.includes('icfai')&&n.includes('icfai'))score+=10;for(const k of ['delhi','mumbai','pune','hyderabad','jaipur','kolkata','bangalore','bengaluru','chennai','dhanbad','kharagpur','madras','bombay'])if(uN.includes(k)&&n.includes(k))score+=2;if(score>bestScore){bestScore=score;best=c}});return best||ranked[0]}return null}
-function merge(){all=universe.map((u,i)=>{let b=match(base,u),o=match(overrides,u),c={...u,...(b||{}),...(o||{}),_key:i+'|'+u.name+'|'+u.rank+'|'+u.profile};c.verification_status=b?.verification_status||o?.verification_status||((b||o)?'official_partial':'research_pending');return c});matches=all.slice();sortMatches();shown=15;render()}
+function merge(){all=universe.map((u,i)=>{let b=match(base,u),o=match(overrides,u),c={...u,...(b||{}),...(o||{}),_key:i+'|'+u.name+'|'+u.rank+'|'+u.profile};c.verification_status=b?.verification_status||o?.verification_status||((b||o)?'official_partial':'research_pending');return c});applyQueryFilters();}
 function num(v){let m=clean(v).replace(/,/g,'').match(/(\d+(?:\.\d+)?)/);return m?+m[1]:null}
 function fee(v){let s=clean(v).toLowerCase().replace(/,/g,''),m=s.match(/₹?\s*(\d+(?:\.\d+)?)\s*(lakh|lac|crore|cr)?/);if(!m)return null;let n=+m[1];if(/crore|cr/.test(m[2]||''))n*=100;return n}
 function pass(c){let ex=$('exam').value,p=+$('percentile').value||null,b=$('budget').value,l=$('location').value.toLowerCase(),ca=$('career').value,t=norm((c.programme||'')+' '+(c.name||'')+' '+(c.specialisation||''));if(ex&&!clean(c.exam).toLowerCase().includes(ex.toLowerCase()))return false;let cut=num(c.cutoff);if(p&&cut!=null&&p<cut)return false;let f=fee(c.fees);if(b&&f!=null){let x=+b;if(x===5&&f>=5)return false;if(x===21&&f<20)return false;if(x>5&&x<21&&(f<x-5||f>x))return false}if(l&&l!=='all india'&&!norm((c.location||'')+' '+(c.name||'')).includes(norm(l)))return false;if(ca&&ca!=='placements'){let mp={finance:['finance'],marketing:['marketing'],hr:['humanresource','hr'],analytics:['analytics','businessanalytics','data'],operations:['operations','supplychain'],general:['mba','pgdm','management']};if(!(mp[ca]||[]).some(k=>t.includes(k)))return false}return true}
 function apply(){matches=all.filter(pass);sortMatches();shown=15;render()}
+function applyQueryFilters(){
+ const params=new URLSearchParams(window.location.search);
+ const exam=clean(params.get('exam')).toLowerCase();
+ const percentile=Math.max(0,Math.min(100,Number(params.get('percentile'))||0));
+ if(!exam&&!percentile){matches=all.slice();sortMatches();shown=15;render();return}
+ matches=all.filter(c=>{
+  if(exam&&!clean(c.exam).toLowerCase().includes(exam))return false;
+  const cut=num(c.cutoff);
+  if(percentile&&cut!=null&&percentile<cut)return false;
+  return true;
+ });
+ sortMatches();shown=15;render();
+ const ctx=$('queryContext');
+ if(ctx){
+  const labelExam=exam?exam.toUpperCase():'MBA';
+  ctx.textContent=percentile?('Your search: '+labelExam+' · '+percentile+' percentile'):('Your search: '+labelExam);
+  ctx.style.display='inline-flex';
+ }
+ $('resultSub').textContent=percentile?('Showing colleges matching '+labelExam+' at '+percentile+'+ percentile'):('Showing colleges accepting '+labelExam);
+}
 function sortMatches(){let s=$('sort').value;if(s==='fees')matches.sort((a,b)=>(fee(a.fees)||999)-(fee(b.fees)||999));else if(s==='package')matches.sort((a,b)=>(num(b.average_package)||0)-(num(a.average_package)||0));else matches.sort((a,b)=>(+a.rank||999)-(+b.rank||999)||a.name.localeCompare(b.name))}
 function shortName(c){let n=clean(c.name);let m={
 'Indian Institute of Management Ahmedabad':'IIM Ahmedabad','Indian Institute of Management Bangalore':'IIM Bangalore','Indian Institute of Management Kozhikode':'IIM Kozhikode','Indian Institute of Management Lucknow':'IIM Lucknow','Indian Institute of Management, Mumbai':'IIM Mumbai','Indian Institute of Management Calcutta':'IIM Calcutta','Indian Institute of Management Indore':'IIM Indore','Indian Institute of Management Raipur':'IIM Raipur','Indian Institute of Management Tiruchirappalli':'IIM Trichy','Indian Institute of Management Ranchi':'IIM Ranchi','Indian Institute of Management Rohtak':'IIM Rohtak','Indian Institute of Management Udaipur':'IIM Udaipur','Indian Institute of Management Kashipur':'IIM Kashipur','Indian Institute of Management':'IIM Nagpur','Indian Institute of Technology Delhi':'DMS IIT Delhi','Indian Institute of Technology Kharagpur':'VGSoM IIT Kharagpur','Indian Institute of Technology Madras':'DoMS IIT Madras','Indian Institute of Technology Bombay':'SJMSOM IIT Bombay','Indian Institute of Technology Roorkee':'DoMS IIT Roorkee','Management Development Institute':'MDI Gurgaon','XLRI - Xavier School of Management':'XLRI Jamshedpur','Symbiosis Institute of Business Management':'SIBM Pune','Indian Institute of Foreign Trade':'IIFT Delhi','S. P. Jain Institute of Management and Research':'SPJIMR','SVKM\`s Narsee Monjee Institute of Management Studies':'NMIMS Mumbai'};return m[n]||n.replace(/^Indian Institute of Management,?\s*/i,'IIM ').replace(/^Department of Management Studies,?\s*/i,'DoMS ').replace(/^Vinod Gupta School of Management,?\s*/i,'VGSoM ')}
