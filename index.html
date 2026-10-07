@@ -233,14 +233,7 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 </div></div></section>
 
 <section class="section soft"><div class="wrap"><div class="head"><div><h2>Explore Popular <span>MBA Colleges</span></h2><p>Check key highlights like rankings, fees, placements and admission routes.</p></div><a class="text-link" href="/top-mba-colleges-in-india">View All MBA Colleges →</a></div>
-<div class="college-grid">
-<article class="college"><div class="college-top"><div class="college-mark">IIMA</div><span class="rank">#1 NIRF</span></div><h3>IIM Ahmedabad</h3><p class="location">Ahmedabad, Gujarat</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="/iim-ahmedabad">View College →</a><span class="compare-mini">□ Compare</span></div></article>
-<article class="college"><div class="college-top"><div class="college-mark">IIMB</div><span class="rank">#2 NIRF</span></div><h3>IIM Bangalore</h3><p class="location">Bengaluru, Karnataka</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="/iim-bangalore">View College →</a><span class="compare-mini">□ Compare</span></div></article>
-<article class="college"><div class="college-top"><div class="college-mark">IIMK</div><span class="rank">#3 NIRF</span></div><h3>IIM Kozhikode</h3><p class="location">Kozhikode, Kerala</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="/iim-kozhikode">View College →</a><span class="compare-mini">□ Compare</span></div></article>
-<article class="college"><div class="college-top"><div class="college-mark">IIMC</div><span class="rank">#4 NIRF</span></div><h3>IIM Calcutta</h3><p class="location">Kolkata, West Bengal</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="/iim-calcutta">View College →</a><span class="compare-mini">□ Compare</span></div></article>
-<article class="college"><div class="college-top"><div class="college-mark">FMS</div><span class="rank">Top MBA</span></div><h3>FMS Delhi</h3><p class="location">New Delhi</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="/fms-delhi">View FMS Delhi MBA Profile →</a><span class="compare-mini">□ Compare</span></div></article>
-<article class="college"><div class="college-top"><div class="college-mark">XLRI</div><span class="rank">Top MBA</span></div><h3>XLRI Jamshedpur</h3><p class="location">Jamshedpur, Jharkhand</p><div class="metrics"><div class="metric"><small>Fees</small><b>View Profile</b></div><div class="metric"><small>Avg. Package</small><b>View Profile</b></div></div><div class="college-foot"><a href="/xlri-jamshedpur">View College →</a><span class="compare-mini">□ Compare</span></div></article>
-</div>
+<div class="college-grid" id="popularCollegeGrid" aria-live="polite"></div>
 
 
 </section>
@@ -250,7 +243,7 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 </div></div></div></section>
 
 <section class="section soft"><div class="wrap"><div class="compare"><div class="compare-copy"><div class="eyebrow">Side-by-side research</div><h2>Compare MBA Colleges</h2><p>Compare colleges across fees, cutoffs, placements, rankings and admission details before you shortlist.</p><a class="btn" href="/mba-college-comparison">Compare MBA Colleges →</a></div>
-<div class="compare-table"><div class="compare-row"><b>College</b><b>IIM Ahmedabad</b><b>IIM Bangalore</b><b>IIM Kozhikode</b></div><div class="compare-row"><span>Fees</span><span>View</span><span>View</span><span>View</span></div><div class="compare-row"><span>Avg. Package</span><span>View</span><span>View</span><span>View</span></div><div class="compare-row"><span>CAT Cutoff</span><span>99+</span><span>99+</span><span>99+</span></div><div class="compare-row"><span>NIRF Ranking</span><span>#1</span><span>#2</span><span>#3</span></div></div>
+<div class="compare-table" id="homepageCompareTable" aria-label="MBA college comparison"></div>
 </div></div></section>
 
 <section class="section"><div class="wrap"><div class="head"><div><h2>Your MBA <span>Admission Journey</span></h2><p>From exam to admission — follow the simple steps.</p></div><a class="text-link" href="/mba-admission-guide">Read Admission Guide →</a></div>
@@ -453,6 +446,46 @@ if(finderSubmit){
   }
   clean();
   new MutationObserver(clean).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+<script>
+(function(){
+  const DATA_URL='/mba-college-card-data.json?v=20261007';
+  const STORAGE_KEY='cd_compare_ids';
+  const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  function getSelected(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]').filter(Boolean).slice(0,4)}catch(e){return[]}}
+  function saveSelected(ids){localStorage.setItem(STORAGE_KEY,JSON.stringify(ids.slice(0,4)))}
+  function addAndCompare(id){
+    const ids=getSelected();
+    if(!ids.includes(id)) ids.push(id);
+    saveSelected(ids);
+    const params=new URLSearchParams({ids:ids.join(',')});
+    window.location.href='/mba-college-comparison?'+params.toString();
+  }
+  function renderCards(records){
+    const grid=document.getElementById('popularCollegeGrid');
+    if(!grid)return;
+    grid.innerHTML=records.map(c=>'<article class="college" data-college-id="'+esc(c.id)+'"><div class="college-top"><div class="college-mark">'+esc(c.shortLabel)+'</div><span class="rank">'+esc(c.rankLabel)+'</span></div><h3>'+esc(c.name)+'</h3><p class="location">'+esc(c.location)+'</p><div class="metrics"><div class="metric"><small>Fees</small><b>'+esc(c.feeLabel)+'</b></div><div class="metric"><small>Avg. Package</small><b>'+esc(c.avgPackageLabel)+'</b></div></div><div class="college-foot"><a href="'+esc(c.url)+'">View College →</a><button type="button" class="compare-mini" data-compare-id="'+esc(c.id)+'">＋ Compare</button></div></article>').join('');
+    grid.querySelectorAll('[data-compare-id]').forEach(b=>b.addEventListener('click',()=>addAndCompare(b.dataset.compareId)));
+  }
+  function renderSample(records){
+    const box=document.getElementById('homepageCompareTable');
+    if(!box)return;
+    const ids=['iim-ahmedabad','iim-bangalore','iim-kozhikode'];
+    const rows=ids.map(id=>records.find(c=>c.id===id)).filter(Boolean);
+    box.innerHTML='<div class="compare-row"><b>College</b>'+rows.map(c=>'<b>'+esc(c.name)+'</b>').join('')+'</div>'+
+      '<div class="compare-row"><span>Fees</span>'+rows.map(c=>'<span>'+esc(c.feeLabel)+'</span>').join('')+'</div>'+
+      '<div class="compare-row"><span>Avg. Package</span>'+rows.map(c=>'<span>'+esc(c.avgPackageLabel)+'</span>').join('')+'</div>'+
+      '<div class="compare-row"><span>Source</span>'+rows.map(c=>'<span><a href="'+esc(c.sourceUrl)+'" target="_blank" rel="noopener">Official source ↗</a></span>').join('')+'</div>';
+  }
+  fetch(DATA_URL,{cache:'no-store'}).then(r=>r.json()).then(d=>{
+    const records=d.records||[];
+    renderCards(records);
+    renderSample(records);
+  }).catch(()=>{
+    const grid=document.getElementById('popularCollegeGrid');
+    if(grid)grid.innerHTML='<p style="font-size:11px;color:#64748b">College highlights are temporarily unavailable. Open the college profile for the latest figures.</p>';
+  });
 })();
 </script>
 </body></html>
