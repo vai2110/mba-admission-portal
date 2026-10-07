@@ -56,6 +56,16 @@
   ],
   "redirects": [
     {
+      "source": "/iift-delhi.html",
+      "destination": "/iift",
+      "permanent": true
+    },
+    {
+      "source": "/iift-delhi",
+      "destination": "/iift",
+      "permanent": true
+    },
+    {
       "source": "/college",
       "destination": "/iim-ahmedabad",
       "permanent": true
