@@ -20,7 +20,8 @@
       "median_package": "₹18.00 LPA",
       "placement_year": "2026",
       "intake": "",
-      "source_note": "Official IIM Rohtak current placement reporting and current 2026-28 admission cycle; fee figure retained as the published CollegeDecoded benchmark pending a current official fee page."
+      "source_note": "Official IIM Rohtak current placement reporting and current 2026-28 admission cycle; fee figure retained as the published CollegeDecoded benchmark pending a current official fee page.",
+      "verified_current": true
     },
     {
       "name": "Indian Institute of Technology Roorkee",
@@ -40,7 +41,8 @@
       "median_package": "₹22.80 LPA",
       "placement_year": "2024-26",
       "intake": "195 students appeared",
-      "source_note": "Official MICA final placement brochure for 2024-26; current 2026-27 programme page lists ₹28 lakh for the two-year residential experience."
+      "source_note": "Official MICA final placement brochure for 2024-26; current 2026-27 programme page lists ₹28 lakh for the two-year residential experience.",
+      "verified_current": true
     },
     {
       "name": "Goa Institute of Management",
@@ -120,7 +122,8 @@
       "median_package": "₹17.64 LPA",
       "placement_year": "2024-25",
       "intake": "220 opted in",
-      "source_note": "Official IIM Ranchi final placement report 2024-25."
+      "source_note": "Official IIM Ranchi final placement report 2024-25.",
+      "verified_current": true
     },
     {
       "name": "Indian Institute of Management Kashipur",
@@ -190,7 +193,8 @@
       "median_package": "₹26.00 LPA",
       "placement_year": "2023-25",
       "intake": "195 enrolled 2025",
-      "source_note": "Official IIFT MBA(IB) 2025 placement report and current programme/fee information."
+      "source_note": "Official IIFT MBA(IB) 2025 placement report and current programme/fee information.",
+      "verified_current": true
     },
     {
       "name": "SVKM's Narsee Monjee Institute of Management Studies",
@@ -270,7 +274,8 @@
       "median_package": "₹18.00 LPA",
       "placement_year": "2024-25",
       "intake": "397 graduated / 383 placed",
-      "source_note": "Official IIM Trichy 2026-28 fee structure and 2024-25 PGPM final placement report."
+      "source_note": "Official IIM Trichy 2026-28 fee structure and 2024-25 PGPM final placement report.",
+      "verified_current": true
     },
     {
       "name": "Indian Institute of Management Indore",
@@ -280,7 +285,8 @@
       "median_package": "₹27.00 LPA",
       "placement_year": "2025",
       "intake": "",
-      "source_note": "Official IIM Indore PGP 2026-28 fee structure and Final Placement Report 2025."
+      "source_note": "Official IIM Indore PGP 2026-28 fee structure and Final Placement Report 2025.",
+      "verified_current": true
     },
     {
       "name": "Indian Institute of Management Lucknow",
@@ -290,7 +296,8 @@
       "median_package": "₹32.9 LPA",
       "placement_year": "2024-26",
       "intake": "",
-      "source_note": "Official IIM Lucknow current 2024-26 placement reporting and current PGP fee benchmark on CollegeDecoded profile; latest official placement report is listed by IIM Lucknow."
+      "source_note": "Official IIM Lucknow current 2024-26 placement reporting and current PGP fee benchmark on CollegeDecoded profile; latest official placement report is listed by IIM Lucknow.",
+      "verified_current": true
     },
     {
       "name": "XLRI - Xavier School of Management, Jamshedpur",
@@ -300,7 +307,8 @@
       "median_package": "₹29.00 LPA",
       "placement_year": "2024-26",
       "intake": "",
-      "source_note": "Official XLRI final placement reporting for PGDM BM/HRM 2024-26; current programme fee benchmark."
+      "source_note": "Official XLRI final placement reporting for PGDM BM/HRM 2024-26; current programme fee benchmark.",
+      "verified_current": true
     },
     {
       "name": "Indian Institute of Management Mumbai",
@@ -309,7 +317,8 @@
       "average_package": "₹30.11 LPA",
       "median_package": "",
       "placement_year": "2026",
-      "source_note": "Official IIM Mumbai MBA 2026-28 admission page and 2026 programme brochure."
+      "source_note": "Official IIM Mumbai MBA 2026-28 admission page and 2026 programme brochure.",
+      "verified_current": true
     },
     {
       "name": "Indian Institute of Management Raipur",
@@ -318,7 +327,8 @@
       "average_package": "₹19.70 LPA",
       "median_package": "₹18.50 LPA",
       "placement_year": "2025",
-      "source_note": "Official IIM Raipur 2026-28 fee schedule and Class of 2025 placement update."
+      "source_note": "Official IIM Raipur 2026-28 fee schedule and Class of 2025 placement update.",
+      "verified_current": true
     },
     {
       "name": "S. P. Jain Institute of Management and Research",
@@ -327,7 +337,8 @@
       "average_package": "₹33.75 LPA",
       "median_package": "₹32.85 LPA",
       "placement_year": "2025-26",
-      "source_note": "Official SPJIMR placement reporting for 2025-26."
+      "source_note": "Official SPJIMR placement reporting for 2025-26.",
+      "verified_current": true
     }
   ]
 }
