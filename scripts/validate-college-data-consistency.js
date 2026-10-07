@@ -4,10 +4,24 @@ const norm=s=>String(s||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'');
 const overrides=JSON.parse(fs.readFileSync('mba-college-official-overrides.json','utf8')).records||[];
 const comparison=JSON.parse(fs.readFileSync('mba-college-comparison-data.json','utf8')).colleges||[];
 const cards=JSON.parse(fs.readFileSync('mba-college-card-data.json','utf8')).records||[];
-const byRank=new Map(comparison.map(x=>[String(x.rank),x]));
 const failures=[];
+function bestComparison(o){
+  const candidates=comparison.filter(x=>String(x.rank)===String(o.rank));
+  if(!candidates.length)return null;
+  const on=norm(o.name);
+  let best=null,bestScore=-1;
+  for(const c of candidates){
+    const cn=norm(c.name);
+    let score=cn===on?100:0;
+    if(cn.includes(on)||on.includes(cn))score+=50;
+    const ot=on.match(/.{1,4}/g)||[], ct=cn.match(/.{1,4}/g)||[];
+    score+=ot.filter(t=>ct.includes(t)).length;
+    if(score>bestScore){bestScore=score;best=c;}
+  }
+  return best;
+}
 for(const o of overrides){
-  const c=byRank.get(String(o.rank));
+  const c=bestComparison(o);
   if(!c){failures.push(`missing comparison record for rank ${o.rank}: ${o.name}`);continue;}
   for(const [of,cf] of [['fees','fees'],['average_package','average_package'],['median_package','median_package'],['placement_year','placement_year']]){
     if(String(o[of]||'').trim() && String(o[of]).trim()!==String(c[cf]||'').trim()){
