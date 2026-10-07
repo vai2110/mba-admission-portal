@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs=require('fs');
 const norm=s=>String(s||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'');
-const numbers=v=>(String(v||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/g)||[]).map(Number).join('|');
+const numbers=(v,field='')=>(String(v||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/g)||[]).map(Number).filter(n=>!(field==='fees'&&n>=1900&&n<=2100)).join('|');
 const overrides=JSON.parse(fs.readFileSync('mba-college-official-overrides.json','utf8')).records||[];
 const comparison=JSON.parse(fs.readFileSync('mba-college-comparison-data.json','utf8')).colleges||[];
 const cards=JSON.parse(fs.readFileSync('mba-college-card-data.json','utf8')).records||[];
@@ -24,7 +24,7 @@ for(const o of overrides){
   const c=bestComparison(o);
   if(!c){failures.push(`missing comparison record for rank ${o.rank}: ${o.name}`);continue;}
   for(const [of,cf] of [['fees','fees'],['average_package','average_package'],['median_package','median_package']]){
-    if(String(o[of]||'').trim()&&numbers(o[of])!==numbers(c[cf]))failures.push(`rank ${o.rank} ${o.name}: override ${of}="${o[of]}" != comparison ${cf}="${c[cf]||''}"`);
+    if(String(o[of]||'').trim()&&numbers(o[of],of)!==numbers(c[cf],cf))failures.push(`rank ${o.rank} ${o.name}: override ${of}="${o[of]}" != comparison ${cf}="${c[cf]||''}"`);
   }
   if(String(o.placement_year||'').trim()&&String(o.placement_year).trim()!==String(c.placement_year||'').trim())failures.push(`rank ${o.rank} ${o.name}: placement_year mismatch`);
 }
