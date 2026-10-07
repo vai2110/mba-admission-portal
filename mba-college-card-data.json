@@ -14,7 +14,9 @@
       "avgPackageLabel": "₹37.97 LPA",
       "packageNote": "Mean MEP in IIMA's audited 2026 PGP placement report.",
       "sourceUrl": "https://www.iima.ac.in/academics/mba/admissions",
-      "asOf": "2026-10-07"
+      "asOf": "2026-10-07",
+      "feeSourceUrl": "https://www.iima.ac.in/academics/mba/admissions",
+      "packageSourceUrl": "https://www.iima.ac.in/inmediapgp-final-placements-2025-26"
     },
     {
       "id": "iim-bangalore",
@@ -28,7 +30,9 @@
       "avgPackageLabel": "₹35.35 LPA",
       "packageNote": "Average salary reported in IIMB's 2026 placement report.",
       "sourceUrl": "https://www.iimb.ac.in/admissions/pgp-admissions",
-      "asOf": "2026-10-07"
+      "asOf": "2026-10-07",
+      "feeSourceUrl": "https://www.iimb.ac.in/programmes/pgp/financial-aid-scholarships",
+      "packageSourceUrl": "https://www.iimb.ac.in/sites/default/files/inline-files/Placement-Report-2026.pdf"
     },
     {
       "id": "iim-kozhikode",
@@ -42,7 +46,9 @@
       "avgPackageLabel": "₹28.18 LPA",
       "packageNote": "Mean CTC reported for the 2025 placement cycle.",
       "sourceUrl": "https://www.iimk.ac.in/academic-programmes/pgp/pgp-fee-payment",
-      "asOf": "2026-10-07"
+      "asOf": "2026-10-07",
+      "feeSourceUrl": "https://www.iimk.ac.in/academic-programmes/pgp/pgp-fee-payment",
+      "packageSourceUrl": "https://www.iimk.ac.in/academic-programmes/pgp/final-placements"
     },
     {
       "id": "iim-calcutta",
@@ -56,7 +62,9 @@
       "avgPackageLabel": "₹36 LPA",
       "packageNote": "Average salary reported for the Batch 2026 final placements.",
       "sourceUrl": "https://www.iimcal.ac.in/programs/mba",
-      "asOf": "2026-10-07"
+      "asOf": "2026-10-07",
+      "feeSourceUrl": "https://www.iimcal.ac.in/programs/pgp/admission/admission-policy/admission-procedure-for-domestic-candidates",
+      "packageSourceUrl": "https://www.iimcal.ac.in/recruiters/mba-placements"
     },
     {
       "id": "fms-delhi",
@@ -70,7 +78,9 @@
       "avgPackageLabel": "₹32.27 LPA",
       "packageNote": "Average CTC reported for the 2024–26 final placement batch.",
       "sourceUrl": "https://www.fms.edu/static/programmes/MBA_2026.pdf",
-      "asOf": "2026-10-07"
+      "asOf": "2026-10-07",
+      "feeSourceUrl": "https://www.fms.edu/?q=node%2F384",
+      "packageSourceUrl": "https://www.fms.edu/corporate-relations/placement-reports"
     },
     {
       "id": "xlri-jamshedpur",
@@ -84,7 +94,9 @@
       "avgPackageLabel": "₹31.40 LPA",
       "packageNote": "Average salary reported for 2024–26 final placements.",
       "sourceUrl": "https://www.xlri.ac.in/academic-programmes/school-of-business/pgdm-bm",
-      "asOf": "2026-10-07"
+      "asOf": "2026-10-07",
+      "feeSourceUrl": "https://www.xlri.ac.in/academic-programmes/school-of-business/pgdm-bm",
+      "packageSourceUrl": "https://xlridelhi.ac.in/placement/"
     }
   ]
 }
