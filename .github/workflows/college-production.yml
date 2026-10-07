@@ -2,15 +2,9 @@ name: College Production Queue
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'production-queue.trigger'
-  schedule:
-    - cron: '3,18,33,48 * * * *'
 
 permissions:
   contents: write
-  actions: write
 
 env:
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -22,7 +16,6 @@ concurrency:
 
 jobs:
   produce:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
@@ -30,210 +23,24 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install production dependencies
         run: pip install beautifulsoup4 openpyxl pypdf
-
       - name: Check free AI production credentials
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          if [ -z "$GEMINI_API_KEY" ]; then
-            echo "::error::GEMINI_API_KEY is not available to College Production Queue."
-            exit 1
-          fi
-          echo "GEMINI_API_KEY is available to the production job."
-          echo "Using Gemini free-tier model: $GEMINI_MODEL"
-
+          if [ -z "$GEMINI_API_KEY" ]; then echo "::error::GEMINI_API_KEY is not available."; exit 1; fi
       - name: Apply popular-name SEO rules
         run: python scripts/apply_popular_name_rules.py
-
       - name: Reconcile production tracker
         run: python scripts/update_college_production_tracker.py
-
       - name: Commit tracker reconciliation
         run: |
           git config user.name "MBA Portal College Production"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add college-production-tracker.xlsx college-production-tracker.csv data/college-production-state.json
-          if git diff --cached --quiet; then
-            echo "No tracker/state changes."
-          else
-            git commit -m "Update college production queue status"
-            git push
-          fi
-
-      - name: Detect existing audit transaction
-        id: audit_state
-        run: |
-          python - <<'PY'
-          import csv, json
-          from pathlib import Path
-
-          state=json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
-          cols=['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']
-          found=None
-
-          with open('data/college-queue.csv',encoding='utf-8-sig',newline='') as f:
-              queue=list(csv.DictReader(f))
-
-          for row in queue:
-              rank=str(row['rank'])
-              rec=state.get('colleges',{}).get(rank,{})
-              if any(rec.get(c)=='Created — Audit Pending' for c in cols):
-                  found=(rank,row['college_name'])
-                  break
-
-          if found:
-              print(f'Existing audit transaction: #{found[0]} {found[1]}')
-              print('exists=true')
-              with open(__import__('os').environ['GITHUB_OUTPUT'],'a') as out:
-                  out.write('exists=true\n')
-                  out.write(f'rank={found[0]}\n')
-                  out.write(f'college={found[1]}\n')
-          else:
-              print('No existing audit transaction.')
-              with open(__import__('os').environ['GITHUB_OUTPUT'],'a') as out:
-                  out.write('exists=false\n')
-          PY
-
-      - name: Create next college cluster
-        id: generation
-        if: ${{ steps.audit_state.outputs.exists != 'true' }}
-        continue-on-error: true
-        run: |
-          for attempt in 1 2 3 4 5; do
-            echo "College cluster generation pass $attempt/5"
-            if python scripts/college_queue_agent_local.py; then
-              echo "College cluster generation succeeded on pass $attempt"
-              exit 0
-            fi
-            echo "College cluster generation failed on pass $attempt; retrying without weakening validation."
-            sleep $((15 * attempt))
-          done
-          echo "::error::College cluster generation failed after 5 recovery passes."
-          exit 1
-
-      - name: Stop failed generation transaction
-        if: ${{ steps.audit_state.outputs.exists != 'true' && steps.generation.outcome == 'failure' }}
-        run: |
-          echo "Generation failed. The queue will retry the same college on the next scheduled run."
-          exit 1
-
-      - name: Prepare audit target list
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          python - <<'PY'
-          import csv,json,re
-          from pathlib import Path
-
-          state=json.loads(Path('data/college-production-state.json').read_text(encoding='utf-8'))
-          cols=['Overview Page','Placement Page','Course Page 1','Course Page 2','Course Page 3']
-          pages=[]
-
-          with open('data/college-queue.csv',encoding='utf-8-sig',newline='') as f:
-              queue=list(csv.DictReader(f))
-
-          for row in queue:
-              rank=str(row['rank'])
-              rec=state.get('colleges',{}).get(rank,{})
-              if not any(rec.get(c)=='Created — Audit Pending' for c in cols):
-                  continue
-
-              popular=rec.get('popular_name') or row['college_name']
-              slug=re.sub(r'[^a-z0-9]+','-',popular.lower()).strip('-')
-              pages.append(f'{slug}.html')
-              pages.append(f'{slug}-placements.html')
-
-              files=rec.get('course_filenames',[])
-              for idx,key in enumerate(cols[2:]):
-                  if rec.get(key)=='Created — Audit Pending' and idx < len(files) and files[idx]:
-                      pages.append(files[idx])
-              break
-
-          pages=list(dict.fromkeys(pages))
-          Path('changed-html.txt').write_text('\n'.join(pages)+('\n' if pages else ''),encoding='utf-8')
-          print('Audit targets:',', '.join(pages) if pages else 'none')
-          PY
-
-      - name: Enforce IIM Ahmedabad + SIBM Pune frontend contract
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/frontend_benchmark_enforcer.py; fi
-
-      - name: Run six-reference benchmark gate and repair
-        id: benchmark
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then
-            for attempt in 1 2 3; do
-              echo "Benchmark repair pass $attempt/3"
-              if TARGET_PAGES="$(cat changed-html.txt)" python scripts/reference_benchmark_gate.py; then
-                echo "Benchmark gate passed on pass $attempt"
-                exit 0
-              fi
-            done
-            echo "::error::Benchmark gate did not pass after 3 repair passes."
-            exit 1
-          fi
-
-      - name: Run SEO + AEO + GEO audit fixer
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/seo_geo_aeo_audit.py; fi
-
-      - name: Apply locked benchmark UI fixes
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/locked_benchmark_ui_audit.py; fi
-
-      - name: Run content audit
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/free_content_auditor.py; fi
-
-      - name: Re-audit after modifications
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then export TARGET_PAGES="$(cat changed-html.txt)"; python scripts/reference_benchmark_gate.py; python scripts/seo_geo_aeo_audit.py; python scripts/locked_benchmark_ui_audit.py; python scripts/free_content_auditor.py; fi
-
-      - name: Verify HTML integrity
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: python scripts/verify_html_integrity.py
-
-      - name: Mark audited pages complete
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          if [ -s changed-html.txt ]; then python scripts/mark_college_audit_complete.py; fi
-
-      - name: Refresh production tracker after audit
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: python scripts/update_college_production_tracker.py
-
-      - name: Commit audited pages and tracker
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          git config user.name "MBA Portal College Production"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html' college-production-tracker.xlsx college-production-tracker.csv data/college-production-state.json reference-benchmark-audit.json content-audit-report.json
-          if git diff --cached --quiet; then
-            echo "No production changes to commit."
-          else
-            git commit -m "Publish fully audited college production cluster"
-            git push
-          fi
-
-      - name: Immediately trigger next college transaction
-        if: ${{ steps.audit_state.outputs.exists == 'true' || steps.generation.outcome == 'success' }}
-        run: |
-          printf 'auto-advance-after-audit %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> production-queue.trigger
-          git config user.name "MBA Portal College Production"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add production-queue.trigger
-          git commit -m "Auto-advance college production queue"
-          git push
+          if git diff --cached --quiet; then echo "No tracker/state changes."; else git commit -m "Update college production queue status"; git push; fi
