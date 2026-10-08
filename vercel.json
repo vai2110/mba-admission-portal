@@ -57,12 +57,12 @@
   "redirects": [
     {
       "source": "/favicon.ico",
-      "destination": "/assets/collegedecoded-favicon.svg",
+      "destination": "/assets/collegedecoded-favicon.png",
       "permanent": true
     },
     {
       "source": "/apple-touch-icon.png",
-      "destination": "/assets/collegedecoded-favicon.svg",
+      "destination": "/assets/collegedecoded-favicon.png",
       "permanent": true
     },
     {
