@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T12:37:32.327531+00:00",
+  "generated_at": "2026-10-08T09:35:42.119482+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 10,
@@ -374,7 +374,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Alliance University MBA: Fees, Admission, Eligibility & Placements 2026",
+      "h1": "Alliance University MBA: Fees, Admission, Eligibility & Placements 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -675,7 +675,7 @@
     {
       "file": "amity-university-noida-mba.html",
       "benchmark": false,
-      "title": "Amity University Noida MBA 2026: Admission, Fees, Eligibility…",
+      "title": "Amity University Noida MBA 2027: Admission, Fees, Eligibility…",
       "title_length": 62,
       "description": "Amity University Noida MBA 2026 guide covering eligibility, admission process, fees, selection, placements and ROI considerations.",
       "description_length": 130,
@@ -684,7 +684,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Amity University Noida MBA 2026: Admission, Fees, Eligibility & Placements",
+      "h1": "Amity University Noida MBA 2027–29: Admission, Fees, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -1078,7 +1078,7 @@
     {
       "file": "amu-mba.html",
       "benchmark": false,
-      "title": "AMU MBA Admission 2026: Fees, Eligibility, Exam, Seats &…",
+      "title": "AMU MBA Admission 2027: Fees, Eligibility, Exam, Seats &…",
       "title_length": 57,
       "description": "AMU MBA admission 2026: eligibility, admission test pattern, seats, specialisations, fees, selection process, placements and FAQs.",
       "description_length": 130,
@@ -1087,7 +1087,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "MBA Admission 2026, Fees, Exam, Seats & Placements",
+      "h1": "MBA Admission 2027–29, Fees, Exam, Seats & Placements",
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -1233,7 +1233,7 @@
     {
       "file": "anna-university-mba.html",
       "benchmark": false,
-      "title": "Anna University MBA 2026: Admission, TANCET, Fees &…",
+      "title": "Anna University MBA 2027: Admission, TANCET, Fees &…",
       "title_length": 52,
       "description": "Anna University MBA 2026 guide covering TANCET, eligibility, admission process, fees, curriculum, placements and ROI questions for MBA aspirants.",
       "description_length": 145,
@@ -1242,7 +1242,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Anna University MBA 2026: Admission, TANCET, Fees & Placements",
+      "h1": "Anna University MBA 2027–29: Admission, TANCET, Fees & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -3007,7 +3007,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Chandigarh University MBA: Fees, Admission, CUCET, Specialisations & Placements 2026",
+      "h1": "Chandigarh University MBA: Fees, Admission, CUCET, Specialisations & Placements 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -3897,8 +3897,8 @@
     {
       "file": "christ-university-mba.html",
       "benchmark": false,
-      "title": "Christ University MBA 2026-27: Fees, Eligibility, Admission…",
-      "title_length": 60,
+      "title": "Christ University MBA 2027: Fees, Eligibility, Admission…",
+      "title_length": 57,
       "description": "Christ University MBA guide covering 2026 fees, eligibility, accepted tests, selection process, cutoff, placements, curriculum and student FAQs.",
       "description_length": 144,
       "description_count": 1,
@@ -3906,7 +3906,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Christ University MBA: Fees, Admission 2026-27, Eligibility, Cutoff & Placements",
+      "h1": "Christ University MBA: Fees, Admission 2027–29, Eligibility, Cutoff & Placements",
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -4754,8 +4754,8 @@
     {
       "file": "dms-nit-trichy-mba.html",
       "benchmark": false,
-      "title": "DoMS NIT Trichy MBA 2026-28: Fees, CAT Cutoff, Eligibility &…",
-      "title_length": 61,
+      "title": "DoMS NIT Trichy MBA 2027: Fees, CAT Cutoff, Eligibility &…",
+      "title_length": 58,
       "description": "DoMS NIT Trichy MBA 2026-28: exact 2026 fee breakup, CAT requirement, eligibility, application dates, documents, selection process, interview centres and student FAQs.",
       "description_length": 167,
       "description_count": 1,
@@ -5031,7 +5031,7 @@
     {
       "file": "fore-school-management-pgdm.html",
       "benchmark": false,
-      "title": "FORE School of Management PGDM 2026: Fees, Cutoff & Admission",
+      "title": "FORE School of Management PGDM 2027: Fees, Cutoff & Admission",
       "title_length": 61,
       "description": "FORE PGDM guide covering 2026 eligibility, CAT XAT GMAT admission, selection weightage, fees, cutoff benchmark, curriculum and placements.",
       "description_length": 138,
@@ -5465,7 +5465,7 @@
     {
       "file": "ggsipu-mba.html",
       "benchmark": false,
-      "title": "GGSIPU MBA 2026: Admission, Fees, Eligibility, Cutoff &…",
+      "title": "GGSIPU MBA 2027: Admission, Fees, Eligibility, Cutoff &…",
       "title_length": 56,
       "description": "GGSIPU MBA 2026 guide covering eligibility, CAT, CMAT, CET, fees, counselling, cutoff and placements. Check admission, fees, eligibility and placements.",
       "description_length": 152,
@@ -6767,7 +6767,7 @@
     {
       "file": "icfai-university-hyderabad-mba.html",
       "benchmark": false,
-      "title": "IBS Hyderabad MBA: Admission 2026, Fees, Eligibility &…",
+      "title": "IBS Hyderabad MBA: Admission 2027, Fees, Eligibility &…",
       "title_length": 55,
       "description": "Detailed IBS Hyderabad MBA guide covering eligibility, IBSAT, CAT, XAT, NMAT, GMAT, selection, fees, placements, curriculum and career fit.",
       "description_length": 139,
@@ -6776,7 +6776,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IBS Hyderabad MBA: Admission 2026, Fees, Eligibility & Placements",
+      "h1": "IBS Hyderabad MBA: Admission 2027–29, Fees, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7139,8 +7139,8 @@
     {
       "file": "iim-ahmedabad-mba.html",
       "benchmark": false,
-      "title": "IIM Ahmedabad MBA 2026–28: Admission, CAT Cutoff, Fees &…",
-      "title_length": 57,
+      "title": "IIM Ahmedabad MBA 2027: Admission, CAT Cutoff, Fees &…",
+      "title_length": 54,
       "description": "Explore IIM Ahmedabad MBA 2026–28 admission details, including CAT 2025 cutoff, eligibility, shortlisting criteria, AWT-PI, fees, placements and important admission…",
       "description_length": 165,
       "description_count": 1,
@@ -7148,7 +7148,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA / PGP 2026–28",
+      "h1": "IIM Ahmedabad MBA / PGP 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7833,7 +7833,7 @@
     {
       "file": "iim-bodhgaya-mba.html",
       "benchmark": false,
-      "title": "IIM Bodh Gaya MBA 2026: Admission, Fees, Curriculum &…",
+      "title": "IIM Bodh Gaya MBA 2027: Admission, Fees, Curriculum &…",
       "title_length": 54,
       "description": "IIM Bodh Gaya MBA 2026: eligibility, CAT admission, selection, curriculum, fees, scholarships, placements, ROI and career fit.",
       "description_length": 126,
@@ -7842,7 +7842,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "MBA Admission 2026, Fees, Curriculum & Placements",
+      "h1": "MBA Admission 2027–29, Fees, Curriculum & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8112,7 +8112,7 @@
     {
       "file": "iim-indore-mba.html",
       "benchmark": false,
-      "title": "IIM Indore PGP/MBA 2026: Fees, Eligibility, Admission &…",
+      "title": "IIM Indore PGP/MBA 2027: Fees, Eligibility, Admission &…",
       "title_length": 56,
       "description": "Latest official guide to IIM Indore PGP/MBA covering fees, eligibility, admission process, selection criteria, cutoff information and placement analysis.",
       "description_length": 153,
@@ -8121,7 +8121,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Indore PGP/MBA 2026",
+      "h1": "IIM Indore PGP/MBA 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8391,8 +8391,8 @@
     {
       "file": "iim-kozhikode-mba.html",
       "benchmark": false,
-      "title": "IIM Kozhikode MBA (PGP) 2026-28: Eligibility, Fees &…",
-      "title_length": 53,
+      "title": "IIM Kozhikode MBA (PGP) 2027: Eligibility, Fees &…",
+      "title_length": 50,
       "description": "IIM Kozhikode flagship PGP MBA guide covering 2026-28 eligibility, CAT cutoff, selection process, fee, programme structure and key student considerations.",
       "description_length": 154,
       "description_count": 1,
@@ -8400,7 +8400,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Kozhikode MBA (PGP) 2026-28",
+      "h1": "IIM Kozhikode MBA (PGP) 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8704,7 +8704,7 @@
     {
       "file": "iim-mumbai-mba.html",
       "benchmark": false,
-      "title": "IIM Mumbai MBA Admission 2026: Eligibility, CAT Cutoff, Fees…",
+      "title": "IIM Mumbai MBA Admission 2027: Eligibility, CAT Cutoff, Fees…",
       "title_length": 61,
       "description": "IIM Mumbai MBA Admission 2026-28: check eligibility, CAT 2025 cutoff, selection criteria, admission process, fees, fee components, placement statistics and career…",
       "description_length": 163,
@@ -8713,7 +8713,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Mumbai MBA Admission 2026-28",
+      "h1": "IIM Mumbai MBA Admission 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -9417,7 +9417,7 @@
     {
       "file": "iim-shillong-mba.html",
       "benchmark": false,
-      "title": "IIM Shillong MBA 2026: Fees, CAT Cutoff, Admission, Curriculum",
+      "title": "IIM Shillong MBA 2027: Fees, CAT Cutoff, Admission, Curriculum",
       "title_length": 62,
       "description": "Detailed IIM Shillong MBA guide covering PGP 2026-28 eligibility, CAT cutoff, selection process, fees, curriculum, hostel, scholarships and placements.",
       "description_length": 151,
@@ -9426,7 +9426,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Shillong MBA 2026: Fees, CAT Cutoff, Admission & Placements",
+      "h1": "IIM Shillong MBA 2027–29: Fees, CAT Cutoff, Admission & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -9851,8 +9851,8 @@
     {
       "file": "iim-udaipur-mba.html",
       "benchmark": false,
-      "title": "IIM Udaipur MBA 2026-28: Eligibility, Fees & Admission",
-      "title_length": 54,
+      "title": "IIM Udaipur MBA 2027: Eligibility, Fees & Admission",
+      "title_length": 51,
       "description": "IIM Udaipur Two-Year MBA 2026-28: eligibility, CAT cutoff, admission process, selection criteria, fees, total programme cost, curriculum, internship and placement…",
       "description_length": 163,
       "description_count": 1,
@@ -9860,7 +9860,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Udaipur Two-Year MBA 2026–28",
+      "h1": "IIM Udaipur Two-Year MBA 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -10533,7 +10533,7 @@
     {
       "file": "iit-ism-dhanbad-mba.html",
       "benchmark": false,
-      "title": "IIT (ISM) Dhanbad MBA 2026: Admission, Fees, Eligibility &…",
+      "title": "IIT (ISM) Dhanbad MBA 2027: Admission, Fees, Eligibility &…",
       "title_length": 59,
       "description": "IIT ISM Dhanbad MBA 2026 guide covering MBA and MBA Business Analytics eligibility, CAT route, fees, selection and placements.",
       "description_length": 126,
@@ -10542,7 +10542,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIT (ISM) Dhanbad MBA 2026: Admission, Fees, Eligibility & Placements",
+      "h1": "IIT (ISM) Dhanbad MBA 2027–29: Admission, Fees, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11060,8 +11060,8 @@
     {
       "file": "iit-roorkee-mba.html",
       "benchmark": false,
-      "title": "IIT Roorkee MBA Admission 2026-28: Fees, Eligibility, Selection…",
-      "title_length": 64,
+      "title": "IIT Roorkee MBA Admission 2027: Fees, Eligibility, Selection…",
+      "title_length": 61,
       "description": "IIT Roorkee MBA 2026-28: official admission dates, eligibility, CAT route, 95 seats, selection process, semester-wise fees, 76-credit curriculum and placement outcomes.",
       "description_length": 168,
       "description_count": 1,
@@ -11069,7 +11069,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIT Roorkee MBA Admission 2026-28: Fees, Eligibility, Selection & Placements",
+      "h1": "IIT Roorkee MBA Admission 2027–29: Fees, Eligibility, Selection & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11895,7 +11895,7 @@
     {
       "file": "indian-institute-of-management-kashipur-mba.html",
       "benchmark": false,
-      "title": "IIM Kashipur MBA: Admission 2026, Fees, CAT Cutoff &…",
+      "title": "IIM Kashipur MBA: Admission 2027, Fees, CAT Cutoff &…",
       "title_length": 53,
       "description": "IIM Kashipur MBA admission 2026-28: CAT cutoff, eligibility, selection route, fees, curriculum, residential structure and placements.",
       "description_length": 133,
@@ -11904,7 +11904,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIM Kashipur MBA: Admission 2026, Fees, CAT Cutoff & Curriculum",
+      "h1": "IIM Kashipur MBA: Admission 2027–29, Fees, CAT Cutoff & Curriculum",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12050,8 +12050,8 @@
     {
       "file": "indian-institute-of-management-nagpur-mba.html",
       "benchmark": false,
-      "title": "MBA Programme | IIM Nagpur Admissions 2026-28",
-      "title_length": 45,
+      "title": "MBA Programme | IIM Nagpur Admissions 2027",
+      "title_length": 42,
       "description": "Official admissions guide for IIM Nagpur's two-year full-time residential MBA. Explore eligibility, CAT 2025 cut-offs, selection criteria, fees, and placement statistics.",
       "description_length": 170,
       "description_count": 1,
@@ -12652,7 +12652,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Jain University MBA: Fees, Admission, Eligibility & Placements 2026",
+      "h1": "Jain University MBA: Fees, Admission, Eligibility & Placements 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12922,7 +12922,7 @@
     {
       "file": "jaipuria-lucknow-pgdm.html",
       "benchmark": false,
-      "title": "Jaipuria Lucknow PGDM 2026: Fees, Eligibility, Admission…",
+      "title": "Jaipuria Lucknow PGDM 2027: Fees, Eligibility, Admission…",
       "title_length": 57,
       "description": "Jaipuria Lucknow PGDM 2026: curriculum, core courses, dual specialisation, eligibility, entrance exams, selection process, fees, scholarships, placements and FAQs.",
       "description_length": 163,
@@ -13201,7 +13201,7 @@
     {
       "file": "jamia-hamdard-mba.html",
       "benchmark": false,
-      "title": "Jamia Hamdard MBA 2026: Admission, Fees, Eligibility &…",
+      "title": "Jamia Hamdard MBA 2027: Admission, Fees, Eligibility &…",
       "title_length": 55,
       "description": "Jamia Hamdard MBA 2026 guide covering eligibility, GDPI, specialisations, fees, admission process and official placement evidence.",
       "description_length": 130,
@@ -13210,7 +13210,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Jamia Hamdard MBA 2026: Admission, Fees, Eligibility & Placements",
+      "h1": "Jamia Hamdard MBA 2027–29: Admission, Fees, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -13263,7 +13263,7 @@
     {
       "file": "jamia-millia-islamia-mba.html",
       "benchmark": false,
-      "title": "JMI MBA Course 2026: Fees, Eligibility, Curriculum &…",
+      "title": "JMI MBA Course 2027: Fees, Eligibility, Curriculum &…",
       "title_length": 53,
       "description": "Jamia Millia Islamia MBA course page: duration, 60-seat intake, eligibility, annual fee, entrance test, semester-wise curriculum, electives and admission links.",
       "description_length": 160,
@@ -13272,7 +13272,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "JMI MBA Course 2026",
+      "h1": "JMI MBA Course 2027–29",
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -13883,7 +13883,7 @@
     {
       "file": "kiit-mba.html",
       "benchmark": false,
-      "title": "KIIT MBA 2026: Fees, Eligibility, Admission, Cutoff &…",
+      "title": "KIIT MBA 2027: Fees, Eligibility, Admission, Cutoff &…",
       "title_length": 54,
       "description": "KIIT MBA 2026: eligibility, accepted entrance exams, admission process, fees, selection, curriculum, placements, recruiters and FAQs.",
       "description_length": 133,
@@ -13892,7 +13892,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "MBA Fees, Admission 2026, Eligibility & Placements",
+      "h1": "MBA Fees, Admission 2027–29, Eligibility & Placements",
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -14171,7 +14171,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "KL University MBA: Fees, Admission, Eligibility & Placements 2026",
+      "h1": "KL University MBA: Fees, Admission, Eligibility & Placements 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -14503,7 +14503,7 @@
     {
       "file": "lovely-professional-university-mba.html",
       "benchmark": false,
-      "title": "LPU MBA 2026: Fees, Admission, Eligibility, Specialisations &…",
+      "title": "LPU MBA 2027: Fees, Admission, Eligibility, Specialisations &…",
       "title_length": 62,
       "description": "LPU MBA 2026 student guide covering eligibility, admission process, entrance exams, fees, scholarships, curriculum, specialisations, internships, placements, hostel…",
       "description_length": 165,
@@ -14512,7 +14512,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "LPU MBA 2026: Fees, Admission, Eligibility, Specialisations & Placements",
+      "h1": "LPU MBA 2027–29: Fees, Admission, Eligibility, Specialisations & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -16729,7 +16729,7 @@
     {
       "file": "nmims-mba.html",
       "benchmark": false,
-      "title": "NMIMS MBA: Admission 2026, NMAT, Fees & Placements",
+      "title": "NMIMS MBA: Admission 2027, NMAT, Fees & Placements",
       "title_length": 50,
       "description": "NMIMS MBA 2026: NMAT admission route, eligibility, selection process, curriculum, fees guidance and SBM Mumbai placement outcomes.",
       "description_length": 130,
@@ -16738,7 +16738,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "NMIMS MBA: Admission 2026, NMAT, Fees & Placements",
+      "h1": "NMIMS MBA: Admission 2027–29, NMAT, Fees & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -17070,7 +17070,7 @@
     {
       "file": "pdeu-mba.html",
       "benchmark": false,
-      "title": "PDEU MBA 2026: Fees, Admission, CAT/XAT/NMAT & Placements",
+      "title": "PDEU MBA 2027: Fees, Admission, CAT/XAT/NMAT & Placements",
       "title_length": 57,
       "description": "PDEU MBA 2026 guide covering eligibility, CAT XAT NMAT, WAT GDPI, specialisations, fees, placements, salary and ROI. Check admission, fees, eligibility and placements.",
       "description_length": 167,
@@ -17079,7 +17079,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "PDEU MBA 2026: Fees, Admission, CAT/XAT/NMAT & Placements",
+      "h1": "PDEU MBA 2027–29: Fees, Admission, CAT/XAT/NMAT & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -17163,8 +17163,8 @@
     {
       "file": "pumba-pune.html",
       "benchmark": false,
-      "title": "PUMBA MBA Admission 2026-27: Eligibility, MHT-CET, Fees",
-      "title_length": 55,
+      "title": "PUMBA MBA Admission 2027: Eligibility, MHT-CET, Fees",
+      "title_length": 52,
       "description": "PUMBA MBA Admission 2026-27: eligibility, MHT-MBA-CET admission process, selection, fees, placements and latest official updates for MBA aspirants.",
       "description_length": 147,
       "description_count": 1,
@@ -17172,7 +17172,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "PUMBA MBA Admission 2026-27: Eligibility, MHT-CET, Fees & Placements",
+      "h1": "PUMBA MBA Admission 2027–29: Eligibility, MHT-CET, Fees & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -17256,7 +17256,7 @@
     {
       "file": "rajagiri-business-school-pgdm.html",
       "benchmark": false,
-      "title": "Rajagiri Business School PGDM 2026: Course, Curriculum, Fees…",
+      "title": "Rajagiri Business School PGDM 2027: Course, Curriculum, Fees…",
       "title_length": 61,
       "description": "Rajagiri Business School PGDM 2026: duration, curriculum, dual specialisation, international exposure, fees, scholarships, placements and career fit.",
       "description_length": 149,
@@ -17265,7 +17265,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Rajagiri Business School PGDM 2026",
+      "h1": "Rajagiri Business School PGDM 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -18714,8 +18714,8 @@
     {
       "file": "srmist-mba.html",
       "benchmark": false,
-      "title": "SRMIST MBA 2026-27: Fees, Eligibility, Admission, Cutoff &…",
-      "title_length": 59,
+      "title": "SRMIST MBA 2027: Fees, Eligibility, Admission, Cutoff &…",
+      "title_length": 56,
       "description": "SRMIST MBA 2026-27 eligibility, SRMJEEM, CAT XAT MAT GMAT NMAT CMAT TANCET, campus fees, cutoff guidance, specialisations and placements.",
       "description_length": 137,
       "description_count": 1,
@@ -18723,7 +18723,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "SRMIST MBA 2026-27",
+      "h1": "SRMIST MBA 2027–29",
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -19179,7 +19179,7 @@
     {
       "file": "thapar-institute-mba.html",
       "benchmark": false,
-      "title": "Thapar MBA 2026: Admission, Fees, Eligibility & Placements",
+      "title": "Thapar MBA 2027: Admission, Fees, Eligibility & Placements",
       "title_length": 58,
       "description": "LM Thapar School of Management MBA guide covering 2026 admission, CAT XAT CMAT GMAT TMAT, fees, selection and placements.",
       "description_length": 121,
@@ -19188,7 +19188,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Thapar MBA 2026: Admission, Fees, Eligibility & Placements",
+      "h1": "Thapar MBA 2027–29: Admission, Fees, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -19830,7 +19830,7 @@
     {
       "file": "upes-dehradun-mba.html",
       "benchmark": false,
-      "title": "UPES MBA: Fees, Eligibility, Specialisations & Admission 2026",
+      "title": "UPES MBA: Fees, Eligibility, Specialisations & Admission 2027",
       "title_length": 61,
       "description": "UPES MBA guide covering specialisations, fees, eligibility, UPESMET, CAT, admission and placements. Check admission, fees, eligibility and placements.",
       "description_length": 150,
@@ -19839,7 +19839,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "UPES MBA: Fees, Eligibility, Specialisations & Admission 2026",
+      "h1": "UPES MBA: Fees, Eligibility, Specialisations & Admission 2027–29",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -20112,7 +20112,7 @@
     {
       "file": "welingkar-mumbai-pgdm.html",
       "benchmark": false,
-      "title": "Welingkar Mumbai PGDM 2026: Fees, Admission, Eligibility &…",
+      "title": "Welingkar Mumbai PGDM 2027: Fees, Admission, Eligibility &…",
       "title_length": 59,
       "description": "Welingkar Mumbai PGDM 2026 guide covering fees, eligibility, CAT XAT CMAT ATMA GMAT, selection process, curriculum, specialisations and placements.",
       "description_length": 147,
@@ -20121,7 +20121,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "Welingkar Mumbai PGDM 2026: Fees, Admission, Eligibility & Placements",
+      "h1": "Welingkar Mumbai PGDM 2027–29: Fees, Admission, Eligibility & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -20513,7 +20513,7 @@
     {
       "file": "xim-university-mba-business-management.html",
       "benchmark": false,
-      "title": "XIM MBA-BM 2026: Fees, Eligibility, Admission, Cutoff &…",
+      "title": "XIM MBA-BM 2027: Fees, Eligibility, Admission, Cutoff &…",
       "title_length": 56,
       "description": "XIM MBA-BM 2026 guide covering eligibility, XAT CAT GMAT XGMT, selection process, fees, curriculum, placements and career outcomes.",
       "description_length": 131,
@@ -20522,7 +20522,7 @@
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "XIM MBA-BM 2026: Fees, Eligibility, Admission, Selection & Placements",
+      "h1": "XIM MBA-BM 2027–29: Fees, Eligibility, Admission, Selection & Placements",
       "lang": "en",
       "viewport": true,
       "robots": [
