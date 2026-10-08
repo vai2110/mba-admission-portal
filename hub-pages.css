@@ -43,3 +43,12 @@
     overflow-x:auto!important;
   }
 }
+
+
+/* GLOBAL MOBILE WIDTH SAFETY — width/layout only; do not alter page content or desktop design */
+@media (max-width:720px){
+  html,body{width:100%!important;max-width:100%!important;min-width:0!important;margin-left:0!important;margin-right:0!important;overflow-x:hidden!important}
+  main,header,footer,section,article,.container,.wrap,.page-container,.page-layout,.content,.main-content,.hero,.hero-container,.navbar,.nav,.content-wrapper,.main-wrapper,.main,.site-main,.page,.page-wrap{box-sizing:border-box!important;max-width:100%!important;min-width:0!important}
+  .wrap,.container,.page-container,.content-wrapper,.main-wrapper,.page-wrap{width:100%!important}
+  img,video,iframe,svg,canvas{max-width:100%!important}
+}
