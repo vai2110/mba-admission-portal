@@ -52,16 +52,28 @@ strong{font-weight:800}
 .nav{max-width:1180px;margin:auto;min-height:58px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:21px;font-weight:800;color:var(--navy)}.logo span{color:#2563eb}
 .navlinks{display:flex;gap:20px;font-size:12px;font-weight:700;color:#475569}
-.hero{background:linear-gradient(110deg,#092653,#1d4ed8);color:#fff}
-.hero-inner{max-width:1180px;margin:auto;padding:34px 18px}
-.hero h1{font-size:36px;line-height:1.18;margin-bottom:8px;color:#fff}
-.hero p{max-width:850px;color:#dbeafe;font-size:15px;margin-bottom:8px}
-.hero-meta{font-size:12px;color:#dbeafe}
+.hero{background:linear-gradient(110deg,#092653 0%,#174ea6 58%,#2857c7 100%);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:auto -8% -70px auto;width:360px;height:180px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+.hero-inner{max-width:1180px;margin:auto;padding:28px 18px 30px;position:relative;z-index:1}
+.hero-kicker{display:inline-flex;align-items:center;gap:7px;margin-bottom:9px;padding:5px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.09);font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#e7efff}
+.hero h1{max-width:1050px;font-size:36px;line-height:1.18;margin-bottom:10px;color:#fff;letter-spacing:-.35px}
+.hero-meta{display:inline-flex;align-items:center;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,.1);font-size:11px;color:#e7efff;font-weight:700}
 .wrap{max-width:1180px;margin:auto;padding:0 18px}
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
-.fact{background:#fff;border:1px solid var(--border);border-radius:9px;padding:14px}
-.fact small{display:block;color:var(--muted);font-size:10px;margin-bottom:4px}
-.fact b{display:block;color:var(--navy);font-size:13px}
+.iima-intro{padding:20px 0 6px}
+.iima-intro-card{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:0 5px 18px rgba(15,23,42,.055)}
+.iima-intro-main h2{font-size:24px;line-height:1.3;color:var(--navy);margin-bottom:9px}
+.iima-intro-main p{font-size:14px;line-height:1.7;color:#475569;margin:0}
+.iima-placement-highlight{background:linear-gradient(145deg,#f3f8ff,#eef5ff);border:1px solid #d7e5f8;border-radius:11px;padding:16px 17px;align-self:stretch}
+.iima-placement-highlight small{display:block;color:#64748b;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.45px;margin-bottom:6px}
+.iima-placement-highlight strong{display:block;color:#123b78;font-size:26px;line-height:1.1;margin-bottom:4px}
+.iima-placement-highlight span{display:block;color:#475569;font-size:11px;line-height:1.45}
+.iima-placement-stats{display:flex;gap:18px;margin-top:13px;padding-top:11px;border-top:1px solid #d7e5f8}
+.iima-placement-stats b{display:block;color:var(--navy);font-size:15px}
+.iima-placement-stats em{display:block;color:#64748b;font-size:9px;font-style:normal;margin-top:1px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 20px}
+.fact{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 15px;min-height:76px}
+.fact small{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}
+.fact b{display:block;color:var(--navy);font-size:13px;line-height:1.4}
 .layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:start}
 .sidebar{position:sticky;top:74px;align-self:start}
 .sidecard{background:#fff;border:1px solid var(--border);border-radius:9px;overflow:hidden}
@@ -231,10 +243,30 @@ html,body{max-width:100%;overflow-x:hidden}
 </header>
 <section class="hero">
 <div class="hero-inner">
+<div class="hero-kicker">IIM Ahmedabad · MBA / PGP</div>
 <h1>IIM Ahmedabad: MBA Admission 2027, Fees, CAT Cutoff, Courses &amp; Placements</h1>
-<div class="hero-meta">MBA / PGP · 2 Years · CAT 2026 · NIRF Management #1 (2025)</div>
+<div class="hero-meta">2 Years · CAT 2026 · NIRF Management #1 (2025)</div>
 </div>
-</section><section class="main-section iima-factual-summary" id="iima-factual-summary"><h2>IIM Ahmedabad at a Glance</h2><p>IIM Ahmedabad is a public management institute established in 1961 in Vastrapur, Ahmedabad. Its two-year Post Graduate Programme in Management (PGP), which awards an MBA degree, is the institute’s flagship programme. For domestic applicants, the PGP admission route uses CAT followed by IIMA’s shortlisting and AWT-PI selection process.</p><div class="notice"><strong>Latest placement data</strong><p>IIMA’s NIRF submission for 2024-25 data reports 453 students graduating in the minimum stipulated time, 444 placed students and a median salary of ₹33 lakh. The year and source are stated explicitly to avoid mixing placement cycles.</p></div></section>
+</section>
+<section class="iima-intro" id="iima-factual-summary">
+<div class="wrap">
+<div class="iima-intro-card">
+<div class="iima-intro-main">
+<h2>IIM Ahmedabad at a Glance</h2>
+<p>IIM Ahmedabad is a public management institute established in 1961 in Vastrapur, Ahmedabad. Its two-year Post Graduate Programme in Management (PGP), which awards an MBA degree, is the institute’s flagship programme. For domestic applicants, the PGP admission route uses CAT followed by IIMA’s shortlisting and AWT-PI selection process.</p>
+</div>
+<div class="iima-placement-highlight">
+<small>Latest placement benchmark</small>
+<strong>₹33 Lakh</strong>
+<span>Median salary reported in IIMA’s NIRF 2024–25 submission</span>
+<div class="iima-placement-stats">
+<div><b>444</b><em>placed students</em></div>
+<div><b>453</b><em>students graduating</em></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <main class="wrap"><div class="facts">
 <div class="fact"><small>College Type</small><b>Public management institute</b></div>
 <div class="fact"><small>Established</small><b>1961</b></div>
