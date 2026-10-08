@@ -5,15 +5,6 @@
   window.__CD_EDITORIAL_META_READY = true;
 
 
-  function injectGlobalHeroStandard() {
-    if (document.getElementById('cdGlobalHeroStandardStyles')) return;
-    if (!document.querySelector('.hero')) return;
-    var style = document.createElement('style');
-    style.id = 'cdGlobalHeroStandardStyles';
-    style.textContent = "\n/* COLLEGEDECODED — GLOBAL HERO STANDARD\n   Scope: hero container sizing, spacing, typography and responsive layout only.\n   Do not change hero content, colors, navigation or page body content. */\n.cd-global-hero-standard,\n.hero{\n  box-sizing:border-box!important;\n}\n.hero{\n  height:145px!important;\n  min-height:145px!important;\n  max-height:145px!important;\n  padding:0!important;\n  display:flex!important;\n  align-items:center!important;\n  overflow:hidden!important;\n}\n.hero-container,\n.hero-inner,\n.hero-main,\n.hero-text{\n  box-sizing:border-box!important;\n  width:1180px!important;\n  max-width:calc(100% - 36px)!important;\n  margin:0 auto!important;\n}\n.hero-container,\n.hero-inner{\n  min-height:0!important;\n}\n.hero h1{\n  box-sizing:border-box!important;\n  font-family:Arial,Helvetica,sans-serif!important;\n  font-size:30px!important;\n  line-height:1.2!important;\n  font-weight:800!important;\n  letter-spacing:0!important;\n  margin:0 0 7px!important;\n  max-width:980px!important;\n  color:#fff!important;\n  display:-webkit-box!important;\n  -webkit-box-orient:vertical!important;\n  -webkit-line-clamp:2!important;\n  overflow:hidden!important;\n}\n.hero h2{\n  box-sizing:border-box!important;\n  font-family:Arial,Helvetica,sans-serif!important;\n  font-size:16px!important;\n  line-height:1.35!important;\n  font-weight:600!important;\n  margin:0 0 7px!important;\n  max-width:900px!important;\n  color:#dbeafe!important;\n  display:-webkit-box!important;\n  -webkit-box-orient:vertical!important;\n  -webkit-line-clamp:1!important;\n  overflow:hidden!important;\n}\n.hero p{\n  box-sizing:border-box!important;\n  font-family:Arial,Helvetica,sans-serif!important;\n  font-size:12px!important;\n  line-height:1.4!important;\n  margin:0 0 7px!important;\n  max-width:760px!important;\n  color:#dbeafe!important;\n}\n.hero-meta,\n.hero-location,\n.hero small{\n  box-sizing:border-box!important;\n  font-family:Arial,Helvetica,sans-serif!important;\n  font-size:11px!important;\n  line-height:1.4!important;\n  font-weight:700!important;\n  margin:0!important;\n  color:#dbeafe!important;\n}\n.hero a{font-family:Arial,Helvetica,sans-serif!important;}\n\n@media(max-width:720px){\n  .hero{\n    height:132px!important;\n    min-height:132px!important;\n    max-height:132px!important;\n  }\n  .hero-container,\n  .hero-inner,\n  .hero-main,\n  .hero-text{\n    width:100%!important;\n    max-width:calc(100% - 24px)!important;\n    margin:0 auto!important;\n  }\n  .hero h1{\n    font-size:24px!important;\n    line-height:1.2!important;\n    max-width:100%!important;\n    margin-bottom:6px!important;\n  }\n  .hero h2{\n    font-size:13px!important;\n    line-height:1.35!important;\n    max-width:100%!important;\n    margin-bottom:6px!important;\n  }\n  .hero p{\n    font-size:11px!important;\n    line-height:1.35!important;\n    max-width:100%!important;\n    margin-bottom:5px!important;\n  }\n  .hero-meta,\n  .hero-location,\n  .hero small{\n    font-size:10px!important;\n    line-height:1.35!important;\n  }\n}\n";
-    document.head.appendChild(style);
-  }
-
   function formatDate(value) {
     if (!value) return 'Sep 30, 2026';
     var d = new Date(value + 'T00:00:00');
@@ -82,7 +73,6 @@
   function render(dateValue) {
     // The homepage should not show editorial update metadata.
     var currentPath = window.location.pathname.replace(/\/$/, '');
-    injectGlobalHeroStandard();
     if (currentPath === '') {
       removeLegacyMeta();
       return;
@@ -144,7 +134,6 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
-      injectGlobalHeroStandard();
       cleanUnwantedCusatLink(document);
       removeVisibleEscapedNewlines();
       getSitemapDate();
