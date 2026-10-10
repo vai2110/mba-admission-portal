@@ -5,6 +5,34 @@
   window.__CD_EDITORIAL_META_READY = true;
 
 
+
+  // Site-wide section navigation: scroll to the selected section without leaving a hash in the URL.
+  if (!window.__CD_NO_HASH_NAV_READY) {
+    window.__CD_NO_HASH_NAV_READY = true;
+    function cdCleanSectionHash() {
+      if (window.location.hash && window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+    document.addEventListener('click', function (event) {
+      var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+      if (!link || event.defaultPrevented) return;
+      var href = link.getAttribute('href') || '';
+      if (href.charAt(0) !== '#' || href.length < 2) return;
+      var id;
+      try { id = decodeURIComponent(href.slice(1)); } catch (e) { id = href.slice(1); }
+      var target = document.getElementById(id);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      cdCleanSectionHash();
+      var menu = link.closest ? link.closest('.mobile-on-page details') : null;
+      if (menu) menu.removeAttribute('open');
+    }, true);
+    window.addEventListener('hashchange', cdCleanSectionHash);
+    cdCleanSectionHash();
+  }
+
   function formatDate(value) {
     if (!value) return 'Sep 30, 2026';
     var d = new Date(value + 'T00:00:00');
