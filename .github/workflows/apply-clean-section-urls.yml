@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   apply-clean-section-navigation:
-    if: "!contains(github.event.head_commit.message, 'Apply clean section URLs across all pages')"
+    if: ${{ !contains(github.event.head_commit.message, 'Apply clean section URLs across all pages') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
