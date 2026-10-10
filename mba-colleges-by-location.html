@@ -113,5 +113,6 @@ function isReady(c){return (c.status==='ready'||c.status==='available')&&!!c.url
 function resetAll(){stateSelect.value='';citySelect.value='';otherResults.innerHTML='';results.classList.remove('show');history.replaceState(null,'',location.pathname)}stateSelect.addEventListener('change',()=>{citySelect.value='';renderCities()});citySelect.addEventListener('change',()=>{otherResults.innerHTML=''});searchLocationBtn.addEventListener('click',searchLocation);resetBtn.addEventListener('click',resetAll);
 Promise.all([fetch('mba-location-directory.json?v=20260915-3').then(r=>r.json()),fetch('mba-colleges-data.json?v=20260915-2').then(r=>r.json())]).then(([directory,data])=>{popular=directory.destinations||[];colleges=data.map(normalise);renderPopular();renderStates();renderCities();}).catch(()=>{popularGrid.innerHTML='<div class="empty-location">Location data could not be loaded right now. Please refresh the page.</div>'});
 </script>
+<script src="/no-hash-navigation.js?v=20261010" defer></script>
 </body>
 </html>

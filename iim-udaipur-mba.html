@@ -73,5 +73,6 @@
 const links=document.querySelectorAll('.side a');const sections=document.querySelectorAll('.section');const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector('.side a[href="#'+e.target.id+'"]');if(a)a.classList.add('active')}}),{rootMargin:'-15% 0px -70% 0px',threshold:0});sections.forEach(s=>observer.observe(s));document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.mobile-nav details')?.removeAttribute('open')));
 </script>
 <nav aria-label="Related college pages" class="seo-cluster-links"><strong>Explore related pages</strong><a href="/iim-udaipur-executive-mba">MBA</a></nav>
+<script src="/no-hash-navigation.js?v=20261010" defer></script>
 </body>
 </html>

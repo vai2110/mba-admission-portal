@@ -190,5 +190,6 @@ footer{background:#102a43;color:#fff;margin-top:40px;padding:35px 20px}.footer-i
 <script>
 (function(){const wrap=document.querySelector('.mobile-toc-wrap'),button=document.querySelector('.mobile-toc-button'),menu=document.querySelector('.mobile-toc-menu');if(!wrap||!button||!menu)return;button.addEventListener('click',function(){const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open)});menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){button.setAttribute('aria-expanded','false');menu.classList.remove('open')})});document.addEventListener('click',function(e){if(!wrap.contains(e.target)){button.setAttribute('aria-expanded','false');menu.classList.remove('open')}})})();
 </script>
+<script src="/no-hash-navigation.js?v=20261010" defer></script>
 </body>
 </html>

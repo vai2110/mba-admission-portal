@@ -147,4 +147,5 @@ $('collegeSearch').oninput=showSearchResults;$('collegeSearch').onfocus=showSear
 function examMatches(c,e){let x=norm(c.exam);return x.includes(norm(e))}
 document.querySelectorAll('.quick').forEach(b=>b.onclick=()=>{let q=b.dataset.q,r=b.dataset.rank,e=b.dataset.exam;if(q){matches=all.filter(c=>matchesPopular(c,q))}else if(r){let [lo,hi]=r.split('-').map(Number);matches=all.filter(c=>+c.rank>=lo&&+c.rank<=hi)}else if(e){matches=all.filter(c=>examMatches(c,e))}sortMatches();shown=15;$('resultSub').textContent=q?('Showing '+(q==='iim'?'IIMs':q==='iit'?'IIT Management Colleges':b.textContent.trim())+' you can compare'):r?('Showing MBA colleges ranked '+b.textContent.trim()+' in NIRF 2025'):('Showing colleges accepting '+e+' for MBA admissions');render();document.querySelector('.results').scrollIntoView({behavior:'smooth',block:'start'})});
 Promise.all([fetch(U).then(r=>r.json()),fetch(D).then(r=>r.json()),fetch(O).then(r=>r.json()),fetch(C).then(r=>r.json())]).then(([u,d,o,c])=>{universe=u.colleges||[];base=d.colleges||[];overrides=o.records||[];cardData=c.records||[];merge()}).catch(()=>{$('cards').innerHTML='';$('empty').style.display='block';});
-</script></body></html>
+</script><script src="/no-hash-navigation.js?v=20261010" defer></script>
+</body></html>
