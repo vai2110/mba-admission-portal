@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T17:11:56.260461+00:00",
+  "generated_at": "2026-10-10T06:11:46.385491+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 663,
@@ -9052,17 +9052,17 @@
     {
       "file": "iim-kozhikode-placements.html",
       "benchmark": false,
-      "title": "IIM Kozhikode Placements 2025: CTC, Recruiters & 3-Year Trend",
-      "title_length": 61,
-      "description": "IIM Kozhikode placements 2025 from official sources: mean, median and highest CTC, recruiters, domain mix and a three-year NIRF placement trend.",
-      "description_length": 144,
+      "title": "IIM Kozhikode Placements 2025: Salary Trends, Domain-wise CTC…",
+      "title_length": 62,
+      "description": "Explore IIM Kozhikode placements 2023–2025 using official reports: median and mean CTC, domain-wise salary data, recruiter names, roles, trends and student-focused FAQs.",
+      "description_length": 169,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/iim-kozhikode-placements.html",
       "canonical_count": 1,
       "canonical_self": false,
       "h1_count": 1,
-      "h1": "IIM Kozhikode Placements: Latest CTC, Recruiters & 3-Year Trend",
-      "lang": "en",
+      "h1": "IIM Kozhikode Placements 2025: Salary, Recruiters & Domain-wise Stats",
+      "lang": "en-IN",
       "viewport": true,
       "robots": [
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
