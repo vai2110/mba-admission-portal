@@ -102,7 +102,6 @@ function getDrafts_(sh,headers) {
     if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;
     if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) {
       item.queueError = "Missing headline/topic or source URL. Check the row's column headers and values.";
-      return;
     }
     ["body","sourceLinks","relatedPages","relatedNews","keywords"].forEach(field=>{
       const value=item[field];
