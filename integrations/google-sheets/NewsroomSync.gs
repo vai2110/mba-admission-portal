@@ -1,6 +1,6 @@
 const TAB_NAME = "News Queue";
-const FIELDS = ["slug","headline","seoTitle","description","category","status","datePublished","dateModified","author","summary","image","imageAlt","body","sourceLinks","relatedPages","relatedNews","keywords","editorialNote"];
-const META_FIELDS = ["publishedUrl","cmsStatusUpdatedAt","cmsCommit","reviewNotes"];
+const FIELDS = ["topic","sourceUrl","slug","headline","seoTitle","description","category","status","datePublished","dateModified","author","summary","image","imageAlt","body","sourceLinks","relatedPages","relatedNews","keywords","editorialNote"];
+const META_FIELDS = ["publishedUrl","cmsStatusUpdatedAt","cmsCommit","reviewNotes","generationError"];
 const ALL_FIELDS = FIELDS.concat(META_FIELDS);
 
 function doPost(e) {
@@ -31,7 +31,7 @@ function doPost(e) {
         row[col]=value == null ? "" : value;
       });
       setCell_(row,headers,"publishedUrl","https://collegedecoded.in/news/"+key);
-      setCell_(row,headers,"cmsStatusUpdatedAt",new Date().toISOString());
+      setCell_(row,headers,"cmsStatusUpdatedAt",new Date().toISOString());\n  if(p.generationError!==undefined)setCell_(row,headers,"generationError",String(p.generationError).slice(0,2000));\n  if(status==="Ready for Review")setCell_(row,headers,"generationError","");
       sh.getRange(rowNum,1,1,headers.length).setValues([row]);
       if(oldRow) updated++; else {inserted++;rowBySlug.set(key,rowNum);}
     });
@@ -67,7 +67,7 @@ function getDrafts_(sh,headers) {
     const item={};
     headers.forEach((h,i)=>{if(h)item[h]=row[i] == null ? "" : row[i];});
     const status=String(item.status||"").trim();
-    if(status!=="Ready for Review" && status!=="In CMS Review") return;
+    if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;\n    if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) return;
     ["body","sourceLinks","relatedPages","relatedNews","keywords"].forEach(field=>{
       const value=item[field];
       if(typeof value==="string" && value.trim()){
