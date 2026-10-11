@@ -22,3 +22,4 @@ python3 scripts/generate_sitemap.py
 python3 scripts/final_seo_gate.py
 node scripts/inject-guidance-flow.js
 echo "SEO sitemap production sync trigger"
+node scripts/build-news.js
