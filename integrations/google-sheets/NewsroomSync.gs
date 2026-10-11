@@ -88,6 +88,8 @@ function getDrafts_(sh,headers) {
     const item={};
     headers.forEach((h,i)=>{if(h)item[h]=row[i] == null ? "" : row[i];});
     const status=String(item.status||"").trim();
+    // Existing sheets may use headline as the manual topic field; keep the slug column unchanged.
+    if(!String(item.topic||"").trim() && String(item.headline||"").trim()) item.topic=String(item.headline).trim();
     if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;
     if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) return;
     ["body","sourceLinks","relatedPages","relatedNews","keywords"].forEach(field=>{
