@@ -94,7 +94,7 @@ function updateStatus_(sh,headers,p) {
     });
   }
   const status=String(p.status||"");
-  if(!["In CMS Review","Needs Changes","Published"].includes(status)) throw new Error("Unsupported status: "+status);
+  if(!["Ready for Review","In CMS Review","Needs Changes","Published"].includes(status)) throw new Error("Unsupported status: "+status);
   setCell_(row,headers,"status",status);
   setCell_(row,headers,"cmsStatusUpdatedAt",new Date().toISOString());
   if(p.publishedUrl)setCell_(row,headers,"publishedUrl",String(p.publishedUrl));
