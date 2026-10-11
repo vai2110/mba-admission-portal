@@ -6,7 +6,6 @@
 - Source of truth: `data/news.json`
 - Build output: `news/index.html`, `news/<slug>.html`, `news-sitemap.xml`
 - Article pages emit canonical URLs and `NewsArticle` JSON-LD. The main sitemap receives news URLs during build.
-- Set `NEWS_SHEET_CSV_URL` in the Vercel build environment to use a public Google Sheets CSV export instead of `data/news.json`.
 - Use **CollegeDecoded Editorial Team** as the byline; do not add personal names or invented credentials.
 
 ## Publishing
@@ -31,8 +30,8 @@ Example object (template only, not a real report):
 ```
 Replace the example source with a verified official source before publishing.
 
-## Google Sheets
-Create a sheet with headers matching the fields. For `body`, `sourceLinks` and `relatedPages`, use valid JSON in each cell. `relatedNews` and `keywords` may be pipe-separated lists. Publish/export the sheet as CSV and set `NEWS_SHEET_CSV_URL` to a URL like `https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=TAB_ID`. A private sheet needs authenticated integration; do not expose private notes by making it public. Until the environment variable is configured, `data/news.json` remains active.
+## Google Sheets and CollegeCMS
+Use Google Sheets for editorial ideas and drafts, then send rows marked `Ready for Review` to the authenticated CollegeCMS newsroom. Only the CMS Publish action writes approved stories to `data/news.json`. The website build reads only that repository file; it never imports a public spreadsheet CSV directly. This keeps a spreadsheet status change from publishing an article. Keep the spreadsheet private and follow `NEWSROOM-SETUP.md` in the `college-cms` repository for Apps Script deployment and server-side secrets.
 
 ## Internal links
 Set `relatedPages` to relevant existing local pages. The build injects a contextual “Latest related news” block into those pages, and each news article links back to its selected evergreen guides. Never add unrelated links or change live slugs without a permanent redirect.
