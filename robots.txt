@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://collegedecoded.in/sitemap.xml
+Sitemap: https://collegedecoded.in/news-sitemap.xml
