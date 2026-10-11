@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CollegeDecoded News Article",
+  "type": "object",
+  "required": [
+    "slug",
+    "headline",
+    "description",
+    "category",
+    "status",
+    "datePublished",
+    "author",
+    "body",
+    "sourceLinks"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "headline": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 220
+    },
+    "category": {
+      "enum": [
+        "MBA Admissions",
+        "MBA Entrance Exams",
+        "College Updates",
+        "MBA Placements",
+        "Rankings & Results"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "published"
+      ]
+    },
+    "datePublished": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateModified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "image": {
+      "type": "string",
+      "format": "uri"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "body": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "heading",
+          "paragraphs"
+        ],
+        "properties": {
+          "heading": {
+            "type": "string"
+          },
+          "paragraphs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "bullets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "sourceLinks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "url"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "relatedPages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "url"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "relatedNews": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "editorialNote": {
+      "type": "string"
+    }
+  }
+}
