@@ -31,7 +31,7 @@ function doPost(e) {
         row[col]=value == null ? "" : value;
       });
       setCell_(row,headers,"publishedUrl","https://collegedecoded.in/news/"+key);
-      setCell_(row,headers,"cmsStatusUpdatedAt",new Date().toISOString());\n  if(p.generationError!==undefined)setCell_(row,headers,"generationError",String(p.generationError).slice(0,2000));\n  if(status==="Ready for Review")setCell_(row,headers,"generationError","");
+      setCell_(row,headers,"cmsStatusUpdatedAt",new Date().toISOString());
       sh.getRange(rowNum,1,1,headers.length).setValues([row]);
       if(oldRow) updated++; else {inserted++;rowBySlug.set(key,rowNum);}
     });
@@ -67,7 +67,8 @@ function getDrafts_(sh,headers) {
     const item={};
     headers.forEach((h,i)=>{if(h)item[h]=row[i] == null ? "" : row[i];});
     const status=String(item.status||"").trim();
-    if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;\n    if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) return;
+    if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;
+    if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) return;
     ["body","sourceLinks","relatedPages","relatedNews","keywords"].forEach(field=>{
       const value=item[field];
       if(typeof value==="string" && value.trim()){
@@ -81,9 +82,13 @@ function getDrafts_(sh,headers) {
 }
 function updateStatus_(sh,headers,p) {
   const lookup=String(p.slug||"").trim().toLowerCase();
-  if(!lookup) throw new Error("slug is required to update a newsroom row.");
-  const rowBySlug=rowMap_(sh,headers), rowNum=rowBySlug.get(lookup);
-  if(!rowNum) throw new Error("No News Queue row found for slug: "+lookup);
+  let rowNum=Number(p.sourceRow);
+  if(!Number.isInteger(rowNum)||rowNum<2) {
+    if(!lookup) throw new Error("slug or sourceRow is required to update a newsroom row.");
+    const rowBySlug=rowMap_(sh,headers);
+    rowNum=rowBySlug.get(lookup);
+  }
+  if(!rowNum || rowNum>sh.getLastRow()) throw new Error("No News Queue row found for slug/row: "+lookup+"/"+p.sourceRow);
   const row=sh.getRange(rowNum,1,1,headers.length).getValues()[0];
   if(p.item && typeof p.item==="object") {
     FIELDS.forEach(field=>{
@@ -97,6 +102,8 @@ function updateStatus_(sh,headers,p) {
   if(!["Ready for Review","In CMS Review","Needs Changes","Published"].includes(status)) throw new Error("Unsupported status: "+status);
   setCell_(row,headers,"status",status);
   setCell_(row,headers,"cmsStatusUpdatedAt",new Date().toISOString());
+  if(p.generationError!==undefined)setCell_(row,headers,"generationError",String(p.generationError).slice(0,2000));
+  if(status==="Ready for Review")setCell_(row,headers,"generationError","");
   if(p.publishedUrl)setCell_(row,headers,"publishedUrl",String(p.publishedUrl));
   if(p.cmsCommit)setCell_(row,headers,"cmsCommit",String(p.cmsCommit));
   if(p.notes!==undefined)setCell_(row,headers,"reviewNotes",String(p.notes).slice(0,2000));
