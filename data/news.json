@@ -2,5 +2,86 @@
   "$schema": "../config/news-schema.json",
   "siteUrl": "https://collegedecoded.in",
   "publisher": "CollegeDecoded Editorial Team",
-  "items": []
+  "items": [
+    {
+      "slug": "iim-ahmedabad-pgp-admission-2027-29",
+      "headline": "IIM Ahmedabad PGP Admission 2027–29: CAT 2026 Cut-Offs, Eligibility & Selection Process",
+      "seoTitle": "IIM Ahmedabad PGP Admission 2027–29: CAT Cut-Off",
+      "description": "Check IIM Ahmedabad PGP Admission 2027–29 eligibility, CAT 2026 cut-offs, shortlisting weightage and final selection process.",
+      "category": "MBA Admissions",
+      "status": "published",
+      "datePublished": "2026-10-11T09:57:49.159Z",
+      "dateModified": "2026-10-11T09:57:49.159Z",
+      "author": "CollegeDecoded Editorial Team",
+      "summary": "",
+      "image": "https://raw.githubusercontent.com/vai2110/mba-admission-portal/main/assets/IIM%20Ahmedabad%20PGP%20Admission%202027-29.png",
+      "imageAlt": "IIM Ahmedabad PGP admission 2027–29: CAT 2026 cut-offs, eligibility and selection process",
+      "body": [
+        {
+          "heading": "IIM Ahmedabad PGP Admission 2027–29: Overview",
+          "paragraphs": [
+            "IIM Ahmedabad has released its admission policy for the two-year Post Graduate Programme in Management (PGP) for the 2027–29 batch. For students preparing for CAT 2026, the policy explains the minimum eligibility requirements, category-wise CAT cut-offs, shortlisting criteria and the weightage assigned to different stages of selection.",
+            "Meeting the minimum CAT cut-off does not guarantee an interview call. CAT performance is considered alongside academic scores, work experience and other factors specified in the institute's selection criteria."
+          ]
+        },
+        {
+          "heading": "Who Is Eligible for IIM Ahmedabad PGP Admission 2027–29?",
+          "paragraphs": [
+            "Candidates must hold a recognised bachelor's degree of at least three years' duration after Class 12. The minimum graduation requirement is 50% marks or equivalent CGPA for General and EWS candidates, and 45% for SC, ST and PwD candidates.",
+            "Final-year bachelor's students and candidates awaiting results can also apply, subject to the institute's documentation and degree-completion requirements. Candidates admitted provisionally must complete their bachelor's degree requirements by June 30, 2027, as specified in the admission policy."
+          ]
+        },
+        {
+          "heading": "What Is the CAT 2026 Cut-Off for IIM Ahmedabad?",
+          "paragraphs": [
+            "The published minimum qualifying percentiles for non-PwD candidates are 95 overall and 85 sectional for General/EWS, 90 overall and 80 sectional for NC-OBC, 85 overall and 75 sectional for SC, and 75 overall and 65 sectional for ST candidates. PwD candidates should check the separate thresholds in the official policy.",
+            "These are qualifying thresholds, not guaranteed interview-call percentiles. Applicants must meet the applicable overall and sectional requirements, and shortlisting also depends on the institute's prescribed selection methodology."
+          ]
+        },
+        {
+          "heading": "How Does IIM Ahmedabad Shortlist Candidates?",
+          "paragraphs": [
+            "The raw composite score assigns 65% weightage to CAT 2026 performance and 35% to the normalised Application Rating. The Application Rating considers Class 10, Class 12 and undergraduate marks, full-time work experience and gender-diversity points, as specified in the policy.",
+            "The institute then applies its prescribed normalisation process within undergraduate disciplines. As a result, two applicants with similar CAT percentiles may receive different composite scores because their academic records and other application components differ."
+          ]
+        },
+        {
+          "heading": "What Happens After the Interview Shortlist?",
+          "paragraphs": [
+            "Candidates shortlisted for the next stage appear for the Analytical Writing Test (AWT) and Personal Interview (PI). The reported final composite-score distribution assigns 50% weightage to the Personal Interview, 10% to the Analytical Writing Test and 40% to the normalised composite score.",
+            "Applicants should prepare to discuss their academic background, career goals and motivation for pursuing management education. Practising structured written responses can also help with the AWT."
+          ]
+        },
+        {
+          "heading": "When Will IIM Ahmedabad Announce Admission Results?",
+          "paragraphs": [
+            "The admission policy tentatively places the AWT-PI shortlist in the second week of January 2027 and final admission offers and initial waitlist information in the second week of April 2027. Candidates should treat these as tentative dates and check the institute's official website for updates."
+          ]
+        },
+        {
+          "heading": "What Should CAT 2026 Aspirants Do Next?",
+          "paragraphs": [
+            "First, prepare across all CAT sections instead of focusing only on the overall percentile. Second, review how your school marks, graduation performance and work experience are assessed under the official Application Rating methodology. Third, start preparing for interviews and written assessments before the shortlist is announced.",
+            "Candidates should also compare alternative MBA colleges on eligibility, fees, placement outcomes and career opportunities rather than relying entirely on admission to one highly competitive institute."
+          ]
+        },
+        {
+          "heading": "Final Takeaway",
+          "paragraphs": [
+            "IIM Ahmedabad's PGP admission policy for 2027–29 gives CAT 2026 aspirants a framework for understanding eligibility, qualifying cut-offs, shortlisting and final selection. CAT performance matters, but it is not the only factor in admission.",
+            "Official source: https://iima.ac.in/academics/mba/admissions. Verify all numerical criteria and tentative dates against the uploaded admission policy before publication."
+          ]
+        }
+      ],
+      "sourceLinks": [
+        {
+          "label": "IIM Ahmedabad Official PGP Admission Policy",
+          "url": "https://iima.ac.in/academics/mba/admissions"
+        }
+      ],
+      "relatedPages": [],
+      "relatedNews": [],
+      "keywords": []
+    }
+  ]
 }
