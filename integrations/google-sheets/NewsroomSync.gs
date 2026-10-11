@@ -26,6 +26,8 @@ function doPost(e) {
       FIELDS.forEach(field => {
         const col=headers.indexOf(field); if(col<0) return;
         let value=item[field];
+        // Preserve the manual-entry fields when syncing older published payloads that do not include them.
+        if ((field === "topic" || field === "sourceUrl") && value == null && oldRow) return;
         if (Array.isArray(value) || (value && typeof value === "object")) value=JSON.stringify(value);
         if (field === "status") value="Published";
         row[col]=value == null ? "" : value;
