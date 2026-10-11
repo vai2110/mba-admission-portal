@@ -33,5 +33,5 @@ jobs:
         run: |
           test -s news/index.html
           test -s news-sitemap.xml
-          grep -q 'rel="canonical" href="https://collegedecoded.in/news/"' news/index.html
+          grep -q 'rel="canonical" href="https://collegedecoded.in/news"' news/index.html
           grep -q 'news-sitemap.xml' robots.txt
