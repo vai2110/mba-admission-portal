@@ -1,0 +1,6 @@
+{
+  "$schema": "../config/news-schema.json",
+  "siteUrl": "https://collegedecoded.in",
+  "publisher": "CollegeDecoded Editorial Team",
+  "items": []
+}
