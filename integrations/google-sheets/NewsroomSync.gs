@@ -86,12 +86,24 @@ function getDrafts_(sh,headers) {
   const rows=sh.getRange(2,1,last-1,headers.length).getValues();
   rows.forEach((row,index)=>{
     const item={};
+    const canonical = name => String(name||"").trim().toLowerCase().replace(/[\\s_\\-]+/g,"");
     headers.forEach((h,i)=>{if(h)item[h]=row[i] == null ? "" : row[i];});
+    const findValue = names => {
+      const wanted = names.map(canonical);
+      const col = headers.findIndex(h => wanted.includes(canonical(h)));
+      return col < 0 ? "" : (row[col] == null ? "" : row[col]);
+    };
+    // Support existing sheet labels such as Headline, Source URL and Status without requiring a schema rewrite.
+    if(!String(item.topic||"").trim()) item.topic=String(findValue(["topic","headline","news headline","news topic"])||"").trim();
+    if(!String(item.headline||"").trim()) item.headline=String(findValue(["headline","topic","news headline","news topic"])||"").trim();
+    if(!String(item.sourceUrl||"").trim()) item.sourceUrl=String(findValue(["sourceUrl","source url","official source url","source link","source"])||"").trim();
+    if(!String(item.status||"").trim()) item.status=String(findValue(["status","publish status","article status"])||"").trim();
     const status=String(item.status||"").trim();
-    // Existing sheets may use headline as the manual topic field; keep the slug column unchanged.
-    if(!String(item.topic||"").trim() && String(item.headline||"").trim()) item.topic=String(item.headline).trim();
     if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;
-    if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) return;
+    if(status==="Generate Draft" && (!String(item.topic||"").trim() || !String(item.sourceUrl||"").trim())) {
+      item.queueError = "Missing headline/topic or source URL. Check the row's column headers and values.";
+      return;
+    }
     ["body","sourceLinks","relatedPages","relatedNews","keywords"].forEach(field=>{
       const value=item[field];
       if(typeof value==="string" && value.trim()){
