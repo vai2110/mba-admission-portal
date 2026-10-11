@@ -1,0 +1,25 @@
+name: Sync Published News to Google Sheets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/news.json"
+      - "scripts/sync-news-to-sheet.js"
+      - ".github/workflows/sync-published-news-to-sheet.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Sync published articles
+        env:
+          NEWS_SHEET_WEBAPP_URL: ${{ secrets.NEWS_SHEET_WEBAPP_URL }}
+          NEWS_SHEET_API_SECRET: ${{ secrets.NEWS_SHEET_API_SECRET }}
+        run: node scripts/sync-news-to-sheet.js
