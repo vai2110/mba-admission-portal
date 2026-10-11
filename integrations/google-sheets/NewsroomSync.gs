@@ -41,6 +41,25 @@ function doPost(e) {
   } catch (err) { return out_({ok:false,error:String(err && err.message || err)}); }
 }
 
+function onOpen() {
+  setupNewsQueueDropdown();
+}
+
+function setupNewsQueueDropdown() {
+  const sh = getSheet_();
+  ensureHeaders_(sh);
+  const headers = sh.getRange(1,1,1,sh.getLastColumn()).getDisplayValues()[0].map(String);
+  const statusCol = headers.indexOf("status") + 1;
+  if (statusCol < 1) throw new Error('Could not find the "status" column.');
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(["Idea","Generate Draft","Draft","Ready for Review","In CMS Review","Needs Changes","Published","Error"], true)
+    .setAllowInvalid(false)
+    .setHelpText("Choose Generate Draft after entering topic and official source URL. Draft generation does not publish the article.")
+    .build();
+  sh.getRange(2,statusCol,Math.max(sh.getMaxRows()-1,1),1).setDataValidation(rule);
+  return "News Queue status dropdown updated.";
+}
+
 function getSheet_() {
   const ss=SpreadsheetApp.getActiveSpreadsheet();
   if(!ss) throw new Error("Bind this script to the newsroom spreadsheet.");
