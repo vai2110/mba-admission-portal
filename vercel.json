@@ -304,6 +304,56 @@
       "source": "/bbau-placements-2026.html",
       "destination": "/bbau-placements-2026",
       "permanent": true
+    },
+    {
+      "source": "/mnit-jaipur-mba",
+      "destination": "/mba-colleges-by-location",
+      "permanent": true
+    },
+    {
+      "source": "/mnit-jaipur-mba.html",
+      "destination": "/mba-colleges-by-location",
+      "permanent": true
+    },
+    {
+      "source": "/jaipuria-jaipur-mba",
+      "destination": "/mba-colleges-by-location",
+      "permanent": true
+    },
+    {
+      "source": "/jaipuria-jaipur-mba.html",
+      "destination": "/mba-colleges-by-location",
+      "permanent": true
+    },
+    {
+      "source": "/iiswbm-kolkata",
+      "destination": "/mba-colleges-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/iiswbm-kolkata.html",
+      "destination": "/mba-colleges-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/globsyn-business-school-kolkata",
+      "destination": "/mba-colleges-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/globsyn-business-school-kolkata.html",
+      "destination": "/mba-colleges-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/edii-ahmedabad",
+      "destination": "/mba-colleges-in-ahmedabad",
+      "permanent": true
+    },
+    {
+      "source": "/edii-ahmedabad.html",
+      "destination": "/mba-colleges-in-ahmedabad",
+      "permanent": true
     }
   ]
 }
