@@ -34,9 +34,9 @@
   }
 
   function formatDate(value) {
-    if (!value) return 'Sep 30, 2026';
+    if (!value) return 'Date unavailable';
     var d = new Date(value + 'T00:00:00');
-    if (isNaN(d.getTime())) return 'Sep 30, 2026';
+    if (isNaN(d.getTime())) return 'Date unavailable';
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
@@ -118,7 +118,7 @@
       '<div class="cd-editorial-avatar" aria-hidden="true">CD</div>' +
       '<div class="cd-editorial-copy">' +
         '<div class="cd-editorial-name"><a href="/collegedecoded-team">CollegeDecoded Team</a><span class="cd-editorial-verified" aria-label="Verified">✓</span></div>' +
-        '<div class="cd-editorial-sub">Content Curator <span aria-hidden="true">|</span> Updated on - ' + formatDate(dateValue) + '</div>' +
+        '<div class="cd-editorial-sub">Updated by CollegeDecoded Team <span aria-hidden="true">|</span> Last updated on ' + formatDate(dateValue) + '</div>' +
       '</div>';
 
     if (point.before) point.parent.insertBefore(meta, point.before); else point.parent.appendChild(meta);
