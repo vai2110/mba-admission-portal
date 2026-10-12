@@ -199,7 +199,7 @@ def fix_page(path):
     filename = path.name
     is_redirect_stub = filename == "iim-bangalore-mba-business-analytics.html"
     page_url = "https://collegedecoded.in/iim-bangalore-pgpba" if is_redirect_stub else urljoin(BASE_URL, filename[:-5] if filename.lower().endswith(".html") else filename)
-    preserve_noindex = is_redirect_stub or bool(re.search(r'<meta\\b[^>]*name=["\\\']robots["\\\'][^>]*content=["\\\'][^"\\\']*noindex', text, flags=re.I))
+    preserve_noindex = is_redirect_stub or bool(re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex', text, flags=re.I))
     title = extract_title(text, filename)
     description = extract_description(text, title)
     answer_text = extract_answer_text(text, description)
@@ -223,7 +223,7 @@ def fix_page(path):
     changes.append("standardized social/search metadata")
 
     if is_redirect_stub:
-        text = re.sub(r'<script\\b[^>]*type=["\\\']application/ld\\+json["\\\'][^>]*>.*?</script>', "", text, flags=re.I | re.S)
+        text = re.sub(r'<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>.*?</script>', "", text, flags=re.I | re.S)
     else:
         text = add_schema(text, page_url, title, description, location, faq_items)
         changes.append("added or updated a single WebPage/BreadcrumbList schema graph")
