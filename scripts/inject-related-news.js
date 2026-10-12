@@ -82,7 +82,7 @@ function railMarkup(inline) {
   return '<aside class="iima-news-rail' + (inline ? ' iima-news-rail-inline' : '') + '" aria-label="Latest IIM Ahmedabad news">' +
     '<section class="iima-rail-card"><div class="iima-rail-heading"><span aria-hidden="true">▤</span>' +
     '<h2>Latest IIM Ahmedabad News</h2><a href="/news">View all →</a></div>' +
-    '<div class="iima-news-list">' + cards + '</div></section></aside>';
+    '<div class="iima-news-list"><!-- RELATED_NEWS_START -->' + cards + '<!-- RELATED_NEWS_END --></div></section></aside>';
 }
 
 const pages = fs.readdirSync(ROOT).filter(name => PAGE_RE.test(name));
