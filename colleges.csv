@@ -100,9 +100,4 @@ id,college_name,city,state,nirf_management_rank_2025,category,ranking_source,pro
 99,IPE Hyderabad,Hyderabad,Telangana,,Management,,ipe-hyderabad,
 100,IBS HYDERABAD,Hyderabad,Telangana,,Management,,ibs-hyderabad,
 101,SDMIMD Mysore,Mysuru,Karnataka,,Management,,sdmimd-mysore,
-102,MNIT Jaipur,Jaipur,Rajasthan,,Management,,mnit-jaipur-mba,
-103,Jaipuria Institute of Management Jaipur,Jaipur,Rajasthan,74,Management,NIRF 2025 Management,jaipuria-jaipur-mba,https://www.jaipuria.ac.in/
-104,IISWBM Kolkata,Kolkata,West Bengal,,Management,,iiswbm-kolkata,
-105,Globsyn Business School,Kolkata,West Bengal,,Management,,globsyn-business-school-kolkata,
-106,EDII Ahmedabad,Ahmedabad,Gujarat,,Management,,edii-ahmedabad,
-107,FMS Delhi,New Delhi,Delhi,,Management,,fms-delhi,
+102,FMS Delhi,New Delhi,Delhi,,Management,,fms-delhi,
