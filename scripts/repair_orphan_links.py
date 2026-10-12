@@ -111,8 +111,8 @@ def add_grouped_links(source, destinations):
     html = path.read_text(encoding="utf-8")
     # /colleges is the master directory. Never append a noisy auto-generated list of unrelated orphan URLs.
     if source == "colleges.html":
-        cleaned = re.sub(r'<nav\\b[^>]*class=["\\\'][^"\\\']*\\bseo-related-link\\b[^"\\\']*["\\\'][^>]*>.*?</nav>', '', html, flags=re.I | re.S)
-        cleaned = re.sub(r'<style\\s+id=["\\\']seo-related-link-style["\\\']>.*?</style>\\s*', '', cleaned, flags=re.I | re.S)
+        cleaned = re.sub(r'<nav\b[^>]*class=["\'][^"\']*\bseo-related-link\b[^"\']*["\'][^>]*>.*?</nav>', '', html, flags=re.I | re.S)
+        cleaned = re.sub(r'<style\b[^>]*id=["\']seo-related-link-style["\'][^>]*>.*?</style>\s*', '', cleaned, flags=re.I | re.S)
         if cleaned != html:
             path.write_text(cleaned, encoding="utf-8")
         return False
