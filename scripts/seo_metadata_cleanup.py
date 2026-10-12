@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 import html
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP = {"404.html", "iim-ahmedabad.html", "sibm-pune.html"}
