@@ -23,3 +23,4 @@ python3 scripts/final_seo_gate.py
 node scripts/inject-guidance-flow.js
 echo "SEO sitemap production sync trigger"
 node scripts/build-news.js
+node scripts/inject-related-news.js
