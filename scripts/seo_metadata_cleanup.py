@@ -155,15 +155,18 @@ for path in sorted(ROOT.glob("*.html")):
     ]:
         updated = upsert_meta_content(updated, key, value, content)
 
-    # Keep structured data synchronized with the final canonical, title and description.
-    for schema_match in list(re.finditer(r'<script\b([^>]*)>(.*?)</script>', updated, flags=re.I | re.S)):
-        attrs, body = schema_match.group(1), schema_match.group(2)
+    # Keep structured data synchronized in one pass. Replacing strings using
+    # offsets from a pre-mutation finditer list can corrupt later tags when an
+    # earlier JSON-LD block changes length.
+    def sync_schema(match):
+        attrs, body = match.group(1), match.group(2)
         if not re.search(r'type\s*=\s*["\']application/ld\+json["\']', attrs, flags=re.I):
-            continue
+            return match.group(0)
         try:
             payload = json.loads(body)
         except (json.JSONDecodeError, TypeError):
-            continue
+            return match.group(0)
+
         graph = payload.get("@graph") if isinstance(payload, dict) else None
         nodes = graph if isinstance(graph, list) else [payload]
         webpage = next((node for node in nodes if isinstance(node, dict) and node.get("@type") == "WebPage"), None)
@@ -176,8 +179,9 @@ for path in sorted(ROOT.glob("*.html")):
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://collegedecoded.in/"},
                 {"@type": "ListItem", "position": 2, "name": new_title, "item": canonical},
             ]
-        replacement = f'<script{attrs}>{json.dumps(payload, ensure_ascii=False)}</script>'
-        updated = updated[:schema_match.start()] + replacement + updated[schema_match.end():]
+        return f'<script{attrs}>{json.dumps(payload, ensure_ascii=False)}</script>'
+
+    updated = re.sub(r'<script\b([^>]*)>(.*?)</script>', sync_schema, updated, flags=re.I | re.S)
 
     if not re.search(r"<script\b[^>]*type\s*=\s*['\"]application/ld\+json['\"]", updated, flags=re.I):
         import json
