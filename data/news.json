@@ -91,46 +91,139 @@
       "category": "MBA Admissions",
       "status": "published",
       "datePublished": "2026-10-12T03:30:16.826Z",
-      "dateModified": "2026-10-12T03:30:16.826Z",
+      "dateModified": "2026-10-12T03:56:32.892Z",
       "author": "CollegeDecoded Editorial Team",
       "summary": "",
       "image": "https://raw.githubusercontent.com/vai2110/mba-admission-portal/main/assets/IIM%20Ahmedabad%20pgp%20composite%20score%20calculation.png",
       "imageAlt": "IIM Ahmedabad PGP Composite Score Calculation",
       "body": [
         {
-          "heading": "How Is the IIM Ahmedabad PGP Composite Score Calculated?",
+          "heading": "IIM Ahmedabad PGP 2027–29: How Is the Composite Score Calculated? Who Has a Better Chance?",
           "paragraphs": [
-            "IIM Ahmedabad uses a composite score to shortlist eligible applicants for the Analytical Writing Test (AWT) and Personal Interview (PI) for its PGP 2027–29 batch. The composite score is used for shortlisting and does not guarantee final admission."
+            "IIM Ahmedabad Admission 2027–29: Can a student with a 98.5 percentile in CAT get an interview call over someone scoring 99.5 percentile? The answer depends on more than CAT performance alone.",
+            "Under IIM Ahmedabad’s official admission policy for the PGP 2027–29 batch, CAT performance contributes 65% to the raw composite score, while the normalized application rating contributes 35%. Academic marks, work experience and gender diversity all influence the application rating.",
+            "So, how does the process work—and which of the following three students would have a better chance of receiving an interview call?"
           ]
         },
         {
-          "heading": "Who Is Eligible for Shortlisting?",
+          "heading": "Three CAT Aspirants: Who Would You Shortlist?",
           "paragraphs": [
-            "The domestic admission policy identifies basic filters for applicants who appeared for CAT 2026. Applicants must be at least 19 years old by June 30, 2027, report Indian nationality in their CAT information, and have applied to the two-year full-time PGP."
+            "Consider these hypothetical profiles of students targeting IIM Ahmedabad."
+          ],
+          "bullets": [
+            "Student A: CAT percentile 99.5; Class 10: 95%; Class 12: 93%; Graduation: 90%; Work experience: None; Gender: Male.",
+            "Student B: CAT percentile 98.5; Class 10: 92%; Class 12: 90%; Graduation: 82%; Work experience: 24 months; Gender: Non-male.",
+            "Student C: CAT percentile 97; Class 10: 85%; Class 12: 88%; Graduation: 85%; Work experience: 36 months; Gender: Male."
           ]
         },
         {
-          "heading": "Which Factors Affect the Composite Score?",
+          "heading": "Who do you think is more likely to receive an interview call?",
+          "bullets": [
+            "Student A: Highest CAT percentile and strongest academic profile, but no work experience or gender diversity points.",
+            "Student B: Slightly lower CAT percentile, with two years of work experience and gender diversity points.",
+            "Student C: Lower CAT percentile, with three years of work experience and a relatively consistent academic record."
+          ],
           "paragraphs": [
-            "The raw application rating considers Class 10 marks, Class 12 marks, undergraduate marks, gender and full-time work experience. Points are assigned according to the institute’s published rating tables."
+            "To answer this, we first need to understand how IIM Ahmedabad evaluates candidates."
           ]
         },
         {
-          "heading": "How Are Academic Marks Rated?",
+          "heading": "Stage 1: How Does IIM Ahmedabad Shortlist Candidates for AWT & PI?",
           "paragraphs": [
-            "The policy specifies percentage bands for Class 10, Class 12 and bachelor's degree marks: 55% or below; above 55% to 60%; above 60% to 70%; above 70% to 80%; above 80% to 90%; and above 90%. Refer to the official policy for the exact points awarded to each band."
+            "In the first stage, IIM Ahmedabad calculates a composite score to shortlist eligible candidates for the Analytical Writing Test (AWT) and Personal Interview (PI)."
           ]
         },
         {
-          "heading": "Does Meeting the CAT Cut-off Guarantee a Shortlist?",
+          "heading": "1. How Are Academic Marks Converted Into Points?",
           "paragraphs": [
-            "No. Meeting minimum qualifying requirements does not guarantee an AWT/PI shortlist. IIM Ahmedabad applies its eligibility filters and composite-score methodology to determine which applicants progress to the next stage."
+            "The institute awards rating points for Class 10, Class 12 and graduation based on the following scale. Each academic component is scored separately."
+          ],
+          "bullets": [
+            "55% or below: 1 rating point.",
+            "Above 55% to 60%: 2 rating points.",
+            "Above 60% to 70%: 3 rating points.",
+            "Above 70% to 80%: 5 rating points.",
+            "Above 80% to 90%: 8 rating points.",
+            "Above 90%: 10 rating points."
+          ],
+          "paragraphs_after_bullets": [
+            "For example, a student scoring 92% in Class 10 receives 10 points, while a student scoring 75% in graduation receives 5 points."
           ]
         },
         {
-          "heading": "What Should Applicants Do Next?",
+          "heading": "2. How Does Work Experience Affect the Score?",
+          "bullets": [
+            "Less than 12 months of full-time work experience: 0 rating points.",
+            "12–36 months: 0.20 × (number of months − 11).",
+            "More than 36 months: 5 rating points."
+          ],
           "paragraphs": [
-            "Read the official PGP 2027–29 domestic admission policy, check the complete rating tables and eligibility requirements, and follow IIM Ahmedabad’s official announcements for shortlist updates."
+            "For example, 24 months of work experience earns 2.6 points. Non-male candidates receive three gender diversity points, while male candidates receive zero under this component."
+          ]
+        },
+        {
+          "heading": "3. How Is the Raw Composite Score Calculated?",
+          "paragraphs": [
+            "The application rating combines academic performance, work experience and gender diversity. IIM Ahmedabad normalizes this rating using the average of the top 50 application-rating scores across the applicant pool.",
+            "It then calculates the raw composite score using the formula:"
+          ],
+          "bullets": [
+            "Raw Composite Score = 0.35 × Normalized Application Rating + 0.65 × (CAT Percentile ÷ 100)"
+          ],
+          "paragraphs_after_bullets": [
+            "The resulting score is further normalized within the candidate’s undergraduate discipline, using the average of the top 1% of raw composite scores in that discipline."
+          ]
+        },
+        {
+          "heading": "4. What Are the Minimum CAT Cutoffs?",
+          "paragraphs": [
+            "For non-PwD candidates, the official policy lists these minimum overall and sectional percentiles:"
+          ],
+          "bullets": [
+            "General / EWS: Overall 95 percentile; sectional 85 percentile.",
+            "NC-OBC: Overall 90 percentile; sectional 80 percentile.",
+            "SC: Overall 85 percentile; sectional 75 percentile.",
+            "ST: Overall 75 percentile; sectional 65 percentile."
+          ],
+          "paragraphs_after_bullets": [
+            "Meeting these cutoffs does not guarantee an interview call. The composite score and the wider shortlisting process also matter."
+          ]
+        },
+        {
+          "heading": "Stage 2: How Are Final Admission Offers Decided?",
+          "paragraphs": [
+            "Receiving an AWT & PI call is not the same as securing admission. After these assessments, IIM Ahmedabad calculates a separate Final Composite Score (FCS)."
+          ],
+          "bullets": [
+            "Personal Interview (PI): 50% weightage.",
+            "Analytical Writing Test (AWT): 10% weightage.",
+            "Normalized composite score from Stage 1: 40% weightage."
+          ],
+          "paragraphs_after_bullets": [
+            "Final Composite Score = 0.50 × Normalized PI Score + 0.10 × Normalized AWT Score + 0.40 × Normalized Composite Score.",
+            "The final selection is based on the Final Composite Score, with candidates assessed separately under the applicable reservation categories.",
+            "In short, Stage 1 determines who gets an interview call; Stage 2 determines who gets selected for admission."
+          ]
+        },
+        {
+          "heading": "So, Who Has the Best Chance Among the Three Students?",
+          "paragraphs": [
+            "There is no definitive winner based on these profiles alone.",
+            "Student A has the highest CAT percentile and strongest academic record. Students B and C receive work experience points, while Student B also receives gender diversity points. However, the exact normalized application ratings and composite scores depend on benchmarks derived from the applicant pool.",
+            "Therefore, ranking these students’ interview chances without those benchmarks would be speculative. Their final admission prospects would also depend on their AWT and PI performance."
+          ]
+        },
+        {
+          "heading": "Key Takeaway",
+          "paragraphs": [
+            "A higher CAT percentile does not tell the whole story at IIM Ahmedabad. Your academic record, work experience and applicable diversity points contribute to shortlisting, while your Personal Interview carries 50% weightage in the final selection formula."
+          ]
+        },
+        {
+          "heading": "Source and Disclaimer",
+          "paragraphs": [
+            "Source: IIM Ahmedabad, Admission Policy for PGP 2027–29 Batch (Domestic), pages 2–4.",
+            "Note: The student profiles are illustrative examples, not actual applicants. Exact composite scores and admission chances cannot be determined without the relevant normalization benchmarks and, for final selection, AWT and PI scores."
           ]
         }
       ],
