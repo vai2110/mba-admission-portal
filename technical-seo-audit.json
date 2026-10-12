@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-12T16:26:04.693393+00:00",
+  "generated_at": "2026-10-12T16:26:40.482272+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
-  "pages_with_issues": 11,
+  "pages_with_issues": 51,
   "issue_counts": {
     "broken_local_links": 3,
     "canonical": 1,
     "description_count": 1,
     "description_length": 1,
     "duplicate_title": 2,
-    "h1_count": 3,
+    "h1_count": 43,
     "jsonld": 1,
     "lang": 1,
     "noindex": 2,
@@ -411,8 +411,8 @@
       "canonical": "https://collegedecoded.in/alliance-university-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Alliance University Placements 2026: Highest, Average & Median Package",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -423,13 +423,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "alliance-university.html",
@@ -454,7 +456,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 3,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -845,8 +847,8 @@
       "canonical": "https://collegedecoded.in/amrita-vishwa-vidyapeetham-mba-master-of-business-administration",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "MBA Admissions at Amrita Vishwa Vidyapeetham",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -857,13 +859,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
@@ -876,8 +880,8 @@
       "canonical": "https://collegedecoded.in/amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "MBA - MS in Business Analytics Dual Degree Programme",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -888,13 +892,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amrita-vishwa-vidyapeetham-placements.html",
@@ -907,8 +913,8 @@
       "canonical": "https://collegedecoded.in/amrita-vishwa-vidyapeetham-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "MBA Admissions & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -919,13 +925,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amrita-vishwa-vidyapeetham.html",
@@ -938,8 +946,8 @@
       "canonical": "https://collegedecoded.in/amrita-vishwa-vidyapeetham",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "MBA Admissions at Amrita Vishwa Vidyapeetham",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -950,13 +958,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amu-aligarh-placements.html",
@@ -969,8 +979,8 @@
       "canonical": "https://collegedecoded.in/amu-aligarh-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Placements 2026, Recruiters & Career Outcomes",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -981,13 +991,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amu-aligarh.html",
@@ -1000,8 +1012,8 @@
       "canonical": "https://collegedecoded.in/amu-aligarh",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "AMU Admission 2027: Courses, Fees & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -1012,13 +1024,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 4,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amu-barch.html",
@@ -1062,8 +1076,8 @@
       "canonical": "https://collegedecoded.in/amu-btech",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "AMU B.Tech Admission 2026: Fees, Branches & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -1074,13 +1088,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "amu-mba.html",
@@ -1155,8 +1171,8 @@
       "canonical": "https://collegedecoded.in/anna-university-admission-2026",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Anna University Admission 2026: TNEA, TANCET, Dates & Eligibility",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -1167,13 +1183,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "anna-university-btech-cse.html",
@@ -1186,8 +1204,8 @@
       "canonical": "https://collegedecoded.in/anna-university-btech-cse",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Anna University B.Tech CSE 2026: Admission, Fees, Cutoff & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -1198,13 +1216,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "anna-university-fees-placements.html",
@@ -1217,8 +1237,8 @@
       "canonical": "https://collegedecoded.in/anna-university-fees-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Anna University Fees & Placements 2026: B.Tech, Hostel, Salary & ROI",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -1229,13 +1249,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "anna-university-mba.html",
@@ -1248,8 +1270,8 @@
       "canonical": "https://collegedecoded.in/anna-university-mba",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Anna University MBA 2027–29: Admission, TANCET, Fees & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -1260,13 +1282,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "anna-university.html",
@@ -1291,7 +1315,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -1322,7 +1346,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -1446,7 +1470,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -1539,7 +1563,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -4083,7 +4107,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 2,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -4102,8 +4126,8 @@
       "canonical": "https://collegedecoded.in/collegedecoded-team",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "We're building the research layer for college decisions.",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -4114,13 +4138,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
-      "images": 2,
+      "jsonld_blocks": 1,
+      "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "colleges.html",
@@ -4145,7 +4171,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
@@ -4285,7 +4311,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -4882,7 +4908,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -5087,8 +5113,8 @@
       "canonical": "https://collegedecoded.in/fore-school-management-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "FORE School of Management Placements 2025: Average Package, Highest Package & Recruiters",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -5099,13 +5125,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "fore-school-management.html",
@@ -5812,7 +5840,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -6556,7 +6584,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -7040,8 +7068,8 @@
       "canonical": "https://collegedecoded.in/iim-ahmedabad-mba-bpgp",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA-BPGP 2027: Eligibility, Fees, Format & Admission",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7052,13 +7080,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-ahmedabad-mba-fabm.html",
@@ -7102,8 +7132,8 @@
       "canonical": "https://collegedecoded.in/iim-ahmedabad-mba-pgp",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA (PGP) 2027–29: Eligibility, CAT Cutoff, Fees & Admission",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7114,13 +7144,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-ahmedabad-mba-pgpx.html",
@@ -7133,8 +7165,8 @@
       "canonical": "https://collegedecoded.in/iim-ahmedabad-mba-pgpx",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Ahmedabad MBA-PGPX 2027–28: Eligibility, GMAT/GRE, Fees & Admission",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -7145,13 +7177,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-ahmedabad-mba.html",
@@ -7585,7 +7619,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -7664,8 +7698,8 @@
     {
       "file": "iim-bangalore-pgpem.html",
       "benchmark": false,
-      "title": "IIM Bangalore PGPEM Admission 2027-29: Fees, CAT &…",
-      "title_length": 51,
+      "title": "IIM Bangalore PGPEM Admission 2027-29: Fees, CAT & Eligibility",
+      "title_length": 62,
       "description": "IIM Bangalore PGPEM 2027-29: eligibility, six-year work experience requirement, CAT/GMAT/GRE/IIMB Test, fees, weekend format and career outcomes.",
       "description_length": 145,
       "description_count": 1,
@@ -7726,8 +7760,8 @@
     {
       "file": "iim-bangalore.html",
       "benchmark": false,
-      "title": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff &…",
-      "title_length": 53,
+      "title": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff & Placements",
+      "title_length": 63,
       "description": "IIM Bangalore MBA admission 2027: PGP, PGPBA, EPGP and PGPEM eligibility, CAT cutoff, fees, admission dates, placements and official links.",
       "description_length": 139,
       "description_count": 1,
@@ -7932,7 +7966,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 3,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -8199,8 +8233,8 @@
       "canonical": "https://collegedecoded.in/iim-indore-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Indore Placements 2025",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8211,13 +8245,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-indore.html",
@@ -8385,8 +8421,8 @@
       "canonical": "https://collegedecoded.in/iim-jammu",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Jammu: MBA Admission 2026, Fees, CAT Cutoff, Courses & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8397,13 +8433,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-kozhikode-mba.html",
@@ -8540,8 +8578,8 @@
       "canonical": "https://collegedecoded.in/iim-kozhikode-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Kozhikode Placements 2025: Salary, Recruiters & Domain-wise Stats",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en-IN",
       "viewport": true,
       "robots": [
@@ -8552,13 +8590,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-kozhikode.html",
@@ -8614,7 +8654,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -8760,8 +8800,8 @@
       "canonical": "https://collegedecoded.in/iim-mumbai-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Mumbai Placements 2026",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8772,13 +8812,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-mumbai.html",
@@ -8822,8 +8864,8 @@
       "canonical": "https://collegedecoded.in/iim-nagpur-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Nagpur MBA: Admissions & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8834,13 +8876,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-nagpur.html",
@@ -8853,8 +8897,8 @@
       "canonical": "https://collegedecoded.in/iim-nagpur",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Nagpur MBA Admissions 2026-28",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -8865,13 +8909,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-raipur-epgp.html",
@@ -9256,8 +9302,8 @@
       "canonical": "https://collegedecoded.in/iim-rohtak",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Rohtak: Courses, Admissions, Fees, Cutoffs & Placements 2026",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -9268,13 +9314,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iim-sambalpur-mba-ba.html",
@@ -11054,8 +11102,8 @@
       "canonical": "https://collegedecoded.in/iit-roorkee-executive-mba",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIT Roorkee Executive MBA 2026: Admission, Eligibility, Fees & Programme Structure",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11066,13 +11114,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iit-roorkee-mba.html",
@@ -11085,8 +11135,8 @@
       "canonical": "https://collegedecoded.in/iit-roorkee-mba",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIT Roorkee MBA Admission 2027–29: Fees, Eligibility, Selection & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11097,13 +11147,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iit-roorkee-placements.html",
@@ -11116,8 +11168,8 @@
       "canonical": "https://collegedecoded.in/iit-roorkee-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIT Roorkee MBA Placements: Average Package, Median, Highest CTC & Trends",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11128,13 +11180,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "iit-roorkee.html",
@@ -11147,8 +11201,8 @@
       "canonical": "https://collegedecoded.in/iit-roorkee",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIT Roorkee MBA Admission 2026: Fees, Eligibility, Cutoff & Placements",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11159,13 +11213,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "imi-bhubaneswar-admission-2026.html",
@@ -11612,8 +11668,8 @@
       "canonical": "https://collegedecoded.in/imt-ghaziabad",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Institute of Management Technology (IMT) Ghaziabad",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -11624,13 +11680,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "imt-nagpur-admission-2027.html",
@@ -11839,7 +11897,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
@@ -11998,7 +12056,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -12017,8 +12075,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-management-nagpur-blended-mba-for-working-professionals",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Blended MBA for Working Professionals",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12029,13 +12087,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "indian-institute-of-management-nagpur-executive-mba-hybrid.html",
@@ -12048,8 +12108,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-management-nagpur-executive-mba-hybrid",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Executive MBA (Hybrid)",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12060,13 +12120,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "indian-institute-of-management-nagpur-mba.html",
@@ -12079,8 +12141,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-management-nagpur-mba",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "IIM Nagpur MBA Programme",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12091,13 +12153,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "indian-institute-of-management-visakhapatnam-mba-programme.html",
@@ -12172,8 +12236,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-technology-roorkee-executive-mba",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Executive MBA Programme",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12184,13 +12248,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "indian-institute-of-technology-roorkee-mba.html",
@@ -12203,8 +12269,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-technology-roorkee-mba",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "MBA Programme at IIT Roorkee",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12215,13 +12281,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "indian-institute-of-technology-roorkee-placements.html",
@@ -12234,8 +12302,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-technology-roorkee-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "MBA Admissions and Placements at IIT Roorkee",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12246,13 +12314,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "indian-institute-of-technology-roorkee.html",
@@ -12265,8 +12335,8 @@
       "canonical": "https://collegedecoded.in/indian-institute-of-technology-roorkee",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "Indian Institute of Technology Roorkee: MBA Admissions",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -12277,13 +12347,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "institute-rural-management-anand-executive-rural-management.html",
@@ -12494,7 +12566,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -12807,7 +12879,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -13303,7 +13375,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -13334,7 +13406,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -13539,8 +13611,8 @@
       "canonical": "https://collegedecoded.in/jims-rohini-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "JIMS Rohini Placements 2026: Highest, Average, Median & Year-wise Data",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -13551,13 +13623,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "jims-rohini.html",
@@ -13830,7 +13904,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -13861,7 +13935,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 3,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -14822,7 +14896,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -14841,8 +14915,8 @@
       "canonical": "https://collegedecoded.in/loyola-institute-business-administration-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "LIBA Placements: Salary, Recruiters & Career Outcomes",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -14853,13 +14927,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "loyola-institute-business-administration.html",
@@ -15132,7 +15208,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -15442,7 +15518,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -15845,7 +15921,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -16310,7 +16386,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -16674,15 +16750,13 @@
       "h1": "NMAT 2026",
       "lang": "en",
       "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
+      "robots": [],
       "indexable": true,
       "og_title": true,
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 3,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -16825,8 +16899,8 @@
       "canonical": "https://collegedecoded.in/nmims",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "NMIMS MBA: Admission 2026, Fees, Cutoff, Placements & Ranking",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -16837,13 +16911,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "panjab-university-admission-2026.html",
@@ -17147,7 +17223,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -17178,7 +17254,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -17519,7 +17595,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -17581,7 +17657,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -17693,8 +17769,8 @@
       "canonical": "https://collegedecoded.in/sibm-bengaluru-placements",
       "canonical_count": 1,
       "canonical_self": true,
-      "h1_count": 1,
-      "h1": "SIBM Bengaluru Placements 2025: Average & Highest CTC by Specialisation",
+      "h1_count": 0,
+      "h1": null,
       "lang": "en",
       "viewport": true,
       "robots": [
@@ -17705,13 +17781,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "h1_count"
+      ]
     },
     {
       "file": "sibm-bengaluru.html",
@@ -17767,7 +17845,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -17956,7 +18034,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -18018,7 +18096,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -18111,7 +18189,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -18886,7 +18964,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -19072,7 +19150,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -20408,7 +20486,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -20470,7 +20548,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -20811,7 +20889,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
@@ -20842,7 +20920,7 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 2,
+      "jsonld_blocks": 1,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
