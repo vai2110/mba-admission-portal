@@ -197,7 +197,9 @@ def fix_page(path):
     original = path.read_text(encoding="utf-8")
     text = original
     filename = path.name
-    page_url = urljoin(BASE_URL, filename[:-5] if filename.lower().endswith('.html') else filename)
+    is_redirect_stub = filename == "iim-bangalore-mba-business-analytics.html"
+    page_url = "https://collegedecoded.in/iim-bangalore-pgpba" if is_redirect_stub else urljoin(BASE_URL, filename[:-5] if filename.lower().endswith(".html") else filename)
+    preserve_noindex = is_redirect_stub or bool(re.search(r'<meta\\b[^>]*name=["\\\']robots["\\\'][^>]*content=["\\\'][^"\\\']*noindex', text, flags=re.I))
     title = extract_title(text, filename)
     description = extract_description(text, title)
     answer_text = extract_answer_text(text, description)
@@ -211,7 +213,7 @@ def fix_page(path):
     text = new_text
 
     for kwargs in [
-        {"name": "robots", "content": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"},
+        {"name": "robots", "content": "noindex,follow" if preserve_noindex else "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"},
         {"prop": "og:title", "content": title}, {"prop": "og:description", "content": description},
         {"prop": "og:url", "content": page_url}, {"prop": "og:type", "content": "website"},
         {"prop": "og:locale", "content": "en_IN"}, {"name": "twitter:card", "content": "summary"},
@@ -220,8 +222,11 @@ def fix_page(path):
         text = upsert_meta(text, **kwargs)
     changes.append("standardized social/search metadata")
 
-    text = add_schema(text, page_url, title, description, location, faq_items)
-    changes.append("added WebPage and BreadcrumbList schema")
+    if is_redirect_stub:
+        text = re.sub(r'<script\\b[^>]*type=["\\\']application/ld\\+json["\\\'][^>]*>.*?</script>', "", text, flags=re.I | re.S)
+    else:
+        text = add_schema(text, page_url, title, description, location, faq_items)
+        changes.append("added or updated a single WebPage/BreadcrumbList schema graph")
     if location:
         changes.append("added location-aware EducationalOrganization schema")
     if faq_items:
@@ -234,9 +239,10 @@ def fix_page(path):
         text, answer_changed = add_answer_first(text, answer_text)
     if answer_changed:
         changes.append("added answer-first summary for AEO")
-    text, css_changed = add_css(text)
-    if css_changed:
-        changes.append("added answer-first block styling")
+    if not is_redirect_stub:
+        text, css_changed = add_css(text)
+        if css_changed:
+            changes.append("added answer-first block styling")
 
     if text != original:
         path.write_text(text, encoding="utf-8")
