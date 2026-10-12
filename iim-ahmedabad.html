@@ -202,7 +202,7 @@ html,body{max-width:100%;overflow-x:hidden}
 
 /* IIMA overview: align the compact editorial byline with the At a Glance card width. */
 @media(min-width:701px){main.wrap .cd-editorial-author{width:calc(100% - 336px);max-width:calc(100% - 336px)}}
-</style>
+\n/* Approved overview layout: keep the main college content primary and news secondary. */\n.iima-intro-card{display:flex;flex-direction:column;gap:18px}\n.iima-intro-card .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 0}\n.iima-intro-card .fact{min-width:0;padding:12px 13px;min-height:76px}\n.iima-intro-card .fact small{display:block;font-size:10px;line-height:1.35}\n.iima-intro-card .fact b{font-size:12px;line-height:1.4}\n@media(max-width:850px){.iima-intro-card .facts{grid-template-columns:repeat(2,minmax(0,1fr))}}\n@media(max-width:400px){.iima-intro-card .facts{grid-template-columns:1fr 1fr}.iima-intro-card .fact{padding:10px}}\n</style>
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
@@ -296,7 +296,16 @@ html,body{max-width:100%;overflow-x:hidden}
 <h2>IIM Ahmedabad at a Glance</h2>
 <p>IIM Ahmedabad is a public management institute established in 1961 in Vastrapur, Ahmedabad. Its two-year Post Graduate Programme in Management (PGP), which awards an MBA degree, is the institute’s flagship programme. For domestic applicants, the PGP admission route uses CAT followed by IIMA’s shortlisting and AWT-PI selection process.</p>
 </div>
-</div>
+<div class="facts">
+<div class="fact"><small>College Type</small><b>Public management institute</b></div>
+<div class="fact"><small>Established</small><b>1961</b></div>
+<div class="fact"><small>Location</small><b>Vastrapur, Ahmedabad, Gujarat</b></div>
+<div class="fact"><small>NIRF Management Rank</small><b>#1 in 2025</b></div>
+<div class="fact"><small>NAAC Grade</small><b>Not published as a current official IIMA metric</b></div>
+<div class="fact"><small>Flagship Course</small><b>MBA / PGP, 2 years</b></div>
+<div class="fact"><small>Latest Published PGP Fee</small><b>₹27.50 lakh for 2025–27</b></div>
+<div class="fact"><small>Latest Audited PGP Mean MEP</small><b>₹37.97 LPA for 2026</b></div>
+</div></div>
 <aside class="iima-news-rail" aria-label="Latest IIM Ahmedabad news">
 <section class="iima-rail-card">
 <div class="iima-rail-heading"><span aria-hidden="true">▤</span><h2>Latest IIM Ahmedabad News</h2><a href="/news">View all →</a></div>
@@ -306,16 +315,7 @@ html,body{max-width:100%;overflow-x:hidden}
 </div>
 </div>
 </section>
-<main class="wrap"><div class="answer-first" aria-label="Quick answer"><strong>Quick answer</strong><p>IIM Ahmedabad is a public management institute established in 1961 in Vastrapur, Ahmedabad. Its two-year Post Graduate Programme in Management (PGP), which awards an MBA degree, is the institute’s flagship programme. For domestic applicants, the PGP admission route uses CAT followed by IIMA’s shortlisting and AWT-PI selection process.</p></div><div class="facts">
-<div class="fact"><small>College Type</small><b>Public management institute</b></div>
-<div class="fact"><small>Established</small><b>1961</b></div>
-<div class="fact"><small>Location</small><b>Vastrapur, Ahmedabad, Gujarat</b></div>
-<div class="fact"><small>NIRF Management Rank</small><b>#1 in 2025</b></div>
-<div class="fact"><small>NAAC Grade</small><b>Not published as a current official IIMA metric</b></div>
-<div class="fact"><small>Flagship Course</small><b>MBA / PGP, 2 years</b></div>
-<div class="fact"><small>Latest Published PGP Fee</small><b>₹27.50 lakh for 2025–27</b></div>
-<div class="fact"><small>Latest Audited PGP Mean MEP</small><b>₹37.97 LPA for 2026</b></div>
-</div>
+<main class="wrap">
 <div class="layout">
 <aside class="sidebar">
 <div class="sidecard">
