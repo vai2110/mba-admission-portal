@@ -5,6 +5,23 @@ import html
 ROOT = Path(__file__).resolve().parents[1]
 SKIP = {"404.html", "iim-ahmedabad.html", "sibm-pune.html"}
 
+TITLE_OVERRIDES = {
+    "iim-bangalore.html": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff & Placements",
+    "iim-bangalore-mba.html": "IIM Bangalore MBA 2027: Fees, Eligibility, CAT & Placements",
+    "iim-bangalore-pgpba.html": "IIM Bangalore PGPBA Admission 2027: CAT, Fees & Eligibility",
+    "iim-bangalore-epgp.html": "IIM Bangalore EPGP Admission 2027-28: Eligibility & Fees",
+    "iim-bangalore-pgpem.html": "IIM Bangalore PGPEM Admission 2027-29: Fees, CAT & Eligibility",
+    "iim-bangalore-placements.html": "IIM Bangalore Placements 2026: Salary, Recruiters & Offers",
+}
+DESCRIPTION_OVERRIDES = {
+    "iim-bangalore.html": "IIM Bangalore MBA admission 2027: PGP, PGPBA, EPGP and PGPEM eligibility, CAT cutoff, fees, admission dates, placements and official links.",
+    "iim-bangalore-mba.html": "IIM Bangalore PGP MBA 2027: eligibility, CAT selection process, fees, curriculum, admission timeline, placements and official programme links.",
+    "iim-bangalore-pgpba.html": "IIM Bangalore PGPBA 2027-29: eligibility, CAT cutoff, selection process, fees, curriculum, internships, placements and official admission dates.",
+    "iim-bangalore-epgp.html": "IIM Bangalore EPGP 2027-28: eligibility, GMAT/GRE, work experience, admission rounds, fees, curriculum, immersion and placement outcomes.",
+    "iim-bangalore-pgpem.html": "IIM Bangalore PGPEM 2027-29: eligibility, six-year work experience requirement, CAT/GMAT/GRE/IIMB Test, fees, weekend format and career outcomes.",
+    "iim-bangalore-placements.html": "IIM Bangalore placements 2026: official PGP and PGPBA salary data, recruiters, consulting and technology roles, offer trends and median salary comparison.",
+}
+
 def clean(s):
     return re.sub(r"\s+", " ", s or "").strip()
 
@@ -83,12 +100,12 @@ for path in sorted(ROOT.glob("*.html")):
         continue
 
     old_title = clean(re.sub(r"<[^>]+>", " ", title_match.group(1)))
-    new_title = title_fix(old_title)
+    new_title = TITLE_OVERRIDES[path.name] if path.name in TITLE_OVERRIDES else title_fix(old_title)
     updated = raw[:title_match.start()] + f"<title>{html.escape(new_title, quote=False)}</title>" + raw[title_match.end():]
 
     descriptions = [m for m in meta_tags(updated) if is_description(m.group(0))]
     old_description = attr(descriptions[0].group(0), "content") if descriptions else ""
-    new_description = description_fix(old_description, new_title)
+    new_description = DESCRIPTION_OVERRIDES[path.name] if path.name in DESCRIPTION_OVERRIDES else description_fix(old_description, new_title)
 
     if descriptions:
         first = descriptions[0]
@@ -136,6 +153,30 @@ for path in sorted(ROOT.glob("*.html")):
         ("name", "twitter:description", new_description),
     ]:
         updated = upsert_meta_content(updated, key, value, content)
+
+    # Keep structured data synchronized with the final canonical, title and description.
+    for schema_match in list(re.finditer(r'<script\b([^>]*)>(.*?)</script>', updated, flags=re.I | re.S)):
+        attrs, body = schema_match.group(1), schema_match.group(2)
+        if not re.search(r'type\s*=\s*["\']application/ld\+json["\']', attrs, flags=re.I):
+            continue
+        try:
+            payload = json.loads(body)
+        except (json.JSONDecodeError, TypeError):
+            continue
+        graph = payload.get("@graph") if isinstance(payload, dict) else None
+        nodes = graph if isinstance(graph, list) else [payload]
+        webpage = next((node for node in nodes if isinstance(node, dict) and node.get("@type") == "WebPage"), None)
+        if webpage:
+            webpage.update({"@id": canonical + "#webpage", "url": canonical, "name": new_title, "description": new_description, "inLanguage": "en-IN"})
+        breadcrumb = next((node for node in nodes if isinstance(node, dict) and node.get("@type") == "BreadcrumbList"), None)
+        if breadcrumb:
+            breadcrumb["@id"] = canonical + "#breadcrumb"
+            breadcrumb["itemListElement"] = [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://collegedecoded.in/"},
+                {"@type": "ListItem", "position": 2, "name": new_title, "item": canonical},
+            ]
+        replacement = f'<script{attrs}>{json.dumps(payload, ensure_ascii=False)}</script>'
+        updated = updated[:schema_match.start()] + replacement + updated[schema_match.end():]
 
     if not re.search(r"<script\b[^>]*type\s*=\s*['\"]application/ld\+json['\"]", updated, flags=re.I):
         import json
