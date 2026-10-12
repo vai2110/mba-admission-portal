@@ -1,6 +1,6 @@
 {
   "source": "Authoritative live college directory registry",
-  "count": 107,
+  "count": 102,
   "colleges": [
     {
       "name": "Aligarh Muslim University",
@@ -161,16 +161,6 @@
       "live": true
     },
     {
-      "name": "EDII Ahmedabad",
-      "location": "",
-      "aliases": [
-        "edii ahmedabad",
-        "ediiahmedabad"
-      ],
-      "url": "https://collegedecoded.in/edii-ahmedabad",
-      "live": true
-    },
-    {
       "name": "FMS Delhi",
       "location": "New Delhi",
       "aliases": [
@@ -192,16 +182,6 @@
         "foreschoolofmanagement"
       ],
       "url": "https://collegedecoded.in/fore-school-management",
-      "live": true
-    },
-    {
-      "name": "Globsyn Business School",
-      "location": "",
-      "aliases": [
-        "globsyn business school kolkata",
-        "globsynbusinessschool"
-      ],
-      "url": "https://collegedecoded.in/globsyn-business-school-kolkata",
       "live": true
     },
     {
@@ -280,16 +260,6 @@
         "icfaifoundationforhighereducationhyderabad"
       ],
       "url": "https://collegedecoded.in/icfai-university-hyderabad",
-      "live": true
-    },
-    {
-      "name": "IISWBM Kolkata",
-      "location": "",
-      "aliases": [
-        "iiswbm kolkata",
-        "iiswbmkolkata"
-      ],
-      "url": "https://collegedecoded.in/iiswbm-kolkata",
       "live": true
     },
     {
@@ -705,16 +675,6 @@
       "live": true
     },
     {
-      "name": "Jaipuria Institute of Management Jaipur",
-      "location": "",
-      "aliases": [
-        "jaipuria jaipur mba",
-        "jaipuriainstituteofmanagementjaipur"
-      ],
-      "url": "https://collegedecoded.in/jaipuria-jaipur-mba",
-      "live": true
-    },
-    {
       "name": "Jaipuria Institute of Management, Lucknow",
       "location": "",
       "aliases": [
@@ -831,16 +791,6 @@
         "mica"
       ],
       "url": "https://collegedecoded.in/mica",
-      "live": true
-    },
-    {
-      "name": "MNIT Jaipur",
-      "location": "",
-      "aliases": [
-        "mnit jaipur mba",
-        "mnitjaipur"
-      ],
-      "url": "https://collegedecoded.in/mnit-jaipur-mba",
       "live": true
     },
     {
