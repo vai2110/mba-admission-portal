@@ -1,5 +1,5 @@
 const TAB_NAME = "News Queue";
-const FIELDS = ["topic","sourceUrl","slug","headline","seoTitle","description","category","status","datePublished","dateModified","author","summary","image","imageAlt","body","sourceLinks","relatedPages","relatedNews","keywords","editorialNote"];
+const FIELDS = ["topic","sourceUrl","slug","generatedSlug","headline","seoTitle","description","category","status","datePublished","dateModified","author","summary","image","imageAlt","body","sourceLinks","relatedPages","relatedNews","keywords","editorialNote"];
 const META_FIELDS = ["publishedUrl","cmsStatusUpdatedAt","cmsCommit","reviewNotes","generationError"];
 const ALL_FIELDS = FIELDS.concat(META_FIELDS);
 
@@ -94,9 +94,10 @@ function getDrafts_(sh,headers) {
       return col < 0 ? "" : (row[col] == null ? "" : row[col]);
     };
     // Support existing sheet labels such as Headline, Source URL and Status without requiring a schema rewrite.
-    if(!String(item.topic||"").trim()) item.topic=String(findValue(["topic","headline","news headline","news topic"])||"").trim();
-    if(!String(item.headline||"").trim()) item.headline=String(findValue(["headline","topic","news headline","news topic"])||"").trim();
-    if(!String(item.sourceUrl||"").trim()) item.sourceUrl=String(findValue(["sourceUrl","source url","official source url","source link","source"])||"").trim();
+    if(!String(item.topic||"").trim()) item.topic=String(findValue(["topic","headline","news headline","news topic","slug","article title","title"])||"").trim();
+    if(!String(item.headline||"").trim()) item.headline=String(findValue(["headline","topic","news headline","news topic","slug","article title","title"])||"").trim();
+    if(!String(item.generatedSlug||"").trim()) item.generatedSlug=String(findValue(["generatedSlug","generated slug","url slug","article url slug"])||"").trim();
+    if(!String(item.sourceUrl||"").trim()) item.sourceUrl=String(findValue(["sourceUrl","source url","official source url","official source","source link","source"])||"").trim();
     if(!String(item.status||"").trim()) item.status=String(findValue(["status","publish status","article status"])||"").trim();
     const status=String(item.status||"").trim();
     if(status!=="Generate Draft" && status!=="Ready for Review" && status!=="In CMS Review") return;
@@ -127,6 +128,13 @@ function updateStatus_(sh,headers,p) {
   if(p.item && typeof p.item==="object") {
     FIELDS.forEach(field=>{
       const col=headers.indexOf(field);if(col<0||p.item[field]===undefined)return;
+      // The Sheet's "slug" column is the manual article title/topic.
+      // Keep it intact; store the AI-generated URL slug separately.
+      if(field === "slug") {
+        const generatedCol = headers.indexOf("generatedSlug");
+        if(generatedCol >= 0) row[generatedCol] = String(p.item[field] || "");
+        return;
+      }
       let value=p.item[field];
       if(Array.isArray(value)||(value&&typeof value==="object"))value=JSON.stringify(value);
       row[col]=value==null?"":value;
