@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-10-12T16:19:27.797079+00:00",
+  "generated_at": "2026-10-12T16:24:17.943618+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
-  "pages_with_issues": 659,
+  "pages_with_issues": 661,
   "issue_counts": {
     "broken_local_links": 3,
-    "canonical": 653,
+    "canonical": 656,
     "description_count": 1,
     "description_length": 1,
     "duplicate_title": 2,
     "h1_count": 3,
     "jsonld": 1,
     "lang": 1,
-    "noindex": 3,
+    "noindex": 2,
     "og_description": 2,
     "og_title": 2,
     "og_url": 2,
@@ -8039,7 +8039,7 @@
       "description": "Redirecting to IIM Bangalore PGPBA Check admission, fees, eligibility and placements. Check admission, fees, eligibility and placements.",
       "description_length": 136,
       "description_count": 1,
-      "canonical": "https://collegedecoded.in/iim-bangalore-pgpba",
+      "canonical": "https://collegedecoded.in/iim-bangalore-mba-business-analytics.html",
       "canonical_count": 1,
       "canonical_self": false,
       "h1_count": 0,
@@ -8047,23 +8047,23 @@
       "lang": "en",
       "viewport": false,
       "robots": [
-        "noindex,follow"
+        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
       ],
-      "indexable": false,
+      "indexable": true,
       "og_title": true,
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 1,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": true,
       "duplicate_canonical": false,
       "issues": [
+        "canonical",
         "h1_count",
         "viewport",
-        "noindex",
         "duplicate_title"
       ]
     },
@@ -8134,14 +8134,14 @@
     {
       "file": "iim-bangalore-pgpem.html",
       "benchmark": false,
-      "title": "IIM Bangalore PGPEM Admission 2027-29: Fees, CAT & Eligibility",
-      "title_length": 62,
+      "title": "IIM Bangalore PGPEM Admission 2027-29: Fees, CAT &…",
+      "title_length": 51,
       "description": "IIM Bangalore PGPEM 2027-29: eligibility, six-year work experience requirement, CAT/GMAT/GRE/IIMB Test, fees, weekend format and career outcomes.",
       "description_length": 145,
       "description_count": 1,
-      "canonical": "https://collegedecoded.in/iim-bangalore-pgpem",
+      "canonical": "https://collegedecoded.in/iim-bangalore-pgpem.html",
       "canonical_count": 1,
-      "canonical_self": true,
+      "canonical_self": false,
       "h1_count": 1,
       "h1": "IIM Bangalore PGPEM Admission 2027-29",
       "lang": "en",
@@ -8154,13 +8154,15 @@
       "og_description": true,
       "og_url": true,
       "twitter_card": true,
-      "jsonld_blocks": 1,
+      "jsonld_blocks": 2,
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "canonical"
+      ]
     },
     {
       "file": "iim-bangalore-placements.html",
@@ -8170,9 +8172,9 @@
       "description": "IIM Bangalore placements 2026: official PGP and PGPBA salary data, recruiters, consulting and technology roles, offer trends and median salary comparison.",
       "description_length": 154,
       "description_count": 1,
-      "canonical": "https://collegedecoded.in/iim-bangalore-placements",
+      "canonical": "https://collegedecoded.in/iim-bangalore-placements.html",
       "canonical_count": 1,
-      "canonical_self": true,
+      "canonical_self": false,
       "h1_count": 1,
       "h1": "IIM Bangalore Placements 2026",
       "lang": "en",
@@ -8191,13 +8193,15 @@
       "broken_local_links": [],
       "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": []
+      "issues": [
+        "canonical"
+      ]
     },
     {
       "file": "iim-bangalore.html",
       "benchmark": false,
-      "title": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff & Placements",
-      "title_length": 63,
+      "title": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff &…",
+      "title_length": 53,
       "description": "IIM Bangalore MBA admission 2027: PGP, PGPBA, EPGP and PGPEM eligibility, CAT cutoff, fees, admission dates, placements and official links.",
       "description_length": 139,
       "description_count": 1,
