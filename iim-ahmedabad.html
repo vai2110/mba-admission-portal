@@ -170,6 +170,34 @@ html,body{max-width:100%;overflow-x:hidden}
   table{font-size:9px}
   th,td{padding:5px 4px}
 }
+
+/* Related news rail: kept beside the existing intro card without changing article-body architecture. */
+.iima-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+.iima-intro-card{min-width:0;height:100%}
+.iima-news-rail{display:grid;gap:12px;min-width:0}
+.iima-rail-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(15,23,42,.04)}
+.iima-rail-heading{display:flex;align-items:center;gap:8px;padding:12px 13px;background:#eef5ff;border-bottom:1px solid #dce8f8}
+.iima-rail-heading>span{color:#1764df;font-size:19px;font-weight:900;line-height:1}
+.iima-rail-heading h2{margin:0;color:var(--navy);font-size:13px;line-height:1.3;flex:1}
+.iima-rail-heading>a{white-space:nowrap;color:#1764df;font-size:10px;font-weight:800}
+.iima-news-item{display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px;padding:11px 12px;border-bottom:1px solid #edf1f5;align-items:start}
+.iima-news-item:last-child{border-bottom:0}
+.iima-news-thumb{width:78px;height:66px;object-fit:cover;border-radius:7px;background:#eef3fa}
+.iima-news-copy{min-width:0}
+.iima-news-category{display:inline-block;margin:0 0 4px;padding:2px 6px;border-radius:999px;background:#e6efff;color:#174ea6;font-size:8px;font-weight:900;text-transform:uppercase;line-height:1.3}
+.iima-news-title{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#102a43;font-size:11px;font-weight:800;line-height:1.4}
+.iima-news-date{margin-top:5px;color:#64748b;font-size:9px;line-height:1.3}
+.iima-news-empty{padding:14px;color:#64748b;font-size:11px}
+.iima-related-pages .iima-rail-heading{margin-bottom:0}
+.iima-related-link{display:grid;grid-template-columns:34px minmax(0,1fr) 12px;align-items:center;gap:9px;padding:10px 12px;border-bottom:1px solid #edf1f5;color:#102a43!important}
+.iima-related-link:last-child{border-bottom:0}
+.iima-related-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:#eef5ff;color:#1764df;font-size:10px;font-weight:900}
+.iima-related-link b{display:block;font-size:10px;line-height:1.35}
+.iima-related-link small{display:block;margin-top:2px;color:#64748b;font-size:9px;line-height:1.35}
+.iima-related-arrow{color:#174ea6;font-size:14px}
+@media(max-width:900px){.iima-intro-grid{grid-template-columns:minmax(0,1fr) 290px;gap:12px}.iima-news-item{grid-template-columns:66px minmax(0,1fr);gap:8px;padding:10px}.iima-news-thumb{width:66px;height:60px}}
+@media(max-width:700px){.iima-intro-grid{grid-template-columns:minmax(0,1fr)}.iima-news-rail{grid-template-columns:minmax(0,1fr)}.iima-intro{padding-top:12px}.iima-intro-card{padding:18px 16px}.iima-rail-heading h2{font-size:13px}.iima-news-title{font-size:12px}.iima-news-item{grid-template-columns:84px minmax(0,1fr)}.iima-news-thumb{width:84px;height:68px}}
+
 </style>
 <script type="application/ld+json">
 {
@@ -258,12 +286,25 @@ html,body{max-width:100%;overflow-x:hidden}
 </section>
 <section class="iima-intro" id="iima-factual-summary">
 <div class="wrap">
+<div class="iima-intro-grid">
 <div class="iima-intro-card">
 <div class="iima-intro-main">
 <h2>IIM Ahmedabad at a Glance</h2>
 <p>IIM Ahmedabad is a public management institute established in 1961 in Vastrapur, Ahmedabad. Its two-year Post Graduate Programme in Management (PGP), which awards an MBA degree, is the institute’s flagship programme. For domestic applicants, the PGP admission route uses CAT followed by IIMA’s shortlisting and AWT-PI selection process.</p>
 </div>
 </div>
+<aside class="iima-news-rail" aria-label="Latest IIM Ahmedabad news and related pages">
+<section class="iima-rail-card">
+<div class="iima-rail-heading"><span aria-hidden="true">▤</span><h2>Latest IIM Ahmedabad News</h2><a href="/news">View all →</a></div>
+<div class="iima-news-list" id="iima-related-news-list"><!-- RELATED_NEWS_ITEMS --></div>
+</section>
+<section class="iima-rail-card iima-related-pages">
+<div class="iima-rail-heading"><span aria-hidden="true">↗</span><h2>Related Pages</h2></div>
+<a class="iima-related-link" href="/iim-ahmedabad-mba-pgp"><span class="iima-related-icon">MBA</span><span><b>MBA (PGP) Course</b><small>Eligibility, selection process and fees</small></span><span class="iima-related-arrow">→</span></a>
+<a class="iima-related-link" href="/iim-ahmedabad-placements"><span class="iima-related-icon">↗</span><span><b>Placements</b><small>Latest placement data and trends</small></span><span class="iima-related-arrow">→</span></a>
+<a class="iima-related-link" href="/iim-ahmedabad-mba-fabm"><span class="iima-related-icon">MBA</span><span><b>MBA-FABM Course</b><small>Programme details and admission</small></span><span class="iima-related-arrow">→</span></a>
+</section>
+</aside>
 </div>
 </div>
 </section>
