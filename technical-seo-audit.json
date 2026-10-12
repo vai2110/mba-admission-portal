@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T16:52:30.817003+00:00",
+  "generated_at": "2026-10-12T16:54:33.409090+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 50,
@@ -4163,9 +4163,7 @@
       "h1": "Find the Right MBA College",
       "lang": "en",
       "viewport": true,
-      "robots": [
-        "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-      ],
+      "robots": [],
       "indexable": true,
       "og_title": true,
       "og_description": true,
