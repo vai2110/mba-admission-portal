@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T06:23:47.257897+00:00",
+  "generated_at": "2026-10-12T06:30:36.041267+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 664,
@@ -4759,8 +4759,8 @@
     {
       "file": "cusat-law-2026.html",
       "benchmark": false,
-      "title": "CUSAT Law 2026: Courses, Admission, Fees, Eligibility &…",
-      "title_length": 56,
+      "title": "CUSAT Law 2026: Courses, Admission, Fees, Eligibility & Cutoff",
+      "title_length": 62,
       "description": "CUSAT law 2026 guide covering BBA LLB, BCom LLB, BSc LLB Computer Science, LLM, CAT/CUET routes, fees and career scope. Check admission, fees, eligibility and placements.",
       "description_length": 170,
       "description_count": 1,
@@ -4792,8 +4792,8 @@
     {
       "file": "cusat-mba-2026.html",
       "benchmark": false,
-      "title": "CUSAT MBA 2026: Admission, Fees, Eligibility, Cutoff &…",
-      "title_length": 55,
+      "title": "CUSAT MBA 2026: Admission, Fees, Eligibility, Cutoff & Placements",
+      "title_length": 65,
       "description": "CUSAT MBA 2026 guide covering MBA admission, CAT/CMAT/KMAT, eligibility, 70-20-10 selection, fees, programmes and career scope.",
       "description_length": 127,
       "description_count": 1,
@@ -4924,8 +4924,8 @@
     {
       "file": "cusat-science-marine-2026.html",
       "benchmark": false,
-      "title": "CUSAT Courses 2026: Science, Marine, MSc & Integrated…",
-      "title_length": 54,
+      "title": "CUSAT Courses 2026: Science, Marine, MSc & Integrated Programmes",
+      "title_length": 64,
       "description": "CUSAT science and marine courses 2026 guide covering integrated MSc, MSc, marine science, fisheries, oceanography and specialist programmes.",
       "description_length": 140,
       "description_count": 1,
