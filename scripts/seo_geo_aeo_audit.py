@@ -79,13 +79,90 @@ def extract_faqs(text):
 
 
 def add_schema(text, page_url, title, description, location, faq_items):
+    """Upsert one coherent WebPage/Breadcrumb schema graph without duplicating existing course/FAQ entities."""
     text = re.sub(r'<script\b[^>]*data-mba-schema=["\']seo-geo-aeo["\'][^>]*>.*?</script>', '', text, flags=re.I | re.S)
+
+    def breadcrumb_node():
+        return {
+            "@type": "BreadcrumbList",
+            "@id": page_url + "#breadcrumb",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL},
+                {"@type": "ListItem", "position": 2, "name": title, "item": page_url},
+            ],
+        }
+
+    # Prefer updating an existing valid WebPage graph. This preserves Course,
+    # CollegeOrUniversity and FAQPage data while preventing duplicate entities.
+    for match in list(re.finditer(r'<script\b([^>]*)>(.*?)</script>', text, flags=re.I | re.S)):
+        attrs, body = match.group(1), match.group(2)
+        if not re.search(r'type=["\']application/ld\+json["\']', attrs, flags=re.I):
+            continue
+        if re.search(r'data-mba-schema', attrs, flags=re.I):
+            continue
+        try:
+            payload = json.loads(body)
+        except (json.JSONDecodeError, TypeError):
+            continue
+
+        graph = payload.get("@graph") if isinstance(payload, dict) else None
+        if not isinstance(graph, list):
+            if isinstance(payload, dict) and payload.get("@type") == "WebPage":
+                graph = [payload]
+            else:
+                continue
+
+        webpage = next((node for node in graph if isinstance(node, dict) and node.get("@type") == "WebPage"), None)
+        if webpage is None:
+            continue
+
+        webpage.update({
+            "@id": page_url + "#webpage",
+            "url": page_url,
+            "name": title,
+            "description": description,
+            "inLanguage": "en-IN",
+        })
+        crumb = next((node for node in graph if isinstance(node, dict) and node.get("@type") == "BreadcrumbList"), None)
+        if crumb is None:
+            graph.append(breadcrumb_node())
+        else:
+            crumb.update(breadcrumb_node())
+
+        # Add optional entities only when an equivalent entity is not already present.
+        graph_types = {node.get("@type") for node in graph if isinstance(node, dict)}
+        if location and not ({"CollegeOrUniversity", "EducationalOrganization"} & graph_types):
+            graph.append({
+                "@type": "EducationalOrganization",
+                "name": title.split(":")[0].strip(),
+                "url": page_url,
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": location,
+                    "addressCountry": "IN",
+                },
+            })
+        if faq_items and "FAQPage" not in graph_types:
+            graph.append({
+                "@type": "FAQPage",
+                "@id": page_url + "#faq",
+                "mainEntity": [
+                    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                    for q, a in faq_items
+                ],
+            })
+
+        payload["@context"] = payload.get("@context", "https://schema.org")
+        payload["@graph"] = graph
+        replacement = f'<script{attrs}>{json.dumps(payload, ensure_ascii=False)}</script>'
+        text = text[:match.start()] + replacement + text[match.end():]
+        return text
+
+    # No usable WebPage entity exists, so create a single complete graph.
     graph = [
         {"@type": "WebPage", "@id": page_url + "#webpage", "url": page_url, "name": title,
-         "description": description, "inLanguage": "en-IN", "isPartOf": {"@id": BASE_URL + "#website"}},
-        {"@type": "BreadcrumbList", "@id": page_url + "#breadcrumb", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "MBA Portal", "item": BASE_URL},
-            {"@type": "ListItem", "position": 2, "name": title, "item": page_url}]}
+         "description": description, "inLanguage": "en-IN", "isPartOf": {"@id": BASE_URL.rstrip("/") + "#website"}},
+        breadcrumb_node(),
     ]
     if location:
         graph.append({"@type": "EducationalOrganization", "name": title.split(":")[0].strip(),
@@ -96,7 +173,6 @@ def add_schema(text, page_url, title, description, location, faq_items):
             for q, a in faq_items]})
     payload = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
     return re.sub(r'</head>', f'<script type="application/ld+json" data-mba-schema="seo-geo-aeo">{payload}</script></head>', text, count=1, flags=re.I)
-
 
 def add_answer_first(text, answer_text):
     if re.search(r'class=["\'][^"\']*answer-first', text, flags=re.I):
@@ -121,7 +197,7 @@ def fix_page(path):
     original = path.read_text(encoding="utf-8")
     text = original
     filename = path.name
-    page_url = urljoin(BASE_URL, filename)
+    page_url = urljoin(BASE_URL, filename[:-5] if filename.lower().endswith('.html') else filename)
     title = extract_title(text, filename)
     description = extract_description(text, title)
     answer_text = extract_answer_text(text, description)
@@ -151,7 +227,11 @@ def fix_page(path):
     if faq_items:
         changes.append(f"added FAQPage schema for {len(faq_items)} visible FAQs")
 
-    text, answer_changed = add_answer_first(text, answer_text)
+    # Preserve the approved structure of IIM Bangalore pages; do not reintroduce a Quick answer card.
+    if filename.startswith("iim-bangalore"):
+        answer_changed = False
+    else:
+        text, answer_changed = add_answer_first(text, answer_text)
     if answer_changed:
         changes.append("added answer-first summary for AEO")
     text, css_changed = add_css(text)
