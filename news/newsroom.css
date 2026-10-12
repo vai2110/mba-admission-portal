@@ -75,3 +75,30 @@ header{position:sticky;top:0;z-index:20;box-shadow:0 2px 12px #10245b08}
 @media(max-width:980px){.hero-inner{grid-template-columns:1fr .8fr;gap:22px}.content-layout{grid-template-columns:minmax(0,1fr) 260px}.news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-copy{padding:18px}.featured-card>.news-image{min-height:240px}}
 @media(max-width:720px){.hero-inner{grid-template-columns:1fr;padding:28px 0}.hero-visual{display:none}.newsroom-hero h1{font-size:38px;letter-spacing:-1.4px}.hero-points{gap:8px 13px}.content-layout{grid-template-columns:1fr}.news-sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.explore-panel{grid-column:1/-1}.featured-card{grid-template-columns:1fr}.featured-card>.news-image{height:205px;min-height:205px}.featured-copy{padding:18px}.news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.news-card .news-image{height:120px;min-height:120px;max-height:120px}.section-heading h2{font-size:21px}}
 @media(max-width:480px){.wrap{width:calc(100% - 24px)}.brand{font-size:19px}.newsroom-main{padding-top:16px}.newsroom-hero h1{font-size:34px}.newsroom-hero .lede{font-size:14px}.hero-points{display:grid;gap:6px}.search-panel input{padding:13px 10px;font-size:12px}.search-panel button{padding:0 13px;font-size:11px}.filters{gap:6px;margin:12px 0 17px}.filter{font-size:10px;padding:8px 10px}.news-grid{grid-template-columns:1fr}.news-card{display:grid;grid-template-columns:110px minmax(0,1fr)}.news-card .news-image{height:100%;min-height:150px;max-height:none}.news-card-content{padding:11px}.news-card h3{font-size:13px}.news-card p{font-size:11px;margin-bottom:10px}.news-card .card-meta{font-size:9px;align-items:flex-start;flex-direction:column;gap:6px}.news-sidebar{grid-template-columns:1fr}.explore-panel{grid-column:auto}.featured-copy h2{font-size:22px}.section-note{font-size:9px}}
+
+
+/* News article hero: keep the complete featured image visible and use a calmer headline scale. */
+.article-hero-grid h1{
+  font-size:clamp(28px,3.2vw,40px);
+  line-height:1.15;
+  letter-spacing:-1px;
+  margin:10px 0 12px;
+}
+.article-hero-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:290px;
+  aspect-ratio:16/9;
+  object-fit:contain;
+  object-position:center;
+  background:#eef4ff;
+}
+@media(max-width:900px){
+  .article-hero-grid h1{font-size:clamp(27px,3.4vw,36px)}
+  .article-hero-image{max-height:250px}
+}
+@media(max-width:760px){
+  .article-hero-grid h1{font-size:clamp(28px,6vw,36px);line-height:1.15;letter-spacing:-.8px}
+  .article-hero-image{width:100%;max-height:none;aspect-ratio:16/9;object-fit:contain}
+}
