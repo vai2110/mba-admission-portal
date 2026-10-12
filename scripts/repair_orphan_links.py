@@ -109,6 +109,13 @@ def best_source(page, page_set):
 def add_grouped_links(source, destinations):
     path = ROOT / source
     html = path.read_text(encoding="utf-8")
+    # /colleges is the master directory. Never append a noisy auto-generated list of unrelated orphan URLs.
+    if source == "colleges.html":
+        cleaned = re.sub(r'<nav\b[^>]*class=["\'][^"\']*\bseo-related-link\b[^"\']*["\'][^>]*>.*?</nav>', '', html, flags=re.I | re.S)
+        cleaned = re.sub(r'<style\b[^>]*id=["\']seo-related-link-style["\'][^>]*>.*?</style>\s*', '', cleaned, flags=re.I | re.S)
+        if cleaned != html:
+            path.write_text(cleaned, encoding="utf-8")
+        return False
     existing = normalize_existing_links(html)
     missing = [d for d in destinations if d not in existing and d != source]
     if not missing:
