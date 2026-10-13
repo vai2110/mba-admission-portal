@@ -44,6 +44,7 @@ jobs:
             git reset --hard origin/main
 
             python scripts/inject_google_analytics.py
+            python scripts/generate_college_guides_hub.py
             python scripts/generate_sitemap.py
 
             if ! git status --porcelain -- '*.html' sitemap.xml | grep -q .; then
