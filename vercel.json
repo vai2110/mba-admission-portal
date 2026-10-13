@@ -354,6 +354,46 @@
       "source": "/edii-ahmedabad.html",
       "destination": "/mba-colleges-in-ahmedabad",
       "permanent": true
+    },
+    {
+      "source": "/mba-college-comparison.html",
+      "destination": "/mba-college-comparison",
+      "permanent": true
+    },
+    {
+      "source": "/iim-bangalore-mba.html",
+      "destination": "/iim-bangalore-mba",
+      "permanent": true
+    },
+    {
+      "source": "/cat.html",
+      "destination": "/cat",
+      "permanent": true
+    },
+    {
+      "source": "/mba-admission-guide.html",
+      "destination": "/mba-admission-guide",
+      "permanent": true
+    },
+    {
+      "source": "/mba-college-fees.html",
+      "destination": "/mba-college-fees",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-placements.html",
+      "destination": "/iim-ahmedabad-placements",
+      "permanent": true
+    },
+    {
+      "source": "/cusat-law-2026.html",
+      "destination": "/cusat-law-2026",
+      "permanent": true
+    },
+    {
+      "source": "/thapar-institute-mba.html",
+      "destination": "/thapar-institute-mba",
+      "permanent": true
     }
   ]
 }
