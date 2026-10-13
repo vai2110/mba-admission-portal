@@ -7,6 +7,7 @@ on:
       - 'config/news-schema.json'
       - 'scripts/build-news.js'
       - 'scripts/vercel-build.sh'
+      - 'scripts/generate_college_guides_hub.py'
       - 'NEWSROOM-SETUP.md'
   push:
     branches: [main]
@@ -15,6 +16,7 @@ on:
       - 'config/news-schema.json'
       - 'scripts/build-news.js'
       - 'scripts/vercel-build.sh'
+      - 'scripts/generate_college_guides_hub.py'
       - 'NEWSROOM-SETUP.md'
 
 jobs:
@@ -26,7 +28,9 @@ jobs:
         with:
           node-version: 20
       - name: Check generator syntax
-        run: node --check scripts/build-news.js
+        run: |
+          node --check scripts/build-news.js
+          python3 -m py_compile scripts/generate_college_guides_hub.py
       - name: Generate hub and sitemap from registry
         run: node scripts/build-news.js
       - name: Validate generated SEO assets
