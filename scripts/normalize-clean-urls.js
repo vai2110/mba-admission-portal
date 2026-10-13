@@ -86,14 +86,15 @@ function normalizeHref(href, sourceName) {
 function addOrReplaceCanonical(html, sourceName) {
   const canonical = "https://collegedecoded.in" + cleanUrlForFile(sourceName);
   const tag = '<link rel="canonical" href="' + canonical + '">';
-  const canonicalRe = /<link\b[^>]*rel=["'][^"']*canonical[^"']*["'][^>]*>/i;
-  const canonicalRe2 = /<link\b[^>]*href=["'][^"']+["'][^>]*rel=["'][^"']*canonical[^"']*["'][^>]*>/i;
-
-  if (canonicalRe.test(html)) return html.replace(canonicalRe, tag);
-  if (canonicalRe2.test(html)) return html.replace(canonicalRe2, tag);
+  // Remove every existing canonical declaration, regardless of attribute order,
+  // then write exactly one canonical for the preferred clean public URL.
+  const canonicalTagRe = /<link\b(?=[^>]*\brel=["'][^"']*canonical[^"']*["'])(?=[^>]*\bhref=["'][^"']+["'])[^>]*>/gi;
+  if (canonicalTagRe.test(html)) {
+    canonicalTagRe.lastIndex = 0;
+    return html.replace(canonicalTagRe, tag);
+  }
   return html.replace(/<head\b[^>]*>/i, m => m + "\n" + tag);
 }
-
 function internalTargetExists(href, sourceName) {
   if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) return true;
 
