@@ -4,6 +4,8 @@ set -e
 python3 scripts/seo_metadata_cleanup.py
 node scripts/normalize-clean-urls.js
 node scripts/validate-college-data-consistency.js
+# Build a crawlable directory and give public canonical pages a direct discovery path.
+python3 scripts/generate_college_guides_hub.py
 # Generate a raster favicon for Google Search from the existing CollegeDecoded favicon artwork.
 python3 - <<'PY'
 import base64
