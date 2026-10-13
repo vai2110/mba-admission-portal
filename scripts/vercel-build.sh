@@ -1,3 +1,4 @@
+# Production build entry point; keep this script deterministic.
 #!/usr/bin/env bash
 set -e
 python3 scripts/seo_metadata_cleanup.py
