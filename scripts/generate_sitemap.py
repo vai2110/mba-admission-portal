@@ -18,6 +18,8 @@ EXCLUDED_PATHS = {
     "github-direct-edit-test.html",
     # Legacy dynamic IIM Ahmedabad route; canonical entity URL is /iim-ahmedabad.
     "college.html",
+    # Legacy .html alias is redirected by Vercel cleanUrls; never advertise it in sitemap.
+    "iim-ahmedabad.html",
 }
 
 # URL -> latest source modification date.
