@@ -16,7 +16,7 @@ jobs:
           from pathlib import Path
           import re
           data={
-          'cusat-kochi.html':('CUSAT Courses, Admission, Fees & Placements 2026','CUSAT Courses, Admission, Fees & Placements 2026'),
+          'cusat-kochi.html':('CUSAT Admission 2026, Fees, Courses & Placements | Cochin University','Cochin University of Science and Technology (CUSAT): Admission, Courses, Fees & Placements 2026'),
           'cusat-admission-2026.html':('CUSAT Admission 2026: CAT, Eligibility, Cutoff, Fees & Dates','CUSAT Admission 2026: CAT, Eligibility, Cutoff & Process'),
           'cusat-btech-2026.html':('CUSAT B.Tech 2026: Courses, Fees, Cutoff, Seats & Admission','CUSAT B.Tech 2026: Courses, Fees, Cutoff & Admission'),
           'cusat-mba-2026.html':('CUSAT MBA 2026: Admission, Fees, Eligibility, Cutoff & Placements','CUSAT MBA 2026: Admission, Fees, Eligibility & Selection'),
