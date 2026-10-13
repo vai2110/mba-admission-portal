@@ -26,11 +26,9 @@ EXCLUDED_PATHS = {
 url_dates = {}
 url_signatures = {}
 
-# Sitemap inclusion is deliberately stricter than indexability. Pages that are
-# technically crawlable but contain very little main content should be improved
-# before being advertised as priority URLs in the sitemap. This is not a
-# Google-required word-count rule; it is an editorial quality safeguard.
-MIN_SITEMAP_WORDS = 300
+# Do not use a fixed word-count threshold to decide sitemap eligibility.
+# Every public, canonical, indexable page may be included; thin pages should be
+# improved editorially rather than silently omitted from the sitemap.
 
 class _TextParser(HTMLParser):
     def __init__(self):
@@ -99,12 +97,6 @@ for html_file in ROOT.rglob("*.html"):
         content,
         re.IGNORECASE,
     ):
-        continue
-
-    # Do not put extremely thin pages in the sitemap. They remain live and
-    # indexable so they can be improved, but the sitemap should represent the
-    # site's strongest, most useful URLs rather than every HTML file.
-    if visible_word_count(content) < MIN_SITEMAP_WORDS:
         continue
 
     # Look for canonical URL.
