@@ -41,7 +41,15 @@ class PageParser(HTMLParser):
             self.title += data
 
 def clean_url_for(path):
-    return BASE if path.name == "index.html" else BASE + "/" + path.stem
+    relative = path.relative_to(ROOT).as_posix()
+    if relative == "index.html":
+        return BASE
+    # CMS source files are implementation paths; public overview URLs use /<slug>.
+    match = re.fullmatch(r"college-cms/content/([^/]+)/overview\\.html", relative)
+    if match:
+        return BASE + "/" + match.group(1)
+    # Other nested files retain their path hierarchy in the public URL.
+    return BASE + "/" + relative[:-5] if relative.endswith(".html") else BASE + "/" + relative
 
 def resolve_local(source, href):
     if not href or href.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
@@ -84,6 +92,8 @@ for path in ROOT.rglob("*.html"):
     indexable = not any("noindex" in x for x in parser.robots)
     expected = clean_url_for(path)
     canonical = parser.canonical[0].rstrip("/") if parser.canonical else ""
+    if indexable and len(parser.canonical) != 1:
+        critical.append(f"canonical count must be exactly one: {rel} -> {len(parser.canonical)} tags")
     if indexable and canonical != expected.rstrip("/"):
         critical.append(f"canonical mismatch: {rel} -> {canonical or 'MISSING'} (expected {expected})")
     if parser.title.strip():
