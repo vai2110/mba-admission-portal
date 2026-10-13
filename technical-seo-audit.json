@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T15:02:47.169367+00:00",
+  "generated_at": "2026-10-13T16:20:08.885994+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 669,
   "pages_with_issues": 49,
@@ -4405,16 +4405,16 @@
     {
       "file": "cusat-kochi.html",
       "benchmark": false,
-      "title": "CUSAT Courses, Admission, Fees & Placements 2026",
+      "title": "CUSAT Admission 2026, Fees, Courses & Placements",
       "title_length": 48,
-      "description": "CUSAT courses, admission 2026, CAT, B.Tech, MBA, MCA, fees, placements, hostel and programme-wise student guidance. Check admission, fees, eligibility and placements.",
-      "description_length": 166,
+      "description": "Cochin University of Science and Technology (CUSAT) admission 2026-27: B.Tech eligibility, CAT, courses, fees, seats, MBA, placements, hostel and rankings.",
+      "description_length": 155,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/cusat-kochi",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "CUSAT Courses, Admission, Fees & Placements 2026",
+      "h1": "Cochin University of Science and Technology (CUSAT): Admission, Courses, Fees & Placements 2026",
       "lang": "en",
       "viewport": true,
       "robots": [
