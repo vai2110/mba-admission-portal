@@ -189,4 +189,4 @@ sitemap_path.write_text(
     encoding="utf-8",
 )
 
-print(f"Sitemap generated successfully with {len(urls)} URLs (excluding noindex and pages under {MIN_SITEMAP_WORDS} visible words) and lastmod dates.")
+print(f"Sitemap generated successfully with {len(urls)} canonical, indexable URLs and lastmod dates.")
