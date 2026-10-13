@@ -64,6 +64,10 @@
     "summary": {
       "type": "string"
     },
+    "customHtml": {
+      "type": "string",
+      "maxLength": 100000
+    },
     "body": {
       "type": "array",
       "items": {
