@@ -40,17 +40,11 @@ jobs:
               file = next((p for p in candidates if p.is_file()), None)
               if file is None: continue
               original = file.read_text(encoding="utf-8", errors="ignore")
-              text = re.sub(r'<div[^>]*id=["\\']cdEditorialMeta["\\'][^>]*>.*?</div\\s*>','',original,flags=re.I|re.S)
-              text = re.sub(r'<style[^>]*id=["\\']cdEditorialMetaStaticStyles["\\'][^>]*>.*?</style\\s*>','',text,flags=re.I|re.S)
-              text = re.sub(r'(</(?:div|section|article|main|footer|header|body|p|ul|ol|li)>)\\s*(?:\\\\n\\s*)+',r'\\1',text,flags=re.I)
-              text = re.sub(r'(?<!\\\\)\\\\n+','',text)
-              for pattern in (
-                  r'<script[^>]+src=["\\']/assets/editorial-meta\\.js(?:\\?[^"\\']*)?["\\'][^>]*></script>\\s*',
-                  r'<script[^>]+src=["\\']/assets/mobile-on-page\\.js(?:\\?[^"\\']*)?["\\'][^>]*></script>\\s*',
-              ):
-                  text = re.sub(pattern, '', text, flags=re.I)
-              if re.search(r'</head>', text, flags=re.I):
-                  text = re.sub(r'</head>', '\\n'.join(scripts) + '\\n</head>', text, count=1, flags=re.I)
+              text = original
+              text = re.sub(r"""<script[^>]+src=["']/assets/editorial-meta\.js(?:\?[^"']*)?["'][^>]*></script>\s*""", "", text, flags=re.I)
+              text = re.sub(r"""<script[^>]+src=["']/assets/mobile-on-page\.js(?:\?[^"']*)?["'][^>]*></script>\s*""", "", text, flags=re.I)
+              if re.search(r"</head>", text, flags=re.I):
+                  text = re.sub(r"</head>", "\n".join(scripts) + "\n</head>", text, count=1, flags=re.I)
               if text != original:
                   file.write_text(text, encoding="utf-8")
                   changed += 1
