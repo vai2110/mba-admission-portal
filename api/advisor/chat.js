@@ -2,6 +2,21 @@ const MAX_HISTORY = 12;
 const MAX_MESSAGE_CHARS = 3000;
 const MAX_PAGE_CONTEXT_CHARS = 5000;
 
+function hasAllowedOrigin(req) {
+  const origin = req.headers.origin;
+  if (!origin) return true; // Non-browser callers may omit Origin; protect browser cross-origin requests.
+  try {
+    const parsed = new URL(origin);
+    const requestHost = String(req.headers.host || "").toLowerCase();
+    if (parsed.protocol !== "https:" && parsed.hostname !== "localhost") return false;
+    if (parsed.host.toLowerCase() === requestHost) return true;
+    if (["collegedecoded.in", "www.collegedecoded.in"].includes(parsed.hostname.toLowerCase())) return true;
+    return parsed.hostname.endsWith(".vercel.app") && parsed.host.toLowerCase() === requestHost;
+  } catch (_) {
+    return false;
+  }
+}
+
 function send(res, status, payload) {
   res.status(status).setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
@@ -45,6 +60,7 @@ function extractResponse(data) {
 }
 
 module.exports = async function handler(req, res) {
+  if (!hasAllowedOrigin(req)) return send(res, 403, { error: "Request origin not allowed." });
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return send(res, 405, { error: "Method not allowed." });
