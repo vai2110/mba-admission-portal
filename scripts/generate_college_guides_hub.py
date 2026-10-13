@@ -72,7 +72,11 @@ def main():
         canonical = canonical_for(html, path)
         if not canonical:
             continue
-        pages[canonical] = {"path": path, "title": title_for(html, path)}
+        # Do not promote thin pages into a giant discovery directory; they remain live for editorial review.
+        words = len(visible_text(html).split())
+        if words < 300:
+            continue
+        pages[canonical] = {"path": path, "title": title_for(html, path), "words": words}
 
     grouped = defaultdict(list)
     for url, item in pages.items():
@@ -113,25 +117,28 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
 """
     HUB_FILE.write_text(hub, encoding="utf-8")
 
-    # Give every public, canonical page a direct path to the directory. Idempotent on repeated builds.
+    # Keep the directory discoverable from the main landing pages without adding boilerplate
+    # links to every article. The directory itself provides the crawlable links to its entries.
     injected = 0
-    for item in pages.values():
-        path = item["path"]
-        html = path.read_text(encoding="utf-8", errors="ignore")
-        if re.search(r'<a\b[^>]*class=["\'][^"\']*' + LINK_CLASS + r'[^"\']*["\'][^>]*', html, re.I):
+    for filename in ("index.html", "colleges.html"):
+        path = ROOT / filename
+        if not path.exists():
             continue
-        link = '<nav class="' + LINK_CLASS + '" aria-label="College guide directory"><a href="/college-guides">Browse all college and course guides</a></nav>'
-        style = '<style id="all-college-guides-link-style">.' + LINK_CLASS + '{margin:18px auto;padding:10px 16px;width:min(1120px,calc(100% - 32px));font-size:13px;border-top:1px solid #e5eaf2}.' + LINK_CLASS + ' a{color:#2458d8;font-weight:600;text-decoration:none}.' + LINK_CLASS + ' a:hover{text-decoration:underline}</style>'
+        html = path.read_text(encoding="utf-8", errors="ignore")
+        if 'href="/college-guides"' in html:
+            continue
+        link = '<nav class="all-college-guides-link" aria-label="College guide directory"><a href="/college-guides">Browse all college and course guides</a></nav>'
+        style = '<style id="all-college-guides-link-style">.all-college-guides-link{margin:18px auto;padding:10px 16px;width:min(1120px,calc(100% - 32px));font-size:13px;border-top:1px solid #e5eaf2}.all-college-guides-link a{color:#2458d8;font-weight:600;text-decoration:none}.all-college-guides-link a:hover{text-decoration:underline}</style>'
         if "all-college-guides-link-style" not in html:
-            head = re.search(r"</head\s*>", html, re.I)
+            head = re.search(r"</head\\s*>", html, re.I)
             if head:
-                html = html[:head.start()] + style + "\n" + html[head.start():]
-        body = re.search(r"</body\s*>", html, re.I)
+                html = html[:head.start()] + style + "\\n" + html[head.start():]
+        body = re.search(r"</body\\s*>", html, re.I)
         if body:
-            html = html[:body.start()] + link + "\n" + html[body.start():]
+            html = html[:body.start()] + link + "\\n" + html[body.start():]
             path.write_text(html, encoding="utf-8")
             injected += 1
-    print(f"College guide discovery hub generated: {len(pages)} canonical public pages; directory link injected into {injected} pages.")
+    print(f"College guide discovery hub generated: {len(pages)} substantive canonical public pages; directory links added to {injected} main landing pages.")
 
 if __name__ == "__main__":
     main()
