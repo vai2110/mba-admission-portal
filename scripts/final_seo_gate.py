@@ -45,7 +45,7 @@ def clean_url_for(path):
     if relative == "index.html":
         return BASE
     # CMS source files are implementation paths; public overview URLs use /<slug>.
-    match = re.fullmatch(r"college-cms/content/([^/]+)/overview\\.html", relative)
+    match = re.fullmatch(r"college-cms/content/([^/]+)/overview\.html", relative)
     if match:
         return BASE + "/" + match.group(1)
     # Other nested files retain their path hierarchy in the public URL.
