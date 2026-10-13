@@ -38,3 +38,4 @@ node scripts/inject-guidance-flow.js
 echo "SEO sitemap production sync trigger"
 node scripts/build-news.js
 node scripts/inject-related-news.js
+node scripts/inject-ai-advisor.js
