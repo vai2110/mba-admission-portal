@@ -4,7 +4,7 @@ const MAX_PAGE_CONTEXT_CHARS = 5000;
 
 function hasAllowedOrigin(req) {
   const origin = req.headers.origin;
-  if (!origin) return true; // Non-browser callers may omit Origin; protect browser cross-origin requests.
+  if (!origin) return false;
   try {
     const parsed = new URL(origin);
     const requestHost = String(req.headers.host || "").toLowerCase();
@@ -64,6 +64,10 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return send(res, 405, { error: "Method not allowed." });
+  }
+
+  if (process.env.ENABLE_AI_ADVISOR !== "true") {
+    return send(res, 503, { error: "The advisor is being prepared. Please try again soon." });
   }
 
   const apiKey = process.env.OPENAI_API_KEY;
