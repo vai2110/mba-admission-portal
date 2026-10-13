@@ -2,6 +2,10 @@
 
 This folder contains setup guidance and the SQL schema for the initial MBA-advisor pilot.
 
+## Activation gate
+
+The widget and both API endpoints remain disabled unless `ENABLE_AI_ADVISOR=true`. Keep this unset in Production until Preview has been tested and approved. Set it for the Preview environment to enable the widget and API.
+
 ## Required Vercel environment variables
 
 - `OPENAI_API_KEY`: server-side OpenAI API key with Responses API access.
