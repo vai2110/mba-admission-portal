@@ -28,15 +28,15 @@ class TextParser(HTMLParser):
 
 def visible_text(html):
     # Remove script/style content before extracting visible words.
-    html = re.sub(r"<(script|style|noscript|svg)\\b[^>]*>.*?</\\1\\s*>", " ", html, flags=re.I | re.S)
+    html = re.sub(r"<(script|style|noscript|svg)\b[^>]*>.*?</\1\s*>", " ", html, flags=re.I | re.S)
     p = TextParser()
     p.feed(html)
-    return re.sub(r"\\s+", " ", " ".join(p.parts)).strip()
+    return re.sub(r"\s+", " ", " ".join(p.parts)).strip()
 
 def canonical_for(html, path):
-    m = re.search(r'<link\\b[^>]*\\brel=["\\']canonical["\\'][^>]*\\bhref=["\\']([^"\\']+)["\\']', html, re.I)
+    m = re.search(r'<link\b[^>]*\brel=["\']canonical["\'][^>]*\bhref=["\']([^"\']+)["\']', html, re.I)
     if not m:
-        m = re.search(r'<link\\b[^>]*\\bhref=["\\']([^"\\']+)["\\'][^>]*\\brel=["\\']canonical["\\']', html, re.I)
+        m = re.search(r'<link\b[^>]*\bhref=["\']([^"\']+)["\'][^>]*\brel=["\']canonical["\']', html, re.I)
     if m:
         url = m.group(1).strip()
     else:
@@ -50,13 +50,13 @@ def canonical_for(html, path):
     return BASE + clean_path if clean_path else BASE
 
 def title_for(html, path):
-    m = re.search(r"<title\\b[^>]*>(.*?)</title\\s*>", html, re.I | re.S)
+    m = re.search(r"<title\b[^>]*>(.*?)</title\s*>", html, re.I | re.S)
     if m:
-        return re.sub(r"\\s+", " ", re.sub(r"<[^>]+>", "", m.group(1))).strip()
+        return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", m.group(1))).strip()
     return path.stem.replace("-", " ").replace("_", " ").title()
 
 def is_noindex(html):
-    return bool(re.search(r'<meta\\b[^>]*\\bname=["\\']robots["\\'][^>]*\\bcontent=["\\'][^"\\']*noindex', html, re.I))
+    return bool(re.search(r'<meta\b[^>]*\bname=["\']robots["\'][^>]*\bcontent=["\'][^"\']*noindex', html, re.I))
 
 def escape(value):
     return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
@@ -77,7 +77,7 @@ def main():
     grouped = defaultdict(list)
     for url, item in pages.items():
         title = item["title"] or item["path"].stem
-        first = re.sub(r"^https://collegedecoded\\.in/?", "", url).split("/", 1)[0]
+        first = re.sub(r"^https://collegedecoded\.in/?", "", url).split("/", 1)[0]
         # Group by first meaningful title character for a predictable, light-weight directory.
         letter = re.sub(r"[^A-Za-z0-9]", "", title[:1]).upper() or "#"
         grouped[letter].append((title, url))
@@ -107,7 +107,7 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
 <body>
 <header><h1>All College &amp; Course Guides</h1><p>Browse college profiles and dedicated guides for admissions, courses, fees, cutoffs, placements and campus information. Select a guide for the details relevant to that college or programme.</p>
 <nav class="quick" aria-label="Jump to letter">""" + "".join(f'<a href="#letter-{escape(letter)}">{escape(letter)}</a>' for letter in sorted(grouped)) + """</nav></header>
-<main>""" + "\\n".join(sections) + """</main>
+<main>""" + "\n".join(sections) + """</main>
 <footer>CollegeDecoded — college information and student guides.</footer>
 </body></html>
 """
@@ -118,17 +118,17 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
     for item in pages.values():
         path = item["path"]
         html = path.read_text(encoding="utf-8", errors="ignore")
-        if re.search(r'<a\\b[^>]*class=["\\'][^"\\']*' + LINK_CLASS + r'[^"\\']*["\\'][^>]*', html, re.I):
+        if re.search(r'<a\b[^>]*class=["\'][^"\']*' + LINK_CLASS + r'[^"\']*["\'][^>]*', html, re.I):
             continue
         link = '<nav class="' + LINK_CLASS + '" aria-label="College guide directory"><a href="/college-guides">Browse all college and course guides</a></nav>'
         style = '<style id="all-college-guides-link-style">.' + LINK_CLASS + '{margin:18px auto;padding:10px 16px;width:min(1120px,calc(100% - 32px));font-size:13px;border-top:1px solid #e5eaf2}.' + LINK_CLASS + ' a{color:#2458d8;font-weight:600;text-decoration:none}.' + LINK_CLASS + ' a:hover{text-decoration:underline}</style>'
         if "all-college-guides-link-style" not in html:
-            head = re.search(r"</head\\s*>", html, re.I)
+            head = re.search(r"</head\s*>", html, re.I)
             if head:
-                html = html[:head.start()] + style + "\\n" + html[head.start():]
-        body = re.search(r"</body\\s*>", html, re.I)
+                html = html[:head.start()] + style + "\n" + html[head.start():]
+        body = re.search(r"</body\s*>", html, re.I)
         if body:
-            html = html[:body.start()] + link + "\\n" + html[body.start():]
+            html = html[:body.start()] + link + "\n" + html[body.start():]
             path.write_text(html, encoding="utf-8")
             injected += 1
     print(f"College guide discovery hub generated: {len(pages)} canonical public pages; directory link injected into {injected} pages.")
