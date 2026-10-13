@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T06:15:36.304659+00:00",
+  "generated_at": "2026-10-13T06:20:18.928448+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 50,
@@ -10274,16 +10274,16 @@
     {
       "file": "iit-delhi-dms-placements.html",
       "benchmark": false,
-      "title": "IIT Delhi DMS Placements: Average, Median, Highest Package &…",
-      "title_length": 61,
-      "description": "Latest IIT Delhi DMS MBA placement guide with Class of 2023–25 average, median, highest CTC, placement rate and three-year comparison.",
-      "description_length": 134,
+      "title": "IIT Delhi DMS Placements: Average, Median, Highest Package",
+      "title_length": 58,
+      "description": "Explore IIT Delhi DMS MBA placements for 2021–23, 2022–24 and 2023–25: average, median and highest CTC, sector-wise split, roles, recruiters and FAQs.",
+      "description_length": 150,
       "description_count": 1,
       "canonical": "https://collegedecoded.in/iit-delhi-dms-placements",
       "canonical_count": 1,
       "canonical_self": true,
       "h1_count": 1,
-      "h1": "IIT Delhi DMS Placements: Average, Median, Highest Package & Trends",
+      "h1": "IIT Delhi DMS MBA Placements: Salary, Domains & Recruiters",
       "lang": "en",
       "viewport": true,
       "robots": [
