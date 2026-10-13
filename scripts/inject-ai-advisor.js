@@ -12,6 +12,11 @@ const EXCLUDED = new Set([
   "preview.html"
 ]);
 
+if (process.env.ENABLE_AI_ADVISOR !== "true") {
+  console.log("AI ADVISOR INJECTION SKIPPED: set ENABLE_AI_ADVISOR=true for this deployment.");
+  process.exit(0);
+}
+
 let changed = 0;
 let scanned = 0;
 
