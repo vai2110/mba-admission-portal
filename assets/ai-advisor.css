@@ -4,7 +4,7 @@
 #cd-advisor-launcher{display:flex;align-items:center;gap:10px;border:0;border-radius:999px;background:var(--cd-blue);color:#fff;padding:12px 17px;box-shadow:0 12px 34px #102a7240;cursor:pointer;font-weight:800}
 #cd-advisor-launcher:hover{background:#1c4399;transform:translateY(-1px)}
 #cd-advisor-launcher .cd-advisor-orb{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#fff;color:var(--cd-blue);font-size:16px}
-#cd-advisor-panel{display:none;flex-direction:column;width:min(390px,calc(100vw - 28px));height:min(650px,calc(100dvh - 110px));min-height:420px;background:#fff;border:1px solid var(--cd-line);border-radius:20px;overflow:hidden;box-shadow:0 22px 70px #102a7230}
+#cd-advisor-panel{position:relative;display:none;flex-direction:column;width:min(390px,calc(100vw - 28px));height:min(650px,calc(100dvh - 110px));min-height:420px;background:#fff;border:1px solid var(--cd-line);border-radius:20px;overflow:hidden;box-shadow:0 22px 70px #102a7230}
 #cd-advisor-panel.cd-open{display:flex}
 #cd-advisor-header{display:flex;align-items:center;gap:11px;padding:15px 16px;background:var(--cd-blue);color:#fff}
 #cd-advisor-avatar{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:14px;background:#fff;color:var(--cd-blue);font-size:21px}
