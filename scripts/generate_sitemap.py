@@ -158,6 +158,14 @@ for html_file in ROOT.rglob("*.html"):
         else:
             url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
 
+    # Never advertise a legacy .html URL in the sitemap, even if a stale canonical tag exists.
+    if re.search(r"\.html(?:$|[?#])", url, re.IGNORECASE):
+        continue
+
+    # Keep only clean HTTPS URLs on the canonical origin, without query or fragment variants.
+    if not url.startswith(BASE_URL) or "?" in url or "#" in url:
+        continue
+
     lastmod = file_lastmod(html_file)
     url_dates[url] = max(url_dates.get(url, ""), lastmod)
 
