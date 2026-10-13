@@ -2,6 +2,12 @@ name: Add Editorial Update Metadata and Mobile Section Navigation
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-editorial-meta.yml'
+      - 'assets/mobile-on-page.js'
+      - 'sitemap.xml'
 
 permissions:
   contents: write
