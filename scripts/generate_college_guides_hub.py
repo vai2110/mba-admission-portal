@@ -130,12 +130,12 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
         link = '<nav class="all-college-guides-link" aria-label="College guide directory"><a href="/college-guides">Browse all college and course guides</a></nav>'
         style = '<style id="all-college-guides-link-style">.all-college-guides-link{margin:18px auto;padding:10px 16px;width:min(1120px,calc(100% - 32px));font-size:13px;border-top:1px solid #e5eaf2}.all-college-guides-link a{color:#2458d8;font-weight:600;text-decoration:none}.all-college-guides-link a:hover{text-decoration:underline}</style>'
         if "all-college-guides-link-style" not in html:
-            head = re.search(r"</head\\s*>", html, re.I)
+            head = re.search(r"</head\s*>", html, re.I)
             if head:
-                html = html[:head.start()] + style + "\\n" + html[head.start():]
-        body = re.search(r"</body\\s*>", html, re.I)
+                html = html[:head.start()] + style + "\n" + html[head.start():]
+        body = re.search(r"</body\s*>", html, re.I)
         if body:
-            html = html[:body.start()] + link + "\\n" + html[body.start():]
+            html = html[:body.start()] + link + "\n" + html[body.start():]
             path.write_text(html, encoding="utf-8")
             injected += 1
     print(f"College guide discovery hub generated: {len(pages)} substantive canonical public pages; directory links added to {injected} main landing pages.")
