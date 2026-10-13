@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Build a clean, crawlable hub for public CollegeDecoded college/course pages.
 
+The build only lists pages with at least 300 visible words; this is a review threshold, not a Google rule.
+
 This repairs weak discovery paths without changing canonical or robots directives.
 Noindex pages and technical/test pages are deliberately excluded.
 """
