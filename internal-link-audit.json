@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-12T04:11:45.553290+00:00",
+  "generated_at": "2026-10-13T03:11:26.360685+00:00",
   "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
   "summary": {
     "pages_checked": 664,
-    "pages_with_internal_links": 657,
+    "pages_with_internal_links": 621,
     "broken_local_links": 0,
     "redirecting_internal_links": 0,
     "benchmark_legacy_broken_links": 0,
     "college_clusters_detected": 85,
-    "cluster_reciprocal_gaps": 1,
-    "zero_incoming_pages": 0,
+    "cluster_reciprocal_gaps": 31,
+    "zero_incoming_pages": 49,
     "role_counts": {
       "overview_or_hub": 311,
       "programme": 259,
@@ -915,32 +915,518 @@
   ],
   "reciprocal_link_gaps": [
     {
+      "source": "alliance-university-placements.html",
+      "missing": [
+        "alliance-university.html",
+        "alliance-university-bba-llb.html",
+        "alliance-university-bba.html",
+        "alliance-university-bca.html",
+        "alliance-university-bcom.html",
+        "alliance-university-btech-ai-data-science.html",
+        "alliance-university-btech-cse.html",
+        "alliance-university-mba.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham-placements.html",
+        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham-placements.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham.html",
+        "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+        "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham.html",
+        "amrita-vishwa-vidyapeetham-placements.html"
+      ]
+    },
+    {
+      "source": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
+      "missing": [
+        "amrita-vishwa-vidyapeetham.html",
+        "amrita-vishwa-vidyapeetham-placements.html"
+      ]
+    },
+    {
+      "source": "amu-aligarh-placements.html",
+      "missing": [
+        "amu-aligarh.html"
+      ]
+    },
+    {
+      "source": "fore-school-management-placements.html",
+      "missing": [
+        "fore-school-management.html",
+        "fore-school-management-pgdm-bda.html",
+        "fore-school-management-pgdm-fm.html",
+        "fore-school-management-pgdm-ib.html",
+        "fore-school-management-pgdm.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-bpgp.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-pgp.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-ahmedabad-mba-pgpx.html",
+      "missing": [
+        "iim-ahmedabad.html",
+        "iim-ahmedabad-placements.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore.html",
+      "missing": [
+        "iim-bangalore-mba-business-analytics.html"
+      ]
+    },
+    {
+      "source": "iim-bangalore-placements.html",
+      "missing": [
+        "iim-bangalore-mba-business-analytics.html"
+      ]
+    },
+    {
+      "source": "iim-indore-placements.html",
+      "missing": [
+        "iim-indore.html",
+        "iim-indore-ipm.html",
+        "iim-indore-mba.html",
+        "iim-indore-pgp-hrm.html"
+      ]
+    },
+    {
+      "source": "iim-jammu.html",
+      "missing": [
+        "iim-jammu-placements.html",
+        "iim-jammu-mba-ai-ba.html",
+        "iim-jammu-mba-hc.html",
+        "iim-jammu-mba.html"
+      ]
+    },
+    {
       "source": "iim-kozhikode-placements.html",
       "missing": [
+        "iim-kozhikode.html",
         "iim-kozhikode-mba.html",
-        "iim-kozhikode-pgp-bl.html"
+        "iim-kozhikode-pgp-bl.html",
+        "iim-kozhikode-pgp-finance.html",
+        "iim-kozhikode-pgp-lsm.html"
+      ]
+    },
+    {
+      "source": "iim-mumbai-placements.html",
+      "missing": [
+        "iim-mumbai.html",
+        "iim-mumbai-mba-oscm.html",
+        "iim-mumbai-mba-sm.html",
+        "iim-mumbai-mba.html"
+      ]
+    },
+    {
+      "source": "iim-nagpur.html",
+      "missing": [
+        "iim-nagpur-placements.html"
+      ]
+    },
+    {
+      "source": "iim-nagpur-placements.html",
+      "missing": [
+        "iim-nagpur.html"
+      ]
+    },
+    {
+      "source": "iim-rohtak.html",
+      "missing": [
+        "iim-rohtak-placements.html",
+        "iim-rohtak-ipm.html",
+        "iim-rohtak-pgp.html",
+        "iim-rohtak-pgpx.html"
+      ]
+    },
+    {
+      "source": "iit-roorkee-placements.html",
+      "missing": [
+        "iit-roorkee.html",
+        "iit-roorkee-executive-mba.html",
+        "iit-roorkee-mba.html"
+      ]
+    },
+    {
+      "source": "iit-roorkee-executive-mba.html",
+      "missing": [
+        "iit-roorkee.html",
+        "iit-roorkee-placements.html"
+      ]
+    },
+    {
+      "source": "iit-roorkee-mba.html",
+      "missing": [
+        "iit-roorkee.html",
+        "iit-roorkee-placements.html"
+      ]
+    },
+    {
+      "source": "imt-ghaziabad.html",
+      "missing": [
+        "imt-ghaziabad-placements.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee-placements.html",
+        "indian-institute-of-technology-roorkee-executive-mba.html",
+        "indian-institute-of-technology-roorkee-mba.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee-placements.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-executive-mba.html",
+        "indian-institute-of-technology-roorkee-mba.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee-executive-mba.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-placements.html"
+      ]
+    },
+    {
+      "source": "indian-institute-of-technology-roorkee-mba.html",
+      "missing": [
+        "indian-institute-of-technology-roorkee.html",
+        "indian-institute-of-technology-roorkee-placements.html"
+      ]
+    },
+    {
+      "source": "jims-rohini-placements.html",
+      "missing": [
+        "jims-rohini.html",
+        "jims-rohini-admission-2026.html",
+        "jims-rohini-fees-placements.html",
+        "jims-rohini-fees.html",
+        "jims-rohini-pgdm-ib.html",
+        "jims-rohini-pgdm.html"
+      ]
+    },
+    {
+      "source": "loyola-institute-business-administration-placements.html",
+      "missing": [
+        "loyola-institute-business-administration.html",
+        "loyola-institute-business-administration-executive-diploma.html",
+        "loyola-institute-business-administration-fpm.html",
+        "loyola-institute-business-administration-online-pgdm.html",
+        "loyola-institute-business-administration-pgdm.html"
+      ]
+    },
+    {
+      "source": "nmims.html",
+      "missing": [
+        "nmims-placements.html",
+        "nmims-mba-pharma-tech.html",
+        "nmims-mba-tech.html",
+        "nmims-mba.html"
+      ]
+    },
+    {
+      "source": "sibm-bengaluru-placements.html",
+      "missing": [
+        "sibm-bengaluru.html",
+        "sibm-bengaluru-mba-business-analytics.html",
+        "sibm-bengaluru-mba-executive.html",
+        "sibm-bengaluru-mba.html"
       ]
     }
   ],
   "broken_local_links": [],
   "redirecting_internal_links": [],
   "benchmark_legacy_broken_links": [],
-  "zero_incoming_pages": [],
+  "zero_incoming_pages": [
+    {
+      "page": "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "amrita-vishwa-vidyapeetham-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "anna-university.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "asia-pacific-institute-management-new-delhi.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "cusat-pg-mtech-2026.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "cusat-science-marine-2026.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ibs-hyderabad.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-bangalore-mba-business-analytics.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "iim-nagpur-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "imt-ghaziabad-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-management-nagpur-executive-mba-hybrid.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-management-nagpur-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-kanpur-mba-programme.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee-executive-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee-mba.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "indian-institute-of-technology-roorkee-placements.html",
+      "role": "placement",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ipe-hyderabad.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "jaipuria-institute-management-noida.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-accepting-cmat.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-accepting-mat.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-accepting-xat.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-ahmedabad.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-bengaluru.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-chennai.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-delhi-ncr.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-hyderabad.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-kolkata.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-mumbai.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-in-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "mba-colleges-under-15-lakhs.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "pumba-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "scit-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "sdmimd-mysore.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "sibm-nagpur.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "sicsr-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "siib-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "sims-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "sitm-pune.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "ssmc-bangalore.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "thapar-institute-msc.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "tsm-pgd-dsba-2026.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "xim-university-mba-public-policy-management.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "xim-university-mba-rural-management.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "xim-university-mba-sustainability-management.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "xim-university-mba-urban-management-governance.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "xim-university-mms-business-finance.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    },
+    {
+      "page": "xime-bangalore.html",
+      "role": "programme",
+      "incoming_internal_links": 0
+    }
+  ],
   "incoming_link_counts": {
     "abv-iiitm-gwalior-admission-2026.html": 5,
     "abv-iiitm-gwalior-btech-cse.html": 4,
     "abv-iiitm-gwalior-fees.html": 4,
     "abv-iiitm-gwalior-placements.html": 4,
     "abv-iiitm-gwalior.html": 4,
-    "alliance-university-bba-llb.html": 10,
-    "alliance-university-bba.html": 12,
-    "alliance-university-bca.html": 10,
-    "alliance-university-bcom.html": 10,
-    "alliance-university-btech-ai-data-science.html": 11,
-    "alliance-university-btech-cse.html": 13,
-    "alliance-university-mba.html": 12,
-    "alliance-university-placements.html": 14,
-    "alliance-university.html": 14,
+    "alliance-university-bba-llb.html": 9,
+    "alliance-university-bba.html": 11,
+    "alliance-university-bca.html": 9,
+    "alliance-university-bcom.html": 9,
+    "alliance-university-btech-ai-data-science.html": 10,
+    "alliance-university-btech-cse.html": 12,
+    "alliance-university-mba.html": 10,
+    "alliance-university-placements.html": 13,
+    "alliance-university.html": 13,
     "amity-university-noida-admission.html": 19,
     "amity-university-noida-bba.html": 11,
     "amity-university-noida-bca.html": 11,
@@ -953,22 +1439,17 @@
     "amity-university-noida-mtech.html": 11,
     "amity-university-noida-placements.html": 14,
     "amity-university-noida.html": 12,
-    "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html": 3,
-    "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html": 3,
-    "amrita-vishwa-vidyapeetham-placements.html": 3,
-    "amrita-vishwa-vidyapeetham.html": 4,
-    "amu-aligarh-placements.html": 10,
-    "amu-aligarh.html": 8,
-    "amu-barch.html": 8,
-    "amu-btech.html": 12,
-    "amu-mba.html": 12,
-    "amu-mbbs.html": 8,
-    "anna-university-admission-2026.html": 4,
-    "anna-university-btech-cse.html": 4,
-    "anna-university-fees-placements.html": 4,
-    "anna-university-mba.html": 4,
-    "anna-university.html": 5,
-    "asia-pacific-institute-management-new-delhi.html": 1,
+    "amrita-vishwa-vidyapeetham.html": 1,
+    "amu-aligarh-placements.html": 8,
+    "amu-aligarh.html": 6,
+    "amu-barch.html": 5,
+    "amu-btech.html": 8,
+    "amu-mba.html": 9,
+    "amu-mbbs.html": 5,
+    "anna-university-admission-2026.html": 1,
+    "anna-university-btech-cse.html": 1,
+    "anna-university-fees-placements.html": 1,
+    "anna-university-mba.html": 1,
     "banaras-hindu-university.html": 17,
     "bbau-admission-2026.html": 16,
     "bbau-bba-bcom-2026.html": 3,
@@ -1057,8 +1538,8 @@
     "christ-university.html": 11,
     "cmat.html": 7,
     "college.html": 3,
-    "collegedecoded-team.html": 237,
-    "colleges.html": 88,
+    "collegedecoded-team.html": 231,
+    "colleges.html": 80,
     "contact.html": 4,
     "cusat-admission-2026.html": 8,
     "cusat-btech-2026.html": 7,
@@ -1068,9 +1549,7 @@
     "cusat-law-2026.html": 1,
     "cusat-mba-2026.html": 5,
     "cusat-mca-2026.html": 3,
-    "cusat-pg-mtech-2026.html": 1,
     "cusat-placements-2026.html": 3,
-    "cusat-science-marine-2026.html": 1,
     "department-management-studies-nit-trichy-mba.html": 2,
     "department-management-studies-nit-trichy-placements.html": 4,
     "department-management-studies-nit-trichy.html": 3,
@@ -1079,13 +1558,13 @@
     "dms-nit-trichy.html": 4,
     "exams.html": 9,
     "fms-delhi-placements.html": 3,
-    "fms-delhi.html": 6,
-    "fore-school-management-pgdm-bda.html": 5,
-    "fore-school-management-pgdm-fm.html": 5,
-    "fore-school-management-pgdm-ib.html": 5,
-    "fore-school-management-pgdm.html": 5,
-    "fore-school-management-placements.html": 11,
-    "fore-school-management.html": 7,
+    "fms-delhi.html": 5,
+    "fore-school-management-pgdm-bda.html": 4,
+    "fore-school-management-pgdm-fm.html": 4,
+    "fore-school-management-pgdm-ib.html": 4,
+    "fore-school-management-pgdm.html": 4,
+    "fore-school-management-placements.html": 10,
+    "fore-school-management.html": 6,
     "ggsipu-admission.html": 17,
     "ggsipu-bba-bca.html": 15,
     "ggsipu-bba.html": 15,
@@ -1125,12 +1604,11 @@
     "graphic-era-university-mba-marketing.html": 12,
     "graphic-era-university-mba.html": 12,
     "graphic-era-university-placements.html": 14,
-    "graphic-era-university.html": 21,
+    "graphic-era-university.html": 20,
     "great-lakes-gurgaon-pgdm.html": 3,
     "great-lakes-gurgaon-pgpm.html": 4,
     "great-lakes-gurgaon-placements.html": 8,
     "great-lakes-gurgaon.html": 7,
-    "ibs-hyderabad.html": 1,
     "icfai-university-hyderabad-admission.html": 9,
     "icfai-university-hyderabad-bba.html": 9,
     "icfai-university-hyderabad-bca.html": 9,
@@ -1145,15 +1623,15 @@
     "iift-mba-international-business.html": 3,
     "iift-placements.html": 4,
     "iift.html": 5,
-    "iim-ahmedabad-business-analytics-ai.html": 9,
-    "iim-ahmedabad-mba-bpgp.html": 8,
-    "iim-ahmedabad-mba-fabm.html": 9,
-    "iim-ahmedabad-mba-pgp.html": 8,
-    "iim-ahmedabad-mba-pgpx.html": 8,
-    "iim-ahmedabad-mba.html": 10,
-    "iim-ahmedabad-pgpx.html": 9,
-    "iim-ahmedabad-placements.html": 12,
-    "iim-ahmedabad.html": 12,
+    "iim-ahmedabad-business-analytics-ai.html": 6,
+    "iim-ahmedabad-mba-bpgp.html": 6,
+    "iim-ahmedabad-mba-fabm.html": 6,
+    "iim-ahmedabad-mba-pgp.html": 6,
+    "iim-ahmedabad-mba-pgpx.html": 6,
+    "iim-ahmedabad-mba.html": 7,
+    "iim-ahmedabad-pgpx.html": 6,
+    "iim-ahmedabad-placements.html": 8,
+    "iim-ahmedabad.html": 7,
     "iim-amritsar-executive-mba.html": 8,
     "iim-amritsar-ipm.html": 8,
     "iim-amritsar-mba-business-analytics.html": 8,
@@ -1162,12 +1640,11 @@
     "iim-amritsar-msdsm.html": 8,
     "iim-amritsar-placements.html": 9,
     "iim-amritsar.html": 9,
-    "iim-bangalore-epgp.html": 6,
-    "iim-bangalore-mba-business-analytics.html": 6,
-    "iim-bangalore-mba.html": 6,
-    "iim-bangalore-pgpba.html": 6,
-    "iim-bangalore-pgpem.html": 6,
-    "iim-bangalore-placements.html": 9,
+    "iim-bangalore-epgp.html": 7,
+    "iim-bangalore-mba.html": 7,
+    "iim-bangalore-pgpba.html": 13,
+    "iim-bangalore-pgpem.html": 7,
+    "iim-bangalore-placements.html": 10,
     "iim-bangalore.html": 9,
     "iim-bodhgaya-dbai.html": 9,
     "iim-bodhgaya-hhm.html": 9,
@@ -1180,31 +1657,30 @@
     "iim-calcutta-pgdba.html": 4,
     "iim-calcutta-placements.html": 4,
     "iim-calcutta.html": 9,
-    "iim-indore-ipm.html": 4,
-    "iim-indore-mba.html": 4,
-    "iim-indore-pgp-hrm.html": 4,
+    "iim-indore-ipm.html": 3,
+    "iim-indore-mba.html": 3,
+    "iim-indore-pgp-hrm.html": 3,
     "iim-indore-placements.html": 4,
-    "iim-indore.html": 5,
-    "iim-jammu-mba-ai-ba.html": 4,
-    "iim-jammu-mba-hc.html": 4,
-    "iim-jammu-mba.html": 4,
-    "iim-jammu-placements.html": 4,
+    "iim-indore.html": 4,
+    "iim-jammu-mba-ai-ba.html": 3,
+    "iim-jammu-mba-hc.html": 3,
+    "iim-jammu-mba.html": 3,
+    "iim-jammu-placements.html": 3,
     "iim-jammu.html": 5,
     "iim-kozhikode-mba.html": 4,
     "iim-kozhikode-pgp-bl.html": 4,
-    "iim-kozhikode-pgp-finance.html": 5,
-    "iim-kozhikode-pgp-lsm.html": 5,
+    "iim-kozhikode-pgp-finance.html": 4,
+    "iim-kozhikode-pgp-lsm.html": 4,
     "iim-kozhikode-placements.html": 6,
-    "iim-kozhikode.html": 8,
+    "iim-kozhikode.html": 6,
     "iim-lucknow-placements.html": 1,
     "iim-lucknow.html": 3,
-    "iim-mumbai-mba-oscm.html": 4,
-    "iim-mumbai-mba-sm.html": 4,
-    "iim-mumbai-mba.html": 4,
+    "iim-mumbai-mba-oscm.html": 3,
+    "iim-mumbai-mba-sm.html": 3,
+    "iim-mumbai-mba.html": 3,
     "iim-mumbai-placements.html": 4,
-    "iim-mumbai.html": 6,
-    "iim-nagpur-placements.html": 4,
-    "iim-nagpur.html": 6,
+    "iim-mumbai.html": 5,
+    "iim-nagpur.html": 1,
     "iim-raipur-epgp.html": 3,
     "iim-raipur-mba.html": 3,
     "iim-raipur-placements.html": 4,
@@ -1213,10 +1689,10 @@
     "iim-ranchi-mba.html": 3,
     "iim-ranchi-placements.html": 4,
     "iim-ranchi.html": 4,
-    "iim-rohtak-ipm.html": 4,
-    "iim-rohtak-pgp.html": 4,
-    "iim-rohtak-pgpx.html": 4,
-    "iim-rohtak-placements.html": 5,
+    "iim-rohtak-ipm.html": 3,
+    "iim-rohtak-pgp.html": 3,
+    "iim-rohtak-pgpx.html": 3,
+    "iim-rohtak-placements.html": 4,
     "iim-rohtak.html": 5,
     "iim-sambalpur-mba-ba.html": 3,
     "iim-sambalpur-mba.html": 3,
@@ -1275,10 +1751,10 @@
     "iit-madras-mba.html": 3,
     "iit-madras-placements.html": 4,
     "iit-madras.html": 5,
-    "iit-roorkee-executive-mba.html": 4,
-    "iit-roorkee-mba.html": 4,
-    "iit-roorkee-placements.html": 5,
-    "iit-roorkee.html": 4,
+    "iit-roorkee-executive-mba.html": 2,
+    "iit-roorkee-mba.html": 2,
+    "iit-roorkee-placements.html": 1,
+    "iit-roorkee.html": 1,
     "imi-bhubaneswar-admission-2026.html": 4,
     "imi-bhubaneswar-courses.html": 4,
     "imi-bhubaneswar-fees.html": 4,
@@ -1292,7 +1768,6 @@
     "imi-kolkata-pgdm.html": 3,
     "imi-kolkata-placements.html": 5,
     "imi-kolkata.html": 3,
-    "imt-ghaziabad-placements.html": 1,
     "imt-ghaziabad.html": 1,
     "imt-nagpur-admission-2027.html": 5,
     "imt-nagpur-cutoff.html": 6,
@@ -1300,28 +1775,20 @@
     "imt-nagpur-pgdm.html": 6,
     "imt-nagpur-placements.html": 7,
     "imt-nagpur.html": 8,
-    "index.html": 1035,
+    "index.html": 980,
     "indian-institute-of-management-kashipur-executive-mba.html": 4,
     "indian-institute-of-management-kashipur-mba-analytics.html": 4,
     "indian-institute-of-management-kashipur-mba.html": 4,
     "indian-institute-of-management-kashipur-placements.html": 6,
-    "indian-institute-of-management-kashipur.html": 7,
-    "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html": 4,
-    "indian-institute-of-management-nagpur-executive-mba-hybrid.html": 4,
-    "indian-institute-of-management-nagpur-mba.html": 4,
+    "indian-institute-of-management-kashipur.html": 6,
     "indian-institute-of-management-visakhapatnam-mba-programme.html": 1,
-    "indian-institute-of-technology-kanpur-mba-programme.html": 1,
-    "indian-institute-of-technology-roorkee-executive-mba.html": 3,
-    "indian-institute-of-technology-roorkee-mba.html": 3,
-    "indian-institute-of-technology-roorkee-placements.html": 3,
-    "indian-institute-of-technology-roorkee.html": 5,
+    "indian-institute-of-technology-roorkee.html": 2,
     "institute-rural-management-anand-executive-rural-management.html": 5,
     "institute-rural-management-anand-fpm-rural-management.html": 5,
     "institute-rural-management-anand-mba-rural-management.html": 5,
     "institute-rural-management-anand-mdp.html": 5,
     "institute-rural-management-anand-placements.html": 9,
     "institute-rural-management-anand.html": 7,
-    "ipe-hyderabad.html": 1,
     "jain-university-bba.html": 8,
     "jain-university-bca.html": 8,
     "jain-university-bcom.html": 8,
@@ -1329,7 +1796,6 @@
     "jain-university-mba.html": 8,
     "jain-university-placements.html": 8,
     "jain-university.html": 7,
-    "jaipuria-institute-management-noida.html": 1,
     "jaipuria-institute-of-management-lucknow-placements.html": 9,
     "jaipuria-institute-of-management-lucknow.html": 9,
     "jaipuria-lucknow-fpm.html": 5,
@@ -1349,13 +1815,13 @@
     "jamia-millia-islamia-mba.html": 8,
     "jamia-millia-islamia-placements.html": 6,
     "jamia-millia-islamia.html": 7,
-    "jims-rohini-admission-2026.html": 6,
-    "jims-rohini-fees-placements.html": 6,
-    "jims-rohini-fees.html": 6,
-    "jims-rohini-pgdm-ib.html": 6,
-    "jims-rohini-pgdm.html": 6,
+    "jims-rohini-admission-2026.html": 5,
+    "jims-rohini-fees-placements.html": 5,
+    "jims-rohini-fees.html": 5,
+    "jims-rohini-pgdm-ib.html": 5,
+    "jims-rohini-pgdm.html": 5,
     "jims-rohini-placements.html": 6,
-    "jims-rohini.html": 6,
+    "jims-rohini.html": 5,
     "jmi-hospital-management-and-hospice-studies.html": 4,
     "jmi-management-studies.html": 4,
     "jmi-placements.html": 4,
@@ -1392,12 +1858,12 @@
     "lovely-professional-university-pharmacy.html": 13,
     "lovely-professional-university-placements.html": 14,
     "lovely-professional-university.html": 30,
-    "loyola-institute-business-administration-executive-diploma.html": 5,
-    "loyola-institute-business-administration-fpm.html": 5,
-    "loyola-institute-business-administration-online-pgdm.html": 5,
-    "loyola-institute-business-administration-pgdm.html": 5,
-    "loyola-institute-business-administration-placements.html": 8,
-    "loyola-institute-business-administration.html": 10,
+    "loyola-institute-business-administration-executive-diploma.html": 4,
+    "loyola-institute-business-administration-fpm.html": 4,
+    "loyola-institute-business-administration-online-pgdm.html": 4,
+    "loyola-institute-business-administration-pgdm.html": 4,
+    "loyola-institute-business-administration-placements.html": 7,
+    "loyola-institute-business-administration.html": 8,
     "manage-hyderabad-admission-2026.html": 4,
     "manage-hyderabad-courses.html": 4,
     "manage-hyderabad-fees.html": 4,
@@ -1405,29 +1871,17 @@
     "manage-hyderabad.html": 4,
     "mat.html": 7,
     "mba-admission-guide.html": 35,
-    "mba-college-comparison.html": 21,
-    "mba-college-fees.html": 6,
+    "mba-college-comparison.html": 22,
+    "mba-college-fees.html": 7,
     "mba-college-placements.html": 20,
     "mba-colleges-accepting-cat.html": 14,
-    "mba-colleges-accepting-cmat.html": 1,
-    "mba-colleges-accepting-mat.html": 1,
     "mba-colleges-accepting-snap.html": 1,
-    "mba-colleges-accepting-xat.html": 1,
-    "mba-colleges-best-roi.html": 22,
-    "mba-colleges-by-exam.html": 37,
+    "mba-colleges-best-roi.html": 23,
+    "mba-colleges-by-exam.html": 38,
     "mba-colleges-by-location.html": 31,
-    "mba-colleges-in-ahmedabad.html": 1,
-    "mba-colleges-in-bengaluru.html": 1,
-    "mba-colleges-in-chennai.html": 1,
-    "mba-colleges-in-delhi-ncr.html": 1,
-    "mba-colleges-in-hyderabad.html": 1,
-    "mba-colleges-in-kolkata.html": 1,
-    "mba-colleges-in-mumbai.html": 1,
-    "mba-colleges-in-pune.html": 1,
     "mba-colleges-under-10-lakhs.html": 19,
-    "mba-colleges-under-15-lakhs.html": 1,
     "mba-colleges-without-cat.html": 10,
-    "mba-cutoff.html": 40,
+    "mba-cutoff.html": 41,
     "mdi-gurugram-placements.html": 1,
     "mdi-gurugram.html": 3,
     "mica-pgdm-c.html": 2,
@@ -1456,10 +1910,10 @@
     "nirma-university-placements.html": 11,
     "nirma-university.html": 11,
     "nmat.html": 7,
-    "nmims-mba-pharma-tech.html": 4,
-    "nmims-mba-tech.html": 4,
-    "nmims-mba.html": 8,
-    "nmims-placements.html": 5,
+    "nmims-mba-pharma-tech.html": 3,
+    "nmims-mba-tech.html": 3,
+    "nmims-mba.html": 3,
+    "nmims-placements.html": 4,
     "nmims.html": 6,
     "panjab-university-admission-2026.html": 4,
     "panjab-university-courses.html": 4,
@@ -1472,7 +1926,6 @@
     "pdeu-mba.html": 1,
     "pdeu.html": 1,
     "privacy.html": 4,
-    "pumba-pune.html": 1,
     "rajagiri-business-school-admission-2026.html": 4,
     "rajagiri-business-school-fees.html": 4,
     "rajagiri-business-school-pgdm.html": 4,
@@ -1482,25 +1935,18 @@
     "school-management-studies-mnnit-allahabad-mba.html": 4,
     "school-management-studies-mnnit-allahabad-placements.html": 5,
     "school-management-studies-mnnit-allahabad.html": 3,
-    "scit-pune.html": 1,
     "scmhrd-pune.html": 2,
-    "sdmimd-mysore.html": 1,
-    "sibm-bengaluru-mba-business-analytics.html": 4,
-    "sibm-bengaluru-mba-executive.html": 4,
-    "sibm-bengaluru-mba.html": 4,
+    "sibm-bengaluru-mba-business-analytics.html": 3,
+    "sibm-bengaluru-mba-executive.html": 3,
+    "sibm-bengaluru-mba.html": 3,
     "sibm-bengaluru-placements.html": 6,
-    "sibm-bengaluru.html": 6,
-    "sibm-nagpur.html": 1,
+    "sibm-bengaluru.html": 5,
     "sibm-pune-mba-executive.html": 4,
     "sibm-pune-mba-innovation-entrepreneurship.html": 4,
     "sibm-pune-mba.html": 4,
     "sibm-pune-placements.html": 5,
     "sibm-pune.html": 5,
-    "sicsr-pune.html": 1,
-    "siib-pune.html": 1,
-    "sims-pune.html": 1,
     "siom-nashik.html": 1,
-    "sitm-pune.html": 1,
     "snap.html": 7,
     "soa-bba-integrated-mba.html": 2,
     "soa-bds.html": 2,
@@ -1526,7 +1972,6 @@
     "srmist-mbbs.html": 1,
     "srmist-mca.html": 1,
     "srmist-placements.html": 30,
-    "ssmc-bangalore.html": 1,
     "tapmi-manipal-mba-bkfs.html": 4,
     "tapmi-manipal-mba-hrm.html": 4,
     "tapmi-manipal-mba.html": 4,
@@ -1539,18 +1984,16 @@
     "thapar-institute-hostel.html": 2,
     "thapar-institute-mba.html": 3,
     "thapar-institute-mca.html": 1,
-    "thapar-institute-msc.html": 1,
     "thapar-institute-mtech.html": 1,
     "thapar-institute-of-engineering-technology.html": 10,
     "thapar-institute-placements.html": 2,
-    "top-mba-colleges-in-india.html": 51,
+    "top-mba-colleges-in-india.html": 52,
     "tsm-admission-2026.html": 8,
     "tsm-campus-hostel-life.html": 1,
     "tsm-campus-hostel.html": 2,
     "tsm-fees-scholarships-2026.html": 12,
     "tsm-madurai.html": 10,
     "tsm-mba-2026.html": 6,
-    "tsm-pgd-dsba-2026.html": 1,
     "tsm-pgdm-2026.html": 7,
     "tsm-placements-2026.html": 6,
     "upes-dehradun-bba.html": 7,
@@ -1582,13 +2025,7 @@
     "xim-university-hostel.html": 2,
     "xim-university-mba-business-management.html": 6,
     "xim-university-mba-hrm.html": 1,
-    "xim-university-mba-public-policy-management.html": 1,
-    "xim-university-mba-rural-management.html": 1,
-    "xim-university-mba-sustainability-management.html": 1,
-    "xim-university-mba-urban-management-governance.html": 1,
-    "xim-university-mms-business-finance.html": 1,
     "xim-university-placements.html": 4,
-    "xime-bangalore.html": 1,
     "xlri-jamshedpur-placements.html": 2,
     "xlri-jamshedpur.html": 4
   },
@@ -1605,7 +2042,6 @@
     "alliance-university-btech-ai-data-science.html": 12,
     "alliance-university-btech-cse.html": 12,
     "alliance-university-mba.html": 12,
-    "alliance-university-placements.html": 11,
     "alliance-university.html": 25,
     "amity-university-noida-admission.html": 13,
     "amity-university-noida-bba.html": 13,
@@ -1619,20 +2055,12 @@
     "amity-university-noida-mtech.html": 13,
     "amity-university-noida-placements.html": 13,
     "amity-university-noida.html": 15,
-    "amrita-vishwa-vidyapeetham-mba-master-of-business-administration.html": 3,
-    "amrita-vishwa-vidyapeetham-mba-ms-in-business-analytics-dual-degree-programme-with-university-at-buffalo-usa.html": 3,
-    "amrita-vishwa-vidyapeetham-placements.html": 3,
-    "amrita-vishwa-vidyapeetham.html": 5,
-    "amu-aligarh-placements.html": 10,
-    "amu-aligarh.html": 16,
+    "amu-aligarh-placements.html": 4,
+    "amu-aligarh.html": 10,
     "amu-barch.html": 8,
-    "amu-btech.html": 9,
+    "amu-btech.html": 2,
     "amu-mba.html": 9,
     "amu-mbbs.html": 10,
-    "anna-university-admission-2026.html": 5,
-    "anna-university-btech-cse.html": 5,
-    "anna-university-fees-placements.html": 5,
-    "anna-university-mba.html": 5,
     "anna-university.html": 8,
     "asia-pacific-institute-management-new-delhi.html": 7,
     "banaras-hindu-university.html": 14,
@@ -1684,7 +2112,7 @@
     "bml-munjal-university-ma-public-policy.html": 10,
     "bml-munjal-university-placements.html": 11,
     "bml-munjal-university.html": 14,
-    "cat.html": 2,
+    "cat.html": 1,
     "chandigarh-university-bba.html": 18,
     "chandigarh-university-bca.html": 7,
     "chandigarh-university-btech-cse.html": 7,
@@ -1721,10 +2149,9 @@
     "christ-university-mba.html": 10,
     "christ-university-placements.html": 17,
     "christ-university.html": 14,
-    "cmat.html": 2,
+    "cmat.html": 1,
     "college.html": 10,
-    "collegedecoded-team.html": 7,
-    "colleges.html": 45,
+    "colleges.html": 16,
     "contact.html": 22,
     "cusat-admission-2026.html": 5,
     "cusat-btech-2026.html": 5,
@@ -1750,7 +2177,6 @@
     "fore-school-management-pgdm-fm.html": 7,
     "fore-school-management-pgdm-ib.html": 7,
     "fore-school-management-pgdm.html": 7,
-    "fore-school-management-placements.html": 8,
     "fore-school-management.html": 10,
     "ggsipu-admission.html": 15,
     "ggsipu-bba-bca.html": 16,
@@ -1812,10 +2238,7 @@
     "iift-placements.html": 11,
     "iift.html": 11,
     "iim-ahmedabad-business-analytics-ai.html": 9,
-    "iim-ahmedabad-mba-bpgp.html": 8,
     "iim-ahmedabad-mba-fabm.html": 9,
-    "iim-ahmedabad-mba-pgp.html": 12,
-    "iim-ahmedabad-mba-pgpx.html": 8,
     "iim-ahmedabad-mba.html": 8,
     "iim-ahmedabad-pgpx.html": 9,
     "iim-ahmedabad-placements.html": 13,
@@ -1834,7 +2257,7 @@
     "iim-bangalore-pgpba.html": 10,
     "iim-bangalore-pgpem.html": 12,
     "iim-bangalore-placements.html": 6,
-    "iim-bangalore.html": 12,
+    "iim-bangalore.html": 19,
     "iim-bodhgaya-dbai.html": 11,
     "iim-bodhgaya-hhm.html": 11,
     "iim-bodhgaya-ipm.html": 8,
@@ -1849,28 +2272,22 @@
     "iim-indore-ipm.html": 4,
     "iim-indore-mba.html": 4,
     "iim-indore-pgp-hrm.html": 4,
-    "iim-indore-placements.html": 10,
     "iim-indore.html": 8,
     "iim-jammu-mba-ai-ba.html": 5,
     "iim-jammu-mba-hc.html": 5,
     "iim-jammu-mba.html": 6,
     "iim-jammu-placements.html": 6,
-    "iim-jammu.html": 7,
     "iim-kozhikode-mba.html": 6,
     "iim-kozhikode-pgp-bl.html": 5,
     "iim-kozhikode-pgp-finance.html": 5,
     "iim-kozhikode-pgp-lsm.html": 5,
-    "iim-kozhikode-placements.html": 7,
     "iim-kozhikode.html": 11,
     "iim-lucknow-placements.html": 8,
     "iim-lucknow.html": 5,
     "iim-mumbai-mba-oscm.html": 4,
     "iim-mumbai-mba-sm.html": 4,
-    "iim-mumbai-mba.html": 10,
-    "iim-mumbai-placements.html": 10,
+    "iim-mumbai-mba.html": 7,
     "iim-mumbai.html": 8,
-    "iim-nagpur-placements.html": 5,
-    "iim-nagpur.html": 4,
     "iim-raipur-epgp.html": 10,
     "iim-raipur-mba.html": 10,
     "iim-raipur-placements.html": 11,
@@ -1883,7 +2300,6 @@
     "iim-rohtak-pgp.html": 11,
     "iim-rohtak-pgpx.html": 11,
     "iim-rohtak-placements.html": 12,
-    "iim-rohtak.html": 11,
     "iim-sambalpur-mba-ba.html": 5,
     "iim-sambalpur-mba.html": 5,
     "iim-sambalpur-placements.html": 5,
@@ -1941,10 +2357,7 @@
     "iit-madras-mba.html": 10,
     "iit-madras-placements.html": 11,
     "iit-madras.html": 11,
-    "iit-roorkee-executive-mba.html": 6,
-    "iit-roorkee-mba.html": 6,
-    "iit-roorkee-placements.html": 6,
-    "iit-roorkee.html": 11,
+    "iit-roorkee.html": 5,
     "imi-bhubaneswar-admission-2026.html": 5,
     "imi-bhubaneswar-courses.html": 5,
     "imi-bhubaneswar-fees.html": 5,
@@ -1959,7 +2372,6 @@
     "imi-kolkata-placements.html": 6,
     "imi-kolkata.html": 7,
     "imt-ghaziabad-placements.html": 1,
-    "imt-ghaziabad.html": 1,
     "imt-nagpur-admission-2027.html": 7,
     "imt-nagpur-cutoff.html": 7,
     "imt-nagpur-fees.html": 7,
@@ -1972,15 +2384,8 @@
     "indian-institute-of-management-kashipur-mba.html": 7,
     "indian-institute-of-management-kashipur-placements.html": 7,
     "indian-institute-of-management-kashipur.html": 14,
-    "indian-institute-of-management-nagpur-blended-mba-for-working-professionals.html": 4,
-    "indian-institute-of-management-nagpur-executive-mba-hybrid.html": 4,
-    "indian-institute-of-management-nagpur-mba.html": 4,
     "indian-institute-of-management-visakhapatnam-mba-programme.html": 3,
     "indian-institute-of-technology-kanpur-mba-programme.html": 1,
-    "indian-institute-of-technology-roorkee-executive-mba.html": 3,
-    "indian-institute-of-technology-roorkee-mba.html": 3,
-    "indian-institute-of-technology-roorkee-placements.html": 3,
-    "indian-institute-of-technology-roorkee.html": 6,
     "institute-rural-management-anand-executive-rural-management.html": 8,
     "institute-rural-management-anand-fpm-rural-management.html": 7,
     "institute-rural-management-anand-mba-rural-management.html": 8,
@@ -2020,7 +2425,6 @@
     "jims-rohini-fees.html": 7,
     "jims-rohini-pgdm-ib.html": 7,
     "jims-rohini-pgdm.html": 7,
-    "jims-rohini-placements.html": 7,
     "jims-rohini.html": 7,
     "jmi-hospital-management-and-hospice-studies.html": 4,
     "jmi-management-studies.html": 4,
@@ -2062,7 +2466,6 @@
     "loyola-institute-business-administration-fpm.html": 8,
     "loyola-institute-business-administration-online-pgdm.html": 9,
     "loyola-institute-business-administration-pgdm.html": 9,
-    "loyola-institute-business-administration-placements.html": 10,
     "loyola-institute-business-administration.html": 11,
     "manage-hyderabad-admission-2026.html": 5,
     "manage-hyderabad-courses.html": 5,
@@ -2126,7 +2529,6 @@
     "nmims-mba-tech.html": 6,
     "nmims-mba.html": 7,
     "nmims-placements.html": 6,
-    "nmims.html": 14,
     "panjab-university-admission-2026.html": 5,
     "panjab-university-courses.html": 5,
     "panjab-university-fees.html": 5,
@@ -2152,7 +2554,6 @@
     "sibm-bengaluru-mba-business-analytics.html": 6,
     "sibm-bengaluru-mba-executive.html": 5,
     "sibm-bengaluru-mba.html": 6,
-    "sibm-bengaluru-placements.html": 5,
     "sibm-bengaluru.html": 11,
     "sibm-pune-mba-executive.html": 10,
     "sibm-pune-mba-innovation-entrepreneurship.html": 10,
