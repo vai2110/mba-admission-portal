@@ -78,3 +78,58 @@
   .cd-college-test-guidance p{font-size:12px}
   .cd-college-test-guidance button{width:100%;margin-top:13px}
 }
+
+/* Mobile guidance CTA layout fix — shared across live college pages */
+@media(max-width:700px){
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance{
+    box-sizing:border-box;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+    justify-items:stretch;
+    gap:12px;
+    width:auto;
+    max-width:100%;
+    min-width:0;
+    margin:18px 10px 20px;
+    padding:18px 15px 16px;
+    overflow:hidden;
+  }
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance>div{
+    display:block;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance h2{
+    margin:0 0 7px;
+    font-size:clamp(19px,5vw,22px);
+    line-height:1.25;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance p{
+    margin:0;
+    font-size:12px;
+    line-height:1.55;
+    overflow-wrap:break-word;
+  }
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance button{
+    display:block;
+    box-sizing:border-box;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    margin:0;
+    padding:12px 10px;
+    justify-self:stretch;
+    white-space:normal;
+    text-align:center;
+    line-height:1.35;
+    overflow-wrap:anywhere;
+  }
+}
+@media(max-width:360px){
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance{margin-left:8px;margin-right:8px;padding:16px 12px}
+  #cdCollegeTestGuidanceSection.cd-college-test-guidance h2{font-size:19px}
+}
