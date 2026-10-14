@@ -35,7 +35,7 @@ jobs:
           ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
           scripts = [
               '<script src="/assets/editorial-meta.js?v=20260930fix"></script>',
-              '<script defer src="/assets/mobile-on-page.js?v=20261013v2"></script>',
+              '<script defer src="/assets/mobile-on-page.js?v=20261014v4"></script>',
           ]
           changed = 0
           for item in root.findall("sm:url", ns):
