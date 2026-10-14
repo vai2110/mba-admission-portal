@@ -147,9 +147,36 @@ module.exports = async function handler(req, res) {
 
   let data;
   try { data = await response.json(); } catch (_) { data = {}; }
+
+  // If web search is unavailable for this project/model, retry once without it so
+  // basic counselling can still work. Never expose provider error details to visitors.
+  if (!response.ok && response.status === 400) {
+    const providerMessage = String(data && data.error && data.error.message || "");
+    if (/web_search|tool.*not supported|unsupported.*tool/i.test(providerMessage)) {
+      try {
+        response = await fetch("https://api.openai.com/v1/responses", {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + apiKey,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
+            instructions: instructions + "\\n\\nWeb search is unavailable for this request. Do not claim to have checked current sources; clearly label time-sensitive facts as needing official verification.",
+            input,
+            max_output_tokens: 900
+          })
+        });
+        try { data = await response.json(); } catch (_) { data = {}; }
+      } catch (_) {
+        return send(res, 502, { error: "I couldn't connect just now. Please try again." });
+      }
+    }
+  }
+
   if (!response.ok) {
-    // Do not expose provider response bodies, request IDs, or configuration details to visitors.
-    console.error("CollegeDecoded advisor provider error:", response.status);
+    const providerError = data && data.error || {};
+    console.error("CollegeDecoded advisor provider error:", response.status, providerError.type || "unknown", providerError.code || "no-code");
     return send(res, 502, { error: "I couldn't complete that answer just now. Please try again." });
   }
 
