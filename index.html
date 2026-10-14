@@ -146,6 +146,19 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
   .exam-box,.score,.compare,.final{padding:20px}
 }
 </style>
+<style id="homepage-hide-on-this-page-fix">
+/* Homepage only: suppress every known version of the floating section navigator. */
+html body .cd-mobile-on-page-v2,
+html body .mobile-on-page,
+html body .mobile-onpage,
+html body .mobile-on-page-nav,
+html body .mobile-onpage-nav,
+html body [aria-label="Page section navigation"] {
+  display:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+</style>
 <style id="homepage-section-spacing-fix">
 /* Homepage list cards: reduce only excess vertical whitespace */
 .route{min-height:180px}
