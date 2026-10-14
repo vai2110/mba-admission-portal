@@ -7,7 +7,7 @@
   // Load the shared mobile section navigator on every page using this site-wide script.
   if (!document.querySelector('script[data-cd-mobile-on-page-loader]')) {
     var cdMobileNavScript = document.createElement('script');
-    cdMobileNavScript.src = '/assets/mobile-on-page.js?v=20261013v2';
+    cdMobileNavScript.src = '/assets/mobile-on-page.js?v=20261014v3';
     cdMobileNavScript.defer = true;
     cdMobileNavScript.setAttribute('data-cd-mobile-on-page-loader', 'true');
     document.head.appendChild(cdMobileNavScript);
