@@ -142,6 +142,13 @@
     window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
   }
 
+  function removeDuplicateNavigators(keep) {
+    var selectors = '.mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .cd-mobile-on-page-v2';
+    document.querySelectorAll(selectors).forEach(function (item) {
+      if (item !== keep) item.remove();
+    });
+  }
+
   function setupNav() {
     // The homepage intentionally has no floating “On this page” control.
     // Keep this shared navigation enabled on every other page.
@@ -151,6 +158,7 @@
     var existing = findExistingNav();
     if (!links.length && !existing) return;
     var nav = normalizeExistingNav(existing, links);
+    removeDuplicateNavigators(nav);
     if (!nav.isConnected) insertAfterHero(nav);
     else {
       var hero = getHero();
@@ -201,6 +209,16 @@
   });
 
   window.addEventListener('hashchange', cleanHash);
+  // Some XLRI pages load an older inline navigator after this shared script.
+  // Watch late DOM additions and keep exactly one navigator on the page.
+  var duplicateNavObserver = new MutationObserver(function () {
+    var navs = document.querySelectorAll('.cd-mobile-on-page-v2, .mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav');
+    if (navs.length > 1) {
+      var keep = document.querySelector('.cd-mobile-on-page-v2') || navs[0];
+      removeDuplicateNavigators(keep);
+    }
+  });
+  if (document.documentElement) duplicateNavObserver.observe(document.documentElement, { childList: true, subtree: true });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupNav, { once: true });
   else setupNav();
   cleanHash();
