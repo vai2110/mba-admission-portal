@@ -143,6 +143,9 @@
   }
 
   function setupNav() {
+    // The homepage intentionally has no floating “On this page” control.
+    // Keep this shared navigation enabled on every other page.
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') return;
     addStyles();
     var links = getSectionLinks();
     var existing = findExistingNav();
