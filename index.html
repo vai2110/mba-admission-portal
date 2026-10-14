@@ -234,7 +234,7 @@ header{background:rgba(255,255,255,.94);border-bottom:1px solid #eeeaf8}
 
 <section class="section"><div class="wrap"><div class="score">
 <div class="score-left"><div class="eyebrow">Score → Shortlist</div><h2>Got a CAT score in mind?</h2><p>Enter your expected percentile to explore a starting shortlist of MBA colleges.</p>
-<div class="score-control"><input id="score" type="number" min="1" max="100" value="92" aria-label="Expected CAT percentile"><button id="findScore">Find Colleges →</button></div><div class="score-note" id="scoreNote">Not sure about your score? Start with the CAT cutoff guide →</div></div>
+<div class="score-control"><input id="score" type="number" min="0" max="100" step="1" value="92" inputmode="numeric" aria-label="Expected CAT percentile"><button id="findScore">Find Colleges →</button></div><div class="score-note" id="scoreNote">Not sure about your score? Start with the CAT cutoff guide →</div></div>
 <div class="score-list"><h3>Colleges you can explore <span id="scoreRange" style="float:right;color:#64748b;font-size:9px">(90–95 percentile)</span></h3><div id="scoreColleges" class="score-colleges" aria-live="polite"></div></div>
 </div></div></section>
 
@@ -413,14 +413,22 @@ const scoreBuckets=[
   ['KIIT University','/kiit-bhubaneswar','Below 80 range'],['Welingkar Mumbai','/welingkar-mumbai','Below 80 range'],['BIMTECH Greater Noida','/birla-institute-management-technology','Below 80 range'],['IRMA Anand','/institute-rural-management-anand','Below 80 range'],['K.J. Somaiya Institute of Management','/kj-somaiya-institute-of-management','Below 80 range'],['Nirma University','/nirma-university','Below 80 range']
  ]}
 ];
+function clampScore(){
+ if(score.value==='') return;
+ const value=Number(score.value);
+ if(!Number.isFinite(value)){score.value='0';return;}
+ if(value>100) score.value='100';
+ else if(value<0) score.value='0';
+}
 function renderScoreShortlist(){
- let n=Math.max(1,Math.min(100,Number(score.value)||0));
+ clampScore();
+ let n=Math.max(0,Math.min(100,Number(score.value)||0));
  const bucket=scoreBuckets.find(x=>n>=x.min)||scoreBuckets[scoreBuckets.length-1];
  range.textContent='('+bucket.label+')';
  scoreColleges.innerHTML=bucket.colleges.map(c=>'<a class="score-college" href="'+c[1]+'"><b>'+c[0]+'</b><span>'+c[2]+'</span></a>').join('');
 }
 find.addEventListener('click',renderScoreShortlist);
-score.addEventListener('input',renderScoreShortlist);
+score.addEventListener('input',function(){clampScore();renderScoreShortlist()});
 score.addEventListener('change',renderScoreShortlist);
 renderScoreShortlist();
 
