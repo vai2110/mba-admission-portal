@@ -15,6 +15,9 @@ PY
 test -f 404.html && test -f assets/collegedecoded-favicon.png
 python3 scripts/repair_internal_links_v2.py
 python3 scripts/repair_orphan_links.py
+# Generate the base sitemap before the news builder appends generated news URLs.
+python3 scripts/seo_indexation_audit.py
+python3 scripts/generate_sitemap.py
 # Link and SEO audits run after all generated routes/content are present.
 node scripts/inject-guidance-flow.js
 echo "SEO sitemap production sync trigger"
