@@ -20,7 +20,7 @@ const oldIimaCss = /<link[^>]+href=["']\/?assets\/iima-guidance-test\.css(?:\?[^
 const oldIimaJs = /<script[^>]+src=["']\/?assets\/iima-guidance-test\.js(?:\?[^"']*)?["'][^>]*><\/script>\s*/gi;
 const newCss = /<link[^>]+href=["']\/?assets\/college-guidance-test\.css(?:\?[^"']*)?["'][^>]*>\s*/gi;
 const newJs = /<script[^>]+src=["']\/?assets\/college-guidance-test\.js(?:\?[^"']*)?["'][^>]*><\/script>\s*/gi;
-const injection = '\n<link rel="stylesheet" href="/assets/college-guidance-test.css?v=4"><script src="/assets/college-guidance-test.js?v=4"></script>\n';
+const injection = '\n<link rel="stylesheet" href="/assets/college-guidance-test.css?v=5"><script src="/assets/college-guidance-test.js?v=5"></script>\n';
 
 let matched = 0, changed = 0;
 for (const file of walk(root)) {
