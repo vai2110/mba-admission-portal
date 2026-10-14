@@ -15,27 +15,27 @@ PY
 test -f 404.html && test -f assets/collegedecoded-favicon.png
 python3 scripts/repair_internal_links_v2.py
 python3 scripts/repair_orphan_links.py
+# Link and SEO audits run after all generated routes/content are present.
+node scripts/inject-guidance-flow.js
+echo "SEO sitemap production sync trigger"
+node scripts/build-news.js
+node scripts/inject-related-news.js
+node scripts/inject-ai-advisor.js
+
+# Run validation against the final generated site, including news pages and injected links.
 python3 scripts/internal_link_audit.py
 python3 - <<'PY'
 import json
 from pathlib import Path
 report = json.loads(Path("internal-link-audit.json").read_text(encoding="utf-8"))
 summary = report["summary"]
-print(f"INTERNAL LINK CHECK: {summary['cluster_reciprocal_gaps']} reciprocal-link opportunities; {summary['broken_local_links']} broken local links; {summary.get('redirecting_internal_links', 0)} redirecting internal links.")
-# Missing reciprocal links are an improvement backlog, not a deployment blocker.
-# Keep the production gate strict for broken local links and internal links that
-# point to legacy .html URLs and therefore trigger redirects.
+print(f"FINAL INTERNAL LINK CHECK: {summary['cluster_reciprocal_gaps']} reciprocal-link opportunities; {summary['broken_local_links']} broken local links; {summary.get('redirecting_internal_links', 0)} redirecting internal links.")
+# Reciprocal-link gaps are a report-only improvement backlog, not a deployment blocker.
 if summary["broken_local_links"] or summary.get("redirecting_internal_links", 0):
-    raise SystemExit("INTERNAL LINK GATE FAILED: fix broken or redirecting internal links.")
+    raise SystemExit("FINAL INTERNAL LINK GATE FAILED: fix broken or redirecting internal links.")
 if summary["cluster_reciprocal_gaps"]:
     print("WARNING: reciprocal-link opportunities remain; deploy is allowed while these are addressed incrementally.")
-print("INTERNAL LINK GATE PASSED")
+print("FINAL INTERNAL LINK GATE PASSED")
 PY
 python3 scripts/seo_indexation_audit.py
-python3 scripts/generate_sitemap.py
 python3 scripts/final_seo_gate.py
-node scripts/inject-guidance-flow.js
-echo "SEO sitemap production sync trigger"
-node scripts/build-news.js
-node scripts/inject-related-news.js
-node scripts/inject-ai-advisor.js
