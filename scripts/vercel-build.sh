@@ -42,6 +42,8 @@ if summary["cluster_reciprocal_gaps"]:
 print("INTERNAL LINK GATE PASSED")
 PY
 python3 scripts/seo_indexation_audit.py
+# The technical audit uses BeautifulSoup; Vercel's build image does not preinstall it.
+python3 -m pip install --quiet beautifulsoup4
 python3 scripts/technical_seo_audit.py
 python3 scripts/validate_structured_data.py
 python3 scripts/final_seo_gate.py
