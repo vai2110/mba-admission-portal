@@ -1,6 +1,7 @@
 # Production build entry point; keep this script deterministic.
 #!/usr/bin/env bash
 set -e
+python3 scripts/repair_malformed_seo_head.py
 python3 scripts/seo_metadata_cleanup.py
 node scripts/normalize-clean-urls.js
 python3 scripts/seo_structured_data_cleanup.py
@@ -25,6 +26,7 @@ node scripts/inject-related-news.js
 node scripts/inject-ai-advisor.js
 
 # Validate the final generated output, including news routes and injected links.
+python3 scripts/technical_seo_audit.py
 python3 scripts/internal_link_audit.py
 python3 - <<'PY'
 import json
