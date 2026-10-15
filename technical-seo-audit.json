@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T10:27:59.741553+00:00",
+  "generated_at": "2026-10-15T14:13:45.464372+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 668,
   "pages_with_issues": 46,
@@ -11775,7 +11775,7 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [
-        "/news/"
+        "/news"
       ],
       "duplicate_title": false,
       "duplicate_canonical": false,
