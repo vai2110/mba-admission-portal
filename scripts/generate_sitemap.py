@@ -161,6 +161,34 @@ for html_file in ROOT.rglob("*.html"):
     lastmod = file_lastmod(html_file)
     url_dates[url] = max(url_dates.get(url, ""), lastmod)
 
+# Explicitly include the IIM Ahmedabad clean canonical URL.
+# Its only source file is the legacy .html filename, which is intentionally
+# excluded above to prevent publishing that legacy URL. The clean route must
+# still be listed once in the sitemap because it is the page's declared canonical.
+iima_source = ROOT / "iim-ahmedabad.html"
+iima_url = BASE_URL + "/iim-ahmedabad"
+if iima_source.is_file():
+    try:
+        iima_html = iima_source.read_text(encoding="utf-8", errors="ignore")
+    except Exception:
+        iima_html = ""
+    has_clean_canonical = bool(re.search(
+        r'<link[^>]+rel=["\\']canonical["\\'][^>]+href=["\\']https://collegedecoded\\.in/iim-ahmedabad/?["\\']',
+        iima_html,
+        re.IGNORECASE,
+    ) or re.search(
+        r'<link[^>]+href=["\\']https://collegedecoded\\.in/iim-ahmedabad/?["\\'][^>]+rel=["\\']canonical["\\']',
+        iima_html,
+        re.IGNORECASE,
+    ))
+    is_indexable = not re.search(
+        r'<meta[^>]+name=["\\']robots["\\'][^>]+content=["\\'][^"\\']*noindex',
+        iima_html,
+        re.IGNORECASE,
+    )
+    if has_clean_canonical and is_indexable:
+        url_dates[iima_url] = max(url_dates.get(iima_url, ""), file_lastmod(iima_source))
+
 # Sort URLs for a stable sitemap.
 urls = sorted(url_dates)
 
