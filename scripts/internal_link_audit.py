@@ -129,7 +129,11 @@ def main():
                     redirecting_internal_links.append({
                         "source": name, "href": href, "target": clean_path
                     })
-            if target not in page_set:
+            # This audit's cluster/orphan analysis intentionally covers only root-level
+            # portal pages. Generated routes (for example /news and /news/<slug>) live
+            # under subdirectories, so they are valid when the resolved HTML file exists
+            # even though they are not members of the root-level page_set.
+            if target not in page_set and not (ROOT / target).is_file():
                 item = {"source": name, "href": href, "target": target}
                 if name in BENCHMARKS:
                     benchmark_broken.append(item)
