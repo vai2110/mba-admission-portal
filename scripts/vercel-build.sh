@@ -53,3 +53,7 @@ python3 -m venv "$SEO_AUDIT_VENV"
 "$SEO_AUDIT_VENV/bin/python" scripts/technical_seo_audit.py
 python3 scripts/validate_structured_data.py
 python3 scripts/final_seo_gate.py
+
+# Minify first-party browser CSS/JS after all generators and validators have run.
+# The build leaves source files untouched in Git; only Vercel's build output is minified.
+npx --yes --package=terser --package=clean-css-cli -c "node scripts/minify-assets.js"
