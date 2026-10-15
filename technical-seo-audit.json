@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-10-14T08:44:20.091938+00:00",
+  "generated_at": "2026-10-15T03:10:51.095576+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
   "pages_checked": 669,
   "pages_with_issues": 49,
   "issue_counts": {
     "broken_local_links": 2,
-    "canonical": 1,
     "description_count": 1,
     "description_length": 1,
     "duplicate_title": 2,
@@ -7203,14 +7202,14 @@
     {
       "file": "iim-ahmedabad.html",
       "benchmark": true,
-      "title": "IIM Ahmedabad MBA Admission 2026: Fees, Eligibility, CAT & Placements",
+      "title": "IIM Ahmedabad MBA Admission 2027: Fees, Eligibility, CAT & Placements",
       "title_length": 69,
-      "description": "IIM Ahmedabad MBA admission 2026 guide covering PGP/MBA eligibility, CAT, selection process, fees, placements, scholarships and other programmes with official sources.",
-      "description_length": 167,
+      "description": "IIM Ahmedabad MBA admission 2027 guide covering PGP/MBA eligibility, CAT 2026, selection process, fees, placements, scholarships and official programme sources.",
+      "description_length": 160,
       "description_count": 1,
-      "canonical": "https://collegedecoded.in/iim-ahmedabad.html",
+      "canonical": "https://collegedecoded.in/iim-ahmedabad",
       "canonical_count": 1,
-      "canonical_self": false,
+      "canonical_self": true,
       "h1_count": 1,
       "h1": "IIM Ahmedabad: MBA Admission 2027, Fees, CAT Cutoff, Courses & Placements",
       "lang": "en",
@@ -7233,7 +7232,6 @@
       "duplicate_canonical": false,
       "issues": [
         "title_length",
-        "canonical",
         "broken_local_links"
       ]
     },
