@@ -42,8 +42,11 @@ if summary["cluster_reciprocal_gaps"]:
 print("INTERNAL LINK GATE PASSED")
 PY
 python3 scripts/seo_indexation_audit.py
-# The technical audit uses BeautifulSoup; Vercel's build image does not preinstall it.
-python3 -m pip install --quiet beautifulsoup4
-python3 scripts/technical_seo_audit.py
+# The technical audit uses BeautifulSoup. Install it in an isolated temporary venv;
+# Vercel's managed system Python rejects global pip installs (PEP 668).
+SEO_AUDIT_VENV="/tmp/collegedecoded-seo-audit-venv"
+python3 -m venv "$SEO_AUDIT_VENV"
+"$SEO_AUDIT_VENV/bin/python" -m pip install --quiet --disable-pip-version-check beautifulsoup4
+"$SEO_AUDIT_VENV/bin/python" scripts/technical_seo_audit.py
 python3 scripts/validate_structured_data.py
 python3 scripts/final_seo_gate.py
