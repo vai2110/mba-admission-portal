@@ -15,15 +15,6 @@ PY
 test -f 404.html && test -f assets/collegedecoded-favicon.png
 python3 scripts/repair_internal_links_v2.py
 python3 scripts/repair_orphan_links.py
-# Generate the base sitemap before the news builder appends generated news URLs.
-python3 scripts/generate_sitemap.py
-node scripts/inject-guidance-flow.js
-echo "SEO sitemap production sync trigger"
-node scripts/build-news.js
-node scripts/inject-related-news.js
-node scripts/inject-ai-advisor.js
-
-# Validate the final generated output, including news routes and injected links.
 python3 scripts/internal_link_audit.py
 python3 - <<'PY'
 import json
@@ -41,6 +32,10 @@ if summary["cluster_reciprocal_gaps"]:
 print("INTERNAL LINK GATE PASSED")
 PY
 python3 scripts/seo_indexation_audit.py
-python3 scripts/technical_seo_audit.py
-python3 scripts/validate_structured_data.py
+python3 scripts/generate_sitemap.py
 python3 scripts/final_seo_gate.py
+node scripts/inject-guidance-flow.js
+echo "SEO sitemap production sync trigger"
+node scripts/build-news.js
+node scripts/inject-related-news.js
+node scripts/inject-ai-advisor.js
