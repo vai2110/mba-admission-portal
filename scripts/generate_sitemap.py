@@ -162,9 +162,8 @@ for html_file in ROOT.rglob("*.html"):
     url_dates[url] = max(url_dates.get(url, ""), lastmod)
 
 # Explicitly include the IIM Ahmedabad clean canonical URL.
-# Its only source file is the legacy .html filename, which is intentionally
-# excluded above to prevent publishing that legacy URL. The clean route must
-# still be listed once in the sitemap because it is the page's declared canonical.
+# Its only source file is the legacy .html filename, intentionally excluded
+# above. Publish the canonical clean URL once, but never the legacy URL.
 iima_source = ROOT / "iim-ahmedabad.html"
 iima_url = BASE_URL + "/iim-ahmedabad"
 if iima_source.is_file():
@@ -172,17 +171,13 @@ if iima_source.is_file():
         iima_html = iima_source.read_text(encoding="utf-8", errors="ignore")
     except Exception:
         iima_html = ""
-    has_clean_canonical = bool(re.search(
-        r'<link[^>]+rel=["\\']canonical["\\'][^>]+href=["\\']https://collegedecoded\\.in/iim-ahmedabad/?["\\']',
-        iima_html,
-        re.IGNORECASE,
-    ) or re.search(
-        r'<link[^>]+href=["\\']https://collegedecoded\\.in/iim-ahmedabad/?["\\'][^>]+rel=["\\']canonical["\\']',
-        iima_html,
-        re.IGNORECASE,
-    ))
+    canonical_patterns = [
+        re.compile(r"""<link[^>]+rel=["']canonical["'][^>]+href=["']https://collegedecoded\.in/iim-ahmedabad/?["']""", re.IGNORECASE),
+        re.compile(r"""<link[^>]+href=["']https://collegedecoded\.in/iim-ahmedabad/?["'][^>]+rel=["']canonical["']""", re.IGNORECASE),
+    ]
+    has_clean_canonical = any(pattern.search(iima_html) for pattern in canonical_patterns)
     is_indexable = not re.search(
-        r'<meta[^>]+name=["\\']robots["\\'][^>]+content=["\\'][^"\\']*noindex',
+        r"""<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex""",
         iima_html,
         re.IGNORECASE,
     )
