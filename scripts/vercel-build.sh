@@ -3,6 +3,7 @@
 set -e
 python3 scripts/seo_metadata_cleanup.py
 node scripts/normalize-clean-urls.js
+python3 scripts/seo_structured_data_cleanup.py
 node scripts/validate-college-data-consistency.js
 # Build a crawlable directory and give public canonical pages a direct discovery path.
 python3 scripts/generate_college_guides_hub.py
