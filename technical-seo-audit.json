@@ -1,30 +1,24 @@
 {
-  "generated_at": "2026-10-15T05:27:38.542298+00:00",
+  "generated_at": "2026-10-15T05:33:50.673933+00:00",
   "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
-  "pages_checked": 669,
-  "pages_with_issues": 48,
+  "pages_checked": 668,
+  "pages_with_issues": 46,
   "issue_counts": {
     "broken_local_links": 2,
     "description_count": 1,
     "description_length": 1,
-    "duplicate_title": 2,
-    "h1_count": 41,
-    "jsonld": 3,
+    "h1_count": 40,
+    "jsonld": 2,
     "lang": 1,
-    "noindex": 3,
+    "noindex": 2,
     "og_description": 2,
     "og_title": 2,
     "og_url": 2,
     "title_length": 1,
     "twitter_card": 3,
-    "viewport": 2
+    "viewport": 1
   },
-  "duplicate_titles": {
-    "IIM Bangalore PGPBA Admission 2027: CAT, Fees & Eligibility": [
-      "iim-bangalore-mba-business-analytics.html",
-      "iim-bangalore-pgpba.html"
-    ]
-  },
+  "duplicate_titles": {},
   "duplicate_canonicals": {},
   "pages": [
     {
@@ -7514,43 +7508,6 @@
       "issues": []
     },
     {
-      "file": "iim-bangalore-mba-business-analytics.html",
-      "benchmark": false,
-      "title": "IIM Bangalore PGPBA Admission 2027: CAT, Fees & Eligibility",
-      "title_length": 59,
-      "description": "Redirecting to IIM Bangalore PGPBA Check admission, fees, eligibility and placements. Check admission, fees, eligibility and placements.",
-      "description_length": 136,
-      "description_count": 1,
-      "canonical": "https://collegedecoded.in/iim-bangalore-pgpba",
-      "canonical_count": 1,
-      "canonical_self": false,
-      "h1_count": 0,
-      "h1": null,
-      "lang": "en",
-      "viewport": false,
-      "robots": [
-        "noindex,follow"
-      ],
-      "indexable": false,
-      "og_title": true,
-      "og_description": true,
-      "og_url": true,
-      "twitter_card": true,
-      "jsonld_blocks": 0,
-      "images": 0,
-      "images_missing_alt": 0,
-      "broken_local_links": [],
-      "duplicate_title": true,
-      "duplicate_canonical": false,
-      "issues": [
-        "h1_count",
-        "viewport",
-        "noindex",
-        "jsonld",
-        "duplicate_title"
-      ]
-    },
-    {
       "file": "iim-bangalore-mba.html",
       "benchmark": false,
       "title": "IIM Bangalore MBA 2027: Fees, Eligibility, CAT & Placements",
@@ -7608,11 +7565,9 @@
       "images": 0,
       "images_missing_alt": 0,
       "broken_local_links": [],
-      "duplicate_title": true,
+      "duplicate_title": false,
       "duplicate_canonical": false,
-      "issues": [
-        "duplicate_title"
-      ]
+      "issues": []
     },
     {
       "file": "iim-bangalore-pgpem.html",
