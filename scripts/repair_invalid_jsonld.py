@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKIP_DIRS = {".git", "node_modules", ".vercel"}
 
 def attr(tag, name):
-    m = re.search(r"\\b" + re.escape(name) + r"\\s*=\\s*([\"']) (.*?)\\1".replace(" ", ""), tag, re.I | re.S)
+    m = re.search(r"\b" + re.escape(name) + r"\s*=\s*([\"']) (.*?)\1".replace(" ", ""), tag, re.I | re.S)
     return m.group(2) if m else ""
 
 removed = []
@@ -22,9 +22,9 @@ for path in ROOT.rglob("*.html"):
         continue
     raw = path.read_text(encoding="utf-8", errors="ignore")
     spans = []
-    for m in re.finditer(r"<script\\b([^>]*)>(.*?)</script\\s*>", raw, re.I | re.S):
+    for m in re.finditer(r"<script\b([^>]*)>(.*?)</script\s*>", raw, re.I | re.S):
         attrs, body = m.group(1), m.group(2)
-        if not re.search(r"""\\btype\\s*=\\s*([\"'])application/ld\\+json\\1""", attrs, re.I):
+        if not re.search(r"""\btype\s*=\s*([\"'])application/ld\+json\1""", attrs, re.I):
             continue
         try:
             json.loads(body)
