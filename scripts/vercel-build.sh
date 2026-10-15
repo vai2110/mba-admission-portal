@@ -25,6 +25,8 @@ node scripts/build-news.js
 node scripts/inject-related-news.js
 node scripts/inject-ai-advisor.js
 
+python3 scripts/repair_invalid_jsonld.py
+
 # Validate the final generated output, including news routes and injected links.
 python3 scripts/internal_link_audit.py
 python3 - <<'PY'
