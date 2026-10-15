@@ -96,7 +96,7 @@ module.exports = async function handler(req, res) {
     parts: [{ text: latest + "\n\n[Current page context for relevance only]\n" + currentPage }]
   });
 
-  const model = safeString(process.env.GEMINI_MODEL || "gemini-2.5-flash", 80);
+  const model = safeString(process.env.GEMINI_MODEL || "gemini-3.8-flash", 80);
   if (!/^[a-zA-Z0-9._-]+$/.test(model)) {
     return send(res, 500, { error: "The advisor model configuration is invalid." });
   }
