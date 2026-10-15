@@ -171,16 +171,14 @@ if iima_source.is_file():
         iima_html = iima_source.read_text(encoding="utf-8", errors="ignore")
     except Exception:
         iima_html = ""
-    canonical_patterns = [
-        re.compile(r"""<link[^>]+rel=["']canonical["'][^>]+href=["']https://collegedecoded\.in/iim-ahmedabad/?["']""", re.IGNORECASE),
-        re.compile(r"""<link[^>]+href=["']https://collegedecoded\.in/iim-ahmedabad/?["'][^>]+rel=["']canonical["']""", re.IGNORECASE),
-    ]
-    has_clean_canonical = any(pattern.search(iima_html) for pattern in canonical_patterns)
-    is_indexable = not re.search(
-        r"""<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex""",
-        iima_html,
-        re.IGNORECASE,
+    # The source page declares this exact clean canonical URL. Check both
+    # supported quote styles and allow either attribute order without complex
+    # quote-sensitive regexes in the build script.
+    has_clean_canonical = (
+        ('rel="canonical"' in iima_html.lower() or "rel='canonical'" in iima_html.lower())
+        and iima_url.lower() in iima_html.lower()
     )
+    is_indexable = "noindex" not in iima_html.lower()
     if has_clean_canonical and is_indexable:
         url_dates[iima_url] = max(url_dates.get(iima_url, ""), file_lastmod(iima_source))
 
