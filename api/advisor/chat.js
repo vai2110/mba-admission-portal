@@ -96,49 +96,62 @@ module.exports = async function handler(req, res) {
     parts: [{ text: latest + "\n\n[Current page context for relevance only]\n" + currentPage }]
   });
 
-  const model = "gemini-3.5-flash";
-  if (!/^[a-zA-Z0-9._-]+$/.test(model)) {
-    return send(res, 500, { error: "The advisor model configuration is invalid." });
-  }
-
+  // Try current stable Flash first, then compatible fallbacks if a model is unavailable
+  // to this API key/project. All model calls stay server-side.
+  const models = ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash"];
   let response;
-  try {
-    response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent",
-      {
-        method: "POST",
-        headers: {
-          "x-goog-api-key": apiKey,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: instructions }] },
-          contents,
-          generationConfig: {
-            maxOutputTokens: 900,
-            temperature: 0.4
-          }
-        })
-      }
-    );
-  } catch (_) {
-    return send(res, 502, { error: "I couldn't connect just now. Please try again." });
-  }
+  let data = {};
+  let usedModel = "";
 
-  let data;
-  try { data = await response.json(); } catch (_) { data = {}; }
+  for (const model of models) {
+    try {
+      response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent",
+        {
+          method: "POST",
+          headers: {
+            "x-goog-api-key": apiKey,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: instructions }] },
+            contents,
+            generationConfig: {
+              maxOutputTokens: 900,
+              temperature: 0.4
+            }
+          })
+        }
+      );
+    } catch (_) {
+      return send(res, 502, { error: "I couldn't connect just now. Please try again." });
+    }
 
-  if (!response.ok) {
+    try { data = await response.json(); } catch (_) { data = {}; }
+    if (response.ok) {
+      usedModel = model;
+      break;
+    }
+
     const providerError = data && data.error || {};
     console.error(
       "CollegeDecoded Gemini advisor error:",
+      model,
       response.status,
-      safeString(providerError.status || providerError.code || "unknown", 100)
+      safeString(providerError.status || providerError.code || providerError.message || "unknown", 180)
     );
-    if (response.status === 429) {
+
+    // Model access/name mismatches can be retried with a fallback. Other failures
+    // (invalid key, quota/rate limits, malformed requests) should not be retried.
+    if (response.status !== 404) break;
+  }
+
+  if (!response || !response.ok) {
+    const providerError = data && data.error || {};
+    if (response && response.status === 429) {
       return send(res, 503, { error: "The free AI limit may have been reached temporarily. Please try again later." });
     }
-    if (response.status === 401 || response.status === 403) {
+    if (response && (response.status === 401 || response.status === 403)) {
       return send(res, 503, { error: "The advisor API key or project access needs checking. Please try again later." });
     }
     return send(res, 502, { error: "I couldn't complete that answer just now. Please try again." });
