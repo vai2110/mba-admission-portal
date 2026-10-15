@@ -44,6 +44,11 @@ def clean_url_for(path):
     relative = path.relative_to(ROOT).as_posix()
     if relative == "index.html":
         return BASE
+    # Directory index files are published at the directory URL (e.g. news/index.html -> /news),
+    # not at a duplicate /news/index URL.
+    if relative.endswith("/index.html"):
+        directory = relative[:-len("/index.html")].strip("/")
+        return BASE + ("/" + directory if directory else "")
     # CMS source files are implementation paths; public overview URLs use /<slug>.
     match = re.fullmatch(r"college-cms/content/([^/]+)/overview\.html", relative)
     if match:

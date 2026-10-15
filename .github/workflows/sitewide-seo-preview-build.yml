@@ -1,0 +1,39 @@
+name: Sitewide SEO Preview Build
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "scripts/**"
+      - "news/**"
+      - "data/news.json"
+      - "mba-cutoff-data.json"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "vercel.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sitewide-seo-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out PR source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build final site and run SEO gates
+        run: bash scripts/vercel-build.sh
