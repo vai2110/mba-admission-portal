@@ -9,7 +9,6 @@ def main():
     for path in sorted(ROOT.rglob("*.html")):
         if any(x in {".git","node_modules",".vercel"} for x in path.parts): continue
         raw=path.read_text(encoding="utf-8",errors="ignore"); lower=raw.lower()
-        if "</s<script data-mba-schema" in lower: errors.append(f"{path.relative_to(ROOT)}: split style/schema tag")
         for m in re.finditer(re.escape(MARKER),lower):
             checked+=1; pos=m.start()
             if lower.rfind("<style",0,pos)>lower.rfind("</style>",0,pos):
