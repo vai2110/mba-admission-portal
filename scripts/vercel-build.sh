@@ -28,6 +28,7 @@ python3 scripts/validate_sitemap_routes.py
 node scripts/inject-ai-advisor.js
 
 python3 scripts/repair_invalid_jsonld.py
+# Force schema/style validation after SEO repair and injection steps.
 python3 scripts/validate_html_structure.py
 
 # Validate the final generated output, including news routes and injected links.
