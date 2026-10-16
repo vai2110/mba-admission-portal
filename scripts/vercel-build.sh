@@ -2,12 +2,13 @@
 #!/usr/bin/env bash
 set -e
 python3 scripts/repair_malformed_seo_head.py
-python3 scripts/seo_metadata_cleanup.py
 node scripts/normalize-clean-urls.js
-python3 scripts/seo_structured_data_cleanup.py
 node scripts/validate-college-data-consistency.js
 # Build a crawlable directory and give public canonical pages a direct discovery path.
 python3 scripts/generate_college_guides_hub.py
+# Apply metadata/schema cleanup after generated pages exist to avoid rebuild churn.
+python3 scripts/seo_metadata_cleanup.py
+python3 scripts/seo_structured_data_cleanup.py
 # Generate a raster favicon for Google Search from the existing CollegeDecoded favicon artwork.
 python3 - <<'PY'
 import base64
@@ -27,6 +28,7 @@ python3 scripts/validate_sitemap_routes.py
 node scripts/inject-ai-advisor.js
 
 python3 scripts/repair_invalid_jsonld.py
+python3 scripts/validate_html_structure.py
 
 # Validate the final generated output, including news routes and injected links.
 python3 scripts/internal_link_audit.py

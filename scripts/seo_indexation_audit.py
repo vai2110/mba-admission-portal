@@ -3,6 +3,7 @@ from collections import defaultdict
 from urllib.parse import urlparse, unquote
 from datetime import datetime, timezone
 from html.parser import HTMLParser
+from html import unescape
 import json
 import re
 
@@ -35,9 +36,10 @@ class TextParser(HTMLParser):
             self.parts.append(data)
 
 def extract_text(html):
-    parser = TextParser()
-    parser.feed(html)
-    return re.sub(r"\s+", " ", " ".join(parser.parts)).strip()
+    cleaned = re.sub(r"<!--.*?-->", " ", html, flags=re.S)
+    cleaned = re.sub(r"<(script|style|noscript)\b[^>]*>.*?</\1\s*>", " ", cleaned, flags=re.I | re.S)
+    cleaned = re.sub(r"<[^>]+>", " ", cleaned)
+    return re.sub(r"\s+", " ", unescape(cleaned)).strip()
 
 def canonical_from(html):
     m = re.search(
@@ -201,7 +203,6 @@ for page in pages:
     # intentionally records near-duplicates without duplicating that logic.
 
 summary = {
-    "generated_at": datetime.now(timezone.utc).isoformat(),
     "pages_scanned": len(pages),
     "index_candidates": sum(x["classification"] == "index-candidate" for x in pages),
     "review_depth": sum(x["classification"] == "review-depth" for x in pages),

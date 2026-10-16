@@ -18,6 +18,50 @@ def attr(raw, name):
     m = re.search(r'\b' + re.escape(name) + r'\s*=\s*(["\'])(.*?)\1', raw, re.I | re.S)
     return html.unescape(m.group(2)) if m else ""
 
+
+def repair_embedded_geo_schema(raw):
+    """Move SEO-Geo JSON-LD out of an unclosed style block."""
+    marker = '<script data-mba-schema="seo-geo-aeo"'
+    while True:
+        lower = raw.lower()
+        head_end = lower.rfind("</head>")
+        if head_end < 0:
+            return raw
+        target = None
+        for match in re.finditer(re.escape(marker), lower):
+            start = match.start()
+            if start < head_end and lower.rfind("<style", 0, start) > lower.rfind("</style>", 0, start):
+                target = start
+                break
+        if target is None:
+            return raw
+        close_start = lower.find("</script>", target, head_end)
+        if close_start < 0:
+            return raw
+        close_end = close_start + len("</script>")
+        block = raw[target:close_end]
+        prefix = raw[:target]
+        style_start = lower.rfind("<style", 0, target)
+        if raw.find(">", style_start, target) < 0:
+            prefix = raw[:style_start]
+        else:
+            partial = re.search(r"</s(?:t(?:y(?:l(?:e)?)?)?)?$", prefix, re.I)
+            prefix = prefix[:partial.start()] + "</style>" if partial else prefix + "</style>"
+        suffix = raw[close_end:]
+        tail_end = suffix.lower().rfind("</head>")
+        if tail_end >= 0:
+            tail = suffix[:tail_end]
+            if re.search(r"</script\s*>", tail, re.I) and not re.search(r"<script\b", tail, re.I):
+                keep = [tag for tag in re.findall(r"<(?:meta|link|script)\b[^>]*>", tail, re.I)
+                        if tag.lower().startswith("<meta")
+                        or (tag.lower().startswith("<link") and re.search(r'\brel\s*=\s*["\']stylesheet["\']', tag, re.I))
+                        or (tag.lower().startswith("<script") and re.search(r'\bsrc\s*=', tag, re.I))]
+                suffix = "\n".join(keep) + "\n" + suffix[tail_end:]
+        raw = prefix + suffix
+        head_end = raw.lower().rfind("</head>")
+        if head_end >= 0 and block and marker not in raw[:head_end].lower():
+            raw = raw[:head_end] + "\n" + block + "\n" + raw[head_end:]
+
 def main():
     repaired = []
     for path in ROOT.rglob("*.html"):
@@ -69,6 +113,21 @@ def main():
         raw = head + replacement + raw[head_end:]
         path.write_text(raw, encoding="utf-8")
         repaired.append(path.relative_to(ROOT).as_posix())
+
+    # Repair page-specific styles too, not only the shared cluster-link style.
+    for path in sorted(ROOT.rglob("*.html")):
+        if any(part in {".git", "node_modules", ".vercel"} for part in path.parts):
+            continue
+        try:
+            raw = path.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
+        updated = repair_embedded_geo_schema(raw)
+        if updated != raw:
+            path.write_text(updated, encoding="utf-8")
+            name = path.relative_to(ROOT).as_posix()
+            if name not in repaired:
+                repaired.append(name)
     print(f"Malformed SEO head repair: {len(repaired)} pages repaired.")
     for name in repaired[:80]:
         print(name)

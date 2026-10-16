@@ -115,6 +115,7 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
 <nav class="quick" aria-label="Jump to letter">""" + "".join(f'<a href="#letter-{escape(letter)}">{escape(letter)}</a>' for letter in sorted(grouped)) + """</nav></header>
 <main>""" + "\n".join(sections) + """</main>
 <footer>CollegeDecoded — college information and student guides.</footer>
+<script src="/no-hash-navigation.js?v=20261010" defer></script>
 </body></html>
 """
     HUB_FILE.write_text(hub, encoding="utf-8")
