@@ -190,7 +190,6 @@ def main():
             role_counts["overview_or_hub"] += 1
 
     report = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
         "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
         "summary": {
             "pages_checked": len(pages),

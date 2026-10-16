@@ -153,7 +153,6 @@ def main():
         r["issues"] = issues
     counts = Counter(issue for r in results for issue in r["issues"])
     report = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
         "scope": "Root-level HTML technical SEO audit; benchmark pages are audited but never modified by this workflow.",
         "pages_checked": len(results), "pages_with_issues": sum(bool(r["issues"]) for r in results),
         "issue_counts": dict(sorted(counts.items())),

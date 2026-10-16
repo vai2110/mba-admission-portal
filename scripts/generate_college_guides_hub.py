@@ -29,11 +29,15 @@ class TextParser(HTMLParser):
         self.parts.append(data)
 
 def visible_text(html):
-    # Remove script/style content before extracting visible words.
+    html = re.sub(r"<!--.*?-->", " ", html, flags=re.S)
     html = re.sub(r"<(script|style|noscript)\b[^>]*>.*?</\1\s*>", " ", html, flags=re.I | re.S)
-    p = TextParser()
-    p.feed(html)
-    return re.sub(r"\s+", " ", " ".join(p.parts)).strip()
+    html = re.sub(r"<[^>]+>", " ", html)
+    return re.sub(r"\s+", " ", unescape(html)).strip()
+
+def closing_tag_position(html, tag):
+    masked = re.sub(r"<(script|style|noscript)\b[^>]*>.*?</\1\s*>", lambda m: " " * len(m.group(0)), html, flags=re.I | re.S)
+    matches = list(re.finditer(rf"</{re.escape(tag)}\s*>", masked, re.I))
+    return matches[-1].start() if matches else -1
 
 def canonical_for(html, path):
     m = re.search(r'<link\b[^>]*\brel=["\']canonical["\'][^>]*\bhref=["\']([^"\']+)["\']', html, re.I)
@@ -114,6 +118,14 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
 <header><h1>All College &amp; Course Guides</h1><p>Browse college profiles and dedicated guides for admissions, courses, fees, cutoffs, placements and campus information. Select a guide for the details relevant to that college or programme.</p>
 <nav class="quick" aria-label="Jump to letter">""" + "".join(f'<a href="#letter-{escape(letter)}">{escape(letter)}</a>' for letter in sorted(grouped)) + """</nav></header>
 <main>""" + "\n".join(sections) + """</main>
+<section aria-labelledby="additional-guides-title">
+<h2 id="additional-guides-title">More useful student guides</h2>
+<ul>
+<li><a href="/mba-colleges-under-15-lakhs">MBA colleges under ₹15 lakh</a></li>
+<li><a href="/indian-institute-of-technology-kanpur-mba-programme">IIT Kanpur MBA programme guide</a></li>
+<li><a href="/news">Latest college admission news</a></li>
+</ul>
+</section>
 <footer>CollegeDecoded — college information and student guides.</footer>
 <script src="/no-hash-navigation.js?v=20261010" defer></script>
 </body></html>
@@ -133,12 +145,12 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
         link = '<nav class="all-college-guides-link" aria-label="College guide directory"><a href="/college-guides">Browse all college and course guides</a></nav>'
         style = '<style id="all-college-guides-link-style">.all-college-guides-link{margin:18px auto;padding:10px 16px;width:min(1120px,calc(100% - 32px));font-size:13px;border-top:1px solid #e5eaf2}.all-college-guides-link a{color:#2458d8;font-weight:600;text-decoration:none}.all-college-guides-link a:hover{text-decoration:underline}</style>'
         if "all-college-guides-link-style" not in html:
-            head = re.search(r"</head\s*>", html, re.I)
-            if head:
-                html = html[:head.start()] + style + "\n" + html[head.start():]
-        body = re.search(r"</body\s*>", html, re.I)
-        if body:
-            html = html[:body.start()] + link + "\n" + html[body.start():]
+            head_pos = closing_tag_position(html, "head")
+            if head_pos >= 0:
+                html = html[:head_pos] + style + "\n" + html[head_pos:]
+        body_pos = closing_tag_position(html, "body")
+        if body_pos >= 0:
+            html = html[:body_pos] + link + "\n" + html[body_pos:]
             path.write_text(html, encoding="utf-8")
             injected += 1
     # Provide crawlable HTML links to city pages; the location filters themselves are client-rendered.
@@ -169,7 +181,7 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
             if city_links:
                 style = '<style id="crawlable-location-guides-style">.crawlable-location-guides{max-width:1120px;margin:24px auto;padding:20px 24px;border:1px solid #dbe5f2;border-radius:14px;background:#fff}.crawlable-location-guides h2{margin:0 0 8px;color:#102a72}.crawlable-location-guides p{margin:0 0 12px;color:#526174}.crawlable-location-guides ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px 20px;padding-left:20px}.crawlable-location-guides a{color:#2458d8;font-weight:600}</style>'
                 section = '<section class="crawlable-location-guides" aria-labelledby="crawlable-location-guides-title"><h2 id="crawlable-location-guides-title">Explore MBA colleges by city</h2><p>Compare city-specific MBA college options, admissions, fees, entrance exams and placements.</p><ul>' + "".join(city_links) + '</ul></section>'
-                head_pos = location_html.lower().find("</head>")
+                head_pos = closing_tag_position(location_html, "head")
                 if head_pos >= 0 and "crawlable-location-guides-style" not in location_html:
                     location_html = location_html[:head_pos] + style + "\n" + location_html[head_pos:]
                 # Place the link block after the real footer, still inside the body.
@@ -178,7 +190,7 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
                 if footer_end >= 0:
                     insert_at = footer_end + len("</footer>")
                 else:
-                    insert_at = location_html.lower().find("</body>")
+                    insert_at = closing_tag_position(location_html, "body")
                 if insert_at >= 0:
                     location_html = location_html[:insert_at] + "\n" + section + "\n" + location_html[insert_at:]
                     location_hub.write_text(location_html, encoding="utf-8")
