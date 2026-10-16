@@ -43,12 +43,19 @@ def extract_hrefs(html: str):
 
 
 def local_target(href: str):
-    """Resolve both legacy .html links and Vercel clean URLs to source HTML files."""
+    """Resolve relative, clean-URL and absolute same-origin links to source HTML files."""
     href = href.strip()
-    if not href or href.startswith(("#", "http://", "https://", "mailto:", "tel:", "javascript:", "data:")):
+    if not href or href.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
         return None
     parsed = urlsplit(href)
-    path = parsed.path or "/"
+    if parsed.scheme or parsed.netloc:
+        if parsed.scheme.lower() not in {"http", "https"} or (parsed.netloc or "").lower() not in {
+            "collegedecoded.in", "www.collegedecoded.in"
+        }:
+            return None
+        path = parsed.path or "/"
+    else:
+        path = parsed.path or href
     if path == "/":
         return "index.html"
 

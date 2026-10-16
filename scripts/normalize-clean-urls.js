@@ -213,14 +213,17 @@ function buildCrawlableCollegeDirectory() {
         "$1"
       );
       // Normalize legacy registry aliases to their real public routes.
-      const hrefPath = new URL(href).pathname;
+      const parsedHref = new URL(href);
+      const hrefPath = parsedHref.pathname;
+      const hrefSuffix = parsedHref.search + parsedHref.hash;
       const aliasedPath = applyRouteAlias(hrefPath);
-      if (aliasedPath) href = "https://collegedecoded.in" + aliasedPath + href.slice(hrefPath.length);
+      if (aliasedPath === null) return "";
+      href = "https://collegedecoded.in" + aliasedPath + hrefSuffix;
       return '<article class="college-card">' +
         '<div class="college-name"><a href="' + esc(href) + '">' + esc(name) + '</a></div>' +
         '<a href="' + esc(href) + '" class="college-profile-button">View College →</a>' +
         '</article>';
-    }).join("\n");
+    }).filter(Boolean).join("\n");
 
   const html = fs.readFileSync(pagePath, "utf8");
   const startMarker = "<!-- CRAWLABLE_COLLEGE_DIRECTORY -->";
