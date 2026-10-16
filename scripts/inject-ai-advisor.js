@@ -32,20 +32,20 @@ for (const name of fs.readdirSync(ROOT)) {
 
   // Always remove previously injected advisor tags first. This matters when
   // Production is disabled after a previous build already wrote them to HTML.
-  html = html.replace(/<link\\b(?=[^>]*(?:data-collegedecoded-advisor=["']css["']|href=["'][^"']*ai-advisor\\.css(?:\\?[^"']*)?["']))[^>]*>\\s*/gi, "");
-  html = html.replace(/<script\\b(?=[^>]*(?:data-collegedecoded-advisor=["']js["']|src=["'][^"']*ai-advisor\\.js(?:\\?[^"']*)?["']))[^>]*>\\s*<\\/script>\\s*/gi, "");
+  html = html.replace(/<link\b(?=[^>]*(?:data-collegedecoded-advisor=["']css["']|href=["'][^"']*ai-advisor\.css(?:\?[^"']*)?["']))[^>]*>\s*/gi, "");
+  html = html.replace(/<script\b(?=[^>]*(?:data-collegedecoded-advisor=["']js["']|src=["'][^"']*ai-advisor\.js(?:\?[^"']*)?["']))[^>]*>\s*<\/script>\s*/gi, "");
 
   if (ENABLED && !EXCLUDED.has(name.toLowerCase())) {
-    if (/<\\/head\\s*>/i.test(html)) {
-      html = html.replace(/<\\/head\\s*>/i, CSS_TAG + "\\n</head>");
+    if (/<\/head\s*>/i.test(html)) {
+      html = html.replace(/<\/head\s*>/i, CSS_TAG + "\n</head>");
     } else {
-      html = CSS_TAG + "\\n" + html;
+      html = CSS_TAG + "\n" + html;
     }
 
-    if (/<\\/body\\s*>/i.test(html)) {
-      html = html.replace(/<\\/body\\s*>/i, JS_TAG + "\\n</body>");
+    if (/<\/body\s*>/i.test(html)) {
+      html = html.replace(/<\/body\s*>/i, JS_TAG + "\n</body>");
     } else {
-      html += "\\n" + JS_TAG + "\\n";
+      html += "\n" + JS_TAG + "\n";
     }
   }
 
