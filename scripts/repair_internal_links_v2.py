@@ -3,6 +3,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+def closing_tag_position(html, tag):
+    masked = re.sub(
+        r"<(script|style|noscript)\b[^>]*>.*?</\1\s*>",
+        lambda match: " " * len(match.group(0)),
+        html,
+        flags=re.I | re.S,
+    )
+    matches = list(re.finditer(rf"</{re.escape(tag)}\s*>", masked, re.I))
+    return matches[-1].start() if matches else -1
+
 EXCLUDED = {
     "404.html", "content-audit.html",
     "college-page-audit-dashboard.html", "github-direct-edit-test.html",
@@ -201,16 +211,16 @@ def repair(path, members):
         + "</nav>"
     )
 
-    body_match = re.search(r"</body>", html, flags=re.I)
-    if not body_match:
+    body_pos = closing_tag_position(html, "body")
+    if body_pos < 0:
         return 0
 
-    html = html[:body_match.start()] + block + "\n" + html[body_match.start():]
+    html = html[:body_pos] + block + "\n" + html[body_pos:]
 
     if "seo-cluster-links-style" not in html:
-        head_match = re.search(r"</head>", html, flags=re.I)
-        if head_match:
-            html = html[:head_match.start()] + STYLE + "\n" + html[head_match.start():]
+        head_pos = closing_tag_position(html, "head")
+        if head_pos >= 0:
+            html = html[:head_pos] + STYLE + "\n" + html[head_pos:]
 
     path.write_text(html, encoding="utf-8")
     return len(missing)

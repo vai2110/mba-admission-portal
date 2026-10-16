@@ -5,6 +5,16 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def closing_tag_position(html, tag):
+    masked = re.sub(
+        r"<(script|style|noscript)\b[^>]*>.*?</\1\s*>",
+        lambda match: " " * len(match.group(0)),
+        html,
+        flags=re.I | re.S,
+    )
+    matches = list(re.finditer(rf"</{re.escape(tag)}\s*>", masked, re.I))
+    return matches[-1].start() if matches else -1
 EXCLUDED = {
     "404.html", "content-audit.html", "college-page-audit-dashboard.html",
     "github-direct-edit-test.html", "irma-deploy-trigger.html"
@@ -136,11 +146,11 @@ def add_grouped_links(source, destinations):
         html,
         flags=re.I | re.S,
     )
-    body = re.search(r"</body>", html, flags=re.I)
-    if not body:
+    body_pos = closing_tag_position(html, "body")
+    if body_pos < 0:
         return False
 
-    html = html[:body.start()] + block + "\n" + html[body.start():]
+    html = html[:body_pos] + block + "\n" + html[body_pos:]
 
     css = '''<style id="seo-related-link-style">
 .seo-related-link{margin:18px 0;padding:10px 0;font-size:13px;line-height:1.7}
@@ -149,9 +159,9 @@ def add_grouped_links(source, destinations):
 .seo-related-link a:hover{text-decoration:underline}
 </style>'''
     if "seo-related-link-style" not in html:
-        head = re.search(r"</head>", html, flags=re.I)
-        if head:
-            html = html[:head.start()] + css + "\n" + html[head.start():]
+        head_pos = closing_tag_position(html, "head")
+        if head_pos >= 0:
+            html = html[:head_pos] + css + "\n" + html[head_pos:]
 
     path.write_text(html, encoding="utf-8")
     return True
