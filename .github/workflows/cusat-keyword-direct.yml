@@ -1,6 +1,6 @@
 name: CUSAT Primary Keyword Direct Update
 on:
-  push:
+  # One-time keyword update completed; manual reruns remain available.
   workflow_dispatch:
 jobs:
   update:
