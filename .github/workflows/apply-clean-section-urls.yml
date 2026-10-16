@@ -1,9 +1,7 @@
 name: Apply clean section URLs across all pages
 
 on:
-  push:
-    branches:
-      - main
+  # One-time migration completed; run manually only if a future repair is needed.
   workflow_dispatch:
 
 permissions:
