@@ -3,10 +3,14 @@ name: Internal Link Audit
 on:
   push:
     branches: [main]
+    paths:
+      - '**.html'
+      - 'scripts/internal_link_audit.py'
+      - '.github/workflows/internal-link-audit.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   audit:
@@ -21,16 +25,11 @@ jobs:
       - name: Run internal link audit
         run: python scripts/internal_link_audit.py
 
-      - name: Commit refreshed audit report
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add internal-link-audit.json
-          if git diff --cached --quiet; then
-            echo "Audit report unchanged."
-          else
-            git commit -m "Phase 3: refresh internal link audit"
-            git push
-          fi
+      - name: Upload internal link audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: internal-link-audit-report
+          path: internal-link-audit.json
+
 
 # Phase 3 audit is intentionally read-only against page content.
