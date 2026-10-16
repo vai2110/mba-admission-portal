@@ -1,7 +1,7 @@
 name: CUSAT Keyword Architecture Refresh
 
 on:
-  push:
+  # One-time architecture refresh completed; manual reruns remain available.
   workflow_dispatch:
 
 jobs:
