@@ -1,17 +1,8 @@
 name: College Existing Page Audit Queue
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "college-audit-queue.trigger"
-      - "scripts/college_audit_queue_agent.py"
-      - "college-audit-queue.next"
-      - ".github/workflows/college-existing-page-audit.yml"
-  schedule:
-    - cron: "7 * * * *"
 permissions:
   contents: write
-  actions: write
 env:
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: gemini-3.1-flash-lite
@@ -95,13 +86,6 @@ jobs:
           o=json.loads(urlopen(q,timeout=60).read().decode())
           if not o.get("success"): raise SystemExit(o.get("error","Sheet update failed"))
           PY
-      - name: Trigger next pending college
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run college-existing-page-audit.yml --ref main
-
       - uses: actions/upload-artifact@v4
         if: always()
         with:
