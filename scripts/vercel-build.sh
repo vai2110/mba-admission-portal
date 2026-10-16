@@ -23,6 +23,7 @@ node scripts/inject-guidance-flow.js
 echo "SEO sitemap production sync trigger"
 node scripts/build-news.js
 node scripts/inject-related-news.js
+python3 scripts/validate_sitemap_routes.py
 node scripts/inject-ai-advisor.js
 
 python3 scripts/repair_invalid_jsonld.py
