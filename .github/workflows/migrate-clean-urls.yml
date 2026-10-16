@@ -1,8 +1,8 @@
 name: Migrate URLs to CollegeDecoded
 
 on:
-  push:
-    branches: [main, clean-url-migration]
+  # One-time canonical migration completed; rerun manually only for a future repair.
+  workflow_dispatch:
 
 permissions:
   contents: write
