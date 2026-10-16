@@ -30,7 +30,7 @@ class TextParser(HTMLParser):
 
 def visible_text(html):
     # Remove script/style content before extracting visible words.
-    html = re.sub(r"<(script|style|noscript|svg)\b[^>]*>.*?</\1\s*>", " ", html, flags=re.I | re.S)
+    html = re.sub(r"<(script|style|noscript)\b[^>]*>.*?</\1\s*>", " ", html, flags=re.I | re.S)
     p = TextParser()
     p.feed(html)
     return re.sub(r"\s+", " ", " ".join(p.parts)).strip()
@@ -171,9 +171,15 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
                 head_pos = location_html.lower().find("</head>")
                 if head_pos >= 0 and "crawlable-location-guides-style" not in location_html:
                     location_html = location_html[:head_pos] + style + "\n" + location_html[head_pos:]
-                body_pos = location_html.lower().rfind("</body>")
-                if body_pos >= 0:
-                    location_html = location_html[:body_pos] + section + "\n" + location_html[body_pos:]
+                # Place the link block after the real footer, still inside the body.
+                # A raw rfind("</body>") can match a literal in inline script/template text.
+                footer_end = location_html.lower().rfind("</footer>")
+                if footer_end >= 0:
+                    insert_at = footer_end + len("</footer>")
+                else:
+                    insert_at = location_html.lower().find("</body>")
+                if insert_at >= 0:
+                    location_html = location_html[:insert_at] + "\n" + section + "\n" + location_html[insert_at:]
                     location_hub.write_text(location_html, encoding="utf-8")
                     print(f"Crawlable location links added: {len(city_links)} city pages.")
     print(f"College guide discovery hub generated: {len(pages)} substantive canonical public pages; directory links added to {injected} main landing pages.")

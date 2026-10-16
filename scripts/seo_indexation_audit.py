@@ -23,11 +23,11 @@ class TextParser(HTMLParser):
         self.skip = 0
 
     def handle_starttag(self, tag, attrs):
-        if tag.lower() in {"script", "style", "noscript", "svg"}:
+        if tag.lower() in {"script", "style", "noscript"}:
             self.skip += 1
 
     def handle_endtag(self, tag):
-        if tag.lower() in {"script", "style", "noscript", "svg"} and self.skip:
+        if tag.lower() in {"script", "style", "noscript"} and self.skip:
             self.skip -= 1
 
     def handle_data(self, data):
