@@ -55,5 +55,7 @@ python3 scripts/validate_structured_data.py
 python3 scripts/final_seo_gate.py
 
 # Minify first-party browser CSS/JS after all generators and validators have run.
-# The build leaves source files untouched in Git; only Vercel's build output is minified.
-npx --yes --package=terser --package=clean-css-cli -c "node scripts/minify-assets.js"
+# Fail visibly if the tools cannot be installed or executed; never silently deploy unminified assets.
+echo "ASSET MINIFICATION START"
+npx --yes --package=terser --package=clean-css-cli --call "command -v terser && command -v cleancss && node scripts/minify-assets.js"
+echo "ASSET MINIFICATION FINISHED"
