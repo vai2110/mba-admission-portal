@@ -137,8 +137,10 @@ for html_file in ROOT.rglob("*.html"):
     # leaking into the sitemap when the page canonicals to a clean URL.
     if canonical_match:
         canonical_url = canonical_match.group(1).strip()
-        if canonical_url == BASE_URL:
-            url = BASE_URL
+        if canonical_url == BASE_URL or canonical_url == BASE_URL + "/":
+            # Preserve the exact homepage canonical URL. The homepage declares
+            # https://collegedecoded.in/, so the sitemap must use that same URL.
+            url = canonical_url
         elif canonical_url.startswith(BASE_URL + "/"):
             url = canonical_url.rstrip("/")
         else:
