@@ -8,6 +8,7 @@ Noindex pages and technical/test pages are deliberately excluded.
 """
 from collections import defaultdict
 from html.parser import HTMLParser
+from html import unescape
 from pathlib import Path
 import re
 from urllib.parse import urlsplit
