@@ -1,8 +1,7 @@
 name: Deploy CollegeDecoded to Vercel Production
 
 on:
-  push:
-    branches: [main]
+  # Vercel Git integration handles production deployments; this status-only workflow is manual.
   workflow_dispatch:
 
 permissions:
