@@ -259,7 +259,7 @@ function buildRelatedCollegeLinks() {
     if (!name.endsWith(".html") || EXCLUDED.has(name)) continue;
     const pagePath = path.join(ROOT, name);
     const html = fs.readFileSync(pagePath, "utf8");
-    const cleaned = html.replace(/<!-- RELATED_COLLEGES_INTERNAL_LINKS -->[\\s\\S]*?<!-- \\/RELATED_COLLEGES_INTERNAL_LINKS -->/gi, "");
+    const cleaned = html.replace(/<!-- RELATED_COLLEGES_INTERNAL_LINKS -->[\s\S]*?<!-- \/RELATED_COLLEGES_INTERNAL_LINKS -->/gi, "");
     if (cleaned !== html) {
       fs.writeFileSync(pagePath, cleaned, "utf8");
       removed++;
