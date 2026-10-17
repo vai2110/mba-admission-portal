@@ -131,6 +131,14 @@ function internalTargetExists(href, sourceName) {
 function normalizeFile(html, sourceName) {
   let value = html;
 
+  // Site-wide design rule: never show an eyebrow/breadcrumb label immediately
+  // above the primary H1. Inject into every root-level HTML page at build time,
+  // including pages with their own inline hero styles.
+  const preH1LabelStyle = '<style id="hide-pre-h1-eyebrows">.eyebrow:has(+ h1),.crumb:has(+ h1),.breadcrumb:has(+ h1),.hero-eyebrow:has(+ h1),.hero-kicker:has(+ h1),.hero-label:has(+ h1){display:none!important}</style>';
+  if (!/id=["']hide-pre-h1-eyebrows["']/i.test(value)) {
+    value = value.replace(/<head\\b[^>]*>/i, match => match + '\\n' + preH1LabelStyle);
+  }
+
   // Repair malformed legacy redirect wrappers before HTML/SEO parsing.
   value = value.replace(
     new RegExp("<script data-collegedecoded-legacy-redirect>\\s*<script>\\s*", "gi"),
