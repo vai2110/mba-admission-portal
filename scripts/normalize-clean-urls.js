@@ -252,6 +252,21 @@ function buildCrawlableCollegeDirectory() {
 
 
 function buildRelatedCollegeLinks() {
+  // Disable the related-college footer site-wide. Remove existing blocks from
+  // all root-level HTML pages during the build and do not generate new ones.
+  let removed = 0;
+  for (const name of fs.readdirSync(ROOT)) {
+    if (!name.endsWith(".html") || EXCLUDED.has(name)) continue;
+    const pagePath = path.join(ROOT, name);
+    const html = fs.readFileSync(pagePath, "utf8");
+    const cleaned = html.replace(/<!-- RELATED_COLLEGES_INTERNAL_LINKS -->[\\s\\S]*?<!-- \\/RELATED_COLLEGES_INTERNAL_LINKS -->/gi, "");
+    if (cleaned !== html) {
+      fs.writeFileSync(pagePath, cleaned, "utf8");
+      removed++;
+    }
+  }
+  return removed;
+  
   const csvPath = path.join(ROOT, "colleges.csv");
   if (!fs.existsSync(csvPath)) return 0;
   const lines = fs.readFileSync(csvPath, "utf8").replace(/^\uFEFF/, "").trim().split(/\r?\n/);
