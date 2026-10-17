@@ -2,8 +2,6 @@ name: Deploy GitHub Pages
 # Production redeploy trigger: ensure latest enquiry rollout reaches GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

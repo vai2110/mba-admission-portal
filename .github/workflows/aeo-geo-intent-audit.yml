@@ -1,11 +1,6 @@
 name: AEO GEO Intent Audit
 
 on:
-  push:
-    paths:
-      - '**.html'
-      - 'scripts/aeo_geo_intent_audit.py'
-      - '.github/workflows/aeo-geo-intent-audit.yml'
   workflow_dispatch:
 
 permissions:

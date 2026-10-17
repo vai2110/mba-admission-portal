@@ -1,11 +1,6 @@
 name: Content Relevance Audit
 
 on:
-  push:
-    paths:
-      - '**.html'
-      - 'scripts/*.py'
-      - '.github/workflows/content-audit.yml'
   workflow_dispatch:
     inputs:
       target_page:

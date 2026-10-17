@@ -1,8 +1,6 @@
 name: Publish Popular MBA Location Template
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

@@ -1,12 +1,6 @@
 name: Internal Link Audit
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '**.html'
-      - 'scripts/internal_link_audit.py'
-      - '.github/workflows/internal-link-audit.yml'
   workflow_dispatch:
 
 permissions:

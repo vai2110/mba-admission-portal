@@ -1,9 +1,6 @@
 name: Clean visible escaped newlines
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:

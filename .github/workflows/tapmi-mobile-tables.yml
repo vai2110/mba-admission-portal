@@ -1,8 +1,6 @@
 name: Make TAPMI tables mobile friendly
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:

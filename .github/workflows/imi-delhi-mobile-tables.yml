@@ -1,8 +1,6 @@
 name: Ensure IMI Delhi tables fit mobile viewport
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:

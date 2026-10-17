@@ -1,15 +1,6 @@
 name: Technical SEO Audit
 
 on:
-  push:
-    paths:
-      - '**/*.html'
-      - 'scripts/*.js'
-      - 'scripts/*.py'
-      - 'data/**/*.json'
-      - 'vercel.json'
-      - 'scripts/technical_seo_audit.py'
-      - '.github/workflows/technical-seo-audit.yml'
   schedule:
     - cron: '20 3 * * *'
   workflow_dispatch:

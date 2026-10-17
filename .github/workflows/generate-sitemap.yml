@@ -1,16 +1,6 @@
 name: Generate Sitemap and Install Analytics
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '**.html'
-      - 'scripts/generate_sitemap.py'
-      - 'scripts/generate_college_guides_hub.py'
-      - 'scripts/inject_google_analytics.py'
-      - 'sitemap.xml'
-      - '.github/workflows/generate-sitemap.yml'
   workflow_dispatch:
 
 permissions:

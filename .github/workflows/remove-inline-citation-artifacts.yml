@@ -1,9 +1,6 @@
 name: Remove Citation And Debug Artifacts
 
 on:
-  push:
-    branches: [main]
-
 permissions:
   contents: write
 
