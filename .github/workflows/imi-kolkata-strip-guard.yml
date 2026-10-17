@@ -1,11 +1,6 @@
 name: IMI Kolkata Navigation Guard
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'imi-kolkata*.html'
-      - '.github/workflows/imi-kolkata-strip-guard.yml'
   workflow_dispatch:
 
 permissions:
