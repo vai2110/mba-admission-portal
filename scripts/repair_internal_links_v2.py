@@ -14,7 +14,7 @@ def closing_tag_position(html, tag):
     return matches[-1].start() if matches else -1
 
 EXCLUDED = {
-    "404.html", "content-audit.html",
+    "404.html", "content-audit.html", "iim-ahmedabad-mba-pgp.html",
     "college-page-audit-dashboard.html", "github-direct-edit-test.html",
     "irma-deploy-trigger.html", "welingkar-mumbai-links.html",
     "welingkar-mumbai-programmes-note.html", "welingkar-mumbai-programmes.html",

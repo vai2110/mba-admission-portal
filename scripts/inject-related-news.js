@@ -85,7 +85,7 @@ function railMarkup(inline) {
     '<div class="iima-news-list"><!-- RELATED_NEWS_START -->' + cards + '<!-- RELATED_NEWS_END --></div></section></aside>';
 }
 
-const pages = fs.readdirSync(ROOT).filter(name => PAGE_RE.test(name));
+const pages = fs.readdirSync(ROOT).filter(name => PAGE_RE.test(name) && name !== "iim-ahmedabad-mba-pgp.html");
 let changed = 0;
 for (const name of pages) {
   const file = path.join(ROOT, name);
