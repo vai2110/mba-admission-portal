@@ -136,7 +136,7 @@ function normalizeFile(html, sourceName) {
   // including pages with their own inline hero styles.
   const preH1LabelStyle = '<style id="hide-pre-h1-eyebrows">.eyebrow:has(+ h1),.crumb:has(+ h1),.breadcrumb:has(+ h1),.hero-eyebrow:has(+ h1),.hero-kicker:has(+ h1),.hero-label:has(+ h1){display:none!important}</style>';
   if (!/id=["']hide-pre-h1-eyebrows["']/i.test(value)) {
-    value = value.replace(/<head\\b[^>]*>/i, match => match + '\\n' + preH1LabelStyle);
+    value = value.replace(/<head\b[^>]*>/i, match => match + '\n' + preH1LabelStyle);
   }
 
   // Repair malformed legacy redirect wrappers before HTML/SEO parsing.
