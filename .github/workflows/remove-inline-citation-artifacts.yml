@@ -1,6 +1,7 @@
 name: Remove Citation And Debug Artifacts
 
 on:
+  workflow_dispatch:
 permissions:
   contents: write
 
