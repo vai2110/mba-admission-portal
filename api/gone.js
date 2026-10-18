@@ -1,7 +1,7 @@
 const GONE_SLUGS = new Set(["welingkar-mumbai-links","mba-colleges-in-kolkata","mba-colleges-in-ahmedabad","mba-colleges-in-hyderabad","mba-colleges-in-pune","mba-colleges-in-bengaluru","indian-institute-of-technology-roorkee-mba","mba-colleges-in-chennai"]);
 
 module.exports = (req, res) => {
-  const slug = String((req.query && req.query.slug) || "").replace(/^\\/+|\\/+$/g, "");
+  const slug = String((req.query && req.query.slug) || "").replace(/^\/+|\/+$/g, "");
   if (!GONE_SLUGS.has(slug)) {
     res.setHeader("Cache-Control", "no-store");
     return res.status(404).send("Not found");
