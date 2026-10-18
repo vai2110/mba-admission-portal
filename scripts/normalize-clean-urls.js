@@ -131,6 +131,21 @@ function internalTargetExists(href, sourceName) {
 function normalizeFile(html, sourceName) {
   let value = html;
 
+  // Remove links that point to pages intentionally retired with HTTP 410.
+  // Keep visible label/content, but do not leave dead internal anchors.
+  const goneSlugs = [
+    "welingkar-mumbai-links", "mba-colleges-in-kolkata",
+    "mba-colleges-in-ahmedabad", "mba-colleges-in-hyderabad",
+    "mba-colleges-in-pune", "mba-colleges-in-bengaluru",
+    "indian-institute-of-technology-roorkee-mba", "mba-colleges-in-chennai"
+  ];
+  const gonePath = goneSlugs.join("|");
+  const goneAnchor = new RegExp(
+    "<a\\b(?=[^>]*\\bhref=[\\\"'](?:https?:\\/\\/(?:www\\.)?collegedecoded\\.in)?\\/?(?:" + gonePath + ")(?:\\.html)?(?:[?#][^\\\"']*)?[\\\"'])[^>]*>([\\s\\S]*?)<\\/a\\s*>",
+    "gi"
+  );
+  value = value.replace(goneAnchor, "$1");
+
   // Site-wide design rule: never show an eyebrow/breadcrumb label immediately
   // above the primary H1. Inject into every root-level HTML page at build time,
   // including pages with their own inline hero styles.
