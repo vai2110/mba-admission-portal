@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Remove leaked JSON-LD markup caused by script tags embedded in <meta> attributes.
 
-This runs late in the production build, after schema injection. It removes only
-malformed meta/script fragments; normal page content, layout and valid schema
-blocks remain untouched.
+The SEO-Geo schema injector has occasionally inserted a script inside an
+unfinished meta attribute, causing raw JSON to render before the page hero.
+This repair targets that malformed fragment across all HTML pages.
 """
 from pathlib import Path
 import json
@@ -21,33 +21,29 @@ def repair_schema_leaks(raw):
         malformed_meta = -1
         while pos >= 0:
             meta_start = lower.rfind("<meta", 0, pos)
-            last_gt = lower.rfind(">", 0, pos)
-            # A <meta> opener after the last closed tag means the script marker
-            # has been swallowed into that meta's still-open attribute value.
-            if meta_start > last_gt:
+            # The meta tag is broken if no closing angle bracket exists between
+            # its opener and the injected script marker.
+            if meta_start >= 0 and lower.find(">", meta_start, pos) < 0:
                 malformed_meta = meta_start
                 break
             pos = lower.find(MARKER, pos + len(MARKER))
         if malformed_meta < 0:
             break
 
+        head_end = lower.find("</head>", pos)
         first_end = lower.find("</script>", pos)
-        if first_end < 0:
-            head_end = lower.find("</head>", pos)
+        if first_end < 0 or (head_end >= 0 and first_end > head_end):
             if head_end < 0:
                 break
             end = head_end
         else:
             end = first_end + len("</script>")
-            # Some corrupted pages also contain the tail of an earlier JSON-LD
-            # graph immediately after the injected block. Remove that residue
-            # through its close tag, but only when it looks like JSON residue.
+            # A malformed injection often leaves the tail of the previous
+            # JSON-LD script after the injected block. In this malformed-meta
+            # case, consume that tail through its closing script tag too.
             second_end = lower.find("</script>", end)
-            head_end = lower.find("</head>", end)
             if second_end >= 0 and (head_end < 0 or second_end < head_end):
-                residue = raw[end:second_end]
-                if re.match(r'\s*(?:[A-Za-z0-9_-]{1,30}"\s*,\s*"item"|[\]}:,])', residue):
-                    end = second_end + len("</script>")
+                end = second_end + len("</script>")
         raw = raw[:malformed_meta] + raw[end:]
         changed = True
     return raw, changed
