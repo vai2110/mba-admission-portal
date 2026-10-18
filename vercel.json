@@ -6,6 +6,70 @@
   "outputDirectory": ".",
   "rewrites": [
     {
+      "source": "/welingkar-mumbai-links.html",
+      "destination": "/api/gone?slug=welingkar-mumbai-links"
+    },
+    {
+      "source": "/welingkar-mumbai-links",
+      "destination": "/api/gone?slug=welingkar-mumbai-links"
+    },
+    {
+      "source": "/mba-colleges-in-kolkata.html",
+      "destination": "/api/gone?slug=mba-colleges-in-kolkata"
+    },
+    {
+      "source": "/mba-colleges-in-kolkata",
+      "destination": "/api/gone?slug=mba-colleges-in-kolkata"
+    },
+    {
+      "source": "/mba-colleges-in-ahmedabad.html",
+      "destination": "/api/gone?slug=mba-colleges-in-ahmedabad"
+    },
+    {
+      "source": "/mba-colleges-in-ahmedabad",
+      "destination": "/api/gone?slug=mba-colleges-in-ahmedabad"
+    },
+    {
+      "source": "/mba-colleges-in-hyderabad.html",
+      "destination": "/api/gone?slug=mba-colleges-in-hyderabad"
+    },
+    {
+      "source": "/mba-colleges-in-hyderabad",
+      "destination": "/api/gone?slug=mba-colleges-in-hyderabad"
+    },
+    {
+      "source": "/mba-colleges-in-pune.html",
+      "destination": "/api/gone?slug=mba-colleges-in-pune"
+    },
+    {
+      "source": "/mba-colleges-in-pune",
+      "destination": "/api/gone?slug=mba-colleges-in-pune"
+    },
+    {
+      "source": "/mba-colleges-in-bengaluru.html",
+      "destination": "/api/gone?slug=mba-colleges-in-bengaluru"
+    },
+    {
+      "source": "/mba-colleges-in-bengaluru",
+      "destination": "/api/gone?slug=mba-colleges-in-bengaluru"
+    },
+    {
+      "source": "/indian-institute-of-technology-roorkee-mba.html",
+      "destination": "/api/gone?slug=indian-institute-of-technology-roorkee-mba"
+    },
+    {
+      "source": "/indian-institute-of-technology-roorkee-mba",
+      "destination": "/api/gone?slug=indian-institute-of-technology-roorkee-mba"
+    },
+    {
+      "source": "/mba-colleges-in-chennai.html",
+      "destination": "/api/gone?slug=mba-colleges-in-chennai"
+    },
+    {
+      "source": "/mba-colleges-in-chennai",
+      "destination": "/api/gone?slug=mba-colleges-in-chennai"
+    },
+    {
       "source": "/contact",
       "destination": "/contact.html"
     },
