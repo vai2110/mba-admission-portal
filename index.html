@@ -190,6 +190,77 @@ html body [aria-label="Page section navigation"] {
 <style id="all-college-guides-link-style">.all-college-guides-link{margin:18px auto;padding:10px 16px;width:min(1120px,calc(100% - 32px));font-size:13px;border-top:1px solid #e5eaf2}.all-college-guides-link a{color:#2458d8;font-weight:600;text-decoration:none}.all-college-guides-link a:hover{text-decoration:underline}</style>
 <script src="/assets/editorial-meta.js?v=20260930fix"></script>
 <script defer src="/assets/mobile-on-page.js?v=20261014v4"></script>
+
+<style id="homepage-compare-builder-styles">
+.compare-builder{background:linear-gradient(135deg,#f8f5ff,#fff9f4);border:1px solid #e8e3f0;border-radius:24px;padding:26px;box-shadow:0 8px 26px rgba(27,30,65,.035)}
+.compare-builder-heading{max-width:850px;margin:0 auto 22px;text-align:center}
+.compare-builder-heading h2{margin:10px 0;color:#16244d;font-size:clamp(29px,4vw,42px);line-height:1.08;letter-spacing:-1.4px}
+.compare-builder-heading h2 span{color:#ff6b1a}
+.compare-builder-heading p{max-width:720px;margin:10px auto 0;color:#68758d;font-size:15px;line-height:1.6}
+.compare-picker-panel{max-width:1000px;margin:0 auto;background:#fff;border:1px solid #e7e4f1;border-radius:20px;padding:22px;box-shadow:0 8px 24px rgba(27,30,65,.045)}
+.compare-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.compare-picker-head h3{margin:0;color:#16244d;font-size:20px;letter-spacing:-.4px}
+.compare-picker-head>span{color:#78849b;font-size:13px}
+.compare-slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.compare-slot{position:relative;display:flex;min-height:152px;flex-direction:column;justify-content:center;align-items:center;gap:9px;padding:15px 12px;border:1px solid #e5e3f2;border-radius:15px;background:linear-gradient(180deg,#fff,#fcfbff);text-align:center;min-width:0}
+.compare-slot.is-filled{align-items:stretch;justify-content:flex-start;text-align:left;border-color:#ded5ff}
+.compare-slot-add{width:52px;height:52px;border:0;border-radius:50%;background:#f0ecff;color:#6842f5;font-size:30px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:transform .18s,background .18s}
+.compare-slot-add:hover{background:#e4dcff;transform:translateY(-2px)}
+.compare-slot-label{font-size:14px;font-weight:800;color:#516078}
+.compare-slot-name{font-size:14px;font-weight:900;color:#16244d;line-height:1.35;padding-right:20px}
+.compare-slot-meta{font-size:11px;color:#6c7890;line-height:1.45}
+.compare-slot-remove{position:absolute;top:8px;right:8px;border:0;border-radius:50%;width:28px;height:28px;background:#f4f1ff;color:#6842f5;font-size:18px;cursor:pointer}
+.compare-slot-change{margin-top:auto;border:0;background:none;color:#6540e8;font-size:12px;font-weight:900;text-align:left;cursor:pointer;padding:8px 0 0}
+.compare-helper{min-height:20px;margin:12px 0 10px;color:#6c7890;font-size:12px}
+.compare-launch{width:100%;min-height:58px;border-radius:13px;background:#ff6b1a!important;color:#fff;font-size:18px;box-shadow:0 8px 20px rgba(255,107,26,.18);transition:opacity .2s,transform .2s}
+.compare-launch:not(:disabled):hover{transform:translateY(-1px)}
+.compare-launch:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.compare-categories{max-width:1000px;margin:22px auto 0}
+.compare-category-label{display:flex;align-items:center;gap:14px;justify-content:center;color:#7b879c;font-size:13px;margin-bottom:14px}
+.compare-category-label:before,.compare-category-label:after{content:"";height:1px;background:#dfd9ee;flex:1}
+.compare-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.compare-category-grid>div{display:flex;align-items:center;gap:12px;min-height:72px;padding:12px 14px;border:1px solid #e7e5f2;border-radius:15px;background:#fff}
+.compare-category-grid i{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:#f0ecff;color:#6740f5;font-style:normal;font-size:23px;font-weight:900}
+.compare-category-grid>div:nth-child(even) i{background:#fff0e5;color:#f36a18}
+.compare-category-grid b{font-size:14px;color:#16244d;line-height:1.25}
+.compare-college-dialog{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(13,20,49,.56)}
+.compare-college-dialog.is-open{display:flex}
+.compare-dialog-card{width:min(560px,100%);max-height:min(82vh,700px);overflow:hidden;display:flex;flex-direction:column;background:#fff;border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.24)}
+.compare-dialog-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:19px 20px;border-bottom:1px solid #eceaf3}
+.compare-dialog-top h3{margin:0;color:#16244d;font-size:20px}
+.compare-dialog-close{width:34px;height:34px;border:0;border-radius:50%;background:#f1edff;color:#5d3be8;font-size:22px;cursor:pointer}
+.compare-dialog-search{margin:15px 18px 10px;padding:13px 14px;border:1px solid #dcd7eb;border-radius:11px;outline:none;font:inherit;font-size:14px}
+.compare-dialog-search:focus{border-color:#8064f5;box-shadow:0 0 0 3px #8064f51a}
+.compare-dialog-results{padding:0 18px 18px;overflow:auto}
+.compare-dialog-result{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:13px 12px;border:0;border-bottom:1px solid #f0edf6;background:#fff;text-align:left;cursor:pointer}
+.compare-dialog-result:hover{background:#f8f5ff}
+.compare-dialog-result strong{display:block;color:#16244d;font-size:13px}
+.compare-dialog-result small{display:block;margin-top:3px;color:#748097;font-size:11px}
+.compare-dialog-result em{font-style:normal;color:#633cff;font-size:12px;font-weight:900;white-space:nowrap}
+.compare-dialog-empty{padding:20px 8px;color:#6c7890;font-size:13px}
+@media(max-width:760px){
+ .compare-builder{padding:20px 14px;border-radius:21px}
+ .compare-builder-heading{text-align:left;margin-bottom:18px}
+ .compare-builder-heading h2{font-size:34px;letter-spacing:-1.2px}
+ .compare-builder-heading p{font-size:14px;line-height:1.55;margin-top:8px}
+ .compare-picker-panel{padding:16px 13px;border-radius:17px}
+ .compare-picker-head{display:block}
+ .compare-picker-head h3{font-size:17px}
+ .compare-picker-head>span{display:block;margin-top:4px;font-size:12px}
+ .compare-slots{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .compare-slot{min-height:126px;padding:12px 9px}
+ .compare-slot-add{width:45px;height:45px;font-size:27px}
+ .compare-slot-label{font-size:12px}
+ .compare-slot-name{font-size:12px}
+ .compare-launch{font-size:16px;min-height:54px}
+ .compare-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .compare-category-grid>div{min-height:65px;padding:9px;gap:8px;border-radius:12px}
+ .compare-category-grid i{flex-basis:36px;width:36px;height:36px;font-size:19px}
+ .compare-category-grid b{font-size:12px}
+ .compare-category-label{font-size:11px;gap:8px}
+}
+@media(max-width:360px){.compare-category-grid{grid-template-columns:1fr}.compare-category-grid>div{min-height:58px}.compare-builder-heading h2{font-size:30px}}
+</style>
 </head>
 <body>
 <header><nav class="nav wrap">
@@ -262,8 +333,17 @@ html body [aria-label="Page section navigation"] {
 <div class="feature"><b>Real Data</b><span>Fees, cutoffs and placements together.</span></div><div class="feature"><b>Student Insights</b><span>Research around real student questions.</span></div><div class="feature"><b>Easy Comparison</b><span>Shortlist options side by side.</span></div><div class="feature"><b>Search by Intent</b><span>Ranking, cutoff, fees, location or exam.</span></div><div class="feature"><b>College Profiles</b><span>Move from discovery to detailed research.</span></div>
 </div></div></div></section>
 
-<section class="section soft"><div class="wrap"><div class="compare"><div class="compare-copy"><div class="eyebrow">Side-by-side research</div><h2>Compare MBA Colleges</h2><p>Compare colleges across fees, cutoffs, placements, rankings and admission details before you shortlist.</p><a class="btn" href="/mba-college-comparison">Compare MBA Colleges →</a></div>
-<div class="compare-table" id="homepageCompareTable" aria-label="MBA college comparison"></div>
+<section class="section soft" id="homepage-compare-section"><div class="wrap"><div class="compare-builder">
+  <div class="compare-builder-heading"><div class="eyebrow">Side-by-side research</div><h2>Compare <span>MBA Colleges</span></h2><p>Choose 2–4 colleges and compare fees, cutoffs, placements, rankings and admission details side by side.</p></div>
+  <div class="compare-picker-panel">
+    <div class="compare-picker-head"><h3>Select MBA Colleges to Compare</h3><span>Compare up to 4 colleges</span></div>
+    <div class="compare-slots" id="homepageCompareSlots" aria-live="polite"></div>
+    <p class="compare-helper" id="homepageCompareHelper">Select at least 2 colleges to start your comparison.</p>
+    <button class="btn compare-launch" id="homepageCompareLaunch" type="button" disabled>Compare MBA Colleges →</button>
+  </div>
+  <div class="compare-categories"><div class="compare-category-label">See side-by-side comparison of</div>
+    <div class="compare-category-grid"><div><i>₹</i><b>Fees</b></div><div><i>▥</i><b>Cutoffs</b></div><div><i>▣</i><b>Placements</b></div><div><i>★</i><b>Rankings</b></div><div><i>▤</i><b>Admission Details</b></div><div><i>✦</i><b>Key Highlights</b></div></div>
+  </div>
 </div></div></section>
 
 <section class="section"><div class="wrap"><div class="head"><div><h2>Your MBA <span>Admission Journey</span></h2><p>From exam to admission — follow the simple steps.</p></div><a class="text-link" href="/mba-admission-guide">Read Admission Guide →</a></div>
@@ -496,21 +576,78 @@ if(finderSubmit){
     grid.innerHTML=records.map(c=>'<article class="college" data-college-id="'+esc(c.id)+'"><div class="college-top"><div class="college-mark">'+esc(c.shortLabel)+'</div><span class="rank">'+esc(c.rankLabel)+'</span></div><h3>'+esc(c.name)+'</h3><p class="location">'+esc(c.location)+'</p><div class="metrics"><div class="metric"><small>Fees</small><b>'+esc(c.feeLabel)+'</b></div><div class="metric"><small>Avg. Package</small><b>'+esc(c.avgPackageLabel)+'</b></div></div><div class="college-source">Official sources · As of '+esc(c.asOf)+' · <a href="'+esc(c.feeSourceUrl||c.sourceUrl)+'" target="_blank" rel="noopener">Fee ↗</a> · <a href="'+esc(c.packageSourceUrl||c.sourceUrl)+'" target="_blank" rel="noopener">Placement ↗</a></div><div class="college-foot"><a href="'+esc(c.url)+'">View College →</a><button type="button" class="compare-mini" data-compare-id="'+esc(c.id)+'">＋ Compare</button></div></article>').join('');
     grid.querySelectorAll('[data-compare-id]').forEach(b=>b.addEventListener('click',()=>addAndCompare(b.dataset.compareId)));
   }
-  function renderSample(records){
-    const box=document.getElementById('homepageCompareTable');
-    if(!box)return;
-    const ids=['iim-ahmedabad','iim-bangalore','iim-kozhikode'];
-    const rows=ids.map(id=>records.find(c=>c.id===id)).filter(Boolean);
-    box.innerHTML='<div class="compare-row"><b>College</b>'+rows.map(c=>'<b>'+esc(c.name)+'</b>').join('')+'</div>'+
-      '<div class="compare-row"><span>Fees</span>'+rows.map(c=>'<span>'+esc(c.feeLabel)+'</span>').join('')+'</div>'+
-      '<div class="compare-row"><span>Avg. Package</span>'+rows.map(c=>'<span>'+esc(c.avgPackageLabel)+'</span>').join('')+'</div>'+
-      '<div class="compare-row"><span>Source</span>'+rows.map(c=>'<span><a href="'+esc(c.sourceUrl)+'" target="_blank" rel="noopener">Official source ↗</a></span>').join('')+'</div>';
+  function renderCompareBuilder(records){
+    const slots=document.getElementById('homepageCompareSlots');
+    const launch=document.getElementById('homepageCompareLaunch');
+    const helper=document.getElementById('homepageCompareHelper');
+    if(!slots||!launch)return;
+    const selected=[];
+    let activeSlot=-1;
+    let dialog=document.getElementById('homepageCompareDialog');
+    if(!dialog){
+      dialog=document.createElement('div');
+      dialog.id='homepageCompareDialog';
+      dialog.className='compare-college-dialog';
+      dialog.innerHTML='<div class="compare-dialog-card" role="dialog" aria-modal="true" aria-labelledby="compareDialogTitle"><div class="compare-dialog-top"><h3 id="compareDialogTitle">Choose an MBA College</h3><button type="button" class="compare-dialog-close" aria-label="Close college picker">×</button></div><input class="compare-dialog-search" type="search" placeholder="Search college name or city..." aria-label="Search colleges"><div class="compare-dialog-results"></div></div>';
+      document.body.appendChild(dialog);
+    }
+    const search=dialog.querySelector('.compare-dialog-search');
+    const results=dialog.querySelector('.compare-dialog-results');
+    const close=()=>{dialog.classList.remove('is-open');activeSlot=-1;};
+    dialog.querySelector('.compare-dialog-close').onclick=close;
+    dialog.addEventListener('click',e=>{if(e.target===dialog)close();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+    function openPicker(index){
+      activeSlot=index;
+      search.value='';
+      dialog.classList.add('is-open');
+      renderResults('');
+      setTimeout(()=>search.focus(),30);
+    }
+    function renderResults(query){
+      const term=String(query||'').trim().toLowerCase();
+      const chosen=new Set(selected.filter(Boolean));
+      const matches=records.filter(c=>!chosen.has(c.id)&&((c.name+' '+(c.location||'')).toLowerCase().includes(term))).slice(0,60);
+      results.innerHTML=matches.length?matches.map(c=>'<button type="button" class="compare-dialog-result" data-pick-id="'+esc(c.id)+'"><span><strong>'+esc(c.name)+'</strong><small>'+esc(c.location||'Location not listed')+' · Fees: '+esc(c.feeLabel||'Not listed')+'</small></span><em>＋ Add</em></button>').join(''):'<div class="compare-dialog-empty">No matching colleges found. Try another name or city.</div>';
+      results.querySelectorAll('[data-pick-id]').forEach(btn=>btn.addEventListener('click',()=>{
+        const id=btn.dataset.pickId;
+        if(activeSlot<0||!id)return;
+        selected[activeSlot]=id;
+        close();
+        renderSlots();
+      }));
+    }
+    search.addEventListener('input',()=>renderResults(search.value));
+    function renderSlots(){
+      slots.innerHTML=Array.from({length:4},(_,i)=>{
+        const c=records.find(x=>x.id===selected[i]);
+        if(!c)return '<div class="compare-slot"><button type="button" class="compare-slot-add" data-slot-add="'+i+'" aria-label="Add college to slot '+(i+1)+'">＋</button><span class="compare-slot-label">Add College</span></div>';
+        return '<div class="compare-slot is-filled"><button type="button" class="compare-slot-remove" data-slot-remove="'+i+'" aria-label="Remove '+esc(c.name)+'">×</button><strong class="compare-slot-name">'+esc(c.name)+'</strong><span class="compare-slot-meta">'+esc(c.location||'')+'</span><span class="compare-slot-meta">Fees: '+esc(c.feeLabel||'Not listed')+'</span><span class="compare-slot-meta">Avg. package: '+esc(c.avgPackageLabel||'Not listed')+'</span><button type="button" class="compare-slot-change" data-slot-add="'+i+'">Change college</button></div>';
+      }).join('');
+      slots.querySelectorAll('[data-slot-add]').forEach(btn=>btn.addEventListener('click',()=>openPicker(Number(btn.dataset.slotAdd))));
+      slots.querySelectorAll('[data-slot-remove]').forEach(btn=>btn.addEventListener('click',()=>{selected[Number(btn.dataset.slotRemove)]=undefined;renderSlots();}));
+      const count=selected.filter(Boolean).length;
+      launch.disabled=count<2;
+      launch.textContent=count<2?'Select '+(2-count)+' more college'+(2-count===1?'':'s')+' to compare →':'Compare '+count+' MBA Colleges →';
+      helper.textContent=count===0?'Select at least 2 colleges to start your comparison.':count===1?'Add one more college to enable comparison.':count+' colleges selected. You can add up to '+(4-count)+' more.';
+    }
+    launch.addEventListener('click',()=>{
+      const ids=selected.filter(Boolean);
+      if(ids.length<2)return;
+      try{localStorage.setItem('cd_compare_ids',JSON.stringify(ids));}catch(e){}
+      window.location.href='/mba-college-comparison?'+new URLSearchParams({ids:ids.join(',')}).toString();
+    });
+    renderSlots();
   }
   fetch(DATA_URL,{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const records=d.records||[];
     renderCards(records);
-    renderSample(records);
+    renderCompareBuilder(records);
   }).catch(()=>{
+    const slots=document.getElementById('homepageCompareSlots');
+    if(slots)slots.innerHTML='<p class="compare-dialog-empty">College options are temporarily unavailable. Please open the comparison page directly.</p>';
+    const launch=document.getElementById('homepageCompareLaunch');
+    if(launch)launch.disabled=true;
     const grid=document.getElementById('popularCollegeGrid');
     if(grid)grid.innerHTML='<p style="font-size:11px;color:#64748b">College highlights are temporarily unavailable. Open the college profile for the latest figures.</p>';
   });
