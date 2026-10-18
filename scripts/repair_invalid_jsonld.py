@@ -1,50 +1,62 @@
 #!/usr/bin/env python3
-"""Remove leaked JSON-LD markup caused by script tags embedded in <meta> attributes.
-
-The SEO-Geo schema injector has occasionally inserted a script inside an
-unfinished meta attribute, causing raw JSON to render before the page hero.
-This repair targets that malformed fragment across all HTML pages.
-"""
+"""Repair leaked JSON-LD caused by broken HTML openers before injected schema."""
 from pathlib import Path
 import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP_DIRS = {".git", "node_modules", ".vercel"}
-MARKER = '<script data-mba-schema="seo-geo-aeo"'
+MARKER_RE = re.compile(r'<script\b(?=[^>]*\bdata-mba-schema\s*=\s*["\']seo-geo-aeo["\'])[^>]*>', re.I)
 
 def repair_schema_leaks(raw):
+    """Remove only malformed opener + injected schema + orphaned JSON-LD tail.
+
+    Corrupt pages include both '<meta content="webs<script ...' and '<s<script ...'.
+    In either case the last '<' before the injected script has no '>' before the
+    marker, proving an unfinished HTML tag swallowed the script opener.
+    """
     changed = False
     while True:
         lower = raw.lower()
-        pos = lower.find(MARKER)
-        malformed_meta = -1
-        while pos >= 0:
-            meta_start = lower.rfind("<meta", 0, pos)
-            # The meta tag is broken if no closing angle bracket exists between
-            # its opener and the injected script marker.
-            if meta_start >= 0 and lower.find(">", meta_start, pos) < 0:
-                malformed_meta = meta_start
-                break
-            pos = lower.find(MARKER, pos + len(MARKER))
-        if malformed_meta < 0:
+        marker = MARKER_RE.search(raw)
+        if not marker:
             break
+        pos = marker.start()
+        opener = lower.rfind("<", 0, pos)
+        # A healthy schema script has no unfinished tag immediately before it.
+        if opener < 0 or lower.find(">", opener, pos) >= 0:
+            # Search for a later malformed occurrence instead of stopping early.
+            later = MARKER_RE.search(raw, marker.end())
+            found = False
+            while later:
+                p = later.start()
+                o = lower.rfind("<", 0, p)
+                if o >= 0 and lower.find(">", o, p) < 0:
+                    marker, pos, opener, found = later, p, o, True
+                    break
+                later = MARKER_RE.search(raw, later.end())
+            if not found:
+                break
 
         head_end = lower.find("</head>", pos)
-        first_end = lower.find("</script>", pos)
-        if first_end < 0 or (head_end >= 0 and first_end > head_end):
+        first_end = lower.find("</script", marker.end())
+        if first_end < 0 or (head_end >= 0 and first_end >= head_end):
+            # Don't risk deleting the remainder of a document; remove the
+            # malformed opener through the end of the head if available.
             if head_end < 0:
                 break
             end = head_end
         else:
-            end = first_end + len("</script>")
-            # A malformed injection often leaves the tail of the previous
-            # JSON-LD script after the injected block. In this malformed-meta
-            # case, consume that tail through its closing script tag too.
-            second_end = lower.find("</script>", end)
+            close_end = lower.find(">", first_end)
+            end = close_end + 1 if close_end >= 0 else first_end + len("</script>")
+            # The malformed fragment often contains a dangling tail from a
+            # previous JSON-LD graph after the injected script. Consume that
+            # tail through the next closing script tag, but only within <head>.
+            second_end = lower.find("</script", end)
             if second_end >= 0 and (head_end < 0 or second_end < head_end):
-                end = second_end + len("</script>")
-        raw = raw[:malformed_meta] + raw[end:]
+                second_close = lower.find(">", second_end)
+                end = second_close + 1 if second_close >= 0 else second_end + len("</script>")
+        raw = raw[:opener] + raw[end:]
         changed = True
     return raw, changed
 
@@ -74,9 +86,9 @@ for path in ROOT.rglob("*.html"):
     if leaked or spans:
         path.write_text(raw, encoding="utf-8")
 
-print(f"Schema leak repair: cleaned {len(removed_leaks)} pages with JSON-LD embedded in markup.")
+print(f"Schema leak repair: cleaned {len(removed_leaks)} pages with malformed JSON-LD markup.")
 for name in removed_leaks:
-    print(f"- {name}: malformed meta/script fragment removed")
+    print(f"- {name}: malformed opener/schema/orphaned tail removed")
 print(f"Invalid JSON-LD repair: removed {sum(n for _, n in removed_invalid)} malformed script blocks across {len(removed_invalid)} pages.")
 for name, count in removed_invalid:
     print(f"- {name}: {count} block(s)")
