@@ -88,6 +88,21 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 }
 
 
+
+/* Accessible native accordion for placement FAQs */
+.faq-accordion{border-bottom:1px solid #e5e7eb}
+.faq-accordion:first-of-type{border-top:1px solid #e5e7eb}
+.faq-accordion summary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 2px;cursor:pointer;list-style:none}
+.faq-accordion summary::-webkit-details-marker{display:none}
+.faq-accordion summary h3{margin:0;font-size:15px;line-height:1.5;color:#173f82;font-weight:700}
+.faq-accordion summary:focus-visible{outline:2px solid #2563eb;outline-offset:3px;border-radius:4px}
+.faq-chevron{width:9px;height:9px;flex:0 0 9px;border-right:2px solid #2563eb;border-bottom:2px solid #2563eb;transform:rotate(45deg);transition:transform .18s ease;margin:0 5px 5px 0}
+.faq-accordion[open] .faq-chevron{transform:rotate(225deg);margin-top:7px;margin-bottom:0}
+.faq-answer{padding:0 28px 16px 2px}
+.faq-answer p{font-size:13px;line-height:1.75;color:#334155;margin:0 0 10px}
+.faq-answer p:last-child{margin-bottom:0}
+@media(max-width:720px){.faq-accordion summary{padding:14px 1px}.faq-accordion summary h3{font-size:14px}.faq-answer{padding:0 8px 15px 1px}}
+
 </style>
 <meta content="en_IN" property="og:locale"/><meta content="summary" name="twitter:card"/><meta content="IIM Lucknow Placements 2026: Salary, Recruiters &amp; Trends" name="twitter:title"/><meta content="IIM Lucknow placements 2026 based on the official final placement report. Check average CTC, median CTC, highest domestic and international packa6: Average CTC, Highest Package &…", "item": "https://collegedecoded.in/iim-lucknow-placements.html"}]}]}</script><meta name="twitter:description" content="IIM Lucknow placements 2026: review average and median salary, domestic and international offers, recruiters, role distribution and recent batch trends.">
 <script src="/assets/editorial-meta.js?v=20260930fix"></script>
@@ -178,16 +193,44 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 </section>
 
 <section class="main-section" id="faq">
-<h2>IIM Lucknow Placements: Student FAQs</h2>
-<div class="faq-item"><h3>What is the average package at IIM Lucknow for the 2026 batch?</h3><p>The official final placement report for the 2024–26 batch records an average CTC of ₹33.2 LPA. This headline figure covers the PGP and PGP-ABM graduating cohort together. Average CTC is the arithmetic mean reported by the institute and should be read alongside the median CTC of ₹32.9 LPA.</p></div>
-<div class="faq-item"><h3>What is the median package at IIM Lucknow in 2026, and why does it matter?</h3><p>The median CTC for the 2026 batch is ₹32.9 LPA. Median salary is useful because it represents the midpoint of the reported salary distribution, so it helps students assess outcomes beyond the highest package. It is still a CTC figure, not a guarantee of monthly take-home pay.</p></div>
-<div class="faq-item"><h3>What is the highest domestic and international package at IIM Lucknow in 2026?</h3><p>The 2026 final placement report lists the highest domestic CTC as ₹1 crore per annum and the highest international CTC as ₹65 LPA. These are the top reported offers; they should not be interpreted as typical salaries for the batch. For a more balanced comparison, check the average, median and domain-wise mean CTC as well.</p></div>
-<div class="faq-item"><h3>Which MBA placement domain has the highest average salary at IIM Lucknow?</h3><p>Among the domains listed in the 2026 report, consulting has the highest mean CTC at ₹36.9 LPA. Finance reports a mean CTC of ₹34.8 LPA and a highest CTC of ₹1 crore. The highest mean and the highest individual offer are different metrics, so compare them separately when evaluating career paths.</p></div>
-<div class="faq-item"><h3>What percentage of IIM Lucknow students get consulting placements?</h3><p>The 2026 report shows consulting at 39% of the placement distribution, the largest share among the listed domains. General Management accounts for 20%, Finance 17%, IT/Tech/Analytics/Product 13%, Sales and Marketing 8%, and Operations 3%. These percentages describe the reported distribution for that batch, not an individual student's probability of receiving a consulting offer.</p></div>
-<div class="faq-item"><h3>How has the IIM Lucknow average package changed from 2020–22 to 2026?</h3><p>The average CTC moved from ₹31.03 LPA for the 2020–22 batch to ₹33.2 LPA for the 2026 batch. The series is not a straight year-on-year rise: the average was ₹32.23 LPA in 2021–23, ₹30 LPA in 2022–24 and ₹32.3 LPA in the 2025 report before reaching ₹33.2 LPA in 2026.</p></div>
-<div class="faq-item"><h3>Are IIM Lucknow MBA and MBA-ABM placement packages reported separately?</h3><p>The headline placement figures used on this page are published for the combined PGP and PGP-ABM graduating cohorts in the relevant reports. The cited reports do not provide separate headline average and median figures for each programme in the statistics summarised here. Therefore, these figures should not be labelled as PGP-only or PGP-ABM-only outcomes.</p></div>
-<div class="faq-item"><h3>Which companies visited IIM Lucknow for MBA placements?</h3><p>Recruiters named across the reports include Accenture Strategy, Bain &amp; Company, BCG, Deloitte, EY-Parthenon, Kearney, KPMG, McKinsey &amp; Company, PwC, American Express, Citi, Goldman Sachs, J.P. Morgan, Adobe, Amazon, Microsoft, Hindustan Unilever and P&amp;G, among others. Recruiter lists change by batch, so check the relevant official report for the complete list for a specific year.</p></div>
-<div class="faq-item"><h3>Does IIM Lucknow's highest package mean that most students earn that salary?</h3><p>No. The highest CTC is the top offer reported for a placement cycle and does not describe the salary earned by most students. For a more representative view, compare the median and average CTC, then review domain-level mean CTC and placement distribution to understand the range of career functions represented.</p></div>
+<h2>IIM Lucknow Placement FAQs</h2>
+<p>Find answers to common student searches about IIM Lucknow's average and median package, highest CTC, placement domains, recruiter list and recent salary trends. Figures below refer to the placement reports cited on this page.</p>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>What is the average package at IIM Lucknow for the 2026 batch?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>The official final placement report for the 2024–26 batch records an average CTC of ₹33.2 LPA. This headline figure covers the PGP and PGP-ABM graduating cohort together. Average CTC is the arithmetic mean reported by the institute and should be read alongside the median CTC of ₹32.9 LPA.</p><p>Use the median as a companion measure when comparing B-schools, because a small number of very high offers can pull an average upward. Compare both measures for the same placement year and check whether the report covers the same programmes.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>What is the median package at IIM Lucknow in 2026, and why does it matter?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>The median CTC for the 2026 batch is ₹32.9 LPA. Median salary is useful because it represents the midpoint of the reported salary distribution, so it helps students assess outcomes beyond the highest package. It is still a CTC figure, not a guarantee of monthly take-home pay.</p><p>CTC can include fixed pay, variable pay and other components. The report's headline CTC should not be directly converted into monthly in-hand salary without knowing the offer's pay structure, deductions and location.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>What is the highest domestic and international package at IIM Lucknow in 2026?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>The 2026 final placement report lists the highest domestic CTC as ₹1 crore per annum and the highest international CTC as ₹65 LPA. These are the top reported offers; they should not be interpreted as typical salaries for the batch. For a more balanced comparison, check the average, median and domain-wise mean CTC as well.</p><p>Domestic and international offers may differ in location, currency, benefits and compensation structure. Treat the two headline figures as separate reported outcomes rather than a like-for-like comparison of take-home pay.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>Which MBA placement domain has the highest average salary at IIM Lucknow?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>Among the domains listed in the 2026 report, consulting has the highest mean CTC at ₹36.9 LPA. Finance reports a mean CTC of ₹34.8 LPA and a highest CTC of ₹1 crore. The highest mean and the highest individual offer are different metrics, so compare them separately when evaluating career paths.</p><p>Mean CTC is the average for the domain, while highest CTC is the top reported offer in that domain. For career planning, also consider the type of role, required skills and your interest in the function; the salary figures alone do not establish role fit.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>What percentage of IIM Lucknow students get consulting placements?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>The 2026 report shows consulting at 39% of the placement distribution, the largest share among the listed domains. General Management accounts for 20%, Finance 17%, IT/Tech/Analytics/Product 13%, Sales and Marketing 8%, and Operations 3%. These percentages describe the reported distribution for that batch, not an individual student's probability of receiving a consulting offer.</p><p>These percentages show the distribution reported for the 2026 batch. They do not provide a placement probability for a particular student, and they should not be read as the share of all students who will necessarily enter that domain in future batches.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>How has the IIM Lucknow average package changed from 2020–22 to 2026?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>The average CTC moved from ₹31.03 LPA for the 2020–22 batch to ₹33.2 LPA for the 2026 batch. The series is not a straight year-on-year rise: the average was ₹32.23 LPA in 2021–23, ₹30 LPA in 2022–24 and ₹32.3 LPA in the 2025 report before reaching ₹33.2 LPA in 2026.</p><p>These reports represent separate placement cycles and should be compared as reported. Differences can reflect changes in the graduating cohort, recruiting mix and market conditions; the figures alone do not identify the cause of a change.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>Are IIM Lucknow MBA and MBA-ABM placement packages reported separately?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>The headline placement figures used on this page are published for the combined PGP and PGP-ABM graduating cohorts in the relevant reports. The cited reports do not provide separate headline average and median figures for each programme in the statistics summarised here. Therefore, these figures should not be labelled as PGP-only or PGP-ABM-only outcomes.</p><p>PGP and PGP-ABM are distinct programmes, but the headline statistics summarised here are combined. For a programme-specific comparison, use only a report that explicitly publishes separate placement figures for each programme.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>Which companies visited IIM Lucknow for MBA placements?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>Recruiters named across the reports include Accenture Strategy, Bain &amp; Company, BCG, Deloitte, EY-Parthenon, Kearney, KPMG, McKinsey &amp; Company, PwC, American Express, Citi, Goldman Sachs, J.P. Morgan, Adobe, Amazon, Microsoft, Hindustan Unilever and P&amp;G, among others. Recruiter lists change by batch, so check the relevant official report for the complete list for a specific year.</p><p>The list gives examples of recruiters named across the reports, not a confirmed list of companies visiting every year. Recruiter participation and roles can change between cycles, so use the report for the relevant batch when checking a specific employer.</p></div>
+</details>
+<details class="faq-accordion" name="iim-lucknow-placement-faq">
+<summary><h3>Does IIM Lucknow's highest package mean that most students earn that salary?</h3><span class="faq-chevron" aria-hidden="true"></span></summary>
+<div class="faq-answer"><p>No. The highest CTC is the top offer reported for a placement cycle and does not describe the salary earned by most students. For a more representative view, compare the median and average CTC, then review domain-level mean CTC and placement distribution to understand the range of career functions represented.</p><p>An individual highest offer is an outlier measure, not a typical outcome. For a more useful comparison, consider median CTC, average CTC, domain-wise mean CTC and the roles offered, and remember that CTC is not the same as in-hand pay.</p></div>
+</details>
 </section>
 
 <section class="main-section" id="sources">
