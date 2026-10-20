@@ -63,7 +63,7 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .mobile-on-page{display:none}
 @media(max-width:950px){.page-layout{grid-template-columns:190px minmax(0,1fr);gap:16px}.quick-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.highlight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){
-.navbar{width:calc(100% - 24px);min-height:54px}.nav-links{display:none}.backbar{width:calc(100% - 24px);font-size:12px}
+.navbar{width:calc(100% - 24px);min-height:54px}.nav-links{display:none}.backbar{display:none}
 .hero{padding:24px 0}.hero-container{width:calc(100% - 24px)}.hero h1{font-size:25px}.hero h2{font-size:13px}.hero-location{font-size:11px}
 .page-container{width:calc(100% - 20px)}.quick-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 0 16px}.quick-fact{padding:11px;min-height:62px}
 .page-layout{display:block;padding-bottom:30px}.sidebar{display:none}
@@ -72,7 +72,19 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 .mobile-on-page summary{padding:9px 12px;font-size:11px;font-weight:800;color:#173f82;cursor:pointer;list-style:none}.mobile-on-page summary::after{content:"⌄";float:right}
 .mobile-on-page a{display:block;padding:9px 12px;border-top:1px solid #edf0f4;font-size:11px;color:#475569}
 .main-section{padding:20px 15px;margin-bottom:14px}.main-section>h2{font-size:21px}.main-section h3{font-size:16px}.main-section p{font-size:13px}
-.highlight-grid,.two-column,.source-grid{grid-template-columns:1fr}.table-wrapper{margin-left:0;margin-right:0}.main-section table{min-width:620px}
+.highlight-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:13px 0}
+.highlight{padding:10px;min-width:0}.highlight strong{font-size:17px;overflow-wrap:anywhere}.highlight span{font-size:10px}
+.two-column,.source-grid{grid-template-columns:1fr}
+.table-wrapper{width:100%;overflow:visible;margin:12px 0 17px}
+.main-section table{width:100%;min-width:0;table-layout:fixed;border-collapse:separate;border-spacing:0}
+.main-section table thead{display:none}
+.main-section table tbody,.main-section table tr,.main-section table td{display:block;width:100%}
+.main-section table tr{border:1px solid #dce3eb;border-radius:8px;overflow:hidden;margin-bottom:10px;background:#fff}
+.main-section table td{display:grid;grid-template-columns:minmax(105px,42%) minmax(0,58%);gap:8px;align-items:start;padding:9px 10px;border:0;border-bottom:1px solid #edf0f4;font-size:12px;overflow-wrap:anywhere;word-break:normal}
+.main-section table td:last-child{border-bottom:0}
+.main-section table td::before{content:attr(data-label);font-weight:700;color:#173f82;font-size:11px;line-height:1.45}
+.main-section table tr:nth-child(even) td{background:#fafcff}
+.main-section table td:first-child{background:#f1f6fd;font-weight:700}
 }
 
 
@@ -84,7 +96,7 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-i
 </head>
 <body><header><div class="navbar"><a class="logo" href="/">College<span>Decoded</span></a>
 <nav class="nav-links"><a href="/">Home</a><a href="/colleges">MBA Colleges</a><a href="/#admissions">Admissions</a><a href="/#cutoffs">Cutoffs</a><a href="/#placements">Placements</a></nav></div></header>
-<div class="backbar">← <a href="/iim-lucknow">Back to IIM Lucknow</a></div>
+
 <section class="hero"><div class="hero-container">
 <h1>IIM Lucknow Placements 2026</h1>
 <h2>Official final placement data, salary statistics, recruiters and domain-wise hiring</h2>
@@ -192,4 +204,18 @@ sections.forEach(s=>observer.observe(s));
 document.querySelectorAll('.mobile-on-page a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.mobile-on-page details')?.removeAttribute('open')));
 </script>
 <script defer="" src="/no-hash-navigation.js?v=20261010"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.main-section table').forEach(function (table) {
+    var headers = Array.from(table.querySelectorAll('thead th')).map(function (th) {
+      return th.textContent.trim();
+    });
+    table.querySelectorAll('tbody tr').forEach(function (row) {
+      Array.from(row.cells).forEach(function (cell, index) {
+        if (headers[index]) cell.setAttribute('data-label', headers[index]);
+      });
+    });
+  });
+});
+</script>
 </body></html>
