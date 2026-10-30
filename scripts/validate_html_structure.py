@@ -3,14 +3,17 @@
 from pathlib import Path
 import json, re
 ROOT=Path(__file__).resolve().parents[1]
-MARKER='<script data-mba-schema="seo-geo-aeo"'
+MARKER_RE=re.compile(r'<script\\b(?=[^<>]*\\bdata-mba-schema\\s*=\\s*["\\']seo-geo-aeo["\\'])[^<>]*>',re.I)
 def main():
     errors=[]; checked=0
     for path in sorted(ROOT.rglob("*.html")):
         if any(x in {".git","node_modules",".vercel"} for x in path.parts): continue
         raw=path.read_text(encoding="utf-8",errors="ignore"); lower=raw.lower()
-        for m in re.finditer(re.escape(MARKER),lower):
+        for m in MARKER_RE.finditer(raw):
             checked+=1; pos=m.start()
+            previous_script=lower.rfind("<script",0,pos)
+            if previous_script>=0 and lower.find(">",previous_script,pos)<0:
+                errors.append(f"{path.relative_to(ROOT)}: schema is nested inside an unfinished script tag")
             if lower.rfind("<style",0,pos)>lower.rfind("</style>",0,pos):
                 errors.append(f"{path.relative_to(ROOT)}: schema is inside an unclosed style block")
             gt=raw.find(">",pos); end=lower.find("</script>",gt+1 if gt>=0 else pos)
