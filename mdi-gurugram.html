@@ -522,7 +522,7 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
         grid-template-columns:1fr;gap:16px;min-height:auto;
     }
     .hero-main{display:flex;flex-direction:row;align-items:flex-start;gap:12px;width:100%}
-    .hero-logo-wrap{width:62px;height:62px;min-width:62px;padding:6px}
+    .hero-logo-wrap{width:76px;height:76px;min-width:76px;flex:0 0 76px;padding:4px}
     .hero-text{min-width:0;flex:1}
     .hero h1{font-size:25px;line-height:1.15;margin-bottom:6px}
     .hero h2{font-size:13px;line-height:1.4;margin-bottom:7px}
@@ -605,7 +605,7 @@ footer{background:#0f172a;color:#fff;padding:35px 0}
     .hero{padding:20px 0 22px}
     .hero-container{width:100%;padding:0 11px;gap:14px}
     .hero-main{gap:10px}
-    .hero-logo-wrap{width:56px;height:56px;min-width:56px}
+    .hero-logo-wrap{width:76px;height:76px;min-width:76px;flex-basis:76px;padding:4px}
     .hero h1{font-size:22px}
     .hero h2{font-size:12px}
     .hero-location{font-size:10.5px}
@@ -819,8 +819,8 @@ font-weight:800;
 .faq-accordion .faq-item{border-bottom:1px solid #e5e7eb;padding:0}.faq-accordion .faq-item summary{list-style:none;cursor:pointer;padding:15px 28px 15px 0;position:relative;color:#173f82;font-size:14px;font-weight:700}.faq-accordion .faq-item summary::-webkit-details-marker{display:none}.faq-accordion .faq-item summary:after{content:'+';position:absolute;right:4px;top:12px;font-size:20px;color:#2563eb}.faq-accordion .faq-item[open] summary:after{content:'−'}.faq-accordion .faq-item p{padding:0 0 15px;margin:0}.table-wrapper{overflow:visible!important;width:100%}table{width:100%;table-layout:fixed;min-width:0!important}th,td{overflow-wrap:anywhere;word-break:normal}@media(max-width:720px){.table-wrapper{overflow:visible!important}table,thead,tbody,tr,th,td{display:block;width:100%;min-width:0!important}thead{display:none}tbody tr{border:1px solid #dce3eb;border-radius:8px;margin:0 0 10px;overflow:hidden;background:#fff}tbody td{display:grid;grid-template-columns:minmax(105px,40%) minmax(0,1fr);gap:9px;padding:9px 10px;border:0;border-bottom:1px solid #edf0f4;font-size:12px}tbody td:last-child{border-bottom:0}tbody td:before{content:attr(data-label);font-weight:700;color:#173f82;font-size:11px;overflow-wrap:anywhere}.faq-accordion .faq-item summary{font-size:13px}}
 
 /* MDI overview: compact logo and mobile-safe data tables */
-.hero-logo-wrap{width:78px;height:78px;min-width:78px;flex:0 0 78px;padding:5px;border-radius:9px;overflow:hidden}
-.logo-fallback{width:100%;height:100%;font-size:12px;line-height:1.08;letter-spacing:.2px;overflow-wrap:anywhere}
+.hero-logo-wrap{width:92px;height:92px;min-width:92px;flex:0 0 92px;padding:5px;border-radius:9px;overflow:hidden}
+.logo-fallback{width:100%;height:100%;font-size:12px;line-height:1.08;letter-spacing:0;white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 .hero-main{gap:16px}
 .hero h1{max-width:900px}
 .facts-table-wrap{margin:0}
@@ -831,12 +831,12 @@ font-weight:800;
 .programme-comparison-table th,.programme-comparison-table td{white-space:normal;overflow-wrap:anywhere}
 @media(max-width:720px){
  .hero-main{align-items:center;gap:11px}
- .hero-logo-wrap{width:58px;height:58px;min-width:58px;flex-basis:58px;padding:4px}
- .logo-fallback{font-size:10px;line-height:1.05}
+ .hero-logo-wrap{width:76px;height:76px;min-width:76px;flex-basis:76px;padding:4px}
+ .logo-fallback{font-size:10px;line-height:1.05;white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
  .hero h1{font-size:22px;line-height:1.18}
  .hero h2{font-size:12px}
- .quick-facts{display:block;padding:10px 12px 12px}
- .facts-table-wrap{width:100%;overflow:visible;margin:0}
+ .quick-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:10px 10px 12px;gap:8px}
+ 
  .facts-table,.metric-table,.programme-comparison-table{width:100%;display:block;border-collapse:collapse;table-layout:fixed}
  .facts-table tbody,.metric-table tbody,.programme-comparison-table tbody{display:block;width:100%}
  .facts-table tr,.metric-table tr,.programme-comparison-table tr{display:grid;grid-template-columns:minmax(0,42%) minmax(0,58%);width:100%}
@@ -870,7 +870,7 @@ font-weight:800;
 </head><body data-verified="2026-10-30"><header><nav class="navbar"><a class="logo" href="/">College<span>Decoded</span></a><div class="nav-links"><a href="/">Home</a><a href="/colleges">MBA Colleges</a><a href="#admission">Admissions</a><a href="#rankings">Rankings</a><a href="#placements">Placements &amp; Career Outcomes</a></div></nav></header>
 <section class="hero"><div class="hero-container"><div class="hero-main"><div class="hero-logo-wrap" aria-label="MDI Gurgaon"><div class="logo-fallback">MDI<br/>GURGAON</div></div><div class="hero-text"><h1>MDI Gurgaon: Complete Institute Overview 2027</h1><h2>Courses, admission, fees, campus and placements</h2><div class="hero-location">Gurgaon, Haryana</div></div></div></div></section>
 <div class="mobile-on-page"><details><summary><span>On this page</span><span class="on-page-arrow">⌄</span></summary><div class="mobile-on-page-menu"><a href="#overview">College Overview</a><a href="#rankings">NIRF Ranking</a><a href="#admission">Admission 2027</a><a href="#programmes">Popular Programmes</a><a href="#fees">Fees &amp; ROI</a><a href="#placements">Placements</a><a href="#batch">Batch &amp; Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></details></div>
-<div class="page-container"><div class="quick-facts"><div class="table-wrapper facts-table-wrap"><table class="facts-table"><tbody><tr><th scope="row">NIRF Management 2025</th><td>#9</td></tr><tr><th scope="row">Flagship programme</th><td>PGDM (full-time)</td></tr><tr><th scope="row">Admission route</th><td>CAT 2026</td></tr><tr><th scope="row">Location</th><td>Gurgaon, Haryana</td></tr></tbody></table></div></div>
+<div class="page-container"><div class="quick-facts"><div class="quick-fact"><span class="quick-fact-label">NIRF Management 2025</span><span class="quick-fact-value">#9</span></div><div class="quick-fact"><span class="quick-fact-label">Flagship programme</span><span class="quick-fact-value">PGDM (full-time)</span></div><div class="quick-fact"><span class="quick-fact-label">Admission route</span><span class="quick-fact-value">CAT 2026</span></div><div class="quick-fact"><span class="quick-fact-label">Location</span><span class="quick-fact-value">Gurgaon, Haryana</span></div></div>
 <div class="cd-editorial-meta-static" id="cdEditorialMeta"><span class="cd-editorial-item"><span aria-hidden="true" class="cd-editorial-icon">▣</span><span><small>Last updated on</small><strong>30 October 2026</strong></span></span><span aria-hidden="true" class="cd-editorial-divider"></span><span class="cd-editorial-item"><span aria-hidden="true" class="cd-editorial-icon">●</span><span><small>Updated by</small><a href="/collegedecoded-team">CollegeDecoded Team</a></span></span></div>
 <style id="cdEditorialMetaStaticStyles">.cd-editorial-meta-static{width:min(1180px,calc(100% - 36px));margin:0 auto 18px;padding:14px 22px;background:linear-gradient(90deg,#fff8eb,#fffdf8);border:1px solid #f6d9ad;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:34px;color:#334155;font:13px/1.45 Arial,Helvetica,sans-serif;box-shadow:0 2px 8px rgba(15,23,42,.035)}.cd-editorial-item{display:flex;align-items:center;gap:11px;min-width:260px}.cd-editorial-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#ffedc9;color:#d97706;font-size:18px;font-weight:800;flex:0 0 36px}.cd-editorial-item small{display:block;color:#64748b;font-size:11px;line-height:1.25;margin-bottom:2px}.cd-editorial-item strong,.cd-editorial-item a{display:block;color:#123b78;font-size:14px;font-weight:800;text-decoration:none}.cd-editorial-item a{color:#2563eb}.cd-editorial-divider{width:1px;height:36px;background:#e9b56b;opacity:.85}@media(max-width:640px){.cd-editorial-meta-static{width:calc(100% - 24px);margin:0 auto 12px;padding:11px 14px;gap:12px;justify-content:space-between;border-radius:10px}.cd-editorial-item{min-width:0;gap:7px;flex:1}.cd-editorial-icon{width:30px;height:30px;flex-basis:30px;font-size:14px}.cd-editorial-item small{font-size:9px}.cd-editorial-item strong,.cd-editorial-item a{font-size:10.5px}.cd-editorial-divider{height:28px}}@media(max-width:380px){.cd-editorial-meta-static{padding:10px 10px;gap:8px}.cd-editorial-item{gap:5px}.cd-editorial-icon{width:27px;height:27px;flex-basis:27px;font-size:12px}.cd-editorial-item strong,.cd-editorial-item a{font-size:9.5px}}</style>
 <div class="page-layout"><aside class="sidebar"><div class="sidebar-card"><div class="sidebar-title">MDI Gurgaon</div><a class="active" href="#overview">College Overview</a><a href="#rankings">NIRF Ranking</a><a href="#admission">Admission 2026</a><a href="#programmes">Popular Programmes</a><a href="#fees">Fees &amp; ROI</a><a href="#placements">Placements</a><a href="#batch">Batch &amp; Student Life</a><a href="#profile">Who Should Apply?</a><a href="#faq">FAQs</a><a href="#references">Sources</a></div></aside>
@@ -975,16 +975,4 @@ font-weight:800;
 <script defer="" src="/no-hash-navigation.js?v=20261010"></script>
 <script>(function(){document.querySelectorAll('table').forEach(function(t){var hs=[...t.querySelectorAll('thead th')].map(x=>x.textContent.trim());t.querySelectorAll('tbody tr').forEach(function(r){[...r.children].forEach(function(c,i){if(c.tagName==='TD'&&!c.hasAttribute('data-label'))c.setAttribute('data-label',hs[i]||'Detail')})})})})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the last date to apply for MDI Gurgaon 2027–29?","acceptedAnswer":{"@type":"Answer","text":"MDI's online application deadline is 28 November 2026 at 5:00 PM IST. CAT 2026 is scheduled for 29 November 2026."}},{"@type":"Question","name":"What CAT percentile is required for MDI Gurgaon?","acceptedAnswer":{"@type":"Answer","text":"MDI has not published a fixed numeric CAT cutoff. The 96 percentile in the 2024–26 placement report is the batch average, not a cutoff. MDI considers aggregate and sectional CAT performance."}},{"@type":"Question","name":"What is the MDI Gurgaon PGDM fee?","acceptedAnswer":{"@type":"Answer","text":"The published 2026–28 fee for PGDM, PGDM-HRM and PGDM-Business Analytics is ₹26,55,310, including the listed tuition, boarding, lodging, learning material, activities, library, alumni fee and refundable security deposit."}}]}</script>
-<script id="mobile-table-labels">
-document.addEventListener("DOMContentLoaded",function(){
- document.querySelectorAll(".table-wrapper table").forEach(function(table){
-  const heads=Array.from(table.querySelectorAll("thead th")).map(function(th){return th.textContent.trim()});
-  if(!heads.length)return;
-  table.querySelectorAll("tbody tr").forEach(function(row){
-   Array.from(row.querySelectorAll("td")).forEach(function(cell,index){
-    cell.setAttribute("data-label",heads[index]||"Detail");
-   });
-  });
- });
-});
-</script></body></html>
+</body></html>
