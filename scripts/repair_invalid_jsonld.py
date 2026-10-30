@@ -6,7 +6,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP_DIRS = {".git", "node_modules", ".vercel"}
-MARKER_RE = re.compile(r'<script\b(?=[^>]*\bdata-mba-schema\s*=\s*["\']seo-geo-aeo["\'])[^>]*>', re.I)
+MARKER_RE = re.compile(r'<script\b(?=[^<>]*\\bdata-mba-schema\s*=\s*["\']seo-geo-aeo["\'])[^<>]*>', re.I)
 
 def repair_schema_leaks(raw):
     """Remove only malformed opener + injected schema + orphaned JSON-LD tail.
