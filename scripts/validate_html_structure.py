@@ -3,7 +3,7 @@
 from pathlib import Path
 import json, re
 ROOT=Path(__file__).resolve().parents[1]
-MARKER_RE=re.compile(r'<script\\b(?=[^<>]*\\bdata-mba-schema\\s*=\\s*["\\']seo-geo-aeo["\\'])[^<>]*>',re.I)
+MARKER_RE=re.compile(r'<script\b(?=[^<>]*\bdata-mba-schema\s*=\s*["\']seo-geo-aeo["\'])[^<>]*>',re.I)
 def main():
     errors=[]; checked=0
     for path in sorted(ROOT.rglob("*.html")):
