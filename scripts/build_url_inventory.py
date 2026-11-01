@@ -20,13 +20,17 @@ class Meta(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.canonicals, self.title_parts, self.h1_parts = [], [], []
         self.description, self.capture, self.h1_count = "", None, 0
+        self.noindex, self.client_redirect = False, ""
 
     def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
         a = dict(attrs)
         if tag == "link" and "canonical" in (a.get("rel") or "").lower().split() and a.get("href"):
             self.canonicals.append(a["href"].strip())
         elif tag == "meta" and (a.get("name") or "").lower() == "description":
             self.description = (a.get("content") or "").strip()
+        elif tag == "meta" and (a.get("name") or "").lower() == "robots":
+            self.noindex = "noindex" in (a.get("content") or "").lower()
         elif tag == "title":
             self.capture = "title"
         elif tag == "h1":
@@ -34,6 +38,7 @@ class Meta(HTMLParser):
             self.capture = "h1"
 
     def handle_endtag(self, tag):
+        tag = tag.lower()
         if (tag == "title" and self.capture == "title") or (tag == "h1" and self.capture == "h1"):
             self.capture = None
 
@@ -85,10 +90,20 @@ def route_for_file(p):
 def metadata(p):
     m = Meta()
     try:
-        m.feed(p.read_text(encoding="utf-8", errors="replace"))
+        raw = p.read_text(encoding="utf-8", errors="replace")
+        m.feed(raw)
+        redirect = re.search(r'location\\.replace\\(\\s*["\\']([^"\\']+)', raw, re.I)
+        if redirect:
+            m.client_redirect = redirect.group(1).strip()
     except OSError:
         pass
     return m
+
+def canonical_is_self(canonical, route):
+    if not canonical:
+        return False
+    parsed = urlsplit(canonical)
+    return parsed.netloc.lower() in {"collegedecoded.in", "www.collegedecoded.in"} and path_of(canonical) == route
 
 
 def rules_for(route, rules, field):
@@ -129,8 +144,8 @@ def main():
         canonical = m.canonicals[0] if m.canonicals else ""
         canonical_state = ("no_backing_file" if not p else
                            "missing" if not canonical else
-                           "self" if path_of(canonical) == route else "different")
-        if canonical:
+                           "self" if canonical_is_self(canonical, route) else "different")
+        if canonical and not m.noindex:
             canonical_map[canonical].append(route)
         if p:
             used.add(p.relative_to(ROOT).as_posix())
@@ -146,6 +161,7 @@ def main():
             "sitemap_lastmod": entry["lastmod"],
             "file": p.relative_to(ROOT).as_posix() if p else "",
             "file_exists": bool(p), "canonical": canonical, "canonical_state": canonical_state,
+            "robots_noindex": m.noindex, "client_redirect_target": m.client_redirect,
             "title": m.title, "h1": m.h1, "h1_count": m.h1_count,
             "meta_description_present": bool(m.description), "route_action": action,
             "redirect_or_rewrite_out": " ; ".join(x["kind"] + ":" + x.get("destination", "") for x in outgoing),
@@ -160,8 +176,8 @@ def main():
         route = route_for_file(p)
         m = metadata(p)
         canonical = m.canonicals[0] if m.canonicals else ""
-        canonical_state = "missing" if not canonical else ("self" if path_of(canonical) == route else "different")
-        if canonical:
+        canonical_state = "missing" if not canonical else ("self" if canonical_is_self(canonical, route) else "different")
+        if canonical and not m.noindex:
             canonical_map[canonical].append(route)
         outgoing = rules_for(route, rules, "source")
         incoming = rules_for(route, rules, "destination")
@@ -173,7 +189,8 @@ def main():
         rows.append({
             "record_type": "html_file_not_in_sitemap", "url_or_source": BASE_URL + route,
             "path": route, "sitemap_lastmod": "", "file": rel, "file_exists": True,
-            "canonical": canonical, "canonical_state": canonical_state, "title": m.title,
+            "canonical": canonical, "canonical_state": canonical_state, "robots_noindex": m.noindex,
+            "client_redirect_target": m.client_redirect, "title": m.title,
             "h1": m.h1, "h1_count": m.h1_count, "meta_description_present": bool(m.description),
             "route_action": action,
             "redirect_or_rewrite_out": " ; ".join(x["kind"] + ":" + x.get("destination", "") for x in outgoing),
@@ -196,7 +213,7 @@ def main():
         })
 
     fields = ["record_type", "url_or_source", "path", "sitemap_lastmod", "file", "file_exists",
-              "canonical", "canonical_state", "title", "h1", "h1_count",
+              "canonical", "canonical_state", "robots_noindex", "client_redirect_target", "title", "h1", "h1_count",
               "meta_description_present", "route_action", "redirect_or_rewrite_out",
               "redirect_or_rewrite_in", "destination_file_exists"]
     with (out / "url-inventory.csv").open("w", newline="", encoding="utf-8-sig") as f:
@@ -222,7 +239,9 @@ def main():
         "sitemap_urls_missing_meta_description": sum(not r["meta_description_present"] for r in srows),
         "html_files_not_in_sitemap": len(frows),
         "files_shadowed_by_redirect_or_rewrite": sum("shadows_file" in r["route_action"] for r in frows),
-        "duplicate_canonical_values": sum(len(v) > 1 for v in canonical_map.values())
+        "duplicate_canonical_values": sum(len(v) > 1 for v in canonical_map.values()),
+        "sitemap_noindex_files": sum(r.get("robots_noindex") is True for r in srows),
+        "sitemap_urls_rewritten_to_gone": sum("/api/gone" in r.get("redirect_or_rewrite_out", "") for r in srows)
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     report = ["# CollegeDecoded URL inventory", "",
