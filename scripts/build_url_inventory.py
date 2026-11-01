@@ -94,11 +94,11 @@ def metadata(p):
         raw = p.read_text(encoding="utf-8", errors="replace")
         m.feed(raw)
         # Count H1 tags from source markup as a robust cross-check for malformed legacy HTML.
-        m.h1_count = len(re.findall(r"<h1\\b", raw, re.I))
-        h1_match = re.search(r"<h1\\b[^>]*>(.*?)</h1\\s*>", raw, re.I | re.S)
+        m.h1_count = len(re.findall(r"<h1\b", raw, re.I))
+        h1_match = re.search(r"<h1\b[^>]*>(.*?)</h1\s*>", raw, re.I | re.S)
         if h1_match:
             h1_text = re.sub(r"<[^>]+>", " ", h1_match.group(1))
-            m.h1_parts = [re.sub(r"\\s+", " ", unescape(h1_text)).strip()]
+            m.h1_parts = [re.sub(r"\s+", " ", unescape(h1_text)).strip()]
         needle = "location" + ".replace("
         if needle in raw:
             tail = raw.split(needle, 1)[1].lstrip()
