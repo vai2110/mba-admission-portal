@@ -20,17 +20,17 @@ The IIM Ahmedabad hierarchy below is a proposed target, not an applied migration
 
 ## Confirmed route/content conflicts
 
-Five CMS overview files are shadowed by Vercel redirects:
+Five CMS overview files are not substantive college profiles. Each inspected file is a short noindex redirect stub with a canonical tag and JavaScript location.replace to a generic hub. Vercel also declares a server-side redirect for the corresponding clean URL:
 
-| CMS slug | CMS file | Configured destination | Risk |
-|---|---|---|---|
-| iiswbm-kolkata | college-cms/content/iiswbm-kolkata/overview.html | /mba-colleges-in-kolkata (configured to return 410) | Individual college content is shadowed by a retired hub |
-| globsyn-business-school-kolkata | college-cms/content/globsyn-business-school-kolkata/overview.html | /mba-colleges-in-kolkata (410) | Same |
-| edii-ahmedabad | college-cms/content/edii-ahmedabad/overview.html | /mba-colleges-in-ahmedabad (410) | Individual college content is shadowed by a retired hub |
-| mnit-jaipur-mba | college-cms/content/mnit-jaipur-mba/overview.html | /mba-colleges-by-location | College-specific route resolves to a generic hub |
-| jaipuria-jaipur-mba | college-cms/content/jaipuria-jaipur-mba/overview.html | /mba-colleges-by-location | Campus-specific route resolves to a generic hub |
+| CMS slug | CMS stub file | Configured destination |
+|---|---|---|
+| iiswbm-kolkata | college-cms/content/iiswbm-kolkata/overview.html | /mba-colleges-in-kolkata (configured to return 410) |
+| globsyn-business-school-kolkata | college-cms/content/globsyn-business-school-kolkata/overview.html | /mba-colleges-in-kolkata (410) |
+| edii-ahmedabad | college-cms/content/edii-ahmedabad/overview.html | /mba-colleges-in-ahmedabad (410) |
+| mnit-jaipur-mba | college-cms/content/mnit-jaipur-mba/overview.html | /mba-colleges-by-location |
+| jaipuria-jaipur-mba | college-cms/content/jaipuria-jaipur-mba/overview.html | /mba-colleges-by-location |
 
-These routes are not automatically restored. Confirm college/campus identity, content freshness and GSC demand before changing them.
+The files are redundant redirect stubs, not evidence that individual profile content exists. Do not restore them solely because the files are present. If CollegeDecoded should have individual profiles for these institutions, create/recover substantive official-source content and verify demand before routing changes.
 
 ## IIM Ahmedabad pilot — proposed structure only
 
@@ -79,3 +79,17 @@ This PR routes their generated site changes through pull requests. The existing-
 - Reconcile current CSV/JSON registries before introducing a single college/programme identity registry.
 - Apply the IIMA hierarchy only after the GSC and content-comparison gate.
 - Roll out other colleges in batches; do not bulk-rewrite URLs or programme pages without evidence.
+
+
+## Validation from the first PR checks
+
+- The new URL inventory workflow completed successfully and generated a full CSV/JSON inventory artifact.
+- The inventory source baseline reports 668 sitemap entries, 666 root HTML files, 16 CMS overview files, 68 redirects and 28 rewrites.
+- The inventory found eight sitemap URLs whose paths have no backing HTML file and are routed to the 410 handler; these are stale sitemap entries, not live content pages.
+- It identified five CMS redirect stubs (noindex + JavaScript redirect) and the legacy /college alias as files shadowed by Vercel route rules.
+- The production-build preview regenerated the regular sitemap to 660 canonical/indexable URLs; the sitemap validator reported 663 unique URLs including the news sitemap and passed route, canonical and noindex checks.
+- The preview build passed the SEO gate. Its fresh audit summaries reported 0 broken local links, 0 redirecting internal links, 13 reciprocal-link opportunities, 1 orphan candidate, 1 canonical-missing candidate, 13 near-duplicate pairs, and 57 root-level pages with one or more technical SEO findings. The detailed per-page technical audit output should be retained as a CI artifact in the next run.
+
+## GitHub Actions permission prerequisite
+
+The first automation smoke test confirmed that this repository currently blocks the built-in GITHUB_TOKEN from creating pull requests. The action successfully created an isolated automation branch, but GitHub rejected PR creation with: "GitHub Actions is not permitted to create or approve pull requests." Enable the repository setting at Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests, or configure a repository-approved fine-grained token secret for these PR workflows. Until that setting/token is enabled, the workflows can push their proposed changes to automation branches but cannot open the review PRs.
