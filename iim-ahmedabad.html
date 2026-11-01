@@ -45,7 +45,7 @@ strong{font-weight:800}
 .header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border)}
 .nav{max-width:1180px;margin:auto;min-height:58px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:21px;font-weight:800;color:var(--navy)}.logo span{color:#2563eb}
-.navlinks{display:flex;gap:20px;font-size:12px;font-weight:700;color:#475569}
+.navlinks{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px 15px;font-size:11px;font-weight:700;color:#475569}.navlinks a{white-space:nowrap}.navlinks a:hover{color:#2563eb}
 .hero{background:linear-gradient(110deg,#092653 0%,#174ea6 58%,#2857c7 100%);color:#fff;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;inset:auto -8% -70px auto;width:360px;height:180px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
 .hero-inner{max-width:1180px;margin:auto;padding:28px 18px 30px;position:relative;z-index:1}
@@ -274,13 +274,15 @@ html,body{max-width:100%;overflow-x:hidden}
 <header class="header">
 <nav class="nav">
 <a class="logo" href="/">College<span>Decoded</span></a>
-<div class="navlinks">
+<nav class="navlinks" aria-label="IIM Ahmedabad programme navigation">
 <a href="/">Home</a>
-<a href="/colleges">MBA Colleges</a>
-<a href="#admission">Admission</a>
-<a href="#courses">Fees</a>
-<a href="#placements">Placements</a>
-</div>
+<a href="/iim-ahmedabad-mba-pgp">MBA / PGP</a>
+<a href="/iim-ahmedabad-mba-fabm">MBA-FABM</a>
+<a href="/iim-ahmedabad-mba-pgpx">MBA-PGPX</a>
+<a href="/iim-ahmedabad-mba-bpgp">MBA-BPGP</a>
+<a href="/iim-ahmedabad-business-analytics-ai">Business Analytics &amp; AI</a>
+<a href="/iim-ahmedabad-placements">Placements</a>
+</nav>
 </nav>
 </header>
 <section class="hero">
