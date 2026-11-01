@@ -130,7 +130,10 @@ html,body{max-width:100%;overflow-x:hidden}
   .header{position:sticky;top:0}
   .nav{min-height:50px;padding:0 12px}
   .logo{font-size:18px}
-  .navlinks{display:none}
+  .nav{flex-wrap:wrap;padding-top:7px;padding-bottom:2px}
+  .navlinks{display:flex;order:2;width:100%;justify-content:flex-start;flex-wrap:nowrap;gap:14px;overflow-x:auto;padding:8px 0 9px;white-space:nowrap;scrollbar-width:none}
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks a{font-size:10px;flex:0 0 auto}
   .hero-inner{padding:18px 13px 16px}
   .hero h1{font-size:23px;line-height:1.2}
   .hero-meta{font-size:9.5px;line-height:1.4;margin-top:8px}
