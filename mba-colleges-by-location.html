@@ -116,6 +116,6 @@ function resetAll(){stateSelect.value='';citySelect.value='';otherResults.innerH
 Promise.all([fetch('mba-location-directory.json?v=20260915-3').then(r=>r.json()),fetch('mba-colleges-data.json?v=20260915-2').then(r=>r.json())]).then(([directory,data])=>{popular=directory.destinations||[];colleges=data.map(normalise);renderPopular();renderStates();renderCities();}).catch(()=>{popularGrid.innerHTML='<div class="empty-location">Location data could not be loaded right now. Please refresh the page.</div>'});
 </script>
 <script defer="" src="/no-hash-navigation.js?v=20261010"></script>
-<section class="crawlable-location-guides" aria-labelledby="crawlable-location-guides-title"><h2 id="crawlable-location-guides-title">Explore MBA colleges by city</h2><p>Compare city-specific MBA college options, admissions, fees, entrance exams and placements.</p><ul><li><a href="/mba-colleges-in-ahmedabad">MBA colleges in Ahmedabad</a></li><li><a href="/mba-colleges-in-bengaluru">MBA colleges in Bengaluru</a></li><li><a href="/mba-colleges-in-chennai">MBA colleges in Chennai</a></li><li><a href="/mba-colleges-in-delhi-ncr">MBA colleges in Delhi NCR</a></li><li><a href="/mba-colleges-in-hyderabad">MBA colleges in Hyderabad</a></li><li><a href="/mba-colleges-in-kolkata">MBA colleges in Kolkata</a></li><li><a href="/mba-colleges-in-mumbai">MBA colleges in Mumbai</a></li><li><a href="/mba-colleges-in-pune">MBA colleges in Pune</a></li></ul></section>
+
 </body>
 </html>
