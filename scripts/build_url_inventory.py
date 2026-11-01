@@ -8,6 +8,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from html import unescape
+from bs4 import BeautifulSoup
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
@@ -92,13 +93,16 @@ def metadata(p):
     m = Meta()
     try:
         raw = p.read_text(encoding="utf-8", errors="replace")
-        m.feed(raw)
-        # Count H1 tags from source markup as a robust cross-check for malformed legacy HTML.
-        m.h1_count = len(re.findall(r"<h1\b", raw, re.I))
-        h1_match = re.search(r"<h1\b[^>]*>(.*?)</h1\s*>", raw, re.I | re.S)
-        if h1_match:
-            h1_text = re.sub(r"<[^>]+>", " ", h1_match.group(1))
-            m.h1_parts = [re.sub(r"\s+", " ", unescape(h1_text)).strip()]
+        soup = BeautifulSoup(raw, "html.parser")
+        m.canonicals = [x.get("href", "").strip() for x in soup.find_all("link", rel=lambda value: value and "canonical" in value)]
+        m.title_parts = [soup.title.get_text(" ", strip=True)] if soup.title else []
+        descriptions = soup.find_all("meta", attrs={"name": re.compile(r"^description$", re.I)})
+        m.description = (descriptions[0].get("content") or "").strip() if descriptions else ""
+        robots = [x.get("content", "") for x in soup.find_all("meta", attrs={"name": re.compile(r"^robots$", re.I)})]
+        m.noindex = any("noindex" in value.lower() for value in robots)
+        h1s = soup.find_all("h1")
+        m.h1_count = len(h1s)
+        m.h1_parts = [h1s[0].get_text(" ", strip=True)] if h1s else []
         needle = "location" + ".replace("
         if needle in raw:
             tail = raw.split(needle, 1)[1].lstrip()
@@ -110,7 +114,6 @@ def metadata(p):
     except OSError:
         pass
     return m
-
 def canonical_is_self(canonical, route):
     if not canonical:
         return False
