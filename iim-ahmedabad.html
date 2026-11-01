@@ -47,7 +47,7 @@ strong{font-weight:800}
 .header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border)}
 .nav{max-width:1180px;margin:auto;min-height:58px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:21px;font-weight:800;color:var(--navy)}.logo span{color:#2563eb}
-.navlinks{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px 15px;font-size:11px;font-weight:700;color:#475569}.navlinks a{white-space:nowrap}.navlinks a:hover{color:#2563eb}
+.navlinks{display:flex;align-items:center;justify-content:flex-end;flex-wrap:nowrap;gap:8px;font-size:12px;font-weight:700;color:#475569}.navlinks a{white-space:nowrap}.navlinks .nav-tab,.navlinks .nav-home{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 13px;border:1px solid #dce4ee;border-radius:8px;background:#fff;color:#334155;transition:background .15s ease,border-color .15s ease,color .15s ease}.navlinks .nav-tab:hover{background:#eef5ff;border-color:#b9cff0;color:#174ea6}.navlinks .nav-tab.active{background:#174ea6;border-color:#174ea6;color:#fff}.navlinks .nav-home{margin-left:10px;background:#f1f5f9;border-color:#cbd5e1;color:#092653;font-weight:800}.navlinks .nav-home:hover{background:#e2e8f0;border-color:#94a3b8}
 .hero{background:linear-gradient(110deg,#092653 0%,#174ea6 58%,#2857c7 100%);color:#fff;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;inset:auto -8% -70px auto;width:360px;height:180px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
 .hero-inner{max-width:1180px;margin:auto;padding:28px 18px 30px;position:relative;z-index:1}
@@ -132,10 +132,11 @@ html,body{max-width:100%;overflow-x:hidden}
   .header{position:sticky;top:0}
   .nav{min-height:50px;padding:0 12px}
   .logo{font-size:18px}
-  .nav{flex-wrap:wrap;padding-top:7px;padding-bottom:2px}
-  .navlinks{display:flex;order:2;width:100%;justify-content:flex-start;flex-wrap:nowrap;gap:14px;overflow-x:auto;padding:8px 0 9px;white-space:nowrap;scrollbar-width:none}
+  .nav{flex-wrap:wrap;padding-top:7px;padding-bottom:7px;gap:6px}
+  .navlinks{display:flex;order:2;width:100%;justify-content:flex-start;flex-wrap:nowrap;gap:6px;overflow-x:auto;padding:3px 0 2px;white-space:nowrap;scrollbar-width:none}
   .navlinks::-webkit-scrollbar{display:none}
-  .navlinks a{font-size:10px;flex:0 0 auto}
+  .navlinks .nav-tab,.navlinks .nav-home{min-height:34px;padding:7px 11px;font-size:10px;flex:0 0 auto}
+  .navlinks .nav-home{margin-left:auto}
   .hero-inner{padding:18px 13px 16px}
   .hero h1{font-size:23px;line-height:1.2}
   .hero-meta{font-size:9.5px;line-height:1.4;margin-top:8px}
@@ -279,14 +280,11 @@ html,body{max-width:100%;overflow-x:hidden}
 <header class="header">
 <nav class="nav">
 <a class="logo" href="/">College<span>Decoded</span></a>
-<nav aria-label="IIM Ahmedabad programme navigation" class="navlinks">
-<a href="/">Home</a>
-<a href="/iim-ahmedabad-mba-pgp">MBA / PGP</a>
-<a href="/iim-ahmedabad-mba-fabm">MBA-FABM</a>
-<a href="/iim-ahmedabad-mba-pgpx">MBA-PGPX</a>
-<a href="/iim-ahmedabad-mba-bpgp">MBA-BPGP</a>
-<a href="/iim-ahmedabad-business-analytics-ai">Business Analytics &amp; AI</a>
-<a href="/iim-ahmedabad-placements">Placements</a>
+<nav aria-label="IIM Ahmedabad page navigation" class="navlinks">
+<a class="nav-tab active" href="/iim-ahmedabad" aria-current="page">Overview</a>
+<a class="nav-tab" href="#courses">Courses &amp; Fees</a>
+<a class="nav-tab" href="/iim-ahmedabad-placements">Placements</a>
+<a class="nav-home" href="/">Home</a>
 </nav>
 </nav>
 </header>
