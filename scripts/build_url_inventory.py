@@ -92,7 +92,14 @@ def metadata(p):
     try:
         raw = p.read_text(encoding="utf-8", errors="replace")
         m.feed(raw)
-        redirect = re.search(r'location\\.replace\\(\\s*["\\']([^"\\']+)', raw, re.I)
+        needle = "location" + ".replace("
+        if needle in raw:
+            tail = raw.split(needle, 1)[1].lstrip()
+            if tail and (tail[0] == chr(34) or tail[0] == chr(39)):
+                quote = tail[0]
+                end = tail.find(quote, 1)
+                if end > 0:
+                    m.client_redirect = tail[1:end]
         if redirect:
             m.client_redirect = redirect.group(1).strip()
     except OSError:
