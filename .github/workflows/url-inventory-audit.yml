@@ -1,0 +1,32 @@
+name: URL Inventory Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "sitemap.xml"
+      - "vercel.json"
+      - "**.html"
+      - "college-cms/content/**"
+      - "scripts/build_url_inventory.py"
+      - ".github/workflows/url-inventory-audit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build URL inventory
+        run: python scripts/build_url_inventory.py --output-dir artifacts/url-inventory
+      - name: Upload inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: collegedecoded-url-inventory
+          path: artifacts/url-inventory/
+          if-no-files-found: error
