@@ -100,8 +100,6 @@ def metadata(p):
                 end = tail.find(quote, 1)
                 if end > 0:
                     m.client_redirect = tail[1:end]
-        if redirect:
-            m.client_redirect = redirect.group(1).strip()
     except OSError:
         pass
     return m
