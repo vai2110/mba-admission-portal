@@ -6,6 +6,10 @@
   "outputDirectory": ".",
   "rewrites": [
     {
+      "source": "/iim-ahmedabad/courses-fees",
+      "destination": "/iim-ahmedabad-courses-fees.html"
+    },
+    {
       "source": "/welingkar-mumbai-links.html",
       "destination": "/api/gone?slug=welingkar-mumbai-links"
     },
