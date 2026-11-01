@@ -5,61 +5,41 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
-  group: generate-sitemap
+  group: sitemap-and-analytics-pr
   cancel-in-progress: false
 
 jobs:
-  generate-and-install:
+  generate-and-propose:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-
-      - name: Generate sitemap and install Google Analytics
-        shell: bash
+      - name: Generate analytics installation, college hub and sitemap
         run: |
           set -euo pipefail
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          for attempt in 1 2 3 4 5; do
-            echo "Site automation attempt $attempt"
-
-            git fetch origin main
-            git reset --hard origin/main
-
-            python scripts/inject_google_analytics.py
-            python scripts/generate_college_guides_hub.py
-            python scripts/generate_sitemap.py
-
-            if ! git status --porcelain -- '*.html' sitemap.xml | grep -q .; then
-              echo "No site changes."
-              exit 0
-            fi
-
-            git add -- '*.html' sitemap.xml
-            git commit -m "Install Google Analytics and update sitemap [skip ci]"
-
-            if git push origin HEAD:main; then
-              echo "Site automation changes pushed successfully."
-              exit 0
-            fi
-
-            echo "Push failed because main changed during the run. Retrying..."
-            sleep 5
-          done
-
-          echo "Failed to push site automation changes after 5 attempts."
-          exit 1
+          python scripts/inject_google_analytics.py
+          python scripts/generate_college_guides_hub.py
+          python scripts/generate_sitemap.py
+      - name: Propose generated changes for review
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Propose analytics, hub and sitemap updates"
+          branch: automation/sitemap-and-analytics
+          delete-branch: true
+          add-paths: |
+            *.html
+            sitemap.xml
+          title: "SEO: review generated sitemap and analytics changes"
+          body: |
+            Generated sitemap/hub/analytics proposal. Check sitemap URL coverage, lastmod semantics, canonical tags and homepage/college-hub changes before merging. No direct push to main is performed.
