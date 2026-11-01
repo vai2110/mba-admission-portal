@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install HTML parser
+        run: python -m pip install beautifulsoup4
       - name: Build URL inventory
         run: python scripts/build_url_inventory.py --output-dir artifacts/url-inventory
       - name: Upload inventory
