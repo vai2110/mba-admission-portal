@@ -15,7 +15,7 @@ function esc(value) {
 }
 function safeImage(value) {
   try {
-    const url = new URL(String(value || ""));
+    const url = new URL(String(value || ""), SITE);
     return url.protocol === "https:" ? url.href : "";
   } catch (_) { return ""; }
 }
