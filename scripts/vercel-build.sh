@@ -8,6 +8,7 @@ node scripts/validate-college-data-consistency.js
 python3 scripts/generate_college_guides_hub.py
 # Apply metadata/schema cleanup after generated pages exist to avoid rebuild churn.
 python3 scripts/seo_metadata_cleanup.py
+python3 scripts/validate_ranking_hub.py
 python3 scripts/seo_structured_data_cleanup.py
 # Generate a raster favicon for Google Search from the existing CollegeDecoded favicon artwork.
 python3 - <<'PY'
