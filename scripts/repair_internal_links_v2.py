@@ -115,6 +115,10 @@ def label(name, members):
 
     stem = Path(name).stem
     known = {
+        "-courses-fees": "Courses & Fees",
+        "-mba-pgp": "MBA PGP",
+        "-mba-pgpx": "MBA-PGPX",
+        "-pgpx": "PGPX",
         "-mba-business-analytics-ai": "MBA Business Analytics & AI",
         "-mba-business-analytics": "MBA Business Analytics",
         "-mba-financial-services-nse": "MBA Financial Services",
