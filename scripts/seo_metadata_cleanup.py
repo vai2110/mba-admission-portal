@@ -7,6 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SKIP = {"404.html", "iim-ahmedabad.html", "sibm-pune.html"}
 
 TITLE_OVERRIDES = {
+    "top-mba-colleges-in-india.html": "Top MBA Colleges in India: NIRF 2025 | CollegeDecoded",
+    "cat.html": "CAT 2026 Exam Date, Syllabus & Eligibility | CollegeDecoded",
     "iim-bangalore.html": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff & Placements",
     "iim-bangalore-mba.html": "IIM Bangalore MBA 2027: Fees, Eligibility, CAT & Placements",
     "iim-bangalore-pgpba.html": "IIM Bangalore PGPBA Admission 2027: CAT, Fees & Eligibility",
@@ -15,6 +17,8 @@ TITLE_OVERRIDES = {
     "iim-bangalore-placements.html": "IIM Bangalore Placements 2026: Salary, Recruiters & Offers",
 }
 DESCRIPTION_OVERRIDES = {
+    "top-mba-colleges-in-india.html": "Compare NIRF 2025 Management institutions by rank, city, fees, placements and admission links. Explore CollegeDecoded profiles and verify details before applying.",
+    "cat.html": "CAT 2026 is scheduled for 29 November 2026. Check eligibility, registration, exam pattern, syllabus, fees, cutoffs and the IIM admission process.",
     "iim-bangalore.html": "IIM Bangalore MBA admission 2027: PGP, PGPBA, EPGP and PGPEM eligibility, CAT cutoff, fees, admission dates, placements and official links.",
     "iim-bangalore-mba.html": "IIM Bangalore PGP MBA 2027: eligibility, CAT selection process, fees, curriculum, admission timeline, placements and official programme links.",
     "iim-bangalore-pgpba.html": "IIM Bangalore PGPBA 2027-29: eligibility, CAT cutoff, selection process, fees, curriculum, internships, placements and official admission dates.",
@@ -37,6 +41,7 @@ def trim_words(s, n):
 
 def title_fix(s):
     s = html.unescape(clean(s))
+    s = re.sub(r"(?:…|\\.{3})\\s*$", "", s).rstrip(" ,:;-|&")
     if 30 <= len(s) <= 65:
         return s
     if len(s) > 65:
@@ -54,6 +59,8 @@ def title_fix(s):
 
 def description_fix(s, title):
     s = html.unescape(clean(s))
+    s = re.sub(r"(?:…|\\.{3})\\s*$", "", s).rstrip(" ,:;-|&")
+    s = re.sub(r"\\b(?:and|or|to|for|with|including)\\s*$", "", s, flags=re.I).rstrip(" ,:;-|&")
     if 120 <= len(s) <= 170:
         return s
     if len(s) > 170:
