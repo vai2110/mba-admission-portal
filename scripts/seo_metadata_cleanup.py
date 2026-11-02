@@ -149,11 +149,17 @@ for path in sorted(ROOT.glob("*.html")):
         ("property", "og:url", canonical),
         ("property", "og:type", "website"),
         ("property", "og:locale", "en_IN"),
-        ("name", "twitter:card", "summary"),
+        ("name", "twitter:card", "summary_large_image"),
         ("name", "twitter:title", new_title),
         ("name", "twitter:description", new_description),
     ]:
         updated = upsert_meta_content(updated, key, value, content)
+
+    # Supply a first-party social preview image on templates that do not define one.
+    if not re.search(r'<meta\\b(?=[^>]*\\bproperty\\s*=\\s*["\\']og:image["\\'])', updated, flags=re.I):
+        updated = updated.replace("</head>", '<meta property="og:image" content="https://collegedecoded.in/assets/homepage/hero.webp">\\n</head>', 1)
+    if not re.search(r'<meta\\b(?=[^>]*\\bname\\s*=\\s*["\\']twitter:image["\\'])', updated, flags=re.I):
+        updated = updated.replace("</head>", '<meta name="twitter:image" content="https://collegedecoded.in/assets/homepage/hero.webp">\\n</head>', 1)
 
     # Keep structured data synchronized in one pass. Replacing strings using
     # offsets from a pre-mutation finditer list can corrupt later tags when an
