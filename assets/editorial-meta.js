@@ -123,11 +123,14 @@
 
     var meta = document.createElement('div');
     meta.className = 'cd-editorial-author';
+    var isIimaOverview = currentPath === '/iim-ahmedabad';
     meta.innerHTML =
       '<div class="cd-editorial-avatar" aria-hidden="true">CD</div>' +
       '<div class="cd-editorial-copy">' +
         '<div class="cd-editorial-name"><a href="/collegedecoded-team">CollegeDecoded Team</a><span class="cd-editorial-verified" aria-label="Verified">✓</span></div>' +
-        '<div class="cd-editorial-sub">Updated by CollegeDecoded Team <span aria-hidden="true">|</span> Last updated on ' + formatDate(dateValue) + '</div>' +
+        (isIimaOverview
+          ? '<div class="cd-editorial-sub">Updated by CollegeDecoded Team</div>'
+          : '<div class="cd-editorial-sub">Updated by CollegeDecoded Team <span aria-hidden="true">|</span> Last updated on ' + formatDate(dateValue) + '</div>') +
       '</div>';
 
     if (point.before) point.parent.insertBefore(meta, point.before); else point.parent.appendChild(meta);
