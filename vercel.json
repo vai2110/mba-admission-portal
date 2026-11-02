@@ -6,10 +6,6 @@
   "outputDirectory": ".",
   "rewrites": [
     {
-      "source": "/iim-ahmedabad/courses-fees",
-      "destination": "/iim-ahmedabad-courses-fees.html"
-    },
-    {
       "source": "/welingkar-mumbai-links.html",
       "destination": "/api/gone?slug=welingkar-mumbai-links"
     },
@@ -461,6 +457,21 @@
     {
       "source": "/thapar-institute-mba.html",
       "destination": "/thapar-institute-mba",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-courses-fees",
+      "destination": "/iim-ahmedabad/courses-fees",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-mba",
+      "destination": "/iim-ahmedabad-mba-pgp",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-mba-pgpx",
+      "destination": "/iim-ahmedabad-pgpx",
       "permanent": true
     }
   ]
