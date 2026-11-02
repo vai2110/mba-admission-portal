@@ -3,9 +3,28 @@ from html.parser import HTMLParser
 from urllib.parse import urlparse
 import re
 import sys
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://collegedecoded.in"
+VERCEL_CONFIG = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+REDIRECTS = {
+    item.get("source"): item.get("destination")
+    for item in VERCEL_CONFIG.get("redirects", [])
+    if item.get("source", "").startswith("/") and item.get("destination", "").startswith("/")
+}
+
+def canonical_route_for(path):
+    expected = clean_url_for(path)
+    # A permanent Vercel redirect makes the destination the public canonical
+    # route for the source file. Follow short redirect chains defensively.
+    for _ in range(5):
+        route = urlparse(expected).path
+        destination = REDIRECTS.get(route)
+        if not destination:
+            break
+        expected = BASE + destination
+    return expected
 EXCLUDED = {
     "404.html", "content-audit.html", "college-page-audit-dashboard.html",
     "github-direct-edit-test.html", "irma-deploy-trigger.html"
@@ -95,7 +114,7 @@ for path in ROOT.rglob("*.html"):
     parser.feed(path.read_text(encoding="utf-8", errors="ignore"))
     rel = path.relative_to(ROOT).as_posix()
     indexable = not any("noindex" in x for x in parser.robots)
-    expected = clean_url_for(path)
+    expected = canonical_route_for(path)
     canonical = parser.canonical[0].rstrip("/") if parser.canonical else ""
     if indexable and len(parser.canonical) != 1:
         critical.append(f"canonical count must be exactly one: {rel} -> {len(parser.canonical)} tags")
