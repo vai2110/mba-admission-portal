@@ -286,7 +286,7 @@
     },
     {
       "source": "/iim-ahmedabad-mba.html",
-      "destination": "/iim-ahmedabad-mba",
+      "destination": "/iim-ahmedabad-mba-pgp",
       "permanent": true
     },
     {
@@ -460,17 +460,37 @@
       "permanent": true
     },
     {
-      "source": "/iim-ahmedabad-courses-fees",
-      "destination": "/iim-ahmedabad/courses-fees",
-      "permanent": true
-    },
-    {
       "source": "/iim-ahmedabad-mba",
       "destination": "/iim-ahmedabad-mba-pgp",
       "permanent": true
     },
     {
       "source": "/iim-ahmedabad-mba-pgpx",
+      "destination": "/iim-ahmedabad-pgpx",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad/courses-fees",
+      "destination": "/iim-ahmedabad-courses-fees",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad/courses-fees.html",
+      "destination": "/iim-ahmedabad-courses-fees",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad/placements",
+      "destination": "/iim-ahmedabad-placements",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad/placements.html",
+      "destination": "/iim-ahmedabad-placements",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-mba-pgpx.html",
       "destination": "/iim-ahmedabad-pgpx",
       "permanent": true
     }
