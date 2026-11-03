@@ -27,6 +27,8 @@ node scripts/build-news.js
 node scripts/inject-related-news.js
 python3 scripts/validate_sitemap_routes.py
 node scripts/inject-ai-advisor.js
+# Final invariant: no generated related-page or related-news blocks after IIM Ahmedabad FAQs.
+python3 scripts/clean_iim_ahmedabad_post_faq.py
 
 python3 scripts/repair_invalid_jsonld.py
 # Force schema/style validation after SEO repair and injection steps.
