@@ -58,6 +58,7 @@ SEO_AUDIT_VENV="/tmp/collegedecoded-seo-audit-venv"
 python3 -m venv "$SEO_AUDIT_VENV"
 "$SEO_AUDIT_VENV/bin/python" -m pip install --quiet --disable-pip-version-check beautifulsoup4
 "$SEO_AUDIT_VENV/bin/python" scripts/ensure_mobile_layout.py
+"$SEO_AUDIT_VENV/bin/python" scripts/remove_placeholder_content.py
 "$SEO_AUDIT_VENV/bin/python" scripts/technical_seo_audit.py
 python3 scripts/validate_structured_data.py
 python3 scripts/final_seo_gate.py
