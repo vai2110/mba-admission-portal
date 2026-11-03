@@ -1,7 +1,7 @@
 {
   "as_of_date": "2026-11-03",
   "timezone": "Asia/Kolkata",
-  "current_admission_cycle": "2026-2027",
+  "current_admission_cycle": "2027",
   "daily_publish_cap": 10,
   "pilot_batch_size": 5,
   "reviewer": "",
