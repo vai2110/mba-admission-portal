@@ -54,4 +54,6 @@ for path in sorted(ROOT.rglob('*.html')):
 summary={'generated_at':datetime.now(timezone.utc).isoformat(),'pages_checked':len(rows),'pages_with_issues':len({x['page'] for x in issues}),'issue_counts':{},'average_score':round(sum(r['score'] for r in rows)/len(rows),1) if rows else 0,'priority_order':['viewport','h1','responsive_css','tables_scrollable','images_alt','horizontal_overflow_risk','mobile_nav'],'pages':rows}
 for x in issues: summary['issue_counts'][x['issue']]=summary['issue_counts'].get(x['issue'],0)+1
 Path('ux-mobile-audit.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+for x in issues:
+    print(f"MOBILE_AUDIT_ISSUE: {x['page']} :: {x['issue']}")
 print(json.dumps({k:summary[k] for k in ['generated_at','pages_checked','pages_with_issues','average_score','issue_counts']},indent=2))
