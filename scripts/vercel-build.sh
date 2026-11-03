@@ -91,3 +91,6 @@ if problems:
     raise SystemExit("IIM AHMEDABAD POST-FAQ GATE FAILED: " + "; ".join(problems))
 print("IIM AHMEDABAD POST-FAQ GATE PASSED: all root and clean-URL page copies end without generated related-page/news blocks.")
 PY
+# Produce a per-route SEO inventory and a fresh responsive-layout audit in the preview artifact.
+"$SEO_AUDIT_VENV/bin/python" scripts/ux_mobile_audit.py
+python3 scripts/generate_seo_inventory.py
