@@ -55,8 +55,8 @@ function normalizeHref(href, sourceName) {
   if (isExternalUrl(href)) {
     try {
       const absolute = new URL(href, "https://collegedecoded.in");
-      if (!/(^|\\.)collegedecoded\\.in$/i.test(absolute.hostname)) return href;
-      let pathname = absolute.pathname.replace(/\\.html$/i, "");
+      if (!/(^|\.)collegedecoded\.in$/i.test(absolute.hostname)) return href;
+      let pathname = absolute.pathname.replace(/\.html$/i, "");
       pathname = applyRouteAlias(pathname);
       if (pathname === null) return "";
       absolute.hostname = "collegedecoded.in";
