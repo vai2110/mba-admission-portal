@@ -16,6 +16,9 @@ TITLE_OVERRIDES = {
     "iim-bangalore-epgp.html": "IIM Bangalore EPGP 2027-28: Fees | CollegeDecoded",
     "iim-bangalore-pgpem.html": "IIM Bangalore PGPEM 2027-29: Fees | CollegeDecoded",
     "iim-bangalore-placements.html": "IIM Bangalore Placements 2026 | CollegeDecoded",
+    "iim-visakhapatnam.html": "IIM Visakhapatnam MBA 2027 | CollegeDecoded",
+    "iim-visakhapatnam-executive-master-of-business-administration-emba.html": "IIM Visakhapatnam EMBA 2027 | CollegeDecoded",
+    "jmi-tourism-and-hospitality-management.html": "JMI Tourism & Hospitality Management | CollegeDecoded",
 }
 DESCRIPTION_OVERRIDES = {
     "top-mba-colleges-in-india.html": "Compare NIRF 2025 Management institutions by rank, city, fees, placements and admission links. Explore CollegeDecoded profiles and verify details before applying.",
