@@ -128,7 +128,7 @@ for html_file in ROOT.rglob("*.html"):
 
     # Skip pages explicitly marked noindex, regardless of attribute order.
     noindex = False
-    for meta_tag in re.findall(r"<meta\\b[^>]*>", content, flags=re.I | re.S):
+    for meta_tag in re.findall(r"<meta\b[^>]*>", content, flags=re.I | re.S):
         meta_attrs = tag_attrs(meta_tag)
         if meta_attrs.get("name", "").lower() == "robots" and "noindex" in meta_attrs.get("content", "").lower():
             noindex = True
