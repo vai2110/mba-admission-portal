@@ -2,19 +2,20 @@ from pathlib import Path
 import re
 import html
 import json
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP = {"404.html", "iim-ahmedabad.html", "sibm-pune.html"}
 
 TITLE_OVERRIDES = {
-    "top-mba-colleges-in-india.html": "Top MBA Colleges in India: NIRF 2025 | CollegeDecoded",
-    "cat.html": "CAT 2026 Exam Date, Syllabus & Eligibility | CollegeDecoded",
-    "iim-bangalore.html": "IIM Bangalore MBA Admission 2027: Fees, CAT Cutoff & Placements",
-    "iim-bangalore-mba.html": "IIM Bangalore MBA 2027: Fees, Eligibility, CAT & Placements",
-    "iim-bangalore-pgpba.html": "IIM Bangalore PGPBA Admission 2027: CAT, Fees & Eligibility",
-    "iim-bangalore-epgp.html": "IIM Bangalore EPGP Admission 2027-28: Eligibility & Fees",
-    "iim-bangalore-pgpem.html": "IIM Bangalore PGPEM Admission 2027-29: Fees, CAT & Eligibility",
-    "iim-bangalore-placements.html": "IIM Bangalore Placements 2026: Salary, Recruiters & Offers",
+    "top-mba-colleges-in-india.html": "Top MBA Colleges India: NIRF 2025 | CollegeDecoded",
+    "cat.html": "CAT 2026: Dates, Syllabus & Eligibility | CollegeDecoded",
+    "iim-bangalore.html": "IIM Bangalore MBA 2027: Fees & CAT | CollegeDecoded",
+    "iim-bangalore-mba.html": "IIM Bangalore PGP 2027: Fees & CAT | CollegeDecoded",
+    "iim-bangalore-pgpba.html": "IIM Bangalore PGPBA 2027: CAT & Fees | CollegeDecoded",
+    "iim-bangalore-epgp.html": "IIM Bangalore EPGP 2027-28: Fees | CollegeDecoded",
+    "iim-bangalore-pgpem.html": "IIM Bangalore PGPEM 2027-29: Fees | CollegeDecoded",
+    "iim-bangalore-placements.html": "IIM Bangalore Placements 2026 | CollegeDecoded",
 }
 DESCRIPTION_OVERRIDES = {
     "top-mba-colleges-in-india.html": "Compare NIRF 2025 Management institutions by rank, city, fees, placements and admission links. Explore CollegeDecoded profiles and verify details before applying.",
@@ -52,7 +53,7 @@ def slug_title(slug):
         "bcom": "BCom", "bca": "BCA", "mca": "MCA", "mtech": "MTech",
         "xat": "XAT", "cat": "CAT", "nmat": "NMAT", "cmat": "CMAT",
         "snap": "SNAP", "mat": "MAT", "fms": "FMS", "jmi": "JMI",
-        "ibs": "IBS", "mdI": "MDI", "xlri": "XLRI", "spjimr": "SPJIMR",
+        "ibs": "IBS", "mdi": "MDI", "xlri": "XLRI", "spjimr": "SPJIMR",
     }
     return " ".join(acronyms.get(word.lower(), word.capitalize()) for word in slug.split("-") if word)
 
@@ -192,7 +193,7 @@ for path in sorted(ROOT.rglob("*.html")):
             social_image = candidate
     if social_image is None:
         social_image = ROOT / "assets" / "homepage" / "hero.webp"
-    image_url = "https://collegedecoded.in/" + social_image.relative_to(ROOT).as_posix()
+    image_url = "https://collegedecoded.in/" + quote(social_image.relative_to(ROOT).as_posix(), safe="/")
     updated = upsert_meta_content(updated, "property", "og:image", image_url)
     updated = upsert_meta_content(updated, "name", "twitter:image", image_url)
 
