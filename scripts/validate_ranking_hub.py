@@ -52,7 +52,7 @@ for number, row in enumerate(rows, start=1):
     if "`" in name:
         fail(f"row {number} contains a stray backtick in its institution name")
 
-    if rank == "Additional":
+    if rank == "Not in Top 100":
         additional += 1
     elif re.fullmatch(r"#\d+", rank):
         ranked += 1
@@ -80,7 +80,7 @@ for number, row in enumerate(rows, start=1):
 if ranked < 80:
     fail(f"expected at least 80 NIRF-ranked institutions, found {ranked}")
 if additional < 10:
-    fail(f"expected additional profiles to be clearly labelled, found {additional}")
+    fail(f"expected profiles outside the Top 100 to be clearly labelled, found {additional}")
 if rank_72 is None or rank_72[0] != "Institute of Management Technology, Hyderabad":
     fail("rank 72 must identify IMT Hyderabad from the source ranking data")
 if rank_72[1] is not None:
@@ -94,11 +94,17 @@ if "Array.from(rows.querySelectorAll('tr'))" not in raw:
     fail("client-side filters are not derived from the server-rendered rows")
 if "if(!Number.isFinite(n))return false" not in raw:
     fail("rank filters must exclude additional/unranked profiles")
-if "(c.rank?'#'+c.rank:'Additional')" not in raw:
-    fail("client-side rendering does not preserve the Additional label")
+if "match(/#(\\d+)/)" not in raw:
+    fail("client-side rank parser must extract numeric NIRF ranks")
+if text_of(re.findall(r"<td\b[^>]*>(.*?)</td>", rows[0], flags=re.I | re.S)[0]) != "#1":
+    fail("first ranking row must retain NIRF rank #1")
+if text_of(re.findall(r"<td\b[^>]*>(.*?)</td>", rows[1], flags=re.I | re.S)[0]) != "#2":
+    fail("second ranking row must retain NIRF rank #2")
+if "(c.rank?'#'+c.rank:'Not in Top 100')" not in raw:
+    fail("client-side rendering must reserve Not in Top 100 for profiles without a published Top 100 rank")
 
 print(
     "RANKING HUB VALIDATION PASSED:",
-    f"{ranked} ranked rows, {additional} additional profiles,",
+    f"{ranked} ranked rows, {additional} profiles outside the Top 100,",
     f"{len(rows)} total rows, {len(seen_urls)} unique profile URLs."
 )
