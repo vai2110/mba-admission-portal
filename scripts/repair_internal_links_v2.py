@@ -230,9 +230,21 @@ def repair(path, members):
     return len(missing)
 
 def main():
+    # IIM Ahmedabad pages are intentionally closed after their FAQ section.
+    # Strip legacy generated cluster links and exclude this page family from
+    # reciprocal-link injection so no content is appended after the FAQs.
+    for path in ROOT.glob("iim-ahmedabad*.html"):
+        if not re.fullmatch(r"iim-ahmedabad(?:-[a-z0-9-]+)?\\.html", path.name, re.I):
+            continue
+        original = path.read_text(encoding="utf-8")
+        cleaned = remove_generated_block(original)
+        if cleaned != original:
+            path.write_text(cleaned, encoding="utf-8")
+
     pages = sorted(
         p.name for p in ROOT.glob("*.html")
-        if p.name not in {"404.html"}
+        if p.name != "404.html"
+        and not re.fullmatch(r"iim-ahmedabad(?:-[a-z0-9-]+)?\\.html", p.name, re.I)
     )
     clusters = build_clusters(pages)
 
