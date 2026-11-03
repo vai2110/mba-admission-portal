@@ -234,7 +234,7 @@ def main():
     # Strip legacy generated cluster links and exclude this page family from
     # reciprocal-link injection so no content is appended after the FAQs.
     for path in ROOT.glob("iim-ahmedabad*.html"):
-        if not re.fullmatch(r"iim-ahmedabad(?:-[a-z0-9-]+)?\\.html", path.name, re.I):
+        if not re.fullmatch(r"iim-ahmedabad(?:-[a-z0-9-]+)?\.html", path.name, re.I):
             continue
         original = path.read_text(encoding="utf-8")
         cleaned = remove_generated_block(original)
@@ -244,7 +244,7 @@ def main():
     pages = sorted(
         p.name for p in ROOT.glob("*.html")
         if p.name != "404.html"
-        and not re.fullmatch(r"iim-ahmedabad(?:-[a-z0-9-]+)?\\.html", p.name, re.I)
+        and not re.fullmatch(r"iim-ahmedabad(?:-[a-z0-9-]+)?\.html", p.name, re.I)
     )
     clusters = build_clusters(pages)
 
