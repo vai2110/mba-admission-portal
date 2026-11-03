@@ -66,3 +66,30 @@ python3 scripts/final_seo_gate.py
 echo "ASSET MINIFICATION START"
 npx --yes --package=terser --package=clean-css-cli --call "command -v terser && command -v cleancss && node scripts/minify-assets.js"
 echo "ASSET MINIFICATION FINISHED"
+
+# Re-run the IIM Ahmedabad post-FAQ cleanup after every generator/minifier and
+# fail the production build if any clean-URL or root copy still has a footer block.
+python3 -u scripts/clean_iim_ahmedabad_post_faq.py
+python3 - <<'PY'
+from pathlib import Path
+import re
+root = Path(".")
+page_re = re.compile(r"iim-ahmedabad(?:-[a-z0-9-]+)?\\.html$", re.I)
+problems = []
+for page in root.rglob("*.html"):
+    rel = page.relative_to(root)
+    if any(part.startswith(".") or part in {"node_modules", ".vercel"} for part in rel.parts):
+        continue
+    root_page = page_re.fullmatch(page.name) is not None
+    clean_copy = page.name.lower() == "index.html" and page_re.fullmatch(page.parent.name + ".html") is not None
+    if not (root_page or clean_copy):
+        continue
+    html = page.read_text(encoding="utf-8", errors="replace")
+    if re.search(r'<nav\\b(?=[^>]*\\bclass\\s*=\\s*["\\'][^"\\']*\\bseo-cluster-links\\b)', html, re.I):
+        problems.append(str(rel) + ": related-pages navigation")
+    if "COLLEGEDECODED-RELATED-NEWS:START" in html or "cd-related-news" in html:
+        problems.append(str(rel) + ": related-news footer")
+if problems:
+    raise SystemExit("IIM AHMEDABAD POST-FAQ GATE FAILED: " + "; ".join(problems))
+print("IIM AHMEDABAD POST-FAQ GATE PASSED: all root and clean-URL page copies end without generated related-page/news blocks.")
+PY
