@@ -13,23 +13,29 @@ WRAPPER_CLASSES = {"table-wrapper", "table-wrap", "table-responsive",
 summary = {"pages_scanned": 0, "viewports_added": 0, "tables_wrapped": 0,
            "mobile_nav_added": 0, "pages_changed": 0}
 
-for path in sorted(ROOT.glob("*.html")):
-    if path.name in EXCLUDED:
+for path in sorted(ROOT.rglob("*.html")):
+    if path.name in EXCLUDED or any(part in {".git", "node_modules", ".github", ".vercel"} for part in path.parts):
         continue
     summary["pages_scanned"] += 1
     raw = path.read_text(encoding="utf-8", errors="replace")
     soup = BeautifulSoup(raw, "html.parser")
     changed = False
 
-    # Ensure mobile viewport metadata exists on every public root HTML page.
-    if not soup.find("meta", attrs={"name": re.compile(r"^viewport$", re.I)}):
-        head = soup.find("head")
-        if head:
-            viewport = soup.new_tag("meta", attrs={"name": "viewport",
-                                                    "content": "width=device-width, initial-scale=1"})
-            head.insert(0, viewport)
-            summary["viewports_added"] += 1
-            changed = True
+    # Ensure viewport metadata and the shared mobile stylesheet exist on
+    # root-level and nested static HTML pages.
+    head = soup.find("head")
+    if head and not soup.find("meta", attrs={"name": re.compile(r"^viewport$", re.I)}):
+        viewport = soup.new_tag("meta", attrs={"name": "viewport",
+                                                "content": "width=device-width, initial-scale=1"})
+        head.insert(0, viewport)
+        summary["viewports_added"] += 1
+        changed = True
+    if head and not soup.find("link", attrs={"href": "/assets/mobile-responsive.css"}):
+        mobile_css = soup.new_tag("link", attrs={"rel": "stylesheet",
+                                                 "href": "/assets/mobile-responsive.css",
+                                                 "media": "(max-width: 767px)"})
+        head.append(mobile_css)
+        changed = True
 
     # Wrap wide tables in a local scrolling container without changing table data.
     for table in soup.find_all("table"):
