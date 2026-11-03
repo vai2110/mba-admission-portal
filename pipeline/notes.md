@@ -41,3 +41,10 @@ Inspection date: 2026-11-03
 5. Some titles contain ellipses, as shown by the stored technical audit and the Chitkara page inspected.
 
 No production files, environment variables, secrets, billing, domain or DNS settings were changed during this inspection.
+
+
+## Owner direction received (2026-11-03)
+
+- CollegeDecoded academic year is confirmed as **2026-2027**. This is now the single configured academic-year value used by the editorial trust line.
+- Institution-specific information must be checked against the relevant college/university's own official website or official admission brochure. Third-party aggregators are not a source of truth for dates, fees, cutoffs, rankings or placements.
+- Duplicate URLs are to be removed through consolidation: preserve the chosen canonical page, merge unique verified content first, update internal links, then redirect duplicate URLs. Do not delete pages without a permanent redirect. Keep pages with genuinely different search intent separate.
