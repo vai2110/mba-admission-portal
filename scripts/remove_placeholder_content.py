@@ -40,14 +40,16 @@ for path in sorted(ROOT.rglob("*.html")):
         if "student discussion" not in label:
             continue
         container = heading
-        for _ in range(5):
+        found_container = False
+        for _ in range(6):
             if not container.parent:
                 break
             container = container.parent
             classes = set(container.get("class") or [])
             if container.name == "section" or "main-section" in classes:
+                found_container = True
                 break
-        if container is heading or not getattr(container, "name", None):
+        if not found_container:
             continue
         source_links = container.find_all("a", href=re.compile(r"(reddit\.com|quora\.com|pagalguy\.com)", re.I))
         quotes = container.find_all(["blockquote", "q"])
