@@ -86,12 +86,19 @@ def score(current_topic, candidate_topic):
     }
     return priorities.get(current_topic, priorities["other"]).get(candidate_topic, 0)
 
-stats = {"pages_scanned": 0, "blocks_replaced": 0, "blocks_added": 0, "pages_without_four_related_pages": 0}
+stats = {"pages_scanned": 0, "blocks_replaced": 0, "blocks_added": 0, "blocks_removed": 0, "pages_without_four_related_pages": 0}
 for slug, record in pages.items():
     path, soup = record["path"], record["soup"]
     stats["pages_scanned"] += 1
+    old_blocks = list(soup.select("nav.seo-cluster-links, nav[aria-label='Related college pages'], .related-colleges-internal-links"))
+    for old in old_blocks:
+        old.decompose()
+    if old_blocks:
+        stats["blocks_removed"] += len(old_blocks)
     base, college_name = college_for(slug)
     if not base:
+        if old_blocks:
+            path.write_text(str(soup), encoding="utf-8")
         continue
     current_topic = topic(slug, base)
     candidates = []
@@ -111,8 +118,6 @@ for slug, record in pages.items():
     candidates.sort(key=lambda row: (-row[0], row[1]))
     selected = candidates[:6]
 
-    for old in list(soup.select("nav.seo-cluster-links, nav[aria-label='Related college pages'], .related-colleges-internal-links")):
-        old.decompose()
     if len(selected) < 4:
         stats["pages_without_four_related_pages"] += 1
         path.write_text(str(soup), encoding="utf-8")
