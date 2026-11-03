@@ -174,4 +174,66 @@ header = [
     "|---|---:|---|---|---|:---:|---:|---|",
 ]
 OUT.write_text("\n".join(header + rows) + "\n", encoding="utf-8")
+
+# Human-reviewable duplicate recommendations. These are not redirects: the
+# build never removes pages or changes routes based on a similarity guess.
+WINNERS = {
+    "chitkara-overview": "chitkara-university-punjab",
+    "chitkara-admission": "chitkara-university-admission",
+    "chitkara-btech": "chitkara-university-btech",
+    "chitkara-bba-bcom": "chitkara-university-bba-bcom",
+    "chitkara-mba": "chitkara-university-mba",
+    "chitkara-placements": "chitkara-university-placements",
+    "chitkara-hostel": "chitkara-university-hostel",
+    "chitkara-fees": "chitkara-university-fees",
+    "dms-nit-trichy-overview": "dms-nit-trichy",
+    "dms-nit-trichy-mba": "dms-nit-trichy-mba",
+    "dms-nit-trichy-placements": "dms-nit-trichy-placements",
+    "iit-roorkee-executive-mba": "iit-roorkee-executive-mba",
+    "iit-roorkee-placements": "iit-roorkee-placements",
+    "jaipuria-noida": "jaipuria-noida",
+    "iima-pgpx": "iim-ahmedabad-pgpx",
+    "ibs-hyderabad": "ibs-hyderabad",
+    "tsm-hostel": "tsm-campus-hostel",
+}
+KEEP_SEPARATE = {
+    "welingkar-programmes": "Different intent: programme catalogue versus career-fit decision guide.",
+    "jmi-management": "Different scope: university overview, MBA course and department/management studies.",
+    "exam-hub": "Different intent: exam information hub versus colleges accepting an exam.",
+}
+page_by_file = {p["file"]: p for p in pages}
+review_lines = [
+    "# Duplicate-cluster review",
+    "",
+    "Candidate winners are recommendations for manual review. No redirect is added by this report.",
+    "Before redirecting, merge unique sections and verify conflicting figures against official source records.",
+    "",
+    "| Cluster ID | Candidate URLs | Candidate word counts | Recommended winner / decision |",
+    "|---|---|---:|---|",
+]
+for cluster_id, slugs in CLUSTERS.items():
+    present = [slug for slug in slugs if slug + ".html" in page_by_file]
+    if not present:
+        continue
+    details = []
+    counts = []
+    for slug in present:
+        page = page_by_file[slug + ".html"]
+        details.append(f"/{slug}")
+        counts.append(f"{slug}: {page['words']}")
+    if cluster_id in KEEP_SEPARATE:
+        decision = "KEEP SEPARATE: " + KEEP_SEPARATE[cluster_id]
+    elif cluster_id in WINNERS:
+        decision = f"/{WINNERS[cluster_id]} (merge unique content before redirect)"
+    else:
+        decision = "Needs manual review"
+    review_lines.append("| " + " | ".join([
+        safe_cell(cluster_id), safe_cell("; ".join(details)),
+        safe_cell("; ".join(counts)), safe_cell(decision)
+    ]) + " |")
+
+(ROOT / "seo-audit" / "duplicate-review.md").write_text(
+    "\n".join(review_lines) + "\n", encoding="utf-8"
+)
 print(f"SEO inventory written: {OUT.relative_to(ROOT)} ({len(pages)} HTML files).")
+print(f"Duplicate review written: seo-audit/duplicate-review.md ({len(CLUSTERS)} supplied clusters).")
