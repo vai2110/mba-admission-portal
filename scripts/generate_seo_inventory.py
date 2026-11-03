@@ -52,8 +52,8 @@ class VisibleText(HTMLParser):
         if not self.skip:
             self.parts.append(data)
 
-def attrs(tag, name):
-    m = re.search(r"<" + tag + r"\b[^>]*\b" + name + r"\s*=\s*(['""])(.*?)\1", tag, re.I | re.S)
+def attrs(tag_html, name):
+    m = re.search(r"\b" + re.escape(name) + r"\s*=\s*(['""])(.*?)\1", tag_html, re.I | re.S)
     return m.group(2).strip() if m else ""
 
 def meta_description(html):
