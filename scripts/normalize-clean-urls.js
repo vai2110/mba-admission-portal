@@ -178,6 +178,16 @@ function normalizeFile(html, sourceName) {
     return pre + normalized + post;
   });
 
+  // Apply a shared mobile-only safety layer after page-specific styles.
+  // The stylesheet contains only small-screen media queries and does not
+  // replace or redesign any page template.
+  if (!/href=[\"'][^\\"']*mobile-responsive\\.css/i.test(value)) {
+    value = value.replace(
+      /<\\/head>/i,
+      '<link rel="stylesheet" href="/assets/mobile-responsive.css" media="(max-width: 767px)">\\n</head>'
+    );
+  }
+
   value = addOrReplaceCanonical(value, sourceName);
   return value;
 }
