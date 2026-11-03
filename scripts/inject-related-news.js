@@ -55,7 +55,7 @@ const css = `
 .iima-news-title:hover{color:#1764df}
 .iima-news-date{margin-top:5px;color:#64748b;font-size:9px}
 .iima-news-empty{padding:12px;margin:0;color:#64748b;font-size:11px;line-height:1.5}
-.iima-news-rail-inline{margin-top:16px}
+.iima-news-rail-inline{display:block;width:calc(100% - 40px);max-width:1180px;min-width:0;margin:16px auto 0;box-sizing:border-box}\n.iima-news-rail-inline .iima-rail-card{width:100%;min-width:0;box-sizing:border-box}
 @media(max-width:760px){.iima-news-item{grid-template-columns:68px minmax(0,1fr);gap:9px;padding:10px}.iima-news-thumb{width:68px;height:58px}.iima-rail-heading{padding:12px}.iima-news-title{font-size:12px}}
 `;
 
