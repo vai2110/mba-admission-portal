@@ -221,7 +221,7 @@ def add_editorial_panel(soup, updated_date):
     name = soup.new_tag("div", attrs={"class": "cd-editorial-name"})
     name.string = "Author: " + author_label
     sub = soup.new_tag("div", attrs={"class": "cd-editorial-sub"})
-    sub.string = "Reviewed by: " + reviewer_label + " | Last updated: " + (updated_date or "[Verify update date]") + " | Data as of: [Verify academic year]"
+    sub.string = "Reviewed by: " + reviewer_label + " | Last updated: " + (updated_date or "[Verify update date]") + " | Data as of: " + (config.get("academic_year") or "2026-2027")
     copy.append(name)
     copy.append(sub)
     panel.append(avatar)
