@@ -29,7 +29,7 @@ CLUSTERS = {
     "dms-nit-trichy-placements": ["dms-nit-trichy-placements", "department-management-studies-nit-trichy-placements"],
     "iit-roorkee-executive-mba": ["iit-roorkee-executive-mba", "indian-institute-of-technology-roorkee-executive-mba"],
     "iit-roorkee-placements": ["iit-roorkee-placements", "indian-institute-of-technology-roorkee-placements"],
-    "jaipuria-noida": ["jaipuria-noida", "jaipuria-institute-management-noida", "jaipuria-noida-pgdm"],
+    "jaipuria-noida": ["jaipuria-noida", "jaipuria-institute-management-noida"],
     "iima-pgpx": ["iim-ahmedabad-pgpx", "iim-ahmedabad-mba-pgpx"],
     "ibs-hyderabad": ["ibs-hyderabad", "icfai-university-hyderabad-mba"],
     "tsm-hostel": ["tsm-campus-hostel", "tsm-campus-hostel-life"],
