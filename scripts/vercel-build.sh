@@ -8,6 +8,7 @@ node scripts/validate-college-data-consistency.js
 python3 scripts/generate_college_guides_hub.py
 # Apply metadata/schema cleanup after generated pages exist to avoid rebuild churn.
 python3 scripts/seo_metadata_cleanup.py
+python3 scripts/apply_thin_page_noindex.py
 python3 scripts/validate_ranking_hub.py
 python3 scripts/seo_structured_data_cleanup.py
 # Generate a raster favicon for Google Search from the existing CollegeDecoded favicon artwork.
@@ -57,6 +58,10 @@ python3 scripts/seo_indexation_audit.py
 SEO_AUDIT_VENV="/tmp/collegedecoded-seo-audit-venv"
 python3 -m venv "$SEO_AUDIT_VENV"
 "$SEO_AUDIT_VENV/bin/python" -m pip install --quiet --disable-pip-version-check beautifulsoup4
+"$SEO_AUDIT_VENV/bin/python" scripts/ensure_mobile_layout.py
+"$SEO_AUDIT_VENV/bin/python" scripts/generate_curated_related_links.py
+"$SEO_AUDIT_VENV/bin/python" scripts/remove_placeholder_content.py
+"$SEO_AUDIT_VENV/bin/python" scripts/inject_trust_signals.py
 "$SEO_AUDIT_VENV/bin/python" scripts/technical_seo_audit.py
 python3 scripts/validate_structured_data.py
 python3 scripts/final_seo_gate.py
@@ -91,3 +96,6 @@ if problems:
     raise SystemExit("IIM AHMEDABAD POST-FAQ GATE FAILED: " + "; ".join(problems))
 print("IIM AHMEDABAD POST-FAQ GATE PASSED: all root and clean-URL page copies end without generated related-page/news blocks.")
 PY
+# Produce a per-route SEO inventory and a fresh responsive-layout audit in the preview artifact.
+"$SEO_AUDIT_VENV/bin/python" scripts/ux_mobile_audit.py
+python3 scripts/generate_seo_inventory.py

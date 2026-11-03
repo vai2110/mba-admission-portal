@@ -15,7 +15,7 @@ def page_css(raw, soup, path):
     for link in soup.find_all('link', href=True):
         href=link.get('href','').split('#',1)[0].split('?',1)[0]
         if not href.lower().endswith('.css'): continue
-        css_path=(path.parent / href).resolve()
+        css_path = (ROOT / href.lstrip("/")).resolve() if href.startswith("/") else (path.parent / href).resolve()
         try:
             if css_path.is_relative_to(ROOT.resolve()) and css_path.exists():
                 chunks.append(css_path.read_text(encoding='utf-8', errors='ignore'))
@@ -54,4 +54,6 @@ for path in sorted(ROOT.rglob('*.html')):
 summary={'generated_at':datetime.now(timezone.utc).isoformat(),'pages_checked':len(rows),'pages_with_issues':len({x['page'] for x in issues}),'issue_counts':{},'average_score':round(sum(r['score'] for r in rows)/len(rows),1) if rows else 0,'priority_order':['viewport','h1','responsive_css','tables_scrollable','images_alt','horizontal_overflow_risk','mobile_nav'],'pages':rows}
 for x in issues: summary['issue_counts'][x['issue']]=summary['issue_counts'].get(x['issue'],0)+1
 Path('ux-mobile-audit.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+for x in issues:
+    print(f"MOBILE_AUDIT_ISSUE: {x['page']} :: {x['issue']}")
 print(json.dumps({k:summary[k] for k in ['generated_at','pages_checked','pages_with_issues','average_score','issue_counts']},indent=2))

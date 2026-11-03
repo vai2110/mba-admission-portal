@@ -23,7 +23,15 @@ const ROUTE_ALIASES = {
   "/fore-school-of-management": "/fore-school-management",
   "/goa-institute-of-management": "/goa-institute-management",
   "/t-a-pai-management-institute-manipal": "/tapmi-manipal",
-  "/iit-kanpur": null
+  "/iit-kanpur": null,
+  "/department-management-studies-nit-trichy": "/dms-nit-trichy",
+  "/department-management-studies-nit-trichy-mba": "/dms-nit-trichy-mba",
+  "/indian-institute-of-technology-roorkee-executive-mba": "/iit-roorkee-executive-mba",
+  "/indian-institute-of-technology-roorkee-placements": "/iit-roorkee-placements",
+  "/jaipuria-institute-management-noida": "/jaipuria-noida",
+  "/iim-ahmedabad-mba-pgpx": "/iim-ahmedabad-pgpx",
+  "/icfai-university-hyderabad-mba": "/ibs-hyderabad",
+  "/tsm-campus-hostel-life": "/tsm-campus-hostel"
 };
 
 function applyRouteAlias(target) {
@@ -45,10 +53,19 @@ function normalizeHref(href, sourceName) {
   if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) return href;
 
   if (isExternalUrl(href)) {
-    return href.replace(
-      /(https?:\/\/collegedecoded\.in\/[^"'\s?#<>]+)\.html(?=([?#]|$))/gi,
-      "$1"
-    );
+    try {
+      const absolute = new URL(href, "https://collegedecoded.in");
+      if (!/(^|\.)collegedecoded\.in$/i.test(absolute.hostname)) return href;
+      let pathname = absolute.pathname.replace(/\.html$/i, "");
+      pathname = applyRouteAlias(pathname);
+      if (pathname === null) return "";
+      absolute.hostname = "collegedecoded.in";
+      absolute.protocol = "https:";
+      absolute.pathname = pathname;
+      return absolute.toString();
+    } catch (_) {
+      return href;
+    }
   }
 
   const raw = href.trim();
@@ -177,6 +194,16 @@ function normalizeFile(html, sourceName) {
 
     return pre + normalized + post;
   });
+
+  // Apply a shared mobile-only safety layer after page-specific styles.
+  // The stylesheet contains only small-screen media queries and does not
+  // replace or redesign any page template.
+  if (!/href=[\"'][^\\"']*mobile-responsive\.css/i.test(value)) {
+    value = value.replace(
+      /<\/head>/i,
+      '<link rel="stylesheet" href="/assets/mobile-responsive.css" media="(max-width: 767px)">\n</head>'
+    );
+  }
 
   value = addOrReplaceCanonical(value, sourceName);
   return value;

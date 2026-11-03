@@ -493,6 +493,76 @@
       "source": "/iim-ahmedabad-mba-pgpx.html",
       "destination": "/iim-ahmedabad-pgpx",
       "permanent": true
+    },
+    {
+      "source": "/department-management-studies-nit-trichy",
+      "destination": "/dms-nit-trichy",
+      "permanent": true
+    },
+    {
+      "source": "/department-management-studies-nit-trichy.html",
+      "destination": "/dms-nit-trichy",
+      "permanent": true
+    },
+    {
+      "source": "/department-management-studies-nit-trichy-mba",
+      "destination": "/dms-nit-trichy-mba",
+      "permanent": true
+    },
+    {
+      "source": "/department-management-studies-nit-trichy-mba.html",
+      "destination": "/dms-nit-trichy-mba",
+      "permanent": true
+    },
+    {
+      "source": "/indian-institute-of-technology-roorkee-executive-mba",
+      "destination": "/iit-roorkee-executive-mba",
+      "permanent": true
+    },
+    {
+      "source": "/indian-institute-of-technology-roorkee-executive-mba.html",
+      "destination": "/iit-roorkee-executive-mba",
+      "permanent": true
+    },
+    {
+      "source": "/indian-institute-of-technology-roorkee-placements",
+      "destination": "/iit-roorkee-placements",
+      "permanent": true
+    },
+    {
+      "source": "/indian-institute-of-technology-roorkee-placements.html",
+      "destination": "/iit-roorkee-placements",
+      "permanent": true
+    },
+    {
+      "source": "/jaipuria-institute-management-noida",
+      "destination": "/jaipuria-noida",
+      "permanent": true
+    },
+    {
+      "source": "/jaipuria-institute-management-noida.html",
+      "destination": "/jaipuria-noida",
+      "permanent": true
+    },
+    {
+      "source": "/icfai-university-hyderabad-mba",
+      "destination": "/ibs-hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/icfai-university-hyderabad-mba.html",
+      "destination": "/ibs-hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/tsm-campus-hostel-life",
+      "destination": "/tsm-campus-hostel",
+      "permanent": true
+    },
+    {
+      "source": "/tsm-campus-hostel-life.html",
+      "destination": "/tsm-campus-hostel",
+      "permanent": true
     }
   ]
 }
