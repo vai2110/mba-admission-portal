@@ -15,7 +15,7 @@ def page_css(raw, soup, path):
     for link in soup.find_all('link', href=True):
         href=link.get('href','').split('#',1)[0].split('?',1)[0]
         if not href.lower().endswith('.css'): continue
-        css_path=(path.parent / href).resolve()
+        css_path = (ROOT / href.lstrip("/")).resolve() if href.startswith("/") else (path.parent / href).resolve()
         try:
             if css_path.is_relative_to(ROOT.resolve()) and css_path.exists():
                 chunks.append(css_path.read_text(encoding='utf-8', errors='ignore'))
