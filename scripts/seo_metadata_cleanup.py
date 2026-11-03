@@ -5,7 +5,7 @@ import json
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP = {"404.html", "iim-ahmedabad.html", "sibm-pune.html"}
+SKIP = {"404.html"}
 
 TITLE_OVERRIDES = {
     "top-mba-colleges-in-india.html": "Top MBA Colleges India: NIRF 2025 | CollegeDecoded",
