@@ -27,8 +27,17 @@ PATTERNS = [
 
 def main():
     changed = []
-    for page in ROOT.glob("iim-ahmedabad*.html"):
-        if not PAGE_RE.fullmatch(page.name):
+    # Clean both source files and clean-URL copies such as
+    # /iim-ahmedabad/index.html and /iim-ahmedabad-mba-pgpx/index.html.
+    for page in ROOT.rglob("*.html"):
+        if any(part.startswith(".") or part in {"node_modules", ".vercel"} for part in page.relative_to(ROOT).parts):
+            continue
+        is_root_page = PAGE_RE.fullmatch(page.name) is not None
+        is_clean_url_copy = (
+            page.name.lower() == "index.html"
+            and PAGE_RE.fullmatch(page.parent.name + ".html") is not None
+        )
+        if not (is_root_page or is_clean_url_copy):
             continue
         original = page.read_text(encoding="utf-8")
         cleaned = original
