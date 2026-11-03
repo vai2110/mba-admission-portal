@@ -94,8 +94,14 @@ if "Array.from(rows.querySelectorAll('tr'))" not in raw:
     fail("client-side filters are not derived from the server-rendered rows")
 if "if(!Number.isFinite(n))return false" not in raw:
     fail("rank filters must exclude additional/unranked profiles")
+if "match(/#(\\d+)/)" not in raw:
+    fail("client-side rank parser must extract numeric NIRF ranks")
+if text_of(re.findall(r"<td\b[^>]*>(.*?)</td>", rows[0], flags=re.I | re.S)[0]) != "#1":
+    fail("first ranking row must retain NIRF rank #1")
+if text_of(re.findall(r"<td\b[^>]*>(.*?)</td>", rows[1], flags=re.I | re.S)[0]) != "#2":
+    fail("second ranking row must retain NIRF rank #2")
 if "(c.rank?'#'+c.rank:'Additional')" not in raw:
-    fail("client-side rendering does not preserve the Additional label")
+    fail("client-side rendering must reserve Additional for unranked profiles")
 
 print(
     "RANKING HUB VALIDATION PASSED:",
