@@ -34,47 +34,60 @@ def trim_words(s, n):
     s = clean(s)
     if len(s) <= n:
         return s
-    x = s[: max(1, n - 1)]
-    if " " in x:
-        x = x[: x.rfind(" ")]
-    return x.rstrip(" ,:;-|&") + "…"
+    words = s.split()
+    result = ""
+    for word in words:
+        candidate = (result + " " + word).strip()
+        if len(candidate) > n:
+            break
+        result = candidate
+    return result.rstrip(" ,:;-|&")
 
-def title_fix(s):
+
+def slug_title(slug):
+    acronyms = {
+        "iim": "IIM", "iit": "IIT", "nit": "NIT", "mba": "MBA",
+        "pgp": "PGP", "pgdm": "PGDM", "pgpx": "PGPX", "pgpem": "PGPEM",
+        "pgpba": "PGPBA", "emba": "EMBA", "btech": "BTech", "bba": "BBA",
+        "bcom": "BCom", "bca": "BCA", "mca": "MCA", "mtech": "MTech",
+        "xat": "XAT", "cat": "CAT", "nmat": "NMAT", "cmat": "CMAT",
+        "snap": "SNAP", "mat": "MAT", "fms": "FMS", "jmi": "JMI",
+        "ibs": "IBS", "mdI": "MDI", "xlri": "XLRI", "spjimr": "SPJIMR",
+    }
+    return " ".join(acronyms.get(word.lower(), word.capitalize()) for word in slug.split("-") if word)
+
+
+def title_fix(s, slug=""):
     s = html.unescape(clean(s))
-    s = re.sub(r"(?:…|\\.{3})\\s*$", "", s).rstrip(" ,:;-|&")
-    if 30 <= len(s) <= 65:
-        return s
-    if len(s) > 65:
-        candidates = re.split(r"\s+(?:\||&|-|–|:)\s+", s)
-        while len(candidates) > 1:
-            candidate = " & ".join(candidates[:-1]).strip()
-            if 30 <= len(candidate) <= 65:
-                return candidate
-            candidates.pop()
-        return trim_words(s, 65)
+    s = re.sub(r"(?:…|\.{3})\s*$", "", s).rstrip(" ,:;-|&")
+    s = re.sub(r"\s*\|\s*CollegeDecoded\s*$", "", s, flags=re.I)
+    generic = {
+        "post graduate programme (pgp)",
+        "department of tourism and hospitality management",
+        "executive master of business administration (emba)",
+    }
+    if not s or s.lower() in generic:
+        s = slug_title(slug)
     suffix = " | CollegeDecoded"
-    if len(s) + len(suffix) <= 65:
-        return s + suffix
-    return trim_words(s + suffix, 65)
+    max_base = 60 - len(suffix)
+    s = trim_words(s, max_base)
+    return (s or slug_title(slug)[:max_base]).rstrip(" ,:;-|&") + suffix
+
 
 def description_fix(s, title):
     s = html.unescape(clean(s))
-    s = re.sub(r"(?:…|\\.{3})\\s*$", "", s).rstrip(" ,:;-|&")
-    s = re.sub(r"\\b(?:and|or|to|for|with|including)\\s*$", "", s, flags=re.I).rstrip(" ,:;-|&")
-    if 120 <= len(s) <= 170:
-        return s
-    if len(s) > 170:
-        return trim_words(s, 165)
-    additions = (
-        " Check admission, fees, eligibility and placements.",
-        " Get admission, fees, eligibility and placement details.",
-        " Includes admission, fees, eligibility, cutoff and placements.",
-    )
-    for addition in additions:
-        candidate = (s + addition).strip()
-        if 120 <= len(candidate) <= 170:
-            return candidate
-    return trim_words((s or title) + " Check admission, fees, eligibility and placements.", 165)
+    s = re.sub(r"(?:…|\.{3})\s*$", "", s).rstrip(" ,:;-|&")
+    s = re.sub(
+        r"\s*(?:Check admission, fees, eligibility and placements\.?|Get admission, fees, eligibility and placement details\.?|Includes admission, fees, eligibility, cutoff and placements\.?)\s*$",
+        "",
+        s,
+        flags=re.I,
+    ).strip()
+    s = re.sub(r"\s+", " ", s)
+    if not s:
+        s = title.replace(" | CollegeDecoded", "") + ": programme details, eligibility and official admission information."
+    return trim_words(s, 155).rstrip(" ,:;-|&")
+
 
 def meta_tags(raw):
     return list(re.finditer(r"<meta\b[^>]*>", raw, flags=re.I))
@@ -96,8 +109,8 @@ def has_noindex(raw):
     return bool(re.search(r'<meta\b[^>]*\bname\s*=\s*[\"\']robots[\"\'][^>]*\bcontent\s*=\s*[\"\'][^\"\']*noindex', raw, flags=re.I))
 
 changed = []
-for path in sorted(ROOT.glob("*.html")):
-    if path.name in SKIP:
+for path in sorted(ROOT.rglob("*.html")):
+    if path.name in SKIP or any(part in {".git", "node_modules", ".github", ".vercel"} for part in path.parts):
         continue
     raw = path.read_text(encoding="utf-8", errors="replace")
     if has_noindex(raw):
@@ -108,12 +121,12 @@ for path in sorted(ROOT.glob("*.html")):
         continue
 
     old_title = clean(re.sub(r"<[^>]+>", " ", title_match.group(1)))
-    new_title = TITLE_OVERRIDES[path.name] if path.name in TITLE_OVERRIDES else title_fix(old_title)
+    new_title = title_fix(TITLE_OVERRIDES.get(path.name, old_title), path.stem)
     updated = raw[:title_match.start()] + f"<title>{html.escape(new_title, quote=False)}</title>" + raw[title_match.end():]
 
     descriptions = [m for m in meta_tags(updated) if is_description(m.group(0))]
     old_description = attr(descriptions[0].group(0), "content") if descriptions else ""
-    new_description = DESCRIPTION_OVERRIDES[path.name] if path.name in DESCRIPTION_OVERRIDES else description_fix(old_description, new_title)
+    new_description = description_fix(DESCRIPTION_OVERRIDES.get(path.name, old_description), new_title)
 
     if descriptions:
         first = descriptions[0]
@@ -162,11 +175,26 @@ for path in sorted(ROOT.glob("*.html")):
     ]:
         updated = upsert_meta_content(updated, key, value, content)
 
-    # Supply a first-party social preview image on templates that do not define one.
-    if not re.search(r"<meta\b(?=[^>]*\bproperty\s*=\s*['\"]og:image['\"])", updated, flags=re.I):
-        updated = updated.replace("</head>", '<meta property="og:image" content="https://collegedecoded.in/assets/homepage/hero.webp">\n</head>', 1)
-    if not re.search(r"<meta\b(?=[^>]*\bname\s*=\s*['\"]twitter:image['\"])", updated, flags=re.I):
-        updated = updated.replace("</head>", '<meta name="twitter:image" content="https://collegedecoded.in/assets/homepage/hero.webp">\n</head>', 1)
+    # Prefer a verified page-specific first-party image when one exists.
+    # Otherwise use the homepage hero as the safe fallback.
+    image_candidates = [
+        ROOT / "assets" / "og" / f"{path.stem}.webp",
+        ROOT / "assets" / "og" / f"{path.stem}.jpg",
+        ROOT / "assets" / "college-images" / f"{path.stem}.webp",
+        ROOT / "assets" / "college-images" / f"{path.stem}.jpg",
+        ROOT / "assets" / "colleges" / f"{path.stem}.webp",
+        ROOT / "assets" / "colleges" / f"{path.stem}.jpg",
+    ]
+    social_image = next((candidate for candidate in image_candidates if candidate.is_file()), None)
+    if social_image is None and path.stem in {"iim-ahmedabad-pgpx", "iim-ahmedabad-mba-pgpx", "iim-ahmedabad-mba"}:
+        candidate = ROOT / "assets" / "IIM Ahmedabad PGP Admission 2027-29.png"
+        if candidate.is_file():
+            social_image = candidate
+    if social_image is None:
+        social_image = ROOT / "assets" / "homepage" / "hero.webp"
+    image_url = "https://collegedecoded.in/" + social_image.relative_to(ROOT).as_posix()
+    updated = upsert_meta_content(updated, "property", "og:image", image_url)
+    updated = upsert_meta_content(updated, "name", "twitter:image", image_url)
 
     # Keep structured data synchronized in one pass. Replacing strings using
     # offsets from a pre-mutation finditer list can corrupt later tags when an
