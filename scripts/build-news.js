@@ -28,12 +28,12 @@ function injectLinks(items){
   const markerStart="<!-- COLLEGEDECODED-RELATED-NEWS:START -->";
   const markerEnd="<!-- COLLEGEDECODED-RELATED-NEWS:END -->";
   const blockRe=/<!-- COLLEGEDECODED-RELATED-NEWS:START -->[\s\S]*?<!-- COLLEGEDECODED-RELATED-NEWS:END -->/g;
-  const isIIMAPath=pathname=>/^\/iim-ahmedabad(?:-[a-z0-9-]+)?\/?$/i.test(pathname||"");
+  const isIIMAPath=pathname=>pathname==="/iim-ahmedabad"||pathname.startsWith("/iim-ahmedabad-");
 
   // IIM Ahmedabad pages intentionally end at their FAQ section. Remove legacy
   // newsroom injections and do not add new "Latest related news" blocks there.
   for(const name of fs.readdirSync(ROOT)){
-    if(!/^iim-ahmedabad(?:-[a-z0-9-]+)?\.html$/i.test(name))continue;
+    if(!name.startsWith("iim-ahmedabad")||!name.endsWith(".html"))continue;
     const file=path.join(ROOT,name);
     const html=fs.readFileSync(file,"utf8");
     const cleaned=html.replace(blockRe,"").trimEnd()+"\n";
