@@ -172,3 +172,49 @@
     line-height: 1.6;
   }
 }
+
+
+@media (max-width: 767px) {
+  .mobile-on-page {
+    display: block !important;
+    position: sticky !important;
+    top: 58px !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    z-index: 60 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 auto 10px !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: #fff;
+  }
+
+  .mobile-on-page details {
+    width: 100%;
+    border: 1px solid #dfe7f2;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(16, 42, 114, .08);
+  }
+
+  .mobile-on-page summary {
+    display: block;
+    padding: 10px 13px;
+    color: #102a72;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .mobile-on-page a {
+    display: block;
+    padding: 9px 13px;
+    border-top: 1px solid #edf1f6;
+    color: #2458d8;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
