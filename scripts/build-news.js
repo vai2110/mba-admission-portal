@@ -27,16 +27,16 @@ function injectLinks(items){
   const map=new Map();
   const markerStart="<!-- COLLEGEDECODED-RELATED-NEWS:START -->";
   const markerEnd="<!-- COLLEGEDECODED-RELATED-NEWS:END -->";
-  const blockRe=/<!-- COLLEGEDECODED-RELATED-NEWS:START -->[\\s\\S]*?<!-- COLLEGEDECODED-RELATED-NEWS:END -->/g;
-  const isIIMAPath=pathname=>/^\\/iim-ahmedabad(?:-[a-z0-9-]+)?\\/?$/i.test(pathname||"");
+  const blockRe=/<!-- COLLEGEDECODED-RELATED-NEWS:START -->[\s\S]*?<!-- COLLEGEDECODED-RELATED-NEWS:END -->/g;
+  const isIIMAPath=pathname=>/^\/iim-ahmedabad(?:-[a-z0-9-]+)?\/?$/i.test(pathname||"");
 
   // IIM Ahmedabad pages intentionally end at their FAQ section. Remove legacy
   // newsroom injections and do not add new "Latest related news" blocks there.
   for(const name of fs.readdirSync(ROOT)){
-    if(!/^iim-ahmedabad(?:-[a-z0-9-]+)?\\.html$/i.test(name))continue;
+    if(!/^iim-ahmedabad(?:-[a-z0-9-]+)?\.html$/i.test(name))continue;
     const file=path.join(ROOT,name);
-    let html=fs.readFileSync(file,"utf8");
-    const cleaned=html.replace(blockRe,"").trimEnd()+"\\n";
+    const html=fs.readFileSync(file,"utf8");
+    const cleaned=html.replace(blockRe,"").trimEnd()+"\n";
     if(cleaned!==html)fs.writeFileSync(file,cleaned);
   }
 
@@ -45,9 +45,7 @@ function injectLinks(items){
     let pathname;
     try{pathname=new URL(p.url,SITE).pathname}catch(e){continue}
     if(!pathname.startsWith("/")||pathname.startsWith("/news/")||pathname.includes("..")||isIIMAPath(pathname))continue;
-    let file=path.join(ROOT,pathname.replace(/^\\/+ /,""));
-    file=path.join(ROOT,pathname.replace(/^\\/+ /,"").replace(/^\\/+ /,""));
-    file=path.join(ROOT,pathname.replace(/^\\/+ /,""));
+    let file=path.join(ROOT,pathname.replace(/^\/+/,""));
     if(!path.extname(file))file+=".html";
     if(!fs.existsSync(file))continue;
     if(!map.has(file))map.set(file,[]);
@@ -57,7 +55,7 @@ function injectLinks(items){
     let html=fs.readFileSync(file,"utf8");
     const unique=[...new Map(arr.map(i=>[i.slug,i])).values()].sort((a,b)=>Date.parse(b.datePublished)-Date.parse(a.datePublished)).slice(0,5);
     const block=markerStart+'<section class="cd-related-news" style="margin:32px 0;padding:20px;border:1px solid #dfe7f2;border-radius:14px;background:#f5f8fc"><h2 style="font-size:21px;color:#102a72;margin:0 0 12px">Latest related news</h2><ul style="padding-left:20px">'+unique.map(i=>'<li style="margin:8px 0"><a href="/news/'+esc(i.slug)+'">'+esc(i.headline)+'</a> <span style="color:#64748b;font-size:12px">· '+esc(dateFmt(i.datePublished))+'</span></li>').join("")+'</ul><p><a href="/news">View all CollegeDecoded news →</a></p></section>'+markerEnd;
-    const re=/<!-- COLLEGEDECODED-RELATED-NEWS:START -->[\\s\\S]*?<!-- COLLEGEDECODED-RELATED-NEWS:END -->/;
+    const re=/<!-- COLLEGEDECODED-RELATED-NEWS:START -->[\s\S]*?<!-- COLLEGEDECODED-RELATED-NEWS:END -->/;
     if(re.test(html))html=html.replace(re,block);
     else if(html.includes("</body>"))html=html.replace("</body>",block+"</body>");
     else continue;
