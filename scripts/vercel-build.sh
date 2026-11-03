@@ -72,20 +72,18 @@ echo "ASSET MINIFICATION FINISHED"
 python3 -u scripts/clean_iim_ahmedabad_post_faq.py
 python3 - <<'PY'
 from pathlib import Path
-import re
 root = Path(".")
-page_re = re.compile(r"iim-ahmedabad(?:-[a-z0-9-]+)?\\.html$", re.I)
 problems = []
 for page in root.rglob("*.html"):
     rel = page.relative_to(root)
     if any(part.startswith(".") or part in {"node_modules", ".vercel"} for part in rel.parts):
         continue
-    root_page = page_re.fullmatch(page.name) is not None
-    clean_copy = page.name.lower() == "index.html" and page_re.fullmatch(page.parent.name + ".html") is not None
-    if not (root_page or clean_copy):
+    page_stem = page.stem if page.name.lower() != "index.html" else page.parent.name
+    is_iima_page = page_stem == "iim-ahmedabad" or page_stem.startswith("iim-ahmedabad-")
+    if not is_iima_page:
         continue
     html = page.read_text(encoding="utf-8", errors="replace")
-    if re.search(r'<nav\\b(?=[^>]*\\bclass\\s*=\\s*["\\'][^"\\']*\\bseo-cluster-links\\b)', html, re.I):
+    if "seo-cluster-links" in html and ("Explore related pages" in html or "Related college pages" in html):
         problems.append(str(rel) + ": related-pages navigation")
     if "COLLEGEDECODED-RELATED-NEWS:START" in html or "cd-related-news" in html:
         problems.append(str(rel) + ": related-news footer")
