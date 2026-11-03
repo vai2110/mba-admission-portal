@@ -114,9 +114,22 @@ for (const name of pages) {
     }
     // Pages without a distinct sidebar get a compact module after the hero, never a full-width news takeover.
     if (!inserted) {
-      const heroClose = /(<(?:section|div)\b[^>]*class=["'][^"']*hero[^"']*["'][^>]*>[\s\S]*?<\/(?:section|div)>)/i;
-      if (heroClose.test(html)) html = html.replace(heroClose, "$1\n" + railMarkup(true));
-      else html = html.replace("</body>", railMarkup(true) + "\n</body>");
+      // Match the complete hero SECTION, not its first nested DIV. The old
+      // section|div expression closed at </div> inside .hero-inner and placed
+      // the news rail inside the hero, where mobile sizing rules collapsed it.
+      const heroOpen = /<section\b(?=[^>]*class=["'][^"']*\bhero\b[^"']*["'])[^>]*>/i;
+      const heroMatch = heroOpen.exec(html);
+      if (heroMatch) {
+        const heroEnd = html.indexOf("</section>", heroMatch.index + heroMatch[0].length);
+        if (heroEnd !== -1) {
+          const insertAt = heroEnd + "</section>".length;
+          html = html.slice(0, insertAt) + "\n" + railMarkup(true) + html.slice(insertAt);
+        } else {
+          html = html.replace("</body>", railMarkup(true) + "\n</body>");
+        }
+      } else {
+        html = html.replace("</body>", railMarkup(true) + "\n</body>");
+      }
     }
   }
   if (html !== before) {
