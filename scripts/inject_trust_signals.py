@@ -294,6 +294,9 @@ for path in sorted(ROOT.rglob("*.html")):
     stats["pages_scanned"] += 1
     raw = path.read_text(encoding="utf-8", errors="replace")
     soup = BeautifulSoup(raw, "html.parser")
+    robots = soup.find("meta", attrs={"name": re.compile(r"^robots$", re.I)})
+    if robots and "noindex" in (robots.get("content") or "").lower():
+        continue
     before = str(soup)
     canonical = page_canonical(soup, path)
     title = page_title(soup, path)
