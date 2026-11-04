@@ -35,6 +35,9 @@ python3 scripts/repair_invalid_jsonld.py
 python3 scripts/validate_html_structure.py
 
 # Validate the final generated output, including news routes and injected links.
+# Ensure the fixed 50-URL watchlist has reciprocal parent/child links after all page generators.
+python3 scripts/ensure_50_url_parent_child_links.py
+
 python3 scripts/internal_link_audit.py
 python3 - <<'PY'
 import json
