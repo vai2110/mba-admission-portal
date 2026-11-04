@@ -1363,32 +1363,32 @@ html,body{max-width:100%;overflow-x:hidden}
 <script defer src="/assets/mobile-on-page.js?v=20261014v4"></script>
 <meta property="og:image" content="https://collegedecoded.in/assets/homepage/hero.webp">
 <meta name="twitter:image" content="https://collegedecoded.in/assets/homepage/hero.webp">
+<style id="cd-iima-pilot-navigation">
+.navbar{width:min(1180px,calc(100% - 36px));min-height:64px;gap:16px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:nowrap}
+.nav-links a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 13px;border:1px solid #dce4ee;border-radius:8px;background:#fff;color:#334155;font-size:12px;font-weight:800;white-space:nowrap;text-decoration:none}
+.nav-links a:hover{background:#eef5ff;border-color:#b9cff0;color:#174ea6}
+.nav-links a.active,.nav-links a[aria-current="page"]{background:#174ea6;border-color:#174ea6;color:#fff}
+@media(max-width:720px){
+ .navbar{width:calc(100% - 20px);min-height:56px;gap:8px;overflow:hidden}
+ .logo{font-size:18px;flex:0 0 auto}
+ .nav-links{display:flex!important;min-width:0;flex:1 1 auto;overflow-x:auto;overflow-y:hidden;gap:5px;scrollbar-width:none}
+ .nav-links::-webkit-scrollbar{display:none}
+ .nav-links a{flex:0 0 auto;min-height:32px;padding:6px 8px;font-size:10px}
+}
+@media(max-width:380px){.logo{font-size:16px}.nav-links a{padding:6px 6px;font-size:9px}}
+</style>
 </head>
 <body><!-- =====================================================
      NAVIGATION
 ===================================================== -->
-<header>
-<nav class="navbar">
-<a class="logo" href="/">
-    College<span>Decoded</span>
-</a>
+<header class="header">
+<nav class="navbar" aria-label="IIM Ahmedabad page navigation">
+<a class="logo" href="/">College<span>Decoded</span></a>
 <div class="nav-links">
-
-<a href="/colleges">
-    MBA Colleges
-</a>
-<a href="/exams">
-    Entrance Exams
-</a>
-<a href="/iim-ahmedabad">
-    Admissions
-</a>
-<a href="#">
-    Cutoffs
-</a>
-<a href="/iim-ahmedabad-placements">
-    Placements
-</a>
+<a href="/iim-ahmedabad">Overview</a>
+<a href="/iim-ahmedabad/courses-fees">Courses &amp; Fees</a>
+<a href="/iim-ahmedabad-placements" aria-current="page" class="active">Placements</a>
 </div>
 </nav>
 </header>
