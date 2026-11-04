@@ -42,13 +42,6 @@
     cdCleanSectionHash();
   }
 
-  function formatDate(value) {
-    if (!value) return 'Date unavailable';
-    var d = new Date(value + 'T00:00:00');
-    if (isNaN(d.getTime())) return 'Date unavailable';
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  }
-
   function findInsertionPoint() {
     var main = document.querySelector('main');
     if (!main) return null;
@@ -123,14 +116,11 @@
 
     var meta = document.createElement('div');
     meta.className = 'cd-editorial-author';
-    var isIimaOverview = currentPath === '/iim-ahmedabad';
     meta.innerHTML =
       '<div class="cd-editorial-avatar" aria-hidden="true">CD</div>' +
       '<div class="cd-editorial-copy">' +
         '<div class="cd-editorial-name"><a href="/collegedecoded-team">CollegeDecoded Team</a><span class="cd-editorial-verified" aria-label="Verified">✓</span></div>' +
-        (isIimaOverview
-          ? '<div class="cd-editorial-sub">Updated by CollegeDecoded Team</div>'
-          : '<div class="cd-editorial-sub">Updated by CollegeDecoded Team <span aria-hidden="true">|</span> Last updated on ' + formatDate(dateValue) + '</div>') +
+        '<div class="cd-editorial-sub">Updated by CollegeDecoded Team</div>' +
       '</div>';
 
     if (point.before) point.parent.insertBefore(meta, point.before); else point.parent.appendChild(meta);
@@ -150,38 +140,16 @@
     document.head.appendChild(style);
   }
 
-  function getSitemapDate() {
-    var current = window.location.pathname.replace(/\/$/, '');
-    fetch('/sitemap.xml', { cache: 'no-store' })
-      .then(function (res) { return res.ok ? res.text() : ''; })
-      .then(function (xml) {
-        var doc = new DOMParser().parseFromString(xml, 'application/xml');
-        var urls = Array.prototype.slice.call(doc.getElementsByTagName('url'));
-        for (var i = 0; i < urls.length; i++) {
-          var loc = urls[i].getElementsByTagName('loc')[0];
-          var lastmod = urls[i].getElementsByTagName('lastmod')[0];
-          if (!loc || !lastmod) continue;
-          var locPath = new URL(loc.textContent.trim(), window.location.origin).pathname.replace(/\/$/, '');
-          if (locPath === current) {
-            render(lastmod.textContent.trim());
-            return;
-          }
-        }
-        render(null);
-      })
-      .catch(function () { render(null); });
-  }
-
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       cleanUnwantedCusatLink(document);
       removeVisibleEscapedNewlines();
-      getSitemapDate();
+      render();
     });
   } else {
     cleanUnwantedCusatLink(document);
     removeVisibleEscapedNewlines();
-    getSitemapDate();
+    render();
   }
 
   new MutationObserver(function () {
