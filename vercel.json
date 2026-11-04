@@ -470,16 +470,6 @@
       "permanent": true
     },
     {
-      "source": "/iim-ahmedabad/courses-fees",
-      "destination": "/iim-ahmedabad-courses-fees",
-      "permanent": true
-    },
-    {
-      "source": "/iim-ahmedabad/courses-fees.html",
-      "destination": "/iim-ahmedabad-courses-fees",
-      "permanent": true
-    },
-    {
       "source": "/iim-ahmedabad/placements",
       "destination": "/iim-ahmedabad-placements",
       "permanent": true
@@ -492,6 +482,21 @@
     {
       "source": "/iim-ahmedabad-mba-pgpx.html",
       "destination": "/iim-ahmedabad-pgpx",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-courses-fees",
+      "destination": "/iim-ahmedabad/courses-fees",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad-courses-fees.html",
+      "destination": "/iim-ahmedabad/courses-fees",
+      "permanent": true
+    },
+    {
+      "source": "/iim-ahmedabad/courses-fees.html",
+      "destination": "/iim-ahmedabad/courses-fees",
       "permanent": true
     }
   ]
