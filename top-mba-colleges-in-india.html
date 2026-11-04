@@ -152,7 +152,7 @@ document.addEventListener("click",function(e){const a=e.target.closest('a[href^=
 const rows=document.getElementById('rows'),count=document.getElementById('count'),toggle=document.getElementById('toggle-all');
 const data=Array.from(rows.querySelectorAll('tr')).map(tr=>{
   const cells=Array.from(tr.cells);
-  const rankMatch=(cells[0]?.textContent||'').match(/#(\\d+)/);
+  const rankMatch=(cells[0]?.textContent||'').match(/#(\d+)/);
   return {
     rank:rankMatch?Number(rankMatch[1]):null,
     name:(cells[1]?.textContent||'').trim(),
