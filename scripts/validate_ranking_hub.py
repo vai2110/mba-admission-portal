@@ -79,8 +79,8 @@ for number, row in enumerate(rows, start=1):
 
 if ranked < 80:
     fail(f"expected at least 80 NIRF-ranked institutions, found {ranked}")
-if additional < 10:
-    fail(f"expected additional profiles to be clearly labelled, found {additional}")
+if additional != 0:
+    fail(f"unranked/Additional profiles must be excluded from the NIRF ranked table, found {additional}")
 if rank_72 is None or rank_72[0] != "Institute of Management Technology, Hyderabad":
     fail("rank 72 must identify IMT Hyderabad from the source ranking data")
 if rank_72[1] is not None:
@@ -94,8 +94,8 @@ if "Array.from(rows.querySelectorAll('tr'))" not in raw:
     fail("client-side filters are not derived from the server-rendered rows")
 if "if(!Number.isFinite(n))return false" not in raw:
     fail("rank filters must exclude additional/unranked profiles")
-if "(c.rank?'#'+c.rank:'Additional')" not in raw:
-    fail("client-side rendering does not preserve the Additional label")
+if "(c.rank?'#'+c.rank:'Additional')" in raw or "'Additional'" in raw:
+    fail("client-side rendering must not generate an Additional rank label")
 
 print(
     "RANKING HUB VALIDATION PASSED:",
