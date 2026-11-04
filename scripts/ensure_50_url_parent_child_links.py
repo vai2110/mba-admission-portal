@@ -159,9 +159,11 @@ def main():
                     changed_pages.append(source)
                 continue
             links = []
-            if source != parent:
+            if source != parent and parent not in current:
                 links.append(f'<a class="cd-parent-label" href="/{parent}">{label(parent)}</a>')
             for slug in missing:
+                if slug == parent:
+                    continue
                 links.append(f'<a href="/{slug}">{label(slug)}</a>')
             block = (
                 '<nav id="cd-50-url-parent-links" class="cd-50-url-parent-links" '
