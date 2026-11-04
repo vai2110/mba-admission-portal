@@ -493,6 +493,16 @@
       "source": "/iim-ahmedabad-mba-pgpx.html",
       "destination": "/iim-ahmedabad-pgpx",
       "permanent": true
+    },
+    {
+      "source": "/jmi-placements.html",
+      "destination": "/jmi-placements",
+      "permanent": true
+    },
+    {
+      "source": "/cusat-fees-scholarships-2026.html",
+      "destination": "/cusat-fees-scholarships-2026",
+      "permanent": true
     }
   ]
 }
