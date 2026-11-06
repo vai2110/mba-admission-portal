@@ -40,17 +40,22 @@ jobs:
           if [ "$status" -ne 0 ]; then exit "$status"; fi
           echo "frozen=false" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v4
+        if: steps.freeze.outputs.frozen != 'true'
         with:
           node-version: 20
       - name: Check generator syntax
+        if: steps.freeze.outputs.frozen != 'true'
         run: |
           node --check scripts/build-news.js
           python3 -m py_compile scripts/generate_college_guides_hub.py
       - name: Generate crawlable college guide directory
+        if: steps.freeze.outputs.frozen != 'true'
         run: python3 scripts/generate_college_guides_hub.py
       - name: Generate hub and sitemap from registry
+        if: steps.freeze.outputs.frozen != 'true'
         run: node scripts/build-news.js
       - name: Validate generated SEO assets
+        if: steps.freeze.outputs.frozen != 'true'
         run: |
           test -s news/index.html
           test -s news-sitemap.xml
