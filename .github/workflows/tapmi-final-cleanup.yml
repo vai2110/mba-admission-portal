@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Apply final TAPMI navigation and upcoming-cycle dates
         run: |
           python - <<'PY'

@@ -3,6 +3,7 @@ name: Validate CollegeDecoded News Build
 on:
   pull_request:
     paths:
+      - '.github/workflows/**'
       - 'data/news.json'
       - 'config/news-schema.json'
       - 'scripts/build-news.js'
@@ -12,6 +13,7 @@ on:
   push:
     branches: [main]
     paths:
+      - '.github/workflows/**'
       - 'data/news.json'
       - 'config/news-schema.json'
       - 'scripts/build-news.js'
@@ -24,18 +26,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce repository content freeze
+        id: freeze
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/check_automation_freeze.py
+          status=$?
+          set -e
+          if [ "$status" -eq 78 ]; then
+            echo "frozen=true" >> "$GITHUB_OUTPUT"
+            echo "SEO freeze active; skipping generated news/hub validation steps."
+            exit 0
+          fi
+          if [ "$status" -ne 0 ]; then exit "$status"; fi
+          echo "frozen=false" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v4
+        if: steps.freeze.outputs.frozen != 'true'
         with:
           node-version: 20
       - name: Check generator syntax
+        if: steps.freeze.outputs.frozen != 'true'
         run: |
           node --check scripts/build-news.js
           python3 -m py_compile scripts/generate_college_guides_hub.py
       - name: Generate crawlable college guide directory
+        if: steps.freeze.outputs.frozen != 'true'
         run: python3 scripts/generate_college_guides_hub.py
       - name: Generate hub and sitemap from registry
+        if: steps.freeze.outputs.frozen != 'true'
         run: node scripts/build-news.js
       - name: Validate generated SEO assets
+        if: steps.freeze.outputs.frozen != 'true'
         run: |
           test -s news/index.html
           test -s news-sitemap.xml

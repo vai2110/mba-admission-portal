@@ -22,6 +22,8 @@ from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
+# Refuse unattended content generation while the SEO recovery freeze is active.
+subprocess.run(["python3", str(ROOT / "scripts" / "check_automation_freeze.py")], check=True)
 MASTER = ROOT / "data" / "college-content-master.csv"
 OVERRIDES = ROOT / "data" / "college-content-overrides.csv"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")

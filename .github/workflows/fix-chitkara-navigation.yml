@@ -18,6 +18,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Add shared UI script to all Chitkara pages
         run: |
           python - <<'PY'

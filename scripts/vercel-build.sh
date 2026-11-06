@@ -1,6 +1,14 @@
-# Production build entry point; keep this script deterministic.
 #!/usr/bin/env bash
 set -e
+# Freeze mode deploys checked-in static HTML without running page generators or repairers.
+FREEZE_STATUS=0
+python3 scripts/check_automation_freeze.py || FREEZE_STATUS=$?
+if [ "$FREEZE_STATUS" -eq 78 ]; then
+  echo "SEO RECOVERY FREEZE: skipping all build-time page mutations; deploying checked-in files unchanged."
+  exit 0
+elif [ "$FREEZE_STATUS" -ne 0 ]; then
+  exit "$FREEZE_STATUS"
+fi
 python3 scripts/repair_malformed_seo_head.py
 node scripts/normalize-clean-urls.js
 node scripts/validate-college-data-consistency.js
