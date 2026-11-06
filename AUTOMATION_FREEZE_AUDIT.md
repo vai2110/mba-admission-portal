@@ -142,4 +142,4 @@ The shared guard is called directly by content-agent versions v1–v8, both inde
 
 ## Verification limitation
 
-The GitHub source inventory was queried against the current default-branch tree and code search. The repository checkout/build runtime is not available inside this GitHub-only editing session, so the full `scripts/vercel-build.sh` has not yet been executed here. A PR preview/build must confirm that the shell and workflow YAML parse and that the frozen build produces zero HTML-file diffs before merge.
+The GitHub source inventory was queried against the current default-branch tree and code search. The Sitewide SEO Preview Build executed `scripts/vercel-build.sh`; the freeze guard stopped before generators and repairers, and the explicit `git diff --quiet -- '*.html'` assertion passed. The news-build validation workflow also completed successfully while skipping generator steps. The full generator pipeline is intentionally not executed while freeze is on. Vercel preview status checks currently report the account build-rate limit (`upgradeToPro=build-rate-limit`), not an application build error.
