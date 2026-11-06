@@ -1,0 +1,6 @@
+{
+  "freeze_content_automation": true,
+  "freeze_page_mutations": true,
+  "reason": "Controlled SEO recovery; prevent unattended content rewrites and build-time page mutations.",
+  "updated_at": "2026-11-06"
+}

@@ -22,6 +22,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Apply visual template
         run: python scripts/apply-popular-location-template.py
 

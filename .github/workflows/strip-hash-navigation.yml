@@ -20,6 +20,8 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Add no-hash navigation to root live pages
         shell: python
         run: |

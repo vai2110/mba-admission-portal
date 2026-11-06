@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+from pathlib import Path as _FreezePath
+import json as _FreezeJson
+_freeze_cfg = _FreezePath(__file__).resolve().parents[1] / "config" / "freeze.json"
+_freeze_state = _FreezeJson.loads(_freeze_cfg.read_text(encoding="utf-8")) if _freeze_cfg.exists() else {}
+if _freeze_state.get("freeze_content_automation") or _freeze_state.get("freeze_page_mutations"):
+    raise SystemExit("AUTOMATION FROZEN by config/freeze.json")
+
 """Independent MBA college content production agent v2."""
 import csv,json,os,re,subprocess,time
 from pathlib import Path

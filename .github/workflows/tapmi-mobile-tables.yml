@@ -10,6 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Make all TAPMI tables responsive
         run: |
           python3 - <<'PY'

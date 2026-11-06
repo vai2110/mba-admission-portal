@@ -17,6 +17,8 @@ jobs:
           fetch-depth: 0
           ref: main
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Repair agent and enforce locked production skills
         run: |
           python - <<'PY'

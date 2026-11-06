@@ -10,6 +10,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Apply primary keyword titles and H1s
         run: |
           python - <<'PY'
