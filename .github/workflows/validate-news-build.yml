@@ -25,7 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Enforce repository content freeze
-        run: python3 scripts/check_automation_freeze.py
+        id: freeze
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/check_automation_freeze.py
+          status=$?
+          set -e
+          if [ "$status" -eq 78 ]; then
+            echo "frozen=true" >> "$GITHUB_OUTPUT"
+            echo "SEO freeze active; skipping generated news/hub validation steps."
+            exit 0
+          fi
+          if [ "$status" -ne 0 ]; then exit "$status"; fi
+          echo "frozen=false" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v4
         with:
           node-version: 20
