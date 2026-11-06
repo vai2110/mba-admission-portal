@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - uses: actions/setup-node@v4
         with:
           node-version: 20
