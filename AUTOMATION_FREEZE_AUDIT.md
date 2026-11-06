@@ -113,7 +113,7 @@ The repository has 52 workflow files declaring `permissions: contents: write`. A
 - `.github/workflows/iim-amritsar-placement-overview-fix.yml`
 - `.github/workflows/controlled-iit-kanpur-test.yml`
 
-Three of the 47 push-capable workflows do not appear in the `contents: write` permission search: `imi-delhi-mobile-tables.yml`, `tapmi-mobile-tables.yml`, and `update-jain-pages.yml`. They are guarded as well.
+Three of the 47 push-capable workflows do not appear in the `contents: write` permission search: `imi-delhi-mobile-tables.yml`, `tapmi-mobile-tables.yml`, and `update-jain-pages.yml`. They are guarded as well. The non-publishing `validate-news-build.yml` workflow is also guarded because it runs the hub and news generators in its CI workspace; the GitHub Pages deploy workflow is guarded too.
 
 ## Page-writing scripts and build stages
 
