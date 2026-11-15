@@ -331,15 +331,12 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
    section.hidden=visible===0;
   });
   noResults.style.display=total?'none':'block';
-  resultNote.textContent=total+' matching college'+(total===1?'':'s')+' across the fee ranges.';
-  viewAll.textContent='Clear search';
  }
  decorateCards();
  document.querySelectorAll('.fees-budget,.fees-tab').forEach(btn=>btn.addEventListener('click',()=>{
   search.value='';selectRange(btn.dataset.range,true);
  }));
  search.addEventListener('input',runSearch);
- viewAll.addEventListener('click',e=>{if(search.value){e.preventDefault();search.value='';runSearch();}});
  document.getElementById('feesMenu').addEventListener('click',function(){
   const nav=document.getElementById('feesNavLinks');const open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open));
  });
