@@ -101,6 +101,8 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 .fees-framework-item strong{display:block;color:#183b83;font-size:12px;line-height:1.3}
 .fees-framework-item small{display:block;color:#71809c;font-size:10px;line-height:1.35;margin-top:4px}
 .fees-method-note{font-size:11px;color:#61708d;background:#fff;border-radius:9px;padding:10px 12px;margin:15px 0 0}
+.fees-weight{display:block;color:#f36a16;font-size:16px;line-height:1.2;margin-top:5px}
+.fees-framework-item small{min-height:27px}
 .fees-cost-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
 .fees-cost-card{background:#fff;border:1px solid #dce7f6;border-radius:13px;padding:16px}
 .fees-cost-card strong{display:block;color:#173d85;font-size:14px;margin-bottom:5px}
@@ -165,14 +167,14 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 <button class="fees-budget" data-range="20-plus" type="button" aria-pressed="false"><span class="fees-budget-icon">▥</span><span><strong>₹20 Lakh+</strong><small>12 colleges</small></span><span class="fees-budget-arrow">→</span></button>
 </div></section>
 <section class="fees-results" id="college-results" aria-labelledby="college-results-title">
-<div class="fees-section-heading"><h2 id="college-results-title">Explore MBA Colleges by Fee Range</h2></div>
+<div class="fees-section-heading"><h2 id="college-results-title">Explore MBA Colleges Within Your Budget</h2></div>
 <div class="fees-tabs" role="tablist" aria-label="Filter colleges by budget">
 <button class="fees-tab active" data-range="under-5" role="tab" aria-selected="true" type="button">Under ₹5 Lakh</button>
 <button class="fees-tab" data-range="5-10" role="tab" aria-selected="false" type="button">₹5–10 Lakh</button>
 <button class="fees-tab" data-range="10-20" role="tab" aria-selected="false" type="button">₹10–20 Lakh</button>
 <button class="fees-tab" data-range="20-plus" role="tab" aria-selected="false" type="button">₹20 Lakh+</button>
 </div>
-<div class="fees-results-note"><span id="feesResultNote">Browse colleges currently listed in this fee band. Verify the latest programme fee before applying.</span><a id="viewAllLink" href="#college-results">View all (4) →</a></div>
+<div class="fees-results-note"><span id="feesResultNote" aria-live="polite">Browse colleges in your selected budget range. Check the latest programme fee before applying.</span><a id="viewAllLink" href="#college-results">View all (4) →</a></div>
 <div class="fees-no-results" id="feesNoResults">No colleges match that search. Try a different college name or location.</div>
 <section class="fee-section" data-fee-section="" id="under-5">
 <span class="band-label">4 COLLEGES</span><h2>Under ₹5 Lakh</h2>
@@ -241,16 +243,16 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 </section>
 </section>
 <section class="fees-info-panel" aria-labelledby="fees-framework-title">
-<h2 id="fees-framework-title">How should you compare these colleges?</h2>
-<p>Fee range is only the starting point. Consider these factors before shortlisting.</p>
+<h2 id="fees-framework-title">How CollegeDecoded plans to shortlist colleges</h2>
+<p>Our proposed recommendation framework balances student demand, career outcomes, affordability and institutional credibility.</p>
 <div class="fees-framework">
-<div class="fees-framework-item"><span class="fees-framework-icon">⌕</span><strong>Student demand</strong><small>Search interest and engagement</small></div>
-<div class="fees-framework-item"><span class="fees-framework-icon">♜</span><strong>Placements</strong><small>Median, average and role quality</small></div>
-<div class="fees-framework-item"><span class="fees-framework-icon">₹</span><strong>Fee affordability</strong><small>Total programme cost</small></div>
-<div class="fees-framework-item"><span class="fees-framework-icon">✧</span><strong>Reputation</strong><small>NIRF and accreditation</small></div>
-<div class="fees-framework-item"><span class="fees-framework-icon">♧</span><strong>Student engagement</strong><small>On-page interest and enquiries</small></div>
+<div class="fees-framework-item"><span class="fees-framework-icon">⌕</span><strong>Student demand</strong><small>Search interest & engagement</small><b class="fees-weight">25%</b></div>
+<div class="fees-framework-item"><span class="fees-framework-icon">♜</span><strong>Placements</strong><small>Median, average & role quality</small><b class="fees-weight">25%</b></div>
+<div class="fees-framework-item"><span class="fees-framework-icon">₹</span><strong>Fee affordability</strong><small>Total programme cost</small><b class="fees-weight">20%</b></div>
+<div class="fees-framework-item"><span class="fees-framework-icon">✧</span><strong>Reputation</strong><small>NIRF & accreditation</small><b class="fees-weight">15%</b></div>
+<div class="fees-framework-item"><span class="fees-framework-icon">♧</span><strong>Student engagement</strong><small>On-page interest & enquiries</small><b class="fees-weight">15%</b></div>
 </div>
-<p class="fees-method-note"><strong>Transparency note:</strong> This is the proposed CollegeDecoded comparison framework. We are not publishing a ranked recommendation score yet because comparable, verified data is not currently available for every college.</p>
+<p class="fees-method-note"><strong>How to read this:</strong> These are proposed scoring weights, not live college scores. Colleges are not labelled or ranked as “recommended” until comparable, current and verifiable data is available. Missing metrics will not be treated as zero.</p>
 </section>
 <section aria-labelledby="total-cost-title">
 <div class="fees-section-heading"><h2 id="total-cost-title">Don't compare tuition alone</h2></div>
@@ -289,9 +291,9 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
     const mark=document.createElement('div');mark.className='college-mark';mark.setAttribute('aria-hidden','true');mark.textContent=initials;
     const copy=document.createElement('div');copy.className='college-card-copy';
     card.insertBefore(head,heading);head.append(mark,copy);copy.append(heading,location);
-    const band=document.createElement('span');band.className='college-fee-band';band.textContent='Fee band: '+section.querySelector('h2').textContent.trim();
+    const band=document.createElement('span');band.className='college-fee-band';band.textContent='Budget range: '+section.querySelector('h2').textContent.trim();
     card.insertBefore(band,link);
-    link.textContent='View fees, admission & placements';
+    link.textContent='Explore fees, admission & placements';
     card.dataset.searchText=(heading.textContent+' '+location.textContent).toLowerCase();
    });
   });
