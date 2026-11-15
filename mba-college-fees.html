@@ -166,7 +166,7 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 <label class="fees-search"><span aria-hidden="true">⌕</span><input id="collegeSearch" type="search" placeholder="Search college (e.g., IIM Ahmedabad, JMI)" autocomplete="off" aria-label="Search MBA colleges"></label>
 </div>
 <div class="fees-hero-art" aria-label="Explore MBA colleges by budget">
-<img class="boy-art" src="/assets/mba-fees-student-boy.webp" alt="Student exploring MBA college options" fetchpriority="high" onerror="this.onerror=null;this.src='/assets/mba-fees-student-girl.webp';">
+<img class="boy-art" src="/assets/mba-fees-student-girl.webp" alt="Student exploring MBA college options" fetchpriority="high">
 <img class="girl-art" src="/assets/mba-fees-student-girl.webp" alt="Student exploring MBA college options" fetchpriority="high">
 <div class="fees-hero-proof fees-hero-proof-top"><span class="fees-proof-icon">₹</span><span><strong>Find your fee fit</strong><small>Compare total programme costs</small></span></div>
 <div class="fees-hero-proof fees-hero-proof-bottom"><span class="fees-proof-check">✓</span><span><strong>Compare with confidence</strong><small>Fees, placements & reputation</small></span></div>
@@ -183,17 +183,9 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 <button class="fees-budget" data-range="20-plus" type="button" aria-pressed="false"><span class="fees-budget-icon">▥</span><span><strong>₹20 Lakh+</strong></span><span class="fees-budget-arrow">→</span></button>
 </div></section>
 <section class="fees-results" id="college-results" aria-label="MBA colleges by selected budget">
-<div class="fees-tabs" role="tablist" aria-label="Filter colleges by budget">
-<button class="fees-tab active" data-range="under-5" role="tab" aria-selected="true" type="button">Under ₹5 Lakh</button>
-<button class="fees-tab" data-range="5-10" role="tab" aria-selected="false" type="button">₹5–10 Lakh</button>
-<button class="fees-tab" data-range="10-20" role="tab" aria-selected="false" type="button">₹10–20 Lakh</button>
-<button class="fees-tab" data-range="20-plus" role="tab" aria-selected="false" type="button">₹20 Lakh+</button>
-</div>
-<div class="fees-results-note"><span id="feesResultNote" aria-live="polite">Compare programme fees and explore each college before shortlisting.</span></div>
+
 <div class="fees-no-results" id="feesNoResults">No colleges match that search. Try a different college name or location.</div>
 <section class="fee-section" data-fee-section="" id="under-5">
-<h2>Under ₹5 Lakh</h2>
-<p>Explore colleges with programme fees within or around the sub-₹5 lakh range.</p>
 <div class="college-list">
 <article class="college-item"><h3>Banaras Hindu University</h3><p>Varanasi, Uttar Pradesh</p><a href="/banaras-hindu-university">Explore College →</a></article>
 <article class="college-item"><h3>Aligarh Muslim University</h3><p>Aligarh, Uttar Pradesh</p><a href="/amu-aligarh">Explore College →</a></article>
@@ -202,8 +194,6 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 </div>
 </section>
 <section class="fee-section" data-fee-section="" hidden="" id="5-10">
-<h2>₹5–10 Lakh</h2>
-<p>Explore colleges with programme fees in this range and compare their admission options.</p>
 <div class="college-list">
 <article class="college-item"><h3>IIT Bombay — SJMSOM</h3><p>Mumbai, Maharashtra</p><a href="/iit-bombay">Explore College →</a></article>
 <article class="college-item"><h3>IIT Kanpur — DoMS</h3><p>Kanpur, Uttar Pradesh</p><a href="https://collegedecoded.in/iit-kanpur-management-sciences-m-tech">Explore College →</a></article>
@@ -216,8 +206,6 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 </div>
 </section>
 <section class="fee-section" data-fee-section="" hidden="" id="10-20">
-<h2>₹10–20 Lakh</h2>
-<p>Explore colleges with programme fees generally within the ₹10–20 lakh range.</p>
 <div class="college-list">
 <article class="college-item"><h3>IIT Delhi — DMS</h3><p>New Delhi, Delhi · MBA fee currently listed at ₹12 lakh for the full-time programme.</p><a href="/iit-delhi-dms">Explore College →</a></article>
 <article class="college-item"><h3>IIT Madras — DoMS</h3><p>Chennai, Tamil Nadu · Current published fee structure places the programme in this band.</p><a href="/iit-madras">Explore College →</a></article>
@@ -239,8 +227,6 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 </div>
 </section>
 <section class="fee-section" data-fee-section="" hidden="" id="20-plus">
-<h2>₹20 Lakh+</h2>
-<p>Explore premium MBA programmes where the published programme cost is generally ₹20 lakh or higher.</p>
 <div class="college-list">
 <article class="college-item"><h3>IIM Ahmedabad</h3><p>Ahmedabad, Gujarat</p><a href="/iim-ahmedabad">Explore College →</a></article>
 <article class="college-item"><h3>IIM Bangalore</h3><p>Bengaluru, Karnataka</p><a href="/iim-bangalore">Explore College →</a></article>
@@ -288,7 +274,7 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
 <footer class="fees-footer"><div class="fees-wrap">CollegeDecoded · <a href="/">Back to homepage</a></div></footer>
 <script>
 (function(){
- const rangeButtons=[...document.querySelectorAll('.fees-budget,.fees-tab')];
+ const rangeButtons=[...document.querySelectorAll('.fees-budget')];
  const sections=[...document.querySelectorAll('[data-fee-section]')];
  const search=document.getElementById('collegeSearch');
  const noResults=document.getElementById('feesNoResults');
@@ -304,8 +290,6 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
     const mark=document.createElement('div');mark.className='college-mark';mark.setAttribute('aria-hidden','true');mark.textContent=initials;
     const copy=document.createElement('div');copy.className='college-card-copy';
     card.insertBefore(head,heading);head.append(mark,copy);copy.append(heading,location);
-    const band=document.createElement('span');band.className='college-fee-band';band.textContent='Budget range: '+section.querySelector('h2').textContent.trim();
-    card.insertBefore(band,link);
     link.textContent='Explore fees, admission & placements';
     card.dataset.searchText=(heading.textContent+' '+location.textContent).toLowerCase();
    });
@@ -313,10 +297,10 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
  }
  function selectRange(range,scroll){
   activeRange=range;
-  document.querySelectorAll('.fees-budget,.fees-tab').forEach(btn=>{
+  document.querySelectorAll('.fees-budget').forEach(btn=>{
    const active=btn.dataset.range===range;
    btn.classList.toggle('active',active);
-   btn.setAttribute(btn.classList.contains('fees-tab')?'aria-selected':'aria-pressed',String(active));
+   btn.setAttribute('aria-pressed',String(active));
   });
   sections.forEach(section=>section.hidden=section.id!==range);
   if(scroll)document.getElementById('college-results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -333,7 +317,7 @@ body.fees-page{margin:0;background:#f7f9fd;color:#10265b;font:15px/1.6 Inter,Ari
   noResults.style.display=total?'none':'block';
  }
  decorateCards();
- document.querySelectorAll('.fees-budget,.fees-tab').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.fees-budget').forEach(btn=>btn.addEventListener('click',()=>{
   search.value='';selectRange(btn.dataset.range,true);
  }));
  search.addEventListener('input',runSearch);
