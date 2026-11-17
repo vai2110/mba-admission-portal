@@ -1728,6 +1728,8 @@ function renderColleges(list) {
             const dedicatedPages = {
                 "indian institute of management ahmedabad": "./iim-ahmedabad.html",
                 "iim ahmedabad": "./iim-ahmedabad.html",
+                "indian institute of technology roorkee": "./indian-institute-of-technology-roorkee.html",
+                "iit roorkee": "./indian-institute-of-technology-roorkee.html",
 
                 "indian institute of management bangalore": "./iim-bangalore.html",
                 "iim bangalore": "./iim-bangalore.html",
@@ -1762,9 +1764,11 @@ function renderColleges(list) {
             if (dedicatedPages[normalizedCollegeName]) {
                 profileLink = dedicatedPages[normalizedCollegeName];
             } else if (slug) {
-                profileLink =
-                    "college.html?college=" +
-                    encodeURIComponent(slug);
+                /* Never route an unknown college slug through college.html:
+                   that legacy file contains IIM Ahmedabad content and can
+                   mislabel every college as IIMA. Keep unsupported profiles
+                   on the directory until a verified dedicated page exists. */
+                profileLink = "/colleges";
             }
 
 
