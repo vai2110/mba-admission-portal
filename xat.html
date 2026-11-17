@@ -149,6 +149,44 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 .dates-table-wrapper table.dates-table th:nth-child(3),.dates-table-wrapper table.dates-table td:nth-child(3){width:23%;text-align:center}
 .college-grid{grid-template-columns:1fr}
 }
+
+/* XAT 2027 branded navigation and hero refresh */
+.site-header{background:#fff;border-bottom:1px solid #e8eef7;position:sticky;top:0;z-index:1000;box-shadow:0 4px 18px rgba(20,48,91,.06)}
+.site-nav{max-width:1440px;min-height:88px;margin:0 auto;padding:12px clamp(22px,4vw,72px);display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand-logo{display:inline-flex;align-items:center;gap:12px;white-space:nowrap;color:#102a43;font-size:clamp(23px,2.35vw,34px);font-weight:850;letter-spacing:-1.15px;line-height:1}
+.brand-logo>span:last-child>span{color:#2563eb}
+.brand-mark{width:38px;height:30px;display:inline-grid;place-items:center;color:#fff;background:linear-gradient(145deg,#ff9d18 0 48%,#1260dc 49%);clip-path:polygon(50% 0,100% 33%,50% 68%,0 33%);font-size:0;position:relative}
+.brand-mark:after{content:"";position:absolute;width:23px;height:7px;background:#fff;bottom:1px;left:8px;clip-path:polygon(0 0,100% 0,85% 100%,15% 100%)}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:clamp(22px,4.2vw,66px)}
+.nav-links a{font-size:17px;font-weight:750;color:#0d214d;padding:10px 0;white-space:nowrap;transition:color .18s ease}
+.nav-links a:hover,.nav-links a:focus-visible{color:#2563eb}
+.xat-hero{position:relative;overflow:hidden;color:#102a43;padding:44px clamp(22px,4vw,72px) 54px;background:radial-gradient(ellipse at 82% 36%,rgba(174,215,255,.65),transparent 42%),linear-gradient(112deg,#fbfdff 0%,#eff7ff 48%,#dceeff 100%)}
+.xat-hero:before{content:"";position:absolute;left:-8%;right:-8%;bottom:-150px;height:235px;background:linear-gradient(12deg,#d8edff 0 42%,rgba(255,255,255,.5) 43% 100%);border-radius:50% 50% 0 0;pointer-events:none}
+.xat-hero-inner{position:relative;z-index:1;max-width:1440px}
+.xat-hero .breadcrumb{font-size:15px;color:#18366b;margin-bottom:42px}
+.xat-hero .breadcrumb a{color:#18366b}
+.xat-hero-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(390px,.82fr);align-items:center;gap:clamp(28px,4vw,66px)}
+.xat-hero-copy{min-width:0;padding:0 0 28px}
+.xat-hero h1{font-size:clamp(39px,4.1vw,64px);font-weight:850;letter-spacing:-1.8px;line-height:1.12;color:#1458d5;margin:0 0 42px;max-width:940px}
+.xat-hero h1 span{color:#10234e}
+.xat-hero-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:940px}
+.xat-fact{min-height:104px;display:flex;align-items:center;gap:13px;padding:17px 16px;background:rgba(255,255,255,.9);border:1px solid #d8e5f7;border-radius:16px;box-shadow:0 5px 18px rgba(35,76,132,.045)}
+.fact-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;color:#1458e7;font-size:31px;font-weight:800;line-height:1}
+.fact-copy{display:flex;flex-direction:column;min-width:0;gap:4px}
+.fact-copy small{font-size:13px;color:#233e69;line-height:1.3}
+.fact-copy strong{font-size:clamp(14px,1.25vw,19px);line-height:1.25;color:#10234e;font-weight:800}
+.xat-campus-visual{position:relative;min-width:0;margin:0;padding:0 0 22px 0}
+.xat-campus-photo{height:clamp(310px,32vw,460px);overflow:hidden;border-radius:46% 14% 30% 20% / 35% 18% 35% 22%;box-shadow:0 18px 40px rgba(26,69,123,.14);background:#d7e9f8;position:relative}
+.xat-campus-photo:after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(255,255,255,.65);pointer-events:none}
+.xat-campus-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 48%}
+.xat-campus-visual:after{content:"";position:absolute;z-index:-1;left:5%;right:-4%;bottom:12px;height:32px;background:#ffb13b;border-radius:50%;transform:rotate(-8deg)}
+.xat-mark{position:absolute;z-index:2;top:-18px;right:7%;min-width:180px;padding:17px 25px 14px;background:#fff;border-radius:25px;box-shadow:0 12px 30px rgba(18,55,109,.16);text-align:center;transform:rotate(2deg)}
+.xat-mark strong{display:block;color:#155bd5;font-size:42px;line-height:1;font-weight:900;letter-spacing:1px}
+.xat-mark span{display:block;color:#174a9e;font-size:13px;font-weight:700;margin-top:5px}
+.xat-campus-visual figcaption{position:absolute;right:6%;bottom:0;font-size:10px;color:#425b7b;background:rgba(255,255,255,.78);padding:3px 7px;border-radius:5px}
+.xat-campus-visual figcaption a{text-decoration:underline}
+@media(max-width:1050px){.xat-hero-grid{grid-template-columns:minmax(0,1fr) minmax(300px,.8fr);gap:25px}.xat-hero-facts{grid-template-columns:1fr}.xat-fact{min-height:78px}.xat-hero h1{margin-bottom:27px}.xat-campus-photo{height:350px}}
+@media(max-width:700px){.site-nav{min-height:68px;padding:10px 14px;gap:12px;flex-wrap:wrap}.brand-logo{font-size:22px;gap:8px}.brand-mark{width:29px;height:24px}.nav-links{width:100%;justify-content:space-between;gap:8px;border-top:1px solid #edf1f7;padding-top:5px}.nav-links a{font-size:13px;padding:5px 0}.xat-hero{padding:24px 16px 36px}.xat-hero .breadcrumb{font-size:12px;margin-bottom:24px}.xat-hero-grid{display:flex;flex-direction:column;align-items:stretch;gap:20px}.xat-hero-copy{padding:0}.xat-hero h1{font-size:36px;letter-spacing:-1px;line-height:1.13;margin-bottom:22px}.xat-hero-facts{grid-template-columns:1fr;gap:9px}.xat-fact{min-height:72px;padding:12px 14px;border-radius:13px}.fact-icon{font-size:27px}.fact-copy small{font-size:12px}.fact-copy strong{font-size:16px}.xat-campus-visual{width:100%;padding:10px 0 23px}.xat-campus-photo{height:235px;border-radius:42% 13% 24% 17% / 28% 16% 27% 18%}.xat-mark{top:-2px;right:4%;min-width:126px;padding:10px 15px;border-radius:16px}.xat-mark strong{font-size:29px}.xat-mark span{font-size:10px}.xat-campus-visual figcaption{font-size:8px;right:3%;bottom:3px}.xat-hero:before{bottom:-170px}}
 </style>
 <meta property="og:title" content="XAT 2027: Exam Date, Eligibility, Pattern &amp; Syllabus"/>
 <meta property="og:description" content="Explore XAT 2027 exam date, eligibility, 95-question pattern, revised marking scheme, syllabus, registration, fees, XLRI selection and accepting colleges."/><meta property="og:url" content="https://collegedecoded.in/xat"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_IN"/>
@@ -162,30 +200,34 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 <!-- =========================
      HEADER
 ========================= -->
-<header><div class="navbar"><a class="logo" href="/">College<span>Decoded</span></a></div></header>
+<header class="site-header"><nav class="navbar site-nav" aria-label="Main navigation">
+<a class="brand-logo" href="/" aria-label="CollegeDecoded homepage"><span class="brand-mark" aria-hidden="true">✦</span><span>College<span>Decoded</span></span></a>
+<div class="nav-links"><a href="/">Home</a><a href="/top-mba-colleges-in-india">MBA Colleges</a><a href="/mba-colleges-by-exam">MBA Exams</a></div>
+</nav></header>
 <!-- =========================
      HERO
 ========================= -->
-<section class="hero"><div class="hero-inner">
-<div class="breadcrumb">Home › Entrance Exams › XAT</div>
-<div class="hero-compact">
-<h1>XAT <span>2027</span></h1>
-<div class="hero-subtitle">Xavier Aptitude Test for XLRI &amp; XAT-accepting MBA colleges</div>
-<p class="hero-description">XAT 2027 is scheduled for <strong>January 3, 2027</strong>. This guide covers XAT 2027 eligibility, exam pattern, revised marking scheme, syllabus, registration, fees, XLRI selection and accepting colleges.</p>
-<div class="hero-pills"><span>3 Jan 2027 · Exam</span><span>Registration open</span><span>XLRI Jamshedpur · Conducting body</span></div>
-<a class="register-btn hero-official" href="https://xatonline.in/" rel="noopener" target="_blank">Official XAT Website →</a>
-</div></div></section>
-<!-- =========================
-     QUICK STATS
-========================= -->
-<div class="stats-wrapper"><div class="stats compact-stats">
-<div class="stat"><strong>3 Jan 2027</strong><span>Exam Date</span></div>
-<div class="stat"><strong>95</strong><span>Questions</span></div>
-<div class="stat"><strong>180 min</strong><span>Duration</span></div>
-<div class="stat"><strong>4</strong><span>Sections</span></div>
-<div class="stat"><strong>CBT</strong><span>Mode</span></div>
-<div class="stat"><strong>XLRI Jamshedpur</strong><span>Conducting Institute</span></div>
-</div></div>
+<section class="hero xat-hero">
+<div class="hero-inner xat-hero-inner">
+<div class="breadcrumb"><a href="/">Home</a> › <a href="/mba-colleges-by-exam">Entrance Exams</a> › XAT</div>
+<div class="xat-hero-grid">
+<div class="xat-hero-copy">
+<h1>XAT 2027: <span>Exam Date, Eligibility, Syllabus &amp; Exam Pattern</span></h1>
+<div class="xat-hero-facts" aria-label="XAT 2027 key information">
+<div class="xat-fact"><span class="fact-icon" aria-hidden="true">▦</span><span class="fact-copy"><small>Exam Date</small><strong>January 3, 2027</strong></span></div>
+<div class="xat-fact"><span class="fact-icon" aria-hidden="true">▤</span><span class="fact-copy"><small>Registration Deadline</small><strong>December 6, 2026</strong></span></div>
+<div class="xat-fact"><span class="fact-icon" aria-hidden="true">⌂</span><span class="fact-copy"><small>Conducted by</small><strong>XLRI Jamshedpur</strong></span></div>
+</div>
+</div>
+<figure class="xat-campus-visual">
+<div class="xat-campus-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Xlri_Campus%2C_Jamshedpur.jpg" alt="XLRI Xavier School of Management campus in Jamshedpur" width="1920" height="650" fetchpriority="high" decoding="async"></div>
+<div class="xat-mark"><strong>XAT</strong><span>Xavier Aptitude Test</span></div>
+<figcaption>Campus photo: <a href="https://commons.wikimedia.org/wiki/File:Xlri_Campus,_Jamshedpur.jpg" target="_blank" rel="noopener">Shahbaz26 / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
 <div class="mobile-toc-wrap"><div class="mobile-toc"><button aria-controls="mobile-toc-menu" aria-expanded="false" class="mobile-toc-button" type="button"><span>On this page</span><span aria-hidden="true" class="toc-chevron">⌄</span></button><nav aria-label="XAT 2027 section navigation" class="mobile-toc-menu" id="mobile-toc-menu">
 <a href="#overview">Overview</a><a href="#dates">Important Dates</a><a href="#eligibility">Eligibility</a><a href="#pattern">Exam Pattern</a><a href="#marking">Marking Scheme</a><a href="#syllabus">Syllabus</a><a href="#registration">Application Process &amp; Fee</a><a href="#admit-card">Admit Card</a><a href="#answer-key">Answer Key</a><a href="#result">Result &amp; Scorecard</a><a href="#selection">Selection Process</a><a href="#score">Good Score &amp; Percentile</a><a href="#colleges">Accepting Institutes</a><a href="#preparation">Preparation Tips</a><a href="#faqs">FAQs</a></nav></div></div>
 <div class="container"><div class="content-layout"><aside aria-label="XAT 2027 page navigation" class="sidebar"><div class="sidebar-title">On this page</div><nav class="sidebar-links"><a href="#overview">Overview</a><a href="#dates">Important Dates</a><a href="#eligibility">Eligibility</a><a href="#pattern">Exam Pattern</a><a href="#marking">Marking Scheme</a><a href="#syllabus">Syllabus</a><a href="#registration">Application Process &amp; Fee</a><a href="#admit-card">Admit Card</a><a href="#answer-key">Answer Key</a><a href="#result">Result &amp; Scorecard</a><a href="#selection">Selection Process</a><a href="#score">Good Score &amp; Percentile</a><a href="#colleges">Accepting Institutes</a><a href="#preparation">Preparation Tips</a><a href="#faqs">FAQs</a></nav></aside>
