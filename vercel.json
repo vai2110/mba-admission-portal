@@ -6,6 +6,14 @@
   "outputDirectory": ".",
   "rewrites": [
     {
+      "source": "/college",
+      "destination": "/api/college-redirect"
+    },
+    {
+      "source": "/college.html",
+      "destination": "/api/college-redirect"
+    },
+    {
       "source": "/welingkar-mumbai-links.html",
       "destination": "/api/gone?slug=welingkar-mumbai-links"
     },
@@ -137,16 +145,6 @@
     {
       "source": "/iift-delhi",
       "destination": "/iift",
-      "permanent": true
-    },
-    {
-      "source": "/college",
-      "destination": "/iim-ahmedabad",
-      "permanent": true
-    },
-    {
-      "source": "/college.html",
-      "destination": "/iim-ahmedabad",
       "permanent": true
     },
     {
