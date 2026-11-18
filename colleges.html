@@ -1762,9 +1762,7 @@ function renderColleges(list) {
             if (dedicatedPages[normalizedCollegeName]) {
                 profileLink = dedicatedPages[normalizedCollegeName];
             } else if (slug) {
-                profileLink =
-                    "college.html?college=" +
-                    encodeURIComponent(slug);
+                profileLink = "/" + slug;
             }
 
 
@@ -1863,6 +1861,7 @@ function renderColleges(list) {
 
                 <a
                     class="college-profile-button"
+                    href="${escapeHTML(profileLink)}"
                 >
 
                     View College →
