@@ -1,0 +1,22 @@
+{
+  "status": "waiting-for-structure-fixes",
+  "pilot_batch": [
+    "iim-ahmedabad",
+    "iim-bangalore",
+    "iim-calcutta",
+    "iim-lucknow",
+    "xlri-jamshedpur"
+  ],
+  "next_priority": [
+    "fms-delhi",
+    "spjimr-mumbai",
+    "mdi-gurugram",
+    "nmims-mumbai",
+    "sibm-pune",
+    "iift-delhi",
+    "cat",
+    "xat",
+    "snap"
+  ],
+  "note": "No content page is queued for publication until the structural SEO changes and preview checks pass."
+}

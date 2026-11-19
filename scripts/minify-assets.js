@@ -13,7 +13,7 @@ const excludedDirs = new Set([
   ".git", ".github", "node_modules", "scripts", "api", "integrations",
   "college-cms", "config", "data", "news"
 ]);
-const excludedFiles = new Set(["service-worker.js"]);
+const excludedFiles = new Set(["service-worker.js", "editorial-meta.js"]);
 const targets = [];
 
 function walk(dir) {

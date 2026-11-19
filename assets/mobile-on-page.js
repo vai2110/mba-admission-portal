@@ -65,7 +65,7 @@
   }
 
   function findExistingNav() {
-    return document.querySelector('.cd-mobile-on-page-v2, .cd-mobile-onpage, .mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .mobile-nav');
+    return document.querySelector('.cd-mobile-on-page-v2, .cd-mobile-onpage, .mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .mobile-nav, .mobile-toc-wrap');
   }
 
   function buildNav(links) {
@@ -143,7 +143,7 @@
   }
 
   function removeDuplicateNavigators(keep) {
-    var selectors = '.mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .mobile-nav, .cd-mobile-onpage, .cd-mobile-on-page-v2';
+    var selectors = '.mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .mobile-nav, .mobile-toc-wrap, .cd-mobile-onpage, .cd-mobile-on-page-v2';
     document.querySelectorAll(selectors).forEach(function (item) {
       if (item !== keep) item.remove();
     });
@@ -212,7 +212,7 @@
   // Some XLRI pages load an older inline navigator after this shared script.
   // Watch late DOM additions and keep exactly one navigator on the page.
   var duplicateNavObserver = new MutationObserver(function () {
-    var navs = document.querySelectorAll('.cd-mobile-on-page-v2, .cd-mobile-onpage, .mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .mobile-nav');
+    var navs = document.querySelectorAll('.cd-mobile-on-page-v2, .cd-mobile-onpage, .mobile-on-page, .mobile-onpage, .mobile-on-page-nav, .mobile-onpage-nav, .mobile-nav, .mobile-toc-wrap');
     if (navs.length > 1) {
       var keep = document.querySelector('.cd-mobile-on-page-v2') || navs[0];
       removeDuplicateNavigators(keep);

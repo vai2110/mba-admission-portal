@@ -4,6 +4,21 @@
   if (window.__CD_EDITORIAL_META_READY) return;
   window.__CD_EDITORIAL_META_READY = true;
 
+  // Strip the obsolete college selector from canonical college detail URLs.
+  // Legacy /college?college=... URLs are handled server-side by /api/college-redirect.
+  (function cleanLegacyCollegeQuery() {
+    try {
+      var currentPath = window.location.pathname.replace(/\\/$/, '') || '/';
+      if (currentPath === '/college' || currentPath === '/college.html') return;
+      var params = new URLSearchParams(window.location.search);
+      if (!params.has('college')) return;
+      params.delete('college');
+      var query = params.toString();
+      var cleanUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+      window.history.replaceState(window.history.state, '', cleanUrl);
+    } catch (e) {}
+  })();
+
   // Load the shared mobile section navigator on every page using this site-wide script.
   if (!document.querySelector('script[data-cd-mobile-on-page-loader]')) {
     var cdMobileNavScript = document.createElement('script');
