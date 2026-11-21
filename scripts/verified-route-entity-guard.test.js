@@ -12,9 +12,9 @@ const SAMPLE_FILES = [
 
 function sourceSlugFromUrl(value) {
   const pathname = String(value || "").trim()
-    .replace(/^https?:\\/\\/[^/]+/i, "")
+    .replace(/^https?:\/\/[^/]+/i, "")
     .split(/[?#]/, 1)[0]
-    .replace(/^\\/+|\\/+$/g, "");
+    .replace(/^\/+|\/+$/g, "");
   return pathname.split("/").pop();
 }
 
