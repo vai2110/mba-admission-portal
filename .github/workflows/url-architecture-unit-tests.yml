@@ -22,6 +22,8 @@ jobs:
         run: node scripts/audit-url-architecture.test.js
       - name: Run public route path helper tests
         run: node scripts/public-route-from-html-path.test.js
+      - name: Run allowlisted nested normalization collection tests
+        run: node scripts/collect-public-html-for-normalization.test.js
       - name: Run URL migration manifest validator tests
         run: node scripts/validate-url-migration-map.test.js
       - name: Run IIM Ahmedabad migration preview route checks
