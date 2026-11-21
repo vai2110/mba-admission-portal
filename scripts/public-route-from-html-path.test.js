@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { publicRouteFromHtmlPath, publicHrefFromRoute } = require("./public-route-from-html-path");
+const { publicRouteFromHtmlPath, publicHrefFromRoute, stripIndexRouteSegment } = require("./public-route-from-html-path");
 const IIMA = "iim-ahmedabad";
 
 assert.strictEqual(publicRouteFromHtmlPath("index.html"), "/");
@@ -11,6 +11,9 @@ assert.strictEqual(publicRouteFromHtmlPath(`mba-colleges\\${IIMA}\\index.html`),
 assert.throws(() => publicRouteFromHtmlPath("../outside.html"), /inside the site root/);
 assert.throws(() => publicRouteFromHtmlPath("/absolute.html"), /relative to the site root/);
 assert.throws(() => publicRouteFromHtmlPath("image.png"), /\.html file path/);
+assert.strictEqual(stripIndexRouteSegment("index"), "");
+assert.strictEqual(stripIndexRouteSegment(`mba-colleges/${IIMA}/index`), `mba-colleges/${IIMA}`);
+assert.strictEqual(stripIndexRouteSegment(`mba-colleges/${IIMA}/index/fees`), `mba-colleges/${IIMA}/index/fees`, "only a final index segment is stripped");
 
 // Root pages retain their existing relative-link convention; nested routes use
 // root-relative hrefs so browser resolution cannot drift by directory depth.
