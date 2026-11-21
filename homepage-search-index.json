@@ -1,6 +1,6 @@
 {
   "source": "Authoritative live college directory registry",
-  "count": 102,
+  "count": 103,
   "colleges": [
     {
       "name": "Aligarh Muslim University",
@@ -1109,6 +1109,19 @@
         "xlrixavierschoolofmanagement"
       ],
       "url": "https://collegedecoded.in/xlri-jamshedpur",
+      "live": true
+    },
+    {
+      "name": "Amity University Kolkata",
+      "location": "Kolkata, West Bengal",
+      "aliases": [
+        "amity university kolkata",
+        "amity kolkata",
+        "amity university kolkata admissions",
+        "amity kolkata mba",
+        "amity kolkata btech"
+      ],
+      "url": "https://collegedecoded.in/amity-university-kolkata",
       "live": true
     }
   ]
