@@ -38,5 +38,21 @@ jobs:
         run: node scripts/verified-route-entity-guard.test.js
       - name: Run nested-aware internal-link audit unit tests
         run: python scripts/internal_link_audit_test.py
+      - name: Run published CMS route validation tests
+        run: node scripts/cms-profile-route.test.js
+      - name: Normalize clean URLs before link audit
+        run: node scripts/normalize-clean-urls.js
+      - name: Generate news routes before link audit
+        run: node scripts/build-news.js
       - name: Run repository internal-link audit report
         run: python scripts/internal_link_audit.py
+      - name: Fail if broken or redirecting internal links remain
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          summary = json.loads(Path("internal-link-audit.json").read_text(encoding="utf-8"))["summary"]
+          print("INTERNAL LINK CI GATE:", summary["broken_local_links"], "broken;", summary["redirecting_internal_links"], "redirecting")
+          if summary["broken_local_links"] or summary["redirecting_internal_links"]:
+              raise SystemExit("INTERNAL LINK CI GATE FAILED")
+          PY

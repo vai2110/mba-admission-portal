@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { publicRouteFromHtmlPath, publicHrefFromRoute, stripIndexRouteSegment } = require("./public-route-from-html-path");
 const { collectPublicHtmlFiles } = require("./collect-public-html-for-normalization");
+const { isPublishedCmsProfile } = require("./cms-profile-route");
 
 const ROOT = path.resolve(__dirname, "..");
 const EXCLUDED = new Set(["404.html"]);
@@ -130,7 +131,7 @@ function internalTargetExists(href, sourceName) {
 
   // CMS college profiles expose their clean canonical URL at /<slug>.
   const cleanSlug = target.replace(/^\/+/, "");
-  return fs.existsSync(path.join(ROOT, "college-cms", "content", cleanSlug, "overview.html"));
+  return isPublishedCmsProfile(ROOT, cleanSlug);
 }
 
 function normalizeFile(html, sourceName) {

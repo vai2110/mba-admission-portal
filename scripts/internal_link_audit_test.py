@@ -72,6 +72,12 @@ class InternalLinkAuditNestedRouteTests(unittest.TestCase):
             "assets/prospectus.pdf",
         )
 
+    def test_generated_news_index_resolves_when_build_output_exists(self):
+        news_index = self.root / "news" / "index.html"
+        news_index.parent.mkdir(parents=True)
+        news_index.write_text("<html></html>", encoding="utf-8")
+        self.assertEqual(audit.local_target("/news", root=self.root), "news/index.html")
+
     def test_protocol_relative_same_origin_link_resolves(self):
         self.assertEqual(
             audit.local_target("//collegedecoded.in/mba-colleges/iim-ahmedabad/fees", root=self.root),
