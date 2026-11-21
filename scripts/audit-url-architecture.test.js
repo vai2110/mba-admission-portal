@@ -36,9 +36,12 @@ fs.rmSync(fixture, { recursive: true, force: true });
 const auditFixture = path.join(__dirname, "__url-audit-full-fixture__");
 fs.mkdirSync(path.join(auditFixture, "mba-colleges", "iima"), { recursive: true });
 fs.mkdirSync(path.join(auditFixture, "assets"), { recursive: true });
+fs.writeFileSync(path.join(auditFixture, "assets", "hero.jpg"), "Image fixture");
+fs.writeFileSync(path.join(auditFixture, "assets", "app.js"), "Script fixture");
+fs.writeFileSync(path.join(auditFixture, "assets", "styles.css"), "CSS fixture");
 fs.writeFileSync(path.join(auditFixture, "assets", "brochure.pdf"), "PDF fixture");
-fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a><a href="/assets/brochure.pdf">PDF</a><a href="/assets/missing.pdf">Missing PDF</a>');
-fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "index.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima"><a href="/mba-colleges/iima/placements">Placements</a><a href="/missing-route">Broken</a>');
+fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><link rel="stylesheet" href="/assets/styles.css"><script src="/assets/app.js"></script><script src="/assets/missing.js"></script><img src="/assets/hero.jpg" srcset="/assets/hero.jpg 1x, /assets/missing-hero.jpg 2x"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a><a href="/assets/brochure.pdf">PDF</a><a href="/assets/missing.pdf">Missing PDF</a>');
+fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "index.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima"><img src="../../assets/hero.jpg"><a href="/mba-colleges/iima/placements">Placements</a><a href="/missing-route">Broken</a>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "placements.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima">');
 const auditResult = audit(auditFixture);
 assert.strictEqual(auditResult.htmlFilesScanned, 3);
@@ -48,6 +51,10 @@ assert.ok(auditResult.counts["broken-local-link"] >= 1, "should detect missing l
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-link" && issue.href === "/"), "homepage href should resolve to index.html, not be flagged broken");
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-link" && issue.href === "/assets/brochure.pdf"), "existing static asset must not be flagged broken");
 assert.ok(auditResult.issues.some(issue => issue.type === "broken-local-link" && issue.href === "/assets/missing.pdf"), "missing static asset must be flagged broken");
+assert.ok(auditResult.counts["broken-local-asset"] >= 1, "missing image/script references must be detected as broken local assets");
+assert.ok(auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/missing.js"), "missing script must be reported");
+assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/hero.jpg"), "existing image assets must not be reported");
+assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "../../assets/hero.jpg"), "nested relative asset paths must resolve correctly");
 fs.rmSync(auditFixture, { recursive: true, force: true });
 
 console.log("URL architecture audit unit tests passed.");
