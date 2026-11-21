@@ -8,19 +8,24 @@
 - Scope: audit, route design, mapping, validation; production changes require review/PR
 
 ## Target hierarchy (approved reference)
-- `/mba-colleges/` — college discovery hub
-- `/mba-colleges/{college-slug}/` — college profile
-  - `cutoff/`, `fees/`, `placements/`, `mba/`, `roi/`, `reviews/` only where distinct, substantial content and student intent justify indexable pages
-- `/mba-colleges/city/{city-slug}/`
-- `/mba-colleges/budget/{amount-slug}/`
-- `/mba-colleges/exam/{exam-slug}/`
-- `/mba-colleges/specialization/{spec-slug}/`
-- `/exams/{exam-slug}/`, with `cutoff/` and `colleges-accepting/` child pages only where useful
-- `/rankings/` with `nirf/`, `roi/`, `placements/`, `government/`
-- `/tools/` with `predictor/`, `roi-calculator/`, `compare/`, `shortlist/`
-- `/compare/{college-a}-vs-{college-b}/`
-- `/guides/` with `admission-timeline/` and guide pages
+- `/mba-colleges` — college discovery hub
+- `/mba-colleges/{college-slug}` — college profile
+  - `cutoff`, `fees`, `placements`, `mba`, `roi`, `reviews` only where distinct, substantial content and student intent justify indexable pages
+- `/mba-colleges/city/{city-slug}`
+- `/mba-colleges/budget/{amount-slug}`
+- `/mba-colleges/exam/{exam-slug}`
+- `/mba-colleges/specialization/{spec-slug}`
+- `/exams/{exam-slug}`, with `cutoff` and `colleges-accepting` child pages only where useful
+- `/rankings` with `nirf`, `roi`, `placements`, `government`
+- `/tools` with `predictor`, `roi-calculator`, `compare`, `shortlist`
+- `/compare/{college-a}-vs-{college-b}`
+- `/guides` with `admission-timeline` and guide pages
 - `/search?q=` remains utility-only, noindex, excluded from sitemap
+
+### Canonical URL convention
+- Use **slashless paths** for non-root canonical URLs to match the current Vercel setting `trailingSlash: false`.
+- Keep the homepage canonical as `https://collegedecoded.in/`.
+- Internal links, redirects, canonicals and sitemap locations must use the same slashless convention; do not intentionally link to trailing-slash variants.
 
 ## Migration principles
 1. Inventory all URLs from sitemap, repository route generation, internal links, and Search Console exports where available.
