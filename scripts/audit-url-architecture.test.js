@@ -10,7 +10,7 @@ assert.strictEqual(routeFromHtmlPath(path.join("mba-colleges", "iim-ahmedabad", 
 assert.strictEqual(extractCanonical('<head><link href="https://collegedecoded.in/x" rel="canonical"></head>'), "https://collegedecoded.in/x");
 assert.strictEqual(extractCanonical('<head><link rel="stylesheet" href="/style.css"></head>'), null);
 
-assert.strictEqual(resolveLocalHref("../fees.html?year=2026#top", "mba-colleges/iim-ahmedabad/mba.html"), "mba-colleges/iim-ahmedabad/fees.html");
+assert.strictEqual(resolveLocalHref("../fees.html?year=2026#top", "mba-colleges/iim-ahmedabad/mba/index.html"), "mba-colleges/iim-ahmedabad/fees.html");
 assert.strictEqual(resolveLocalHref("/mba-colleges/iim-ahmedabad/placements", "iim-ahmedabad.html"), "mba-colleges/iim-ahmedabad/placements");
 assert.strictEqual(resolveLocalHref("https://collegedecoded.in/mba-colleges/iim-ahmedabad/fees?x=1", "index.html"), "mba-colleges/iim-ahmedabad/fees");
 assert.strictEqual(resolveLocalHref("https://example.com/page", "index.html"), null);
