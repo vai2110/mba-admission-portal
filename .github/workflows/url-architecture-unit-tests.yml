@@ -18,6 +18,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Run URL architecture audit helper tests
         run: node scripts/audit-url-architecture.test.js
       - name: Run public route path helper tests
@@ -32,3 +36,7 @@ jobs:
         run: node scripts/verified-route-samples.test.js
       - name: Run verified route entity alignment guard
         run: node scripts/verified-route-entity-guard.test.js
+      - name: Run nested-aware internal-link audit unit tests
+        run: python scripts/internal_link_audit_test.py
+      - name: Run repository internal-link audit report
+        run: python scripts/internal_link_audit.py

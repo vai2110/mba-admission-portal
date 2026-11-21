@@ -1,11 +1,10 @@
-# Sitewide SEO gate: internal links must resolve and important pages must remain discoverable.
+# Sitewide SEO gate: internal links must resolve and important pages remain discoverable.
 import json
 import re
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "internal-link-audit.json"
@@ -19,6 +18,12 @@ HELPER_PAGES = {
     "welingkar-mumbai-programmes-note.html",
     "welingkar-mumbai-programmes.html",
 }
+# Audit nested migration-preview pages, but keep CMS source and other generated
+# directories out of this public-route scan. The root-page cluster/orphan logic
+# remains intentionally limited to legacy root routes.
+NESTED_PUBLIC_ROOTS = ("mba-colleges",)
+NESTED_IGNORED_DIRS = {".git", ".vercel", "node_modules", "college-cms", "tests", "scripts"}
+OWN_HOSTS = {"collegedecoded.in", "www.collegedecoded.in"}
 
 
 class AnchorParser(HTMLParser):
@@ -42,41 +47,111 @@ def extract_hrefs(html: str):
     return parser.hrefs
 
 
-def local_target(href: str):
-    """Resolve relative, clean-URL and absolute same-origin links to source HTML files."""
+def public_url_path_for_source(source_name: str):
+    """Return the browser-visible clean path for a source HTML file."""
+    source = Path(str(source_name).replace("\\", "/"))
+    if source.name.lower() == "index.html":
+        return "/" if source.parent == Path(".") else "/" + source.parent.as_posix().rstrip("/")
+    return "/" + source.with_suffix("").as_posix().lstrip("/")
+
+
+def collect_root_pages(root=ROOT):
+    return sorted(p.name for p in root.glob("*.html") if p.name not in EXCLUDED)
+
+
+def collect_nested_public_pages(root=ROOT):
+    """Collect HTML pages only under explicitly allowlisted public route roots."""
+    pages = []
+    root_resolved = root.resolve()
+    for public_root in NESTED_PUBLIC_ROOTS:
+        candidate_root = root / public_root
+        if candidate_root.is_symlink() or not candidate_root.is_dir():
+            continue
+        for candidate in candidate_root.rglob("*.html"):
+            if candidate.is_symlink() or not candidate.is_file():
+                continue
+            relative = candidate.relative_to(root).as_posix()
+            parts = Path(relative).parts
+            if any(part.startswith(".") or part in NESTED_IGNORED_DIRS for part in parts[:-1]):
+                continue
+            if candidate.name in EXCLUDED:
+                continue
+            try:
+                resolved = candidate.resolve()
+                if resolved != root_resolved and not resolved.is_relative_to(root_resolved):
+                    continue
+            except (OSError, ValueError):
+                continue
+            pages.append(relative)
+    return sorted(set(pages))
+
+
+def collect_audit_pages(root=ROOT):
+    return sorted(set(collect_root_pages(root)) | set(collect_nested_public_pages(root)))
+
+
+def local_target(href: str, source_name: str = None, root=ROOT):
+    """Resolve a local href to its source path, or its expected path if missing.
+
+    Resolving relative hrefs against the source's public URL (rather than its
+    filesystem directory) mirrors browser URL behavior for clean, slashless routes.
+    Returning an expected target for missing local files allows the audit to flag
+    broken links instead of silently skipping them.
+    """
     href = href.strip()
     if not href or href.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
         return None
     parsed = urlsplit(href)
-    if parsed.scheme or parsed.netloc:
-        if parsed.scheme.lower() not in {"http", "https"} or (parsed.netloc or "").lower() not in {
-            "collegedecoded.in", "www.collegedecoded.in"
-        }:
+    if parsed.netloc:
+        # Accept same-origin protocol-relative links, but ignore other hosts and
+        # non-HTTP schemes. Protocol-relative own-domain links are still local.
+        if parsed.scheme and parsed.scheme.lower() not in {"http", "https"}:
+            return None
+        if (parsed.netloc or "").lower() not in OWN_HOSTS:
             return None
         path = parsed.path or "/"
+    elif parsed.scheme:
+        return None
     else:
-        path = parsed.path or href
-    if path == "/":
-        return "index.html"
+        path = parsed.path or ""
+    if not path:
+        return None
 
-    raw = path.lstrip("/") if path.startswith("/") else path
-    raw = raw.rstrip("/")
+    if path.startswith("/"):
+        resolved_path = path
+    elif source_name:
+        resolved_path = urlsplit(urljoin(public_url_path_for_source(source_name), path)).path
+    else:
+        resolved_path = "/" + path.lstrip("/")
+
+    raw = resolved_path.lstrip("/").rstrip("/")
     if not raw:
         return "index.html"
+    # Avoid returning paths outside the site root even if a malformed href was supplied.
+    parts = Path(raw).parts
+    if any(part in {"..", "."} for part in parts):
+        return None
 
-    candidates = [raw]
-    if raw.endswith(".html"):
-        candidates.append(raw[:-5])
+    if raw.lower().endswith(".html"):
+        candidates = [raw]
+    elif Path(raw).suffix:
+        candidates = [raw]  # asset (PDF, image, CSS, etc.)
     else:
-        candidates.append(raw + ".html")
-        candidates.append(raw + "/index.html")
+        candidates = [raw + ".html", raw + "/index.html", raw]
 
     for candidate in candidates:
-        target = ROOT / candidate
+        target = root / candidate
+        try:
+            resolved = target.resolve()
+            root_resolved = root.resolve()
+            if resolved != root_resolved and not resolved.is_relative_to(root_resolved):
+                continue
+        except (OSError, ValueError):
+            continue
         if target.is_file():
-            return target.relative_to(ROOT).as_posix()
-
-    return None
+            return target.relative_to(root).as_posix()
+    # Keep the preferred route candidate when it is missing so callers can report it.
+    return candidates[0]
 
 
 def page_role(name: str):
@@ -106,19 +181,22 @@ def build_clusters(pages):
 
 
 def main():
-    pages = sorted(p.name for p in ROOT.glob("*.html") if p.name not in EXCLUDED)
+    pages = collect_root_pages(ROOT)
+    nested_pages = collect_nested_public_pages(ROOT)
+    audit_pages = sorted(set(pages) | set(nested_pages))
     page_set = set(pages)
+    audit_page_set = set(audit_pages)
     outgoing = defaultdict(list)
     broken = []
     benchmark_broken = []
     href_count = Counter()
     redirecting_internal_links = []
 
-    for name in pages:
+    for name in audit_pages:
         html = (ROOT / name).read_text(encoding="utf-8")
         for href in extract_hrefs(html):
             href = href.strip()
-            target = local_target(href)
+            target = local_target(href, source_name=name, root=ROOT)
             if target is None:
                 continue
             href_count[name] += 1
@@ -127,20 +205,17 @@ def main():
             raw_path = parsed.path or ""
             is_own_domain = (
                 parsed.scheme in {"http", "https"}
-                and (parsed.netloc or "").lower() in {"collegedecoded.in", "www.collegedecoded.in"}
+                and (parsed.netloc or "").lower() in OWN_HOSTS
             )
             if (raw_path.lower().endswith(".html") and not parsed.query and
-                    (not parsed.scheme or is_own_domain)):
-                clean_path = raw_path[:-5] or "/"
-                if (ROOT / raw_path.lstrip("/")).is_file():
-                    redirecting_internal_links.append({
-                        "source": name, "href": href, "target": clean_path
-                    })
-            # This audit's cluster/orphan analysis intentionally covers only root-level
-            # portal pages. Generated routes (for example /news and /news/<slug>) live
-            # under subdirectories, so they are valid when the resolved HTML file exists
-            # even though they are not members of the root-level page_set.
-            if target not in page_set and not (ROOT / target).is_file():
+                    (not parsed.scheme or is_own_domain) and (ROOT / target).is_file()):
+                clean_path = public_url_path_for_source(target)
+                redirecting_internal_links.append({
+                    "source": name, "href": href, "target": clean_path
+                })
+            # Broken detection now operates on the expected target returned by
+            # local_target, including missing clean routes and local assets.
+            if target not in audit_page_set and not (ROOT / target).is_file():
                 item = {"source": name, "href": href, "target": target}
                 if name in BENCHMARKS:
                     benchmark_broken.append(item)
@@ -190,10 +265,13 @@ def main():
             role_counts["overview_or_hub"] += 1
 
     report = {
-        "scope": "Root-level HTML portal pages; benchmark pages are audited but never modified by this workflow.",
+        "scope": "Root-level HTML portal pages plus allowlisted nested public-route pages; cluster/orphan analysis remains root-level only.",
         "summary": {
             "pages_checked": len(pages),
-            "pages_with_internal_links": sum(1 for p in pages if outgoing.get(p)),
+            "root_pages_checked": len(pages),
+            "nested_public_pages_checked": len(nested_pages),
+            "all_public_pages_checked": len(audit_pages),
+            "pages_with_internal_links": sum(1 for p in audit_pages if outgoing.get(p)),
             "broken_local_links": len(broken),
             "redirecting_internal_links": len(redirecting_internal_links),
             "benchmark_legacy_broken_links": len(benchmark_broken),
@@ -219,7 +297,8 @@ def main():
             "Missing pages are not created by this audit; only existing destinations are evaluated.",
             "Benchmark pages are never modified by the Phase 3 automation.",
             "Welingkar helper/hub pages are excluded from reciprocal college clusters because they are navigation utilities, not dedicated programme pages.",
-            "Broken links originating from benchmark pages are reported separately and are never modified by the Phase 3 automation."
+            "Broken links originating from benchmark pages are reported separately and are never modified by the Phase 3 automation.",
+            "Nested public-route pages are audited for local link resolution; cluster and orphan calculations intentionally remain root-level.",
         ]
     }
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -227,11 +306,11 @@ def main():
     if broken:
         print("BROKEN LOCAL LINKS:")
         for item in broken:
-            print(f"- {item['source']} -> {item['href']}")
+            print(f"- {item['source']} -> {item['href']} (expected target: {item['target']})")
     if benchmark_broken:
         print("BENCHMARK LEGACY BROKEN LINKS (NOT MODIFIED):")
         for item in benchmark_broken:
-            print(f"- {item['source']} -> {item['href']}")
+            print(f"- {item['source']} -> {item['href']} (expected target: {item['target']})")
 
 
 if __name__ == "__main__":
