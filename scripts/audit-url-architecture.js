@@ -42,16 +42,19 @@ function collectHtmlFiles(dir, root = dir, files = []) {
 
 function resolveLocalHref(href, sourceRelative) {
   if (!href || href.startsWith("#") || /^(mailto:|tel:|javascript:|data:)/i.test(href)) return null;
+  let pathname = href;
   if (/^(https?:)?\/\//i.test(href)) {
-    if (!/^https?:\/\/(www\.)?collegedecoded\.in\b/i.test(href)) return null;
-    return null;
+    let parsed;
+    try { parsed = new URL(href); } catch (_) { return null; }
+    if (!/(^|\.)collegedecoded\.in$/i.test(parsed.hostname)) return null;
+    pathname = parsed.pathname;
   }
-  const pathname = href.split(/[?#]/, 1)[0];
+  pathname = pathname.split(/[?#]/, 1)[0];
   if (!pathname) return null;
   const base = pathname.startsWith("/")
     ? pathname.slice(1)
     : path.posix.normalize(path.posix.join(path.posix.dirname(sourceRelative.split(path.sep).join("/")), pathname));
-  return base.replace(/^\.\//, "").replace(/\/$/, "");
+  return base.replace(/^\.\/?/, "").replace(/\/$/, "");
 }
 
 function findTargetFile(root, target) {
