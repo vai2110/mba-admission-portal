@@ -40,7 +40,7 @@ fs.writeFileSync(path.join(auditFixture, "assets", "hero.jpg"), "Image fixture")
 fs.writeFileSync(path.join(auditFixture, "assets", "app.js"), "Script fixture");
 fs.writeFileSync(path.join(auditFixture, "assets", "styles.css"), "CSS fixture");
 fs.writeFileSync(path.join(auditFixture, "assets", "brochure.pdf"), "PDF fixture");
-fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><link rel="stylesheet" href="/assets/styles.css"><script src="/assets/app.js"></script><script src="/assets/missing.js"></script><img src="/assets/hero.jpg" srcset="/assets/hero.jpg 1x, /assets/missing-hero.jpg 2x"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a><a href="/assets/brochure.pdf">PDF</a><a href="/assets/missing.pdf">Missing PDF</a>');
+fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><link rel="stylesheet" href="/assets/styles.css"><script src="/assets/app.js"></script><script src="/assets/missing.js"></script><img src="/assets/hero.jpg" srcset="/assets/hero.jpg 1x, /assets/missing-hero.jpg 2x"><img data-src="/assets/lazy-missing.jpg"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a><a href="/assets/brochure.pdf">PDF</a><a href="/assets/missing.pdf">Missing PDF</a>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "index.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima"><img src="../../assets/hero.jpg"><a href="/mba-colleges/iima/placements">Placements</a><a href="/missing-route">Broken</a>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "placements.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima">');
 const auditResult = audit(auditFixture);
@@ -55,6 +55,7 @@ assert.ok(auditResult.counts["broken-local-asset"] >= 1, "missing image/script r
 assert.ok(auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/missing.js"), "missing script must be reported");
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/hero.jpg"), "existing image assets must not be reported");
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "../../assets/hero.jpg"), "nested relative asset paths must resolve correctly");
+assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/lazy-missing.jpg"), "data-src must not be mistaken for src");
 fs.rmSync(auditFixture, { recursive: true, force: true });
 
 console.log("URL architecture audit unit tests passed.");
