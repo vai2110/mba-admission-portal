@@ -18,5 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Run URL architecture helper tests
+      - name: Run URL architecture audit helper tests
         run: node scripts/audit-url-architecture.test.js
+      - name: Run URL migration manifest validator tests
+        run: node scripts/validate-url-migration-map.test.js
