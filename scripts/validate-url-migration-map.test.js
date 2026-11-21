@@ -32,11 +32,16 @@ assert.ok(validateMap(duplicateSource).errors.some(e => e.includes("Duplicate cu
 
 const unsafeTarget = [
   "current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target",
-  "https://collegedecoded.in/iim-a,iima.html,profile,IIM A,/mba-colleges/iim-a?x=1,MIGRATE,/wrong-target"
+  "https://collegedecoded.in/iim-a,iima.html,profile,IIM A,/mba-colleges/iim-a,MIGRATE,/wrong-target"
 ].join("\n");
 const unsafe = validateMap(unsafeTarget);
-assert.ok(unsafe.errors.some(e => e.includes("proposed_url must be an internal slashless path")));
 assert.ok(unsafe.errors.some(e => e.includes("redirect_target differs from proposed_url")));
+
+const invalidTarget = [
+  "current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target",
+  "https://collegedecoded.in/iim-a,iima.html,profile,IIM A,/mba-colleges/iim-a?x=1,MIGRATE,"
+].join("\n");
+assert.ok(validateMap(invalidTarget).errors.some(e => e.includes("proposed_url must be an internal slashless path")));
 
 const duplicateTarget = [
   "current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target",
