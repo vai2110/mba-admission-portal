@@ -19,7 +19,9 @@ assert.strictEqual(resolveLocalHref("#faq", "index.html"), null);
 
 const fixture = path.join(__dirname, "__url-audit-test-fixture__");
 fs.mkdirSync(path.join(fixture, "nested"), { recursive: true });
+fs.writeFileSync(path.join(fixture, "index.html"), "home fixture");
 fs.writeFileSync(path.join(fixture, "nested", "index.html"), "fixture");
+assert.strictEqual(findTargetFile(fixture, ""), "index.html", "root href must resolve to the site index");
 assert.strictEqual(findTargetFile(fixture, "nested"), path.join("nested", "index.html"));
 fs.rmSync(fixture, { recursive: true, force: true });
 
@@ -28,7 +30,7 @@ fs.rmSync(fixture, { recursive: true, force: true });
 // and missing local links are surfaced together for nested routes.
 const auditFixture = path.join(__dirname, "__url-audit-full-fixture__");
 fs.mkdirSync(path.join(auditFixture, "mba-colleges", "iima"), { recursive: true });
-fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><a href="/mba-colleges/iima">Profile</a>');
+fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "index.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima"><a href="/mba-colleges/iima/placements">Placements</a><a href="/missing-route">Broken</a>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "placements.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima">');
 const auditResult = audit(auditFixture);
@@ -36,6 +38,7 @@ assert.strictEqual(auditResult.htmlFilesScanned, 3);
 assert.ok(auditResult.counts["canonical-route-mismatch"] >= 1, "should detect wrong canonical path");
 assert.ok(auditResult.counts["duplicate-canonical"] >= 1, "should detect repeated canonical URLs");
 assert.ok(auditResult.counts["broken-local-link"] >= 1, "should detect missing local route target");
+assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-link" && issue.href === "/"), "homepage href should resolve to index.html, not be flagged broken");
 fs.rmSync(auditFixture, { recursive: true, force: true });
 
 console.log("URL architecture audit unit tests passed.");
