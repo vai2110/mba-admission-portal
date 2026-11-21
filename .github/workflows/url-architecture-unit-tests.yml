@@ -24,3 +24,5 @@ jobs:
         run: node scripts/validate-url-migration-map.test.js
       - name: Run IIM Ahmedabad migration preview route checks
         run: node scripts/iima-url-migration-preview.test.js
+      - name: Run verified route sample checks
+        run: node scripts/verified-route-samples.test.js
