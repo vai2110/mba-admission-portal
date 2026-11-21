@@ -90,7 +90,7 @@ function getTagAttribute(tag, attribute) {
 
 function extractAssetReferences(html) {
   const references = [];
-  const assetTagNames = new Set(["img", "script", "source", "video", "audio", "iframe", "embed", "track"]);
+  const assetTagNames = new Set(["img", "script", "source", "video", "audio", "iframe", "embed", "track", "object"]);
   const tags = html.match(/<(img|script|source|video|audio|iframe|embed|track|object|link)\b[^>]*>/gi) || [];
   const assetLinkRels = new Set(["stylesheet", "icon", "shortcut icon", "apple-touch-icon", "manifest", "preload", "prefetch", "modulepreload"]);
 
