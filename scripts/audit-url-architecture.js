@@ -83,7 +83,7 @@ function findTargetFile(root, target) {
 }
 
 function getTagAttribute(tag, attribute) {
-  const pattern = new RegExp("\\b" + attribute + "\\s*=\\s*(?:[\"']([^\"']*)[\"']|([^\\s>]+))", "i");
+  const pattern = new RegExp("(?:^|\\s)" + attribute + "\\s*=\\s*(?:[\"']([^\"']*)[\"']|([^\\s>]+))", "i");
   const match = tag.match(pattern);
   return match ? (match[1] !== undefined ? match[1] : match[2]) : null;
 }
@@ -109,7 +109,7 @@ function extractAssetReferences(html) {
     }
     if (tagName === "img" || tagName === "source") {
       const srcset = getTagAttribute(tag, "srcset");
-      if (srcset) {
+      if (srcset && !/(?:^|,)\s*data:/i.test(srcset) {
         for (const candidate of srcset.split(",")) {
           const parts = candidate.trim().split(/\s+/);
           if (parts.length >= 2) add("srcset", parts[0]);
