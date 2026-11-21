@@ -187,7 +187,7 @@ Rules:
         raise RuntimeError("Audit produced no editable existing HTML")
     Path("changed-html.txt").write_text("\n".join(changed)+"\n",encoding="utf-8")
     Path("college-audit-result.json").write_text(json.dumps({"college":name,"rank":rank,"files":changed,"score":result.get("overall_score"),"updates_required":result.get("updates_required"),"summary":result.get("summary"),"live_urls":live_urls},indent=2),encoding="utf-8")
-    sheet("updateStatus",post=True,rank=int(rank),researchStatus="Audited",updatesRequired=str(result.get("updates_required","")))
+    sheet("updateStatus",post=True,rank=int(rank),researchStatus="Awaiting PR review",updatesRequired=str(result.get("updates_required","")))
     print(f"AUDITED {name} | files={','.join(changed)} | score={result.get('overall_score')}")
     return 0
 
