@@ -82,6 +82,48 @@ function findTargetFile(root, target) {
   return null;
 }
 
+function getTagAttribute(tag, attribute) {
+  const pattern = new RegExp("\\b" + attribute + "\\s*=\\s*(?:[\"']([^\"']*)[\"']|([^\\s>]+))", "i");
+  const match = tag.match(pattern);
+  return match ? (match[1] !== undefined ? match[1] : match[2]) : null;
+}
+
+function extractAssetReferences(html) {
+  const references = [];
+  const assetTagNames = new Set(["img", "script", "source", "video", "audio", "iframe", "embed", "track"]);
+  const tags = html.match(/<(img|script|source|video|audio|iframe|embed|track|object|link)\b[^>]*>/gi) || [];
+  const assetLinkRels = new Set(["stylesheet", "icon", "shortcut icon", "apple-touch-icon", "manifest", "preload", "prefetch", "modulepreload"]);
+
+  for (const tag of tags) {
+    const tagName = (tag.match(/^<([a-z0-9]+)/i) || [])[1]?.toLowerCase();
+    if (!tagName) continue;
+    const add = (attribute, value) => {
+      if (!value || /^(?:data:|#|mailto:|tel:|javascript:)/i.test(value)) return;
+      references.push({ tagName, attribute, value });
+    };
+
+    if (assetTagNames.has(tagName)) {
+      add("src", getTagAttribute(tag, "src"));
+      if (tagName === "video") add("poster", getTagAttribute(tag, "poster"));
+      if (tagName === "object") add("data", getTagAttribute(tag, "data"));
+    }
+    if (tagName === "img" || tagName === "source") {
+      const srcset = getTagAttribute(tag, "srcset");
+      if (srcset) {
+        for (const candidate of srcset.split(",")) {
+          const parts = candidate.trim().split(/\s+/);
+          if (parts.length >= 2) add("srcset", parts[0]);
+        }
+      }
+    }
+    if (tagName === "link") {
+      const rel = (getTagAttribute(tag, "rel") || "").toLowerCase().split(/\s+/);
+      if (rel.some(token => assetLinkRels.has(token))) add("href", getTagAttribute(tag, "href"));
+    }
+  }
+  return references;
+}
+
 function audit(root = ROOT) {
   const files = collectHtmlFiles(root);
   const canonicalGroups = new Map();
@@ -104,6 +146,13 @@ function audit(root = ROOT) {
       if (target === null) continue;
       if (!findTargetFile(root, target)) issues.push({ type: "broken-local-link", file: relative, href: match[1], resolvedTarget: target });
     }
+    for (const reference of extractAssetReferences(html)) {
+      const target = resolveLocalHref(reference.value, relative);
+      if (target === null) continue;
+      if (!findTargetFile(root, target)) {
+        issues.push({ type: "broken-local-asset", file: relative, tag: reference.tagName, attribute: reference.attribute, href: reference.value, resolvedTarget: target });
+      }
+    }
   }
   for (const [canonical, sources] of canonicalGroups) {
     if (sources.length > 1) issues.push({ type: "duplicate-canonical", canonical, files: sources });
@@ -121,4 +170,4 @@ if (require.main === module) {
   if (result.issueCount) process.exitCode = 1;
 }
 
-module.exports = { routeFromHtmlPath, extractCanonical, collectHtmlFiles, resolveLocalHref, findTargetFile, audit };
+module.exports = { routeFromHtmlPath, extractCanonical, collectHtmlFiles, resolveLocalHref, findTargetFile, extractAssetReferences, audit };
