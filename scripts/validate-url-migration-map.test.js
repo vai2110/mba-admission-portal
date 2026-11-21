@@ -7,7 +7,7 @@ assert.throws(() => parseCsv('a,b\n1,"unfinished'), /Unclosed quoted CSV field/)
 
 assert.strictEqual(normalizeInternalUrl("https://www.collegedecoded.in/mba-colleges/iima"), "/mba-colleges/iima");
 assert.strictEqual(normalizeInternalUrl("/mba-colleges/iima/mba"), "/mba-colleges/iima/mba");
-assert.strictEqual(normalizeInternalUrl("/mba-colleges/iima/mba?year=2027"), null);
+assert.strictEqual(normalizeInternalUrl("/mba-colleges/iima/mba?year=2027"), null);\nassert.strictEqual(normalizeInternalUrl("/mba-colleges/iima/"), null);
 assert.strictEqual(normalizeInternalUrl("https://example.com/college"), null);
 
 const valid = [
@@ -40,4 +40,4 @@ const duplicateTarget = [
 ].join("\n");
 assert.ok(validateMap(duplicateTarget).errors.some(e => e.includes("Duplicate proposed_url without explicit merge/redirect")));
 
-console.log("URL migration manifest validator tests passed.");
+const missingRedirect = [\n  "current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target",\n  "https://collegedecoded.in/old,iima.html,profile,IIM A,/mba-colleges/iima,REDIRECT,"\n].join("\\n");\nassert.ok(validateMap(missingRedirect).errors.some(e => e.includes("redirect_target is required")));\n\nconsole.log("URL migration manifest validator tests passed.");
