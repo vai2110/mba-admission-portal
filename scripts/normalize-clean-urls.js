@@ -1,9 +1,13 @@
 const fs = require("fs");
 const path = require("path");
-const { publicRouteFromHtmlPath } = require("./public-route-from-html-path");
+const { publicRouteFromHtmlPath, publicHrefFromRoute } = require("./public-route-from-html-path");
+const { collectPublicHtmlFiles } = require("./collect-public-html-for-normalization");
 
 const ROOT = path.resolve(__dirname, "..");
 const EXCLUDED = new Set(["404.html"]);
+// Only the new public-route sample tree is normalized recursively during migration.
+// CMS source and unrelated legacy nested directories remain outside this allowlist.
+const NESTED_NORMALIZATION_ROOTS = ["mba-colleges"];
 
 // Legacy/alternate slugs that are used by older hub pages but have a
 // canonical CollegeDecoded destination.
@@ -81,7 +85,7 @@ function normalizeHref(href, sourceName) {
   if (overviewMatch && fs.existsSync(path.join(ROOT, "college-cms", "content", overviewMatch[1], "overview.html"))) {
     target = "/" + overviewMatch[1];
   }
-  return target + suffix;
+  return publicHrefFromRoute(target, suffix, sourceName);
 }
 
 function addOrReplaceCanonical(html, sourceName) {
@@ -349,8 +353,7 @@ function buildRelatedCollegeLinks() {
 
 let changed = 0;
 
-for (const name of fs.readdirSync(ROOT)) {
-  if (!name.endsWith(".html") || EXCLUDED.has(name)) continue;
+for (const name of collectPublicHtmlFiles(ROOT, NESTED_NORMALIZATION_ROOTS, [...EXCLUDED])) {
   const file = path.join(ROOT, name);
   const html = fs.readFileSync(file, "utf8");
   const normalized = normalizeFile(html, name);
