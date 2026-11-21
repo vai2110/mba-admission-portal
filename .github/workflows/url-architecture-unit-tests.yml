@@ -26,3 +26,5 @@ jobs:
         run: node scripts/iima-url-migration-preview.test.js
       - name: Run verified route sample checks
         run: node scripts/verified-route-samples.test.js
+      - name: Run verified route entity alignment guard
+        run: node scripts/verified-route-entity-guard.test.js
