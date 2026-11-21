@@ -40,7 +40,7 @@ fs.writeFileSync(path.join(auditFixture, "assets", "hero.jpg"), "Image fixture")
 fs.writeFileSync(path.join(auditFixture, "assets", "app.js"), "Script fixture");
 fs.writeFileSync(path.join(auditFixture, "assets", "styles.css"), "CSS fixture");
 fs.writeFileSync(path.join(auditFixture, "assets", "brochure.pdf"), "PDF fixture");
-fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><link rel="stylesheet" href="/assets/styles.css"><script src="/assets/app.js"></script><script src="/assets/missing.js"></script><img src="/assets/hero.jpg" srcset="/assets/hero.jpg 1x, /assets/missing-hero.jpg 2x"><img data-src="/assets/lazy-missing.jpg"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a><a href="/assets/brochure.pdf">PDF</a><a href="/assets/missing.pdf">Missing PDF</a>');
+fs.writeFileSync(path.join(auditFixture, "index.html"), '<link rel="canonical" href="https://collegedecoded.in/"><link rel="stylesheet" href="/assets/styles.css"><script src="/assets/app.js"></script><script src="/assets/missing.js"></script><img src="/assets/hero.jpg" srcset="/assets/hero.jpg 1x, /assets/missing-hero.jpg 2x"><img data-src="/assets/lazy-missing.jpg"><a href="/mba-colleges/iima">Profile</a><a href="/">Home</a><a href="/assets/brochure.pdf">PDF</a><a href="/assets/missing.pdf">Missing PDF</a><object data="/assets/brochure.pdf"></object><object data="/assets/missing-object.pdf"></object>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "index.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima"><img src="../../assets/hero.jpg"><a href="/mba-colleges/iima/placements">Placements</a><a href="/missing-route">Broken</a>');
 fs.writeFileSync(path.join(auditFixture, "mba-colleges", "iima", "placements.html"), '<link rel="canonical" href="https://collegedecoded.in/mba-colleges/iima">');
 const auditResult = audit(auditFixture);
@@ -52,6 +52,8 @@ assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-link" &
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-link" && issue.href === "/assets/brochure.pdf"), "existing static asset must not be flagged broken");
 assert.ok(auditResult.issues.some(issue => issue.type === "broken-local-link" && issue.href === "/assets/missing.pdf"), "missing static asset must be flagged broken");
 assert.ok(auditResult.counts["broken-local-asset"] >= 1, "missing image/script references must be detected as broken local assets");
+assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/brochure.pdf"), "existing object data asset must not be reported");
+assert.ok(auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/missing-object.pdf"), "missing object data asset must be reported");
 assert.ok(auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/missing.js"), "missing script must be reported");
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "/assets/hero.jpg"), "existing image assets must not be reported");
 assert.ok(!auditResult.issues.some(issue => issue.type === "broken-local-asset" && issue.href === "../../assets/hero.jpg"), "nested relative asset paths must resolve correctly");
