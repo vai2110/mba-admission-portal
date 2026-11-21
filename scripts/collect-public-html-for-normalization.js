@@ -39,7 +39,10 @@ function collectPublicHtmlFiles(root, nestedRoots = ["mba-colleges"], excludedFi
     if (absoluteRoot !== rootPath && !absoluteRoot.startsWith(rootPath + path.sep)) {
       throw new Error("Nested normalization root must remain inside the site root");
     }
-    if (fs.existsSync(absoluteRoot) && fs.statSync(absoluteRoot).isDirectory()) walkNested(absoluteRoot);
+    // Do not follow a symlink at the allowlisted root into an unrelated folder.
+    if (fs.existsSync(absoluteRoot) && !fs.lstatSync(absoluteRoot).isSymbolicLink() && fs.statSync(absoluteRoot).isDirectory()) {
+      walkNested(absoluteRoot);
+    }
   }
 
   return [...new Set(files)].sort();
