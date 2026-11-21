@@ -23,6 +23,10 @@ const valid = [
 assert.deepStrictEqual(validateMap(valid).errors, []);
 assert.strictEqual(validateMap(valid).rows, 2);
 
+const bomValid = "\uFEFF" + valid;
+assert.deepStrictEqual(validateMap(bomValid).errors, [], "BOM-prefixed CSV headers should validate");
+assert.strictEqual(validateMap(bomValid).rows, 2);
+
 const duplicateSource = [
   "current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target",
   "https://collegedecoded.in/iim-a,iima.html,profile,IIM A,/mba-colleges/iim-a,KEEP,",
