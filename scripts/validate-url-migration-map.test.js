@@ -1,6 +1,10 @@
 const assert = require("assert");
 const { parseCsv, normalizeInternalUrl, validateMap } = require("./validate-url-migration-map");
 
+const blankTemplate = validateMap("current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target");
+assert.strictEqual(blankTemplate.rows, 0);
+assert.ok(blankTemplate.warnings.some(w => w.includes("No mapping rows supplied")));
+
 const quoted = parseCsv('a,b\r\n1,"field with, comma"\r\n2,"double ""quote"""');
 assert.deepStrictEqual(quoted, [["a", "b"], ["1", "field with, comma"], ["2", 'double "quote"']]);
 assert.throws(() => parseCsv('a,b\n1,"unfinished'), /Unclosed quoted CSV field/);
