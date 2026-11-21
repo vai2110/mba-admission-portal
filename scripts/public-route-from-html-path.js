@@ -33,4 +33,14 @@ function publicHrefFromRoute(route, suffix, sourceHtmlPath) {
   return routePath.slice(1) + String(suffix || "");
 }
 
-module.exports = { publicRouteFromHtmlPath, publicHrefFromRoute };
+
+// Normalize the final index segment after a href has been resolved against its
+// source file. This prevents nested index.html links from becoming /index routes.
+function stripIndexRouteSegment(target) {
+  const value = String(target || "");
+  if (value === "index") return "";
+  if (value.endsWith("/index")) return value.slice(0, -"/index".length);
+  return value;
+}
+
+module.exports = { publicRouteFromHtmlPath, publicHrefFromRoute, stripIndexRouteSegment };
