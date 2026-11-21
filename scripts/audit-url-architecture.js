@@ -58,8 +58,8 @@ function resolveLocalHref(href, sourceRelative) {
 }
 
 function findTargetFile(root, target) {
-  if (!target) return null;
-  const candidates = target.endsWith(".html")
+  // An empty target is the site root (e.g. href="/"); resolve it to index.html.
+  const candidates = !target ? ["index.html"] : target.endsWith(".html")
     ? [target]
     : [target + ".html", path.join(target, "index.html"), path.join(target, "index.html")];
   for (const candidate of candidates) {
