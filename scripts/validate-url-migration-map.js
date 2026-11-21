@@ -115,7 +115,7 @@ function validateMap(input) {
 }
 
 if (require.main === module) {
-  const file = process.argv[2] || path.join(__dirname, "..", "docs", "seo", "url-migration-inventory.csv");
+  const file = process.argv[2] || path.join(__dirname, "..", "docs", "seo", "url-migration-inventory-template.csv");
   let content;
   try { content = fs.readFileSync(file, "utf8"); }
   catch (err) { console.error(JSON.stringify({ file, errors: [err.message], warnings: [], rows: 0 }, null, 2)); process.exitCode = 1; }
