@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { publicRouteFromHtmlPath } = require("./public-route-from-html-path");
 
 const ROOT = path.resolve(__dirname, "..");
 const EXCLUDED = new Set(["404.html"]);
@@ -34,7 +35,7 @@ function applyRouteAlias(target) {
 }
 
 function cleanUrlForFile(name) {
-  return name === "index.html" ? "/" : "/" + name.replace(/\.html$/i, "");
+  return publicRouteFromHtmlPath(name);
 }
 
 function isExternalUrl(href) {
