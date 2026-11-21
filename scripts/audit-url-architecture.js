@@ -61,13 +61,14 @@ function findTargetFile(root, target) {
   // An empty target is the site root (e.g. href="/"); resolve it to index.html.
   // Non-HTML file paths are static assets and must be checked as exact files,
   // rather than being incorrectly treated as route directories.
-  const cleanTarget = String(target || "").replace(/\\/g, "/").replace(/\\/+$/, "");
-  const hasNonHtmlExtension = Boolean(path.posix.extname(cleanTarget)) && !/\\.html$/i.test(cleanTarget);
+  let cleanTarget = String(target || "").split(String.fromCharCode(92)).join("/");
+  while (cleanTarget.endsWith("/")) cleanTarget = cleanTarget.slice(0, -1);
+  const hasNonHtmlExtension = Boolean(path.posix.extname(cleanTarget)) && !cleanTarget.toLowerCase().endsWith(".html");
   const candidates = !cleanTarget
     ? ["index.html"]
     : hasNonHtmlExtension
       ? [cleanTarget]
-      : /\\.html$/i.test(cleanTarget)
+      : cleanTarget.toLowerCase().endsWith(".html")
         ? [cleanTarget]
         : [cleanTarget + ".html", path.join(cleanTarget, "index.html")];
 
