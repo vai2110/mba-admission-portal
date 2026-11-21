@@ -102,6 +102,7 @@ function validateMap(input) {
       if (!target) errors.push(`Row ${line}: proposed_url must be an internal slashless path with no query/hash`);
       else targets.set(target, [...(targets.get(target) || []), { line, decision }]);
     } else if (!removeDecision) errors.push(`Row ${line}: proposed_url is required unless the decision is REMOVE/410`);
+    if (/redirect/i.test(decision) && !redirectRaw) errors.push(`Row ${line}: redirect_target is required for a REDIRECT decision`);
     if (redirectRaw) {
       const redirect = normalizeInternalUrl(redirectRaw);
       if (!redirect) errors.push(`Row ${line}: redirect_target must be an internal slashless path with no query/hash`);
