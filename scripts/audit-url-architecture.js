@@ -109,7 +109,7 @@ function extractAssetReferences(html) {
     }
     if (tagName === "img" || tagName === "source") {
       const srcset = getTagAttribute(tag, "srcset");
-      if (srcset && !/(?:^|,)\s*data:/i.test(srcset) {
+      if (srcset && !/(?:^|,)\s*data:/i.test(srcset)) {
         for (const candidate of srcset.split(",")) {
           const parts = candidate.trim().split(/\s+/);
           if (parts.length >= 2) add("srcset", parts[0]);
