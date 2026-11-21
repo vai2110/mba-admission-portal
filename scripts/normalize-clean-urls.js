@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { publicRouteFromHtmlPath, publicHrefFromRoute } = require("./public-route-from-html-path");
+const { publicRouteFromHtmlPath, publicHrefFromRoute, stripIndexRouteSegment } = require("./public-route-from-html-path");
 const { collectPublicHtmlFiles } = require("./collect-public-html-for-normalization");
 
 const ROOT = path.resolve(__dirname, "..");
@@ -76,7 +76,7 @@ function normalizeHref(href, sourceName) {
   }
 
   if (target.endsWith(".html")) target = target.slice(0, -5);
-  if (target === "index") target = "";
+  target = stripIndexRouteSegment(target);
   target = applyRouteAlias("/" + target);
   if (target === null) return "";
   // CMS overview files live under college-cms/content/<slug>/overview.html,
