@@ -63,7 +63,8 @@ function validateMap(input) {
   try { records = parseCsv(input); }
   catch (err) { return { errors: [err.message], warnings, rows: 0 }; }
   if (!records.length) return { errors: ["CSV is empty"], warnings, rows: 0 };
-  const headers = records[0].map(h => h.trim());
+  // Excel and some export tools prepend a UTF-8 BOM to the first header.
+  const headers = records[0].map((h, i) => (i === 0 ? h.replace(/^\uFEFF/, "") : h).trim());
   const headerCounts = new Map();
   headers.forEach(h => headerCounts.set(h, (headerCounts.get(h) || 0) + 1));
   for (const [header, count] of headerCounts) if (count > 1) errors.push(`Duplicate CSV header: ${header}`);
