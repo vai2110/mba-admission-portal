@@ -19,4 +19,18 @@ function publicRouteFromHtmlPath(filePath) {
   return "/" + normalized.slice(0, -5);
 }
 
-module.exports = { publicRouteFromHtmlPath };
+// Nested clean routes must use root-relative internal hrefs. Relative hrefs from
+// directory-index pages are resolved by browsers against the route directory,
+// which can silently send users to the wrong URL.
+function publicHrefFromRoute(route, suffix, sourceHtmlPath) {
+  const routeInput = String(route || "/");
+  const routePath = routeInput === "/"
+    ? "/"
+    : "/" + routeInput.replace(/^\/+/, "").replace(/\/+$/, "");
+  const source = String(sourceHtmlPath || "").replace(/\\/g, "/");
+  const isNestedSource = source && path.posix.dirname(source) !== ".";
+  if (isNestedSource || routePath === "/") return routePath + String(suffix || "");
+  return routePath.slice(1) + String(suffix || "");
+}
+
+module.exports = { publicRouteFromHtmlPath, publicHrefFromRoute };
