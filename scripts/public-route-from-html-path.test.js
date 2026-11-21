@@ -6,7 +6,7 @@ assert.strictEqual(publicRouteFromHtmlPath("iim-ahmedabad.html"), "/iim-ahmedaba
 assert.strictEqual(publicRouteFromHtmlPath("mba-colleges/iim-ahmedabad/index.html"), "/mba-colleges/iim-ahmedabad");
 assert.strictEqual(publicRouteFromHtmlPath("mba-colleges/iim-ahmedabad/fees/index.html"), "/mba-colleges/iim-ahmedabad/fees");
 assert.strictEqual(publicRouteFromHtmlPath("exams/cat-2027.html"), "/exams/cat-2027");
-assert.strictEqual(publicRouteFromHtmlPath("mba-colleges\\iim-ahmedabad\\index.html"), "/mba-colleges/iim-ahabad");
+assert.strictEqual(publicRouteFromHtmlPath("mba-colleges\\iim-ahmedabad\\index.html"), "/mba-colleges/iim-ahmedabad");
 assert.throws(() => publicRouteFromHtmlPath("../outside.html"), /inside the site root/);
 assert.throws(() => publicRouteFromHtmlPath("/absolute.html"), /relative to the site root/);
 assert.throws(() => publicRouteFromHtmlPath("image.png"), /\.html file path/);
@@ -14,7 +14,7 @@ assert.throws(() => publicRouteFromHtmlPath("image.png"), /\.html file path/);
 // Root pages retain their existing relative-link convention; nested routes use
 // root-relative hrefs so browser resolution cannot drift by directory depth.
 assert.strictEqual(publicHrefFromRoute("/mba-colleges/iim-ahmedabad/mba", "", "iim-ahmedabad.html"), "mba-colleges/iim-ahmedabad/mba");
-assert.strictEqual(publicHrefFromRoute("/mba-colleges/iim-ahmedabad/mba", "", "mba-colleges/iim-ahmedabad/index.html"), "/mba-colleges/iim-ahmedabad/mba");
-assert.strictEqual(publicHrefFromRoute("/", "#faq", "mba-colleges/iim-ahmedabad/index.html"), "/#faq");
-assert.strictEqual(publicHrefFromRoute("/iim-ahmedabad", "?year=2026", "mba-colleges/iim-ahabad/fees/index.html"), "/iim-ahmedabad?year=2026");
+assert.strictEqual(publicHrefFromRoute("/mba-colleges/iim-ahabad/mba", "", "mba-colleges/iim-ahabad/index.html"), "/mba-colleges/iim-ahabad/mba");
+assert.strictEqual(publicHrefFromRoute("/", "#faq", "mba-colleges/iim-ahabad/index.html"), "/#faq");
+assert.strictEqual(publicHrefFromRoute("/iim-ahabad", "?year=2026", "mba-colleges/iim-ahabad/fees/index.html"), "/iim-ahabad?year=2026");
 console.log("Public route path helper tests passed.");
