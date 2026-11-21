@@ -59,11 +59,24 @@ function resolveLocalHref(href, sourceRelative) {
 
 function findTargetFile(root, target) {
   // An empty target is the site root (e.g. href="/"); resolve it to index.html.
-  const candidates = !target ? ["index.html"] : target.endsWith(".html")
-    ? [target]
-    : [target + ".html", path.join(target, "index.html"), path.join(target, "index.html")];
+  // Non-HTML file paths are static assets and must be checked as exact files,
+  // rather than being incorrectly treated as route directories.
+  const cleanTarget = String(target || "").replace(/\\/g, "/").replace(/\\/+$/, "");
+  const hasNonHtmlExtension = Boolean(path.posix.extname(cleanTarget)) && !/\\.html$/i.test(cleanTarget);
+  const candidates = !cleanTarget
+    ? ["index.html"]
+    : hasNonHtmlExtension
+      ? [cleanTarget]
+      : /\\.html$/i.test(cleanTarget)
+        ? [cleanTarget]
+        : [cleanTarget + ".html", path.join(cleanTarget, "index.html")];
+
+  const rootPath = path.resolve(root);
   for (const candidate of candidates) {
-    if (fs.existsSync(path.join(root, candidate)) && fs.statSync(path.join(root, candidate)).isFile()) return candidate;
+    const absolute = path.resolve(rootPath, candidate);
+    // Do not allow a URL path traversal to count a file outside the site root.
+    if (absolute !== rootPath && !absolute.startsWith(rootPath + path.sep)) continue;
+    if (fs.existsSync(absolute) && fs.statSync(absolute).isFile()) return candidate;
   }
   return null;
 }
