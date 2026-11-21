@@ -14,7 +14,7 @@ const IGNORE_DIRS = new Set([".git", ".vercel", "node_modules", "college-cms"]);
 function routeFromHtmlPath(relativePath) {
   const normalized = relativePath.split(path.sep).join("/");
   if (normalized === "index.html") return "/";
-  if (normalized.endsWith("/index.html")) return "/" + normalized.slice(0, -"index.html".length);
+  if (normalized.endsWith("/index.html")) return "/" + normalized.slice(0, -"index.html".length).replace(/\\/$/, "");
   return "/" + normalized.replace(/\.html$/i, "");
 }
 
