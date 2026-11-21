@@ -1,0 +1,107 @@
+#!/usr/bin/env node
+/**
+ * Read-only URL architecture audit.
+ * Scans public HTML files recursively and checks route/canonical/link consistency.
+ * Intentionally excludes CMS source content and hidden/build dependency directories.
+ * This is an audit tool only; it does not rewrite URLs or files.
+ */
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = path.resolve(__dirname, "..");
+const IGNORE_DIRS = new Set([".git", ".vercel", "node_modules", "college-cms"]);
+
+function routeFromHtmlPath(relativePath) {
+  const normalized = relativePath.split(path.sep).join("/");
+  if (normalized === "index.html") return "/";
+  if (normalized.endsWith("/index.html")) return "/" + normalized.slice(0, -"index.html".length);
+  return "/" + normalized.replace(/\.html$/i, "");
+}
+
+function extractCanonical(html) {
+  const tags = html.match(/<link\b[^>]*>/gi) || [];
+  for (const tag of tags) {
+    if (!/\brel\s*=\s*["'][^"']*canonical[^"']*["']/i.test(tag)) continue;
+    const match = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+function collectHtmlFiles(dir, root = dir, files = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith(".") || IGNORE_DIRS.has(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) collectHtmlFiles(full, root, files);
+    else if (entry.isFile() && entry.name.toLowerCase().endsWith(".html")) {
+      files.push(path.relative(root, full));
+    }
+  }
+  return files;
+}
+
+function resolveLocalHref(href, sourceRelative) {
+  if (!href || href.startsWith("#") || /^(mailto:|tel:|javascript:|data:)/i.test(href)) return null;
+  if (/^(https?:)?\/\//i.test(href)) {
+    if (!/^https?:\/\/(www\.)?collegedecoded\.in\b/i.test(href)) return null;
+    return null;
+  }
+  const pathname = href.split(/[?#]/, 1)[0];
+  if (!pathname) return null;
+  const base = pathname.startsWith("/")
+    ? pathname.slice(1)
+    : path.posix.normalize(path.posix.join(path.posix.dirname(sourceRelative.split(path.sep).join("/")), pathname));
+  return base.replace(/^\.\//, "").replace(/\/$/, "");
+}
+
+function findTargetFile(root, target) {
+  if (!target) return null;
+  const candidates = target.endsWith(".html")
+    ? [target]
+    : [target + ".html", path.join(target, "index.html"), path.join(target, "index.html")];
+  for (const candidate of candidates) {
+    if (fs.existsSync(path.join(root, candidate)) && fs.statSync(path.join(root, candidate)).isFile()) return candidate;
+  }
+  return null;
+}
+
+function audit(root = ROOT) {
+  const files = collectHtmlFiles(root);
+  const canonicalGroups = new Map();
+  const issues = [];
+  for (const relative of files) {
+    const full = path.join(root, relative);
+    const html = fs.readFileSync(full, "utf8");
+    const canonical = extractCanonical(html);
+    if (!canonical) issues.push({ type: "missing-canonical", file: relative });
+    else {
+      canonicalGroups.set(canonical, [...(canonicalGroups.get(canonical) || []), relative]);
+      const expected = "https://collegedecoded.in" + routeFromHtmlPath(relative);
+      if (canonical !== expected) issues.push({ type: "canonical-route-mismatch", file: relative, canonical, expected });
+    }
+    const anchors = html.match(/<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>/gi) || [];
+    for (const anchor of anchors) {
+      const match = anchor.match(/\bhref\s*=\s*["']([^"']+)["']/i);
+      if (!match) continue;
+      const target = resolveLocalHref(match[1], relative);
+      if (target === null) continue;
+      if (!findTargetFile(root, target)) issues.push({ type: "broken-local-link", file: relative, href: match[1], resolvedTarget: target });
+    }
+  }
+  for (const [canonical, sources] of canonicalGroups) {
+    if (sources.length > 1) issues.push({ type: "duplicate-canonical", canonical, files: sources });
+  }
+  const counts = issues.reduce((acc, issue) => {
+    acc[issue.type] = (acc[issue.type] || 0) + 1;
+    return acc;
+  }, {});
+  return { root, htmlFilesScanned: files.length, issueCount: issues.length, counts, issues };
+}
+
+if (require.main === module) {
+  const result = audit();
+  console.log(JSON.stringify(result, null, 2));
+  if (result.issueCount) process.exitCode = 1;
+}
+
+module.exports = { routeFromHtmlPath, extractCanonical, collectHtmlFiles, resolveLocalHref, findTargetFile, audit };
