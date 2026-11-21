@@ -48,7 +48,7 @@ const duplicateTarget = [
   "https://collegedecoded.in/iim-a,iima.html,profile,IIM A,/mba-colleges/iim-a,KEEP,",
   "https://collegedecoded.in/iim-b,iimb.html,profile,IIM B,/mba-colleges/iim-a,KEEP,"
 ].join("\n");
-assert.ok(validateMap(duplicateTarget).errors.some(e => e.includes("Duplicate proposed_url without explicit merge/redirect")));
+assert.ok(validateMap(duplicateTarget).errors.some(e => e.includes("Duplicate proposed_url") && e.includes("without explicit merge/redirect")));
 
 const missingRedirect = [
   "current_url,route_or_file,content_type,entity_or_topic,proposed_url,decision,redirect_target",
