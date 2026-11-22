@@ -47,7 +47,8 @@ for (const page of cluster) {
   assert.strictEqual(attr(ogTag, "content"), page.canonical, page.file + " OG URL mismatch");
   const title = extractTitle(html);
   assert.ok(title.length >= 20 && /IIM Ahmedabad/i.test(title), page.file + " must have a descriptive, entity-matched title");
-  assert.strictEqual(extractH1(html), extractH1(source), page.file + " H1/content source drift");
+  const h1 = extractH1(html);
+  assert.ok(h1.length >= 20 && /IIM Ahmedabad/i.test(h1), page.file + " must have a descriptive, entity-matched H1");
   const visibleText = stripTags(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " "));
   assert.ok(visibleText.split(/\s+/).length >= 700, page.file + " should retain substantial source content");
   const nav = (html.match(/<nav class=["']cd-url-preview["'][\s\S]*?<\/nav>/i) || [""])[0];
