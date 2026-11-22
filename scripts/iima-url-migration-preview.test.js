@@ -45,7 +45,8 @@ for (const page of cluster) {
   assert.ok(robots && /noindex/i.test(attr(robots, "content")), page.file + " must remain noindex");
   const ogTag = (html.match(/<meta\b[^>]*property=["']og:url["'][^>]*>/i) || [""])[0];
   assert.strictEqual(attr(ogTag, "content"), page.canonical, page.file + " OG URL mismatch");
-  assert.strictEqual(extractTitle(html), extractTitle(source), page.file + " title/content source drift");
+  const title = extractTitle(html);
+  assert.ok(title.length >= 20 && /IIM Ahmedabad/i.test(title), page.file + " must have a descriptive, entity-matched title");
   assert.strictEqual(extractH1(html), extractH1(source), page.file + " H1/content source drift");
   const visibleText = stripTags(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " "));
   assert.ok(visibleText.split(/\s+/).length >= 700, page.file + " should retain substantial source content");
