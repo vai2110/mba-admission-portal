@@ -28,7 +28,7 @@ function init(){
 const mobile=document.querySelector('.onpage-mobile');
 const main=document.querySelector('main.content');
 if(!mobile||!main||document.querySelector('.section-sidebar'))return;
-const links=[...mobile.querySelectorAll('a[href^="#"]'];
+const links=[...mobile.querySelectorAll('a[href^="#"]')];
 const layout=main.parentElement.classList.contains('page-layout')?main.parentElement:(function(){const w=document.createElement('div');w.className='page-layout';main.parentNode.insertBefore(w,main);w.appendChild(main);return w;})();
 const sidebar=document.createElement('aside');sidebar.className='section-sidebar';sidebar.setAttribute('aria-label','Section navigation');
 const title=document.createElement('div');title.className='section-sidebar-title';title.textContent=main.querySelector('h1')?.textContent?.trim()||'On this page';sidebar.appendChild(title);
