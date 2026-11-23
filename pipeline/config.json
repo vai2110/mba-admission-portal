@@ -1,0 +1,15 @@
+{
+  "as_of_date": "2026-11-03",
+  "timezone": "Asia/Kolkata",
+  "current_admission_cycle": "2027",
+  "daily_publish_cap": 10,
+  "pilot_batch_size": 5,
+  "reviewer": "",
+  "similarity_threshold": 0.35,
+  "official_source_only": true,
+  "independent_audit_required": true,
+  "auto_merge": false,
+  "production_publish_requires_user_approval": true,
+  "academic_year": "2026-2027",
+  "official_source_policy": "Use each college/university/exam authority's own official website or official admission brochure for institution-specific facts; record the source URL and source date. Do not infer dates or figures from third-party aggregators."
+}

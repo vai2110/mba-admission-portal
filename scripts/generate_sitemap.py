@@ -4,10 +4,45 @@ import subprocess
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
 from html.parser import HTMLParser
+from urllib.parse import urlparse
+import json
 
 BASE_URL = "https://collegedecoded.in"
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def tag_attrs(tag_html):
+    return {key.lower(): value for key, _, value in re.findall(
+        r"""([A-Za-z_:][-A-Za-z0-9_:.]*)\s*=\s*(['"])(.*?)\2""",
+        tag_html, flags=re.I | re.S
+    )}
+
+def redirected_paths():
+    config = ROOT / "vercel.json"
+    if not config.exists():
+        return set()
+    try:
+        rules = json.loads(config.read_text(encoding="utf-8")).get("redirects", [])
+    except Exception:
+        return set()
+    paths = set()
+    for rule in rules:
+        source = rule.get("source", "")
+        destination = rule.get("destination", "")
+        if not source.startswith("/") or ":" in source:
+            continue
+        src = source.rstrip("/") or "/"
+        dst = urlparse(destination).path.rstrip("/") or "/"
+        if src.endswith(".html"):
+            clean_src = src[:-5] or "/"
+            if dst == clean_src:
+                continue
+            src = clean_src
+        if src != dst:
+            paths.add(src)
+    return paths
+
+REDIRECTED_PATHS = redirected_paths()
 
 # Internal/test pages that must never be included in the public sitemap.
 EXCLUDED_PATHS = {
@@ -91,12 +126,14 @@ for html_file in ROOT.rglob("*.html"):
     except Exception:
         continue
 
-    # Skip pages explicitly marked noindex.
-    if re.search(
-        r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex',
-        content,
-        re.IGNORECASE,
-    ):
+    # Skip pages explicitly marked noindex, regardless of attribute order.
+    noindex = False
+    for meta_tag in re.findall(r"<meta\b[^>]*>", content, flags=re.I | re.S):
+        meta_attrs = tag_attrs(meta_tag)
+        if meta_attrs.get("name", "").lower() == "robots" and "noindex" in meta_attrs.get("content", "").lower():
+            noindex = True
+            break
+    if noindex:
         continue
 
     # Look for canonical URL.
@@ -123,14 +160,8 @@ for html_file in ROOT.rglob("*.html"):
             continue
 
     else:
-        # Fallback: convert HTML filename to clean URL.
-        relative = html_file.relative_to(ROOT)
-
-        if relative.name.lower() == "index.html":
-            url = BASE_URL + "/"
-        else:
-            path_without_extension = relative.with_suffix("")
-            url = BASE_URL + "/" + str(path_without_extension).replace("\\", "/")
+        # Missing canonical pages must be repaired, not silently advertised.
+        continue
 
     # Use the page's canonical URL when one is declared.
     # This prevents legacy /overview and other implementation filenames from
@@ -151,6 +182,20 @@ for html_file in ROOT.rglob("*.html"):
             url = BASE_URL
         else:
             url = BASE_URL + "/" + str(relative.with_suffix("")).replace("\\", "/")
+
+    # Keep only the source file that owns its canonical route. Nested CMS
+    # copies and duplicate canonical files are excluded from the public sitemap.
+    relative = html_file.relative_to(ROOT)
+    if relative.name.lower() == "index.html":
+        expected_path = "/" if relative.parent == Path(".") else "/" + relative.parent.as_posix()
+    else:
+        expected_path = "/" + relative.with_suffix("").as_posix()
+    canonical_path = urlparse(url).path.rstrip("/") or "/"
+    expected_clean = expected_path.rstrip("/") or "/"
+    if canonical_path != expected_clean:
+        continue
+    if canonical_path in REDIRECTED_PATHS:
+        continue
 
     # Never advertise a legacy .html URL in the sitemap, even if a stale canonical tag exists.
     if re.search(r"\.html(?:$|[?#])", url, re.IGNORECASE):

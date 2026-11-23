@@ -1,0 +1,220 @@
+/* CollegeDecoded responsive safety layer.
+   Loaded after page-specific styles. All rules are mobile/tablet scoped;
+   desktop layout, typography and component styling remain untouched. */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  body {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  img,
+  video,
+  iframe,
+  svg,
+  canvas {
+    max-width: 100%;
+  }
+
+  main,
+  header,
+  footer,
+  section,
+  article,
+  aside,
+  .wrap,
+  .container,
+  .page-container,
+  .page-layout,
+  .content,
+  .main-content,
+  .content-wrapper,
+  .main-wrapper,
+  .page-wrap,
+  .hero,
+  .hero-container,
+  .hero-grid,
+  .section,
+  .section-inner {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .wrap,
+  .container,
+  .page-container,
+  .content-wrapper,
+  .main-wrapper,
+  .page-wrap {
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .table-wrapper,
+  .table-wrap,
+  .table-responsive,
+  .table-container,
+  .responsive-table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    max-width: 100%;
+    border-collapse: collapse;
+  }
+
+  .college-grid,
+  .programme-grid,
+  .quick-facts,
+  .stats-grid,
+  .highlight-grid,
+  .highlights-grid,
+  .decision-grid,
+  .card-grid,
+  .cards-grid,
+  .feature-grid,
+  .exam-grid,
+  .discovery,
+  .score-colleges {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    min-width: 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .page-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .hero h1,
+  .hero-title {
+    font-size: clamp(24px, 6vw, 36px);
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+
+  .search,
+  .search-box,
+  .search-bar {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .search input,
+  .search-box input,
+  .search-bar input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .main-section,
+  .content-card,
+  .college-card,
+  .programme-card {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .nav,
+  .navbar {
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-links {
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .college-grid,
+  .programme-grid,
+  .card-grid,
+  .cards-grid,
+  .feature-grid,
+  .discovery,
+  .score-colleges {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .quick-facts,
+  .stats-grid,
+  .highlight-grid,
+  .highlights-grid,
+  .decision-grid,
+  .exam-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .main-section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .hero p,
+  .hero .lead {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .mobile-on-page {
+    display: block !important;
+    position: sticky !important;
+    top: 58px !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    z-index: 60 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 auto 10px !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: #fff;
+  }
+
+  .mobile-on-page details {
+    width: 100%;
+    border: 1px solid #dfe7f2;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(16, 42, 114, .08);
+  }
+
+  .mobile-on-page summary {
+    display: block;
+    padding: 10px 13px;
+    color: #102a72;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .mobile-on-page a {
+    display: block;
+    padding: 9px 13px;
+    border-top: 1px solid #edf1f6;
+    color: #2458d8;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
