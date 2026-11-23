@@ -37,3 +37,14 @@ jobs:
           node-version: "20"
       - name: Build final site and run SEO gates
         run: bash scripts/vercel-build.sh
+      - name: Upload generated sitemap and SEO audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sitewide-seo-preview-reports
+          path: |
+            sitemap.xml
+            technical-seo-audit.json
+            seo-indexation-audit.json
+            internal-link-audit.json
+          if-no-files-found: ignore
