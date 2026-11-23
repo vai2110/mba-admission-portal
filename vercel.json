@@ -141,12 +141,12 @@
     },
     {
       "source": "/college",
-      "destination": "/iim-ahmedabad",
+      "destination": "/colleges",
       "permanent": true
     },
     {
       "source": "/college.html",
-      "destination": "/iim-ahmedabad",
+      "destination": "/colleges",
       "permanent": true
     },
     {
