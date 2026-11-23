@@ -154,48 +154,6 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1
             html = html[:body_pos] + link + "\n" + html[body_pos:]
             path.write_text(html, encoding="utf-8")
             injected += 1
-    # Provide crawlable HTML links to city pages; the location filters themselves are client-rendered.
-    location_hub = ROOT / "mba-colleges-by-location.html"
-    if location_hub.exists():
-        location_html = location_hub.read_text(encoding="utf-8", errors="ignore")
-        marker = 'class="crawlable-location-guides"'
-        if marker not in location_html:
-            cities = [
-                ("mba-colleges-in-ahmedabad", "MBA colleges in Ahmedabad"),
-                ("mba-colleges-in-bengaluru", "MBA colleges in Bengaluru"),
-                ("mba-colleges-in-chennai", "MBA colleges in Chennai"),
-                ("mba-colleges-in-delhi-ncr", "MBA colleges in Delhi NCR"),
-                ("mba-colleges-in-hyderabad", "MBA colleges in Hyderabad"),
-                ("mba-colleges-in-kolkata", "MBA colleges in Kolkata"),
-                ("mba-colleges-in-mumbai", "MBA colleges in Mumbai"),
-                ("mba-colleges-in-pune", "MBA colleges in Pune"),
-            ]
-            city_links = []
-            for slug, label in cities:
-                target = ROOT / (slug + ".html")
-                if not target.is_file():
-                    continue
-                target_html = target.read_text(encoding="utf-8", errors="ignore")
-                if is_noindex(target_html):
-                    continue
-                city_links.append(f'<li><a href="/{slug}">{escape(label)}</a></li>')
-            if city_links:
-                style = '<style id="crawlable-location-guides-style">.crawlable-location-guides{max-width:1120px;margin:24px auto;padding:20px 24px;border:1px solid #dbe5f2;border-radius:14px;background:#fff}.crawlable-location-guides h2{margin:0 0 8px;color:#102a72}.crawlable-location-guides p{margin:0 0 12px;color:#526174}.crawlable-location-guides ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px 20px;padding-left:20px}.crawlable-location-guides a{color:#2458d8;font-weight:600}</style>'
-                section = '<section class="crawlable-location-guides" aria-labelledby="crawlable-location-guides-title"><h2 id="crawlable-location-guides-title">Explore MBA colleges by city</h2><p>Compare city-specific MBA college options, admissions, fees, entrance exams and placements.</p><ul>' + "".join(city_links) + '</ul></section>'
-                head_pos = closing_tag_position(location_html, "head")
-                if head_pos >= 0 and "crawlable-location-guides-style" not in location_html:
-                    location_html = location_html[:head_pos] + style + "\n" + location_html[head_pos:]
-                # Place the link block after the real footer, still inside the body.
-                # A raw rfind("</body>") can match a literal in inline script/template text.
-                footer_end = location_html.lower().rfind("</footer>")
-                if footer_end >= 0:
-                    insert_at = footer_end + len("</footer>")
-                else:
-                    insert_at = closing_tag_position(location_html, "body")
-                if insert_at >= 0:
-                    location_html = location_html[:insert_at] + "\n" + section + "\n" + location_html[insert_at:]
-                    location_hub.write_text(location_html, encoding="utf-8")
-                    print(f"Crawlable location links added: {len(city_links)} city pages.")
     print(f"College guide discovery hub generated: {len(pages)} substantive canonical public pages; directory links added to {injected} main landing pages.")
 
 if __name__ == "__main__":
