@@ -2,6 +2,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -142,6 +143,7 @@ def fix_page(path):
 
 
 def main():
+    subprocess.run(["python3", str(ROOT / "scripts" / "check_automation_freeze.py")], check=True)
     target_pages = os.environ.get("TARGET_PAGES", "").strip()
     if target_pages:
         names = [x.strip() for x in target_pages.splitlines() if x.strip()]

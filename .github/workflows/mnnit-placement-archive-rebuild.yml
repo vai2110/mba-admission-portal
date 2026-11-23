@@ -13,6 +13,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Rebuild placement sections
         run: |
           python3 - <<'PY'

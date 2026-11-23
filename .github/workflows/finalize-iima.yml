@@ -17,6 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Install dependencies
         run: pip install beautifulsoup4
 

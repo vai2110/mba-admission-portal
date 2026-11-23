@@ -13,6 +13,11 @@ sections.
 No AGENTS.md or repository agent configuration is imported or executed.
 """
 import re
+import subprocess
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+subprocess.run(["python3", str(ROOT / "scripts" / "check_automation_freeze.py")], check=True)
 
 # IMPORTANT: run the Google-Sheet-aware production runner, not the standalone
 # content agent. The standalone agent does not call sync_master_to_sheet().

@@ -19,6 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Apply locked SIBM reference CSS and page architecture
         run: |
           cp sibm-bengaluru.css welingkar-mumbai.css

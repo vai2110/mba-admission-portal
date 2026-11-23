@@ -23,6 +23,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Install SEO audit dependencies
         run: python3 -m pip install --disable-pip-version-check beautifulsoup4
 

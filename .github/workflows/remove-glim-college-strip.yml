@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Remove top college navigation strip from all GLIM pages
         shell: python
         run: |

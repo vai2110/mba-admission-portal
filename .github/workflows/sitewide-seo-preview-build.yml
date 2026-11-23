@@ -37,3 +37,11 @@ jobs:
           node-version: "20"
       - name: Build final site and run SEO gates
         run: bash scripts/vercel-build.sh
+      - name: Assert frozen build changed zero HTML pages
+        run: |
+          if ! git diff --quiet -- '*.html'; then
+            echo '::error::Frozen build modified one or more HTML page files.'
+            git diff --name-only -- '*.html'
+            exit 1
+          fi
+          echo 'PASS: frozen build changed zero HTML page files.'

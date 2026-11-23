@@ -24,6 +24,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Inject shared page scripts into every sitemap page
         run: |
           python3 - <<'PY'

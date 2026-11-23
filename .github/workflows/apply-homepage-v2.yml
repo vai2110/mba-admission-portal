@@ -19,6 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Enforce repository content freeze
+        run: python3 scripts/check_automation_freeze.py
       - name: Apply homepage redesign
         run: python scripts/modify_homepage_v2.py
 
